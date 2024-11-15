@@ -41,6 +41,13 @@ With a wide variety of bell functions, **bellplay~** offers an extensive and fle
 Additionally, to learn more about the bell programming language, please refer to its introductory publication: 
 Giavitto, J.-L., & Agostini, A. (2019, June). Bell, a textual language for the bach library. ICMC 2019 - International Computer Music Conference. https://hal.science/hal-02348176
 
+## User community and technical support
+
+For questions, troubleshooting, bugs reports, feedback, feature requests, and more, join [bellplay~ user support Google group](https://groups.google.com/g/bellplay-support/). 
+
+> **NOTE**: that you must first ask to join the group before being able to post.
+
+
 ### Requirements
 
 To use **bellplay~** in [Max](https://cycling74.com/downloads), you will need the following*:
