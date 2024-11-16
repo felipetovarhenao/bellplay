@@ -43,10 +43,7 @@ Giavitto, J.-L., & Agostini, A. (2019, June). Bell, a textual language for the b
 
 ### User community
 
-To ask questions, troubleshooting, bugs reports, feedback, feature requests, and more, join the official [bellplay~ Discord community](https://discord.gg/84uDp2GJ). 
-
-> **NOTE**: that you must first ask to join the group before being able to post.
-
+To ask questions, troubleshooting, bugs reports, feedback, feature requests, and more, join the official [bellplay~ Discord community](https://discord.gg/84uDp2GJ).
 
 ### Requirements
 
