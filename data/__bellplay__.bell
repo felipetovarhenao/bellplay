@@ -14,7 +14,7 @@ BP_TMP_BUFFINFO = null;
 BP_TMP_ROLL_OUTPUT = null;
 BP_INF = 1./0;
 BP_RAND_RES = 2147483648;
-BP_RNG = {max.random 2147483648 @seed 1};
+BP_RNG = <<<max.random 2147483648 @seed 1>>>;
 BP_URN = null;
 BP_SCRIPT_PATH = null;
 
@@ -2110,11 +2110,11 @@ analyze = (
     $yintolerance = 1,
     $frametime = 0,
     $bufinterp = 0 -> (
-        $source = $buffer.getkey("source");
+        $source = getkey($buffer, "source");
         if $source == null then printerror("you must provide a value for @buffer in analyze().");
         if $descriptors == null then printerror("you must provide a value for @descriptors in analyze().");
         BP_ESSENTIA_OUTPUT = null;
-        $source = $buffer.process(bpthru()).getkey("source");
+        $source = getkey(process($buffer, bpthru()), "source");
         BP_DISPATCH_FUNC("essentia",
             [ "buffer" $source ]
             [ "settings"
@@ -2153,7 +2153,7 @@ analyze = (
             ]
         );
         $features = for $x in BP_ESSENTIA_OUTPUT collect [ ($x::1).flat(1) ];
-        $buffer = [ $buffer.flat(1) $features ]
+        $buffer = [ flat($buffer, 1) $features ]
     )
 );
 
@@ -2291,7 +2291,7 @@ $addref(
 
 ## ------------------------------------------------------------
 
-envmaxtime = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "envmaxtime"));
+envmaxtime = ($ -> BP_ESSENTIA_WRAPPER_FUNC(@name "envmaxtime"));
 
 $addref(
     @name "envmaxtime",
@@ -2302,7 +2302,7 @@ $addref(
 
 ## ------------------------------------------------------------
 
-envmintime = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "envmintime"));
+envmintime = ($ -> BP_ESSENTIA_WRAPPER_FUNC(@name "envmintime"));
 
 $addref(
     @name "envmintime",
@@ -2431,7 +2431,7 @@ $addref(
 
 ## ------------------------------------------------------------
 
-temporalkurtosis = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "temporalkurtosis"));
+temporalkurtosis = ($ -> BP_ESSENTIA_WRAPPER_FUNC(@name "temporalkurtosis"));
 
 $addref(
     @name "temporalkurtosis"
@@ -2465,7 +2465,7 @@ $addref(
 
 ## ------------------------------------------------------------
 
-temporalskewness = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "temporalskewness"));
+temporalskewness = ($ -> BP_ESSENTIA_WRAPPER_FUNC(@name "temporalskewness"));
 
 $addref(
     @name "temporalskewness"
@@ -2499,7 +2499,7 @@ $addref(
 
 ## ------------------------------------------------------------
 
-temporalspread = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "temporalspread"));
+temporalspread = ($ -> BP_ESSENTIA_WRAPPER_FUNC(@name "temporalspread"));
 
 $addref(
     @name "temporalspread"
@@ -2533,7 +2533,7 @@ $addref(
 
 ## ------------------------------------------------------------
 
-temporalvariance = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "temporalvariance"));
+temporalvariance = ($ -> BP_ESSENTIA_WRAPPER_FUNC(@name "temporalvariance"));
 
 $addref(
     @name "temporalvariance"
@@ -2677,7 +2677,7 @@ $addref(
 
 ## ------------------------------------------------------------
 
-strongdecay = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "strongdecay"));
+strongdecay = ($ -> BP_ESSENTIA_WRAPPER_FUNC(@name "strongdecay"));
 
 $addref(
     @name "strongdecay"
@@ -2775,7 +2775,7 @@ $addref(
 
 ## ------------------------------------------------------------
 
-logattack = ( -> BP_ESSENTIA_WRAPPER_FUNC(
+logattack = ($ -> BP_ESSENTIA_WRAPPER_FUNC(
         @name "logattacktime"
         @output (
             "logattack"
@@ -3092,7 +3092,7 @@ $addref(
 ## ------------------------------------------------------------
 
 temporalcentroid = ( 
-    -> ( 
+    $ -> ( 
         BP_ESSENTIA_WRAPPER_FUNC(
             @name "temporalcentroid"
         )
@@ -3134,7 +3134,7 @@ $addref(
 ## ------------------------------------------------------------
 
 temporalflatness = ( 
-    -> ( 
+    $ -> ( 
         BP_ESSENTIA_WRAPPER_FUNC(
             @name "temporalflatness"
         )
@@ -3686,11 +3686,11 @@ $addref(
 
 ## ------------------------------------------------------------
 
-bpthru = ( -> [ [ "fx" "thru" ] ]);
+bpthru = ($ -> [ [ "fx" "thru" ] ]);
 
 ## ------------------------------------------------------------
 
-reverse = ( -> [ [ "fx" "reverse" ] ]);
+reverse = ($ -> [ [ "fx" "reverse" ] ]);
 
 $addref(
     @name "reverse",
@@ -3701,7 +3701,7 @@ $addref(
 
 ## ------------------------------------------------------------
 
-dcfilter = ( -> [ [ "fx" "dcfilter" ] ]);
+dcfilter = ($ -> [ [ "fx" "dcfilter" ] ]);
 
 $addref(
     @name "dcfilter",
@@ -4687,7 +4687,7 @@ retune = (
     $amount = 100,
     $bypass = 100 -> (
         if $pitchgrid == null then printerror("you must provide a value for @pitchgrid in retune().");
-        $pitchgrid = $pitchgrid.thin().fmod(12) * 100;
+        $pitchgrid = fmod(thin($pitchgrid), 12) * 100;
         $len = $pitchgrid.length();
         if $len <= 2 then (
             $pitchgrid = left($pitchgrid :* (4 - $len), 3) + (0 1 2)
@@ -4983,7 +4983,7 @@ BP_BUFFER_ARITHMETIC_ARGS = (
 ## ------------------------------------------------------------
 
 absolute = (
-    -> (
+    $ -> (
         BP_BUFFER_ARITHMETIC_FUNC(
             @name "abs"
             @operand 0
@@ -5001,7 +5001,7 @@ $addref(
 ## ------------------------------------------------------------
 
 squareroot = (
-    -> (
+    $ -> (
         BP_BUFFER_ARITHMETIC_FUNC(
             @name "sqrt"
             @operand 0
