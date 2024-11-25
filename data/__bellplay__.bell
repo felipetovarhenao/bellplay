@@ -1602,7 +1602,7 @@ transcribe = (
         $gain = if $gain != null then [ 1 bpf($gain @yfunc $y -> $y * 127.) ];
 
         ## get chord velocity and duration
-        $vel = if $gain then maximum(trans($gain.1)::2) else 64;
+        $vel = if $gain then maximum(trans($gain . 1)::2) else 64;
         $dur = $buffer."duration";
 
         if $keepduration == 0 && $rate != null then (
