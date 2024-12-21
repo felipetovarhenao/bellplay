@@ -17,6 +17,7 @@ BP_RAND_RES = 2147483648;
 BP_RNG = {max.random 2147483648 @seed 1};
 BP_URN = null;
 BP_SCRIPT_PATH = null;
+BP_DEFAULT_EZSAMPLER_KEYMAP = [6000 'guitar.wav' ];
 
 ## ------------------------------------------------------------
 
@@ -5995,6 +5996,46 @@ $addref(
         $addarg(@name "target", @type "llll", @description "target buffer or feature value to find nearest neighbor for.")
     ),
     @output $addout(@description "nearest buffer" @type "llll")
+);
+
+## ------------------------------------------------------------
+
+ezsampler = (
+    $pitch = 6000, $duration = 1000, $velocity = 127, $keymap = null -> (
+        $keymap = $keymap ||| BP_DEFAULT_EZSAMPLER_KEYMAP;
+        ## get list of pitch values
+        $pitches = $keymap.trans()::1;
+        ## find closest pitch sample
+        $minaddr = minmax(abs($pitches - $pitch))::2;
+        $closest = $keymap::$minaddr;
+        ## calculate pitch difference
+        $pitchdev = $pitch - $closest:1;
+        $ratio = $pitchdev.c2r();
+        ## check if it's multi-sample match
+        $options = $closest.right(1);
+        if $velocity != null && $options.depth() > 1 then (
+            ## find best velocity match
+            $velocities = $options.trans()::1;
+            $minaddr = minmax(abs($velocities - $velocity))::2;
+            $closest = $options::$minaddr;
+            $file = $closest:2
+        ) else ($file = $options:1);
+        $b = importaudio($file).process(resample(1/$ratio)).mapkey('duration', $d -^ $duration -> min($d, $duration));
+        $b.setkey('pitch', $pitch).setkey('file', $file @mode 1) 
+    ) 
+);
+
+$addref(
+    @name "ezsampler",
+    @description "Given a list of key-value pairs in @keymap, where the key is a pitch in MIDI cents and the value is a path to an audio file, it returns a buffer that best matches the specified pitch. If @keymap is null, a default keymap is used.",
+    @category BP_REF_LABEL_GEN,
+    @arguments (
+        $addarg(@name "pitch", @default 6000 @type "int/float", @description "target pitch in midicents.")
+        $addarg(@name "duration" @default 1000 @type "int/float", @description "target duration in milliseconds.")
+        $addarg(@name "velocity" @default 127 @type "int/float", @description "target velocity, from 0 to 127. Only works if samples have velocity-based options.")
+        $addarg(@name "keymap" @default "null" @type "llll", @description "key mapping, with pitch in midicents as key and file path as value")
+    ),
+    @output $addout(@description "buffer" @type "llll")
 );
 
 ## ------------------------------------------------------------
