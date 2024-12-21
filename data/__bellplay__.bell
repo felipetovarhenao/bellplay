@@ -6020,7 +6020,8 @@ ezsampler = (
             $closest = $options::$minaddr;
             $file = $closest:2
         ) else ($file = $options:1);
-        $b = importaudio($file).process(resample(1/$ratio)).mapkey('duration', $d -^ $duration -> min($d, $duration));
+        $b = importaudio($file);
+        $b = importaudio($file).setkey('duration', $duration * $ratio).process(resample(1/$ratio));
         $b.setkey('pitch', $pitch).setkey('file', $file @mode 1) 
     ) 
 );
