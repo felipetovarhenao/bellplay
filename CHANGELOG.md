@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- Add basic draft of `ezsampler()` with docs. Pending testing and improved functionality.
+- Add basic draft of `ezsampler()` with improved docs. Pending testing and improved functionality.
 - Add `guitar.wav` built-in sample.
 
 ### Changed
