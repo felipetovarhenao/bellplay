@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3806253788,
+	"modificationdate" : 3817909746,
 	"viewrect" : [ 25.0, 105.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -310,6 +310,16 @@
 			}
 ,
 			"trumpet.wav" : 			{
+				"kind" : "audiofile",
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/Documents/bellplay/media",
+					"projectrelativepath" : "./media"
+				}
+
+			}
+,
+			"guitar.wav" : 			{
 				"kind" : "audiofile",
 				"local" : 1,
 				"singleton" : 				{

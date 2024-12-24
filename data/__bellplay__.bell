@@ -6043,7 +6043,7 @@ $addref(
 ## ------------------------------------------------------------
 
 ezsampler = (
-    $pitch = 6000, $duration = 1000, $velocity = 127, $keymap = null, $resample = 1 -> (
+    $pitch = 6000, $duration = 1000, $velocity = 127, $keymap = null, $resample = 1, $useseed = 0 -> (
         $keymap = $keymap ||| BP_DEFAULT_EZSAMPLER_KEYMAP;
         ## get list of pitch values
         $pitches = $keymap.trans()::1;
@@ -6055,13 +6055,17 @@ ezsampler = (
         $ratio = if $resample != 0 then $pitchdev.c2r() else 1;
         ## check if it's multi-sample match
         $options = $closest.right(1);
+        ## init choose func
+        $choose = if $useseed == 0 then choose else xchoose;
         if $velocity != null && $options.depth() > 1 then (
             ## find best velocity match
             $velocities = $options.trans()::1;
             $minaddr = minmax(abs($velocities - $velocity))::2;
             $closest = $options::$minaddr;
-            $file = $closest:2
-        ) else ($file = $options:1);
+            $file = $choose($closest.right(1))
+        ) else (
+            $file = $choose($options)
+        );
         $b = importaudio($file);
         $b = importaudio($file).setkey('duration', $duration * $ratio);
         if $ratio != 1 then (
@@ -6073,7 +6077,7 @@ ezsampler = (
 
 $addref(
     @name "ezsampler",
-    @description "Generates a buffer given pitch, duration, and velocity values, and an optional list representing a sampler key map. The key map must be a list of key-value pairs, where the each key is a numeric pitch value, in midicents, that maps to either an audio file path corresponding to that pitch, or to a list of key-value pairs with velocity values, between 0 and 127, as keys, and audio file paths as values. If no keymap is provided, the function defaults to a basic, built-in key map. The generated buffer will be one that best approximates the specified pitch, duration, and velocity values.",
+    @description "Generates a buffer given pitch, duration, and velocity values, and an optional list representing a sampler key map. The key map must be a list of key-value pairs, where the each key is a numeric pitch value, in midicents, that maps to one or more audio file paths corresponding to that pitch, or to a list of key-value pairs with velocity values, between 0 and 127, as keys, and audio file paths as values. When multiple file paths are provided for a given pitch or velocity key, one of them is chosen at random. If no keymap is provided, the function defaults to a basic, built-in key map. The generated buffer will be one that best approximates the specified pitch, duration, and velocity values.",
     @category BP_REF_LABEL_GEN,
     @arguments (
         $addarg(@name "pitch", @default 6000 @type "int/float", @description "target pitch in midicents.")
@@ -6084,7 +6088,11 @@ $addref(
             $addopt(@value 0 @description "off")
             $addopt(@value 1 @description "on")
         )
-    ),
+        $addarg(@name "useseed" @default 0 @type "int" @description "use seed-based random selection function." @options
+            $addopt(@value 0 @description "off")
+            $addopt(@value 1 @description "on")
+        )
+    )
     @output $addout(@description "buffer" @type "llll")
 );
 

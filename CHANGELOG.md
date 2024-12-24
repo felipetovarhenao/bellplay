@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Include the following keys as default properties in buffers: `min`, `max`, `maxabs`, and `rms`.
 - Improve duration handling in `ezsampler()`.
+- Add random sample selection in `ezsampler`.
 
 ### Fixed
 
