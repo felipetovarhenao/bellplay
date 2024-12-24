@@ -5324,6 +5324,44 @@ $addref(
 
 ## ------------------------------------------------------------
 
+fromdiffs = (
+    $buffer -> (
+        [
+            [ "fx" "fromdiffs" ]
+            [ "params" ]
+        ]
+    )
+);
+
+$addref(
+    @name "fromdiffs",
+    @description "Audio process command to perform discrete integration of a buffer. This is the equivalent of #dx2x for buffer samples. See #process.",
+    @category BP_REF_LABEL_PROCESS,
+    @arguments null
+    @output $addout(@description "fromdiffs command" @type "llll")
+);
+
+## ------------------------------------------------------------
+
+todiffs = (
+    $buffer -> (
+        [
+            [ "fx" "todiffs" ]
+            [ "params" ]
+        ]
+    )
+);
+
+$addref(
+    @name "todiffs",
+    @description "Audio process command to perform discrete differentiation of a buffer. This is the equivalent of #x2dx for buffer samples. See #process.",
+    @category BP_REF_LABEL_PROCESS,
+    @arguments null
+    @output $addout(@description "todiffs command" @type "llll")
+);
+
+## ------------------------------------------------------------
+
 join = (
     $buffers,
     $xfade = 0,

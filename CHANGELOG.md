@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Add basic draft of `ezsampler()` with improved docs. Pending testing and improved functionality.
 - Add `guitar.wav` built-in sample.
+- Add `fromdiffs` and `todiffs` processing commands with docs.
 
 ### Changed
 
