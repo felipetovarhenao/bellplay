@@ -6073,7 +6073,7 @@ ezsampler = (
 
 $addref(
     @name "ezsampler",
-    @description "Generates a buffer given a pitch, duration, and velocity values, and an optional list representing a sampler key map. The key map must be a list of key-value pairs, where the each key is a numeric pitch value, in midicents, that maps to either an audio file path corresponding to that pitch, or to a list of key-value pairs with velocity values, between 0 and 127, as keys, and audio file paths as values. If no keymap is provided, the function defaults to a basic, built-in key map. The generated buffer will be one that best approximates the specified pitch, duration, and velocity values.",
+    @description "Generates a buffer given pitch, duration, and velocity values, and an optional list representing a sampler key map. The key map must be a list of key-value pairs, where the each key is a numeric pitch value, in midicents, that maps to either an audio file path corresponding to that pitch, or to a list of key-value pairs with velocity values, between 0 and 127, as keys, and audio file paths as values. If no keymap is provided, the function defaults to a basic, built-in key map. The generated buffer will be one that best approximates the specified pitch, duration, and velocity values.",
     @category BP_REF_LABEL_GEN,
     @arguments (
         $addarg(@name "pitch", @default 6000 @type "int/float", @description "target pitch in midicents.")
