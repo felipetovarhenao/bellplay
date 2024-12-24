@@ -2572,7 +2572,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 59.0, 106.0, 318.0, 213.0 ],
+						"rect" : [ 59.0, 106.0, 404.0, 215.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -2607,7 +2607,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 253.0, 94.5, 29.5, 23.0 ],
+									"patching_rect" : [ 124.666666666666686, 94.5, 29.5, 23.0 ],
 									"text" : "int"
 								}
 
@@ -2619,7 +2619,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 130.5, 94.5, 29.5, 23.0 ],
+									"patching_rect" : [ 66.333333333333343, 94.5, 29.5, 23.0 ],
 									"text" : "int"
 								}
 
@@ -2646,15 +2646,15 @@
 								"box" : 								{
 									"id" : "obj-56",
 									"maxclass" : "newobj",
-									"numinlets" : 3,
+									"numinlets" : 7,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 8.0, 134.0, 264.0, 23.0 ],
+									"patching_rect" : [ 8.0, 134.0, 369.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"versionnumber" : 80300
 									}
 ,
-									"text" : "bach.pack duration sr numchannels @triggers 3"
+									"text" : "bach.pack duration sr numchannels min max maxabs rms @triggers 7"
 								}
 
 							}
@@ -2663,10 +2663,10 @@
 									"id" : "obj-28",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 8.0, 55.0, 264.0, 23.0 ],
-									"text" : "ears.info~ duration sr numchannels"
+									"numoutlets" : 7,
+									"outlettype" : [ "", "", "", "", "", "", "" ],
+									"patching_rect" : [ 8.0, 55.0, 369.0, 23.0 ],
+									"text" : "ears.info~ duration sr numchannels min max maxabs rms"
 								}
 
 							}
@@ -2716,6 +2716,34 @@
 								"patchline" : 								{
 									"destination" : [ "obj-2", 0 ],
 									"source" : [ "obj-28", 2 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-56", 6 ],
+									"source" : [ "obj-28", 6 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-56", 5 ],
+									"source" : [ "obj-28", 5 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-56", 4 ],
+									"source" : [ "obj-28", 4 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-56", 3 ],
+									"source" : [ "obj-28", 3 ]
 								}
 
 							}
@@ -10563,11 +10591,11 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "bach.rev.mxo",
+				"name" : "bach.roll.mxo",
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "bach.roll.mxo",
+				"name" : "bach.shelf.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -10903,6 +10931,10 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "ears.fromdiffs~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "ears.gain~.mxo",
 				"type" : "iLaX"
 			}
@@ -11032,6 +11064,10 @@
 			}
 , 			{
 				"name" : "ears.times~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.todiffs~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

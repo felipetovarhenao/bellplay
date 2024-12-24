@@ -345,6 +345,10 @@ BP_NEWBUFF_FUNC = (
             [ "source" $source ]
             [ "sr" BP_SR ]
             [ "numchannels" 1 ]
+            [ "max" 0. ]
+            [ "min" 0. ]
+            [ "maxabs" 0. ]
+            [ "rms" 0. ]
             [ "duration" 50 ]
             [ "offset" $offset ]
             [ "pitch" $pitch ]
@@ -872,7 +876,7 @@ setkey = (
         if $key == null || $llll == null then (
             printerror("you must provide values for both @llll and @key in setkey()") 
         ) else (
-            if $mode == 0 || ($llll::1).$key then [ ($llll::1).$key = $val ] else [ $llll::1 [ $key $val ] ] 
+            if $mode == 0 || ($llll::1).$key != null then [ ($llll::1).$key = $val ] else [ $llll::1 [ $key $val ] ] 
         )
     )
 );
