@@ -2042,33 +2042,57 @@ $addref(
 
 ## ------------------------------------------------------------
 
+## bach bpf slope implementation from: https://www.bachproject.net/forum/viewtopic.php?f=2&t=1208&p=4000#p3998 
+BP_GET_BPF_INTERPOLATION_WEIGHT_FUNC = (
+    $t, $s -> (
+        if $s > 0 then (
+            $t ** ((1 + $s) / (1 - $s)) 
+        ) else (
+            1 - (1 - $t) ** ((1 - $s) / (1 + $s)) 
+        ) 
+    ) 
+);
+
 samplebpf = (
-    $bpf, $pts -> (
-        $cols = trans($bpf);
-        $xvals = $cols::1;
-        $yvals = $cols::2;
-        $cvals = $cols::3;
-        $N = length($bpf);
-        for $pt in $pts collect (
-            $xdiffs = $xvals - $pt;
-            $i = 1;
-            $pos = null;
-            while $i <= $N do (
-                $dx = $xdiffs:$i;
-                if $dx >= 0 then (
-                    $pos = max(1, $i - 1);
-                    $i = $N + 1
-                ) else (
-                    $i += 1
-                )
+    $bpf, $x -> (
+        ## x-wise point sorting
+        $bpf = $bpf.sort(
+            @function $a, $b -> $a::(1 1) < $b::(1 1) 
+        );
+        ## create left-right point pairs
+        $bpfpairs = $bpf.group(@modulos 2 @overlap 1);
+        ## copy $x into $pts to use $x in loop
+        $pts = $x;
+        ## loop through each sampling point
+        for $x in $pts collect (
+            ## initialize sample with null
+            $y = null;
+            for $bpfpair in $bpfpairs as $sample == null with @unwrap 1 do (
+                ## left and right points
+                $left = $bpfpair:1;
+                $right = $bpfpair:2;
+                ## left and right x values
+                $lx = $left::(1 1);
+                $rx = $right::(1 1);
+                ## if sampling point falls within pair
+                if $x >= $lx && $x <= $rx then (
+                    ## left and right y points
+                    $ly = $left::(1 2);
+                    $ry = $right::(1 2);
+                    ## slope
+                    $s = $right::(1 3);
+                    ## normalize x
+                    $t = $x.scale($lx, $rx, 0, 1);
+                    ## get interpolation weight
+                    $w = BP_GET_BPF_INTERPOLATION_WEIGHT_FUNC($t, $s);
+                    ## apply weights
+                    $y = $ly * (1 - $w) + $ry * $w
+                ) 
             );
-            $a = left(($bpf:$pos)::1, 2);
-            $b = ($bpf:(min($pos + 1, $N)))::1;
-            $slope = $b:3;
-            $b = left($b, 2);
-            interpolate($pt, $a, $b, $slope)
-        )
-    )
+            ## return sampled value
+            $y
+        ) 
+    ) 
 );
 
 $addref(

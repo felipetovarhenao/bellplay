@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 6,
-			"revision" : 2,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 232.0, 228.0, 812.0, 592.0 ],
+		"rect" : [ 232.0, 228.0, 812.0, 618.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -45,7 +45,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 416.0, 408.0, 383.0, 23.0 ],
+					"patching_rect" : [ 416.0, 408.0, 387.0, 23.0 ],
 					"text" : "https://www.paypal.com/donate/?hosted_button_id=9A265VMJBYANE"
 				}
 
@@ -110,7 +110,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 46.5, 548.0, 150.0, 40.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 7.5, 568.0, 790.0, 23.0 ],
+					"presentation_rect" : [ 8.0, 574.0, 790.0, 23.0 ],
 					"text" : "algorithmic audio in bell",
 					"textjustification" : 1
 				}
@@ -126,7 +126,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 718.0, 269.0, 85.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 389.0, 537.0, 66.0, 35.0 ],
+					"presentation_rect" : [ 389.0, 543.0, 66.0, 35.0 ],
 					"text" : "play~"
 				}
 
@@ -141,7 +141,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 718.0, 269.0, 72.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 353.0, 537.0, 45.0, 35.0 ],
+					"presentation_rect" : [ 353.0, 543.0, 45.0, 35.0 ],
 					"text" : "bell"
 				}
 
@@ -158,7 +158,7 @@
 					"patching_rect" : [ 722.0, 152.0, 100.0, 100.0 ],
 					"pic" : "logo.png",
 					"presentation" : 1,
-					"presentation_rect" : [ 341.5, 412.0, 123.0, 123.0 ]
+					"presentation_rect" : [ 342.0, 418.0, 123.0, 123.0 ]
 				}
 
 			}
