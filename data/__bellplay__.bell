@@ -2042,7 +2042,15 @@ $addref(
 
 ## ------------------------------------------------------------
 
-## bach bpf slope implementation from: https://www.bachproject.net/forum/viewtopic.php?f=2&t=1208&p=4000#p3998 
+#( 
+    bach bpf slope implementation from: https://www.bachproject.net/forum/viewtopic.php?f=2&t=1208&p=4000#p3998 
+    
+    Curve function is
+    y = t^((1+slope)/(1-slope))
+    for positive slopes and
+    y = 1-(1-t)^((1-slope)/(1+slope))
+    for negative slopes.
+)#
 BP_GET_BPF_INTERPOLATION_WEIGHT_FUNC = (
     $t, $s -> (
         if $s > 0 then (
