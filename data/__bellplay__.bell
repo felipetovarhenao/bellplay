@@ -17,9 +17,9 @@ BP_RAND_RES = 2147483648;
 BP_URN = null;
 BP_SCRIPT_PATH = null;
 BP_DEFAULT_EZSAMPLER_KEYMAP = [6000 'guitar.wav' ];
-BP_MAXOBJ_RANDOM = {random 2147483648 @seed 1};
-BP_MAXOBJ_ATOI = {atoi};
-BP_MAXOBJ_ITOA = {itoa};
+BP_MAXOBJ_RANDOM = {max.random 2147483648 @seed 1};
+BP_MAXOBJ_ATOI = {max.atoi};
+BP_MAXOBJ_ITOA = {max.itoa};
 
 ## ------------------------------------------------------------
 
