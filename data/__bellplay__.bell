@@ -18,6 +18,8 @@ BP_RNG = {max.random 2147483648 @seed 1};
 BP_URN = null;
 BP_SCRIPT_PATH = null;
 BP_DEFAULT_EZSAMPLER_KEYMAP = [6000 'guitar.wav' ];
+BP_MAXOBJ_ATOI = {atoi};
+BP_MAXOBJ_ITOA = {itoa};
 
 ## ------------------------------------------------------------
 
@@ -6127,6 +6129,45 @@ $addref(
         )
     )
     @output $addout(@description "buffer" @type "llll")
+);
+
+## ------------------------------------------------------------
+
+symlen = (
+    $symbol -> (
+        ($symbol &&& length(BP_MAXOBJ_ATOI($symbol @out 'm'))) ||| 0
+    ) 
+);
+
+$addref(
+    @name "symlen",
+    @description "Returns the length of symbol.",
+    @category BP_REF_LABEL_UTILS,
+    @arguments (
+        $addarg(@name "symbol", @type "symbol", @description "symbol to get length of.")
+    ),
+    @output $addout(@description "symbol length" @type "int")
+);
+
+## ------------------------------------------------------------
+
+getchar = (
+    $symbol, $i = 1 -> (
+        $i &&& BP_MAXOBJ_ITOA(
+            BP_MAXOBJ_ATOI($symbol @out 'm'):[int($i)] @out 'm' 
+        ) 
+    ) 
+);
+
+$addref(
+    @name "getchar",
+    @description "Given a symbol and one or more indices, it returns the characters corresponding to each index.",
+    @category BP_REF_LABEL_UTILS,
+    @arguments (
+        $addarg(@name "symbol", @type "symbol", @description "symbol to get characters from.")
+        $addarg(@name "i", @type "int/list", @description "character indices.")
+    ),
+    @output $addout(@description "symbol" @type "symbol")
 );
 
 ## ------------------------------------------------------------

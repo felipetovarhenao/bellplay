@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Add `getchar` and `symlen` functions.
 - Add basic draft of `ezsampler()` with improved docs. Pending testing and improved functionality.
 - Add `guitar.wav` built-in sample.
 - Add `fromdiffs` and `todiffs` processing commands with docs.
@@ -61,7 +62,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Limit spacebar playback for when window is active/hover over (now works with inspector window) — using [active] object for both.
 - Minor edits in docs (primarily removing commas).
 - `setkey` now supports strict (default)/flexible mode, whereby non-existent keys can be created.
-- Minor improvements in docs. 
+- Minor improvements in docs.
 - Change use of `buffer` in `getkey`, `setkey`, and `mapkey` functions, for both code and docs.
 - `stems` subpatcher renamed as `audioexport`, now handles stems and multichannel audio exports. Pending removing unused `buffer` messages (previously in charge of single file export).
 - Update `corpus_demo.llll`.
@@ -98,9 +99,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Use python script to change app logo when standalone is not built from main.
 - Change default threshold in `effectiveduration` from 0.4 to 0.02.
 - Name changes:
-	- `getpathinfo` -> `BP_GET_PATH_INFO_FUNC`.
-	- `msg` -> `BP_DISPATCH_FUNC`.
-	- `s`-prefixed random functions -> `x`-prefixed.  
+  - `getpathinfo` -> `BP_GET_PATH_INFO_FUNC`.
+  - `msg` -> `BP_DISPATCH_FUNC`.
+  - `s`-prefixed random functions -> `x`-prefixed.
 - Show `dev` in UI version legend when in Max.
 - Update logo path to new computer.
 - `prepare_standalone.py` now performs anonymous codesigning.
