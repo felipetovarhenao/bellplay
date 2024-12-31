@@ -153,6 +153,13 @@ $addtutorial(
 );
 
 $addtutorial(
+    @name "basic sampling"
+    @file "sampling"
+    @description "This tutorial shows how to perform basic sampling in bellplay~ using the #ezsampler function."
+    @tags "sampling" "ezsampler" "audio"
+);
+
+$addtutorial(
     @name "importing MIDI"
     @file "importingmidi"
     @description "This tutorial shows how to load MIDI files into our scripts, and use MIDI events to generate audio."

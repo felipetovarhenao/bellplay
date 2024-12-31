@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3817909746,
+	"modificationdate" : 3818507749,
 	"viewrect" : [ 25.0, 105.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -327,6 +327,21 @@
 					"projectrelativepath" : "./media"
 				}
 
+			}
+,
+			"flute.wav" : 			{
+				"kind" : "audiofile",
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/Documents/bellplay/media",
+					"projectrelativepath" : "./media"
+				}
+
+			}
+,
+			"viola.wav" : 			{
+				"kind" : "audiofile",
+				"local" : 1
 			}
 
 		}

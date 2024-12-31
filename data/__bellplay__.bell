@@ -270,6 +270,8 @@ BP_MEDIA_FILES = [
         "singing.wav"
         "trumpet.wav"
         "guitar.wav"
+        "flute.wav"
+        "viola.wav"
     ]
     [ "midi"
         "bach.mid"

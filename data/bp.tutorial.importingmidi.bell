@@ -6,7 +6,7 @@
     Similar to bellplay~ buffers, each MIDI event consists of a set of keys with relevant information about each event.
     This includes the event's pitch (midicents), duration, onset, velocity, voice number, and MIDI channel.
 
-    The code belows imports a MIDI file to render it as audio using a sinusoidal oscillators.
+    The code belows imports a MIDI file to render it as audio using a very basic guitar sampler.
 )#
 
 ## import MIDI file as a list of events
@@ -24,25 +24,20 @@ for $event in $events do (
     $pitch = $event.getkey("pitch");
     $dur = $event.getkey("duration");
     $onset = $event.getkey("onset");
+    $vel = $event.getkey("velocity");
 
-    ## we divide by 127 to normalize velocity and use as linear gain
-    $gain = $event.getkey("velocity") / 127.;
+    ## we divide velocity by 127 to normalize it to a 0-1 range and use it as linear gain
+    $gain = $vel / 127.;
 
-    ## convert pitch (in midicents) to frequency
-    $freq = mc2f($pitch);
-
-    ## build sharp attack envelope based on event velocity and duration
-    $env = [0 0 0] [1 $gain -.5] [$dur / 100. 0 0];
-
-    ## generate sinusoidal oscillator based on event and transcribe
-    cycle(
-        @frequency $freq
-        @duration $dur
+    ## generate a buffer with note info using bellplay~ built-in sampler
+    ezsampler(
+        @pitch $pitch 
+        @duration $dur 
+        @velocity $vel
     ).transcribe(
-        @onset $onset
-        @gain $env
-
-        ## random panning envelope
+        ## add a slight random onset deviation to "humanize" output
+        @onset $onset + rand(-10, 10)
+        @gain $gain 
         @pan rand() rand()
     )
 );
@@ -60,6 +55,6 @@ render(
 
         ## normalize and apply 10 ms fade in
         normalize(-12) 
-        fade(10)
+        fade(10, 0)
     )
 )
