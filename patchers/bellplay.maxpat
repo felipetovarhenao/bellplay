@@ -41,6 +41,30 @@
 		"title" : "bellplay~ | algorithmic audio in bell",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-74",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 421.0, 762.0, 34.0, 23.0 ],
+					"text" : "clear"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-72",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 421.0, 727.0, 58.0, 23.0 ],
+					"text" : "savebang"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-67",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -307,24 +331,9 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-42",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 860.0, 812.0, 81.0, 21.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 617.0, 57.0, 81.0, 21.0 ],
-					"style" : "bellplay-gui",
-					"text" : "sampling rate",
-					"textcolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"align" : 2,
 					"id" : "obj-44",
-					"items" : [ 44100, ",", 48000, ",", 88200, ",", 96000 ],
+					"items" : "<empty>",
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
@@ -332,7 +341,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 945.0, 811.0, 159.0, 23.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 617.0, 56.0, 189.0, 23.0 ],
+					"presentation_rect" : [ 646.0, 56.0, 160.0, 23.0 ],
 					"style" : "bellplay-gui",
 					"textjustification" : 2
 				}
@@ -1044,7 +1053,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 695.0, 398.0, 126.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 8.0, 797.700000286102295, 18.0 ],
+					"presentation_rect" : [ 8.0, 8.0, 798.0, 18.0 ],
 					"textjustification" : 1
 				}
 
@@ -1094,36 +1103,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-135",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 627.0, 792.0, 40.0, 21.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 617.0, 7.0, 53.0, 21.0 ],
-					"style" : "bellplay-gui",
-					"text" : "driver",
-					"textcolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-133",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 483.0, 841.0, 43.0, 21.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 617.0, 32.0, 56.0, 21.0 ],
-					"style" : "bellplay-gui",
-					"text" : "device",
-					"textcolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-162",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -1139,7 +1118,7 @@
 				"box" : 				{
 					"align" : 2,
 					"id" : "obj-158",
-					"items" : [ "None", ",", "Core Audio", ",", "NonRealTime", ",", "ad_portaudio", "Core Audio" ],
+					"items" : "<empty>",
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
@@ -1147,7 +1126,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 421.0, 816.0, 100.0, 23.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 617.0, 6.0, 189.0, 23.0 ],
+					"presentation_rect" : [ 646.0, 6.0, 160.0, 23.0 ],
 					"style" : "bellplay-gui",
 					"textjustification" : 2
 				}
@@ -1170,7 +1149,7 @@
 				"box" : 				{
 					"align" : 2,
 					"id" : "obj-155",
-					"items" : [ "None", ",", "Felipe’s AirPods", ",", "MacBook Pro Speakers", ",", "LUDUS VOCALIS VIRTUAL OUTPUT", ",", "ZoomAudioDevice" ],
+					"items" : "<empty>",
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
@@ -1178,7 +1157,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 567.0, 816.0, 100.0, 23.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 617.0, 31.0, 189.0, 23.0 ],
+					"presentation_rect" : [ 646.0, 31.0, 160.0, 23.0 ],
 					"style" : "bellplay-gui",
 					"textjustification" : 2
 				}
@@ -1361,7 +1340,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 416.0, 703.0, 58.0, 23.0 ],
+					"patching_rect" : [ 417.0, 606.0, 58.0, 23.0 ],
 					"text" : "loadbang"
 				}
 
@@ -1373,7 +1352,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 416.0, 740.0, 294.0, 23.0 ],
+					"patching_rect" : [ 417.0, 643.0, 294.0, 23.0 ],
 					"text" : "title \"bellplay~ | algorithmic audio in bell\""
 				}
 
@@ -1385,7 +1364,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 416.0, 781.0, 70.0, 23.0 ],
+					"patching_rect" : [ 417.0, 684.0, 70.0, 23.0 ],
 					"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
 					"text" : "thispatcher"
 				}
@@ -1533,6 +1512,90 @@
 					"slidercolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
 					"varname" : "live.gain~",
 					"warmcolor" : [ 0.56078431372549, 0.709803921568627, 0.843137254901961, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-135",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 627.0, 792.0, 40.0, 21.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 564.0, 7.0, 53.0, 21.0 ],
+					"style" : "bellplay-gui",
+					"text" : "driver",
+					"textcolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-133",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 483.0, 841.0, 43.0, 21.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 564.0, 32.0, 56.0, 21.0 ],
+					"style" : "bellplay-gui",
+					"text" : "device",
+					"textcolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-42",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 860.0, 812.0, 81.0, 21.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 564.0, 57.0, 81.0, 21.0 ],
+					"style" : "bellplay-gui",
+					"text" : "sampling rate",
+					"textcolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-64",
+					"maxclass" : "panel",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 933.0, 696.0, 159.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 564.0, 30.833333313465118, 242.000007212162018, 23.166666686534882 ],
+					"rounded" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-62",
+					"maxclass" : "panel",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 933.0, 669.0, 159.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 564.20414200425148, 5.75, 241.420124530792236, 23.076923668384552 ],
+					"rounded" : 0
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-68",
+					"maxclass" : "panel",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 933.0, 722.0, 159.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 564.204139560461044, 55.724806189537048, 241.715982526540756, 23.372781664133072 ],
+					"rounded" : 0
 				}
 
 			}
@@ -1979,6 +2042,37 @@
 				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
 					"source" : [ "obj-67", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-74", 0 ],
+					"source" : [ "obj-72", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-155", 0 ],
+					"order" : 1,
+					"source" : [ "obj-74", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-158", 0 ],
+					"order" : 2,
+					"source" : [ "obj-74", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-44", 0 ],
+					"order" : 0,
+					"source" : [ "obj-74", 0 ]
 				}
 
 			}
