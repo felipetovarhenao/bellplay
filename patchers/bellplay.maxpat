@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 46.0, 67.0, 812.0, 585.0 ],
+		"rect" : [ 46.0, 96.0, 812.0, 585.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -429,7 +429,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 122.0, 381.0, 89.0, 23.0 ],
+									"patching_rect" : [ 122.0, 381.0, 89.0, 37.0 ],
 									"text" : "window getsize"
 								}
 
@@ -454,7 +454,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 10.0, 382.0, 96.0, 23.0 ],
+									"patching_rect" : [ 10.0, 382.0, 96.0, 37.0 ],
 									"text" : "prepend window"
 								}
 
@@ -491,19 +491,19 @@
 							}
 , 							{
 								"box" : 								{
-									"code" : "$offset = ($x2 - $x1) * (.05 .125); $offset $offset + $x1 ",
+									"code" : "$offset = ($x2 - $x1) * (.05 .18); $offset $offset + $x1 ",
 									"id" : "obj-57",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 10.0, 269.0, 404.0, 23.0 ],
+									"patching_rect" : [ 10.0, 269.0, 384.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"embed" : 1,
 										"versionnumber" : 80300
 									}
 ,
-									"text" : "bach.eval $offset = ($x2 - $x1) * (.05 .125)\\; $offset $offset + $x1 @out m"
+									"text" : "bach.eval $offset = ($x2 - $x1) * (.05 .18)\\; $offset $offset + $x1 @out m"
 								}
 
 							}
@@ -546,12 +546,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-46",
-									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 10.0, 57.0, 80.0, 23.0 ],
+									"patching_rect" : [ 10.0, 57.0, 81.0, 23.0 ],
 									"text" : "route window"
 								}
 
@@ -2201,10 +2200,6 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "bach.rev.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "bach.roll.mxo",
 				"type" : "iLaX"
 			}
@@ -2612,6 +2607,10 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "ears.fromdiffs~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "ears.gain~.mxo",
 				"type" : "iLaX"
 			}
@@ -2741,6 +2740,10 @@
 			}
 , 			{
 				"name" : "ears.times~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.todiffs~.mxo",
 				"type" : "iLaX"
 			}
 , 			{

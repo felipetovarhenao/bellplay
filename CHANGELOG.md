@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- Change default factors for bellplay window auto-placement.
 - Correct implementation of bpf sampling function.
 - Include the following keys as default properties in buffers: `min`, `max`, `maxabs`, and `rms`.
 - Improve duration handling in `ezsampler()`.
