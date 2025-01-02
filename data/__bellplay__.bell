@@ -1627,7 +1627,7 @@ transcribe = (
 
         ## format note and add to roll
         $note = [ $mc $dur $vel ["slots" [ 7 $buffer."source" ] [ 10 $buffer."offset" ] $pan $rate $gain $color $notehead $size ]];
-        BP_DISPATCH_FUNC("roll", "addchord" ($voice ||| 1) [ $onset $note ])
+        BP_DISPATCH_FUNC("roll", "addchord" ($voice ||| 1) [ ($onset ||| 0) $note ])
     )
 );
 
