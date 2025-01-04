@@ -6108,7 +6108,7 @@ ezsampler = (
         if $ratio != 1 then (
             $b = $b.process(resample(1/$ratio))
         );
-        $b.setkey('pitch', $pitch).setkey('file', $file @mode 1) 
+        $b.setkey('pitch', float($pitch)).setkey('file', $file @mode 1) 
     ) 
 );
 
