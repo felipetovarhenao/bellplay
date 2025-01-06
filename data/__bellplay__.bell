@@ -6174,4 +6174,40 @@ $addref(
 
 ## ------------------------------------------------------------
 
+gcd = (
+    $x, $y -> (if $y == 0 then abs($x) else gcd($y, $x % $y)) 
+);
+
+$addref(
+    @name "gcd",
+    @description "Computes the greatest common denominator of two integers.",
+    @category BP_REF_LABEL_UTILS,
+    @arguments (
+        $addarg(@name "x", @type "int", @description "integer.")
+        $addarg(@name "y", @type "int", @description "integer.")
+    ),
+    @output $addout(@description "Greatest common denominator" @type "int")
+);
+
+## ------------------------------------------------------------
+
+lcm = (
+    $x, $y -> (
+        if $x == 0 || $y == 0 then (0) else (
+            abs($x * $y) / gcd($x, $y) 
+        ) 
+    ) 
+);
+
+$addref(
+    @name "lcm",
+    @description "Computes the least common multiple of two integers.",
+    @category BP_REF_LABEL_UTILS,
+    @arguments (
+        $addarg(@name "x", @type "int", @description "integer.")
+        $addarg(@name "y", @type "int", @description "integer.")
+    ),
+    @output $addout(@description "Least common multiple" @type "int")
+);
+
 null

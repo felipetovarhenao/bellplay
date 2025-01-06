@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Add `gcd` and `lcm` functions.
 - Add `flute.wav` and `viola.wav` samples, and create `bp.tutorial.sampling`.
 - Add `getchar` and `symlen` functions.
 - Add basic draft of `ezsampler()` with improved docs. Pending testing and improved functionality.
