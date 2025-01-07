@@ -1886,7 +1886,7 @@ $addref(
 ## ------------------------------------------------------------
 
 export = (
-    $path, $stems = 0, $format = "float32" -> (
+    $path, $stems = 0, $format = "float32", $vbrmode = "CBR", $bitrate = 256 -> (
         ## get path info
         $pathinfo = BP_GET_PATH_INFO_FUNC($path);
         $path = $pathinfo.'path';
@@ -1896,7 +1896,7 @@ export = (
         ## check file type
         if $ext.intersection(BP_SUPPORTED_AUDIO_FORMATS) != null then (
             ## get audio format
-            BP_DISPATCH_FUNC("audioexport", [ "settings" [ "format" $format ] ] ["mode" $stems != 0] $pathinfo )
+            BP_DISPATCH_FUNC("audioexport", [ "settings" [ "format" $format ] [ "vbrmode" $vbrmode ] [ "bitrate" $bitrate ] ] ["mode" $stems != 0] $pathinfo )
         ) else if $ext == ".mid" || $ext == ".midi" then (
             BP_DISPATCH_FUNC("roll", "exportmidi" $filepath)
         ) else if $ext == ".llll" then (
@@ -1916,6 +1916,22 @@ $addref(
         $addarg(@name "stems", @default 0 @type "int", @description "stem export mode for audio files." @options
             BP_REF_SWITCH_OPTIONS
         )
+        $addarg(@name "format" @default "'float32'" @type "symbol", @description "sample format." @options 
+            $addopt(@value "'int8'")
+            $addopt(@value "'int16'")
+            $addopt(@value "'int24'")
+            $addopt(@value "'int32'")
+            $addopt(@value "'float32'")
+            $addopt(@value "'float64'")
+            $addopt(@value "'mulaw'")
+            $addopt(@value "'alaw'")
+        )
+        $addarg(@name "vbrmode" @default "'CBR'" @type "symbol", @description "mp3 variable bitrate mode." @options 
+            $addopt(@value "'CBR'" @description 'constant' 'bitrate')
+            $addopt(@value "'VBR'" @description 'variable' 'bitrate')
+            $addopt(@value "'ABR'" @description 'average' 'bitrate')
+        )
+        $addarg(@name "bitrate" @default 256 @type "int", @description "mp3 bitrate in kbps.")
     )
 );
 

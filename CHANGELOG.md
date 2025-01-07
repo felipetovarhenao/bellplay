@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- Add `export` params: `bitrate`, `vbrmode`, and `format` (missing in docs).
 - GUI: Improve `umenu` layout for audio settings — clear contents on save.
 - Change default factors for bellplay window auto-placement.
 - Correct implementation of bpf sampling function.
