@@ -1886,7 +1886,7 @@ $addref(
 ## ------------------------------------------------------------
 
 export = (
-    $path, $stems = 0, $format = "float32", $vbrmode = "CBR", $bitrate = 256 -> (
+    $path, $stems = 0, $format = "float32", $vbrmode = "VBR", $bitrate = 0 -> (
         ## get path info
         $pathinfo = BP_GET_PATH_INFO_FUNC($path);
         $path = $pathinfo.'path';
@@ -1926,12 +1926,12 @@ $addref(
             $addopt(@value "'mulaw'")
             $addopt(@value "'alaw'")
         )
-        $addarg(@name "vbrmode" @default "'CBR'" @type "symbol", @description "mp3 variable bitrate mode." @options 
+        $addarg(@name "vbrmode" @default "'VBR'" @type "symbol", @description "mp3 variable bitrate mode." @options 
             $addopt(@value "'CBR'" @description 'constant' 'bitrate')
             $addopt(@value "'VBR'" @description 'variable' 'bitrate')
             $addopt(@value "'ABR'" @description 'average' 'bitrate')
         )
-        $addarg(@name "bitrate" @default 256 @type "int", @description "mp3 bitrate in kbps.")
+        $addarg(@name "bitrate" @default 0 @type "int", @description "mp3 bitrate in kbps. If 0, uses default.")
     )
 );
 
