@@ -1973,7 +1973,7 @@ importaudio = (
                 printerror(if $ext == null then "you must provide a file path" else "invalid file extension:" $ext)
             );
             $buffer = BP_NEWBUFF_FUNC(@source BP_TMP_BUFF @extras [ "file" $filepath ]);
-            BP_BUFFER_CACHE _= [$path $buffer]
+            if BP_BUFFER_CACHE.$path == null then BP_BUFFER_CACHE _= [$path $buffer]
         );
         $buffer
     )
