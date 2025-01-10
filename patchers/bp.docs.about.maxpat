@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 6,
-			"revision" : 2,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 202.0, 198.0, 810.0, 608.0 ],
+		"rect" : [ 389.0, 96.0, 810.0, 608.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,42 @@
 		"assistshowspatchername" : 0,
 		"title" : "bellplay~ | about",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-16",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 263.5, 1101.0, 179.0, 23.0 ],
+					"text" : "https://discord.gg/RKZxTwWvxd"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-15",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 4.0, 1101.0, 247.0, 23.0 ],
+					"text" : "https://felipe-tovar-henao.com/bell-tutorials/"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "newobj",
+					"numinlets" : 3,
+					"numoutlets" : 3,
+					"outlettype" : [ "bang", "bang", "" ],
+					"patching_rect" : [ 4.0, 1067.0, 538.0, 23.0 ],
+					"text" : "sel #bell-tutorials #bellplay-discord-community"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-12",
 					"maxclass" : "message",
@@ -126,7 +162,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 4.0, 907.0, 128.0, 37.0 ],
+					"patching_rect" : [ 4.0, 1147.0, 128.0, 37.0 ],
 					"text" : ";\rmax launchbrowser $1"
 				}
 
@@ -139,18 +175,17 @@
 					"fontsize" : 14.0,
 					"hyperlinkcolor" : [ 0.368627450980392, 0.584313725490196, 0.776470588235294, 1.0 ],
 					"id" : "obj-9",
-					"linecount" : 10,
-					"linkend" : [ "null" ],
-					"linkstart" : [ "https:" ],
+					"linecount" : 12,
+					"linkend" : [ "." ],
 					"maxclass" : "bach.hypercomment",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 4.0, 839.0, 698.0, 174.0 ],
+					"patching_rect" : [ 4.0, 839.0, 698.0, 208.0 ],
 					"presentation" : 1,
-					"presentation_linecount" : 9,
-					"presentation_rect" : [ 8.0, 430.0, 796.0, 158.0 ],
-					"text" : "\nWith a wide variety of bell functions, bellplay~ offers an extensive and flexible approach to algorithmic audio, enabling users to design intricate and complex sounds with granular precision. Moreover, its feature-based representation of buffers allows for more advanced audio techniques such as audio mosaicing and concatentive synthesis. To start learning bellplay~, please follow the tutorials and refer to the bell reference documentation, where all available functions in bellplay~ are listed. \n\nAdditionally, to learn more about the bell programming language, please refer to its introductory publication: \nGiavitto, J.-L., & Agostini, A. (2019, June). Bell, a textual language for the bach library. ICMC 2019 - International Computer Music Conference. https://hal.science/hal-02348176",
+					"presentation_linecount" : 10,
+					"presentation_rect" : [ 8.0, 430.0, 796.0, 174.0 ],
+					"text" : "\nWith a wide variety of bell functions, bellplay~ offers an extensive and flexible approach to algorithmic audio, enabling users to design intricate and complex sounds with granular precision. Moreover, its feature-based representation of buffers allows for more advanced audio techniques such as audio mosaicing and concatentive synthesis. To start learning bellplay~, please follow the tutorials and refer to the bell reference documentation, where all available functions in bellplay~ are listed. \n\nIf you are new to bell or programming in general, please refer to the #bell-tutorials for a musician-friendly introduction to the language. Once you're ready, come back to start learning algorithmic audio with bellplay~. \n\nFor questions, troubleshooting, bugs reports, feedback, feature requests, and more, join the official #bellplay-discord-community.",
 					"underline" : 0
 				}
 
@@ -203,7 +238,7 @@
 					"presentation" : 1,
 					"presentation_linecount" : 13,
 					"presentation_rect" : [ 8.0, 42.0, 798.0, 242.0 ],
-					"text" : "bellplay~ is a flexible software application and framework for offline algorithmic audio in the bell programming language. Central to bellplay~ is the concept of the buffer — a structured data representation of an audio file. Buffers can be dynamically generated, processed, analyzed, and manipulated using bell scripts. Each buffer encapsulates relevant audio information such as channel count, sampling rate, and duration, alongside analysis-based features like pitch, loudness, spectral centroid, and more.\n\nThe general workflow of a bell script in bellplay~ is the following:\n\n      1. Generation: buffers are created and processed using synthesis or sampling techniques.\n      2. Transcription: buffers are queued for rendering, each symbolically represented as a note in staff notation.\n      3. Rendering: All transcribed buffers are compiled and rendered into a single audio buffer. This buffer can then be used for \n           subsequent iterations of this workflow to refine the final output as needed. \n\nHere’s an introductory example of a bell script in bellplay~, which generates 1 second of a sinusoidal wave at 440 Hz:\n"
+					"text" : "bellplay~ is a flexible software application and framework for offline algorithmic audio in the bell programming language. Central to bellplay~ is the concept of the buffer — a structured data representation of an audio file. Buffers can be dynamically generated, processed, analyzed, and manipulated using bell scripts. Each buffer encapsulates relevant audio information such as channel count, sampling rate, duration, alongside analysis-based features like rms, spectral centroid, mfcc, and more.\n\nThe general workflow of a bell script in bellplay~ is the following:\n\n      1. Generation: buffers are created and processed using synthesis or sampling techniques.\n      2. Transcription: buffers are queued for rendering, each symbolically represented as a note in staff notation.\n      3. Rendering: All transcribed buffers are compiled and rendered into a single audio buffer. This buffer can then be used for \n           subsequent iterations of this workflow to refine the final output as needed. \n\nHere’s an introductory example of a bell script in bellplay~, which generates 1 second of a sinusoidal wave at 440 Hz:\n"
 				}
 
 			}
@@ -236,6 +271,34 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-15", 0 ],
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-16", 0 ],
+					"source" : [ "obj-13", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-11", 0 ],
+					"source" : [ "obj-15", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-11", 0 ],
+					"source" : [ "obj-16", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-8", 0 ],
 					"source" : [ "obj-3", 0 ]
 				}
@@ -250,7 +313,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-11", 0 ],
+					"destination" : [ "obj-13", 0 ],
 					"source" : [ "obj-9", 0 ]
 				}
 

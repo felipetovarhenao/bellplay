@@ -525,7 +525,7 @@ BP_REF_ESSENTIA_ONSET_METHOD = (
     $addopt(@value "'rms'" @description "difference function, measuring the half-rectified change of the RMS of the magnitude spectrum.")
 );
 
-BP_REF_USE_CACHE_ARG = $addarg(@name "usecache" @default 1 @type "int" @description "use buffer cache to optimize memory performance." @options BP_REF_SWITCH_OPTIONS);
+BP_REF_USE_CACHE_ARG = $addarg(@name "usecache" @default 1 @type "int" @description "use buffer cache to optimize memory usage." @options BP_REF_SWITCH_OPTIONS);
 
 ## ------------------------------------------------------------
 
