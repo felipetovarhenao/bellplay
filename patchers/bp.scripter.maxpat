@@ -1512,19 +1512,19 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "setseed(1); BP_URN = null; BP_BUFFER_INSPECTOR = null ",
+					"code" : "BP_ON_RESET_FUNC() ",
 					"id" : "obj-163",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 257.0, 727.0, 372.0, 23.0 ],
+					"patching_rect" : [ 257.0, 727.0, 185.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 1,
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval setseed(1)\\; BP_URN = null\\; BP_BUFFER_INSPECTOR = null"
+					"text" : "bach.eval BP_ON_RESET_FUNC()"
 				}
 
 			}

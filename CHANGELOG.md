@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- Add `@usecache` functionality for all appearances of `importaudio`.
 - Add `export` params: `bitrate`, `vbrmode`, and `format` (missing in docs).
 - GUI: Improve `umenu` layout for audio settings — clear contents on save.
 - Change default factors for bellplay window auto-placement.
@@ -27,6 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- Fix duplicated use of `importaudio` in `ezsampler`.
 - `samplelist` now supports multi-sampling.
 - Fix typo in tutorials.
 

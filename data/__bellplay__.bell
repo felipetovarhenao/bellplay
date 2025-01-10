@@ -20,6 +20,15 @@ BP_DEFAULT_EZSAMPLER_KEYMAP = [6000 'guitar.wav' ];
 BP_MAXOBJ_RANDOM = {max.random 2147483648 @seed 1};
 BP_MAXOBJ_ATOI = {max.atoi};
 BP_MAXOBJ_ITOA = {max.itoa};
+BP_BUFFER_CACHE = null;
+BP_ON_RESET_FUNC = (
+    -> (
+        setseed(1); 
+        BP_URN = null; 
+        BP_BUFFER_INSPECTOR = null;
+        BP_BUFFER_CACHE = null
+    )
+);
 
 ## ------------------------------------------------------------
 
@@ -516,6 +525,8 @@ BP_REF_ESSENTIA_ONSET_METHOD = (
     $addopt(@value "'rms'" @description "difference function, measuring the half-rectified change of the RMS of the magnitude spectrum.")
 );
 
+BP_REF_USE_CACHE_ARG = $addarg(@name "usecache" @default 1 @type "int" @description "use buffer cache to optimize memory performance." @options BP_REF_SWITCH_OPTIONS);
+
 ## ------------------------------------------------------------
 
 addmarker = (
@@ -575,7 +586,8 @@ buildcorpus = (
     $alpha = 0.1,
     $delay = 5,
     $framerate = 86.1328,
-    $silencethreshold = 0.02 -> (
+    $silencethreshold = 0.02,
+    $usecache = 1 -> (
         if $files == null || $descriptors == null then printerror("You must provide a value for @files and @descriptors in buildcorpus().");
         if $files.contains() != 16 then printerror('All elements in @files must by of type symbol in buildcorpus().');
         if $segmode.intersection(0...2) == null then printerror("Invalid value for @segmode in buildcorpus():" $segmode);
@@ -608,7 +620,7 @@ buildcorpus = (
                 printerror($file "is not a valid audio file.")
             ) else (
                 $path = $pathinfo."path" + $pathinfo."extension";
-                $buff = importaudio($path);
+                $buff = importaudio($path @usecache $usecache);
                 $segref = $buff;
                 $segments = null;
                 if $segmode != 0 then (
@@ -696,6 +708,7 @@ $addref(
         $addarg(@name "delay" @default 5 @type "int" @description "number of frames used to compute the threshold — size of short-onset filter.")
         $addarg(@name "framerate" @default 86.1328 @type "float" @description "frames per second.")
         $addarg(@name "silencethreshold" @default 0.02 @type "float" @description "threshold for silence.")
+        BP_REF_USE_CACHE_ARG
     )
 );
 
@@ -828,17 +841,17 @@ $addref(
 ## ------------------------------------------------------------
 
 query = (
-    $x = "SELECT * FROM buffers" -> (
-        if $x == null then (
-            printerror("you must provide a value for @x in query()")
+    $sql = "SELECT * FROM buffers", 
+    $usecache = 1 -> (
+        if $sql == null then (
+            printerror("you must provide a value for @sql in query()")
         );
-        BP_DISPATCH_FUNC("db", [ "query" $x ]);
-        (if BP_DATABASE_OUTPUT == null then printerror("query did not yield any results:" tosymbol($x)));
+        BP_DISPATCH_FUNC("db", [ "query" $sql ]);
+        (if BP_DATABASE_OUTPUT == null then printerror("query did not yield any results:" tosymbol($sql)));
         
         $sources = thin(for $buff in BP_DATABASE_OUTPUT collect $buff.getkey("source"));
-        $sourcemap = for $source in $sources collect [ $source importaudio($source).getkey("source") ];
+        $sourcemap = for $source in $sources collect [ $source importaudio($source @usecache $usecache).getkey("source") ];
         BP_DATABASE_OUTPUT = for $buff in BP_DATABASE_OUTPUT collect $buff.mapkey("source", $x -^ $sourcemap -> $sourcemap.$x);    
-        
         BP_DATABASE_OUTPUT
     )
 );
@@ -848,7 +861,8 @@ $addref(
     @description "Executes a #sqlite3 query on the current audio corpus, and returns the results. Every query should use 'buffers' as the table name. For instance: 'SELECT * FROM buffers'. See #setcorpus.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
-        $addarg(@name "query", @type "symbol", @default "'SELECT * FROM buffers'", @description "sqlite3 query.")
+        $addarg(@name "sql" @type "symbol" @default "'SELECT * FROM buffers'" @description "sqlite3 query.")
+        BP_REF_USE_CACHE_ARG
     ),
     @output $addout(@description "list of buffers", @type "llll")
 );
@@ -1938,22 +1952,30 @@ $addref(
 ## ------------------------------------------------------------
 
 importaudio = (
-    $path -> (
-        BP_TMP_BUFF = null;
-        if $path == null then printerror("You must provide a value for @path in importaudio()");
-        $pathinfo = BP_GET_PATH_INFO_FUNC($path @locate 1);
-        $ext = $pathinfo."extension";
-        $path = $pathinfo."path";
-        $filepath = $path + $ext;
-        if $ext.intersection(BP_SUPPORTED_AUDIO_FORMATS) != null then (
-            BP_DISPATCH_FUNC("import", [
-                "audio"
-                $filepath
-            ])
-        ) else (
-            printerror(if $ext == null then "you must provide a file path" else "invalid file extension:" $ext)
+    $path, 
+    $usecache = 1 -> (
+        $buffer = null;
+        if $usecache == 1 then (
+            $buffer = BP_BUFFER_CACHE.$path
         );
-        BP_NEWBUFF_FUNC(@source BP_TMP_BUFF @extras [ "file" $filepath ])
+        if $buffer == null then (
+            BP_TMP_BUFF = null;
+            if $path == null then printerror("You must provide a value for @path in importaudio()");
+            $pathinfo = BP_GET_PATH_INFO_FUNC($path @locate 1);
+            $ext = $pathinfo."extension";
+            $filepath = $pathinfo."path" + $ext;
+            if $ext.intersection(BP_SUPPORTED_AUDIO_FORMATS) != null then (
+                BP_DISPATCH_FUNC("import", [
+                    "audio"
+                    $filepath
+                ])
+            ) else (
+                printerror(if $ext == null then "you must provide a file path" else "invalid file extension:" $ext)
+            );
+            $buffer = BP_NEWBUFF_FUNC(@source BP_TMP_BUFF @extras [ "file" $filepath ]);
+            BP_BUFFER_CACHE _= [$path $buffer]
+        );
+        $buffer
     )
 );
 
@@ -1963,6 +1985,7 @@ $addref(
     @category BP_REF_LABEL_GEN,
     @arguments (
         $addarg(@name "path", @type "symbol", @description "input audio file path.")
+        BP_REF_USE_CACHE_ARG
     ),
     @output $addout(@description "buffer" @type "llll")
 );
@@ -6096,7 +6119,7 @@ $addref(
 ## ------------------------------------------------------------
 
 ezsampler = (
-    $pitch = 6000, $duration = 1000, $velocity = 127, $keymap = null, $resample = 1, $useseed = 0 -> (
+    $pitch = 6000, $duration = 1000, $velocity = 127, $keymap = null, $resample = 1, $useseed = 0, $usecache = 1 -> (
         $keymap = $keymap ||| BP_DEFAULT_EZSAMPLER_KEYMAP;
         ## get list of pitch values
         $pitches = $keymap.trans()::1;
@@ -6119,8 +6142,8 @@ ezsampler = (
         ) else (
             $file = $choose($options)
         );
-        $b = importaudio($file);
-        $b = importaudio($file).setkey('duration', $duration * $ratio);
+        $b = importaudio($file @usecache $usecache);
+        $b = $b.setkey('duration', $duration * $ratio);
         if $ratio != 1 then (
             $b = $b.process(resample(1/$ratio))
         );
@@ -6145,6 +6168,7 @@ $addref(
             $addopt(@value 0 @description "off")
             $addopt(@value 1 @description "on")
         )
+        BP_REF_USE_CACHE_ARG
     )
     @output $addout(@description "buffer" @type "llll")
 );
