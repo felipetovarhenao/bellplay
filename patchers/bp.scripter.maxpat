@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 327.0, 193.0, 762.0, 492.0 ],
+		"rect" : [ 520.0, 443.0, 762.0, 492.0 ],
 		"openinpresentation" : 1,
 		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
@@ -599,7 +599,7 @@
 
 							}
  ],
-						"originid" : "pat-4596",
+						"originid" : "pat-11990",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -960,7 +960,7 @@
 
 							}
  ],
-						"originid" : "pat-4598",
+						"originid" : "pat-11992",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1357,7 +1357,7 @@
 
 							}
  ],
-						"originid" : "pat-4604",
+						"originid" : "pat-11998",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1773,7 +1773,7 @@
 
 							}
  ],
-						"originid" : "pat-4628",
+						"originid" : "pat-12022",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2059,7 +2059,7 @@
 
 							}
  ],
-						"originid" : "pat-4630",
+						"originid" : "pat-12024",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2251,7 +2251,7 @@
 
 							}
  ],
-						"originid" : "pat-4632",
+						"originid" : "pat-12026",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -2560,7 +2560,7 @@
 
 							}
  ],
-						"originid" : "pat-4636",
+						"originid" : "pat-12030",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -3086,7 +3086,7 @@
 
 							}
  ],
-						"originid" : "pat-4694",
+						"originid" : "pat-12088",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4414,7 +4414,7 @@
 
 							}
  ],
-						"originid" : "pat-4696",
+						"originid" : "pat-12090",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4746,7 +4746,7 @@
 
 											}
  ],
-										"originid" : "pat-4706",
+										"originid" : "pat-12100",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -5067,7 +5067,7 @@
 
 							}
  ],
-						"originid" : "pat-4704",
+						"originid" : "pat-12098",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5388,7 +5388,7 @@
 
 							}
  ],
-						"originid" : "pat-5002",
+						"originid" : "pat-12396",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5829,7 +5829,7 @@
 
 							}
  ],
-						"originid" : "pat-5162",
+						"originid" : "pat-12556",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -6028,7 +6028,7 @@
 
 											}
  ],
-										"originid" : "pat-5166",
+										"originid" : "pat-12560",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -6507,7 +6507,7 @@
 
 											}
  ],
-										"originid" : "pat-5170",
+										"originid" : "pat-12564",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -6809,7 +6809,7 @@
 
 							}
  ],
-						"originid" : "pat-5164",
+						"originid" : "pat-12558",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -7536,17 +7536,18 @@
 			}
 , 			{
 				"box" : 				{
-					"fontsize" : 10.0,
+					"fontface" : 2,
+					"fontsize" : 11.0,
 					"id" : "obj-32",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 13.0, 13.0, 481.0, 18.0 ],
+					"patching_rect" : [ 13.0, 13.0, 500.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 4.0, 3.0, 647.0, 18.0 ],
+					"presentation_rect" : [ 4.0, 1.0, 673.0, 20.0 ],
 					"style" : "bellplay-gui",
-					"text" : "Load a .bell script to generate an audio file and roll sequence, and export it as in .wav or .llll format.",
-					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
+					"text" : "Load a .bell file to run your script. The loaded script will automatically run every time it's saved.",
+					"textcolor" : [ 0.556862745098039, 0.556862745098039, 0.556862745098039, 1.0 ]
 				}
 
 			}
@@ -8130,7 +8131,7 @@
 
 							}
  ],
-						"originid" : "pat-5566",
+						"originid" : "pat-12960",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -9965,7 +9966,7 @@
 
 			}
  ],
-		"originid" : "pat-4522",
+		"originid" : "pat-11916",
 		"dependency_cache" : [ 			{
 				"name" : "bach.+.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",

@@ -696,7 +696,7 @@
 
 							}
  ],
-						"originid" : "pat-2278",
+						"originid" : "pat-15584",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -920,8 +920,9 @@
 			}
 , 			{
 				"box" : 				{
+					"align" : 2,
 					"bgcolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 0.0 ],
-					"fontsize" : 10.0,
+					"fontsize" : 11.0,
 					"id" : "obj-92",
 					"maxclass" : "textbutton",
 					"numinlets" : 1,
@@ -930,8 +931,9 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 1117.0, 197.0, 100.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 706.0, 89.0, 100.0, 18.0 ],
+					"presentation_rect" : [ 653.0, 89.0, 153.0, 18.0 ],
 					"text" : "open documentation",
+					"textjustification" : 2,
 					"textoncolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
 					"textovercolor" : [ 0.56078431372549, 0.709803921568627, 0.843137254901961, 1.0 ],
 					"usetextovercolor" : 1
@@ -2095,7 +2097,7 @@
 
 			}
  ],
-		"originid" : "pat-2270",
+		"originid" : "pat-15576",
 		"parameters" : 		{
 			"obj-115" : [ "live.gain~", "GAIN", 0 ],
 			"parameterbanks" : 			{

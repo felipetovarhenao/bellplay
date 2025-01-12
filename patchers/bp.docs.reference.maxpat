@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 165.0, 210.0, 806.0, 607.0 ],
+		"rect" : [ 450.0, 316.0, 806.0, 607.0 ],
 		"openinpresentation" : 1,
 		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
@@ -160,7 +160,7 @@
 
 							}
  ],
-						"originid" : "pat-7104"
+						"originid" : "pat-20241"
 					}
 ,
 					"patching_rect" : [ 1392.0, 1239.0, 69.0, 23.0 ],
@@ -492,7 +492,7 @@
 
 							}
  ],
-						"originid" : "pat-7106",
+						"originid" : "pat-20243",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -704,7 +704,7 @@
 
 							}
  ],
-						"originid" : "pat-7118"
+						"originid" : "pat-20255"
 					}
 ,
 					"patching_rect" : [ 701.0, 1488.0, 163.0, 23.0 ],
@@ -1518,16 +1518,17 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 2,
 					"id" : "obj-32",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 14.0, 4.0, 1179.0, 21.0 ],
+					"patching_rect" : [ 14.0, 4.0, 1114.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 42.0, 793.0, 21.0 ],
+					"presentation_rect" : [ 8.0, 42.0, 750.0, 21.0 ],
 					"style" : "bellplay-gui",
-					"text" : "In addition to the native functions in bell, the following functions are included in bellplay~. Click on the menu to learn more about each of them.",
-					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
+					"text" : "In addition to the native functions in bell, the following functions are included in bellplay~.",
+					"textcolor" : [ 0.556862745098039, 0.556862745098039, 0.556862745098039, 1.0 ]
 				}
 
 			}
@@ -2546,7 +2547,7 @@
 
 			}
  ],
-		"originid" : "pat-7100",
+		"originid" : "pat-20237",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
