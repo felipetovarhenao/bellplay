@@ -8,32 +8,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- Add `gcd` and `lcm` functions.
-- Add `flute.wav` and `viola.wav` samples, and create `bp.tutorial.sampling`.
-- Add `getchar` and `symlen` functions.
-- Add basic draft of `ezsampler()` with improved docs. Pending testing and improved functionality.
-- Add `guitar.wav` built-in sample.
-- Add `fromdiffs` and `todiffs` processing commands with docs.
+- New `gcd` and `lcm` functions.
+- New `flute.wav` and `viola.wav` samples, and new tutorial `bp.tutorial.sampling`.
+- New `getchar` and `symlen` functions.
+- New `ezsampler` function.
+- New `guitar.wav` built-in sample.
+- New `fromdiffs` and `todiffs` processing commands.
 
 ### Changed
 
 - `scale()`: Add `@slope` argument using the same implementation as in `samplebpf()`.
 - buffer inspector: Add previous/next control via key input.
-- Add bell tutorials and discord info in `about` tab.
-- Add `@usecache` functionality for all appearances of `importaudio`.
-- Add `export` params: `bitrate`, `vbrmode`, and `format` (missing in docs).
+- GUI: Add bell tutorials and discord info in _about_ tab.
+- `importaudio`: Add `@usecache` argument and include in other functions that use it.
+- `export`: Add new params `bitrate`, `vbrmode`, and `format`.
 - GUI: Improve `umenu` layout for audio settings — clear contents on save.
-- Change default factors for bellplay window auto-placement.
-- Correct implementation of bpf sampling function.
-- Include the following keys as default properties in buffers: `min`, `max`, `maxabs`, and `rms`.
-- Improve duration handling in `ezsampler()`.
-- Add random sample selection in `ezsampler`.
+- GUI: Change default factors for bellplay window auto-placement.
+- `samplebpf`: Use accurate implementation for slope.
+- buffers: include the following keys as default properties: `min`, `max`, `maxabs`, and `rms`.
+- `ezsampler`: improve duration handling.
+- `ezsampler`: add random sample selection.
 
 ### Fixed
 
-- Fix duplicated use of `importaudio` in `ezsampler`.
-- `samplelist` now supports multi-sampling.
-- Fix typo in tutorials.
+- `ezsampler`: Fix duplicated use of `importaudio`.
+- `samplelist`: now supports multi-sampling.
+- tutorials: fix typo.
 
 ### Removed
 
