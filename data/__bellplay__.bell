@@ -6218,38 +6218,34 @@ $addref(
 
 ## ------------------------------------------------------------
 
-gcd = (
-    $x, $y -> (if $y == 0 then abs($x) else gcd($y, $x % $y)) 
-);
+BP_GCD_FUNC = $x, $y -> if $y == 0 then abs($x) else BP_GCD_FUNC($y, $x % $y);
+
+gcd = $llll -> for $x in flat($llll) do $gcd = BP_GCD_FUNC($gcd ||| $x, $x);
 
 $addref(
     @name "gcd",
-    @description "Computes the greatest common denominator of two integers.",
+    @description "Computes the greatest common denominator of a list of integers.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
-        $addarg(@name "x", @type "int", @description "integer.")
-        $addarg(@name "y", @type "int", @description "integer.")
+        $addarg(@name "llll" @type "llll" @description "list of integers.")
     ),
-    @output $addout(@description "Greatest common denominator" @type "int")
+    @output $addout(@description "greatest common denominator" @type "int")
 );
 
 ## ------------------------------------------------------------
 
-lcm = (
-    $x, $y -> (
-        if $x == 0 || $y == 0 then (0) else (
-            abs($x * $y) / gcd($x, $y) 
-        ) 
-    ) 
+BP_LCM_FUNC = $x, $y -> if $x == 0 || $y == 0 then 0 else abs($x * $y) / BP_GCD_FUNC($x, $y);
+
+lcm = $llll -> (
+    for $x in flat($llll) do $lcm = max($lcm ||| $x, BP_LCM_FUNC($lcm ||| $x, $x))
 );
 
 $addref(
-    @name "lcm",
-    @description "Computes the least common multiple of two integers.",
-    @category BP_REF_LABEL_UTILS,
+    @name "lcm"
+    @description "Computes the least common multiple of a list of integers."
+    @category BP_REF_LABEL_UTILS
     @arguments (
-        $addarg(@name "x", @type "int", @description "integer.")
-        $addarg(@name "y", @type "int", @description "integer.")
+        $addarg(@name "llll" @type "llll" @description "list of integers.")
     ),
     @output $addout(@description "Least common multiple" @type "int")
 );
