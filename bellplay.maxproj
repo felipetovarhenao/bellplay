@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3818510353,
+	"modificationdate" : 3819545964,
 	"viewrect" : [ 25.0, 105.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -217,6 +217,16 @@
 			}
 ,
 			"bp.scrubplayer.poly~.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1
+			}
+,
+			"bp.utils.compareversions.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1
+			}
+,
+			"bp.utils.checkupdate.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1
 			}
