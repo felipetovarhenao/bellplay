@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- GUI: Adapt project to handle Max 9 GUI defaults.
 - `scale()`: Add `@slope` argument using the same implementation as in `samplebpf()`.
 - buffer inspector: Add previous/next control via key input.
 - GUI: Add bell tutorials and discord info in _about_ tab.

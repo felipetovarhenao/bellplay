@@ -2,42 +2,22 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 8,
-			"minor" : 6,
-			"revision" : 2,
+			"major" : 9,
+			"minor" : 0,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 49.0, 54.0, 755.0, 502.0 ],
-		"bglocked" : 0,
+		"rect" : [ 100.0, 138.0, 755.0, 502.0 ],
 		"openinpresentation" : 1,
-		"default_fontsize" : 12.0,
-		"default_fontface" : 0,
 		"default_fontname" : "Lato",
-		"gridonopen" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
-		"gridsnaponopen" : 1,
-		"objectsnaponopen" : 1,
-		"statusbarvisible" : 2,
 		"toolbarvisible" : 0,
-		"lefttoolbarpinned" : 0,
-		"toptoolbarpinned" : 0,
-		"righttoolbarpinned" : 0,
-		"bottomtoolbarpinned" : 0,
-		"toolbars_unpinned_last_save" : 0,
-		"tallnewobj" : 0,
-		"boxanimatetime" : 200,
 		"enablehscroll" : 0,
 		"enablevscroll" : 0,
-		"devicewidth" : 0.0,
-		"description" : "",
-		"digest" : "",
-		"tags" : "",
 		"style" : "bellplay-gui",
-		"subpatcher_template" : "",
-		"assistshowspatchername" : 0,
 		"title" : "bellplay~ | corpus lab",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -61,42 +41,18 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 8,
-							"minor" : 6,
-							"revision" : 2,
+							"major" : 9,
+							"minor" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
 						"rect" : [ 59.0, 106.0, 485.0, 292.0 ],
-						"bglocked" : 0,
-						"openinpresentation" : 0,
-						"default_fontsize" : 12.0,
-						"default_fontface" : 0,
 						"default_fontname" : "Lato",
-						"gridonopen" : 1,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
-						"objectsnaponopen" : 1,
-						"statusbarvisible" : 2,
-						"toolbarvisible" : 1,
-						"lefttoolbarpinned" : 0,
-						"toptoolbarpinned" : 0,
-						"righttoolbarpinned" : 0,
-						"bottomtoolbarpinned" : 0,
-						"toolbars_unpinned_last_save" : 0,
-						"tallnewobj" : 0,
-						"boxanimatetime" : 200,
-						"enablehscroll" : 1,
-						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
-						"description" : "",
-						"digest" : "",
-						"tags" : "",
 						"style" : "subtlelight",
-						"subpatcher_template" : "",
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-2",
@@ -124,6 +80,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-123",
+									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
@@ -136,6 +93,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-108",
+									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 2,
@@ -152,6 +110,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-12",
+									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 2,
@@ -269,6 +228,7 @@
 
 							}
  ],
+						"originid" : "pat-6618",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -300,12 +260,9 @@
 ,
 					"patching_rect" : [ 1000.0, 549.0, 114.0, 23.0 ],
 					"saved_object_attributes" : 					{
-						"description" : "",
-						"digest" : "",
 						"fontname" : "Lato",
 						"globalpatchername" : "",
-						"style" : "subtlelight",
-						"tags" : ""
+						"style" : "subtlelight"
 					}
 ,
 					"text" : "p filter"
@@ -390,7 +347,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 642.0, 186.0, 57.0, 23.0 ],
+					"patching_rect" : [ 642.0, 186.0, 58.0, 23.0 ],
 					"style" : "bellplay-gui",
 					"text" : "savebang"
 				}
@@ -403,7 +360,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 458.0, 76.0, 51.0, 23.0 ],
+					"patching_rect" : [ 458.0, 76.0, 52.0, 23.0 ],
 					"text" : "set LLLL"
 				}
 
@@ -427,7 +384,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
-					"patching_rect" : [ 341.0, 110.0, 66.0, 23.0 ],
+					"patching_rect" : [ 341.0, 110.0, 67.0, 23.0 ],
 					"text" : "opendialog"
 				}
 
@@ -442,42 +399,18 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 8,
-							"minor" : 6,
-							"revision" : 2,
+							"major" : 9,
+							"minor" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
 						"rect" : [ 360.0, 430.0, 847.0, 158.0 ],
-						"bglocked" : 0,
-						"openinpresentation" : 0,
-						"default_fontsize" : 12.0,
-						"default_fontface" : 0,
 						"default_fontname" : "Lato",
-						"gridonopen" : 1,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
-						"objectsnaponopen" : 1,
-						"statusbarvisible" : 2,
-						"toolbarvisible" : 1,
-						"lefttoolbarpinned" : 0,
-						"toptoolbarpinned" : 0,
-						"righttoolbarpinned" : 0,
-						"bottomtoolbarpinned" : 0,
-						"toolbars_unpinned_last_save" : 0,
-						"tallnewobj" : 0,
-						"boxanimatetime" : 200,
-						"enablehscroll" : 1,
-						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
-						"description" : "",
-						"digest" : "",
-						"tags" : "",
 						"style" : "subtlelight",
-						"subpatcher_template" : "",
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-1",
@@ -514,6 +447,7 @@
 								"box" : 								{
 									"code" : "if $x1.length() > 1 then for $x in $x1 collect if $x.depth() > 1 then $x else [$x] else $x1 ",
 									"id" : "obj-29",
+									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
@@ -531,6 +465,7 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-30",
+									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 2,
@@ -620,6 +555,7 @@
 
 							}
  ],
+						"originid" : "pat-6624",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -649,14 +585,11 @@
  ]
 					}
 ,
-					"patching_rect" : [ 1533.0, 507.0, 53.0, 23.0 ],
+					"patching_rect" : [ 1533.0, 507.0, 54.0, 23.0 ],
 					"saved_object_attributes" : 					{
-						"description" : "",
-						"digest" : "",
 						"fontname" : "Lato",
 						"globalpatchername" : "",
-						"style" : "subtlelight",
-						"tags" : ""
+						"style" : "subtlelight"
 					}
 ,
 					"text" : "p format"
@@ -670,7 +603,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 1262.0, 3068.0, 46.0, 23.0 ],
+					"patching_rect" : [ 1262.0, 3068.0, 47.0, 23.0 ],
 					"text" : "*~ 0.25"
 				}
 
@@ -682,7 +615,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1000.0, 658.0, 148.0, 23.0 ],
+					"patching_rect" : [ 1000.0, 658.0, 149.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"versionnumber" : 80300
 					}
@@ -746,7 +679,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1004.0, 1853.0, 126.0, 23.0 ],
+					"patching_rect" : [ 1004.0, 1853.0, 128.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"versionnumber" : 80300
 					}
@@ -773,7 +706,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 897.0, 1168.0, 77.0, 23.0 ],
+					"patching_rect" : [ 897.0, 1168.0, 78.0, 23.0 ],
 					"text" : "s #0selection"
 				}
 
@@ -846,7 +779,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 897.0, 1024.0, 201.0, 23.0 ],
+					"patching_rect" : [ 897.0, 1024.0, 204.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 1,
 						"versionnumber" : 80300
@@ -876,7 +809,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 465.0, 812.0, 298.0, 23.0 ],
+					"patching_rect" : [ 465.0, 812.0, 300.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 1,
 						"versionnumber" : 80300
@@ -952,7 +885,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1346.0, 507.0, 149.0, 23.0 ],
+					"patching_rect" : [ 1346.0, 507.0, 151.0, 23.0 ],
 					"text" : "sprintf symout buffer_id %i"
 				}
 
@@ -980,7 +913,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1095.0, 430.0, 63.0, 23.0 ],
+					"patching_rect" : [ 1095.0, 430.0, 64.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"versionnumber" : 80300
 					}
@@ -1012,7 +945,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
-					"patching_rect" : [ 1346.0, 464.0, 151.0, 23.0 ],
+					"patching_rect" : [ 1346.0, 464.0, 154.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"versionnumber" : 80300
 					}
@@ -1028,7 +961,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 1095.0, 480.0, 219.0, 23.0 ],
+					"patching_rect" : [ 1095.0, 480.0, 223.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"versionnumber" : 80300
 					}
@@ -1044,7 +977,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 810.0, 658.0, 130.0, 23.0 ],
+					"patching_rect" : [ 810.0, 658.0, 131.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"versionnumber" : 80300
 					}
@@ -1088,7 +1021,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 341.0, 344.0, 63.0, 23.0 ],
+					"patching_rect" : [ 341.0, 344.0, 64.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"versionnumber" : 80300
 					}
@@ -1124,7 +1057,8 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 6.0, 7.0, 291.0, 18.0 ],
 					"style" : "bellplay-gui",
-					"text" : "Load a corpus as a .llll file to visualize it."
+					"text" : "Load a corpus as a .llll file to visualize it.",
+					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
 
 			}
@@ -1163,7 +1097,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 739.5, 693.0, 57.0, 23.0 ],
+					"patching_rect" : [ 739.5, 693.0, 58.0, 23.0 ],
 					"text" : "savebang"
 				}
 
@@ -1317,7 +1251,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 1313.0, 1532.0, 97.0, 23.0 ],
+					"patching_rect" : [ 1313.0, 1532.0, 98.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"versionnumber" : 80300
 					}
@@ -1375,7 +1309,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 433.0, 658.0, 186.0, 23.0 ],
+					"patching_rect" : [ 433.0, 658.0, 188.0, 23.0 ],
 					"text" : "bang, database #0corpus, table $1"
 				}
 
@@ -1403,7 +1337,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 341.0, 549.0, 63.0, 23.0 ],
+					"patching_rect" : [ 341.0, 549.0, 64.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"versionnumber" : 80300
 					}
@@ -1420,7 +1354,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 341.0, 1205.0, 797.0, 23.0 ],
+					"patching_rect" : [ 341.0, 1205.0, 803.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 1,
 						"versionnumber" : 80300
@@ -1449,7 +1383,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 474.0, 306.0, 38.0, 23.0 ],
+					"patching_rect" : [ 474.0, 306.0, 39.0, 23.0 ],
 					"text" : "dump"
 				}
 
@@ -1473,7 +1407,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 460.0, 227.0, 128.0, 23.0 ],
+					"patching_rect" : [ 460.0, 227.0, 129.0, 23.0 ],
 					"text" : "erase, addtable buffers"
 				}
 
@@ -1535,7 +1469,8 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 12.0, 80.0, 24.0, 24.0 ]
+					"patching_rect" : [ 12.0, 80.0, 24.0, 24.0 ],
+					"svg" : ""
 				}
 
 			}
@@ -1832,45 +1767,22 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 8,
-							"minor" : 6,
-							"revision" : 2,
+							"major" : 9,
+							"minor" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
 						"rect" : [ 59.0, 106.0, 893.0, 157.0 ],
-						"bglocked" : 0,
-						"openinpresentation" : 0,
-						"default_fontsize" : 12.0,
-						"default_fontface" : 0,
 						"default_fontname" : "Lato",
-						"gridonopen" : 1,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
-						"objectsnaponopen" : 1,
-						"statusbarvisible" : 2,
-						"toolbarvisible" : 1,
-						"lefttoolbarpinned" : 0,
-						"toptoolbarpinned" : 0,
-						"righttoolbarpinned" : 0,
-						"bottomtoolbarpinned" : 0,
-						"toolbars_unpinned_last_save" : 0,
-						"tallnewobj" : 0,
-						"boxanimatetime" : 200,
-						"enablehscroll" : 1,
-						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
-						"description" : "",
-						"digest" : "",
-						"tags" : "",
 						"style" : "subtlelight",
-						"subpatcher_template" : "",
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-8",
+									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
@@ -1921,6 +1833,7 @@
 
 							}
  ],
+						"originid" : "pat-6642",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1952,12 +1865,9 @@
 ,
 					"patching_rect" : [ 1729.0, 1818.0, 98.0, 23.0 ],
 					"saved_object_attributes" : 					{
-						"description" : "",
-						"digest" : "",
 						"fontname" : "Lato",
 						"globalpatchername" : "",
-						"style" : "subtlelight",
-						"tags" : ""
+						"style" : "subtlelight"
 					}
 ,
 					"style" : "bellplay-gui",
@@ -3798,14 +3708,15 @@
 
 			}
  ],
+		"originid" : "pat-6616",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "bach.change.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/bach/patchers",
-				"patcherrelativepath" : "../../Max 8/Packages/bach/patchers",
+				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
+				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
@@ -3819,8 +3730,8 @@
 			}
 , 			{
 				"name" : "bach.filternull.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/bach/patchers",
-				"patcherrelativepath" : "../../Max 8/Packages/bach/patchers",
+				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
+				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
@@ -3842,8 +3753,8 @@
 			}
 , 			{
 				"name" : "bach.lookup.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/bach/patchers",
-				"patcherrelativepath" : "../../Max 8/Packages/bach/patchers",
+				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
+				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}

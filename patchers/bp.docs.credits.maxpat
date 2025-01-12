@@ -2,42 +2,22 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 8,
-			"minor" : 6,
-			"revision" : 4,
+			"major" : 9,
+			"minor" : 0,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
 		"rect" : [ 232.0, 228.0, 812.0, 618.0 ],
-		"bglocked" : 0,
 		"openinpresentation" : 1,
-		"default_fontsize" : 12.0,
-		"default_fontface" : 0,
 		"default_fontname" : "Lato",
-		"gridonopen" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
-		"gridsnaponopen" : 1,
-		"objectsnaponopen" : 1,
-		"statusbarvisible" : 2,
 		"toolbarvisible" : 0,
-		"lefttoolbarpinned" : 0,
-		"toptoolbarpinned" : 0,
-		"righttoolbarpinned" : 0,
-		"bottomtoolbarpinned" : 0,
-		"toolbars_unpinned_last_save" : 0,
-		"tallnewobj" : 0,
-		"boxanimatetime" : 200,
 		"enablehscroll" : 0,
 		"enablevscroll" : 0,
-		"devicewidth" : 0.0,
-		"description" : "",
-		"digest" : "",
-		"tags" : "",
 		"style" : "bellplay-gui",
-		"subpatcher_template" : "",
-		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-17",
@@ -82,7 +62,8 @@
 					"patching_rect" : [ 309.0, 520.0, 91.0, 35.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 279.358826144953298, 307.0, 35.0 ],
-					"text" : "support"
+					"text" : "support",
+					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
 
 			}
@@ -112,6 +93,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 574.0, 790.0, 23.0 ],
 					"text" : "algorithmic audio in bell",
+					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ],
 					"textjustification" : 1
 				}
 
@@ -127,7 +109,8 @@
 					"patching_rect" : [ 718.0, 269.0, 85.0, 35.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 389.0, 543.0, 66.0, 35.0 ],
-					"text" : "play~"
+					"text" : "play~",
+					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
 
 			}
@@ -142,7 +125,8 @@
 					"patching_rect" : [ 718.0, 269.0, 72.0, 35.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 353.0, 543.0, 45.0, 35.0 ],
-					"text" : "bell"
+					"text" : "bell",
+					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
 
 			}
@@ -347,7 +331,8 @@
 					"patching_rect" : [ 10.0, 10.0, 307.0, 35.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 200.358826144953298, 307.0, 35.0 ],
-					"text" : "acknowledgements"
+					"text" : "acknowledgements",
+					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
 
 			}
@@ -361,7 +346,8 @@
 					"patching_rect" : [ 10.0, 47.0, 307.0, 35.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 341.358826144953298, 307.0, 35.0 ],
-					"text" : "license"
+					"text" : "license",
+					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
 
 			}
@@ -375,7 +361,8 @@
 					"patching_rect" : [ 10.0, 84.0, 307.0, 35.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 87.358826144953312, 307.0, 35.0 ],
-					"text" : "credits"
+					"text" : "credits",
+					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
 
 			}
@@ -465,6 +452,7 @@
 
 			}
  ],
+		"originid" : "pat-7092",
 		"dependency_cache" : [ 			{
 				"name" : "bach.hypercomment.mxo",
 				"type" : "iLaX"

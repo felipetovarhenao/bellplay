@@ -2,42 +2,20 @@
 	"patcher" : 	{
 		"fileversion" : 1,
 		"appversion" : 		{
-			"major" : 8,
-			"minor" : 6,
-			"revision" : 2,
+			"major" : 9,
+			"minor" : 0,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
 		"rect" : [ 165.0, 210.0, 806.0, 607.0 ],
-		"bglocked" : 0,
 		"openinpresentation" : 1,
-		"default_fontsize" : 12.0,
-		"default_fontface" : 0,
 		"default_fontname" : "Lato",
-		"gridonopen" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
-		"gridsnaponopen" : 1,
-		"objectsnaponopen" : 1,
-		"statusbarvisible" : 2,
 		"toolbarvisible" : 0,
-		"lefttoolbarpinned" : 0,
-		"toptoolbarpinned" : 0,
-		"righttoolbarpinned" : 0,
-		"bottomtoolbarpinned" : 0,
-		"toolbars_unpinned_last_save" : 0,
-		"tallnewobj" : 0,
-		"boxanimatetime" : 200,
-		"enablehscroll" : 1,
-		"enablevscroll" : 1,
-		"devicewidth" : 0.0,
-		"description" : "",
-		"digest" : "",
-		"tags" : "",
 		"style" : "bellplay-gui",
-		"subpatcher_template" : "",
-		"assistshowspatchername" : 0,
 		"title" : "bellplay~ | bell reference",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -137,42 +115,16 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 8,
-							"minor" : 6,
-							"revision" : 2,
+							"major" : 9,
+							"minor" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
 						"rect" : [ 0.0, 0.0, 640.0, 480.0 ],
-						"bglocked" : 0,
-						"openinpresentation" : 0,
-						"default_fontsize" : 12.0,
-						"default_fontface" : 0,
-						"default_fontname" : "Arial",
-						"gridonopen" : 1,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
-						"objectsnaponopen" : 1,
-						"statusbarvisible" : 2,
-						"toolbarvisible" : 1,
-						"lefttoolbarpinned" : 0,
-						"toptoolbarpinned" : 0,
-						"righttoolbarpinned" : 0,
-						"bottomtoolbarpinned" : 0,
-						"toolbars_unpinned_last_save" : 0,
-						"tallnewobj" : 0,
-						"boxanimatetime" : 200,
-						"enablehscroll" : 1,
-						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
-						"description" : "",
-						"digest" : "",
-						"tags" : "",
-						"style" : "",
-						"subpatcher_template" : "",
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-41",
@@ -207,15 +159,13 @@
 								}
 
 							}
- ]
+ ],
+						"originid" : "pat-7104"
 					}
 ,
 					"patching_rect" : [ 1392.0, 1239.0, 69.0, 23.0 ],
 					"saved_object_attributes" : 					{
-						"description" : "",
-						"digest" : "",
-						"globalpatchername" : "",
-						"tags" : ""
+						"globalpatchername" : ""
 					}
 ,
 					"text" : "p sqliteURL"
@@ -367,42 +317,18 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 8,
-							"minor" : 6,
-							"revision" : 2,
+							"major" : 9,
+							"minor" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
 						"rect" : [ 109.0, 156.0, 444.0, 171.0 ],
-						"bglocked" : 0,
-						"openinpresentation" : 0,
-						"default_fontsize" : 12.0,
-						"default_fontface" : 0,
 						"default_fontname" : "Lato",
-						"gridonopen" : 1,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
-						"objectsnaponopen" : 1,
-						"statusbarvisible" : 2,
-						"toolbarvisible" : 1,
-						"lefttoolbarpinned" : 0,
-						"toptoolbarpinned" : 0,
-						"righttoolbarpinned" : 0,
-						"bottomtoolbarpinned" : 0,
-						"toolbars_unpinned_last_save" : 0,
-						"tallnewobj" : 0,
-						"boxanimatetime" : 200,
-						"enablehscroll" : 1,
-						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
-						"description" : "",
-						"digest" : "",
-						"tags" : "",
 						"style" : "bellplay-gui",
-						"subpatcher_template" : "",
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-88",
@@ -566,6 +492,7 @@
 
 							}
  ],
+						"originid" : "pat-7106",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -597,12 +524,9 @@
 ,
 					"patching_rect" : [ 14.0, 197.0, 74.0, 23.0 ],
 					"saved_object_attributes" : 					{
-						"description" : "",
-						"digest" : "",
 						"fontname" : "Lato",
 						"globalpatchername" : "",
-						"style" : "bellplay-gui",
-						"tags" : ""
+						"style" : "bellplay-gui"
 					}
 ,
 					"text" : "p alpha-sort"
@@ -670,42 +594,16 @@
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
-							"major" : 8,
-							"minor" : 6,
-							"revision" : 2,
+							"major" : 9,
+							"minor" : 0,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
 						"rect" : [ 0.0, 0.0, 640.0, 480.0 ],
-						"bglocked" : 0,
-						"openinpresentation" : 0,
-						"default_fontsize" : 12.0,
-						"default_fontface" : 0,
-						"default_fontname" : "Arial",
-						"gridonopen" : 1,
 						"gridsize" : [ 15.0, 15.0 ],
-						"gridsnaponopen" : 1,
-						"objectsnaponopen" : 1,
-						"statusbarvisible" : 2,
-						"toolbarvisible" : 1,
-						"lefttoolbarpinned" : 0,
-						"toptoolbarpinned" : 0,
-						"righttoolbarpinned" : 0,
-						"bottomtoolbarpinned" : 0,
-						"toolbars_unpinned_last_save" : 0,
-						"tallnewobj" : 0,
-						"boxanimatetime" : 200,
-						"enablehscroll" : 1,
-						"enablevscroll" : 1,
-						"devicewidth" : 0.0,
-						"description" : "",
-						"digest" : "",
-						"tags" : "",
-						"style" : "",
-						"subpatcher_template" : "",
-						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"code" : "$x = $x2; $y = $x1 + 1; $ymax = $x3; $x:2 = $y; $x:4 = $ymax - $y; $x ",
@@ -805,15 +703,13 @@
 								}
 
 							}
- ]
+ ],
+						"originid" : "pat-7118"
 					}
 ,
 					"patching_rect" : [ 701.0, 1488.0, 163.0, 23.0 ],
 					"saved_object_attributes" : 					{
-						"description" : "",
-						"digest" : "",
-						"globalpatchername" : "",
-						"tags" : ""
+						"globalpatchername" : ""
 					}
 ,
 					"text" : "p getdims"
@@ -922,7 +818,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 845.0, 1445.0, 65.0, 23.0 ],
+					"patching_rect" : [ 845.0, 1445.0, 66.0, 23.0 ],
 					"text" : "r #0ymenu"
 				}
 
@@ -1388,7 +1284,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 1783.0, 1059.0, 55.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 763.0, 112.0, 38.0, 18.0 ],
+					"presentation_rect" : [ 763.0, 146.0, 38.0, 18.0 ],
 					"text" : "details",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
 					"textjustification" : 2
@@ -1403,7 +1299,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 1932.0, 1059.0, 55.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 763.0, 112.0, 38.0, 18.0 ],
+					"presentation_rect" : [ 763.0, 146.0, 38.0, 18.0 ],
 					"rounded" : 12,
 					"style" : "bellplay-gui"
 				}
@@ -1500,7 +1396,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 393.0, 1419.0, 128.0, 23.0 ],
+					"patching_rect" : [ 393.0, 1419.0, 130.0, 23.0 ],
 					"text" : "sprintf symout %s( %s )"
 				}
 
@@ -1514,7 +1410,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 572.0, 1200.5, 211.0, 52.0 ],
+					"patching_rect" : [ 572.0, 1200.5, 213.0, 52.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 1,
 						"versionnumber" : 80300
@@ -1551,7 +1447,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 1797.0, 1250.0, 170.0, 5.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 169.0, 118.0, 629.0, 5.0 ],
+					"presentation_rect" : [ 169.0, 152.0, 629.0, 5.0 ],
 					"saved_attribute_attributes" : 					{
 						"linecolor" : 						{
 							"expression" : ""
@@ -1630,7 +1526,8 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 42.0, 793.0, 21.0 ],
 					"style" : "bellplay-gui",
-					"text" : "In addition to the native functions in bell, the following functions are included in bellplay~. Click on the menu to learn more about each of them."
+					"text" : "In addition to the native functions in bell, the following functions are included in bellplay~. Click on the menu to learn more about each of them.",
+					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
 
 			}
@@ -1681,7 +1578,8 @@
 					"patching_rect" : [ 343.0, 197.0, 307.0, 35.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 5.0, 307.0, 35.0 ],
-					"text" : "bell reference"
+					"text" : "bell reference",
+					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
 
 			}
@@ -1744,7 +1642,7 @@
 					"outlettype" : [ "", "", "", "", "bang" ],
 					"patching_rect" : [ 1010.0, 1600.0, 345.0, 250.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 169.0, 131.0, 632.0, 470.0 ],
+					"presentation_rect" : [ 169.0, 165.0, 632.0, 436.0 ],
 					"preventedit" : 1,
 					"rowvpad" : 2.5,
 					"showfocus" : 0,
@@ -1857,7 +1755,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 1111.0, 849.0, 128.0, 128.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 169.0, 88.0, 632.0, 23.0 ],
+					"presentation_rect" : [ 169.0, 88.0, 632.0, 57.0 ],
 					"proportion" : 0.5
 				}
 
@@ -2648,14 +2546,15 @@
 
 			}
  ],
+		"originid" : "pat-7100",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "bach.change.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/bach/patchers",
-				"patcherrelativepath" : "../../Max 8/Packages/bach/patchers",
+				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
+				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
@@ -2689,8 +2588,8 @@
 			}
 , 			{
 				"name" : "bach.lookup.maxpat",
-				"bootpath" : "~/Documents/Max 8/Packages/bach/patchers",
-				"patcherrelativepath" : "../../Max 8/Packages/bach/patchers",
+				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
+				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
 				"type" : "JSON",
 				"implicit" : 1
 			}
