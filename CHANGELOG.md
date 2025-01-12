@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- `scale()`: Add `@slope` argument using the same implementation as in `samplebpf()`.
 - buffer inspector: Add previous/next control via key input.
 - Add bell tutorials and discord info in `about` tab.
 - Add `@usecache` functionality for all appearances of `importaudio`.

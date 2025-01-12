@@ -1061,23 +1061,27 @@ $addref(
 ## ------------------------------------------------------------
 
 scale = (
-    $x, $inmin = 0, $inmax = 1, $outmin = 0, $outmax = 1 -> (
-        (($x - $inmin) / ($inmax - $inmin)) * float($outmax - $outmin) + $outmin
+    $x, $inmin = 0, $inmax = 1, $outmin = 0, $outmax = 1, $slope = 0 -> (
+        $s = max(-1, min(1, $slope));
+        $n = ($x - $inmin) / ($inmax - $inmin);
+        $n = BP_GET_BPF_INTERPOLATION_WEIGHT_FUNC($n, $s);
+        $n * float($outmax - $outmin) + $outmin
     )
 );
 
 $addref(
-    @name "scale",
-    @description "Scales an input value or list from a given range to another.",
-    @category BP_REF_LABEL_UTILS,
+    @name "scale"
+    @description "Scales an input value or list from a given range to another, with optional slope for non-linear scaling."
+    @category BP_REF_LABEL_UTILS
     @arguments (
-        $addarg(@name "x", @type "int/float/list", @description "value to scale.")
-        $addarg(@name "inmin", @type "int/float", @default 0, @description "input minimum value.")
-        $addarg(@name "inmax", @type "int/float", @default 1, @description "input maxiumum value.")
-        $addarg(@name "outmin", @type "int/float", @default 0, @description "output minimum value.")
-        $addarg(@name "outmax", @type "int/float", @default 1, @description "output maxiumum value.")
-    ),
-    @output $addout(@description "scaled input", @type "int/float/list/llll")
+        $addarg(@name "x" @type "int/float/list", @description "value to scale.")
+        $addarg(@name "inmin" @type "int/float" @default 0 @description "input minimum value.")
+        $addarg(@name "inmax" @type "int/float" @default 1 @description "input maxiumum value.")
+        $addarg(@name "outmin" @type "int/float" @default 0 @description "output minimum value.")
+        $addarg(@name "outmax" @type "int/float" @default 1 @description "output maxiumum value.")
+        $addarg(@name "slope" @type "int/float" @default 0 @description "slope between -1 and 1. 0 means no slope.")
+    )
+    @output $addout(@description "scaled input" @type "int/float/list/llll")
 );
 
 ## ------------------------------------------------------------
@@ -2097,7 +2101,7 @@ $addref(
 )#
 BP_GET_BPF_INTERPOLATION_WEIGHT_FUNC = (
     $t, $s -> (
-        if $s > 0 then (
+        if $s >= 0 then (
             $t ** ((1 + $s) / (1 - $s)) 
         ) else (
             1 - (1 - $t) ** ((1 - $s) / (1 + $s)) 
