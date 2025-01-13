@@ -21,7 +21,7 @@ IS_MAIN_BRANCH = Repository('.').head.shorthand == 'main'
 script_name = " ".join(THIS_FILE.split(".")[0].split("_"))
 parser = ArgumentParser(prog=script_name, usage=f"python3 {
                         THIS_FILE} <path to .app>")
-parser.add_argument("-i", action="store", help=".app path")
+parser.add_argument("-i", action="store", help=".app path", required=True)
 args = parser.parse_args()
 
 # application path
