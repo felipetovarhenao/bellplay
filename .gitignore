@@ -6,3 +6,4 @@
 # **/*.wav
 !tutorials/*
 mycorpus.llll
+**/__pycache__

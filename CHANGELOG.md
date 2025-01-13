@@ -19,6 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- GUI: `bell window` replaces `Max Console`.
 - Tutorials: Use `inspect` in multi-pass render tutorial to better illustrate feature.
 - GUI: default colors change to light theme in standalone via python script.
 - GUI: Updated wording in text descriptions for different windows.

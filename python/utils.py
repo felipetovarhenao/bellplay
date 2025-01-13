@@ -1,28 +1,7 @@
-import subprocess
-from argparse import ArgumentParser
 import os
-import json
+import subprocess
 import shutil
-from pygit2 import Repository
-
-branch_name = Repository('.').head.shorthand
-is_main = branch_name == 'main'
-this_file = os.path.basename(__file__)
-script_name = " ".join(this_file.split(".")[0].split("_"))
-parser = ArgumentParser(prog=script_name, usage=f"python3 {
-                        this_file} <path to app>")
-parser.add_argument("-i", action="store", help=".app path")
-args = parser.parse_args()
-
-app_path = args.i
-app_name, app_ext = os.path.splitext(app_path)
-if app_ext != ".app":
-    raise ValueError(f"{app_ext} is not a valid app extension.")
-
-logo_path = os.path.abspath("./media/dev_logo.icns")
-
-if not os.path.exists(logo_path):
-    raise ValueError(f"Invalid logo path: {logo_path}")
+import json
 
 
 def replace_file(source_file, destination_file):
@@ -35,9 +14,73 @@ def replace_file(source_file, destination_file):
 
     try:
         shutil.copyfile(source_file, destination_file)
-        print(f"'{destination_file}' has been replaced with '{source_file}'.")
+        print(f"\t'{destination_file}' has been replaced with '{source_file}'.")
     except Exception as e:
         print(f"An error occurred while replacing the file: {e}")
+
+
+def replace_bin_string(input_file: str, target_string: str, replacement_string: str):
+    # Ensure the replacement string is not longer than the target string
+    if len(replacement_string) > len(target_string):
+        raise ValueError(
+            "Replacement string must not be longer than the target string."
+        )
+
+    # Convert strings to bytes for binary operations
+    target_bytes = target_string.encode("utf-8")
+    replacement_bytes = replacement_string.encode("utf-8")
+
+    # Check if the input file exists
+    if not os.path.isfile(input_file):
+        raise FileNotFoundError(f"The file '{input_file}' does not exist.")
+
+    # Read the binary data from the input file
+    with open(input_file, "rb") as file:
+        data = file.read()
+
+    # Replace all occurrences of the target string with the replacement string
+    if target_bytes not in data:
+        raise ValueError(
+            f"The string '{target_string}' was not found in the file."
+        )
+    data = data.replace(
+        target_bytes, replacement_bytes.ljust(len(target_bytes), b"\x00")
+    )
+
+    # Keep copy of original permissions
+    input_permissions = os.stat(input_file).st_mode
+
+    # Write the modified data back to the input file
+    with open(input_file, "wb") as file:
+        file.write(data)
+
+    # Copy the permissions from the original file
+    os.chmod(input_file, input_permissions)
+
+    print(
+        f"\tReplaced '{target_string}' with '{
+            replacement_string}' in the file '{input_file}'."
+    )
+
+
+def codesign_file(input_file: str):
+    """
+    Code-signs a binary file using the codesign command.
+
+    Parameters:
+    - input_file (str): Path to the input file.
+
+    Raises:
+    - subprocess.CalledProcessError: If re-signing the binary fails.
+    """
+    try:
+        subprocess.run(
+            ["codesign", "--force", "--sign", "-", input_file], check=True
+        )
+        print(f"Successfully Signed the file '{input_file}'.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error during code signing: {e}")
+        raise e
 
 
 def edit_max_interface(path: str):
@@ -100,39 +143,3 @@ def invert_maxtheme_colors(theme_path):
         json.dump(data, file, indent=2)
 
     print(f"default Max theme colors inverted.")
-
-
-edited = False
-for root, dirs, files in os.walk(app_path):
-    folder = os.path.basename('root')
-    for file in files:
-        file_name, file_ext = os.path.splitext(file)
-        file_path = os.path.join(root, file)
-        if not is_main and file in ["bellplay~.icns", "Max.icns"]:
-            edited = True
-            print(f'replacing logo: {file_name}')
-            replace_file(logo_path, file_path)
-        if file_name == "default" and file_ext == ".maxtheme":
-            invert_maxtheme_colors(file_path)
-        if file_name == "maxinterface":
-            edited = True
-            edit_max_interface(file_path)
-        if file_ext == ".mxe64":
-            edited = True
-            print(f'deleting file: {file_path}')
-            os.remove(file_path)
-
-if not edited:
-    raise RuntimeError("None of the deletable files were found.")
-
-cmd = f"codesign -s - -f {app_path}".split(" ")
-print("code singing application...")
-result = subprocess.run(cmd, capture_output=True, text=True)
-
-# Check if the command was successful
-if result.returncode == 0:
-    print(f"DONE")
-else:
-    raise ChildProcessError("code signing unsuccessful")
-
-subprocess.run(['sh', './clear_icon_cache.sh'])
