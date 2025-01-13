@@ -40,6 +40,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - `ezsampler`: Fix duplicated use of `importaudio`.
 - `samplelist`: now supports multi-sampling.
+- GUI: Fix lack of color contrast between un/selected notes in `bach.roll`.
 - tutorials: fix typos.
 
 ### Removed
