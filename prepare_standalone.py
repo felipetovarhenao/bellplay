@@ -77,11 +77,10 @@ def edit_max_interface(path: str):
         json.dump(data, f, indent=4)
 
 
-def get_negative_color(color):
-    # Assuming RGBA, invert the first three components (R, G, B)
-    return [1.0 - c if i < 3 else c for i, c in enumerate(color)]
-
-# Read and modify the JSON file
+def get_negative_color(color, brightness_factor=1.1):
+    inverted_color = [min(max((1.0 - c) * brightness_factor, 0.0), 1.0)
+                      if i < 3 else c for i, c in enumerate(color)]
+    return inverted_color
 
 
 def invert_maxtheme_colors(theme_path):
