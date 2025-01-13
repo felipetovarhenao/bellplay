@@ -60,7 +60,7 @@ For questions, troubleshooting, bugs reports, feedback, feature requests, and mo
 
      > _bellplay~ can't be opened because Apple cannot check it for malicious software_.
 
-     You can go to System Settings/Privacy & Security and scroll down to the bottom where it says:
+     You can go to _System Settings/Privacy & Security_ and scroll down to the bottom where it says:
 
      > bellplay~ was blocked from use because it is not from an identified developer.
 
