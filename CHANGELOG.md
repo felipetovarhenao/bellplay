@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- CI/CD: Add shell script to clear icon cache in MacOS.
 - GUI: Check for updates on load with `bp.utils.checkupdate.maxpat` and `bp.utils.compareversions.maxpat`.
 - New `gcd` and `lcm` functions with list support.
 - New `flute.wav` and `viola.wav` samples, and new tutorial `bp.tutorial.sampling`.

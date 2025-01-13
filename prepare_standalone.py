@@ -135,3 +135,5 @@ if result.returncode == 0:
     print(f"DONE")
 else:
     raise ChildProcessError("code signing unsuccessful")
+
+subprocess.run(['sh', './clear_icon_cache.sh'])
