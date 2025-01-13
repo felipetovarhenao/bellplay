@@ -268,7 +268,7 @@
 
 							}
  ],
-						"originid" : "pat-2255",
+						"originid" : "pat-1129",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -311,6 +311,7 @@
 			}
 , 			{
 				"box" : 				{
+					"align" : 2,
 					"bgcolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 0.0 ],
 					"fontsize" : 12.0,
 					"id" : "obj-20",
@@ -321,8 +322,9 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 548.0, 781.0, 100.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 718.75, 13.5, 84.5, 18.0 ],
-					"text" : "default editor",
+					"presentation_rect" : [ 700.0, 14.0, 100.0, 18.0 ],
+					"text" : "set default editor",
+					"textjustification" : 2,
 					"textoncolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
 					"textovercolor" : [ 0.56078431372549, 0.709803921568627, 0.843137254901961, 1.0 ],
 					"usetextovercolor" : 1
@@ -629,7 +631,7 @@
 
 							}
  ],
-						"originid" : "pat-2259",
+						"originid" : "pat-1133",
 						"styles" : [ 							{
 								"name" : "subtle",
 								"default" : 								{
@@ -1014,7 +1016,7 @@
 
 							}
  ],
-						"originid" : "pat-2263"
+						"originid" : "pat-1137"
 					}
 ,
 					"patching_rect" : [ 1056.0, 460.0, 65.0, 23.0 ],
@@ -1099,7 +1101,7 @@
 
 							}
  ],
-						"originid" : "pat-2265"
+						"originid" : "pat-1139"
 					}
 ,
 					"patching_rect" : [ 899.0, 460.0, 75.0, 23.0 ],
@@ -1184,7 +1186,7 @@
 
 							}
  ],
-						"originid" : "pat-2267"
+						"originid" : "pat-1141"
 					}
 ,
 					"patching_rect" : [ 742.0, 460.0, 89.0, 23.0 ],
@@ -1806,7 +1808,7 @@
 					"patching_rect" : [ 581.0, 81.0, 817.0, 74.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 3,
-					"presentation_rect" : [ 8.0, 42.0, 794.0, 74.0 ],
+					"presentation_rect" : [ 8.0, 42.0, 792.5, 74.0 ],
 					"text" : "These tutorials will help you get familiarized with the most basic concepts and features in bellplay~. Although they assume some prior experience with the bell programming language, they are also incremental enough for beginners to start learning aspects of the language itself. Every time you open a tutorial, two things will happen:\n"
 				}
 
@@ -2698,7 +2700,7 @@
 
 			}
  ],
-		"originid" : "pat-2253",
+		"originid" : "pat-1127",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
