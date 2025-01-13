@@ -39,6 +39,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- GUI: Fix stale domain bug by sending `getdomain` after processing in `render`.
 - `scoreconfig`: Fix misnamed `midicannels` variable bug.
 - `ezsampler`: Fix duplicated use of `importaudio`.
 - `samplelist`: now supports multi-sampling.

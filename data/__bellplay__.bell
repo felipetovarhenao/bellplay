@@ -1691,8 +1691,8 @@ render = (
         );
         BP_DISPATCH_FUNC("roll", "getlength");
         BP_DISPATCH_FUNC("roll", "dump");
-        BP_DISPATCH_FUNC("roll", "getdomain");
         ($process &&& BP_DISPATCH_FUNC("sampler", [ "process" $process ] ));
+        BP_DISPATCH_FUNC("roll", "getdomain");
         ($play == 1 && BP_DISPATCH_FUNC("playtoggle", 1));
         ($reset == 1 && BP_DISPATCH_FUNC("roll", "clear"));
         if $reset == 0 && BP_GUI_SHOW_DYNAMICS == 1 then (
