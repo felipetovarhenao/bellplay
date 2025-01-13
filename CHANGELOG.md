@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- GUI: default colors change to light theme in standalone via python script.
 - GUI: Updated wording in text descriptions for different windows.
 - GUI: Adapt project to handle Max 9 GUI defaults.
 - `scale()`: Add `@slope` argument using the same implementation as in `samplebpf()`.
