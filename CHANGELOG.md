@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- `scoreconfig`: New `@showdynamics` argument.
 - CI/CD: Add shell script to clear icon cache in MacOS.
 - GUI: Check for updates on load with `bp.utils.checkupdate.maxpat` and `bp.utils.compareversions.maxpat`.
 - New `gcd` and `lcm` functions with list support.
@@ -38,6 +39,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- `scoreconfig`: Fix misnamed `midicannels` variable bug.
 - `ezsampler`: Fix duplicated use of `importaudio`.
 - `samplelist`: now supports multi-sampling.
 - GUI: Fix lack of color contrast between un/selected notes in `bach.roll`.

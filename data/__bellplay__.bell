@@ -21,10 +21,12 @@ BP_MAXOBJ_RANDOM = {max.random 2147483648 @seed 1};
 BP_MAXOBJ_ATOI = {max.atoi};
 BP_MAXOBJ_ITOA = {max.itoa};
 BP_BUFFER_CACHE = null;
+BP_GUI_SHOW_DYNAMICS = 0;
 BP_ON_RESET_FUNC = (
     -> (
         setseed(1); 
         BP_URN = null; 
+        BP_GUI_SHOW_DYNAMICS = 0;
         BP_BUFFER_INSPECTOR = null;
         BP_BUFFER_CACHE = null
     )
@@ -1693,6 +1695,14 @@ render = (
         ($process &&& BP_DISPATCH_FUNC("sampler", [ "process" $process ] ));
         ($play == 1 && BP_DISPATCH_FUNC("playtoggle", 1));
         ($reset == 1 && BP_DISPATCH_FUNC("roll", "clear"));
+        if $reset == 0 && BP_GUI_SHOW_DYNAMICS == 1 then (
+            BP_DISPATCH_FUNC("roll", 
+                 "velocities2dynamics" "@unnecessary" 1 "@thresh" 1. "@maxchars" 3
+            );
+            BP_DISPATCH_FUNC("roll", 
+                 "fixdynamics" "@inconsistent" 1 "@unnecessary" 1 
+            )
+        );
         BP_NEWBUFF_FUNC(@source BP_RENDER_BUFF)
     )
 );
@@ -1733,8 +1743,9 @@ scoreconfig = (
     $clefs = "FFGG",
     $tonedivision = 8,
     $showdurations = 0,
+    $showdynamics = 0,
     $midichannels = 1 -> (
-        $config = for $clef in $clefs, $channel in $midicannels, $name in $voicenames with @iterationmode 1 collect (
+        $config = for $clef in $clefs, $channel in $midichannels, $name in $voicenames with @iterationmode 1 collect (
             [ ($clef ||| "G") ($channel ||| 1) ($name ||| "output") ]
         );
         $numvoices = length($config);
@@ -1747,15 +1758,17 @@ scoreconfig = (
             [ "clefs" $clefs ]
             [ "midichannels" $midichannels ]
             [ "voicenames" $voicenames ]
+            [ 'showdurations' $showdurations ]
+            [ 'tonedivision' left($tonedivision, 1) ]
         );
-        $changes = for $param in $config collect (
-            $key = $param::1;
-            if BP_SCORE_CONFIG.$key != $param.$key then $param
+        for $param in $config collect (
+            $key = $param::(1 1);
+            $value = $param.$key;
+            if BP_SCORE_CONFIG.$key != $value then BP_DISPATCH_FUNC("roll", $param::1)
         );
+        BP_GUI_SHOW_DYNAMICS = $showdynamics == 1;
         BP_SCORE_CONFIG = $config;
-        BP_DISPATCH_FUNC("roll", $changes);
-        BP_DISPATCH_FUNC("roll", "showdurations" $showdurations);
-        BP_DISPATCH_FUNC("roll", "tonedivision" left($tonedivision, 1))
+        null
     )
 );
 
@@ -1794,7 +1807,10 @@ $addref(
             $addopt(@value 4 @description "quarter" "tones")
             $addopt(@value 8 @description "eighth" "tones")
         )
-        $addarg(@name "showdurations", @default 0 @type "int", @description "show note durations as lines" @options
+        $addarg(@name "showdurations", @default 0 @type "int", @description "show note durations as lines." @options
+            BP_REF_SWITCH_OPTIONS
+        )
+        $addarg(@name "showdynamics" @default 0 @type "int" @description "show note dynamics based on buffer gain." @options
             BP_REF_SWITCH_OPTIONS
         )
         $addarg(@name "midichannels", @default 1 @type "int/list", @description "midichannel for each voice")
