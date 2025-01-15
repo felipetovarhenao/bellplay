@@ -23,6 +23,20 @@
 		"title" : "bellplay~ | tutorials",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-2",
+					"linecount" : 2,
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 581.0, 162.0, 347.0, 37.0 ],
+					"presentation_linecount" : 4,
+					"text" : ";\rmax launchbrowser https://felipe-tovar-henao.com/bell-tutorials"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-42",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -268,7 +282,7 @@
 
 							}
  ],
-						"originid" : "pat-1129",
+						"originid" : "pat-1131",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -631,7 +645,7 @@
 
 							}
  ],
-						"originid" : "pat-1133",
+						"originid" : "pat-1135",
 						"styles" : [ 							{
 								"name" : "subtle",
 								"default" : 								{
@@ -1016,10 +1030,10 @@
 
 							}
  ],
-						"originid" : "pat-1137"
+						"originid" : "pat-1139"
 					}
 ,
-					"patching_rect" : [ 1056.0, 460.0, 65.0, 23.0 ],
+					"patching_rect" : [ 1056.0, 495.0, 65.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"globalpatchername" : ""
 					}
@@ -1046,7 +1060,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 0.0, 640.0, 480.0 ],
+						"rect" : [ 59.0, 119.0, 640.0, 480.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1055,7 +1069,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 100.0, 173.0, 23.0 ],
+									"patching_rect" : [ 50.0, 100.0, 173.0, 22.0 ],
 									"text" : "https://code.visualstudio.com/"
 								}
 
@@ -1101,10 +1115,10 @@
 
 							}
  ],
-						"originid" : "pat-1139"
+						"originid" : "pat-1141"
 					}
 ,
-					"patching_rect" : [ 899.0, 460.0, 75.0, 23.0 ],
+					"patching_rect" : [ 899.0, 495.0, 75.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"globalpatchername" : ""
 					}
@@ -1131,7 +1145,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 0.0, 640.0, 480.0 ],
+						"rect" : [ 59.0, 119.0, 640.0, 480.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1140,8 +1154,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 100.0, 432.0, 23.0 ],
-									"text" : "https://marketplace.visualstudio.com/items?itemName=tovarhenao.bell-syntax"
+									"patching_rect" : [ 50.0, 100.0, 442.0, 22.0 ],
+									"text" : "https://marketplace.visualstudio.com/items?itemName=tovarhenao.bellplay-plugin"
 								}
 
 							}
@@ -1186,10 +1200,10 @@
 
 							}
  ],
-						"originid" : "pat-1141"
+						"originid" : "pat-1143"
 					}
 ,
-					"patching_rect" : [ 742.0, 460.0, 89.0, 23.0 ],
+					"patching_rect" : [ 742.0, 495.0, 89.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"globalpatchername" : ""
 					}
@@ -1206,7 +1220,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 742.0, 515.0, 128.0, 37.0 ],
+					"patching_rect" : [ 742.0, 550.0, 128.0, 37.0 ],
 					"text" : ";\rmax launchbrowser $1"
 				}
 
@@ -1219,7 +1233,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 585.0, 460.0, 141.0, 37.0 ],
+					"patching_rect" : [ 585.0, 495.0, 141.0, 37.0 ],
 					"text" : ";\rbach installatompackage"
 				}
 
@@ -1231,8 +1245,8 @@
 					"numinlets" : 5,
 					"numoutlets" : 5,
 					"outlettype" : [ "bang", "bang", "bang", "bang", "" ],
-					"patching_rect" : [ 585.0, 421.0, 647.0, 23.0 ],
-					"text" : "sel here bell-syntax VisualStudioCode Atom"
+					"patching_rect" : [ 585.0, 456.0, 647.0, 23.0 ],
+					"text" : "sel here bellplay-plugin VisualStudioCode Atom"
 				}
 
 			}
@@ -1504,16 +1518,16 @@
 					"fontsize" : 14.0,
 					"hyperlinkcolor" : [ 0.368627450980392, 0.584313725490196, 0.776470588235294, 1.0 ],
 					"id" : "obj-50",
-					"linecount" : 5,
+					"linecount" : 6,
 					"maxclass" : "bach.hypercomment",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 585.0, 313.0, 817.0, 90.0 ],
+					"patching_rect" : [ 585.0, 313.0, 817.0, 107.0 ],
 					"presentation" : 1,
-					"presentation_linecount" : 5,
-					"presentation_rect" : [ 6.0, 211.0, 794.0, 90.0 ],
-					"text" : "\nIt is highly recommended that you use an external code editor when writing bell code, preferrably #VisualStudioCode or #Atom. If you use #VisualStudioCode, make sure to install the #bell-syntax extension, which provides syntax highlighting in bell. If you use #Atom, you can click #here to install the syntax highlighting package for you. Lastly, as you follow the tutorials, make sure to also check the reference documentation to further understand what each of the functions you encounter do. Happy coding!",
+					"presentation_linecount" : 6,
+					"presentation_rect" : [ 6.0, 211.0, 794.0, 107.0 ],
+					"text" : "\nIt is highly recommended that you use an external code editor when writing bell code, preferrably #VisualStudioCode. If you use #VisualStudioCode, make sure to install the #bellplay-plugin extension, which provides language support for bell, as well as and additional bellplay-specific features. This will significantly improve your coding experience and make it easier to work on your scripts. Lastly, as you follow the tutorials, make sure to also check the reference documentation to further understand what each of the functions you encounter do. Happy coding!",
 					"underline" : 0
 				}
 
@@ -1530,7 +1544,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 581.0, 188.0, 817.0, 90.0 ],
+					"patching_rect" : [ 581.0, 207.0, 817.0, 90.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 5,
 					"presentation_rect" : [ 31.5, 118.0, 769.0, 90.0 ],
@@ -1809,7 +1823,7 @@
 					"presentation" : 1,
 					"presentation_linecount" : 3,
 					"presentation_rect" : [ 8.0, 42.0, 792.5, 74.0 ],
-					"text" : "These tutorials will help you get familiarized with the most basic concepts and features in bellplay~. Although they assume some prior experience with the bell programming language, they are also incremental enough for beginners to start learning aspects of the language itself. Every time you open a tutorial, two things will happen:\n"
+					"text" : "These tutorials will help you get familiarized with the most basic concepts and features in bellplay~. They assume a basic understanding of the bell programming language, which you can learn through additional #bell-tutorials. Every time you open a tutorial in bellplay~, two things will happen:\n"
 				}
 
 			}
@@ -2192,6 +2206,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-17", 0 ],
 					"source" : [ "obj-18", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-19", 0 ]
 				}
 
 			}
@@ -2700,7 +2721,7 @@
 
 			}
  ],
-		"originid" : "pat-1127",
+		"originid" : "pat-1129",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
