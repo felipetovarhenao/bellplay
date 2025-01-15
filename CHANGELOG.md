@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- `transcribe`: New `@metadata` argument to include _llll_ data when exporting as `llll` files.
 - OSC: send/receive OSC messages to communicate with `bellplay~ plugin` VSCode extension.
 - `scoreconfig`: New `@showdynamics` argument.
 - CI/CD: Add shell script to clear icon cache in MacOS.
