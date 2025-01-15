@@ -696,7 +696,7 @@
 
 							}
  ],
-						"originid" : "pat-1361",
+						"originid" : "pat-16",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2097,7 +2097,7 @@
 
 			}
  ],
-		"originid" : "pat-1353",
+		"originid" : "pat-8",
 		"parameters" : 		{
 			"obj-115" : [ "live.gain~", "GAIN", 0 ],
 			"parameterbanks" : 			{

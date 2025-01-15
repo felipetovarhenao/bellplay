@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- OSC: receive OSC messages to load script from `bellplay~ plugin` VSCode extension.
+- OSC: send/receive OSC messages to communicate with `bellplay~ plugin` VSCode extension.
 - `scoreconfig`: New `@showdynamics` argument.
 - CI/CD: Add shell script to clear icon cache in MacOS.
 - GUI: Check for updates on load with `bp.utils.checkupdate.maxpat` and `bp.utils.compareversions.maxpat`.
