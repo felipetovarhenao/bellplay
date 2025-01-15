@@ -87,34 +87,23 @@ def edit_max_interface(path: str):
     with open(path, "r") as f:
         data = json.load(f)
 
-    def fun(menu):
+    def menu_filter(menu):
         test = menu['id'] not in [
             'filemenu',
             "customeditmenu",
             'editmenu',
             'windowmenu',
             'helpmenu',
-            'customhelpmenu'
+            'customhelpmenu',
+            'customfilemenu'
         ]
 
         if test == 0:
             print(f"removing {menu['id']} from {path}")
         return test
 
-    data["interface"]["menus"] = list(filter(fun, data["interface"]["menus"]))
-
-    def keep_save(x):
-        keep = x in ["customsave"]
-        if not keep:
-            print(f"removing {x} from customfilemenu")
-        return keep
-
-    for i, menu in enumerate(data['interface']['menus']):
-        if menu['id'] == 'customfilemenu':
-            for key in ["commands", "commands_runtime_mac", "commands_runtime_windows"]:
-                data['interface']['menus'][i][key] = list(
-                    filter(keep_save, data['interface']['menus'][i][key]))
-            break
+    data["interface"]["menus"] = list(
+        filter(menu_filter, data["interface"]["menus"]))
 
     with open(path, "w") as f:
         json.dump(data, f, indent=4)
