@@ -1662,9 +1662,9 @@ $addref(
         $addarg(@name "pan", @type "int/float/list/llll", @default "null" @description "normalized panning value or envelope.")
         $addarg(@name "gain", @type "int/float/llll", @default "null" @description "linear gain value or envelope. Use the #gain function for values greater than 1.")
         $addarg(@name "detune", @type "int/float", @default "null" @description "detuning amount in cents.")
-        $addarg(@name "voice", @type "int", @default 1 @description "voice assignment in score. See scoreconfig() function.")
-        $addarg(@name "pitchkey", @type "symbol", @default "'pitch'" @description "key to use for pitch value in score transcription.")
-        $addarg(@name "keepduration", @type "int", @default 1 @description "keep buffer's nominal duration value when detuning buffer via @detune.")
+        $addarg(@name "voice" @type "int", @default 1 @description "voice assignment in score. See #scoreconfig function.")
+        $addarg(@name "pitchkey" @type "symbol", @default "'pitch'" @description "key to use for pitch value in score transcription.")
+        $addarg(@name "keepduration" @type "int", @default 1 @description "keep buffer's nominal duration value when detuning buffer via @detune.")
     )
 );
 
