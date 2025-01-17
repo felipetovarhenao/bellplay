@@ -3,3 +3,4 @@
 - Make `importmidi` data structure more robust.
 - Adapt code base to new bell language.
 - Migrate reference documentation to versioned web repo.
+- Implement `BP_ON_DONE_FUNC` to improve logic in `scoreconfig`.
