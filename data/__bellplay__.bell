@@ -3669,6 +3669,7 @@ process = (
         if $commands == null then (
             printerror("you must provide audio processing commands in process()")
         );
+        for $cmd in $commands do if $cmd.getkey("fx") == null then printerror("invalid processing command in process():" $cmd);
         $source = $buffer.getkey("source");
         if $source == null then printerror("attempt to process invalid buffer in process():" $buffer);
         $offset = $buffer.getkey("offset");

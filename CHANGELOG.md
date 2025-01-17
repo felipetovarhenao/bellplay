@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- `process`: raises error when invalid commands are passed.
 - Docs: Remove `Atom` as an option for text editors, and recommend the `bellplay-plugin` extension over `bell-syntax`.
 - GUI: `bell window` replaces `Max Console`.
 - Tutorials: Use `inspect` in multi-pass render tutorial to better illustrate feature.
