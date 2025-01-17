@@ -6140,7 +6140,7 @@ $addref(
 ## ------------------------------------------------------------
 
 ezsampler = (
-    $pitch = 6000, $duration = null, $velocity = null, $keymap = null, $resample = 1, $useseed = 0, $usecache = 1 -> (
+    $pitch = 6000, $duration = 2000, $velocity = 64, $keymap = null, $resample = 1, $useseed = 0, $usecache = 1 -> (
         $keymap = $keymap ||| BP_DEFAULT_EZSAMPLER_KEYMAP;
         $pitch = $pitch ||| 6000;
         ## get list of pitch values
@@ -6179,8 +6179,8 @@ $addref(
     @category BP_REF_LABEL_GEN,
     @arguments (
         $addarg(@name "pitch", @default 6000 @type "int/float", @description "target pitch in midicents.")
-        $addarg(@name "duration" @default "null" @type "int/float", @description "target duration in milliseconds. Set to null to get the sample's full duration.")
-        $addarg(@name "velocity" @default "null" @type "int/float", @description "target velocity, from 0 to 127. Used only when keymap has velocity-based options.")
+        $addarg(@name "duration" @default 2000 @type "int/float", @description "target duration in milliseconds. Set to null to get the sample's max. duration.")
+        $addarg(@name "velocity" @default 64 @type "int/float", @description "target velocity, from 0 to 127. Used only when keymap has velocity-based options.")
         $addarg(@name "keymap" @default "null" @type "llll", @description "key mapping, with pitch in midicents as key and file path as value")
         $addarg(@name "resample" @default 1 @type "int" @description "resample buffer to match target pitch." @options
             $addopt(@value 0 @description "off")
