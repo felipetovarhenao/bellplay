@@ -929,6 +929,7 @@ mapkey = (
     )
 );
 
+## $newvalue = 'dummy'
 $addref(
     @name "mapkey"
     @description "Modifies an existing llll key via a lambda function."
