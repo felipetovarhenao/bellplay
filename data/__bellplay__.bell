@@ -793,7 +793,7 @@ $addref(
 
 median = (
     $x -> (
-        $x = $x.sort($sortfunc);
+        $x = sort($x);
         $n = length($x);
         $odd = $n % 2;
         if $odd == 0 then (
@@ -806,12 +806,12 @@ median = (
 );
 
 $addref(
-    @name "median",
-    @description "Returns the median element of a numeric list.",
-    @category BP_REF_LABEL_UTILS,
+    @name "median"
+    @description "Returns the median element of a numeric list."
+    @category BP_REF_LABEL_UTILS
     @arguments (
-        $addarg(@name "x",  @type "list" @description "numeric list.")
-    ),
+        $addarg(@name "x" @type "list" @description "numeric list.")
+    )
     @output $addout(@description "median element", @type "int/float")
 );
 
@@ -1859,8 +1859,8 @@ $addref(
 ## ------------------------------------------------------------
 
 write = (
-    $data,
-    $path,
+    $data = null,
+    $path = null,
     $escape = 3,
     $wrap = 0,
     $indent = 'tab',
@@ -2140,7 +2140,7 @@ samplebpf = (
         for $x in $pts collect (
             ## initialize sample with null
             $y = null;
-            for $bpfpair in $bpfpairs as $sample == null with @unwrap 1 do (
+            for $bpfpair in $bpfpairs as $y == null with @unwrap 1 do (
                 ## left and right points
                 $left = $bpfpair:1;
                 $right = $bpfpair:2;
@@ -2346,7 +2346,7 @@ $addref(
 
 BP_ESSENTIA_WRAPPER_FUNC = (
     $name,
-    $settings,
+    $settings = null,
     $output,
     $mode = 0,
     $modes = 0...3 -> (
@@ -3658,8 +3658,8 @@ $addref(
 ## ------------------------------------------------------------
 
 process = (
-    $buffer, 
-    $commands, 
+    $buffer = null, 
+    $commands = null, 
     $prefade = 0,
     $keepkeys = null -> (
         if $buffer == null then (
