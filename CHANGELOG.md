@@ -53,6 +53,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Removed
 
+- `sortbykey`: Replaced with `sortbykeys`, which supports multi-column (i.e., multi-key) sorting.
+
 ## [0.2.6-beta] - 2024-11-12
 
 ### Added

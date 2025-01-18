@@ -1506,21 +1506,21 @@ $addref(
 
 ## ------------------------------------------------------------
 
-sortbykey = (
-    $items, $key -> (
-        sort($items, ($a, $b -^ $key -> (getkey($a, $key) < getkey($b, $key))))
+sortbykeys = (
+    $llll, $keys -> (
+        for $k in rev($keys) do $llll = sort($llll, ($a, $b -^ $k -> (getkey($a, $k) < getkey($b, $k))))
     )
 );
 
 $addref(
-    @name "sortbykey",
-    @description "Sorts llll items by a given key.",
-    @category BP_REF_LABEL_UTILS,
+    @name "sortbykeys"
+    @description "Sorts llll elements by a given set of keys. It assumes all keys are associated with single, quantifiable values."
+    @category BP_REF_LABEL_UTILS
     @arguments (
-        $addarg(@name "items", @type "llll", @description "items to sort.")
-        $addarg(@name "key", @type "symbol", @description "key to sort by.")
-    ),
-    @output $addout(@description "list of sorted items", @type "llll")
+        $addarg(@name "llll" @type "llll" @description "list to sort.")
+        $addarg(@name "keys" @type "list/symbol" @description "one or more keys to sort list by.")
+    )
+    @output $addout(@description "list of sorted items" @type "llll")
 );
 
 ## ------------------------------------------------------------
