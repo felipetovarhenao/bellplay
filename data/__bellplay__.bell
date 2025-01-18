@@ -1,4 +1,4 @@
-BP_VERSION = "v0.2.6-beta";
+BP_VERSION = "v0.2.7-beta";
 BP_SUPPORTED_AUDIO_FORMATS = ".wav" ".aif" ".aiff" ".mp3";
 BP_DATABASE_OUTPUT = null;
 BP_TREE_NORM = null;
