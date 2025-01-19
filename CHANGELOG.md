@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- `addmarker`: New `@role` argument to facilitate score quantization when exporting roll as a `.llll` file.
+
 ### Changed
 
 ### Fixed

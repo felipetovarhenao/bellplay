@@ -533,19 +533,35 @@ BP_REF_USE_CACHE_ARG = $addarg(@name "usecache" @default 1 @type "int" @descript
 
 addmarker = (
     $onset,
-    $names = null -> (
+    $names = null,
+    $role = null -> (
         if $onset == null then printerror("You must provide a value for @onset in addmarker()");
-        BP_DISPATCH_FUNC("roll", "addmarker" $onset ($names &&& [ $names ]) ||| [])
+        $name = ($names &&& [ $names ]) ||| [];
+        if $role == 'timesig' then (
+            $role:2 ||| printerror("'timesig' role must be followed by a time signature: [ <num> <den> ]")
+        ) else if $role == 'tempo' then (
+            $role:2 ||| printerror("'tempo' role must be followed by a tempo assignment: [ <beat_unit> <bpm> ]")
+        ) else if $role &&& $role.intersection('barline' 'division' 'subdivision') == null then (
+            printerror("invalid marker role.")
+        );
+        BP_DISPATCH_FUNC("roll", "addmarker" $onset $name $role)
     )
 );
 
 $addref(
     @name "addmarker"
-    @description "Inserts a marker into the transcription score, given an onset time and, optionally, a list of names associated with that marker, as a list."
+    @description "Inserts a marker into the transcription score, given an onset time and, optionally, a list of names and/or role associated with that marker. Note that if marker role is assigned, names are not displayed in the score but are still associated with the marker. Roles are particularly useful when exporting scores as llll files for quantization purposes."
     @category BP_REF_LABEL_UTILS
     @arguments (
         $addarg(@name "onset" @type "int/float" @description "marker onset position.")
-        $addarg(@name "names" @default "null" @type "symbol/list/null" @description "optional list of marker names, each as a symbol")
+        $addarg(@name "names" @default "null" @type "symbol/list/null" @description "optional list of marker names.")
+        $addarg(@name "role" @default "null" @type "symbol/list/null" @description "optional marker role." @options
+            $addopt(@value 'tempo <bpm>' @description "tempo marker role, followed by a tempo specification.")
+            $addopt(@value 'timesig <time_sig>' @description "time signature marker role, followed by a time signature.")
+            $addopt(@value 'barline' @description "barline marker role")
+            $addopt(@value 'division' @description "beat division marker role")
+            $addopt(@value 'subdivision' @description "beat subdivision marker role")
+        )
     )
 );
 
