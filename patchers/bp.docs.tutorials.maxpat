@@ -30,7 +30,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 581.0, 162.0, 347.0, 37.0 ],
-					"presentation_linecount" : 4,
 					"text" : ";\rmax launchbrowser https://felipe-tovar-henao.com/bell-tutorials"
 				}
 
@@ -282,7 +281,7 @@
 
 							}
  ],
-						"originid" : "pat-1131",
+						"originid" : "pat-1129",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -645,7 +644,7 @@
 
 							}
  ],
-						"originid" : "pat-1135",
+						"originid" : "pat-1133",
 						"styles" : [ 							{
 								"name" : "subtle",
 								"default" : 								{
@@ -1030,7 +1029,7 @@
 
 							}
  ],
-						"originid" : "pat-1139"
+						"originid" : "pat-1137"
 					}
 ,
 					"patching_rect" : [ 1056.0, 495.0, 65.0, 23.0 ],
@@ -1115,7 +1114,7 @@
 
 							}
  ],
-						"originid" : "pat-1141"
+						"originid" : "pat-1139"
 					}
 ,
 					"patching_rect" : [ 899.0, 495.0, 75.0, 23.0 ],
@@ -1200,7 +1199,7 @@
 
 							}
  ],
-						"originid" : "pat-1143"
+						"originid" : "pat-1141"
 					}
 ,
 					"patching_rect" : [ 742.0, 495.0, 89.0, 23.0 ],
@@ -1819,11 +1818,12 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 581.0, 81.0, 817.0, 74.0 ],
+					"patching_rect" : [ 581.0, 81.0, 820.0, 74.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 3,
 					"presentation_rect" : [ 8.0, 42.0, 792.5, 74.0 ],
-					"text" : "These tutorials will help you get familiarized with the most basic concepts and features in bellplay~. They assume a basic understanding of the bell programming language, which you can learn through additional #bell-tutorials. Every time you open a tutorial in bellplay~, two things will happen:\n"
+					"text" : "These tutorials will help you get familiarized with the most basic concepts and features in bellplay~. They assume a basic understanding of the bell programming language, which you can learn through additional #bell-tutorials. Every time you open a tutorial in bellplay~, two things will happen:\n",
+					"underline" : 0
 				}
 
 			}
@@ -2721,7 +2721,7 @@
 
 			}
  ],
-		"originid" : "pat-1129",
+		"originid" : "pat-1127",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
