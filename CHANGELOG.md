@@ -14,6 +14,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- `ezsampler`: Fix incorrect pitch value when using `@resample 0`.
+
 ### Removed
 
 ## [0.2.7-beta] - 2025-01-18

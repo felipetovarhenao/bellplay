@@ -6168,7 +6168,7 @@ ezsampler = (
         $closest = $keymap::$minaddr;
         ## calculate pitch difference
         $pitchdev = $pitch - $closest:1;
-        $ratio = if $resample != 0 then c2r($pitchdev) else 1;
+        $ratio = if $resample != 0 then c2r($pitchdev) else ($pitch = $closest:1; 1);
         ## check if it's multi-sample match
         $options = right($closest, 1);
         ## init choose func
