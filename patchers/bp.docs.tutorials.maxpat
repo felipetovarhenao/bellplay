@@ -30,7 +30,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 581.0, 162.0, 347.0, 37.0 ],
-					"text" : ";\rmax launchbrowser https://felipe-tovar-henao.com/bell-tutorials"
+					"text" : ";"
 				}
 
 			}
@@ -1154,7 +1154,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 50.0, 100.0, 442.0, 22.0 ],
-									"text" : "https://marketplace.visualstudio.com/items?itemName=tovarhenao.bellplay-plugin"
+									"text" : " "
 								}
 
 							}

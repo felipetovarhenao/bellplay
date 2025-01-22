@@ -172,7 +172,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 621.5, 813.0, 431.0, 37.0 ],
 					"style" : "bellplay-gui",
-					"text" : ";\rmax launchbrowser https://github.com/felipetovarhenao/bellplay/releases/latest"
+					"text" : ";"
 				}
 
 			}
@@ -364,7 +364,7 @@
 				"box" : 				{
 					"data" : 					{
 						"http_method" : "get",
-						"url" : "https://raw.githubusercontent.com/felipetovarhenao/bellplay/refs/heads/main/data/__bellplay__.bell"
+						"url" : "https://github.com/"
 					}
 ,
 					"id" : "obj-10",

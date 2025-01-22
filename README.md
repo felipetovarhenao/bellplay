@@ -38,53 +38,10 @@ render()
 
 With a wide variety of bell functions, **bellplay~** offers an extensive and flexible approach to algorithmic audio, enabling users to design intricate and complex sounds with granular precision. Moreover, its feature-based representation of buffers allows for more advanced audio techniques such as audio mosaicing and concatentive synthesis. To start learning **bellplay~**, please refer to the tutorials, as well as its reference documentation, where all available bell functions are listed.
 
-If you are new to bell or programming in general, please refer to the [bell tutorials](https://felipe-tovar-henao.com/bell-tutorials/) for a musician-friendly introduction to the language.
-
 Additionally, to learn more about the bell programming language, please refer to its introductory publication:
 Giavitto, J.-L., & Agostini, A. (2019, June). Bell, a textual language for the bach library. ICMC 2019 - International Computer Music Conference. https://hal.science/hal-02348176
 
-### User community
-
-For questions, troubleshooting, bugs reports, feedback, feature requests, and more, join the official [bellplay~ Discord community](https://discord.gg/RKZxTwWvxd).
-
-## Installation
-
-### Standalone application
-
-> Currently, the standalone application only exists for MacOS. If you're a Windows user, you need [Max](https://cycling74.com/downloads) (no commercial license needed) to run _bellplay~_. For more details, read next section.
-
-1. Download the latest version [here](https://github.com/felipetovarhenao/bellplay/releases/latest/) and place it in you _Applications_ folder.
-2. The first time you open the application, you might run into the following scenarios:
-
-   - If you get the message:
-
-     > _bellplay~ can't be opened because Apple cannot check it for malicious software_.
-
-     You can go to _System Settings/Privacy & Security_ and scroll down to the bottom where it says:
-
-     > bellplay~ was blocked from use because it is not from an identified developer.
-
-     If so, click on _Open Anyway_.
-
-     Alternatively, you can run the following command on the terminal (`Applications/Utilities/Terminal.app`):
-
-     ```
-     xattr -c /Applications/bellplay~.app
-     ```
-
-   - Or, if you get the message:
-
-     > "bellplay~" is damaged and can't be opened. You should move it to the Trash.
-
-     Run the following command on the terminal (`Applications/Utilities/Terminal.app`):
-
-     ```
-     codesign --force --sign - /Applications/bellplay~.app
-     ```
-
-   This should allow you to open the app without issues. If it doesn't, please report it to the [bellplay~ Discord community](https://discord.gg/RKZxTwWvxd).
-
-### Source code
+## Source Code
 
 To run **bellplay~** in [Max](https://cycling74.com/downloads) from its source code, you will need the following\*:
 
@@ -98,10 +55,6 @@ To run **bellplay~** in [Max](https://cycling74.com/downloads) from its source c
 ### Acknowledgments
 
 This project relies primarily on the [bach](https://bachproject.net) ecosystem — a family of packages for computer-assisted composition in Max, developed by Andrea Agostini and Daniele Ghisi. It also relies, to a lesser degree, on the [ml.star](<[https://](https://www.benjamindaysmith.com/ml-machine-learning-toolkit-in-max)>) library, developed by Benjamin D. Smith.
-
-### Credits
-
-`bellplay~` is developed and maintained by Felipe Tovar-Henao, as part of his residency as the Charles H. Turner Postdoctoral Fellow at the University of Cincinnati College-Conservatory of Music.
 
 ### License
 

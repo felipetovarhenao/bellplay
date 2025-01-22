@@ -39,7 +39,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 4.0, 1101.0, 247.0, 23.0 ],
-					"text" : "https://felipe-tovar-henao.com/bell-tutorials/"
+					"text" : " "
 				}
 
 			}

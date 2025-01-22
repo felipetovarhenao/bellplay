@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 46.0, 96.0, 812.0, 585.0 ],
+		"rect" : [ 46.0, 74.0, 812.0, 585.0 ],
 		"openinpresentation" : 1,
 		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
@@ -31,28 +31,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 264.0, 1401.0, 55.0, 23.0 ],
 					"text" : "deferlow"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bgmode" : 0,
-					"border" : 0,
-					"clickthrough" : 0,
-					"enablehscroll" : 0,
-					"enablevscroll" : 0,
-					"id" : "obj-69",
-					"lockeddragscroll" : 0,
-					"lockedsize" : 0,
-					"maxclass" : "bpatcher",
-					"name" : "bp.utils.checkupdate.maxpat",
-					"numinlets" : 0,
-					"numoutlets" : 0,
-					"offset" : [ 0.0, 0.0 ],
-					"patching_rect" : [ 443.0, 52.0, 138.0, 35.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 333.0, 58.0, 149.0, 25.0 ],
-					"viewvisibility" : 1
 				}
 
 			}
@@ -708,7 +686,7 @@
 
 							}
  ],
-						"originid" : "pat-1157",
+						"originid" : "pat-10166",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -842,38 +820,6 @@
 					"pic" : "logo.png",
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 18.0, 55.0, 55.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-5",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 10.0, 20.0, 901.0, 23.0 ],
-					"saved_object_attributes" : 					{
-						"allwindowsactive" : 0,
-						"appicon_mac" : "Macintosh HD:/Users/felipetovarhenao/Documents/bellplay/media/logo.icns",
-						"appicon_win" : "Macintosh HD:/Users/felipetovarhenao/Documents/bellplay/media/logo.ico",
-						"audiosupport" : 1,
-						"bundleidentifier" : "com.felipetovarhenao.bellplay",
-						"cantclosetoplevelpatchers" : 1,
-						"cefsupport" : 0,
-						"copysupport" : 1,
-						"database" : 0,
-						"extensions" : 1,
-						"gensupport" : 0,
-						"midisupport" : 1,
-						"noloadbangdefeating" : 0,
-						"overdrive" : 1,
-						"preffilename" : "bellplay preferences",
-						"searchformissingfiles" : 1,
-						"statusvisible" : 0,
-						"usesearchpath" : 1
-					}
-,
-					"text" : "standalone @cefsupport 0 @overdrive 1 @bundleidentifier com.felipetovarhenao.bellplay @gensupport 0 @statusvisible 0 @searchformissingfiles 1 @usesearchpath 1"
 				}
 
 			}
@@ -1323,7 +1269,7 @@
 					"patching_rect" : [ 443.0, 95.0, 224.0, 21.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 67.0, 58.0, 221.0, 21.0 ],
-					"text" : "© 2024 | https://felipe-tovar-henao.com",
+					"text" : "© 2024",
 					"underline" : 0
 				}
 
@@ -2137,7 +2083,7 @@
 
 			}
  ],
-		"originid" : "pat-1149",
+		"originid" : "pat-10158",
 		"parameters" : 		{
 			"obj-115" : [ "live.gain~", "GAIN", 0 ],
 			"parameterbanks" : 			{
@@ -2637,20 +2583,6 @@
 			}
 , 			{
 				"name" : "bp.scrubplayer~.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bp.utils.checkupdate.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bp.utils.compareversions.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
