@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 46.0, 74.0, 812.0, 585.0 ],
+		"rect" : [ 46.0, 96.0, 812.0, 585.0 ],
 		"openinpresentation" : 1,
 		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
@@ -686,7 +686,7 @@
 
 							}
  ],
-						"originid" : "pat-10166",
+						"originid" : "pat-12410",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2083,7 +2083,7 @@
 
 			}
  ],
-		"originid" : "pat-10158",
+		"originid" : "pat-12406",
 		"parameters" : 		{
 			"obj-115" : [ "live.gain~", "GAIN", 0 ],
 			"parameterbanks" : 			{
@@ -2614,13 +2614,6 @@
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "ccm_logo.png",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{
