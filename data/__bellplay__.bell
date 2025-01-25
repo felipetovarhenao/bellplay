@@ -3779,7 +3779,7 @@ crop = (
     $end = 1000,
     $timeunit = 0 -> (
         if $end == null || $start == null then printerror("you must provide values for @start and @end in crop()");
-        if $end <= $start then printerror("@end must be greater than @start in crop()");
+        if $end > 0 && $end <= $start then printerror("@end must be greater than @start in crop()");
         [
             ["fx" "crop"]
             ["params" 
@@ -3797,7 +3797,7 @@ $addref(
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "start" @default 0 @type "int/float", @description "start time.")
-        $addarg(@name "end" @default 1000 @type "int/float", @description "end time.")
+        $addarg(@name "end" @default 1000 @type "int/float", @description "end time. if negative, it counts from the end.")
         $addarg(@name "timeunit", @default 0 @type "int", @description "time unit for @start and @end." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
