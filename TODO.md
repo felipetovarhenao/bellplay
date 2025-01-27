@@ -4,3 +4,4 @@
 - Adapt code base to new bell language version.
 - Migrate reference documentation to versioned web repo.
 - Implement `BP_ON_DONE_FUNC` to improve logic in `scoreconfig`.
+- Provide third-party code interface.
