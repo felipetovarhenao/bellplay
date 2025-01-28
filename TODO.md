@@ -5,3 +5,4 @@
 - Migrate reference documentation to versioned web repo.
 - Implement `BP_ON_DONE_FUNC` to improve logic in `scoreconfig`.
 - Provide third-party code interface.
+- Add J. Bernstein's `shell` object.
