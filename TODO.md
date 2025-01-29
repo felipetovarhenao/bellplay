@@ -5,4 +5,5 @@
 - Migrate reference documentation to versioned web repo.
 - Implement `BP_ON_DONE_FUNC` to improve logic in `scoreconfig`.
 - Provide third-party code interface.
+	- Make sure to account for version changes, reviewing/cleaning config file when versions are different, etc.
 - Remove hardlines around roll voice usage.
