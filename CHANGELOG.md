@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- Add `bpconfig.txt` configuration file to allow for persistent behavior across sessions.
+
 ### Fixed
 
 - `crop`: Now supports negative values for `@end`.
