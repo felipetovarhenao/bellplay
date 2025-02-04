@@ -32,13 +32,18 @@ BP_ON_RESET_FUNC = (
     )
 );
 BP_CONFIG_FILE_PATH = '~/bpconfig.txt';
-BP_CONFIG_FILE_DEFAULT = ['version' BP_VERSION] ['imports'];
+BP_CONFIG_FILE_DEFAULT = [ 
+    [ 'version' BP_VERSION ] 
+    [ 'imports' ] 
+    ## [ 'filewatch' 1 ] 
+    ## [ 'tutorialsdir' ] 
+];
 BP_WRITE_CONFIG_FILE_FUNC = (
     -> if exists(BP_CONFIG_FILE_PATH) == 0 then write(BP_CONFIG_FILE_DEFAULT, BP_CONFIG_FILE_PATH) 
 );
 BP_LOAD_CONFIG_IMPORTS = (
     -> (
-        $config = read(BP_CONFIG_FILE_PATH);
+        $config = BP_GET_CONFIG_FUNC();
         $imports = $config.getkey("imports");
         for $import in $imports do (
             $path = parsepath($import);
@@ -48,11 +53,28 @@ BP_LOAD_CONFIG_IMPORTS = (
         )
     )
 );
+BP_GET_CONFIG_FUNC = (-> read(BP_CONFIG_FILE_PATH));
+BP_SET_CONFIG_KEY_FUNC = (
+    $key, $value -> (
+        BP_UPDATE_CONFIG_FILE($config -^ $key, $value -> $config.setkey($key, $value))
+    )
+);
+BP_MAP_CONFIG_KEY_FUNC = (
+    $key, $func -> (
+        BP_UPDATE_CONFIG_FILE($config -^ $key, $func -> $config.mapkey($key, $func))
+    )
+);
+BP_GET_CONFIG_KEY_FUNC = (
+    $key -> (
+        BP_GET_CONFIG_FUNC().getkey($key)
+    )
+);
 BP_UPDATE_CONFIG_FILE = (
     $lambda -> (
-        $config = read(BP_CONFIG_FILE_PATH);
+        $config = BP_GET_CONFIG_FUNC();
         $config = $lambda($config) ||| $config;
-        write($config, BP_CONFIG_FILE_PATH) 
+        write($config, BP_CONFIG_FILE_PATH);
+        $config
     ) 
 );
 BP_ON_LAUNCH_FUNC = (
