@@ -26,7 +26,7 @@ $keymap2 = (
 
 ## we can also break down samples based on velocity
 $keymap3 = (
-    ## this sample is used when pitch is closest to 6900
+    ## this sample is used when pitch is closest to 6000
     [ 6000 "guitar.wav"] 
     ## these samples are used when pitch is closest to 6900
     [ 6900 
