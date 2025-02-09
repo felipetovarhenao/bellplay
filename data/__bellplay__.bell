@@ -5804,7 +5804,7 @@ $addref(
             BP_REF_TIMEUNIT_OPTIONS
         )
     ),
-    @output $addout(@description "normalize command" @type "llll")
+    @output $addout(@description "panning command" @type "llll")
 );
 
 ## ------------------------------------------------------------
