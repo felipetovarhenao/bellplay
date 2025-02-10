@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 459.0, 119.0, 1235.0, 964.0 ],
+		"rect" : [ 459.0, 119.0, 601.0, 964.0 ],
 		"openinpresentation" : 1,
 		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
@@ -47,7 +47,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 8.0, 54.0, 1195.0, 52.0 ],
-									"presentation_linecount" : 3,
 									"text" : "clear, preventedit notes slotinfo voices breakpoints markers, zoom 115, vzoom 115, showvscrollbar 1, voicespacing 100, [slotinfo [ 1 [name envelope ] [ width 100 ] [ key e ] ] [ 3 [ name metadata ] [ type llll ] [ key m ] ] [ 4 [ name \"notehead size\" ] [ type floatlist ] [ default 50 ] [ range 25 300 ] ] [ 6 [ name \"note color\" ] [ key c ] ] [ 7 [ name \"buffer source\" ] [ key s ] ] [ 10 [ name \"buffer offset \" ] [ key o ] ] [11 [name \"playback rate\" ] [key r] [type float] [range 0.0001 16.]] [23 [name \"notehead type\" ] [type int] [range 32 255] [width 100] [key h]]], linknoteheadtoslot 23, linknotesizetoslot 4, linkdynamicstoslot 20, showdynamics 1, showhairpins 1"
 								}
 
@@ -93,7 +92,7 @@
 
 							}
  ],
-						"originid" : "pat-2262",
+						"originid" : "pat-2658",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1019,7 +1018,6 @@
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"id" : "obj-34",
-					"linkannotationtoslot" : 0,
 					"linkarticulationstoslot" : 0,
 					"linklyricstoslot" : 0,
 					"linknotecolortoslot" : 6,
@@ -1613,7 +1611,7 @@
 
 			}
  ],
-		"originid" : "pat-2260",
+		"originid" : "pat-2656",
 		"dependency_cache" : [ 			{
 				"name" : "bach.<=.mxo",
 				"type" : "iLaX"

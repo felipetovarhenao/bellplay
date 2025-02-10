@@ -176,9 +176,9 @@ exists = (
 );
 
 $addref(
-    @name "exists",
-    @description "Checks if a file or folder exists. Returns 1 if true or 0 if false.",
-    @category BP_REF_LABEL_UTILS,
+    @name "exists"
+    @description "Checks if a file or folder exists. Returns 1 if true or 0 if false."
+    @category BP_REF_LABEL_UTILS
     @arguments (
         $addarg(@name "path" @type "symbol" @description "file or folder path.")
     )
@@ -582,13 +582,14 @@ pcdiff = (
 );
 
 $addref(
-    @name "pcdiff",
-    @description "Signed pitch class difference.",
-    @category BP_REF_LABEL_UTILS,
+    @name "pcdiff"
+    @description "Signed pitch class difference."
+    @category BP_REF_LABEL_UTILS
     @arguments (
-        $addarg(@name "a",  @type "int/float/list",@description "pitch classes.")
-        $addarg(@name "b", @type "int/float/list",@description "pitch classes.")
-    ),
+        $addarg(@name "a" @type "int/float/list" @description "pitch classes.")
+        $addarg(@name "b" @type "int/float/list" @description "pitch classes.")
+        $addarg(@name "mod" @default 12 @type "int/float/list" @description "modulo.")
+    )
     @output $addout(@description "signed difference", @type "int/float/list")
 );
 
@@ -708,9 +709,9 @@ buildcorpus = (
 );
 
 $addref(
-    @name "buildcorpus",
-    @description "Creates a buffer corpus from a list of audio file paths, and writes it into disk as a .llll file. See #analyze and #onsets.",
-    @category BP_REF_LABEL_UTILS,
+    @name "buildcorpus"
+    @description "Creates a buffer corpus from a list of audio file paths, and writes it into disk as a .llll file. See #analyze and #onsets."
+    @category BP_REF_LABEL_UTILS
     @arguments (
         $addarg(@name "files" @type "symbol/list" @description "list of audio file paths.")
         $addarg(@name "descriptors" @type "llll" @description "list of audio descriptors.")
@@ -751,7 +752,7 @@ $addref(
     @description "Loads an audio corpus, given a path to a .llll file. See #query function.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
-        $addarg(@name "filepath", @type "symbol", @description "file path to .llll corpus file.")
+        $addarg(@name "filepath" @type "symbol" @description "file path to .llll corpus file.")
     )
 );
 
@@ -766,15 +767,15 @@ getcorpuskeys = (
 );
 
 $addref(
-    @name "getcorpuskeys",
-    @description "Returns a list with the current corpus' keys. See #setcorpus, #buildcorpus, and #query.",
-    @category BP_REF_LABEL_UTILS,
+    @name "getcorpuskeys"
+    @description "Returns a list with the current corpus' keys. See #setcorpus, #buildcorpus, and #query."
+    @category BP_REF_LABEL_UTILS
     @arguments (
-        $addarg(@name "typed", @default 1 @type "int", @description "include the data type for each key." @options 
+        $addarg(@name "typed" @default 1 @type "int" @description "include the data type for each key." @options 
             BP_REF_SWITCH_OPTIONS
         )
-    ),
-    @output $addout(@description "corpus keys", @type "list/llll")
+    )
+    @output $addout(@description "corpus keys" @type "list/llll")
 );
 
 ## ------------------------------------------------------------
@@ -795,13 +796,13 @@ samplelist = (
 );
 
 $addref(
-    @name "samplelist",
-    @description "Samples an interpolated value from a numeric list given a normalized index.",
-    @category BP_REF_LABEL_UTILS,
+    @name "samplelist"
+    @description "Samples an interpolated value from a numeric list given a normalized index."
+    @category BP_REF_LABEL_UTILS
     @arguments (
-        $addarg(@name "x", @type "list", @description "list to sample from.")
-        $addarg(@name "i", @type "list", @description "normalized sampling index.")
-    ),
+        $addarg(@name "x" @type "list" @description "list to sample from.")
+        $addarg(@name "i" @type "list" @description "normalized sampling index.")
+    )
     @output $addout(@description "interpolated sample", @type "int/float/list")
 );
 
@@ -984,15 +985,15 @@ bpf = (
 );
 
 $addref(
-    @name "bpf",
-    @description "Formats an numeric list into a breakpoint function, in the form of [<x> <y> <slope>] tuples. By default, <x> is normalized to the 0-1 range. To prevent this, set @xfunc to null.",
-    @category BP_REF_LABEL_UTILS,
+    @name "bpf"
+    @description "Formats an numeric list into a breakpoint function, in the form of [<x> <y> <slope>] tuples. By default, <x> is normalized to the 0-1 range. To prevent this, set @xfunc to null."
+    @category BP_REF_LABEL_UTILS
     @arguments (
         $addarg(@name "pts" @type "list" @description "numeric list")
         $addarg(@name "xfunc" @default "<normalization_function>" @type "function/null" @description "optional lambda function for x axis")
         $addarg(@name "yfunc" @default "null" @type "function/null" @description "optional lambda function for y axis")
         $addarg(@name "sfunc" @default "null" @type "function/null" @description "optional lambda function for bpf slope")
-    ),
+    )
     @output $addout(@description "breakpoint function" @type "llll")
 );
 
@@ -1119,13 +1120,13 @@ rand = (
 );
 
 $addref(
-    @name "rand",
-    @description "Random floating point number generator.",
-    @category BP_REF_LABEL_UTILS,
+    @name "rand"
+    @description "Random floating point number generator."
+    @category BP_REF_LABEL_UTILS
     @arguments (
-        $addarg(@name "a", @type "int/float", @description "max. value if @b is null, else min. value.")
-        $addarg(@name "b", @type "int/float/null", @description "max. value.")
-    ),
+        $addarg(@name "a" @default 1 @type "int/float" @description "max. value if @b is null, else min. value.")
+        $addarg(@name "b" @default 'null' @type "int/float/null" @description "max. value.")
+    )
     @output $addout(@description "random floating point number", @type "int/float")
 );
 
@@ -1225,8 +1226,8 @@ $addref(
     @category BP_REF_LABEL_UTILS,
     @arguments (
         $addarg(@name "choices", @type "list", @description "list to choose from.")
-        $addarg(@name "n", @default 1, @type "int", @description "number of random choices.")
-        $addarg(@name "weights", @default "null" @type "list/null", @description "optional probability weights for each element.")
+        $addarg(@name "n" @default 1 @type "int", @description "number of random choices.")
+        $addarg(@name "weights" @default "null" @type "list/null", @description "optional probability weights for each element.")
     ),
     @output $addout(@description "chosen elements" @type "anything")
 );
@@ -1241,9 +1242,9 @@ setseed = (
 );
 
 $addref(
-    @name "setseed",
-    @description "Sets the random seed for the #xrand, #xrandom, #xchoose, #xscramble, and #urn functions.",
-    @category BP_REF_LABEL_UTILS,
+    @name "setseed"
+    @description "Sets the random seed for the #xrand, #xrandom, #xchoose, #xscramble, and #urn functions."
+    @category BP_REF_LABEL_UTILS
     @arguments (
         $addarg(@name "seed", @type "int", @description "random seed")
     )
@@ -1555,19 +1556,6 @@ $addref(
 
 ## ------------------------------------------------------------
 
-filterbuffers = (
-    $buffers, $func, $max = 0, $maxdepth = 1, $unwrap = 1 -> (
-        $lambda = (
-            $x  -^ $func -> (
-                $func($x)
-            )
-        );
-        finditems($buffers, $max, $lambda, @maxdepth $maxdepth, @unwrap $unwrap)
-    )
-);
-
-## ------------------------------------------------------------
-
 pitchdiff = (
     $source, $targets -> (
         if $targets == null then (
@@ -1609,7 +1597,8 @@ transcribe = (
     $voice = 1, 
     $pitchkey = "pitch",
     $keepduration = 1,
-    $metadata = null -> (
+    $metadata = null,
+    $annotation = null -> (
         if $voice > BP_SCORE_CONFIG."numvoices" then printerror("@voice value in transcribe() exceeds the number of voices. Use scoreconfig() to change the number of voices.");
         if $buffer == null then (
             printerror("attempt to pass a null value as @buffer in transcribe()")
@@ -1664,24 +1653,26 @@ transcribe = (
         $size = [ 4 scale(log2(min(16384, max(1, $dur))), 0, 14, 25, 150) ];
 
         ## format note and add to roll
-        $note = [ $mc $dur $vel ["slots" [ 7 $buffer."source" ] [ 10 $buffer."offset" ] ($metadata &&& [ 3 $metadata ]) $pan $rate $gain $color $notehead $size ]];
+        $note = [ $mc $dur $vel ["slots" [ 7 $buffer."source" ] [ 10 $buffer."offset" ] ($metadata &&& [ 3 $metadata ]) ($annotation &&& [ 24 $annotation ]) $pan $rate $gain $color $notehead $size ]];
         BP_DISPATCH_FUNC("roll", "addchord" ($voice ||| 1) [ ($onset ||| 0) $note ])
     )
 );
 
 $addref(
     @name "transcribe",
-    @description "Adds input buffer to the rendering sequence. See #render function.",
-    @category BP_REF_LABEL_UTILS,
+    @description "Adds input buffer to the rendering sequence. See #render function."
+    @category BP_REF_LABEL_UTILS
     @arguments (
-        $addarg(@name "buffer", @type "llll", @description "buffer to add to rendering sequence.")
-        $addarg(@name "onset", @type "int/float", @default 0, @description "buffer onset in milliseconds.")
-        $addarg(@name "pan", @type "int/float/list/llll", @default "null" @description "normalized panning value or envelope.")
-        $addarg(@name "gain", @type "int/float/llll", @default "null" @description "linear gain value or envelope. Use the #gain function for values greater than 1.")
-        $addarg(@name "detune", @type "int/float", @default "null" @description "detuning amount in cents.")
-        $addarg(@name "voice" @type "int", @default 1 @description "voice assignment in score. See #scoreconfig function.")
-        $addarg(@name "pitchkey" @type "symbol", @default "'pitch'" @description "key to use for pitch value in score transcription.")
-        $addarg(@name "keepduration" @type "int", @default 1 @description "keep buffer's nominal duration value when detuning buffer via @detune.")
+        $addarg(@name "buffer" @type "llll" @description "buffer to add to rendering sequence.")
+        $addarg(@name "onset" @type "int/float" @default 0, @description "buffer onset in milliseconds.")
+        $addarg(@name "pan" @type "int/float/list/llll" @default "null" @description "normalized panning value or envelope.")
+        $addarg(@name "gain" @type "int/float/llll" @default "null" @description "linear gain value or envelope. Use the #gain function for values greater than 1.")
+        $addarg(@name "detune" @type "int/float" @default "null" @description "detuning amount in cents.")
+        $addarg(@name "voice" @type "int" @default 1 @description "voice assignment in score. See #scoreconfig function.")
+        $addarg(@name "pitchkey" @type "symbol" @default "'pitch'" @description "key to use for pitch value in score transcription.")
+        $addarg(@name "keepduration" @type "int" @default 1 @description "keep buffer's nominal duration value when detuning buffer via @detune.")
+        $addarg(@name "metadata" @default 'null' @type "anything" @default 1 @description "data to associate with buffer. Useful when exporting roll in llll format.")
+        $addarg(@name "annotation" @default 'null' @type "symbol/null" @default 1 @description "optional label to display next to transcribed buffer.")
     )
 );
 
@@ -2190,8 +2181,8 @@ $addref(
     @description "Samples an interpolated value from a breakpoint function, given a list of normalized indices. See #bpf function.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
-        $addarg(@name "bpf", @type "llll", @description "breakpoint function")
-        $addarg(@name "pts", @type "int/float/list", @description "sampling point/s")
+        $addarg(@name "bpf" @type "llll" @description "breakpoint function")
+        $addarg(@name "pts" @type "int/float/list" @description "sampling point/s")
     ),
     @output $addout(@description "interpolated bpf values" @type "int/float/list")
 );
@@ -2403,8 +2394,8 @@ $addref(
     @description "Audio descriptor to compute the effective duration of an envelope signal. The effective duration is a measure of the time the signal is perceptually meaningful. This is approximated by the time the envelope is above or equal to a given threshold and is above the -90db noise floor. This measure allows to distinguish percussive sounds from sustained sounds but depends on the signal length. By default, this algorithm uses 40% of the envelope maximum as the threshold which is suited for short sounds. Note, that the 0% thresold corresponds to the duration of signal above -90db noise floor, while the 100% thresold corresponds to the number of times the envelope takes its maximum value. See #analyze.",
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
-        $addarg(@name "samplerate" @default 44100 @type "int" @description "sampling rate.")
         $addarg(@name "thresholdratio" @default 0.02 @type "int/float" @description "ratio of the envelope maximum to be used as the threshold.")
+        $addarg(@name "samplerate" @default 44100 @type "int" @description "sampling rate.")
     )
     @output $addout(@description "effectiveduration descriptor" @type "llll")
 );
@@ -3166,6 +3157,12 @@ larm = (
         BP_ESSENTIA_WRAPPER_FUNC(
             @name "larm"
             @mode $mode
+            @settings (
+                "@attacktime" $attacktime
+                "@power" $power
+                "@releasetime" $releasetime
+                "@samplerate" $samplerate
+            )
         )
     )
 );
@@ -4426,7 +4423,7 @@ $addref(
     @description "Audio process command for applying hard-clip distortion to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
-        $addarg(@name "threshold", @type "int/float/llll", @description "distortion amplitude threshold, either as single number or envelope.")
+        $addarg(@name "threshold" @default 1 @type "int/float/llll", @description "distortion amplitude threshold, either as single number or envelope.")
     ),
     @output $addout(@description "clip command" @type "llll")
 );
@@ -4859,7 +4856,7 @@ $addref(
 ## ------------------------------------------------------------
 
 waveshape = (
-    $phase = 0 1,
+    $phase = -1 1,
     $duration = 1000 -> (
         $source = $phase.getkey("source");
         if $source == null then (

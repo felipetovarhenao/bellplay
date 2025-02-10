@@ -8,17 +8,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- `transcribe`: New `@annotation` argument which displays symbols next to buffer.
 - `addmarker`: New `@role` argument to facilitate score quantization when exporting roll as a `.llll` file.
 
 ### Changed
 
+- **docs**: general clean up/improvements—includes missing arguments/default values.
+
 ### Fixed
 
+- `effectiveduration`: docs reflect correct argument position.
+- `larm`: arguments no longer ignored.
 - `crop`: Now supports negative values for `@end`.
 - _about_ tab: Remove underline from bell tutorials' link.
 - `ezsampler`: Fix incorrect pitch value when using `@resample 0`.
 
 ### Removed
+
+- Remove undocumented `filterbuffers` function.
 
 ## [0.2.7-beta] - 2025-01-18
 
