@@ -1,0 +1,54 @@
+## Import an audio buffer from the file 'poem.wav'
+$b = importaudio('poem.wav');
+## Transcribe the original audio file for reference
+$b.transcribe();
+## Define hop size for spectral analysis in samples
+$hopsize = 512;
+## Perform partial tracking analysis with a magnitude threshold
+$analysis = $b.topartialtracks(@magnitudethreshold 0.05 @hopsize $hopsize);
+## Convert hop size to milliseconds based on the sample rate
+$incr = $hopsize * 1000 / $b.getkey('sr');
+## Extract frequency and magnitude data from the analysis
+$freqs = $analysis.getkey('frequencies');
+$mags = $analysis.getkey('magnitudes');
+## Define overlap factor for randomized timing variations
+$overlap = 3;
+## Define pitch classes for retuning
+$pcs = 0 2 4 5 7 9 11;
+## Loop through frequency and magnitude data
+for $freq $addr in $freqs, $mag in $mags with @maxdepth -1 do (
+    ## Ensure the frequency is valid (greater than 0)
+    if $freq > 0 then (
+        ## Determine the onset frame index
+        $frame = $addr:2;
+        ## Compute the onset time in milliseconds
+        $onset = ($frame - 1) * $incr;
+        ## Randomly select a duration for the event
+        $dur = rand(300, 1500);
+        ## Apply jitter to onset timing for more natural variation
+        $jit = rand(-1, 1) * $incr * $overlap;
+        ## Convert frequency to MIDI cents
+        $pitch = f2mc($freq);
+        ## Apply a random octave shift (in MIDI cents)
+        $octshift = random(-1, 4) * 1200;
+        ## Compute pitch difference and retune accordingly
+        $retune = pitchdiff($pitch, $pcs);
+        $freq *= c2r($retune + $octshift);
+        ## Randomize stereo panning
+        $pan = rand();
+        ## Generate a cycle-based waveform with the computed frequency and duration
+        cycle(@frequency $freq @duration $dur).transcribe(
+            ## Apply jittered onset time
+            @onset $onset + $jit
+            ## Apply random panning
+            @pan $pan
+            ## Apply amplitude envelope based on magnitude
+            @gain [0 $mag ** 2 0] [1 0 -0.5] 
+        ) 
+    ) 
+);
+## Render the processed audio with normalization
+render(
+    ## Apply normalization to -6 dB
+    @play 1 @process normalize(-6) 
+)
