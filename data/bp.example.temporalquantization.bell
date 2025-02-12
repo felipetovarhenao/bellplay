@@ -1,0 +1,30 @@
+## Import an audio buffer from the file 'drums.wav'
+$b = importaudio('drums.wav');
+## Perform onset detection analysis on the buffer
+$analysis = onsets();
+## Apply the analysis to the buffer to extract onset markers
+$b = analyze($b, $analysis);
+## Retrieve the onset positions detected in the buffer
+$markers = $b.getkey('onsets');
+## Compute segment durations by converting onset times into durations
+$markerdurs = x2dx($markers $b.getkey('duration'));
+## Define the time unit for placing segments in the transcription
+$timeunit = 150;
+## Initialize the onset time for the transcription
+$onset = 0;
+## Loop through each detected onset marker and its corresponding duration
+for $marker in $markers, $dur in $markerdurs do (
+    ## Define a segment using the detected duration and offset
+    $seg = $b.setkey('duration', $dur).setkey('offset', $marker);
+    ## Transcribe the segment with a gain envelope
+    $seg.transcribe(
+        ## Set the transcription onset time
+        @onset $onset
+        ## Apply an amplitude envelope
+        @gain [0 1 0] [1 0 -0.5] 
+    );
+    ## Increment the onset time for the next segment
+    $onset += $timeunit
+);
+## Render the audio output and play the result
+render(@play 1)
