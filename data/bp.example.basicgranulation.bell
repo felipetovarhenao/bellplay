@@ -1,0 +1,46 @@
+## Import sound to perform granulation on
+$buf = importaudio('singing.wav');
+## Retrieve the duration of the imported sound
+$bufdur = $buf.getkey('duration');
+## Define the total duration for the granular procesing output
+$totdur = 8000;
+## Initialize the onset time for grains
+$onset = 0;
+## Define a breakpoint function (BPF) to control grain playback positions
+$readbpf = [0 0 0] [1 1 0];
+## Set the duration of each grain in milliseconds
+$graindur = 100;
+## Compute the maximum possible offset within the buffer, ensuring grains do not exceed the buffer duration
+$maxoffset = $bufdur - $graindur;
+## Define grain windowing process
+$win = window();
+## Set a jitter value for randomizing the grain start times
+$jitter = 1000;
+## Define the overlap factor for grain scheduling
+$overlap = 4;
+## Iterate until the onset time reaches the total duration
+while $onset < $totdur do (
+    ## Normalize the current onset time to a [0,1] range
+    $nt = $onset / $totdur;
+    ## Determine the grain offset using the breakpoint function (BPF)
+    $offset = samplebpf($readbpf, $nt) * $maxoffset;
+    ## Apply random jitter to the grain offset
+    $offsetvar = rand(-1, 1) * $jitter;
+    ## Clamp the offset value within valid buffer boundaries
+    $offset = max(0, min($maxoffset, $offset + $offsetvar));
+    ## Create a grain with specified duration and computed offset
+    $grain = $buf.setkey('duration', $graindur).setkey('offset', $offset);
+    ## Apply windowing and transcribe the grain with randomized parameters
+    $grain.process($win).transcribe(
+        ## Introduce slight randomness to onset times
+        @onset $onset + rand(-1, 1) * $graindur
+        ## Randomize stereo placement
+        @pan rand() 
+        ## Randomize amplitude between 0.5 and 1
+        @gain rand(0.5, 1) 
+    );
+    ## Increment onset time based on overlap factor
+    $onset += $graindur / $overlap
+);
+## Render the audio output and play the result
+render(@play 1)
