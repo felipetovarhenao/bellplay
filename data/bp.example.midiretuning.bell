@@ -1,0 +1,44 @@
+## Define a set of pitch classes using ratio-to-pitch class conversion (based on LaMonte Young's WTP tuning)
+$pitchclasses = r2pc(1/1 36/35 35/32 48/35 64/45 45/32 35/24 9/5 8/5 7/4 5/6 64/63 63/32, 3);
+## Import MIDI events
+$events = importmidi('bach.mid');
+## Define a sustain multiplier for extending note durations
+$sustain = 4;
+## Loop through each event in the imported MIDI 
+for $event in $events do (
+    ## Extract note pitch, onset time, duration, and velocity from the event
+    $pitch = $event.getkey('pitch');
+    $onset = $event.getkey('onset');
+    $duration = $event.getkey('duration');
+    $velocity = $event.getkey('velocity');
+    ## Compute and apply pitch retuning based on the predefined pitch classes
+    $retuning = pitchdiff($pitch, $pitchclasses);
+    $pitch += $retuning;
+    ## Use an ezsampler instrument to synthesize the note with modified parameters
+    ezsampler(
+        ## Apply retuned pitch value
+        @pitch $pitch
+        ## Extend note duration
+        @duration $duration * $sustain
+        ## Maintain original velocity
+        @velocity $velocity
+    ).transcribe(
+        ## Set transcription onset time
+        @onset $onset
+        ## Apply amplitude envelope
+        @gain [0 1 0] [1 0 0.125] 
+    ) 
+);
+## Render with reverb processing
+render(
+    @play 1 @process freeverb(
+        ## Set the reverb room size
+        @roomsize 0.9
+        ## Control the wet/dry mix of the reverb
+        @wet 0.05
+        ## Adjust damping for high-frequency absorption
+        @damp 1
+        ## Set stereo width for the effect
+        @width 1
+    ) 
+)
