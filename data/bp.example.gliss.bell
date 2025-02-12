@@ -1,0 +1,46 @@
+## Import an audio buffer from the file 'poem.wav'
+$buf = importaudio('poem.wav');
+## Define a set of pitch classes for retuning
+$pitchclasses = 0 2 4 7 9;
+## Specify the number of voices for processing
+$numvoices = 5;
+## Retune the buffer by mapping it to a neutral pitch grid
+$buf = $buf.process(retune(@pitchgrid 0));
+## Iterate over the number of voices for granular processing
+for $v in 1...$numvoices do (
+    ## Map the voice index to a stereo pan position
+    $pan = scale($v, 1, $numvoices, 0, 1);
+    ## Randomly determine the envelope size for pitch glissando
+    $envsize = random(10, 20);
+    ## Generate a breakpoint function (BPF) for glissando effects
+    $glissbpf = for $x in 0...($envsize - 1) collect (
+        ## Select a random pitch class
+        $pc = choose($pitchclasses);
+        ## Convert pitch class to a frequency ratio
+        $ratio = c2r($pc * 100);
+        ## Create the BPF entry
+        [$x 1 / $ratio 0.95] 
+    );
+    ## Create a resampling effect using the generated glissando BPF
+    $fx = resample($glissbpf);
+    ## Apply the effect to the buffer and transcribe with pan settings
+    $buf.process($fx).transcribe(
+        ## Set onset time to 0
+        @onset 0
+        ## Apply pan position for spatial distribution
+        @pan $pan
+    ) 
+);
+## Render the processed audio with normalization and reverb
+render(
+    @play 1 @process normalize(-3) freeverb(
+        ## Set reverb room size
+        @roomsize 0.7
+        ## Control wet/dry mix of reverb
+        @wet 0.025
+        ## Adjust damping for high-frequency absorption
+        @damp 1
+        ## Set stereo width for the effect
+        @width 1
+    ) 
+)
