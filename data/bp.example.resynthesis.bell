@@ -1,7 +1,7 @@
 ## Import an audio buffer from the file 'poem.wav'
 $b = importaudio('poem.wav');
 ## Transcribe the original audio file for reference
-$b.transcribe();
+$b.transcribe(@gain 0.5);
 ## Define hop size for spectral analysis in samples
 $hopsize = 512;
 ## Perform partial tracking analysis with a magnitude threshold
@@ -12,9 +12,9 @@ $incr = $hopsize * 1000 / $b.getkey('sr');
 $freqs = $analysis.getkey('frequencies');
 $mags = $analysis.getkey('magnitudes');
 ## Define overlap factor for randomized timing variations
-$overlap = 3;
+$overlap = 4;
 ## Define pitch classes for retuning
-$pcs = 0 2 4 5 7 9 11;
+$pcs = 0 2 3 5 7 8 10;
 ## Loop through frequency and magnitude data
 for $freq $addr in $freqs, $mag in $mags with @maxdepth -1 do (
     ## Ensure the frequency is valid (greater than 0)
@@ -24,7 +24,7 @@ for $freq $addr in $freqs, $mag in $mags with @maxdepth -1 do (
         ## Compute the onset time in milliseconds
         $onset = ($frame - 1) * $incr;
         ## Randomly select a duration for the event
-        $dur = rand(300, 1500);
+        $dur = rand(100, 500);
         ## Apply jitter to onset timing for more natural variation
         $jit = rand(-1, 1) * $incr * $overlap;
         ## Convert frequency to MIDI cents
@@ -43,7 +43,7 @@ for $freq $addr in $freqs, $mag in $mags with @maxdepth -1 do (
             ## Apply random panning
             @pan $pan
             ## Apply amplitude envelope based on magnitude
-            @gain [0 $mag ** 2 0] [1 0 -0.5] 
+            @gain [0 $mag ** 2 0] [1 0 -0.66] 
         ) 
     ) 
 );
