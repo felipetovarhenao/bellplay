@@ -1,0 +1,67 @@
+## Define the audio features to extract (MFCC and loudness)
+$features = mfcc() larm();
+## Set threshold, alpha value, and delay parameters for onset detection analysis
+$thresh = 0.01;
+$alpha = 0.05;
+$delay = 5;
+## Build a corpus using the specified audio files and feature descriptors
+buildcorpus(
+    ## Audio sources for corpus
+    @files 'badinerie.wav' 'trumpet.wav' 'singing.wav' 
+    ## Extracted features for similarity search
+    @descriptors $features
+    ## Weighting factor for analysis
+    @alpha $alpha
+    ## Silence detection threshold
+    @silencethreshold $thresh
+    ## Delay before onset detection
+    @delay $delay
+);
+## Query the generated corpus to retrieve stored buffer references
+$bufs = query();
+## Extract feature keys from the features list
+$featurekeys = for $f in $features collect $f.getkey('output');
+## Build a search tree for efficient retrieval based on extracted features
+buildtree($bufs, $featurekeys);
+## Import a target audio file for analysis
+$target = importaudio('drums.wav');
+## Perform onset detection on the target audio
+$analysis = onsets(
+    ## Weighting factor for analysis
+    @alpha $alpha
+    ## Delay before onset detection
+    @delay $delay
+    ## Silence detection threshold
+    @silencethreshold $thresh
+);
+## Apply the analysis to the target audio buffer
+$target = $target.analyze($analysis);
+## Retrieve detected onset positions from the analysis
+$markers = $target.getkey('onsets');
+## Compute segment durations based on onset markers
+$markerdurs = x2dx($markers $target.getkey('duration'));
+## Loop through detected onset markers and corresponding durations
+for $marker in $markers, $dur in $markerdurs do (
+    ## Define a segment from the target buffer using detected offset and duration
+    $segment = $target.setkey('duration', $dur).setkey('offset', $marker);
+    ## Analyze the segment with the predefined feature descriptors
+    $segment = $segment.analyze($features);
+    ## Search the corpus for the best-matching segment
+    $match = searchtree($segment);
+    ## Transcribe the matched segment with onset and gain envelope settings
+    $match.transcribe(
+        ## Align match onset with detected marker
+        @onset $marker
+        ## Place match in center of stereo field
+        @pan 0
+        ## Apply gain envelope
+        @gain [0 1 0] [1 0 -0.25] 
+    ) 
+);
+## Transcribe the original target audio on the right stereo channel
+$target.transcribe(@pan 1);
+## Render the final output with normalization applied
+render(
+    ## Normalize audio to -3 dB
+    @play 1 @process normalize(-3) 
+)
