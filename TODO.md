@@ -8,3 +8,4 @@
 - Provide third-party code interface.
 - Add J. Bernstein's `shell` object.
 - Deprecate `interpolate` or re-implement.
+- Allow `scaling` to receive envelopes.

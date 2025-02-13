@@ -1,0 +1,44 @@
+## Define the total duration of the synthesized sound in milliseconds
+$duration = 20000;
+## Generate a random base frequency for the carrier oscillator
+$fzero = rand(20, 80);
+## Define the number of voices in the synthesis
+$numvoices = 3;
+## Iterate over evenly spaced pan positions for each voice
+for $pan in arithmser(0, 1, null, $numvoices) do (
+    ## Create a carrier oscillator with the base frequency and duration
+    $car = cycle(@frequency $fzero @duration $duration);
+    ## Randomly determine the number of modulation layers
+    $times = random(1, 5);
+    ## Apply frequency modulation layers
+    for $i in 1...$times do (
+        ## Generate a random modulation frequency in a given range
+        $fq = rand(0, 1).scale(0, 1, 40, 8000);
+        ## Create a modulator oscillator with the computed frequency
+        $mod = cycle(
+            @frequency $fq @duration $duration
+        );
+        ## Scale the modulator output to a desired amplitude range
+        $outmin = rand(0.1, 0.9);
+        $mod = $mod.process(scaling(-1, 1, $outmin, 1));
+        ## Generate breakpoint functions for dynamic range limiting
+        $low = for $x in 0...random(0, 10) collect [$x rand(-1) 0.25];
+        $hi = for $x in 0...random(0, 10) collect [$x rand(1) 0.25];
+        ## Apply modulation and dynamic range control
+        $car = $car.process(
+            ## modulate amplitude
+            multiply($mod) 
+            ## apply range limiting
+            pong($low, $hi) 
+            ## normalize to 0dB
+            normalize(0) 
+        ) 
+    );
+    ## Transcribe the processed carrier with spatial positioning
+    $car.transcribe(@pan $pan) 
+);
+## Render the final output with normalization applied
+render(
+    ## Normalize audio to -12 dB
+    @play 1 @process normalize(-12) 
+)
