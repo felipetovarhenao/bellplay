@@ -35,7 +35,11 @@ for $pan in arithmser(0, 1, null, $numvoices) do (
         ) 
     );
     ## Transcribe the processed carrier with spatial positioning
-    $car.transcribe(@pan $pan) 
+    $car.transcribe(
+        @pan $pan
+        ## apply gain envelope
+        @gain [0 1 0] [1 0.707 -0.5] [2 1 0.5] 
+    ) 
 );
 ## Render the final output with normalization applied
 render(
