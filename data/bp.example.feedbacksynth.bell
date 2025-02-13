@@ -1,5 +1,5 @@
 ## Define the total duration of the synthesized sound in milliseconds
-$duration = 20000;
+$duration = 25000;
 ## Generate a random base frequency for the carrier oscillator
 $fzero = rand(20, 80);
 ## Define the number of voices in the synthesis
@@ -38,7 +38,7 @@ for $pan in arithmser(0, 1, null, $numvoices) do (
     $car.transcribe(
         @pan $pan
         ## apply gain envelope
-        @gain [0 1 0] [1 0.707 -0.5] [2 1 0.5] 
+        @gain [0 1 0] [1 0.5 -0.5] [2 1 0.5] 
     ) 
 );
 ## Render the final output with normalization applied
