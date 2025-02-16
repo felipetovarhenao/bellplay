@@ -10,11 +10,34 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 59.0, 106.0, 547.0, 379.0 ],
+		"rect" : [ 59.0, 106.0, 452.0, 357.0 ],
 		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
 		"style" : "bellplay-gui",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 29.0, 172.0, 150.0, 21.0 ],
+					"text" : "path type object message"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 398.0, 46.0, 29.5, 23.0 ],
+					"text" : "t l l"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-4",
 					"maxclass" : "newobj",
@@ -45,7 +68,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "bang", "", "" ],
-					"patching_rect" : [ 14.0, 46.0, 141.0, 23.0 ],
+					"patching_rect" : [ 14.0, 46.0, 128.333333333333314, 23.0 ],
 					"text" : "t b l l"
 				}
 
@@ -54,11 +77,11 @@
 				"box" : 				{
 					"id" : "obj-7",
 					"maxclass" : "newobj",
-					"numinlets" : 3,
+					"numinlets" : 4,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 14.0, 122.0, 141.0, 23.0 ],
-					"text" : "join 3 @triggers 1"
+					"patching_rect" : [ 14.0, 122.0, 101.0, 23.0 ],
+					"text" : "join 4 @triggers 1"
 				}
 
 			}
@@ -68,7 +91,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 14.0, 171.0, 145.0, 23.0 ],
+					"patching_rect" : [ 14.0, 208.0, 145.0, 23.0 ],
 					"text" : "udpsend 127.0.0.1 12346"
 				}
 
@@ -175,7 +198,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -226,7 +249,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
-					"patching_rect" : [ 398.0, 122.0, 33.0, 23.0 ],
+					"patching_rect" : [ 408.5, 122.0, 33.0, 23.0 ],
 					"text" : "== 1"
 				}
 
@@ -274,15 +297,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-122", 0 ],
-					"source" : [ "obj-123", 2 ]
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-123", 1 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-4", 0 ],
-					"source" : [ "obj-123", 1 ]
+					"destination" : [ "obj-5", 0 ],
+					"source" : [ "obj-123", 2 ]
 				}
 
 			}
@@ -316,8 +339,22 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-7", 2 ],
+					"destination" : [ "obj-7", 3 ],
 					"source" : [ "obj-4", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-122", 0 ],
+					"source" : [ "obj-5", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-7", 1 ],
+					"source" : [ "obj-5", 0 ]
 				}
 
 			}
@@ -351,13 +388,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-7", 1 ],
+					"destination" : [ "obj-7", 2 ],
 					"source" : [ "obj-8", 1 ]
 				}
 
 			}
  ],
 		"originid" : "pat-1133",
+		"dependency_cache" : [  ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "bellplay-gui",
 				"default" : 				{
