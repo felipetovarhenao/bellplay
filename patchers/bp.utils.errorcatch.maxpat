@@ -81,7 +81,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 14.0, 122.0, 101.0, 23.0 ],
-					"text" : "join 4 @triggers 1"
+					"text" : "join 4"
 				}
 
 			}
@@ -170,7 +170,7 @@
 
 							}
  ],
-						"originid" : "pat-1135"
+						"originid" : "pat-1129"
 					}
 ,
 					"patching_rect" : [ 193.0, 122.0, 85.0, 23.0 ],
@@ -394,7 +394,7 @@
 
 			}
  ],
-		"originid" : "pat-1133",
+		"originid" : "pat-1127",
 		"dependency_cache" : [  ],
 		"autosave" : 0,
 		"styles" : [ 			{
