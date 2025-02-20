@@ -536,15 +536,16 @@ addmarker = (
     $names = null,
     $role = null -> (
         if $onset == null then printerror("You must provide a value for @onset in addmarker()");
-        $name = ($names &&& [ $names ]) ||| [];
-        if $role == 'timesig' then (
-            $role:2 ||| printerror("'timesig' role must be followed by a time signature: [ <num> <den> ]")
-        ) else if $role == 'tempo' then (
-            $role:2 ||| printerror("'tempo' role must be followed by a tempo assignment: [ <beat_unit> <bpm> ]")
+        if $role:1 == 'timesig' then (
+            ($role:2 &&& $role:3) ||| printerror("'timesig' role must be followed by a time signature: <num> <den> ");
+            $role = $role:1 [ right($role, 1) ]
+        ) else if $role:1 == 'tempo' then (
+            ($role:2 &&& $role:3) ||| printerror("'tempo' role must be followed by a tempo assignment: <beat_unit> <bpm>");
+            $role = $role:1 [ right($role, 1) ]
         ) else if $role &&& $role.intersection('barline' 'division' 'subdivision') == null then (
             printerror("invalid marker role.")
         );
-        BP_DISPATCH_FUNC("roll", "addmarker" $onset $name $role)
+        BP_DISPATCH_FUNC("roll", "addmarker" $onset [ $names ] $role)
     )
 );
 
@@ -556,8 +557,8 @@ $addref(
         $addarg(@name "onset" @type "int/float" @description "marker onset position.")
         $addarg(@name "names" @default "null" @type "symbol/list/null" @description "optional list of marker names.")
         $addarg(@name "role" @default "null" @type "symbol/list/null" @description "optional marker role." @options
-            $addopt(@value 'tempo <bpm>' @description "tempo marker role, followed by a tempo specification.")
-            $addopt(@value 'timesig <time_sig>' @description "time signature marker role, followed by a time signature.")
+            $addopt(@value 'tempo <unit> <bpm>' @description "tempo marker role, followed by a tempo specification, as a unit ratio and bpm value.")
+            $addopt(@value 'timesig <time_sig_num> <time_sig_den>' @description "time signature marker role, followed by a time signature, as a pair of numerator and denominator.")
             $addopt(@value 'barline' @description "barline marker role")
             $addopt(@value 'division' @description "beat division marker role")
             $addopt(@value 'subdivision' @description "beat subdivision marker role")
