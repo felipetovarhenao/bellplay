@@ -6213,6 +6213,27 @@ $addref(
 
 ## ------------------------------------------------------------
 
+argsort = (
+    $x, $function = null -> (
+        $function = $function ||| ($a, $b -> $a < $b);
+        $addrs = 1...length($x);
+        sort($addrs @function $a, $b -^ $x, $function -> $function($x:$a, $x:$b)) 
+    ) 
+);
+
+$addref(
+    @name "argsort",
+    @description "Returns the indices that would sort an input llll in ascending order. Instead of returning a sorted version of the llll, it provides an index permutation that, when applied to the original llll, results in a sorted sequence.",
+    @category BP_REF_LABEL_UTILS,
+    @arguments (
+        $addarg(@name "x" @type "llll" @description "llll to sort.")
+        $addarg(@name "function" @default "null" @type "function", @description "optional lambda sorting function.")
+    )
+    @output $addout(@description "sorted indices" @type "llll")
+);
+
+## ------------------------------------------------------------
+
 symlen = (
     $symbol -> (
         ($symbol &&& length(BP_MAXOBJ_ATOI($symbol @out 'm'))) ||| 0
