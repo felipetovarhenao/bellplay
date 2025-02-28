@@ -6215,9 +6215,9 @@ $addref(
 
 argsort = (
     $x, $function = null -> (
-        $function = $function ||| ($a, $b -> $a < $b);
+        $lambda = $function ||| ($a, $b -> $a < $b);
         $addrs = 1...length($x);
-        sort($addrs @function $a, $b -^ $x, $function -> $function($x:$a, $x:$b)) 
+        sort($addrs @function ($a, $b -^ $x, $lambda -> $lambda($x:$a, $x:$b))) 
     ) 
 );
 
