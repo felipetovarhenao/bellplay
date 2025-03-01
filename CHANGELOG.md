@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Changed
 
 - **docs**: general clean up/improvements—includes missing arguments/default values.
+- development: `BP_ON_BEFORE_FUNC` and `BP_ON_AFTER_FUNC` added, to better manage pre and post runtime logic.
 
 ### Fixed
 

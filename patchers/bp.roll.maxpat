@@ -17,6 +17,40 @@
 		"style" : "bellplay-gui",
 		"boxes" : [ 			{
 				"box" : 				{
+					"code" : "BP_TMP_ROLL_OUTPUT = $x1 ",
+					"id" : "obj-62",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 225.0, 436.0, 228.0, 23.0 ],
+					"saved_object_attributes" : 					{
+						"embed" : 1,
+						"versionnumber" : 80300
+					}
+,
+					"text" : "bach.eval BP_TMP_ROLL_OUTPUT = $x1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-61",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "bang" ],
+					"patching_rect" : [ 109.0, 373.0, 251.0, 23.0 ],
+					"saved_object_attributes" : 					{
+						"versionnumber" : 80300
+					}
+,
+					"text" : "bach.keys null copy"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-59",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -92,7 +126,7 @@
 
 							}
  ],
-						"originid" : "pat-2658",
+						"originid" : "pat-7812",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -303,7 +337,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 141.0, 362.5, 64.0, 21.0 ],
+					"patching_rect" : [ 141.0, 437.0, 64.0, 21.0 ],
 					"text" : "roll output"
 				}
 
@@ -476,7 +510,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 109.0, 358.0, 30.0, 30.0 ]
+					"patching_rect" : [ 109.0, 433.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -1297,15 +1331,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-17", 0 ],
-					"source" : [ "obj-34", 0 ]
+					"destination" : [ "obj-18", 0 ],
+					"source" : [ "obj-34", 6 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-18", 0 ],
-					"source" : [ "obj-34", 6 ]
+					"destination" : [ "obj-61", 0 ],
+					"source" : [ "obj-34", 0 ]
 				}
 
 			}
@@ -1486,6 +1520,20 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-17", 0 ],
+					"source" : [ "obj-61", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-62", 0 ],
+					"source" : [ "obj-61", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-49", 0 ],
 					"source" : [ "obj-63", 0 ]
 				}
@@ -1611,7 +1659,7 @@
 
 			}
  ],
-		"originid" : "pat-2656",
+		"originid" : "pat-7810",
 		"dependency_cache" : [ 			{
 				"name" : "bach.<=.mxo",
 				"type" : "iLaX"
