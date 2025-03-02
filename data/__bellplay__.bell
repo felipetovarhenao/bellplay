@@ -23,6 +23,38 @@ BP_MAXOBJ_ITOA = {max.itoa};
 BP_BUFFER_CACHE = null;
 BP_PLAY_TOGGLE = 0;
 BP_SCORE_CONFIG = null;
+BP_CONFIG_FUNC = (
+    $action, $value -> (
+        $bpconfigpath = '~/bellplay.config.txt';
+        ## create config file if it doesn't exist
+        if exists($bpconfigpath) == 0 then write(
+            @data [ 'version' BP_VERSION] [ 'imports' ] @path $bpconfigpath
+        );
+        $bpconfig = read($bpconfigpath);
+        if $action == 'read' then (
+            $imports = $bpconfig.'imports';
+            $imports = for $import in $imports collect (
+                $importpath = parsepath($import);
+                $ext = getkey($importpath, 'extension');
+                if $ext == '.bell' && exists($import) == 1 then (
+                    BP_DISPATCH_FUNC('loadscript', $import);
+                    $import
+                ) 
+            );
+            $bpconfig.'imports' = $imports;
+            write($bpconfig, $bpconfigpath) 
+        ) else if $action == 'map' then (
+            $bpconfig = $value($bpconfig);
+            write($bpconfig, $bpconfigpath) 
+        ) else if $action == 'get' then $bpconfig.$value
+    ) 
+);
+BP_ON_LAUNCH_FUNC = (
+    -> (
+        ## load imports
+        BP_CONFIG_FUNC('read') 
+    ) 
+);
 BP_ON_BEFORE_FUNC = (
     -> (
         setseed(1); 
