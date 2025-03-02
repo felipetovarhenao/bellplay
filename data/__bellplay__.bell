@@ -6161,7 +6161,7 @@ $addref(
 ezsampler = (
     $pitch = 6000, $duration = 2000, $velocity = 64, $keymap = null, $resample = 1, $useseed = 0, $usecache = 1 -> (
         $keymap = $keymap ||| BP_DEFAULT_EZSAMPLER_KEYMAP;
-        $pitch = $pitch ||| 6000;
+        $pitch = $pitch:1 ||| 6000;
         ## get list of pitch values
         $pitches = trans($keymap)::1;
         ## find closest pitch sample

@@ -8,5 +8,4 @@
 - Add J. Bernstein's `shell` object.
 - Deprecate `interpolate` or re-implement.
 - Allow `scaling` to receive envelopes.
-- Fix `ezsampler` envelope bug.
 - Add `integrate` and `integration` function (using bach.integrate)

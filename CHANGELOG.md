@@ -26,7 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `larm`: arguments no longer ignored.
 - `crop`: Now supports negative values for `@end`.
 - _about_ tab: Remove underline from bell tutorials' link.
-- `ezsampler`: Fix incorrect pitch value when using `@resample 0`.
+- `ezsampler`: Fix incorrect pitch value when using `@resample 0` and prevent `@pitch` envelopes.
 
 ### Removed
 
