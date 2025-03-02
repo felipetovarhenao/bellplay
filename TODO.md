@@ -8,3 +8,9 @@
 - Deprecate `interpolate` or re-implement.
 - Allow `scaling` to receive envelopes.
 - Add `integrate` and `integration` function (using bach.integrate)
+- `ears` processing functions:
+	- `hoa`-related functions.
+	- `iter-collect` per sample processing.
+	- `segment` buffer function with lazy vs real argument. 
+	- `waveset` functions.
+- `mc.abl.*` processing
