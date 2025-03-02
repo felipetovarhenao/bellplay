@@ -17,7 +17,7 @@
 		"toolbarvisible" : 0,
 		"enablehscroll" : 0,
 		"enablevscroll" : 0,
-		"style" : "bellplay-gui",
+		"style" : "bellplay-gui-1",
 		"title" : "bellplay~ | corpus lab",
 		"boxes" : [ 			{
 				"box" : 				{
@@ -258,7 +258,7 @@
 
 							}
  ],
-						"originid" : "pat-14028",
+						"originid" : "pat-8094",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -585,7 +585,7 @@
 
 							}
  ],
-						"originid" : "pat-14034",
+						"originid" : "pat-8100",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1864,7 +1864,7 @@
 
 							}
  ],
-						"originid" : "pat-14052",
+						"originid" : "pat-8118",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2593,11 +2593,11 @@
 					"table" : "buffers",
 					"turtlecolor" : [ 0.368627450980392, 0.584313725490196, 0.776470588235294, 1.0 ],
 					"versionnumber" : 30100,
-					"vzoom" : 9178.894630538465208,
+					"vzoom" : 1000.0,
 					"where" : [ "null" ],
 					"xlabel" : "none",
 					"ylabel" : "none",
-					"zoom" : 0.771647676942572
+					"zoom" : 1.0
 				}
 
 			}
@@ -3761,7 +3761,7 @@
 
 			}
  ],
-		"originid" : "pat-14026",
+		"originid" : "pat-8092",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
@@ -3896,6 +3896,37 @@
 					"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 					"fontname" : [ "Lato" ],
 					"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
+			}
+, 			{
+				"name" : "bellplay-gui-1",
+				"default" : 				{
+					"accentcolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"bgfillcolor" : 					{
+						"angle" : 270.0,
+						"autogradient" : 0.0,
+						"color" : [ 0.717647058823529, 0.717647058823529, 0.717647058823529, 1.0 ],
+						"color1" : [ 0.301961, 0.301961, 0.301961, 1.0 ],
+						"color2" : [ 0.2, 0.2, 0.2, 1.0 ],
+						"proportion" : 0.5,
+						"type" : "color"
+					}
+,
+					"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
+					"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"fontname" : [ "Lato" ],
+					"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
+					"syntax_attrargcolor" : [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
+					"syntax_attributecolor" : [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],
+					"syntax_objargcolor" : [ 0.776470588235294, 0.635294117647059, 0.494117647058824, 1.0 ],
+					"syntax_objectcolor" : [ 0.462745098039216, 0.4, 0.294117647058824, 1.0 ],
+					"textcolor" : [ 0.462745098039216, 0.462745098039216, 0.462745098039216, 1.0 ],
 					"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
 				}
 ,

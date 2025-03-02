@@ -15,7 +15,7 @@
 		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
 		"toolbarvisible" : 0,
-		"style" : "bellplay-gui",
+		"style" : "bellplay-gui-1",
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-209",
@@ -682,7 +682,7 @@
 
 							}
  ],
-						"originid" : "pat-1203",
+						"originid" : "pat-4562",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1043,7 +1043,7 @@
 
 							}
  ],
-						"originid" : "pat-1205",
+						"originid" : "pat-4564",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1440,7 +1440,7 @@
 
 							}
  ],
-						"originid" : "pat-1211",
+						"originid" : "pat-4570",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1856,7 +1856,7 @@
 
 							}
  ],
-						"originid" : "pat-1235",
+						"originid" : "pat-4594",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2142,7 +2142,7 @@
 
 							}
  ],
-						"originid" : "pat-1237",
+						"originid" : "pat-4596",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2334,7 +2334,7 @@
 
 							}
  ],
-						"originid" : "pat-1239",
+						"originid" : "pat-4598",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -2643,7 +2643,7 @@
 
 							}
  ],
-						"originid" : "pat-1243",
+						"originid" : "pat-4602",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -3169,7 +3169,7 @@
 
 							}
  ],
-						"originid" : "pat-1301",
+						"originid" : "pat-4660",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4497,7 +4497,7 @@
 
 							}
  ],
-						"originid" : "pat-1303",
+						"originid" : "pat-4662",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4829,7 +4829,7 @@
 
 											}
  ],
-										"originid" : "pat-1313",
+										"originid" : "pat-4672",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -5150,7 +5150,7 @@
 
 							}
  ],
-						"originid" : "pat-1311",
+						"originid" : "pat-4670",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5471,7 +5471,7 @@
 
 							}
  ],
-						"originid" : "pat-1609",
+						"originid" : "pat-4968",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5912,7 +5912,7 @@
 
 							}
  ],
-						"originid" : "pat-1769",
+						"originid" : "pat-5128",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -6111,7 +6111,7 @@
 
 											}
  ],
-										"originid" : "pat-1773",
+										"originid" : "pat-5132",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -6590,7 +6590,7 @@
 
 											}
  ],
-										"originid" : "pat-1777",
+										"originid" : "pat-5136",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -6892,7 +6892,7 @@
 
 							}
  ],
-						"originid" : "pat-1771",
+						"originid" : "pat-5130",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -9946,7 +9946,7 @@
 
 			}
  ],
-		"originid" : "pat-1129",
+		"originid" : "pat-4488",
 		"dependency_cache" : [ 			{
 				"name" : "bach.+.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
@@ -10644,6 +10644,37 @@
 					"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 					"fontname" : [ "Lato" ],
 					"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
+			}
+, 			{
+				"name" : "bellplay-gui-1",
+				"default" : 				{
+					"accentcolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"bgfillcolor" : 					{
+						"angle" : 270.0,
+						"autogradient" : 0.0,
+						"color" : [ 0.717647058823529, 0.717647058823529, 0.717647058823529, 1.0 ],
+						"color1" : [ 0.301961, 0.301961, 0.301961, 1.0 ],
+						"color2" : [ 0.2, 0.2, 0.2, 1.0 ],
+						"proportion" : 0.5,
+						"type" : "color"
+					}
+,
+					"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
+					"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"fontname" : [ "Lato" ],
+					"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
+					"syntax_attrargcolor" : [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
+					"syntax_attributecolor" : [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],
+					"syntax_objargcolor" : [ 0.776470588235294, 0.635294117647059, 0.494117647058824, 1.0 ],
+					"syntax_objectcolor" : [ 0.462745098039216, 0.4, 0.294117647058824, 1.0 ],
+					"textcolor" : [ 0.462745098039216, 0.462745098039216, 0.462745098039216, 1.0 ],
 					"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
 				}
 ,

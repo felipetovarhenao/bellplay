@@ -10,9 +10,8 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 459.0, 119.0, 601.0, 964.0 ],
+		"rect" : [ 54.0, 105.0, 1006.0, 978.0 ],
 		"openinpresentation" : 1,
-		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
 		"style" : "bellplay-gui",
 		"boxes" : [ 			{
@@ -71,7 +70,6 @@
 						"default_fontname" : "Lato",
 						"gridsize" : [ 15.0, 15.0 ],
 						"style" : "bellplay-gui",
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-148",
@@ -126,7 +124,7 @@
 
 							}
  ],
-						"originid" : "pat-7812",
+						"originid" : "pat-2299",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1659,7 +1657,7 @@
 
 			}
  ],
-		"originid" : "pat-7810",
+		"originid" : "pat-2297",
 		"dependency_cache" : [ 			{
 				"name" : "bach.<=.mxo",
 				"type" : "iLaX"
@@ -1725,6 +1723,11 @@
 					"fontname" : [ "Lato" ],
 					"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 					"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
+					"syntax_attrargcolor" : [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
+					"syntax_attributecolor" : [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],
+					"syntax_objargcolor" : [ 0.776470588235294, 0.635294117647059, 0.494117647058824, 1.0 ],
+					"syntax_objectcolor" : [ 0.462745098039216, 0.4, 0.294117647058824, 1.0 ],
+					"textcolor" : [ 0.462745098039216, 0.462745098039216, 0.462745098039216, 1.0 ],
 					"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
 				}
 ,
