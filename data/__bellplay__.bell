@@ -67,8 +67,15 @@ BP_ON_BEFORE_FUNC = (
 );
 BP_ON_AFTER_FUNC = (
     -> (
-        for $msg in BP_SCORE_CONFIG with @unwrap 1 do BP_DISPATCH_FUNC('roll', $msg);
-        (BP_PLAY_TOGGLE == 1 && BP_DISPATCH_FUNC("playtoggle", BP_PLAY_TOGGLE))
+        if BP_SCORE_CONFIG."showdynamics" == 1 then (
+            BP_DISPATCH_FUNC("roll", 
+                 "velocities2dynamics" "@unnecessary" 1 "@thresh" 1. "@maxchars" 3
+            );
+            BP_DISPATCH_FUNC("roll", 
+                 "fixdynamics" "@inconsistent" 1 "@unnecessary" 1 
+            )
+        );
+        BP_PLAY_TOGGLE == 1 && BP_DISPATCH_FUNC("playtoggle", BP_PLAY_TOGGLE)
     )
 );
 
@@ -1745,14 +1752,6 @@ render = (
         BP_DISPATCH_FUNC("roll", "getdomain");
         BP_PLAY_TOGGLE = $play;
         ($reset == 1 && BP_DISPATCH_FUNC("roll", "clear"));
-        if $reset == 0 && BP_SCORE_CONFIG."showdynamics" == 1 then (
-            BP_DISPATCH_FUNC("roll", 
-                 "velocities2dynamics" "@unnecessary" 1 "@thresh" 1. "@maxchars" 3
-            );
-            BP_DISPATCH_FUNC("roll", 
-                 "fixdynamics" "@inconsistent" 1 "@unnecessary" 1 
-            )
-        );
         BP_NEWBUFF_FUNC(@source BP_RENDER_BUFF)
     )
 );
@@ -1810,6 +1809,7 @@ scoreconfig = (
             [ 'tonedivision' $tonedivision ]
             [ 'showdynamics' $showdynamics ]
         );
+        for $msg in BP_SCORE_CONFIG with @unwrap 1 do BP_DISPATCH_FUNC('roll', $msg);
         null
     )
 );
