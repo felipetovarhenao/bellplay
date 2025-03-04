@@ -17,7 +17,9 @@
 		"toptoolbarpinned" : 2,
 		"righttoolbarpinned" : 2,
 		"bottomtoolbarpinned" : 2,
+		"toolbars_unpinned_last_save" : 15,
 		"style" : "bellplay-gui",
+		"title" : "bellplay~ | user-defined libraries",
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-62",
@@ -513,26 +515,26 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 110.0, 370.0, 56.0, 23.0 ],
+					"patching_rect" : [ 81.0, 334.0, 56.0, 23.0 ],
 					"text" : "loadbang"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_CONFIG_FUNC('read') ",
+					"code" : "BP_CONFIG_FUNC('read'); BP_CONFIG_FUNC('get', 'imports') ",
 					"id" : "obj-1",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 192.0, 370.0, 199.0, 23.0 ],
+					"patching_rect" : [ 192.0, 418.0, 387.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 1,
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval BP_CONFIG_FUNC('read')"
+					"text" : "bach.eval BP_CONFIG_FUNC('read')\\; BP_CONFIG_FUNC('get'\\, 'imports')"
 				}
 
 			}
@@ -577,7 +579,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 81.0, 323.5, 100.0, 20.0 ],
+					"patching_rect" : [ 81.0, 372.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 154.0, 582.0, 145.0, 22.0 ],
 					"style" : "bellplay-gui",
@@ -595,7 +597,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 192.0, 208.0, 100.0, 20.0 ],
+					"patching_rect" : [ 192.0, 256.0, 100.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 7.0, 534.0, 145.0, 22.0 ],
 					"style" : "bellplay-gui",
@@ -765,7 +767,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 192.0, 322.0, 675.0, 23.0 ],
+					"patching_rect" : [ 192.0, 370.0, 675.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 1,
 						"versionnumber" : 80300
@@ -883,30 +885,12 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_CONFIG_FUNC('get', 'imports') ",
-					"id" : "obj-20",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 192.0, 420.0, 242.0, 23.0 ],
-					"saved_object_attributes" : 					{
-						"embed" : 1,
-						"versionnumber" : 80300
-					}
-,
-					"text" : "bach.eval BP_CONFIG_FUNC('get'\\, 'imports')"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-15",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 236.0, 237.0, 106.0, 23.0 ],
+					"patching_rect" : [ 236.0, 285.0, 106.0, 23.0 ],
 					"text" : "loadmess set BELL"
 				}
 
@@ -918,7 +902,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
-					"patching_rect" : [ 192.0, 286.0, 67.0, 23.0 ],
+					"patching_rect" : [ 192.0, 334.0, 67.0, 23.0 ],
 					"text" : "opendialog"
 				}
 
@@ -944,7 +928,7 @@
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
-					"destination" : [ "obj-20", 0 ],
+					"destination" : [ "obj-57", 0 ],
 					"source" : [ "obj-1", 0 ]
 				}
 
@@ -1023,13 +1007,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-30", 0 ],
 					"source" : [ "obj-2", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-57", 0 ],
-					"source" : [ "obj-20", 0 ]
 				}
 
 			}
@@ -1259,7 +1236,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-20", 0 ],
+					"destination" : [ "obj-40", 0 ],
 					"source" : [ "obj-5", 0 ]
 				}
 
@@ -1433,7 +1410,7 @@
 
 			}
  ],
-		"originid" : "pat-5958",
+		"originid" : "pat-13664",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
