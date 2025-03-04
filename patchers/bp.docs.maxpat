@@ -21,12 +21,25 @@
 		"title" : "bellplay~ | about",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 222.800000000000011, 247.0, 50.0, 23.0 ],
+					"presentation_linecount" : 2,
+					"text" : "settings"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-1",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 105.0, 281.0, 29.5, 23.0 ],
+					"patching_rect" : [ 81.599999999999994, 281.0, 29.5, 23.0 ],
 					"text" : "t l l"
 				}
 
@@ -120,7 +133,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 105.0, 247.0, 60.0, 23.0 ],
+					"patching_rect" : [ 81.599999999999994, 247.0, 60.0, 23.0 ],
 					"text" : "reference"
 				}
 
@@ -132,7 +145,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 292.0, 247.0, 46.0, 23.0 ],
+					"patching_rect" : [ 293.399999999999977, 247.0, 46.0, 23.0 ],
 					"text" : "credits"
 				}
 
@@ -238,7 +251,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 199.0, 247.0, 54.0, 23.0 ],
+					"patching_rect" : [ 152.199999999999989, 247.0, 54.0, 23.0 ],
 					"text" : "tutorials"
 				}
 
@@ -259,11 +272,11 @@
 				"box" : 				{
 					"id" : "obj-35",
 					"maxclass" : "newobj",
-					"numinlets" : 5,
-					"numoutlets" : 5,
-					"outlettype" : [ "bang", "bang", "bang", "bang", "" ],
-					"patching_rect" : [ 11.0, 194.0, 394.0, 23.0 ],
-					"text" : "sel 0 1 2 3"
+					"numinlets" : 6,
+					"numoutlets" : 6,
+					"outlettype" : [ "bang", "bang", "bang", "bang", "bang", "" ],
+					"patching_rect" : [ 11.0, 194.0, 372.0, 23.0 ],
+					"text" : "sel 0 1 2 3 4"
 				}
 
 			}
@@ -339,14 +352,14 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "", "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 11.0, 89.0, 200.0, 24.0 ],
+					"patching_rect" : [ 11.0, 89.0, 444.0, 26.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 812.0, 24.0 ],
 					"rounded" : 0.0,
 					"spacing_x" : 1.0,
 					"spacing_y" : 0.0,
 					"tabcolor" : [ 0.831372549019608, 0.831372549019608, 0.831372549019608, 1.0 ],
-					"tabs" : [ "ABOUT", "BELL REFERENCE", "TUTORIALS", "CREDITS" ]
+					"tabs" : [ "ABOUT", "BELL REFERENCE", "TUTORIALS", "SETTINGS", "CREDITS" ]
 				}
 
 			}
@@ -402,6 +415,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
+					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-24", 0 ],
 					"source" : [ "obj-20", 0 ]
 				}
@@ -444,6 +464,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-35", 3 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-37", 0 ],
 					"source" : [ "obj-35", 0 ]
 				}
@@ -459,7 +486,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
-					"source" : [ "obj-35", 3 ]
+					"source" : [ "obj-35", 4 ]
 				}
 
 			}
@@ -527,7 +554,7 @@
 
 			}
  ],
-		"originid" : "pat-8252",
+		"originid" : "pat-7105",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"

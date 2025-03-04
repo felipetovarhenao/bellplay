@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `addmarker`: New `@role` argument to facilitate score quantization when exporting roll as a `.llll` file.
 - _examples_: Add bellplay~ examples [pending intergration within bellplay~].
 - `bellplay plugin OSC terminal`: Max console now sends OSC messages to be printed/mirrored in VSCode extension.
+- Draft version of `bp.docs.config.maxpat`
 
 ### Changed
 

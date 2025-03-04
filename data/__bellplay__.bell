@@ -26,12 +26,23 @@ BP_SCORE_CONFIG = null;
 BP_CONFIG_FUNC = (
     $action, $value -> (
         $bpconfigpath = '~/bellplay.config.txt';
+        $defaultconfig = [ 'version' BP_VERSION] [ 'imports' ];
         ## create config file if it doesn't exist
         if exists($bpconfigpath) == 0 then write(
-            @data [ 'version' BP_VERSION] [ 'imports' ] @path $bpconfigpath
+            @data $defaultconfig @path $bpconfigpath
         );
         $bpconfig = read($bpconfigpath);
-        if $action == 'read' then (
+        if $action == 'clean' then (
+            $configkeys = trans($bpconfig)::1;
+            $defaultkeys = trans($defaultconfig)::1;
+            $diffkeys = diff($defaultkeys, $configkeys);
+            for $key in $diffkeys do (
+                $bpconfig _= [$key $defaultconfig.$key]
+            );
+            $bpconfig = for $key in $defaultkeys collect [ $key $bpconfig.$key ];
+            $bpconfig.'version' = BP_VERSION;
+            write($bpconfig, $bpconfigpath)
+        ) else if $action == 'read' then (
             $imports = $bpconfig.'imports';
             $imports = for $import in $imports collect (
                 $importpath = parsepath($import);
@@ -52,7 +63,7 @@ BP_CONFIG_FUNC = (
 BP_ON_LAUNCH_FUNC = (
     -> (
         ## load imports
-        BP_CONFIG_FUNC('read') 
+        BP_CONFIG_FUNC('clean')
     ) 
 );
 BP_ON_BEFORE_FUNC = (
