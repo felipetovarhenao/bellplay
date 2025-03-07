@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -63,7 +63,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -299,7 +299,7 @@
 
 							}
  ],
-						"originid" : "pat-7631",
+						"originid" : "pat-1143",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -332,7 +332,6 @@
 					"patching_rect" : [ 548.0, 820.0, 71.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
-						"globalpatchername" : "",
 						"style" : "subtlelight"
 					}
 ,
@@ -559,7 +558,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -620,14 +619,10 @@
 
 							}
  ],
-						"originid" : "pat-7635"
+						"originid" : "pat-1147"
 					}
 ,
 					"patching_rect" : [ 1056.0, 495.0, 65.0, 23.0 ],
-					"saved_object_attributes" : 					{
-						"globalpatchername" : ""
-					}
-,
 					"text" : "p atom-url"
 				}
 
@@ -644,7 +639,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -705,14 +700,10 @@
 
 							}
  ],
-						"originid" : "pat-7637"
+						"originid" : "pat-1149"
 					}
 ,
 					"patching_rect" : [ 899.0, 495.0, 75.0, 23.0 ],
-					"saved_object_attributes" : 					{
-						"globalpatchername" : ""
-					}
-,
 					"text" : "p vscode-url"
 				}
 
@@ -729,7 +720,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -790,14 +781,10 @@
 
 							}
  ],
-						"originid" : "pat-7639"
+						"originid" : "pat-1151"
 					}
 ,
 					"patching_rect" : [ 742.0, 495.0, 89.0, 23.0 ],
-					"saved_object_attributes" : 					{
-						"globalpatchername" : ""
-					}
-,
 					"text" : "p extension-url"
 				}
 
@@ -1138,7 +1125,7 @@
 					"presentation" : 1,
 					"presentation_linecount" : 5,
 					"presentation_rect" : [ 31.5, 118.0, 769.0, 90.0 ],
-					"text" : "1) A bell file titled after the tutorial will be automatically created in your documents folder. You can also specify a different directory if you wish to change where the tutorial files are created by default. \n\n2) This tutorial file is also automatically loaded into bellplay~ so that you can quickly see what the code does. This enables you to edit the file as you wish and experiment by tweaking with the code, seeing the changes reflected every time to save it."
+					"text" : "1) A bell file titled after the tutorial will be automatically created in your documents folder. In the SETTINGS tab, you can also specify a different directory if you wish to change where the tutorial files are created by default. \n\n2) This tutorial file is also automatically loaded into bellplay~ so that you can quickly see what the code does. This enables you to edit the file as you wish and experiment by tweaking with the code, seeing the changes reflected every time to save it."
 				}
 
 			}
@@ -2224,7 +2211,7 @@
 
 			}
  ],
-		"originid" : "pat-7629",
+		"originid" : "pat-1141",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
