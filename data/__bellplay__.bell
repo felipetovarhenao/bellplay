@@ -25,24 +25,50 @@ BP_PLAY_TOGGLE = 0;
 BP_SCORE_CONFIG = null;
 BP_CONFIG_FUNC = (
     $action, $value -> (
+        ## Define the configuration file path
         $bpconfigpath = '~/bellplay.config.txt';
-        $defaultconfig = [ 'version' BP_VERSION] [ 'imports' ];
-        ## create config file if it doesn't exist
+        ## Define default configuration settings
+        $defaultconfig = (
+            ## bellplay~ version
+            [ 'version' BP_VERSION] 
+            ## files to automatically run at launch
+            [ 'imports' ] 
+            ## default text editor
+            [ 'defaulteditor' ] 
+            ## default tutorials directory
+            [ 'tutorialsdir' ] 
+            ## mute sound alert when getting errors
+            [ 'mutealert' 0] 
+        );
+        ## Create the configuration file if it does not exist
         if exists($bpconfigpath) == 0 then write(
             @data $defaultconfig @path $bpconfigpath
         );
+        ## Read the existing configuration file
         $bpconfig = read($bpconfigpath);
+        ## Set default tutorials directory if not already defined
+        if $bpconfig.'tutorialsdir' == null then (
+            $tutorialsdir = '~/Documents/';
+            if exists($tutorialsdir) == 0 then ($tutorialsdir = '~/');
+            $tutorialsdir = parsepath($tutorialsdir);
+            $tutorialsdir = reduce(
+                for $k in 'parent' 'name' 'extension' collect $tutorialsdir.getkey($k), #+
+            );
+            $bpconfig.'tutorialsdir' = $tutorialsdir
+        );
         if $action == 'clean' then (
+            ## Remove non-default keys from the configuration
             $configkeys = trans($bpconfig)::1;
             $defaultkeys = trans($defaultconfig)::1;
             $diffkeys = diff($defaultkeys, $configkeys);
-            for $key in $diffkeys do (
-                $bpconfig _= [$key $defaultconfig.$key]
-            );
-            $bpconfig = for $key in $defaultkeys collect [ $key $bpconfig.$key ];
+            for $key in $diffkeys do ($bpconfig _= [ $key $defaultconfig.$key ]);
+            ## Ensure the configuration follows default structure
+            $bpconfig = for $key in $defaultkeys collect [$key $bpconfig.$key];
+            ## Update version
             $bpconfig.'version' = BP_VERSION;
-            write($bpconfig, $bpconfigpath)
+            write($bpconfig, $bpconfigpath) 
         ) else if $action == 'read' then (
+            ## Load and execute import scripts
             $imports = $bpconfig.'imports';
             $imports = for $import in $imports collect (
                 $importpath = parsepath($import);
@@ -52,12 +78,16 @@ BP_CONFIG_FUNC = (
                     $import
                 ) 
             );
+            ## Update the imports in the configuration file
             $bpconfig.'imports' = $imports;
             write($bpconfig, $bpconfigpath) 
         ) else if $action == 'map' then (
+            ## Apply a mapping function to the configuration
             $bpconfig = $value($bpconfig);
             write($bpconfig, $bpconfigpath) 
-        ) else if $action == 'get' then $bpconfig.$value
+        ) else if $action == 'get' then ( 
+        ## Retrieve a specific configuration value
+        $bpconfig.$value) 
     ) 
 );
 BP_ON_LAUNCH_FUNC = (
