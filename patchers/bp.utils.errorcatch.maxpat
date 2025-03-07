@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -26,13 +26,13 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 59.0, 119.0, 332.0, 229.0 ],
+						"rect" : [ 59.0, 119.0, 630.0, 229.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"style" : "bellplay-gui",
 						"boxes" : [ 							{
@@ -78,8 +78,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 5,
 									"outlettype" : [ "", "", "", "", "" ],
-									"patching_rect" : [ 150.0, 92.0, 147.0, 23.0 ],
-									"text" : "regexp — @substitute --"
+									"patching_rect" : [ 150.0, 92.0, 191.0, 23.0 ],
+									"text" : "regexp [–|—] @ @substitute --"
 								}
 
 							}
@@ -140,7 +140,7 @@
 
 							}
  ],
-						"originid" : "pat-1149",
+						"originid" : "pat-2539",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -177,7 +177,6 @@
 ,
 					"patching_rect" : [ 311.0, 89.0, 85.0, 23.0 ],
 					"saved_object_attributes" : 					{
-						"globalpatchername" : "",
 						"style" : "bellplay-gui"
 					}
 ,
@@ -197,7 +196,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -260,7 +259,7 @@
 
 							}
  ],
-						"originid" : "pat-1145",
+						"originid" : "pat-2541",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -297,7 +296,6 @@
 ,
 					"patching_rect" : [ 193.0, 166.0, 85.0, 23.0 ],
 					"saved_object_attributes" : 					{
-						"globalpatchername" : "",
 						"style" : "bellplay-gui"
 					}
 ,
@@ -606,7 +604,7 @@
 
 			}
  ],
-		"originid" : "pat-1137",
+		"originid" : "pat-2537",
 		"dependency_cache" : [  ],
 		"autosave" : 0,
 		"styles" : [ 			{
