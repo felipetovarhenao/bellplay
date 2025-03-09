@@ -86,8 +86,9 @@ BP_CONFIG_FUNC = (
             $bpconfig = $value($bpconfig);
             write($bpconfig, $bpconfigpath) 
         ) else if $action == 'get' then ( 
-        ## Retrieve a specific configuration value
-        $bpconfig.$value) 
+            ## Retrieve a specific configuration value
+            $bpconfig.$value
+        ) 
     ) 
 );
 BP_ON_LAUNCH_FUNC = (
