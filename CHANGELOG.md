@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - New functions:
   - `argsort`: Returns sorted indices of a llll.
+  - `samps2buf` and `buf2samps` conversion functions.
 - `transcribe`: New `@annotation` argument which displays symbols next to buffer.
 - `addmarker`: New `@role` argument to facilitate score quantization when exporting roll as a `.llll` file.
 - _examples_: Add bellplay~ examples [pending intergration within bellplay~].

@@ -6213,6 +6213,53 @@ $addref(
 
 ## ------------------------------------------------------------
 
+buf2samps = (
+    $buffer -> (
+        $source = $buffer.getkey('source');
+        if $source != null then (
+            $source = $buffer.process(bpthru()).getkey("source");
+            BP_DISPATCH_FUNC('ears', ['tosamps' $source]);
+            BP_TMP_EARS_OUTPUT
+        )
+    )
+);
+
+$addref(
+    @name "buf2samps"
+    @description "Buffer to samples conversion.",
+    @category BP_REF_LABEL_UTILS,
+    @arguments (
+        $addarg(@name "buffer", @type "llll", @description "buffer to convert to audio samples.")
+    )
+    @output $addout(@description "buffer samples as a llll" @type "llll")
+);
+
+## ------------------------------------------------------------
+
+samps2buf = (
+    $llll -> (
+        if depth($llll) != 2 then (
+            printerror("samps2buf: @llll must have a depth of 2")
+        ) else (
+            BP_DISPATCH_FUNC('ears', ['fromsamps' $llll]);
+            $source = BP_TMP_EARS_OUTPUT;
+            BP_NEWBUFF_FUNC($source)
+        )
+    )
+);
+
+$addref(
+    @name "samps2buf"
+    @description "Samples to buffer conversion."
+    @category BP_REF_LABEL_UTILS
+    @arguments (
+        $addarg(@name "llll" @type "llll" @description "audio samples to convert to a buffer.")
+    )
+    @output $addout(@description "buffer" @type "llll")
+);
+
+## ------------------------------------------------------------
+
 searchtree = (
     $target -> (
         BP_DISPATCH_FUNC("kdtree", [ "query" $target]);
