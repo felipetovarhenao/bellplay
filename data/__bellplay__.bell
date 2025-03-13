@@ -20,6 +20,8 @@ BP_DEFAULT_EZSAMPLER_KEYMAP = [6000 'guitar.wav' ];
 BP_MAXOBJ_RANDOM = {max.random 2147483648 @seed 1};
 BP_MAXOBJ_ATOI = {max.atoi};
 BP_MAXOBJ_ITOA = {max.itoa};
+BP_MAXOBJ_BACHINTEGRATE = {bach.integrate};
+BP_MAXOBJ_BACHDERIVE = {bach.derive};
 BP_BUFFER_CACHE = null;
 BP_PLAY_TOGGLE = 0;
 BP_SCORE_CONFIG = null;
@@ -6428,5 +6430,63 @@ $addref(
     ),
     @output $addout(@description "Least common multiple" @type "int")
 );
+
+## ------------------------------------------------------------
+
+integrate = (
+    $llll, $numsamples = 100, $order = 1, $origin = 0. -> (
+        for $arg in ['numsamples' $numsamples] ['order' $order] ['origin' $origin] with @unwrap 1 do (BP_MAXOBJ_BACHINTEGRATE($arg @out 'm'));
+        BP_MAXOBJ_BACHINTEGRATE($llll) 
+    ) 
+);
+
+$addref(
+    @name "integrate"
+    @description "Computes the integral of a breakpoint function. Note that the slope of the integrated break-point function is always 0, since the output function is always piecewise linear."
+    @category BP_REF_LABEL_UTILS
+    @arguments (
+        $addarg(@name "llll" @type "llll" @description "list of integers.")
+        $addarg(@name "numsamples" @default 100 @type "int" @description "number of samples.")
+        $addarg(@name "order" @default 1 @type "int/list" @description "order of the integration, i.e. the number of times the integration should be subsequently performed.")
+        $addarg(@name "origin" @default 0 @type "int/float" @description "initial value of the integral function. If the order of the integration is greater than one, one origin for each different integration step can be defined.")
+    ),
+    @output $addout(@description "Integrated breakpoint function." @type "llll")
+);
+
+## ------------------------------------------------------------
+
+derive = (
+    $llll, $numsamples = 100, $order = 1, $discrete = 0, $pad = 2 -> (
+        for $arg in ['pad' $pad] ['numsamples' $numsamples] ['order' $order] ['discrete' $discrete] with @unwrap 1 do (BP_MAXOBJ_BACHDERIVE($arg @out 'm'));
+        BP_MAXOBJ_BACHDERIVE(
+            $llll
+            @pad $pad
+            @numsamples $numsamples
+            @order $order
+            @discrete $discrete
+        ) 
+    ) 
+);
+
+$addref(
+    @name "derive"
+    @description "Computes the derivative of a breakpoint function. Note that the slope of the derived break-point function is always 0, since the output function is always piecewise linear."
+    @category BP_REF_LABEL_UTILS
+    @arguments (
+        $addarg(@name "llll" @type "llll" @description "list of integers.")
+        $addarg(@name "numsamples" @default 100 @type "int" @description "number of samples.")
+        $addarg(@name "order" @default 1 @type "int/list" @description "order of the integration, i.e. the number of times the integration should be subsequently performed.")
+        $addarg(@name "origin" @default 0 @type "int/float" @description "initial value of the integral function. If the order of the integration is greater than one, one origin for each different integration step can be defined.")
+        $addarg(@name "pad" @default 2 @type "int" @description "padding mode." @options 
+            $addopt(@value 0 @description "no pad")
+            $addopt(@value 1 @description "pad at left")
+            $addopt(@value 2 @description "pad at right")
+            $addopt(@value 3 @description "pad at left and right")
+        )
+    ),
+    @output $addout(@description "Integrated breakpoint function." @type "llll")
+);
+
+## ------------------------------------------------------------
 
 null
