@@ -1907,14 +1907,14 @@ $addref(
 
 read = (
     $path,
-    $ignore = null -> (
+    $ignore = 0 -> (
         BP_LLLL_READ = null;
         $info = BP_GET_PATH_INFO_FUNC($path @locate 1);
         if (".txt" ".llll").intersection($info."extension") == null then (
             printerror("invalid file extension for @path in read().")
         );
         $path = $info."path" + $info."extension";
-        for $msg in ($ignore &&& ['ignore' $ignore]) ['read' $path] with @unwrap 1 do (
+        for $msg in ['ignore' $ignore] ['read' $path] with @unwrap 1 do (
             BP_DISPATCH_FUNC("llllio", "read" $msg)
         );
         BP_LLLL_READ
@@ -1927,7 +1927,7 @@ $addref(
     @category BP_REF_LABEL_UTILS,
     @arguments (
         $addarg(@name "path", @type "symbol", @description "input file path.")
-        $addarg(@name "ignore" @default "null" @type "symbol/null" @description "The ignore attribute can be set to any combination of the following characters" @options 
+        $addarg(@name "ignore" @default 0 @type "symbol/null" @description "The ignore attribute can be set to any combination of the following characters" @options 
             $addopt(@value "'l'" @description "parens inside symbols are not llll levels, but symbols composed by parens only are kept as llll levels!")
             $addopt(@value "'L'" @description "all parens are not parsed as llll levels")
             $addopt(@value "'p'" @description "ignore pitches, keep them as symbols")
