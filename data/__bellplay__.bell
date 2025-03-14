@@ -1914,7 +1914,9 @@ read = (
             printerror("invalid file extension for @path in read().")
         );
         $path = $info."path" + $info."extension";
-        BP_DISPATCH_FUNC("llllio", "read" "read" $path);
+        for $msg in ($ignore &&& ['ignore' $ignore]) ['read' $path] with @unwrap 1 do (
+            BP_DISPATCH_FUNC("llllio", "read" $msg)
+        );
         BP_LLLL_READ
     )
 );
