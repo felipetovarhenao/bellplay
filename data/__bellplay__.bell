@@ -6247,7 +6247,7 @@ samps2buf = (
         ) else (
             BP_DISPATCH_FUNC('ears', ['fromsamps' $llll]);
             $source = BP_TMP_EARS_OUTPUT;
-            BP_NEWBUFF_FUNC($source)
+            BP_NEWBUFF_FUNC($source).process(bpthru())
         )
     )
 );
