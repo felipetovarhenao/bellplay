@@ -1,129 +1,134 @@
-BP_DOCS_TUTORIALS = null;
+BP_DOCS_TUTORIALS = ['tutorials'] ['examples'];
 
-$addtutorial = (
+$addscript = (
     $name,
     $description,
     $file,
-    $tags -> (
+    $tags,
+    $example = 0 -> (
         $file = $file + ".bell";
-        BP_DOCS_TUTORIALS _= (
+        $type = ('tutorial' 'example'):($example + 1);
+        $key = $type + 's';
+        BP_DOCS_TUTORIALS.$key _= (
             [
                 [ "name" $name ]
                 [ "description" $description ]
-                [ "file" $file ]
+                [ "file" $type + '.' + $file ]
                 [ "tags" for $t in $tags collect "#" + $t ]
-                [ "id" length(BP_DOCS_TUTORIALS) ]
+                [ "id" length(BP_DOCS_TUTORIALS.$key) ]
             ]
         )
     )
 );
 
-$addtutorial(
+## ———————————————————————— TUTORIALS ————————————————————————
+
+$addscript(
     @name "basic workflow"
     @file "basicworkflow"
     @description "The general workflow in bellplay~ consists of three steps: buffer generation, buffer transcription, and buffer rendering. This tutorial shows the most basic version of this, by generating, transcribing, and rendering a sinusoidal waveform."
     @tags "synthesis" "cycle"
 );
 
-$addtutorial(
+$addscript(
     @name "variable declarations"
     @file "variables"
     @description "This tutorial explains best practices around variable declarations in bellplay~ scripts. In short, user-defined variables should always be local instead of global in scope, in order to prevent namespacing collisions."
     @tags "synthesis" "noise" "saw"
 );
 
-$addtutorial(
+$addscript(
     @name "importing audio from your scripts"
     @file "importingaudio"
     @description "This tutorial demonstrates how to import existing audio files into a script, as buffers."
     @tags "sampling" "importaudio"
 );
 
-$addtutorial(
+$addscript(
     @name "buffer transcription"
     @file "transcription"
     @description "When transcribing buffers, we can specify revelant information about how each buffer fits into the rendered sequence — in particular, we can specify the buffer's temporal onset position (i.e., start time), gain/envelope, panning, pitch shifting amount, and the voice assignment (more on this on later tutorials). To learn more about this, make sure to read the reference documentation for the #transcribe function."
     @tags "synthesis" "tri"
 );
 
-$addtutorial(
+$addscript(
     @name "buffer rendering"
     @file "rendering"
     @description "The rendering stage allows us to specify different aspects how the buffers are assembled into a single buffer, such as the number of output channels, sampling rate, panning mode, and more. This tutorial demonstrates a very basic version of this, leaving more complex features for later tutorials. As always, make sure to read the reference documentation for the #render function."
     @tags "synthesis" "noise"
 );
 
-$addtutorial(
+$addscript(
     @name "buffer keys setters and getters"
     @file "bufferkeys"
     @description "Sometimes it's useful to access or modify the properties of a buffer, which in bellplay~ are refered to as keys. For instance, the buffer's duration, channel count, or perhaps more crucially, analysis-based features like pitch, loudness, zero-crossing rate, etc. This tutorial briefly shows how to access and modify buffer keys, via the setter and getter functions #setkey and #getkey."
     @tags "sampling" "keys" "getkey" "setkey"
 );
 
-$addtutorial(
+$addscript(
     @name "adding markers"
     @file "markers"
     @description "This tutorial shows how to add markers in a transcription, which can be sometimes useful for debugging your code or, as in this case, to make tutorials more readable 😀."
     @tags "synthesis" "addmarker" "rand" "freeverb"
 );
 
-$addtutorial(
+$addscript(
     @name "parametric automation"
     @file "automation"
     @description "In many cases, we will want to have some kind of DAW-style automation of certain parameters when generating or processing audio in our scripts. One way of doing this is through breakpoint functions — numeric lists that describe a certain shape or trajectory. This tutorial shows the different syntaxes available in bellplay~ for specifying breakpoint functions."
     @tags "synthesis" "break-point+functions" "cycle" "tri" "rect" "saw"
 );
 
-$addtutorial(
+$addscript(
     @name "processing buffers"
     @file "bufferprocessing"
     @description "One of the core features of bellplay~ is the ability to dynamically and flexibly apply chains of DSP algorithms to our buffers. This tutorial shows a very basic example of this by applying reverse delay to an audio file."
     @tags "sampling" "importaudio" "process" "reverse" "freeverb" "reverse"
 );
 
-$addtutorial(
+$addscript(
     @name "post-rendering processing"
     @file "postprocessing"
     @description "Sometimes it can be more useful or desirable to apply processing to the entire output, instead of processing each buffer individually. This totorial provides a basic example of how to apply processing after the transcribed buffers have been rendered."
     @tags "sampling" "importaudio" "process"
 );
 
-$addtutorial(
+$addscript(
     @name "exporting files"
     @file "export"
     @description "Although the bellplay~ graphical user-interface (GUI) allows us to export the final output of each script, it's sometimes useful being able to programmatically do the same through our scripts. This tutorial shows how to do this for audio and MIDI files."
     @tags "synthesis" "noise" "export" "audio" "midi" "llll"
 );
 
-$addtutorial(
+$addscript(
     @name "buffer-based parameter control"
     @file "audiocontrol"
     @description "While in many cases specifying parameters as single values or envelopes can provide enough control in many cases, certain situations require even more complex approaches. This tutorial shows how to use buffers to control audio parameters when generating and processing other buffers."
     @tags "synthesis" "cycle" "multiply" "plus" "FM+synthesis"
 );
 
-$addtutorial(
+$addscript(
     @name "inspecting buffers"
     @file "bufferinspector"
     @description "This tutorial shows how to inspect buffer information as a debugging tool in bellplay~."
     @tags "debugging"
 );
 
-$addtutorial(
+$addscript(
     @name "analyzing buffers"
     @file "analysis"
     @description "This tutorial shows how to perform custom audio analyses on buffers via audio descriptors."
     @tags "analyze" "music+information+retrieval" "audio+descriptors" "onset+detection"
 );
 
-$addtutorial(
+$addscript(
     @name "audio descriptor modes"
     @file "analysismodes"
     @description "Many of the available audio descriptors allow us to specify the output format for each of the audio analyses. This tutorial shows how to generate a time-series pitch analysis to control an oscillator."
     @tags "analyze" "music+information+retrieval" "audio+descriptors" "pitchmelodia"
 );
 
-$addtutorial(
+$addscript(
     @name "more audio features"
     @file "features"
     @description "This tutorial explains how to use buffer features for audio processing. In this case, how to perform targeted transposition on an audio buffer, such that it fits a specific pitch class collection."
@@ -131,53 +136,111 @@ $addtutorial(
 );
 
 
-$addtutorial(
+$addscript(
     @name "audio corpora"
     @file "corpus"
     @description "One of the core features of bellplay~ is the ability to handle audio corpora — i.e., large collections of audio data. The first step is to create an audio corpus, which will be covered in a later tutorial. These audio corpora, which are saved as .llll files, can then be loaded into our scripts. In turn, this makes it possible to make queries on a corpus, in SQLite3 syntax, to retrieve buffers according to certain criteria. This tutorial shows how to use a pre-existing corpus to retrieve buffers with well-defined pitch content, order them in pitch-wise descending order, and retune each buffer to conform to a Cm7 chord."
     @tags "corpora" "concatenative+synthesis" "sqlite3" "databases"
 );
 
-$addtutorial(
+$addscript(
     @name "creating audio corpora"
     @file "buildcorpus"
     @description "This tutorial provides a basic example of how to create your own audio corpora."
     @tags "corpora" "sqlite3" "databases"
 );
 
-$addtutorial(
+$addscript(
     @name "multi-rendering"
     @file "multirendering"
     @description "This tutorial demonstrates a very simple but consequential feature in bellplay~ — namely, the ability to reuse rendered buffers multiple times to further refine and sculpt the final output into complex and intricate sounds."
     @tags "synthesis" "rand" "saw" "hanning" "scale" "reverse" "freeverb" "normalize"
 );
 
-$addtutorial(
+$addscript(
     @name "basic sampling"
     @file "sampling"
     @description "This tutorial shows how to perform basic sampling in bellplay~ using the #ezsampler function."
     @tags "sampling" "ezsampler" "audio"
 );
 
-$addtutorial(
+$addscript(
     @name "importing MIDI"
     @file "importingmidi"
     @description "This tutorial shows how to load MIDI files into our scripts, and use MIDI events to generate audio."
     @tags "synthesis" "cycle" "MIDI"
 );
 
-$addtutorial(
+$addscript(
     @name "feature-based sampling"
     @file "kdtree"
     @description "This tutorial shows how to build k-dimensional trees to efficiently perform feature-based search on buffers. In this case, we use it to find the best buffer match for each pitch value in a MIDI file."
     @tags "sampling" "MIDI" "machine+learning" "kdtrees"
 );
 
-$addtutorial(
+$addscript(
     @name "appearance and score formatting"
     @file "scoreconfig"
     @description "Depending on what you're doing, you might want to have more control over what the score transcription looks like. For instance, when exporting MIDI files, you might want to have different voices, with different midichannels, with different names, etc. This tutorial shows how to modify the default appearance of the score transcription in bellplay~. To learn more, make sure to read the reference documentation for #scoreconfig."
     @tags "synthesis" "cycle" "saw" "tri" "scoreconfig"
+);
+
+## ———————————————————————— EXAMPLES ————————————————————————
+
+$addscript(
+    @name "analysis-resynthesis"
+    @file "resynthesis"
+    @description "TBA."
+    @tags "tba"
+    @example 1
+);
+
+$addscript(
+    @name "basic granulation"
+    @file "basicgranulation"
+    @description "TBA."
+    @tags "tba"
+    @example 1
+);
+
+$addscript(
+    @name "feedback synthesis"
+    @file "feedbacksynth"
+    @description "TBA."
+    @tags "tba"
+    @example 1
+);
+
+$addscript(
+    @name "glide chorale"
+    @file "gliss"
+    @description "TBA."
+    @tags "tba"
+    @example 1
+);
+
+$addscript(
+    @name "midi retuning"
+    @file "midiretuning"
+    @description "TBA."
+    @tags "tba"
+    @example 1
+);
+
+$addscript(
+    @name "temporal quantization"
+    @file "temporalquantization"
+    @description "TBA."
+    @tags "tba"
+    @example 1
+);
+
+$addscript(
+    @name "audio mosaic"
+    @file "audiomosaic"
+    @description "TBA."
+    @tags "tba"
+    @example 1
 );
 
 BP_DOCS_TUTORIALS

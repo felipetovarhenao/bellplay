@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3824597350,
+	"modificationdate" : 3824913149,
 	"viewrect" : [ 25.0, 105.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -503,6 +503,41 @@
 			}
 ,
 			"bp.tutorial.sampling.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"bp.example.audiomosaic.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"bp.example.basicgranulation.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"bp.example.feedbacksynth.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"bp.example.gliss.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"bp.example.midiretuning.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"bp.example.resynthesis.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"bp.example.temporalquantization.bell" : 			{
 				"kind" : "textfile",
 				"local" : 1
 			}

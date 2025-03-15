@@ -38,7 +38,7 @@ BP_CONFIG_FUNC = (
             ## default text editor
             [ 'defaulteditor' ] 
             ## default tutorials directory
-            [ 'tutorialsdir' ] 
+            [ 'tutorialsdir' '~/Documents' ] 
             ## mute sound alert when getting errors
             [ 'mutealert' 0] 
         );

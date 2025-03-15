@@ -15,7 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `derive`: BPF derivative function.
 - `transcribe`: New `@annotation` argument which displays symbols next to buffer.
 - `addmarker`: New `@role` argument to facilitate score quantization when exporting roll as a `.llll` file.
-- _examples_: Add bellplay~ examples [pending intergration within bellplay~].
+- _examples_: Now includes script examples for more illustrative learning resources.
 - `bellplay plugin OSC terminal`: Max console now sends OSC messages to be printed/mirrored in VSCode extension.
 - GUI: New `SETTINGS` tab, which allows for customizing bellplay~ behavior:
   - Enable/disable error alarm.
