@@ -243,4 +243,12 @@ $addscript(
     @example 1
 );
 
+$addscript(
+    @name "envelope alignment"
+    @file "temporalalignment"
+    @description "TBA."
+    @tags "tba"
+    @example 1
+);
+
 BP_DOCS_TUTORIALS

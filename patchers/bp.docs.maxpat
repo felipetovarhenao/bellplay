@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -27,7 +27,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 222.800000000000011, 247.0, 50.0, 23.0 ],
-					"presentation_linecount" : 2,
 					"text" : "settings"
 				}
 
@@ -171,8 +170,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 64.0, 468.0, 24.0, 24.0 ],
-					"svg" : ""
+					"patching_rect" : [ 64.0, 468.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -359,7 +357,7 @@
 					"spacing_x" : 1.0,
 					"spacing_y" : 0.0,
 					"tabcolor" : [ 0.831372549019608, 0.831372549019608, 0.831372549019608, 1.0 ],
-					"tabs" : [ "ABOUT", "BELL REFERENCE", "TUTORIALS", "SETTINGS", "CREDITS" ]
+					"tabs" : [ "ABOUT", "BELL REFERENCE", "LEARNING", "SETTINGS", "CREDITS" ]
 				}
 
 			}
@@ -554,7 +552,7 @@
 
 			}
  ],
-		"originid" : "pat-7105",
+		"originid" : "pat-5864",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
@@ -565,6 +563,10 @@
 				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
 				"type" : "JSON",
 				"implicit" : 1
+			}
+, 			{
+				"name" : "bach.collect.mxo",
+				"type" : "iLaX"
 			}
 , 			{
 				"name" : "bach.deferlow.mxo",
@@ -598,11 +600,19 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "bach.iter.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "bach.join.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "bach.keys.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "bach.length.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -645,11 +655,22 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "bach.thin.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "bach.tree.mxo",
 				"type" : "iLaX"
 			}
 , 			{
 				"name" : "bp.docs.about.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.docs.config.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -692,6 +713,13 @@
 			}
 , 			{
 				"name" : "bp.utils.searchbar.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.utils.truncatetext.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",

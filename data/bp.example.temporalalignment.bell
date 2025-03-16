@@ -1,0 +1,49 @@
+#(
+    This example demonstrates how to align the envelopes of different audio samples based on their peak amplitude times.
+    It first generates synthetic audio samples with random characteristics, then analyzes their peak times,
+    and finally aligns them so their peaks coincide. The final processed audio is rendered with reverb and normalization.
+)#
+## Generate a collection of 10 synthetic audio buffers
+$bufs = for $i in 1...10 collect (
+    ## Define a random envelope for gain shaping
+    $env = [0 0 0] [rand(0.001, 0.5) 1 rand(0, 0.5)] [1 0 -rand(0, 0.5)];
+    ## Assign a random fundamental frequency and duration
+    $fq = random(1, 16) * 55;
+    $dur = random(300, 4000);
+    ## Label each buffer for debugging/inspection
+    $label = 'sound' + tosymbol($i);
+    ## Generate a cyclic waveform, apply gain envelope, and add to inspector window for demonstration purposes
+    cycle(@frequency $fq @duration $dur).process(gain($env)).inspect(@label $label) 
+);
+## Initialize variable to store the maximum peak time
+$maxpeaktime = 0;
+## Analyze each buffer to determine the time of its peak amplitude
+$bufs = for $buf in $bufs collect (
+    ## Compute the time of maximum envelope value
+    $buf = $buf.analyze(envmaxtime());
+    ## Update max peak time across all buffers
+    $maxpeaktime = max($maxpeaktime, $buf.getkey('envmaxtime'));
+    $buf
+);
+## Insert a marker at the maximum peak time for alignment reference
+addmarker(
+    @onset $maxpeaktime @names 'peak' 
+);
+## Align each buffer's peak to the maximum peak time
+for $buf in $bufs do (
+    $peaktime = $buf.getkey('envmaxtime');
+    $onset = $maxpeaktime - $peaktime;
+    ## Transcribe buffer with adjusted onset time and random panning
+    $buf.transcribe(
+        @onset $onset @pan rand() 
+    ) 
+);
+## Render the final output with reverberation and normalization
+render(
+    @play 1 @process freeverb(
+        @roomsize 0.9
+        @wet 0.025
+        @damp 0.5
+        @width 1
+    ) normalize(-6) 
+)

@@ -240,7 +240,7 @@
 
 							}
  ],
-						"originid" : "pat-2383",
+						"originid" : "pat-5836",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -557,7 +557,7 @@
 
 							}
  ],
-						"originid" : "pat-2385"
+						"originid" : "pat-5838"
 					}
 ,
 					"patching_rect" : [ 1056.0, 495.0, 65.0, 23.0 ],
@@ -638,7 +638,7 @@
 
 							}
  ],
-						"originid" : "pat-2387"
+						"originid" : "pat-5840"
 					}
 ,
 					"patching_rect" : [ 899.0, 495.0, 75.0, 23.0 ],
@@ -719,7 +719,7 @@
 
 							}
  ],
-						"originid" : "pat-2389"
+						"originid" : "pat-5842"
 					}
 ,
 					"patching_rect" : [ 742.0, 495.0, 89.0, 23.0 ],
@@ -1009,7 +1009,7 @@
 					"presentation" : 1,
 					"presentation_linecount" : 5,
 					"presentation_rect" : [ 31.5, 118.0, 769.0, 90.0 ],
-					"text" : "1) A bell file titled after the tutorial will be automatically created in your documents folder. In the SETTINGS tab, you can also specify a different directory if you wish to change where the tutorial files are created by default. \n\n2) This tutorial file is also automatically loaded into bellplay~ so that you can quickly see what the code does. This enables you to edit the file as you wish and experiment by tweaking with the code, seeing the changes reflected every time to save it."
+					"text" : "1) A bell file titled after the tutorial/example will be automatically created in your documents folder. In the SETTINGS tab, you can also specify a different directory if you wish to change where the files are created by default. \n\n2) This bell file is also automatically loaded into bellplay~ so that you can quickly see what the code does. This enables you to edit the file as you wish and experiment by tweaking with the code, seeing the changes reflected every time to save it."
 				}
 
 			}
@@ -1238,7 +1238,7 @@
 					"presentation" : 1,
 					"presentation_linecount" : 3,
 					"presentation_rect" : [ 8.0, 42.0, 792.5, 74.0 ],
-					"text" : "These tutorials will help you get familiarized with the most basic concepts and features in bellplay~. They assume a basic understanding of the bell programming language, which you can learn through additional #bell-tutorials. Every time you open a tutorial in bellplay~, two things will happen:\n",
+					"text" : "These tutorials and examples will help you get familiarized with the most basic concepts and features in bellplay~. They assume a basic understanding of the bell programming language, which you can learn through additional #bell-tutorials. Every time you open one of the script in bellplay~, two things will happen:\n",
 					"underline" : 0
 				}
 
@@ -1253,7 +1253,7 @@
 					"patching_rect" : [ 581.0, 31.0, 292.0, 35.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 8.0, 5.0, 292.0, 35.0 ],
-					"text" : "tutorials",
+					"text" : "learning",
 					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
 
@@ -1436,8 +1436,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 29.0, 53.0, 147.0, 23.0 ],
-					"text" : "title \"bellplay~ | tutorials\""
+					"patching_rect" : [ 29.0, 53.0, 140.0, 23.0 ],
+					"text" : "title \"bellplay~ | learning\""
 				}
 
 			}
@@ -2000,7 +2000,7 @@
 
 			}
  ],
-		"originid" : "pat-2379",
+		"originid" : "pat-5832",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
