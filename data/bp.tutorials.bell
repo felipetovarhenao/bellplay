@@ -190,64 +190,64 @@ $addscript(
 $addscript(
     @name "analysis-resynthesis"
     @file "resynthesis"
-    @description "TBA."
-    @tags "tba"
+    @description "This example demonstrates how to perform analysis-resynthesis via partial tracking."
+    @tags "analysis" "resynthesis" "sinewaves"
     @example 1
 );
 
 $addscript(
     @name "basic granulation"
     @file "basicgranulation"
-    @description "TBA."
-    @tags "tba"
+    @description "A basic demonstration of basic granular audio processing."
+    @tags "granulation"
     @example 1
 );
 
 $addscript(
     @name "feedback synthesis"
     @file "feedbacksynth"
-    @description "TBA."
-    @tags "tba"
+    @description "A simple example of FM synthesis feedback"
+    @tags "fmsynthesis" "feedback"
     @example 1
 );
 
 $addscript(
     @name "glide chorale"
     @file "gliss"
-    @description "TBA."
-    @tags "tba"
+    @description "This example demonstrates pitch manipulation techniques. It takes an audio buffer, retunes it to a predefined set of pitch classes, and processes it through multiple voices, each with randomized pitch glissando."
+    @tags "glide" "resampling" "retuning"
     @example 1
 );
 
 $addscript(
     @name "midi retuning"
     @file "midiretuning"
-    @description "TBA."
-    @tags "tba"
+    @description "This script demonstrates microtonal retuning and MIDI processing. It retunes MIDI notes to custom pitch classes derived from ratio-based tuning, extends their durations, and synthesizes them with amplitude shaping."
+    @tags "midi" "just-intonation" "retuning"
     @example 1
 );
 
 $addscript(
     @name "temporal quantization"
     @file "temporalquantization"
-    @description "TBA."
-    @tags "tba"
+    @description "This script demonstrates audio-based rhythmic quantization. It detects transient-based onsets in a buffer, extracts segments based on these transients, and snaps them to a rhythmic grid."
+    @tags "quantization" "pulse" "rhythm"
     @example 1
 );
 
 $addscript(
     @name "audio mosaic"
     @file "audiomosaic"
-    @description "TBA."
-    @tags "tba"
+    @description "This script demonstrates audio corpus-based matching and recombination. It analyzes and segments a target audio file, searches a prebuilt corpus for similar segments, and recombines them with the original, creating a hybrid output through feature-based retrieval and rearrangement."
+    @tags "corpus" "concatenative-synthesis" "audio-mosaicing" "analysis"
     @example 1
 );
 
 $addscript(
     @name "envelope alignment"
     @file "temporalalignment"
-    @description "TBA."
-    @tags "tba"
+    @description "This script demonstrates envelope-based alignment of audio samples by synchronizing their peak amplitudes. It generates synthetic sounds, analyzes their peak times, aligns them to a common reference, and renders the result with reverb and normalization for a cohesive output."
+    @tags "envelope" "analysis" "sync"
     @example 1
 );
 
