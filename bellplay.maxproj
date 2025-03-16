@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3824913149,
+	"modificationdate" : 3824940893,
 	"viewrect" : [ 25.0, 105.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -538,6 +538,11 @@
 			}
 ,
 			"bp.example.temporalquantization.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"bp.example.temporalalignment.bell" : 			{
 				"kind" : "textfile",
 				"local" : 1
 			}
