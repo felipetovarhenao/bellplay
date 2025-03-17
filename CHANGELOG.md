@@ -13,6 +13,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `samps2buf` and `buf2samps` conversion functions.
   - `integrate`: BPF integration function.
   - `derive`: BPF derivative function.
+- New audio processing functions:
+  - `hoaencode` and `hoadecode`: higher-order ambisonics encoding and decoding.
 - `transcribe`: New `@annotation` argument which displays symbols next to buffer.
 - `addmarker`: New `@role` argument to facilitate score quantization when exporting roll as a `.llll` file.
 - _examples_: Now includes script examples for more illustrative learning resources.

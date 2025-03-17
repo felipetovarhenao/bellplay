@@ -521,6 +521,12 @@ BP_REF_ANTIMEUNIT_OPTIONS = (
     $addopt(@value 2, @description "duration" "ratio")
 );
 
+BP_REF_ANGLEUNIT_OPTIONS = (
+    $addopt(@value 0 @description "radians")
+    $addopt(@value 1 @description "degrees")
+    $addopt(@value 2 @description "turns")
+);
+
 BP_REF_FREQUNIT_OPTIONS = (
     $addopt(@value 0 @description "Hertz")
     $addopt(@value 1 @description "BPM")
@@ -6110,9 +6116,7 @@ $addref(
             BP_REF_TIMEUNIT_OPTIONS
         )
         $addarg(@name "angleunit" @default 0 @type "int" @description "angle unit." @options 
-            $addopt(@value 0 @description "'radians'")
-            $addopt(@value 1 @description "'degrees'")
-            $addopt(@value 2 @description "'turns'")
+            BP_REF_ANGLEUNIT_OPTIONS
         )
         $addarg(@name "frequnit", @default 0, @type "int", @description "unit for frequency components in @func." @options 
             BP_REF_FREQUNIT_OPTIONS
@@ -6260,6 +6264,106 @@ $addref(
         $addarg(@name "llll" @type "llll" @description "audio samples to convert to a buffer.")
     )
     @output $addout(@description "buffer" @type "llll")
+);
+
+## ------------------------------------------------------------
+
+hoaencode = (
+    $azimuth = 0,
+    $elevation = 0,
+    $distance = 1,
+    $order = 1,
+    $coordtype = 'aed',
+    $dimension = '3D',
+    $angleunit = 0,
+    $envtimeunit = 2 -> (
+        [
+            [ "fx" "hoaencode" ]
+            [ "params"
+                [ 'azimuth' $azimuth ]
+                [ 'elevation' $elevation ]
+                [ 'distance' $distance ]
+                [ 'order' $order ]
+                [ 'angleunit' $angleunit ]
+                [ 'envtimeunit' $envtimeunit ]
+                [ 'coordtype' $coordtype ]
+                [ 'dimension' $dimension ]
+            ]
+        ]
+    )
+);
+
+$addref(
+    @name "hoaencode",
+    @description "Pans the input buffer and encodes it as a higher-order ambisonic buffer",
+    @category BP_REF_LABEL_UTILS,
+    @arguments (
+        $addarg(@name "azimuth" @default 0 @type "int/float/llll" @description "azimuth or X coordinate.")
+        $addarg(@name "elevation" @default 0 @type "int/float/llll" @description "elevation or y coordinate.")
+        $addarg(@name "distance" @default 1 @type "int/float/llll" @description "distance or Z coordinate.")
+        $addarg(@name "order" @default 1 @type "int" @description "ambisonics order.")
+        $addarg(@name "coordtype" @default "'aed'" @type "symbol" @description "input coordinate type" @options
+            $addopt(@value "'aed'" @description "azimuth, elevation, and distance; or spherical coordinates.")
+            $addopt(@value "'xyz'" @description "cartesian coordinates.")
+            $addopt(@value "'azr'" @description "azimuth, Z, axial radius; or cylindrical coordinates.")
+        )
+        $addarg(@name "dimension" @default "'3D'" @type "symbol" @description "dimensionality of ambisonics" @options 
+            $addopt(@value "'2D'" @description "2-dimensional.")
+            $addopt(@value "'3D'" @description "3-dimensional.")
+        )
+        $addarg(@name "angleunit" @default 0 @type "int" @description "unit for angles" @options 
+            BP_REF_ANGLEUNIT_OPTIONS
+        )
+        $addarg(@name "envtimeunit" @default 0 @type "int" @description "unit for time values inside envelopes/bpfs." @options
+            BP_REF_TIMEUNIT_OPTIONS
+        )
+    ),
+    @output $addout(@description "encoded buffer" @type "llll")
+);
+
+## ------------------------------------------------------------
+
+hoadecode = (
+    $azimuth = pi * (1/4 3/4 -3/4 -1/4),
+    $elevation = 0 0 0 0,
+    $binaural = 0,
+    $dimension = '3D',
+    $blocksamps = 64,
+    $angleunit = 0 -> (
+        [
+            [ "fx" "hoadecode" ]
+            [ "params"
+                [ 'binaural' $binaural ]
+                [ 'blocksamps' $blocksamps ]
+                [ 'dimension' $dimension ]
+                [ 'azimuth' $azimuth ]
+                [ 'elevation' $elevation ]
+                [ 'angleunit' $angleunit ]
+            ]
+        ]
+    )
+);
+
+$addref(
+    @name "hoaencode",
+    @description "Pans the input buffer and encodes it as a higher-order ambisonic buffer",
+    @category BP_REF_LABEL_UTILS,
+    @arguments (
+        $addarg(@name "azimuth" @default 0.78 2.35 @type "int/float/llll" @description "azimuth or X coordinate, for each loudspeaker.")
+        $addarg(@name "elevation" @default 0 0 @type "int/float/llll" @description "elevation or y coordinate.")
+        $addarg(@name "binaural" @default 0 @type "int/float/llll" @description "binaural mode." @options
+            BP_REF_SWITCH_OPTIONS
+        )
+        $addarg(@name "dimension" @default "'3D'" @type "symbol" @description "dimensionality of ambisonics" @options 
+            $addopt(@value "'2D'" @description "2-dimensional.")
+            $addopt(@value "'3D'" @description "3-dimensional.")
+        )
+        $addarg(@name "blocksamps" @default 64 @type "int" @description "decoding block size in samples.")
+        $addarg(@name "angleunit" @default 0 @type "int" @description "unit for angles." @options 
+            BP_REF_ANGLEUNIT_OPTIONS
+        )
+    ),
+    @output $addout(@description "decoded buffer" @type "llll")
 );
 
 ## ------------------------------------------------------------

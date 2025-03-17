@@ -16,6 +16,408 @@
 		"style" : "bellplay-gui-2",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-60",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 9,
+							"minor" : 0,
+							"revision" : 5,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 134.0, 172.0, 235.0, 213.0 ],
+						"default_fontname" : "Lato",
+						"gridsize" : [ 15.0, 15.0 ],
+						"style" : "bellplay-gui-1",
+						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "bang" ],
+									"patching_rect" : [ 12.0, 54.0, 117.0, 23.0 ],
+									"saved_object_attributes" : 									{
+										"embed" : 0,
+										"versionnumber" : 80300
+									}
+,
+									"text" : "bach.shelf #0params"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "bang" ],
+									"patching_rect" : [ 12.0, 91.0, 111.0, 23.0 ],
+									"saved_object_attributes" : 									{
+										"versionnumber" : 80300
+									}
+,
+									"text" : "bach.portal @out m"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 12.0, 169.0, 92.0, 23.0 ],
+									"text" : "s #0global"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 12.0, 129.0, 181.0, 23.0 ],
+									"text" : "ears.hoa.decode~ @naming copy"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"maxclass" : "newobj",
+									"numinlets" : 0,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 12.0, 15.0, 88.0, 23.0 ],
+									"text" : "r #0hoadecode"
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-11", 0 ],
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-11", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-2", 0 ],
+									"source" : [ "obj-4", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-6", 0 ]
+								}
+
+							}
+ ],
+						"originid" : "pat-1441",
+						"styles" : [ 							{
+								"name" : "bellplay-gui",
+								"default" : 								{
+									"accentcolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
+									"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"bgfillcolor" : 									{
+										"angle" : 270.0,
+										"autogradient" : 0.0,
+										"color" : [ 0.717647058823529, 0.717647058823529, 0.717647058823529, 1.0 ],
+										"color1" : [ 0.301961, 0.301961, 0.301961, 1.0 ],
+										"color2" : [ 0.2, 0.2, 0.2, 1.0 ],
+										"proportion" : 0.5,
+										"type" : "color"
+									}
+,
+									"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
+									"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"fontname" : [ "Lato" ],
+									"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
+									"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "bellplay-gui-1",
+								"default" : 								{
+									"accentcolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
+									"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"bgfillcolor" : 									{
+										"angle" : 270.0,
+										"autogradient" : 0.0,
+										"color" : [ 0.717647058823529, 0.717647058823529, 0.717647058823529, 1.0 ],
+										"color1" : [ 0.301961, 0.301961, 0.301961, 1.0 ],
+										"color2" : [ 0.2, 0.2, 0.2, 1.0 ],
+										"proportion" : 0.5,
+										"type" : "color"
+									}
+,
+									"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
+									"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"fontname" : [ "Lato" ],
+									"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
+									"syntax_attrargcolor" : [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
+									"syntax_attributecolor" : [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],
+									"syntax_objargcolor" : [ 0.776470588235294, 0.635294117647059, 0.494117647058824, 1.0 ],
+									"syntax_objectcolor" : [ 0.462745098039216, 0.4, 0.294117647058824, 1.0 ],
+									"textcolor" : [ 0.462745098039216, 0.462745098039216, 0.462745098039216, 1.0 ],
+									"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+ ]
+					}
+,
+					"patching_rect" : [ 11.0, 1495.0, 83.0, 23.0 ],
+					"saved_object_attributes" : 					{
+						"fontname" : "Lato",
+						"style" : "bellplay-gui-1"
+					}
+,
+					"text" : "p hoadecode~"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-59",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 9,
+							"minor" : 0,
+							"revision" : 5,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 134.0, 172.0, 321.0, 217.0 ],
+						"default_fontname" : "Lato",
+						"gridsize" : [ 15.0, 15.0 ],
+						"style" : "bellplay-gui-1",
+						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "bang" ],
+									"patching_rect" : [ 12.0, 54.0, 117.0, 23.0 ],
+									"saved_object_attributes" : 									{
+										"embed" : 0,
+										"versionnumber" : 80300
+									}
+,
+									"text" : "bach.shelf #0params"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-11",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 5,
+									"outlettype" : [ "", "", "", "", "bang" ],
+									"patching_rect" : [ 12.0, 91.0, 282.0, 23.0 ],
+									"saved_object_attributes" : 									{
+										"versionnumber" : 80300
+									}
+,
+									"text" : "bach.keys null azimuth elevation distance @out mn"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 12.0, 169.0, 92.0, 23.0 ],
+									"text" : "s #0global"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "newobj",
+									"numinlets" : 4,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 12.0, 129.0, 216.25, 23.0 ],
+									"text" : "ears.hoa.encode~ @naming copy"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-6",
+									"maxclass" : "newobj",
+									"numinlets" : 0,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 12.0, 15.0, 88.0, 23.0 ],
+									"text" : "r #0hoaencode"
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-11", 0 ],
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 3 ],
+									"source" : [ "obj-11", 3 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 2 ],
+									"source" : [ "obj-11", 2 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 1 ],
+									"source" : [ "obj-11", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-11", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-2", 0 ],
+									"source" : [ "obj-4", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-6", 0 ]
+								}
+
+							}
+ ],
+						"originid" : "pat-1437",
+						"styles" : [ 							{
+								"name" : "bellplay-gui",
+								"default" : 								{
+									"accentcolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
+									"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"bgfillcolor" : 									{
+										"angle" : 270.0,
+										"autogradient" : 0.0,
+										"color" : [ 0.717647058823529, 0.717647058823529, 0.717647058823529, 1.0 ],
+										"color1" : [ 0.301961, 0.301961, 0.301961, 1.0 ],
+										"color2" : [ 0.2, 0.2, 0.2, 1.0 ],
+										"proportion" : 0.5,
+										"type" : "color"
+									}
+,
+									"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
+									"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"fontname" : [ "Lato" ],
+									"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
+									"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+, 							{
+								"name" : "bellplay-gui-1",
+								"default" : 								{
+									"accentcolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
+									"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"bgfillcolor" : 									{
+										"angle" : 270.0,
+										"autogradient" : 0.0,
+										"color" : [ 0.717647058823529, 0.717647058823529, 0.717647058823529, 1.0 ],
+										"color1" : [ 0.301961, 0.301961, 0.301961, 1.0 ],
+										"color2" : [ 0.2, 0.2, 0.2, 1.0 ],
+										"proportion" : 0.5,
+										"type" : "color"
+									}
+,
+									"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
+									"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"fontname" : [ "Lato" ],
+									"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
+									"syntax_attrargcolor" : [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
+									"syntax_attributecolor" : [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],
+									"syntax_objargcolor" : [ 0.776470588235294, 0.635294117647059, 0.494117647058824, 1.0 ],
+									"syntax_objectcolor" : [ 0.462745098039216, 0.4, 0.294117647058824, 1.0 ],
+									"textcolor" : [ 0.462745098039216, 0.462745098039216, 0.462745098039216, 1.0 ],
+									"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+ ]
+					}
+,
+					"patching_rect" : [ 11.0, 1469.0, 83.0, 23.0 ],
+					"presentation_linecount" : 3,
+					"saved_object_attributes" : 					{
+						"fontname" : "Lato",
+						"style" : "bellplay-gui-1"
+					}
+,
+					"text" : "p hoaencode~"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-55",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -152,7 +554,7 @@
 
 							}
  ],
-						"originid" : "pat-1141",
+						"originid" : "pat-1145",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -361,7 +763,7 @@
 
 							}
  ],
-						"originid" : "pat-1143",
+						"originid" : "pat-1147",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -606,7 +1008,7 @@
 
 							}
  ],
-						"originid" : "pat-1145",
+						"originid" : "pat-1149",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -999,7 +1401,7 @@
 
 							}
  ],
-						"originid" : "pat-1147",
+						"originid" : "pat-1151",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1369,7 +1771,7 @@
 
 							}
  ],
-						"originid" : "pat-1191",
+						"originid" : "pat-1195",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1517,7 +1919,7 @@
 
 							}
  ],
-						"originid" : "pat-1215",
+						"originid" : "pat-1219",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1892,7 +2294,7 @@
 
 							}
  ],
-						"originid" : "pat-1217",
+						"originid" : "pat-1221",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -2248,7 +2650,7 @@
 
 							}
  ],
-						"originid" : "pat-1219",
+						"originid" : "pat-1223",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -2445,7 +2847,7 @@
 
 							}
  ],
-						"originid" : "pat-1227",
+						"originid" : "pat-1231",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -2713,7 +3115,7 @@
 
 							}
  ],
-						"originid" : "pat-1229",
+						"originid" : "pat-1233",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -3007,7 +3409,7 @@
 
 							}
  ],
-						"originid" : "pat-1241",
+						"originid" : "pat-1245",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -3219,7 +3621,7 @@
 
 							}
  ],
-						"originid" : "pat-1261",
+						"originid" : "pat-1265",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -3543,7 +3945,7 @@
 
 							}
  ],
-						"originid" : "pat-1269",
+						"originid" : "pat-1273",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -3760,7 +4162,7 @@
 
 							}
  ],
-						"originid" : "pat-1289",
+						"originid" : "pat-1293",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4110,7 +4512,7 @@
 
 							}
  ],
-						"originid" : "pat-1291",
+						"originid" : "pat-1295",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4277,7 +4679,7 @@
 
 							}
  ],
-						"originid" : "pat-1299",
+						"originid" : "pat-1303",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4516,7 +4918,7 @@
 
 							}
  ],
-						"originid" : "pat-1301",
+						"originid" : "pat-1305",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4784,7 +5186,7 @@
 
 							}
  ],
-						"originid" : "pat-1305",
+						"originid" : "pat-1309",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5165,7 +5567,7 @@
 
 							}
  ],
-						"originid" : "pat-1317",
+						"originid" : "pat-1321",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5547,7 +5949,7 @@
 
 							}
  ],
-						"originid" : "pat-1325",
+						"originid" : "pat-1329",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5708,7 +6110,7 @@
 
 							}
  ],
-						"originid" : "pat-1333",
+						"originid" : "pat-1337",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -6217,7 +6619,7 @@
 
 															}
  ],
-														"originid" : "pat-1343",
+														"originid" : "pat-1347",
 														"styles" : [ 															{
 																"name" : "bellplay-gui",
 																"default" : 																{
@@ -6611,7 +7013,7 @@
 
 											}
  ],
-										"originid" : "pat-1337",
+										"originid" : "pat-1341",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -6997,7 +7399,7 @@
 
 							}
  ],
-						"originid" : "pat-1335",
+						"originid" : "pat-1339",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -7268,7 +7670,7 @@
 
 							}
  ],
-						"originid" : "pat-1357",
+						"originid" : "pat-1361",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -7472,7 +7874,7 @@
 
 							}
  ],
-						"originid" : "pat-1361",
+						"originid" : "pat-1365",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -7787,7 +8189,7 @@
 
 							}
  ],
-						"originid" : "pat-1363",
+						"originid" : "pat-1367",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -7984,7 +8386,7 @@
 
 							}
  ],
-						"originid" : "pat-1393",
+						"originid" : "pat-1397",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -8181,7 +8583,7 @@
 
 							}
  ],
-						"originid" : "pat-1395",
+						"originid" : "pat-1399",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -8371,7 +8773,7 @@
 
 							}
  ],
-						"originid" : "pat-1397",
+						"originid" : "pat-1401",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -8568,7 +8970,7 @@
 
 							}
  ],
-						"originid" : "pat-1399",
+						"originid" : "pat-1403",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -8765,7 +9167,7 @@
 
 							}
  ],
-						"originid" : "pat-1401",
+						"originid" : "pat-1405",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -8962,7 +9364,7 @@
 
 							}
  ],
-						"originid" : "pat-1403",
+						"originid" : "pat-1407",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -9159,7 +9561,7 @@
 
 							}
  ],
-						"originid" : "pat-1405",
+						"originid" : "pat-1409",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -9356,7 +9758,7 @@
 
 							}
  ],
-						"originid" : "pat-1407",
+						"originid" : "pat-1411",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -9557,7 +9959,7 @@
 
 							}
  ],
-						"originid" : "pat-1409",
+						"originid" : "pat-1413",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -9761,7 +10163,7 @@
 
 							}
  ],
-						"originid" : "pat-1411",
+						"originid" : "pat-1415",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -9958,7 +10360,7 @@
 
 							}
  ],
-						"originid" : "pat-1413",
+						"originid" : "pat-1417",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -10162,7 +10564,7 @@
 
 							}
  ],
-						"originid" : "pat-1415",
+						"originid" : "pat-1419",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -10378,7 +10780,7 @@
 
 							}
  ],
-						"originid" : "pat-1417",
+						"originid" : "pat-1421",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -10579,7 +10981,7 @@
 
 							}
  ],
-						"originid" : "pat-1419",
+						"originid" : "pat-1423",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -10752,7 +11154,7 @@
 
 							}
  ],
-						"originid" : "pat-1421",
+						"originid" : "pat-1425",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -10919,7 +11321,7 @@
 
 							}
  ],
-						"originid" : "pat-1423",
+						"originid" : "pat-1427",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -11123,7 +11525,7 @@
 
 							}
  ],
-						"originid" : "pat-1425",
+						"originid" : "pat-1429",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -11320,7 +11722,7 @@
 
 							}
  ],
-						"originid" : "pat-1427",
+						"originid" : "pat-1431",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -11639,7 +12041,7 @@
 
 							}
  ],
-						"originid" : "pat-1431",
+						"originid" : "pat-1435",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -11988,7 +12390,7 @@
 
 			}
  ],
-		"originid" : "pat-1139",
+		"originid" : "pat-1143",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
@@ -12207,6 +12609,14 @@
 			}
 , 			{
 				"name" : "ears.gain~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.hoa.decode~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.hoa.encode~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
