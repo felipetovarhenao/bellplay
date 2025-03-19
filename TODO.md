@@ -8,9 +8,9 @@
 - Deprecate `interpolate` or re-implement.
 - Allow `scaling` to receive envelopes.
 - Add `integrate` and `integration` function (using bach.integrate)
+- Explore integration of flucoma — datasets are doable via `bach.llll2dict` and `bach.dict2llll`.
 - `ears` processing functions:
-	- `hoa`-related functions.
-	- `iter-collect` per sample processing.
-	- `segment` buffer function with lazy vs real argument. 
-	- `waveset` functions.
+  - `iter-collect` per sample processing.
+  - `segment` buffer function with lazy vs real argument.
+  - `waveset` functions.
 - `mc.abl.*` processing
