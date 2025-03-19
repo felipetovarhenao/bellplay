@@ -6579,9 +6579,34 @@ $addref(
         $addarg(@name "mc" @type "llll" @description "list of midicents.")
         $addarg(@name "mod" @default 12 @type "int" @description "length of chroma vector, based on equal divisions of the octave.")
     ),
-    @output $addout(@description "chroma vector ." @type "llll")
+    @output $addout(@description "chroma vector." @type "llll")
 );
 
+## ------------------------------------------------------------
+
+autoscale = (
+    $x, $mode = 0 -> (
+        $minmax = minmax($x @depth -1 -1);
+        $min = $minmax:1;
+        $max = $minmax:3;
+        $y = scale($x, $min, $max, 0, 1);
+        if $mode == 0 then $y else $y / reduce(flat($y), #+) 
+    ) 
+);
+
+$addref(
+    @name "autoscale"
+    @description "Applies auto-scaling normalization to a llll."
+    @category BP_REF_LABEL_UTILS
+    @arguments (
+        $addarg(@name "x" @type "llll" @description "numeric list.")
+        $addarg(@name "mode" @default 0 @type "int" @description "auto-scaling normalization mode." @options 
+            $addopt(@value 0 @description "minmax normalization")
+            $addopt(@value 1 @description "1-sum normalization")
+        )
+    ),
+    @output $addout(@description "auto-scaled llll" @type "llll")
+);
 
 ## ------------------------------------------------------------
 
