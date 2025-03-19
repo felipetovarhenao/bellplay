@@ -6561,6 +6561,30 @@ $addref(
 
 ## ------------------------------------------------------------
 
+mc2chroma = (
+    $mc, $mod = 12 -> (
+        $cents = 100 / ($mod / 12);
+        $mc = int(($mc / $cents * 1.) % $mod) + 1;
+        $chroma = 0 :* $mod;
+        for $x in $mc with @maxdepth -1 @spikemode 1 do $chroma:$x += 1;
+        $chroma
+    ) 
+);
+
+$addref(
+    @name "mc2chroma"
+    @description "Midicents to chroma vector conversion."
+    @category BP_REF_LABEL_UTILS
+    @arguments (
+        $addarg(@name "mc" @type "llll" @description "list of midicents.")
+        $addarg(@name "mod" @default 12 @type "int" @description "length of chroma vector, based on equal divisions of the octave.")
+    ),
+    @output $addout(@description "chroma vector ." @type "llll")
+);
+
+
+## ------------------------------------------------------------
+
 derive = (
     $llll, $numsamples = 100, $order = 1, $discrete = 0, $pad = 2 -> (
         for $arg in ['pad' $pad] ['numsamples' $numsamples] ['order' $order] ['discrete' $discrete] with @unwrap 1 do (BP_MAXOBJ_BACHDERIVE($arg @out 'm'));
