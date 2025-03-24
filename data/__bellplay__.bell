@@ -2926,6 +2926,7 @@ $addref(
     @description "Audio descriptor to compute the magnitude spectrum of a buffer. The resulting magnitude spectrum has a size which is half the size of the input array plus one. Bins contain raw (linear) magnitude values. See #analyze."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
+        $addarg(@name "size" @default 2048 @type "int", @description "frame size.")
         $addarg(@name "mode" @default 0 @type "int", @description "analysis mode." @options
             BP_REF_ESSENTIA_ANALYSIS_OPTIONS
         )
