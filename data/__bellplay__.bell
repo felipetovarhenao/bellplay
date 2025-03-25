@@ -5024,6 +5024,10 @@ scaling = (
     $inmax = 1,
     $outmin = 0,
     $outmax = 1 -> (
+        $inmin = getkey($inmin, "source") ||| [ bpf($inmin) ];
+        $inmax = getkey($inmax, "source") ||| [ bpf($inmax) ];
+        $outmin = getkey($outmin, "source") ||| [ bpf($outmin) ];
+        $outmax = getkey($outmax, "source") ||| [ bpf($outmax) ];
         [
             [ "fx" "scale" ]
             [ "params"

@@ -4,7 +4,6 @@
 - Adapt code base to new bell language version.
 - Migrate reference documentation to versioned web repo.
 - Deprecate `interpolate` or re-implement.
-- Allow `scaling` to receive envelopes.
 - Add `integrate` and `integration` function (using bach.integrate)
 - Explore integration of flucoma — datasets are doable via `bach.llll2dict` and `bach.dict2llll`.
 - `ears` processing functions:

@@ -43,6 +43,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `ezsampler`: Fix incorrect pitch value when using `@resample 0` and prevent `@pitch` envelopes.
 - `export` is now possible before using `render(@reset 1)`.
 - `read`: `@ignore` now works.
+- `scaling`: Now supports bpfs/envelopes.
 
 ### Removed
 
