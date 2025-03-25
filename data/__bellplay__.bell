@@ -25,78 +25,67 @@ BP_MAXOBJ_BACHDERIVE = {bach.derive};
 BP_BUFFER_CACHE = null;
 BP_PLAY_TOGGLE = 0;
 BP_SCORE_CONFIG = null;
+BP_CONFIG = null;
 BP_CONFIG_FUNC = (
     $action, $value -> (
-        ## Define the configuration file path
         $bpconfigpath = '~/bellplay.config.txt';
-        ## Define default configuration settings
-        $defaultconfig = (
-            ## bellplay~ version
-            [ 'version' BP_VERSION] 
-            ## files to automatically run at launch
-            [ 'imports' ] 
-            ## default text editor
-            [ 'defaulteditor' ] 
-            ## default tutorials directory
-            [ 'tutorialsdir' '~/Documents' ] 
-            ## mute sound alert when getting errors
-            [ 'mutealert' 0] 
+        $exists = exists($bpconfigpath);
+        $update = $conf -^ $bpconfigpath -> (
+            BP_CONFIG = $conf;
+            write(@data $conf @path $bpconfigpath) 
         );
-        ## Create the configuration file if it does not exist
-        if exists($bpconfigpath) == 0 then write(
-            @data $defaultconfig @path $bpconfigpath
-        );
-        ## Read the existing configuration file
-        $bpconfig = read($bpconfigpath);
-        ## Set default tutorials directory if not already defined
-        if $bpconfig.'tutorialsdir' == null then (
-            $tutorialsdir = '~/Documents/';
-            if exists($tutorialsdir) == 0 then ($tutorialsdir = '~/');
-            $tutorialsdir = parsepath($tutorialsdir);
-            $tutorialsdir = reduce(
-                for $k in 'parent' 'name' 'extension' collect $tutorialsdir.getkey($k), #+
+        if $action == 'init' then (
+            $defaultconfig = (
+                ## bellplay~ version
+                [ 'version' BP_VERSION] 
+                ## files to automatically run at launch
+                [ 'imports' ] 
+                ## default text editor
+                [ 'defaulteditor' ] 
+                ## default tutorials directory
+                [
+                    'tutorialsdir' '~/Documents' 
+                ] 
+                ## mute sound alert when getting errors
+                [ 'mutealert' 0] 
             );
-            $bpconfig.'tutorialsdir' = $tutorialsdir
-        );
-        if $action == 'clean' then (
-            ## Remove non-default keys from the configuration
-            $configkeys = trans($bpconfig)::1;
-            $defaultkeys = trans($defaultconfig)::1;
-            $diffkeys = diff($defaultkeys, $configkeys);
-            for $key in $diffkeys do ($bpconfig _= [ $key $defaultconfig.$key ]);
-            ## Ensure the configuration follows default structure
-            $bpconfig = for $key in $defaultkeys collect [$key $bpconfig.$key];
-            ## Update version
-            $bpconfig.'version' = BP_VERSION;
-            write($bpconfig, $bpconfigpath) 
-        ) else if $action == 'read' then (
-            ## Load and execute import scripts
-            $imports = $bpconfig.'imports';
-            $imports = for $import in $imports collect (
-                $importpath = parsepath($import);
-                $ext = getkey($importpath, 'extension');
-                if $ext == '.bell' && exists($import) == 1 then (
-                    BP_DISPATCH_FUNC('loadscript', $import);
-                    $import
+            if $exists == 0 then ($bpconfig = $defaultconfig) else (
+                $bpconfig = read(@path $bpconfigpath);
+                $defaultkeys = trans($defaultconfig)::1;
+                for $key in $defaultkeys do (
+                    $val = $bpconfig.$key;
+                    if $val == null then ($bpconfig.$key = $defaultconfig.$key) 
+                );
+                $bpconfig.'version' = BP_VERSION
+            );
+            $update($bpconfig) 
+        ) else if $exists == 1 then (
+            $bpconfig = read($bpconfigpath);
+            if $action == 'map' then (
+                $bpconfig = $value($bpconfig);
+                if $bpconfig != null then $update($bpconfig) 
+            ) else if $action == 'read' then (
+                $imports = $bpconfig.'imports';
+                if $imports != null then (
+                    $imports = for $import in $imports collect (
+                        $importpath = parsepath($import);
+                        $ext = getkey($importpath, 'extension');
+                        if $ext == '.bell' && exists($import) == 1 then (
+                            BP_DISPATCH_FUNC('loadscript', $import);
+                            $import
+                        ) else print('invalid import file:' $import ||| 'null') 
+                    );
+                    $bpconfig.'imports' = $imports;
+                    $update($bpconfig) 
                 ) 
-            );
-            ## Update the imports in the configuration file
-            $bpconfig.'imports' = $imports;
-            write($bpconfig, $bpconfigpath) 
-        ) else if $action == 'map' then (
-            ## Apply a mapping function to the configuration
-            $bpconfig = $value($bpconfig);
-            write($bpconfig, $bpconfigpath) 
-        ) else if $action == 'get' then ( 
-            ## Retrieve a specific configuration value
-            $bpconfig.$value
-        ) 
+            ) else if $action == 'get' then ($bpconfig.$value) 
+        ) else printerror('configuration not found', 0) 
     ) 
 );
 BP_ON_LAUNCH_FUNC = (
     -> (
         ## load imports
-        BP_CONFIG_FUNC('clean')
+        BP_CONFIG_FUNC('init')
     ) 
 );
 BP_ON_BEFORE_FUNC = (

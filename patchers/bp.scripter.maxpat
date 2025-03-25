@@ -65,19 +65,19 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_CONFIG_FUNC('get', 'mutealert') == 0 ",
+					"code" : "BP_CONFIG.'mutealert' == 0 ",
 					"id" : "obj-214",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 2450.0, 239.0, 324.0, 23.0 ],
+					"patching_rect" : [ 2450.0, 239.0, 255.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 1,
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval BP_CONFIG_FUNC('get'\\, 'mutealert') == 0 @out m"
+					"text" : "bach.eval BP_CONFIG.'mutealert' == 0 @out m"
 				}
 
 			}
@@ -747,7 +747,7 @@
 
 							}
  ],
-						"originid" : "pat-3940",
+						"originid" : "pat-1227",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1138,7 +1138,7 @@
 
 							}
  ],
-						"originid" : "pat-3942",
+						"originid" : "pat-1229",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1534,7 +1534,7 @@
 
 							}
  ],
-						"originid" : "pat-3948",
+						"originid" : "pat-1235",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1949,7 +1949,7 @@
 
 							}
  ],
-						"originid" : "pat-3972",
+						"originid" : "pat-1259",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2234,7 +2234,7 @@
 
 							}
  ],
-						"originid" : "pat-3974",
+						"originid" : "pat-1261",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2425,7 +2425,7 @@
 
 							}
  ],
-						"originid" : "pat-3976",
+						"originid" : "pat-1263",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -2733,7 +2733,7 @@
 
 							}
  ],
-						"originid" : "pat-3980",
+						"originid" : "pat-1267",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -3258,7 +3258,7 @@
 
 							}
  ],
-						"originid" : "pat-4038",
+						"originid" : "pat-1325",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4585,7 +4585,7 @@
 
 							}
  ],
-						"originid" : "pat-4040",
+						"originid" : "pat-1327",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4916,7 +4916,7 @@
 
 											}
  ],
-										"originid" : "pat-4050",
+										"originid" : "pat-1337",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -5236,7 +5236,7 @@
 
 							}
  ],
-						"originid" : "pat-4048",
+						"originid" : "pat-1335",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5556,7 +5556,7 @@
 
 							}
  ],
-						"originid" : "pat-4346",
+						"originid" : "pat-1637",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5996,7 +5996,7 @@
 
 							}
  ],
-						"originid" : "pat-4506",
+						"originid" : "pat-1797",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -6194,7 +6194,7 @@
 
 											}
  ],
-										"originid" : "pat-4510",
+										"originid" : "pat-1801",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -6672,7 +6672,7 @@
 
 											}
  ],
-										"originid" : "pat-4514",
+										"originid" : "pat-1805",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -6973,7 +6973,7 @@
 
 							}
  ],
-						"originid" : "pat-4508",
+						"originid" : "pat-1799",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -7135,7 +7135,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 2609.0, 273.0, 165.0, 23.0 ],
+					"patching_rect" : [ 2540.0, 269.0, 165.0, 23.0 ],
 					"text" : "buffer~ #0alert alert.wav"
 				}
 
@@ -10082,7 +10082,7 @@
 
 			}
  ],
-		"originid" : "pat-3864",
+		"originid" : "pat-1151",
 		"dependency_cache" : [ 			{
 				"name" : "bach.+.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
@@ -10606,6 +10606,14 @@
 			}
 , 			{
 				"name" : "ears.gain~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.hoa.decode~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.hoa.encode~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
