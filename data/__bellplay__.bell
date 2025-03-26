@@ -5045,10 +5045,10 @@ $addref(
     @description "Audio process command for applying amplitude scaling to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
-        $addarg(@name "inmin", @default 0, @type "int/float", @description "input minimum value.")
-        $addarg(@name "inmax", @default 1, @type "int/float", @description "input maximum value.")
-        $addarg(@name "outmin", @default 0, @type "int/float", @description "output minimum value.")
-        $addarg(@name "outmax", @default 1, @type "int/float", @description "output maximum value.")
+        $addarg(@name "inmin", @default 0, @type "int/float/llll", @description "input minimum value.")
+        $addarg(@name "inmax", @default 1, @type "int/float/llll", @description "input maximum value.")
+        $addarg(@name "outmin", @default 0, @type "int/float/llll", @description "output minimum value.")
+        $addarg(@name "outmax", @default 1, @type "int/float/llll", @description "output maximum value.")
     ),
     @output $addout(@description "scaling command" @type "llll")
 );
