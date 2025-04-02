@@ -2346,6 +2346,17 @@ analyze = (
             ]
         );
         $features = for $x in BP_ESSENTIA_OUTPUT collect [ ($x::1).flat(1) ];
+        for $descr in $descriptors do (
+            $name = $descr.getkey("name");
+            $lastchar = $name.getchar(-1);
+            if $lastchar == '~' then (
+                $outkeys = $descr.getkey("output");
+                for $k in $outkeys do (
+                    $features.$k = BP_NEWBUFF_FUNC(@source $features.$k).process(bpthru())
+                )
+            )
+        );
+        BP_DISPATCH_FUNC("essentia", ["clear" "bang"]);
         $buffer = [ $buffer.flat(1) $features ]
     )
 );
