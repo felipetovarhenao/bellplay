@@ -1221,7 +1221,8 @@ $addref(
 
 nearest = (
     $list, 
-    $target -> (
+    $target, 
+    $mode = 0 -> (
         if $list == null || $target == null then printerror("you must provide values for @list and @target in nearest().");
         $list = $list.sort();
         $left = 1;
@@ -1255,14 +1256,18 @@ nearest = (
 );
 
 $addref(
-    @name "nearest",
-    @description "Given a target number, finds the nearest value in a numeric list via binary search.",
-    @category BP_REF_LABEL_UTILS,
+    @name "nearest"
+    @description "Given a target number, finds the nearest value in a numeric list via binary search."
+    @category BP_REF_LABEL_UTILS
     @arguments (
-        $addarg(@name "list", @type "list", @description "numeric list to search.")
-        $addarg(@name "target", @type "int/float", @description "target number to find nearest value for.")
-    ),
-    @output $addout(@description "nearest value", @type "int/float")
+        $addarg(@name "list" @type "list" @description "numeric list to search.")
+        $addarg(@name "target" @type "int/float" @description "target number to find nearest value for.")
+        $addarg(@name "mode" @default 0 @type "int" @description "output mode." @options 
+            $addopt(@value 0 @description "output value.")        
+            $addopt(@value 1 @description "output address.")        
+        )
+    )
+    @output $addout(@description "nearest value or address" @type "int/float")
 );
 
 ## ------------------------------------------------------------
