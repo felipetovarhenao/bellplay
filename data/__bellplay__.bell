@@ -2361,7 +2361,7 @@ analyze = (
                 )
             )
         );
-        BP_DISPATCH_FUNC("essentia", ["clear" "bang"]);
+        BP_DISPATCH_FUNC("essentia", [ "clear" "bang" ]);
         $buffer = [ $buffer.flat(1) $features ]
     )
 );
