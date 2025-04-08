@@ -20,7 +20,7 @@ buildcorpus(
 ## Query the generated corpus to retrieve stored buffer references
 $bufs = query();
 ## Extract feature keys from the features list
-$featurekeys = for $f in $features collect $f.getkey('output');
+$featurekeys = for $f in $features collect $f.getkey('output'):-1;
 ## Build a search tree for efficient retrieval based on extracted features
 buildtree($bufs, $featurekeys);
 ## Import a target audio file for analysis
