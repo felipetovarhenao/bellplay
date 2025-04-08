@@ -1057,11 +1057,16 @@ bpf = (
         $depth = depth($pts);
         $size = length($pts);
         if $depth == 1 then (
-            for $p $i in $pts collect [ ($i - 1.) / max(1, $size - 1.) (if $yfunc then $yfunc($p) else $p) 0. ]
+            $x = arithmser(0, 1, null, $size);
+            if $xfunc != null then $x = $xfunc($x);
+            $y = (if $yfunc then $yfunc($pts) else $pts);
+            $s = 0 :* $size;
+            if $sfunc != null then $s = $xfunc($s);
+            trans([$x] [$y] [$s])
         ) else if $depth == 2 then (
             $cols = trans($pts);
-            $x = [ if $xfunc then $xfunc($cols::1) else $cols::1 ];
-            $y = [ if $yfunc then $yfunc($cols::2) else $cols::2 ];
+            $x = [ if $xfunc != null then $xfunc($cols::1) else $cols::1 ];
+            $y = [ if $yfunc != null then $yfunc($cols::2) else $cols::2 ];
             $slope = for $i in 1...$size collect ($pts::($i 3)) ||| 0;
             if $sfunc then (
                 $slope = $sfunc($slope)
@@ -1672,10 +1677,10 @@ $addref(
     @description "Given a list of target midicents and/or pitch classes, returns the signed difference between a pitch in midicents and the nearest midicent/pitch class target.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
-        $addarg(@name "pitch", @type "int/float", @description "reference pitch in midicents.")
-        $addarg(@name "targets", @type "int/float/list", @description "list of midicent or pitch class targets.")
+        $addarg(@name "source" @type "int/float" @description "reference pitch in midicents.")
+        $addarg(@name "targets" @type "int/float/list" @description "list of midicent or pitch class targets.")
     ),
-    @output $addout(@description "signed difference to closest target, in cents.", @type "int/float")
+    @output $addout(@description "signed difference to closest target, in cents." @type "int/float")
 );
 
 ## ------------------------------------------------------------
