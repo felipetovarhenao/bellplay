@@ -1,0 +1,35 @@
+#( 
+    This example demonstrates how to generate and apply a random waveshaping function
+    using breakpoint data in bellplay~. A custom breakpoint function (BPF) is built from 
+    randomly distributed x-values, signed exponential y-values, and randomly chosen slope 
+    factors. This BPF is applied to a drum loop to introduce nonlinear distortion, followed 
+    by spatialization using a dynamic pan envelope. The result is normalized and rendered 
+    with playback enabled.
+)#
+## set number of breakpoints for the waveshaper
+$bpfsize = 100;
+## generate x-values for the breakpoint function
+## - quadratic distribution emphasizes values near 0
+$xbpf = dx2x(for $i in 1...$bpfsize collect rand() ** 2);
+## build breakpoint function: list of [x y slope] triplets
+$bpf = for $x in $xbpf collect (
+    ## y-values span an exponential range, randomly signed
+    $y = exp2(rand(-2, 2)) * choose(-1 1);
+    ## slope values between 0.15 and 0.99
+    $s = rand(0.15, 0.99);
+    [$x $y $s] 
+);
+## import drum loop as audio buffer
+$b = importaudio('drums.wav');
+## apply waveshaping using the custom breakpoint function
+## - process spans full duration of input buffer
+$fx = waveshape($bpf @duration $b.getkey('duration'));
+## process buffer and spatialize with pan automation
+## - starts at left, moves center, then slightly right
+$b.process($fx).transcribe(
+    @pan [0 0 0] [0.5 1 0] [1 0.5 -0.25] 
+);
+## render and play result, normalize output to -3 dB
+render(
+    @play 1 @process normalize(-3) 
+)
