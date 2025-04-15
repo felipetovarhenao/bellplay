@@ -747,7 +747,7 @@
 
 							}
  ],
-						"originid" : "pat-1227",
+						"originid" : "pat-1347",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1138,7 +1138,7 @@
 
 							}
  ],
-						"originid" : "pat-1229",
+						"originid" : "pat-1349",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1534,7 +1534,7 @@
 
 							}
  ],
-						"originid" : "pat-1235",
+						"originid" : "pat-1355",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1949,7 +1949,7 @@
 
 							}
  ],
-						"originid" : "pat-1259",
+						"originid" : "pat-1379",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2234,7 +2234,7 @@
 
 							}
  ],
-						"originid" : "pat-1261",
+						"originid" : "pat-1381",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2425,7 +2425,7 @@
 
 							}
  ],
-						"originid" : "pat-1263",
+						"originid" : "pat-1383",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -2733,7 +2733,7 @@
 
 							}
  ],
-						"originid" : "pat-1267",
+						"originid" : "pat-1387",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -3258,7 +3258,7 @@
 
 							}
  ],
-						"originid" : "pat-1325",
+						"originid" : "pat-1445",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4585,7 +4585,7 @@
 
 							}
  ],
-						"originid" : "pat-1327",
+						"originid" : "pat-1447",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4916,7 +4916,7 @@
 
 											}
  ],
-										"originid" : "pat-1337",
+										"originid" : "pat-1457",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -5236,7 +5236,7 @@
 
 							}
  ],
-						"originid" : "pat-1335",
+						"originid" : "pat-1455",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5556,7 +5556,7 @@
 
 							}
  ],
-						"originid" : "pat-1637",
+						"originid" : "pat-1789",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5996,7 +5996,7 @@
 
 							}
  ],
-						"originid" : "pat-1797",
+						"originid" : "pat-1949",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -6194,7 +6194,7 @@
 
 											}
  ],
-										"originid" : "pat-1801",
+										"originid" : "pat-1953",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -6672,7 +6672,7 @@
 
 											}
  ],
-										"originid" : "pat-1805",
+										"originid" : "pat-1957",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -6973,7 +6973,7 @@
 
 							}
  ],
-						"originid" : "pat-1799",
+						"originid" : "pat-1951",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -10082,7 +10082,7 @@
 
 			}
  ],
-		"originid" : "pat-1151",
+		"originid" : "pat-1253",
 		"dependency_cache" : [ 			{
 				"name" : "bach.+.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
@@ -10557,6 +10557,10 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "ears.cqt~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "ears.crop~.mxo",
 				"type" : "iLaX"
 			}
@@ -10574,6 +10578,10 @@
 			}
 , 			{
 				"name" : "ears.envelope~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.eq~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -10629,6 +10637,10 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "ears.istft~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "ears.join~.mxo",
 				"type" : "iLaX"
 			}
@@ -10661,6 +10673,10 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "ears.neq~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "ears.normalize~.mxo",
 				"type" : "iLaX"
 			}
@@ -10690,6 +10706,10 @@
 			}
 , 			{
 				"name" : "ears.paulstretch~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.peaks~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -10737,6 +10757,14 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "ears.split~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.stft~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "ears.timesquash~.mxo",
 				"type" : "iLaX"
 			}
@@ -10750,6 +10778,10 @@
 			}
 , 			{
 				"name" : "ears.tosamps~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.trans~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
