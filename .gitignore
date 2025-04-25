@@ -3,6 +3,7 @@
 **/Icon?
 !.gitignore
 !.github
+_*.bell
 # **/*.wav
 !tutorials/*
 mycorpus.llll

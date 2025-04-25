@@ -6,7 +6,7 @@
 - Deprecate `interpolate` or re-implement.
 - Add `integrate` and `integration` function (using bach.integrate)
 - Explore integration of flucoma — datasets are doable via `bach.llll2dict` and `bach.dict2llll`.
-- `ears`:
+- `ears` (*some of these could still be done through the bp.process patch*):
   - `stft`
   - `cqt`
   - `peaks`

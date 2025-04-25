@@ -18,11 +18,23 @@
 		"style" : "bellplay-gui-1",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-222",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 3934.0, 571.0, 118.0, 23.0 ],
+					"text" : "r #0resetnaming"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-219",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
+					"numinlets" : 2,
 					"numoutlets" : 0,
-					"patching_rect" : [ 3906.0, 571.0, 47.0, 23.0 ],
+					"patching_rect" : [ 3906.0, 612.333334565162659, 47.0, 23.0 ],
 					"text" : "bp.ears"
 				}
 
@@ -9395,6 +9407,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-56", 0 ],
 					"source" : [ "obj-221", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-219", 1 ],
+					"source" : [ "obj-222", 0 ]
 				}
 
 			}
