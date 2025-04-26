@@ -4099,7 +4099,7 @@ $addref(
     @arguments (
         $addarg(@name "frequency", @default 440, @type "int/float/llll", @description "frequency, either as a single number, envelope, or buffer.")
         $addarg(@name "duration", @default 50, @type "int/float", @description "buffer duration, in milliseconds")
-        $addarg(@name "phase", @default 0.5, @type "int/float", @description "initial phase, in the 0–1 range.")
+        $addarg(@name "phase", @default 0.25, @type "int/float", @description "initial phase, in the 0–1 range.")
     ),
     @output $addout(@description "synthesized buffer" @type "llll")
 );
