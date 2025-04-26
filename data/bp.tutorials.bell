@@ -1,10 +1,10 @@
 BP_DOCS_TUTORIALS = ['tutorials'] ['examples'];
 
 $addscript = (
-    $name,
-    $description,
-    $file,
-    $tags,
+    $name = null,
+    $description = null,
+    $file = null,
+    $tags = null,
     $example = 0 -> (
         $file = $file + ".bell";
         $type = ('tutorial' 'example'):($example + 1);
@@ -135,7 +135,6 @@ $addscript(
     @tags "sampling" "importaudio" "setkey" "getkey" "analyze" "detuning" "hanning" "concatenative+synthesis"
 );
 
-
 $addscript(
     @name "audio corpora"
     @file "corpus"
@@ -148,6 +147,13 @@ $addscript(
     @file "buildcorpus"
     @description "This tutorial provides a basic example of how to create your own audio corpora."
     @tags "corpora" "sqlite3" "databases"
+);
+
+$addscript(
+    @name "caching pre-computed data"
+    @file "caching"
+    @description "When dealing with computationally intense operations, it's often useful to pre-compute data to reduce wait time each time we run our scripts. This tutorial shows how to do just that via caching."
+    @tags "caching" "corpora" "llll"
 );
 
 $addscript(

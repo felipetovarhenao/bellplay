@@ -1,0 +1,107 @@
+#(
+    --------------------------------
+    CACHING DATA
+    --------------------------------
+    In bellplay~, computation-heavy operations such as building large corpora, 
+    analyzing lots of audio data, and more, can be take a very long time, thus 
+    making it more tedious to experiment with our scripts every time we run them.
+    In computing, one common solution to this problem is caching: storing data such 
+    that it can be served more quickly next time it's needed.
+    This tutorial shows how we can do something similar, by writing data in memory,
+    such that we can skip computationally expensive operations next time we run the script.
+    In this particular case, we manually generate a corpus or collection of analyzed buffers, and store
+    it for faster reuse next time the script is run.
+
+    You should notice a difference in computation time between the first time the script is run, and 
+    subsequent times.
+)#
+## path to cached buffers file
+$cachedbufferspath = './cached_buffers.llll';
+## check if cache file exists
+if exists($cachedbufferspath) == 0 then (
+    #(  
+        NOTE: This code block is only executed the very first time we run the script.
+        This also means that changes affecting this code block will be ignored afterwards, 
+        unless you delete `./cached_buffers.llll`
+    )#
+    ## initialize cached buffers as null
+    $cachedbuffers = null;
+    ## get list of media files of type 'audio'
+    $files = getmediafiles('audio');
+    ## iterate over each audio file
+    for $file in $files do (
+        ## import audio file into a buffer
+        $buf = importaudio($file);
+        ## analyze buffer to detect onsets
+        $buf = $buf.analyze(onsets());
+        ## extract detected onset markers
+        $markers = $buf.getkey('onsets');
+        ## calculate durations between onsets
+        $markdur = x2dx($markers $buf.getkey('duration'));
+        ## iterate over each onset marker and corresponding duration
+        for $m in $markers, $mdur in $markdur do (
+            ## create a segment buffer with specified offset and duration
+            $bufseg = $buf.setkey('offset', $m).setkey('duration', $mdur);
+            ## define analysis operation (pitch estimation)
+            $analysis = pitchmelodia();
+            ## analyze buffer segment for pitch information
+            $bufseg = $bufseg.analyze($analysis);
+            ## extract pitch value
+            $pitch = $bufseg.getkey('pitchmelodia');
+            ## if pitch is detected (> 0), add segment to cached buffers
+            if $pitch > 0 then ($cachedbuffers _= $bufseg) 
+        ) 
+    );
+    ## write cached buffers to disk for later reuse
+    write($cachedbuffers, $cachedbufferspath) 
+) else (
+    ## if cache file exists, read cached buffers from file
+    $cachedbuffers = read($cachedbufferspath);
+    #(
+        NOTE: In bellplay~, the "source" key of a buffer is **only valid within the script session** in which it was created. 
+        If we store a buffer to a file and later reload it, its "source" key will no longer point to a valid resource, 
+        because temporary buffers are not permanently saved on disk. 
+    
+        However, if we have access to the original file path (stored in the "file" key by `importaudio()`), 
+        we can recover a valid "source" by re-importing the original file. 
+        This lets us "refresh" the stale "source" values of stored buffers and reuse them correctly, without 
+        losing data such as pre-computed features (e.g., `pitchmelodia`).
+    )#
+    ## iterate over each buffer to refresh its source key
+    $cachedbuffers = for $buf in $cachedbuffers collect (
+        ## get original file path from buffer
+        $file = $buf.getkey('file');
+        ## re-import original audio file
+        $tmpbuf = importaudio($file);
+        ## extract refreshed source key
+        $source = $tmpbuf.getkey('source');
+        ## update buffer with refreshed source (while also keeping pre-computed features)
+        $buf = $buf.setkey('source', $source);
+        ## return updated buffer
+        $buf
+    ) 
+);
+## initialize transcription onset time
+$t = 0;
+## iterate over cached buffers sorted by pitchmelodia value
+for $b in $cachedbuffers.sortbykeys('pitchmelodia') do (
+    ## get confidence value of pitch estimation
+    $conf = $b.getkey('pitchmelodia_confidence');
+    ## get detected pitch
+    $pitch = $b.getkey('pitchmelodia');
+    ## calculate detune value relative to Cmaj7 chord (pitch classes: 0 4 7 11)
+    $detune = $pitch.pitchdiff(0 4 7 11);
+    ## if pitch estimation confidence is higher than 0.15, transcribe buffer
+    if $conf > 0.15 then (
+        $b.transcribe(
+            @onset $t
+            @pitchkey 'pitchmelodia' 
+            @pan rand() 
+            @detune $detune
+        );
+        ## increment onset time for next transcription
+        $t += 50
+    ) 
+);
+## render the transcription for playback
+render(@play 1)

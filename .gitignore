@@ -7,4 +7,5 @@ _*.bell
 # **/*.wav
 !tutorials/*
 mycorpus.llll
+cached_buffers.llll
 **/__pycache__
