@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -389,7 +389,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -708,7 +708,7 @@
 
 							}
  ],
-						"originid" : "pat-6663",
+						"originid" : "pat-6433",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -741,7 +741,6 @@
 					"patching_rect" : [ 40.0, 394.0, 145.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
-						"globalpatchername" : "",
 						"style" : "subtlelight"
 					}
 ,
@@ -1227,8 +1226,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 40.0, 281.0, 24.0, 24.0 ],
-					"svg" : ""
+					"patching_rect" : [ 40.0, 281.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -1522,7 +1520,6 @@
 							"parameter_mmax" : 6.0,
 							"parameter_mmin" : -70.0,
 							"parameter_modmode" : 3,
-							"parameter_osc_name" : "<default>",
 							"parameter_shortname" : "GAIN",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 4
@@ -2137,7 +2134,7 @@
 
 			}
  ],
-		"originid" : "pat-6655",
+		"originid" : "pat-6425",
 		"parameters" : 		{
 			"obj-115" : [ "live.gain~", "GAIN", 0 ],
 			"parameterbanks" : 			{
@@ -2361,6 +2358,10 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bach.thin.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "bach.trans.mxo",
 				"type" : "iLaX"
 			}
@@ -2405,6 +2406,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.docs.config.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bp.docs.credits.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
@@ -2434,6 +2442,13 @@
 			}
 , 			{
 				"name" : "bp.docs.window.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.ears.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -2685,6 +2700,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.utils.truncatetext.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "ccm_logo.png",
 				"bootpath" : "~/Documents/bellplay/media",
 				"patcherrelativepath" : "../media",
@@ -2712,6 +2734,10 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "ears.cqt~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "ears.crop~.mxo",
 				"type" : "iLaX"
 			}
@@ -2729,6 +2755,10 @@
 			}
 , 			{
 				"name" : "ears.envelope~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.eq~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -2756,7 +2786,19 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "ears.fromsamps~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "ears.gain~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.hoa.decode~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.hoa.encode~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -2769,6 +2811,10 @@
 			}
 , 			{
 				"name" : "ears.in~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.istft~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -2804,6 +2850,10 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "ears.neq~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "ears.normalize~.mxo",
 				"type" : "iLaX"
 			}
@@ -2833,6 +2883,10 @@
 			}
 , 			{
 				"name" : "ears.paulstretch~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.peaks~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -2880,6 +2934,14 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "ears.split~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.stft~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "ears.timesquash~.mxo",
 				"type" : "iLaX"
 			}
@@ -2889,6 +2951,14 @@
 			}
 , 			{
 				"name" : "ears.todiffs~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.tosamps~.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "ears.trans~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
