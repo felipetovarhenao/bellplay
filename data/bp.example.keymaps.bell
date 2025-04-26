@@ -49,7 +49,7 @@ if exists($keymappath) == 0 then (
                 ## retrieve detected pitch
                 $pitch = $bufseg.getkey('pitchmelodia');
                 ## quantize pitch to nearest eighth-tone step and cast to integer
-                $pitch = int(approx($pitch @tonedivision 8));
+                $pitch = int(approx($pitch @tonedivision 2));
                 ## if pitch not already in keymap, add empty mapping
                 if $keymap.$pitch == null then ($keymap _= [$pitch]);
                 ## transcribe segment
