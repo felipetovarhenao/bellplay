@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3828534033,
+	"modificationdate" : 3828541410,
 	"viewrect" : [ 25.0, 105.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -548,6 +548,11 @@
 			}
 ,
 			"bp.tutorial.caching.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"bp.example.keymaps.bell" : 			{
 				"kind" : "textfile",
 				"local" : 1
 			}

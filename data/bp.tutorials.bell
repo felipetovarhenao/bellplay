@@ -174,14 +174,14 @@ $addscript(
     @name "importing MIDI"
     @file "importingmidi"
     @description "This tutorial shows how to load MIDI files into our scripts, and use MIDI events to generate audio."
-    @tags "synthesis" "cycle" "MIDI"
+    @tags "synthesis" "cycle" "midi"
 );
 
 $addscript(
     @name "feature-based sampling"
     @file "kdtree"
     @description "This tutorial shows how to build k-dimensional trees to efficiently perform feature-based search on buffers. In this case, we use it to find the best buffer match for each pitch value in a MIDI file."
-    @tags "sampling" "MIDI" "machine+learning" "kdtrees"
+    @tags "sampling" "midi" "machine+learning" "kdtrees"
 );
 
 $addscript(
@@ -254,6 +254,14 @@ $addscript(
     @file "temporalalignment"
     @description "This script demonstrates envelope-based alignment of audio samples by synchronizing their peak amplitudes. It generates synthetic sounds, analyzes their peak times, aligns them to a common reference, and renders the result with reverb and normalization for a cohesive output."
     @tags "envelope" "analysis" "sync"
+    @example 1
+);
+
+$addscript(
+    @name "keymap generation"
+    @file "keymaps"
+    @description "This script demonstrates how bellplay can be used to automate the generation of custom keymaps to be used with ezsampler."
+    @tags "sampling" "midi" "analysis"
     @example 1
 );
 

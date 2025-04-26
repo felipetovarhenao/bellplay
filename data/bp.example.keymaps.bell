@@ -1,0 +1,104 @@
+#(
+    --------------------------------
+    GENERATING KEYMAPS
+    --------------------------------
+    This script automatically generates a custom keymap given list of audio file paths:
+    - We import the audio files, detect onsets, and slice them into segments.
+    - Then analyze each segment’s pitch and loudness, keeping only relevant segments (e.g., pitch, non-silent).
+    - We quantize pitches to nearest 1/8th tone, export the valid segments as samples, and map them to their pitches.
+    - We save the final keymap to disk for reuse.
+
+    Once the keymap is ready, the script loads a MIDI file and, using an ezsampler,
+    triggers the appropriate audio samples based on the pitch, duration, and velocity of each MIDI event.
+    The final result is rendered as audio.
+)#
+## path to custom keymap file
+$keymappath = './custom_keymap.txt';
+## initialize keymap as null
+$keymap = null;
+## check if keymap file exists
+if exists($keymappath) == 0 then (
+    ## retrieve list of audio media files
+    $files = getmediafiles('audio');
+    ## initialize sample count
+    $count = 1;
+    ## iterate over each audio file
+    for $file in $files do (
+        ## import audio file into a buffer
+        $b = importaudio($file);
+        ## analyze buffer to detect onsets with specified sensitivity
+        $b = $b.analyze(onsets(@alpha 0.2 @silencethreshold 0.05));
+        ## extract onset markers
+        $markers = $b.getkey('onsets');
+        ## compute durations between onsets
+        $mdurs = x2dx($markers $b.getkey('duration'));
+        ## define analysis operations (pitch estimation and loudness)
+        $analysis = pitchmelodia() larm();
+        ## iterate over onset markers and corresponding durations
+        for $offset in $markers, $dur in $mdurs do (
+            ## create buffer segment for each detected onset
+            $bufseg = $b.setkey('offset', $offset).setkey('duration', $dur);
+            ## analyze buffer segment for pitch and loudness
+            $bufseg = $bufseg.analyze($analysis);
+            ## retrieve pitch confidence value
+            $pitchconf = $bufseg.getkey('pitchmelodia_confidence');
+            ## retrieve loudness (larm) value
+            $larm = $bufseg.getkey('larm');
+            ## filter segments based on pitch confidence and loudness thresholds
+            if $pitchconf > 0.25 && $larm > 0.005 then (
+                ## retrieve detected pitch
+                $pitch = $bufseg.getkey('pitchmelodia');
+                ## quantize pitch to nearest eighth-tone step and cast to integer
+                $pitch = int(approx($pitch @tonedivision 8));
+                ## if pitch not already in keymap, add empty mapping
+                if $keymap.$pitch == null then ($keymap _= [$pitch]);
+                ## transcribe segment
+                $bufseg.transcribe();
+                ## render current segment for export
+                render(@reset 1 @numchannels 1);
+                ## define path for exported sample
+                $path = './sample-' + tosymbol($count) + '.wav';
+                ## export buffer segment to file
+                export($path);
+                ## increment sample count
+                $count += 1;
+                ## map pitch to exported sample path
+                $keymap.$pitch _= $path
+            ) 
+        );
+        ## write updated keymap to file
+        write($keymap, $keymappath) 
+    ) 
+) else (
+    ## if keymap file exists, read it into memory
+    $keymap = read($keymappath) 
+);
+## import MIDI file containing note events
+$events = importmidi('bach.mid');
+## iterate over first 64 MIDI events
+for $e in $events.left(64) do (
+    ## retrieve onset time of MIDI event
+    $onset = $e.getkey('onset');
+    ## retrieve pitch of MIDI event
+    $pitch = $e.getkey('pitch');
+    ## retrieve velocity of MIDI event
+    $velocity = $e.getkey('velocity');
+    ## retrieve duration of MIDI event
+    $duration = $e.getkey('duration');
+    ## use ezsampler to trigger appropriate sample based on pitch
+    ezsampler(
+        @pitch $pitch
+        @duration $duration
+        @velocity $velocity
+        @keymap $keymap
+    ).transcribe(
+        ## place sample at adjusted onset time
+        @onset $onset * 0.75
+        ## randomize panning position
+        @pan rand() 
+        ## apply slight gain fadeout
+        @gain [0 1 0] [1 0 -0.125] 
+    ) 
+);
+## render full transcription for playback
+render(@play 1)
