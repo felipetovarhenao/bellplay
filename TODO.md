@@ -11,6 +11,5 @@
   - `trans`
 - `ears` processing functions:
   - `iter-collect` per sample processing.
-  - `segment` buffer function with lazy vs real argument.
   - `waveset` functions.
 - `mc.abl.*` processing
