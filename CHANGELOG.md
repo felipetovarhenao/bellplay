@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - New functions:
+  - `splitbuf`: Utility to segment a buffer either by segment duration, number of segments, or split points.
   - `argsort`: Returns sorted indices of a llll.
   - `samps2buf` and `buf2samps` conversion functions.
   - `integrate`: BPF integration function.

@@ -6260,11 +6260,17 @@ $addref(
 ## ------------------------------------------------------------
 
 samps2buf = (
-    $llll -> (
+    $llll,
+    $sr = 0 -> (
         if depth($llll) != 2 then (
             printerror("samps2buf: @llll must have a depth of 2")
         ) else (
-            BP_DISPATCH_FUNC('ears', ['fromsamps' $llll]);
+            BP_DISPATCH_FUNC('ears', 
+                ['fromsamps' 
+                    ['sr' $sr]
+                    ['source' $llll]
+                ]
+            );
             $source = BP_TMP_EARS_OUTPUT;
             BP_NEWBUFF_FUNC($source).process(bpthru())
         )
@@ -6277,6 +6283,7 @@ $addref(
     @category BP_REF_LABEL_UTILS
     @arguments (
         $addarg(@name "llll" @type "llll" @description "audio samples to convert to a buffer.")
+        $addarg(@name "sr" @type "int" @default 0 @description "sampling rate. use 0 for default sampling rate.")
     )
     @output $addout(@description "buffer" @type "llll")
 );
@@ -6655,6 +6662,67 @@ $addref(
         )
     ),
     @output $addout(@description "Integrated breakpoint function." @type "llll")
+);
+
+## ------------------------------------------------------------
+
+splitbuf = (
+    $buffer, $split = 500, $mode = 0, $overlap = 1, $partials = 1 -> (
+        $source = $buffer.getkey('source');
+        if $source == null then printerror('splitbuf: invalid buffer:' $buffer);
+        if $split == null then printerror('splitbuf: @split cannot be null.');
+        $overlap = max($overlap, 1);
+        $duration = $buffer.getkey('duration');
+        $segs = null;
+        if $mode == 0 || $mode == 1 then (
+            if $mode == 0 then (
+                $segdur = $split;
+                $hopsize = $segdur / $overlap;
+                $numsegs = floor($duration / $hopsize)
+            ) else (
+                $numsegs = $split;
+                $hopsize = $duration / $numsegs;
+                $segdur = $hopsize * $overlap
+            );
+            $buffer = $buffer.setkey('duration', $segdur);
+            for $i in 0...($numsegs - 1) do (
+                $offset = $i * $hopsize;
+                $segs _= $buffer.setkey('offset', $offset) 
+            );
+            $offset += $hopsize;
+            if $partials == 1 && $offset < $duration then (
+                $taildur = $duration - $offset;
+                $segs _= $buffer.setkey('offset', $offset).setkey('duration', $taildur) 
+            ) 
+        ) else if $mode == 2 then (
+            $offsets = sort($split);
+            $segdurs = x2dx($offsets $duration);
+            for $offset in $offsets, $sdur in $segdurs do (
+                $segs _= $buffer.setkey('offset', $offset).setkey('duration', $sdur) 
+            ) 
+        ) else (printerror('splitbuf: invalid mode:' $mode));
+        $segs
+    ) 
+);
+
+$addref(
+    @name "splitbuf"
+    @description "Splits a buffer into multiple segments. Based on the split mode, it segments the buffer based on segment duration, number of segment, or split points."
+    @category BP_REF_LABEL_UTILS
+    @arguments (
+        $addarg(@name "buffer" @type "llll" @description "buffer to segment.")
+        $addarg(@name "split" @default 100 @type "int/float/list" @description "split value, based on split mode.")
+        $addarg(@name "mode" @default 0 @type "int" @description "segmentation mode" @options 
+            $addopt(@value 0 @description "segment duration.")
+            $addopt(@value 1 @description "number of segments.")
+            $addopt(@value 2 @description "split points.")
+        )
+        $addarg(@name "overlap" @default 1 @type "int/float" @description "overlap factor. Ignored if @mode is 2.")
+        $addarg(@name "partials" @default 1 @type "int" @description "when mode < 2, always include trailing buffer." @options 
+            BP_REF_SWITCH_OPTIONS
+        )
+    ),
+    @output $addout(@description "list of segmented buffers." @type "llll")
 );
 
 ## ------------------------------------------------------------

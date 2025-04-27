@@ -141,7 +141,7 @@
 
 							}
  ],
-						"originid" : "pat-338"
+						"originid" : "pat-2559"
 					}
 ,
 					"patching_rect" : [ 935.0, 140.0, 65.0, 23.0 ],
@@ -253,7 +253,7 @@
 
 							}
  ],
-						"originid" : "pat-340"
+						"originid" : "pat-2561"
 					}
 ,
 					"patching_rect" : [ 832.0, 140.0, 47.0, 23.0 ],
@@ -279,17 +279,49 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 59.0, 119.0, 130.0, 179.0 ],
+						"rect" : [ 355.0, 422.0, 511.0, 255.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"style" : "bellplay-gui",
 						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "newobj",
+									"numinlets" : 2,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "" ],
+									"patching_rect" : [ 15.0, 73.0, 193.0, 23.0 ],
+									"saved_object_attributes" : 									{
+										"versionnumber" : 80300
+									}
+,
+									"text" : "bach.iter @maxdepth 1 @unwrap 1"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 3,
+									"outlettype" : [ "", "", "bang" ],
+									"patching_rect" : [ 15.0, 114.0, 170.0, 23.0 ],
+									"saved_object_attributes" : 									{
+										"versionnumber" : 80300
+									}
+,
+									"text" : "bach.keys source null @out nm"
+								}
+
+							}
+, 							{
 								"box" : 								{
 									"id" : "obj-5",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 15.0, 62.0, 98.0, 23.0 ],
+									"patching_rect" : [ 15.0, 178.0, 98.0, 23.0 ],
 									"text" : "ears.fromsamps~"
 								}
 
@@ -315,7 +347,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 15.0, 102.0, 30.0, 30.0 ]
+									"patching_rect" : [ 15.0, 218.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -323,6 +355,27 @@
 						"lines" : [ 							{
 								"patchline" : 								{
 									"destination" : [ "obj-5", 0 ],
+									"source" : [ "obj-1", 1 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-5", 0 ],
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-2", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-2", 0 ],
 									"source" : [ "obj-38", 0 ]
 								}
 
@@ -335,7 +388,7 @@
 
 							}
  ],
-						"originid" : "pat-342",
+						"originid" : "pat-2563",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -453,7 +506,7 @@
 
 							}
  ],
-						"originid" : "pat-344"
+						"originid" : "pat-2565"
 					}
 ,
 					"patching_rect" : [ 626.0, 140.0, 45.0, 23.0 ],
@@ -565,7 +618,7 @@
 
 							}
  ],
-						"originid" : "pat-346",
+						"originid" : "pat-2567",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -713,7 +766,7 @@
 
 							}
  ],
-						"originid" : "pat-348"
+						"originid" : "pat-2569"
 					}
 ,
 					"patching_rect" : [ 523.0, 140.0, 35.0, 23.0 ],
@@ -825,7 +878,7 @@
 
 							}
  ],
-						"originid" : "pat-350"
+						"originid" : "pat-2571"
 					}
 ,
 					"patching_rect" : [ 420.0, 140.0, 39.0, 23.0 ],
@@ -937,7 +990,7 @@
 
 							}
  ],
-						"originid" : "pat-352",
+						"originid" : "pat-2573",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1115,7 +1168,7 @@
 
 							}
  ],
-						"originid" : "pat-354",
+						"originid" : "pat-2575",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1367,7 +1420,7 @@
 
 			}
  ],
-		"originid" : "pat-336",
+		"originid" : "pat-2557",
 		"dependency_cache" : [ 			{
 				"name" : "bach.eval.mxo",
 				"type" : "iLaX"
