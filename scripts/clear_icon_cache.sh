@@ -20,4 +20,6 @@ echo "Restarting Dock and Finder..."
 killall Dock
 killall Finder
 
+touch /Applications/bellplay~.app
+
 echo "Done."
