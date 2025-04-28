@@ -6368,7 +6368,7 @@ hoadecode = (
 
 $addref(
     @name "hoaencode",
-    @description "Pans the input buffer and encodes it as a higher-order ambisonic buffer",
+    @description "Decodes higher-order ambisonic buffers for a set of loudspeakers or for binaural listening",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         $addarg(@name "azimuth" @default 0.78 2.35 @type "int/float/llll" @description "azimuth or X coordinate, for each loudspeaker.")
