@@ -6043,7 +6043,7 @@ $addref(
 
 ## ------------------------------------------------------------
 
-topartialtracks = (
+buf2ptracks = (
     $buffer,
     $winstartfromzero = 0,
     $framesize = 2048,
@@ -6097,8 +6097,57 @@ topartialtracks = (
     )
 );
 
+topartialtracks = (
+    $buffer,
+    $winstartfromzero = 0,
+    $framesize = 2048,
+    $hopsize = 512,
+    $freqdevoffset = 20,
+    $freqdevslope = 0.01,
+    $magnitudethreshold = 0.0002,
+    $maxfrequency = 22050,
+    $minfrequency = 0,
+    $maxpeaks = 100,
+    $maxnsines = 100,
+    $numframes = 'auto',
+    $orderby = 'frequency',
+    $overlap = 4,
+    $wintype = 'hann',
+    $ampunit = 0,
+    $antimeunit = 1,
+    $angleunit = 0,
+    $frequnit = 0,
+    $timeunit = 0,
+    $downmix = 1 -> (
+        printerror('topartialtracks: this function will be deprecated. Use instead buf2ptracks.' @stop 0);
+        buf2ptracks(
+            @buffer $buffer
+            @winstartfromzero $winstartfromzero
+            @framesize $framesize
+            @hopsize $hopsize
+            @freqdevoffset $freqdevoffset
+            @freqdevslope $freqdevslope
+            @magnitudethreshold $magnitudethreshold
+            @maxfrequency $maxfrequency
+            @minfrequency $minfrequency
+            @maxpeaks $maxpeaks
+            @maxnsines $maxnsines
+            @numframes $numframes
+            @orderby $orderby
+            @overlap $overlap
+            @wintype $wintype
+            @ampunit $ampunit
+            @antimeunit $antimeunit
+            @angleunit $angleunit
+            @frequnit $frequnit
+            @timeunit $timeunit
+            @downmix $downmix
+        )
+    )
+);
+
 $addref(
-    @name "topartialtracks",
+    @name "buf2ptracks",
     @description "Converts a buffer into a partial track analysis.",
     @category BP_REF_LABEL_ANALYSIS,
     @arguments (
@@ -6153,7 +6202,7 @@ $addref(
 
 ## ------------------------------------------------------------
 
-frompartialtracks = (
+ptracks2buf = (
     $frequencies,
     $magnitudes,
     $phases,
@@ -6185,8 +6234,33 @@ frompartialtracks = (
     )
 );
 
+frompartialtracks = (
+    $frequencies,
+    $magnitudes,
+    $phases,
+    $framesize = 2048,
+    $hopsize = 512,
+    $ampunit = 0,
+    $antimeunit = 1,
+    $angleunit = 0,
+    $frequnit = 0 -> (
+        printerror('frompartialtracks: this function will be deprecated. Use instead ptracks2buf.' @stop 0);
+        ptracks2buf(
+            @frequencies $frequencies
+            @magnitudes $magnitudes
+            @phases $phases
+            @framesize $framesize
+            @hopsize $hopsize
+            @ampunit $ampunit
+            @antimeunit $antimeunit
+            @angleunit $angleunit
+            @frequnit $frequnit
+        )
+    )
+);
+
 $addref(
-    @name "frompartialtracks",
+    @name "ptracks2buf",
     @description "Converts a partial track analysis into a buffer.",
     @category BP_REF_LABEL_GEN,
     @arguments (

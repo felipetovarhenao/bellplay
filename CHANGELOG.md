@@ -34,6 +34,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - **docs**: general clean up/improvements—includes missing arguments/default values.
 - `nearest`: Add `@mode` argument for returning address.
+- Renamed functions with upcoming deprecation warnings:
+  - `topartialtracks` to `buf2ptracks`
+  - `frompartialtracks` to `ptracks2buf`.
 - development:
   - `BP_ON_BEFORE_FUNC` and `BP_ON_AFTER_FUNC` added, to better manage pre and post runtime logic.
   - Resolved patcher theme issues from Max 9 upgrade.
