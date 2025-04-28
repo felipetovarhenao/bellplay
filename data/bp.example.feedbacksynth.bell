@@ -1,3 +1,13 @@
+#(
+    --------------------------------
+    FEEDBACK SYNTHESIS
+    --------------------------------
+    This code demonstrates a feedback-based synthesis technique, where audio signals 
+    are routed back into their own processing chain to create rich, evolving tones. 
+    It showcases setting up feedback paths, controlling stability, and shaping the 
+    resulting sound through modulation and filtering. The focus is on illustrating 
+    how feedback loops can be used creatively for sound design.
+)#
 ## Define the total duration of the synthesized sound in milliseconds
 $duration = 25000;
 ## Generate a random base frequency for the carrier oscillator

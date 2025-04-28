@@ -1,3 +1,14 @@
+#(
+    --------------------------------
+    TEMPORAL QUANTIZATION
+    --------------------------------
+    This code demonstrates the concept of temporal quantization, where the timing 
+    of events is adjusted to align with a rhythmic grid. It focuses on analyzing 
+    event timings, computing quantization targets, and modifying the original 
+    timing to achieve structured rhythmic patterns. The emphasis is on illustrating 
+    how timing corrections and creative timing manipulations can be applied to audio 
+    or control data.
+)#
 ## Import an audio buffer from the file 'drums.wav'
 $b = importaudio('drums.wav');
 ## Perform onset detection analysis on the buffer

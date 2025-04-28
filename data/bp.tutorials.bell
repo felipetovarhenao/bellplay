@@ -218,6 +218,14 @@ $addscript(
 );
 
 $addscript(
+    @name "waveshaping buffers"
+    @file "waveshaping"
+    @description "A demonstration of waveshaping synthesis using buffers"
+    @tags "waveshaping"
+    @example 1
+);
+
+$addscript(
     @name "glide chorale"
     @file "gliss"
     @description "This example demonstrates pitch manipulation techniques. It takes an audio buffer, retunes it to a predefined set of pitch classes, and processes it through multiple voices, each with randomized pitch glissando."

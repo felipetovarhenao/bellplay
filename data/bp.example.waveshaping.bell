@@ -1,4 +1,7 @@
 #( 
+    --------------------------------
+    WAVESHAPING BUFFERS
+    --------------------------------
     This example demonstrates how to generate and apply a random waveshaping function
     using breakpoint data in bellplay~. A custom breakpoint function (BPF) is built from 
     randomly distributed x-values, signed exponential y-values, and randomly chosen slope 

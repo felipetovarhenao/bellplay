@@ -1,3 +1,14 @@
+#(
+    --------------------------------
+    AUDIO RESYNTHESIS
+    --------------------------------
+    This code demonstrates the technique of audio resynthesis, where the analysis 
+    of an original sound is used to guide the creation of a reconstructed or 
+    transformed version. It focuses on extracting key features, mapping them onto 
+    synthesized parameters, and rebuilding the sound with flexible control over 
+    timbre and structure. The emphasis is on illustrating how resynthesis enables 
+    creative sound manipulation.
+)#
 ## Import an audio buffer from the file 'poem.wav'
 $b = importaudio('poem.wav');
 ## Transcribe the original audio file for reference
