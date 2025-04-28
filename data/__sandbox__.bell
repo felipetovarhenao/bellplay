@@ -1,0 +1,134 @@
+#(
+Schema for `BP_SANDBOX`:
+    BP_SANDBOX
+    |
+    |-- 'objects' : List of Objects
+    |   |
+    |   |-- Object 1 : ['name' <symbol>] ['id' <symbol>] ['arguments' <llll>] ['attributes' <llll>]
+    |   |-- Object 2 : ['name' <symbol>] ['id' <symbol>] ['arguments' <llll>] ['attributes' <llll>]
+    |   |-- ...
+    |
+    |-- 'connections' : List of Connections
+        |
+        |-- Connection 1 : [ ['id' <from_object_id>] ['outlet' <int>] ] [ ['id' <to_object_id>] ['inlet' <int>] ]
+        |-- Connection 2 : [ ['id' <from_object_id>] ['outlet' <int>] ] [ ['id' <to_object_id>] ['inlet' <int>] ]
+        |-- ...
+    ```
+
+    **Quick Notes:**
+    - Each **Object** includes its **name**, **id**, optional **arguments**, and optional **attributes**.
+    - Each **Connection** links two object IDs, specifying which **outlet** connects to which **inlet**.
+
+    ---
+
+)#
+## Initialize the BP_SANDBOX structure with empty 'objects' and 'connections' lists
+BP_SANDBOX = ['objects'] ['connections'];
+## Define a function to generate a new unique ID based on the number of existing objects
+BP_FN_SANDBOX_NEWID = (
+    -> (
+        $i = length(BP_SANDBOX.'objects');
+        if $i == 0 then '0' else (
+            $sgn = sgn($i);
+            $i = abs($i);
+            $digits = null;
+            $digitmap = `0 `1 `2 `3 `4 `5 `6 `7 `8 `9 ;
+            while $i > 0 do (
+                ## Prepend the corresponding digit symbol to the digits list
+                $digits _= $digitmap:(($i % 10) + 1);
+                $i = floor($i / 10) 
+            );
+            if $sgn == -1 then $digits _= '-';
+            ## Reverse the digits and concatenate them into a symbol
+            rev($digits).reduce(#+) 
+        ) 
+    ) 
+);
+## Define a function to create and store a new object in the sandbox
+BP_FN_SANDBOX_NEWOBJ = (
+    $name = null, $arguments = null, $attributes = null -> (
+        ## Create a unique ID for the object
+        $id = $name + '-' + BP_FN_SANDBOX_NEWID();
+        ## Define the object with its name, ID, arguments, and attributes
+        $obj = (
+            [
+                [ 'name' $name] [ 'id' $id] [ 'arguments' $arguments] [ 'attributes' $attributes] 
+            ] 
+        );
+        ## Append the object to the 'objects' list in BP_SANDBOX
+        BP_SANDBOX.'objects' _= $obj;
+        ## Return the object's ID
+        $id
+    ) 
+);
+## Define a function to create and store a new connection between two objects
+BP_FN_SANDBOX_CONNECT = (
+    $from = null, $to = null, $outlet = 0, $inlet = 0 -> (
+        ## Store a connection with source and destination object info
+        BP_SANDBOX.'connections' _= [
+            [
+                [ 'id' $from] [ 'outlet' $outlet] 
+            ] [
+                [ 'id' $to] [ 'inlet' $inlet] 
+            ] 
+        ];
+        ## Return null (no meaningful return value)
+        null
+    ) 
+);
+## Define a function to send a message to a specific object
+BP_FN_SANDBOX_MSG = (
+    $to, $message -> (
+        ## Send a script 'send' command to the object
+        $to &&& $message &&& ($do1 = [
+            'script' 'send' $to $message
+        ]) 
+    ) 
+);
+## Define a function to generate and script all sandbox objects and connections
+BP_FN_SANDBOX_GEN = (
+    -> (
+        $objects = BP_SANDBOX.'objects';
+        $connections = BP_SANDBOX.'connections';
+        ## Generate scripting commands for each object
+        $objects = for $obj $i in $objects with @unwrap 1 collect (
+            $name = $obj.'name';
+            $id = $obj.'id';
+            $arguments = $obj.'arguments';
+            ## Convert attributes to a flattened list of attribute assignments
+            $attrs = for $attr in $obj.'attributes' with @unwrap 1 collect '@' + $attr:1 $attr.right(1);
+            $pos = 50 ($i - 1) * 30 + 200;
+            [
+                'script' 'newdefault' $id $pos $name $arguments $attrs
+            ] 
+        );
+        ## Generate scripting commands for each connection
+        $connections = for $conn in $connections with @unwrap 1 collect (
+            $from = $conn::1;
+            $to = $conn::2;
+            $fromid = $from.'id';
+            $outlet = $from.'outlet';
+            $toid = $to.'id';
+            $inlet = $to.'inlet';
+            ['script' 'connect' $fromid $outlet $toid $inlet] 
+        );
+        ## Send all object and connection creation commands
+        $do1 = $objects $connections;
+        null
+    ) 
+);
+## Define a function to clear the sandbox by deleting all objects
+BP_FN_SANDBOX_CLEAR = (
+    -> (
+        $objects = BP_SANDBOX.'objects';
+        ## Delete each object by sending a 'delete' script command
+        for $obj in $objects with @unwrap 1 do (
+            $id = $obj.'id';
+            $do1 = ['script' 'delete' $id] 
+        );
+        ## Re-initialize the sandbox as empty
+        BP_SANDBOX = ['objects'] ['connections'];
+        null
+    ) 
+);
+null

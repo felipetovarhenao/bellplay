@@ -4,6 +4,7 @@
 !.gitignore
 !.github
 _*.bell
+!__sandbox__.bell
 # **/*.wav
 !tutorials/*
 mycorpus.llll

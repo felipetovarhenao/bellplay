@@ -28,7 +28,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - Enable/disable error alarm.
   - Set default user imports for building third-party libraries.
   - Set default editor and default tutorials directory.
-- dev: New `bp.utils.truncatetext.maxpat` abstraction.
+- dev:
+  - New `bp.utils.truncatetext.maxpat` abstraction.
+  - New _sandbox_ API (see `bp.sandbox` and `__sandbox__.bell`) for procedural patching in _bell_—crucial for dynamic object instancing.
+- Hidden features:
+  - Beta version of `kdtreebuild` and `kdtreequery`.
 
 ### Changed
 

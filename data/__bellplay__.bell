@@ -90,6 +90,7 @@ BP_ON_LAUNCH_FUNC = (
 );
 BP_ON_BEFORE_FUNC = (
     -> (
+        BP_FN_SANDBOX_CLEAR();
         setseed(1); 
         scoreconfig();
         BP_URN = null; 
@@ -6797,6 +6798,88 @@ $addref(
         )
     ),
     @output $addout(@description "list of segmented buffers." @type "llll")
+);
+
+## ------------------------------------------------------------
+
+kdtreebuild = (
+    $data, $mode = 0 -> (
+        if $data == null then (
+            ## 
+            ## 
+            printerror('kdtreebuild: you must provide at least one data point') 
+        ) else if depth($data) != 2 then (
+            ## 
+            ## 
+            printerror('kdtreebuild: @data must be a matrix or list of lists with depth of 2') 
+        ) else (
+            $numpoints = length($data);
+            $cols = trans($data);
+            $dims = length($cols);
+            $stop = 0;
+            $stats = trans(
+                for $col in $cols as $stop == 0 with @unwrap 1 collect (
+                    $colsize = length($col);
+                    if $colsize != $numpoints then (
+                        $stop = 1;
+                        null
+                    ) else (
+                        if $mode == 0 then (
+                            $minmax = minmax($col):[1 3];
+                            $min = $minmax:1;
+                            $scale = $minmax:2 - $min;
+                            [$min $scale] 
+                        ) else (
+                            $mean = reduce($col, #+) / $colsize;
+                            $stdev = reduce(($col - $mean) ** 2, #+) / $colsize;
+                            [$mean $stdev] 
+                        ) 
+                    ) 
+                ) 
+            );
+            if $stop == 1 then printerror('kdtreebuild: all elements in @data must have the same length.') else (
+                $bias = $stats:1;
+                $spread = $stats:2;
+                $data = float(($data - $bias) / $spread);
+                $tree = BP_FN_SANDBOX_NEWOBJ('ml.kdtree');
+                BP_FN_SANDBOX_CONNECT(
+                    $tree, 'bpsandboxout' @outlet 1
+                );
+                BP_FN_SANDBOX_GEN();
+                for $point $index in $data with @unwrap 1 do BP_FN_SANDBOX_MSG(
+                    @to $tree @message 'store' $index $point
+                );
+                BP_FN_SANDBOX_MSG(
+                    @to $tree @message 'sort' 
+                );
+                [
+                    ['ref' $tree] ['dims' $dims] ['bias' $bias::1] ['spread' $spread::1] 
+                ] 
+            ) 
+        ) 
+    ) 
+);
+
+## ------------------------------------------------------------
+
+kdtreequery = (
+    $tree, $point -> (
+        BP_SANDBOX_OUT = null;
+        $tree ||| $point ||| printerror('kdtreequery: you must provide both @tree and @point');
+        $treedims = getkey($tree, 'dims');
+        if $treedims == null then printerror('invalid tree': $tree) else (
+            $point = flat($point);
+            $pointdims = length($point);
+            if $treedims != $pointdims then printerror('kdtreequery: @point must be of length' $treedims) else (
+                $ref = getkey($tree, 'ref');
+                $bias = getkey($tree, 'bias');
+                $spread = getkey($tree, 'spread');
+                $point = float(($point - $bias) / $spread);
+                BP_FN_SANDBOX_MSG(@to $ref @message $point) 
+            ) 
+        );
+        BP_SANDBOX_OUT
+    ) 
 );
 
 ## ------------------------------------------------------------

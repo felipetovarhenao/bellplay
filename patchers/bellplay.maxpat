@@ -24,6 +24,17 @@
 		"title" : "bellplay~ | algorithmic audio in bell",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-73",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 1052.0, 394.0, 69.0, 23.0 ],
+					"text" : "bp.sandbox"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-70",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -708,7 +719,7 @@
 
 							}
  ],
-						"originid" : "pat-1257",
+						"originid" : "pat-16",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2151,7 +2162,7 @@
 
 			}
  ],
-		"originid" : "pat-1249",
+		"originid" : "pat-8",
 		"parameters" : 		{
 			"obj-115" : [ "live.gain~", "GAIN", 0 ],
 			"parameterbanks" : 			{
@@ -2648,6 +2659,13 @@
 			}
 , 			{
 				"name" : "bp.sampler.poly~.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.sandbox.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
