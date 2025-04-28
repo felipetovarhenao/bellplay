@@ -6367,7 +6367,7 @@ hoadecode = (
 );
 
 $addref(
-    @name "hoaencode",
+    @name "hoadecode",
     @description "Decodes higher-order ambisonic buffers for a set of loudspeakers or for binaural listening",
     @category BP_REF_LABEL_UTILS,
     @arguments (
