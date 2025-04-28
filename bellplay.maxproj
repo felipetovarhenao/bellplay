@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3828705191,
+	"modificationdate" : 3828720729,
 	"viewrect" : [ 25.0, 105.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -563,6 +563,11 @@
 			}
 ,
 			"bp.example.waveshaping.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"__sandbox__.bell" : 			{
 				"kind" : "textfile",
 				"local" : 1
 			}
