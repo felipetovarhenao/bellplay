@@ -6302,9 +6302,9 @@ hoaencode = (
         [
             [ "fx" "hoaencode" ]
             [ "params"
-                [ 'azimuth' $azimuth ]
-                [ 'elevation' $elevation ]
-                [ 'distance' $distance ]
+                [ 'azimuth' if depth($azimuth) > 1 || length($azimuth) > 1 then [ bpf($azimuth) ] else $azimuth ]
+                [ 'elevation' if depth($elevation) > 1 || length($elevation) > 1 then [ bpf($elevation) ] else $elevation ]
+                [ 'distance' if depth($distance) > 1 || length($distance) > 1 then [ bpf($distance) ] else $distance ]
                 [ 'order' $order ]
                 [ 'angleunit' $angleunit ]
                 [ 'envtimeunit' $envtimeunit ]
