@@ -18,6 +18,36 @@
 		"style" : "bellplay-gui-1",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-214",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 2444.0, 243.5, 124.0, 23.0 ],
+					"text" : "bach.filternull @out m"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"code" : "1 - BP_CONFIG.'mutealert' ",
+					"id" : "obj-223",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 2444.0, 204.0, 371.0, 23.0 ],
+					"saved_object_attributes" : 					{
+						"embed" : 1,
+						"versionnumber" : 80300
+					}
+,
+					"text" : "bach.eval 1 - BP_CONFIG.'mutealert' @triggers BP_CONFIG @auto 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-222",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -36,18 +66,6 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 3906.0, 612.333334565162659, 47.0, 23.0 ],
 					"text" : "bp.ears"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-220",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "bang", "bang" ],
-					"patching_rect" : [ 2407.0, 204.0, 62.0, 23.0 ],
-					"text" : "t b b"
 				}
 
 			}
@@ -72,24 +90,6 @@
 					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 1779.0, 129.0, 41.0, 23.0 ],
 					"text" : "del 50"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"code" : "BP_CONFIG.'mutealert' == 0 ",
-					"id" : "obj-214",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 2450.0, 239.0, 255.0, 23.0 ],
-					"saved_object_attributes" : 					{
-						"embed" : 1,
-						"versionnumber" : 80300
-					}
-,
-					"text" : "bach.eval BP_CONFIG.'mutealert' == 0 @out m"
 				}
 
 			}
@@ -759,7 +759,7 @@
 
 							}
  ],
-						"originid" : "pat-10006",
+						"originid" : "pat-4854",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1146,7 +1146,7 @@
 
 							}
  ],
-						"originid" : "pat-10008",
+						"originid" : "pat-4856",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1573,7 +1573,7 @@
 
 							}
  ],
-						"originid" : "pat-10014",
+						"originid" : "pat-4862",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1988,7 +1988,7 @@
 
 							}
  ],
-						"originid" : "pat-10038",
+						"originid" : "pat-4886",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2273,7 +2273,7 @@
 
 							}
  ],
-						"originid" : "pat-10040",
+						"originid" : "pat-4888",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2464,7 +2464,7 @@
 
 							}
  ],
-						"originid" : "pat-10042",
+						"originid" : "pat-4890",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -2772,7 +2772,7 @@
 
 							}
  ],
-						"originid" : "pat-10046",
+						"originid" : "pat-4894",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -3297,7 +3297,7 @@
 
 							}
  ],
-						"originid" : "pat-10104",
+						"originid" : "pat-4952",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4624,7 +4624,7 @@
 
 							}
  ],
-						"originid" : "pat-10106",
+						"originid" : "pat-4954",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4955,7 +4955,7 @@
 
 											}
  ],
-										"originid" : "pat-10116",
+										"originid" : "pat-4964",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -5275,7 +5275,7 @@
 
 							}
  ],
-						"originid" : "pat-10114",
+						"originid" : "pat-4962",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5595,7 +5595,7 @@
 
 							}
  ],
-						"originid" : "pat-10448",
+						"originid" : "pat-5296",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -6035,7 +6035,7 @@
 
 							}
  ],
-						"originid" : "pat-10608",
+						"originid" : "pat-5456",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -6233,7 +6233,7 @@
 
 											}
  ],
-										"originid" : "pat-10612",
+										"originid" : "pat-5460",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -6711,7 +6711,7 @@
 
 											}
  ],
-										"originid" : "pat-10616",
+										"originid" : "pat-5464",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -7012,7 +7012,7 @@
 
 							}
  ],
-						"originid" : "pat-10610",
+						"originid" : "pat-5458",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -7174,7 +7174,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 2540.0, 269.0, 165.0, 23.0 ],
+					"patching_rect" : [ 2444.0, 167.0, 165.0, 23.0 ],
 					"text" : "buffer~ #0alert alert.wav"
 				}
 
@@ -8429,7 +8429,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-220", 0 ],
+					"destination" : [ "obj-217", 1 ],
 					"source" : [ "obj-102", 4 ]
 				}
 
@@ -9418,20 +9418,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-214", 0 ],
-					"source" : [ "obj-220", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-217", 1 ],
-					"source" : [ "obj-220", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-56", 0 ],
 					"source" : [ "obj-221", 0 ]
 				}
@@ -9441,6 +9427,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-219", 1 ],
 					"source" : [ "obj-222", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-214", 0 ],
+					"source" : [ "obj-223", 0 ]
 				}
 
 			}
@@ -10128,7 +10121,7 @@
 
 			}
  ],
-		"originid" : "pat-9912",
+		"originid" : "pat-4760",
 		"dependency_cache" : [ 			{
 				"name" : "bach.+.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
