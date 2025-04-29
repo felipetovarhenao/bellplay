@@ -1966,7 +1966,7 @@ write = (
             printerror("invalid file extension for @path in write().")
         );
         if exists($info."parent") == 0 then (
-            printerror("write: invalid directory:" $info."parent")
+            printerror("write: invalid destination directory:" $info."parent")
         );
         $ext = $info."extension";
         $path = $info."path" + $ext;
