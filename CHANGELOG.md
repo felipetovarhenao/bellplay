@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- New functions:
+  - `createtree`: Instantiates a k-dimensional tree. Replaces `buildtree`.
+  - `querytree`: Queries a k-dimensional tree. Replaces `searchtree`.
+
 ### Changed
 
 ### Fixed

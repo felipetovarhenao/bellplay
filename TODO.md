@@ -3,6 +3,9 @@
 - Adapt code base to new bell language version.
 - Migrate reference documentation to versioned web repo.
 - Deprecate `interpolate` or re-implement.
+- Implement a better error API.
+  - checking required arguments
+  - invalid data types
 - Explore integration of flucoma — datasets are doable via `bach.llll2dict` and `bach.dict2llll`.
 - `ears` (_some of these could still be done through the bp.process patch_):
   - `stft`
