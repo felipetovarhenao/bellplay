@@ -16,7 +16,7 @@ $b.transcribe(@gain 0.5);
 ## Define hop size for spectral analysis in samples
 $hopsize = 512;
 ## Perform partial tracking analysis with a magnitude threshold
-$analysis = $b.topartialtracks(@magnitudethreshold 0.05 @hopsize $hopsize);
+$analysis = $b.buf2ptracks(@magnitudethreshold 0.05 @hopsize $hopsize);
 ## Convert hop size to milliseconds based on the sample rate
 $incr = $hopsize * 1000 / $b.getkey('sr');
 ## Extract frequency and magnitude data from the analysis
