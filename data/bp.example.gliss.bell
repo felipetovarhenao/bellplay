@@ -2,19 +2,20 @@
     --------------------------------
     GLISSANDO TEXTURE
     --------------------------------
-    An example of using resampling to generate a polyphonic texture.
-    It focuses on managing smooth transitions between pitches 
-    over time, applying modulation, and structuring evolving pitch 
-    patterns.
+    An example of using time-varying resampling to generate a 
+    polyphonic texture.
 )#
 ## Import an audio buffer from the file 'poem.wav'
 $buf = importaudio('poem.wav');
-## Define a set of pitch classes for retuning
-$pitchclasses = 0 2 4 7 9;
+## Define a set of transpositions for retuning, centered around 0
+$cents = (0 2 4 7 9) * 100;
+$cents = $cents - mean($cents);
+## Convert cents to ratios
+$ratios = c2r($cents);
 ## Specify the number of voices for processing
 $numvoices = 5;
 ## Retune the buffer by mapping it to a neutral pitch grid
-$buf = $buf.process(retune(@pitchgrid 0));
+$buf = $buf.process(retune(@pitchgrid 0 @ambiencethreshold -10));
 ## Iterate over the number of voices for granular processing
 for $v in 1...$numvoices do (
     ## Map the voice index to a stereo pan position
@@ -23,10 +24,8 @@ for $v in 1...$numvoices do (
     $envsize = random(10, 20);
     ## Generate a breakpoint function (BPF) for glissando effects
     $glissbpf = for $x in 0...($envsize - 1) collect (
-        ## Select a random pitch class
-        $pc = choose($pitchclasses);
-        ## Convert pitch class to a frequency ratio
-        $ratio = c2r($pc * 100);
+        ## Select a random resampling ratio
+        $ratio = choose($ratios);
         ## Create the BPF entry
         [$x 1 / $ratio 0.95] 
     );
