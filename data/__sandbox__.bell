@@ -82,7 +82,8 @@ BP_FN_SANDBOX_MSG = (
         ## Send a script 'send' command to the object
         $to &&& $message &&& ($do1 = [
             'script' 'send' $to $message
-        ]) 
+        ]);
+        null
     ) 
 );
 ## Define a function to generate and script all sandbox objects and connections
