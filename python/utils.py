@@ -95,7 +95,7 @@ def edit_max_interface(path: str):
             'windowmenu',
             'helpmenu',
             'customhelpmenu',
-            'customfilemenu'
+            # 'customfilemenu'
         ]
 
         if test == 0:
@@ -104,6 +104,19 @@ def edit_max_interface(path: str):
 
     data["interface"]["menus"] = list(
         filter(menu_filter, data["interface"]["menus"]))
+
+    def keep_save(x):
+        keep = x in ["customsave"]
+        if not keep:
+            print(f"removing {x} from customfilemenu")
+        return keep
+
+    for i, menu in enumerate(data['interface']['menus']):
+        if menu['id'] == 'customfilemenu':
+            for key in ["commands", "commands_runtime_mac", "commands_runtime_windows"]:
+                data['interface']['menus'][i][key] = list(
+                    filter(keep_save, data['interface']['menus'][i][key]))
+            break
 
     with open(path, "w") as f:
         json.dump(data, f, indent=4)
