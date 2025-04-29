@@ -36,6 +36,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- `write`: Raises error if destination directory doesn't exist.
 - **docs**: general clean up/improvements—includes missing arguments/default values.
 - `nearest`: Add `@mode` argument for returning address.
 - Renamed functions with upcoming deprecation warnings:
