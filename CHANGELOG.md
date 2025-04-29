@@ -11,12 +11,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - New functions:
   - `createtree`: Instantiates a k-dimensional tree. Replaces `buildtree`.
   - `querytree`: Queries a k-dimensional tree. Replaces `searchtree`.
+- Dev:
+  - Add `BP_FN_ERROR`.
 
 ### Changed
 
 ### Fixed
 
 ### Removed
+
+- Deprecated functions:
+  - `buildtree`: Replaced by `createtree`.
+  - `searchtree`: Replaced by `querytree`.
 
 ## [0.2.8-beta] - 2025-04-28
 

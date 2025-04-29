@@ -113,6 +113,14 @@ BP_ON_AFTER_FUNC = (
     )
 );
 
+BP_FN_ERROR = (
+    $origin,
+    $details -> (
+        printerror($origin "→" $details);
+        null
+    )
+);
+
 ## ------------------------------------------------------------
 
 $addref = (
@@ -6293,27 +6301,6 @@ $addref(
 
 ## ------------------------------------------------------------
 
-buildtree = (
-    $buffers, $keys -> (
-        if $keys == null then (
-            printerror("you must provide a one or more features to the @keys argument in buildtree()")
-        );
-        BP_DISPATCH_FUNC("kdtree", [ "features" $keys] ["buffers" $buffers])
-    )
-);
-
-$addref(
-    @name "buildtree",
-    @description "Builds a k-dimensional tree on a set of buffers, given one or more buffer features. This tree can be queried via the #searchtree function. Note that there can only be one tree at a time.",
-    @category BP_REF_LABEL_UTILS,
-    @arguments (
-        $addarg(@name "buffers", @type "llll", @description "list of buffers.")
-        $addarg(@name "keys" @type "list/symbol", @description "one or more features to build tree on, as a list of symbols.")
-    )
-);
-
-## ------------------------------------------------------------
-
 buf2samps = (
     $buffer -> (
         $source = $buffer.getkey('source');
@@ -6464,25 +6451,6 @@ $addref(
         )
     ),
     @output $addout(@description "decoded buffer" @type "llll")
-);
-
-## ------------------------------------------------------------
-
-searchtree = (
-    $target -> (
-        BP_DISPATCH_FUNC("kdtree", [ "query" $target]);
-        BP_TREE_RESULT
-    )
-);
-
-$addref(
-    @name "searchtree",
-    @description "k-nearest neighbor search on the current k-dimensional tree. The search input can be either a single buffer or, more directly, the values associated with the features the tree was based on. See #buildtree.",
-    @category BP_REF_LABEL_UTILS,
-    @arguments (
-        $addarg(@name "target", @type "llll", @description "target buffer or feature value to find nearest neighbor for.")
-    ),
-    @output $addout(@description "nearest buffer" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -6808,9 +6776,9 @@ $addref(
 createtree = (
     $data, $mode = 0 -> (
         if $data == null then (
-            printerror('kdtreebuild: you must provide at least one data point') 
+            BP_FN_ERROR('createtree', 'you must provide at least one data point') 
         ) else if depth($data) != 2 then (
-            printerror('kdtreebuild: @data must be a matrix or list of lists with depth of 2') 
+            BP_FN_ERROR('createtree', '@data must be a matrix or list of lists with depth of 2')
         ) else (
             $numpoints = length($data);
             $cols = trans($data);
@@ -6836,7 +6804,7 @@ createtree = (
                     ) 
                 ) 
             );
-            if $stop == 1 then printerror('kdtreebuild: all elements in @data must have the same length.') else (
+            if $stop == 1 then BP_FN_ERROR('createtree', 'all elements in @data must have the same length') else (
                 $bias = $stats:1;
                 $spread = $stats:2;
                 $data = float(($data - $bias) / $spread);
@@ -6878,12 +6846,12 @@ $addref(
 querytree = (
     $tree, $point -> (
         BP_SANDBOX_OUT = null;
-        $tree ||| $point ||| printerror('kdtreequery: you must provide both @tree and @point');
+        ($tree ||| $point ||| BP_FN_ERROR('querytree', 'you must provide both @tree and @point'));
         $treedims = getkey($tree, 'dims');
-        if $treedims == null then printerror('invalid tree': $tree) else (
+        if $treedims == null then BP_FN_ERROR('querytree', 'invalid tree:' $tree) else (
             $point = flat($point);
             $pointdims = length($point);
-            if $treedims != $pointdims then printerror('kdtreequery: @point must be of length' $treedims) else (
+            if $treedims != $pointdims then BP_FN_ERROR('querytree', '@point must be of length' $treedims) else (
                 $ref = getkey($tree, 'ref');
                 $bias = getkey($tree, 'bias');
                 $spread = getkey($tree, 'spread');
