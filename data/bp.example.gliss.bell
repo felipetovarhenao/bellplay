@@ -2,11 +2,10 @@
     --------------------------------
     GLISSANDO TEXTURE
     --------------------------------
-    This code demonstrates generating continuous pitch variations, or glissandi, 
-    through algorithmic control. It focuses on managing smooth transitions between 
-    frequencies over time, applying modulation, and structuring evolving pitch 
-    patterns. The emphasis is on showcasing techniques for fluid, expressive 
-    sound synthesis.
+    An example of using resampling to generate a polyphonic texture.
+    It focuses on managing smooth transitions between pitches 
+    over time, applying modulation, and structuring evolving pitch 
+    patterns.
 )#
 ## Import an audio buffer from the file 'poem.wav'
 $buf = importaudio('poem.wav');

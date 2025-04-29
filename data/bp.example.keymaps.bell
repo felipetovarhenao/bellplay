@@ -2,7 +2,7 @@
     --------------------------------
     GENERATING KEYMAPS
     --------------------------------
-    This script automatically generates a custom keymap given list of audio file paths:
+    This example automatically generates a custom keymap given a list of audio file paths:
     - We import the audio files, detect onsets, and slice them into segments.
     - Then analyze each segment’s pitch and loudness, keeping only relevant segments (e.g., pitch, non-silent).
     - We quantize pitches to nearest 1/8th tone, export the valid segments as samples, and map them to their pitches.

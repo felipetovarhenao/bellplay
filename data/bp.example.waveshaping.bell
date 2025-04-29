@@ -2,12 +2,9 @@
     --------------------------------
     WAVESHAPING BUFFERS
     --------------------------------
-    This example demonstrates how to generate and apply a random waveshaping function
-    using breakpoint data in bellplay~. A custom breakpoint function (BPF) is built from 
-    randomly distributed x-values, signed exponential y-values, and randomly chosen slope 
-    factors. This BPF is applied to a drum loop to introduce nonlinear distortion, followed 
-    by spatialization using a dynamic pan envelope. The result is normalized and rendered 
-    with playback enabled.
+    A basic example of waveshaping in bellplay~, using a randomly generated breakpoint function. 
+    This BPF is applied to a drum loop to introduce nonlinear scrubbing, followed 
+    by spatialization using a dynamic pan envelope. 
 )#
 ## set number of breakpoints for the waveshaper
 $bpfsize = 100;
