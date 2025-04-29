@@ -14,7 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Removed
 
-## [0.2.8-beta] - 2025-04-28
+## [0.2.8-beta] - 2025-04-28 
 
 ### Added
 
