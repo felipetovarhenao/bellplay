@@ -1332,7 +1332,7 @@
 					"patching_rect" : [ 443.0, 95.0, 224.0, 21.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 67.0, 58.0, 221.0, 21.0 ],
-					"text" : "© 2024 | https://felipe-tovar-henao.com",
+					"text" : "© 2025 | https://felipe-tovar-henao.com",
 					"underline" : 0
 				}
 
