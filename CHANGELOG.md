@@ -16,6 +16,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `derive`: BPF derivative function.
   - `mc2chroma`: midicents to chroma vector conversion.
   - `autoscale`: normalization function.
+  - `buf2ptracks`: soft-replaces `topartialtracks`.
+  - `ptracks2buf`: soft-replaces `frompartialtracks`.
 - New audio processing functions:
   - `hoaencode` and `hoadecode`: higher-order ambisonics encoding and decoding.
 - `transcribe`: New `@annotation` argument which displays symbols next to buffer.
