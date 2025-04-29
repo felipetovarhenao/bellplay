@@ -719,7 +719,7 @@
 
 							}
  ],
-						"originid" : "pat-16",
+						"originid" : "pat-3995",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -848,10 +848,10 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "jit_matrix" ],
-					"patching_rect" : [ 130.0, 60.0, 57.0, 57.0 ],
+					"patching_rect" : [ 130.0, 60.0, 57.24036144578313, 57.0 ],
 					"pic" : "logo.png",
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 14.611111424863338, 55.0, 55.0 ]
+					"presentation_rect" : [ 15.0, 15.0, 55.231927710843372, 55.0 ]
 				}
 
 			}
@@ -1101,7 +1101,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 27.0, 133.0, 5.0, 100.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 173.0, 18.0, 5.0, 35.0 ]
+					"presentation_rect" : [ 176.0, 14.0, 5.0, 35.0 ]
 				}
 
 			}
@@ -1331,7 +1331,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 443.0, 95.0, 224.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 67.0, 58.0, 221.0, 21.0 ],
+					"presentation_rect" : [ 72.0, 53.0, 221.0, 21.0 ],
 					"text" : "© 2025 | https://felipe-tovar-henao.com",
 					"underline" : 0
 				}
@@ -1386,7 +1386,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 41.0, 172.0, 150.0, 40.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 178.0, 24.0, 233.0, 23.0 ],
+					"presentation_rect" : [ 183.0, 20.0, 233.0, 23.0 ],
 					"text" : "algorithmic audio in bell",
 					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
@@ -1447,7 +1447,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 112.0, 133.0, 85.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 104.0, 18.0, 67.0, 35.0 ],
+					"presentation_rect" : [ 109.0, 14.0, 67.0, 35.0 ],
 					"text" : "play~",
 					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
@@ -1463,7 +1463,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 38.0, 133.0, 72.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 67.199999451637268, 18.0, 45.0, 35.0 ],
+					"presentation_rect" : [ 72.0, 14.0, 45.0, 35.0 ],
 					"text" : "bell",
 					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
@@ -2162,7 +2162,7 @@
 
 			}
  ],
-		"originid" : "pat-8",
+		"originid" : "pat-3985",
 		"parameters" : 		{
 			"obj-115" : [ "live.gain~", "GAIN", 0 ],
 			"parameterbanks" : 			{
