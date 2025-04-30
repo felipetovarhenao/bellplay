@@ -1697,7 +1697,7 @@ $addref(
 
 pitchdiff = (
     $source, $targets -> (
-        BP_FN_CHECK_ARGS('pitchdiff', 'source', $source, 'targets', $targets);
+        BP_FN_CHECK_ARGS('pitchdiff', 'targets', $targets);
         if $source > 0 && $source.isnan() == 0 then (
             $distances = (
                 if $targets:1 < 12 then (
@@ -6695,7 +6695,7 @@ $addref(
 ## ------------------------------------------------------------
 
 splitbuf = (
-    $buffer, $split = 500, $mode = 0, $overlap = 1, $partials = 1 -> (
+    $buffer, $split = 100, $mode = 0, $overlap = 1, $partials = 1 -> (
         BP_FN_CHECK_ARGS('splitbuf', 'buffer', $buffer);
         $source = $buffer.getkey('source');
         if $source == null then printerror('splitbuf: invalid buffer:' $buffer);
