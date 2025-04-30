@@ -19,6 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - New `bellplay~` logo!
 - Improved error handling.
+- Minor performance improvements: `r2dr` and `x2dx`.
 
 ### Fixed
 
@@ -27,6 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Deprecated functions:
   - `buildtree`: Replaced by `createtree`.
   - `searchtree`: Replaced by `querytree`.
+  - `interpolate`: No longer useful.
 
 ## [0.2.8-beta] - 2025-04-28
 

@@ -1108,7 +1108,12 @@ $addref(
 
 ## ------------------------------------------------------------
 
-x2dx = ($x -> for $a in left($x, -1), $b in right($x, 1) collect $b - $a);
+x2dx = (
+    $x -> (
+        BP_FN_CHECK_ARGS('x2dx', 'x', $x);
+        right($x, 1) - left($x, -1)
+    )
+);
 
 $addref(
     @name "x2dx"
@@ -1122,7 +1127,12 @@ $addref(
 
 ## ------------------------------------------------------------
 
-dx2x = ($dx, $st = 0 -> $st for $x in $dx collect $st += $x);
+dx2x = (
+    $dx, $st = 0 -> (
+        BP_FN_CHECK_ARGS('dx2x', 'dx', $dx);
+        $st for $x in $dx collect $st += $x
+    )
+);
 
 $addref(
     @name "dx2x"
@@ -1137,7 +1147,12 @@ $addref(
 
 ## ------------------------------------------------------------
 
-r2dr = ($r -> for $a in $r.left(-1), $b in $r.right(1) collect $b / $a);
+r2dr = (
+    $r -> (
+        BP_FN_CHECK_ARGS('r2dr', 'r', $r);
+        $r.right(1) / $r.left(-1)
+    )
+);
 
 $addref(
     @name "r2dr"
@@ -1151,7 +1166,12 @@ $addref(
 
 ## ------------------------------------------------------------
 
-dr2r = ($dr, $st = 1 -> ($r = $st; $r for $d in $dr collect ($r *= $d)));
+dr2r = (
+    $dr, $st = 1 -> (
+        BP_FN_CHECK_ARGS('dr2r', 'dr', $dr);
+        $st for $x in $dr collect $st *= $x
+    )
+);
 
 $addref(
     @name "dr2r"
@@ -1168,6 +1188,7 @@ $addref(
 
 revbpf = (
     $bpf -> (
+        BP_FN_CHECK_ARGS('revbpf', 'bpf', $bpf);
         bpf($bpf, 
             ($x -> dx2x(rev(x2dx($x)))), 
             ($y -> rev($y)), 
@@ -1190,6 +1211,7 @@ $addref(
 
 scale = (
     $x, $inmin = 0, $inmax = 1, $outmin = 0, $outmax = 1, $slope = 0 -> (
+        BP_FN_CHECK_ARGS('scale', 'x', $x);
         $s = max(-1, min(1, $slope));
         $n = ($x - $inmin) / ($inmax - $inmin);
         $n = BP_GET_BPF_INTERPOLATION_WEIGHT_FUNC($n, $s);
@@ -1244,8 +1266,8 @@ nearest = (
     $list, 
     $target, 
     $mode = 0 -> (
-        if $list == null || $target == null then printerror("you must provide values for @list and @target in nearest().");
-        $list = $list.sort();
+        BP_FN_CHECK_ARGS('nearest', 'list', $list, 'target', $target);
+        $list = sort($list);
         $left = 1;
         $right = length($list);
         $nearest = null;  
@@ -1349,6 +1371,7 @@ $addref(
 
 setseed = (
     $seed -> (
+        BP_FN_CHECK_ARGS('setseed', 'seed', $seed);
         if $seed.contains() == 2 then BP_MAXOBJ_RANDOM("seed" $seed) else printerror("invalid seed value:" $seed);
         null
     )
@@ -1431,6 +1454,7 @@ $addref(
 
 xscramble = (
     $llll -> (
+        BP_FN_CHECK_ARGS('xscramble', 'llll', $llll);
         $indices = 1...$llll.length();
         $order = for $id in $indices collect xrand();
         $indices = $indices.sort(@function $a, $b -^ $order -> $order:$a <= $order:$b);
@@ -1452,6 +1476,7 @@ $addref(
 
 initurn = (
     $size = 10, $id = 0, $useseed = 0 -> (
+        BP_FN_CHECK_ARGS('initurn', 'size', $size, 'id', $id);
         $shuffler = if $useseed == 0 then scramble else xscramble;
         $urn = [
             "pool" (
@@ -1478,6 +1503,7 @@ $addref(
 
 urn = (
     $id = 0 -> (
+        BP_FN_CHECK_ARGS('urn', 'id', $id);
         $urn = BP_URN.$id;
         if $urn == null then printerror("A unique random number generator with id of" $id "doesn't exist yet. Use initurn() to initialize a new unique random number generator.") else (
             $pool = $urn."pool";
@@ -1671,9 +1697,7 @@ $addref(
 
 pitchdiff = (
     $source, $targets -> (
-        if $targets == null then (
-            printerror("you must provide @targets in pitchdiff")
-        );
+        BP_FN_CHECK_ARGS('pitchdiff', 'source', $source, 'targets', $targets);
         if $source > 0 && $source.isnan() == 0 then (
             $distances = (
                 if $targets:1 < 12 then (
@@ -1712,8 +1736,8 @@ transcribe = (
     $keepduration = 1,
     $metadata = null,
     $annotation = null -> (
-        if $voice > BP_SCORE_CONFIG."numvoices" then printerror("@voice value in transcribe() exceeds the number of voices. Use scoreconfig() to change the number of voices.");
         BP_FN_CHECK_ARGS('transcribe', 'buffer', $buffer);
+        if $voice > BP_SCORE_CONFIG."numvoices" then BP_FN_ERROR('transcribe', "@voice value in transcribe() exceeds the number of voices. Use scoreconfig() to change the number of voices.");
         ## unpack buffer
         $buffer = $buffer::1;
 
@@ -1758,7 +1782,7 @@ transcribe = (
             $dur /= $rate::(1 2)
         );
         
-        if $dur <= 0 then printerror("attempt to transcribe a buffer with duration of" $dur);
+        if $dur == null || $dur <= 0 then BP_FN_ERROR('transcribe', "invalid buffer duration:" $dur ||| 'null');
         
         ## make size slot based on duration
         $size = [ 4 scale(log2(min(16384, max(1, $dur))), 0, 14, 25, 150) ];
@@ -1927,6 +1951,7 @@ $addref(
 read = (
     $path,
     $ignore = 0 -> (
+        BP_FN_CHECK_ARGS('read', 'path', $path);
         BP_LLLL_READ = null;
         $info = BP_GET_PATH_INFO_FUNC($path @locate 1);
         if (".txt" ".llll").intersection($info."extension") == null then (
@@ -1974,6 +1999,7 @@ write = (
     $maxdepth = -1,
     $negativeoctaves = 0,
     $parens = 0 -> (
+        BP_FN_CHECK_ARGS('write', 'data', $data, 'path', $path);
         $info = BP_GET_PATH_INFO_FUNC($path);
         if (".txt" ".llll").intersection($info."extension") == null then (
             printerror("invalid file extension for @path in write().")
@@ -2006,8 +2032,8 @@ $addref(
     @description "Writes data into disk in either .txt or native .llll format.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
-        $addarg(@name "data", @type "anything", @description "data to write.")
-        $addarg(@name "path", @type "symbol", @description "output file path.")
+        $addarg(@name "data" @type "anything" @description "data to write.")
+        $addarg(@name "path" @type "symbol" @description "output file path.")
         $addarg(@name "escape" @default 3 @type "int" @description "escaping style" @options 
             $addopt(@value 0 @description "none")
             $addopt(@value 1 @description "backtick")
@@ -2031,6 +2057,7 @@ $addref(
 
 export = (
     $path, $stems = 0, $format = "float32", $vbrmode = "VBR", $bitrate = 0 -> (
+        BP_FN_CHECK_ARGS('export', 'path', $path);
         ## get path info
         $pathinfo = BP_GET_PATH_INFO_FUNC($path);
         $path = $pathinfo.'path';
@@ -2087,13 +2114,13 @@ $addref(
 importaudio = (
     $path, 
     $usecache = 1 -> (
+        BP_FN_CHECK_ARGS('importaudio', 'path', $path);
         $buffer = null;
         if $usecache == 1 then (
             $buffer = BP_BUFFER_CACHE.$path
         );
         if $buffer == null then (
             BP_TMP_BUFF = null;
-            if $path == null then printerror("You must provide a value for @path in importaudio()");
             $pathinfo = BP_GET_PATH_INFO_FUNC($path @locate 1);
             $ext = $pathinfo."extension";
             $filepath = $pathinfo."path" + $ext;
@@ -2127,8 +2154,8 @@ $addref(
 
 importmidi = (
     $path -> (
+        BP_FN_CHECK_ARGS('importmidi', 'path', $path);
         BP_TMP_ROLL_OUTPUT = null;
-        if $path == null then printerror("You must provide a value for @path in importmidi()");
         $pathinfo = BP_GET_PATH_INFO_FUNC($path @locate 1);
         $ext = $pathinfo."extension";
         $path = $pathinfo."path";
@@ -2172,54 +2199,6 @@ $addref(
 ## ------------------------------------------------------------
 
 #( 
-    adapted from emmanuel jourdan: https://cycling74.com/forums/math-behind-function-curve
-    NOTE: this is implementation is different from both bach's (closest) and Max.
-)#
-
-interpolate = (
-    $x, $a, $b, $slope = 0 -> (
-        $ca = 1.2;
-        $cb = .41;
-        $cc = .91;
-        $m = 1e-20;
-        $xrange = $b:1 - $a:1;
-        $yrange = $b:2 - $a:2;
-        if abs($slope) < .001 then (
-            (($x - $a:1) / $xrange) * $yrange + $a:2
-        ) else (
-            if $slope < 0 then (
-                $gx = ($b:1 - $x) / $xrange;
-                $hp = (($m - $slope) * $ca) ** $cb * $cc;
-                $fp = $hp / (1.0 - $hp);
-                $gp = (exp($fp * $gx) - 1.) / (exp($fp) - 1.0);
-                $b:2 - $gp * $yrange
-            ) else (
-                $gx = ($x - $a:1) / $xrange;
-                $hp = (($slope + $m) * $ca)  ** $cb * $cc;
-                $fp = $hp / (1.0 - $hp);
-                $gp = (exp($fp * $gx) - 1.) / (exp($fp) - 1.0);
-                $gp * $yrange + $a:2
-            )
-        )
-    )
-);
-
-$addref(
-    @name "interpolate",
-    @description "Curve interpolation between two points.",
-    @category BP_REF_LABEL_UTILS,
-    @arguments (
-        $addarg(@name "x", @type "int/float/list", @description "interpolation point")
-        $addarg(@name "a", @type "list", @description "xy coordinates for point A")
-        $addarg(@name "b", @type "list", @description "xy coordinates for point B")
-        $addarg(@name "slope", @type "list", @default 0, @description "slope of curve between the two points, in the -1 to 1 range")
-    ),
-    @output $addout(@description "interpolated values" @type "int/float/list")
-);
-
-## ------------------------------------------------------------
-
-#( 
     bach bpf slope implementation from: https://www.bachproject.net/forum/viewtopic.php?f=2&t=1208&p=4000#p3998 
     
     Curve function is
@@ -2240,6 +2219,7 @@ BP_GET_BPF_INTERPOLATION_WEIGHT_FUNC = (
 
 samplebpf = (
     $bpf, $x -> (
+        BP_FN_CHECK_ARGS('samplebpf', 'bpf', $bpf, 'x', $x);
         ## x-wise point sorting
         $bpf = $bpf.sort(
             @function $a, $b -> $a::(1 1) < $b::(1 1) 
@@ -3471,7 +3451,7 @@ beatsloudness = (
     $beatwindowduration = 0.1,
     $frequencybands = 20 150 400 3200 7000 22000,
     $samplerate = 44100 -> (
-        if $beats == null then printerror("you must provide a value for @beats in beatsloudness().");
+        BP_FN_CHECK_ARGS('beatsloudness', 'beats', $beats);
         BP_ESSENTIA_WRAPPER_FUNC(
             @name "beatsloudness"
             @settings (
@@ -3946,6 +3926,7 @@ getchannels = (
     $buffer, 
     $channels = null,
     $all = 1 -> (
+        BP_FN_CHECK_ARGS('getchannels', 'buffer', $buffer);
         $buffer.process(
             [
                 [ "fx" "channel" ]
@@ -4101,7 +4082,7 @@ cycle = (
     $frequency = 440, 
     $duration = 50,
     $phase = 0.25 -> (
-        BP_OSC_GEN_FUNC("cycle", @frequency $frequency, @duration $duration, @params [ "phase" float($phase) ])
+        BP_OSC_GEN_FUNC("cycle" @frequency $frequency @duration $duration @params [ "phase" float($phase) ])
     )
 );
 
@@ -4691,7 +4672,7 @@ $addref(
 
 expand = (
     $buffer -> (
-        if $buffer.getkey("source") == null then printerror("invalid value for @buffer in expand()");
+        BP_FN_CHECK_ARGS('expand', 'buffer', $buffer);
         $buffer.setkey("offset", 0).setkey("duration", $buffer.getkey("source_end"))
     )
 );
@@ -4740,7 +4721,7 @@ $addref(
 freqshift = (
     $shift,
     $negative = 0 -> (
-        if $shift == null then printerror("you must provide a value for @shift in freqshift().");
+        BP_FN_CHECK_ARGS('freqshift', 'shift', $shift);
         $source = $shift.getkey("source");
         if $source != null then (
             $shift = $source
@@ -5102,7 +5083,7 @@ mix = (
     $envtimeunit = 2,
     $interp = 0,
     $normalize = 0 -> (
-        if $buffers == null then printerror("you must provide a values for @buffers in mix()");
+        BP_FN_CHECK_ARGS('mix', 'buffers', $buffers);
         $numbuffers = length($buffers) + 1;
         $buffers = for $buffer in $buffers collect $buffer.process(bpthru()).getkey("source");
         [
@@ -5171,8 +5152,7 @@ BP_BUFFER_ARITHMETIC_FUNC = (
     $resamplingmode = "sinc",
     $resamplingpolicy = 3,
     $envtimeunit = 2 -> (
-        ## raise error if @operand is null
-        if $operand == null then printerror("you must provide a value for @operand in " + $name + "().");
+        BP_FN_CHECK_ARGS($name, 'operand', $operand);
 
         ## check if @operand is buffer, envelope or scalar.
         $depth = depth($operand);
@@ -5490,9 +5470,7 @@ $addref(
 onepole = (
     $cutoff,
     $highpass = 0 -> (
-        if $cutoff == null then (
-            printerror("you must provide @cutoff value in onepole()")
-        );
+        BP_FN_CHECK_ARGS('onepole', 'cutoff', $cutoff);
         [
             [ "fx" "onepole" ]
             [ "params"
@@ -5557,7 +5535,7 @@ $addref(
 ## ------------------------------------------------------------
 
 fromdiffs = (
-    $buffer -> (
+    -> (
         [
             [ "fx" "fromdiffs" ]
             [ "params" ]
@@ -5576,7 +5554,7 @@ $addref(
 ## ------------------------------------------------------------
 
 todiffs = (
-    $buffer -> (
+    -> (
         [
             [ "fx" "todiffs" ]
             [ "params" ]
@@ -5604,10 +5582,11 @@ join = (
     $resamplingfiltersize = 11,
     $resamplingmode = 'sinc',
     $resamplingpolicy = 3 -> (
+        BP_FN_CHECK_ARGS('join', 'buffers', $buffers);
         $buffers = for $buffer in $buffers collect (
             $source = $buffer.getkey("source");
             if $source == null then (
-                printerror("invalid buffer in join():" $buffer) 
+                BP_FN_ERROR('join', 'invalid buffer:' $buffer)
             ) else (
                 $buffer.process(bpthru()).getkey("source")
             )
@@ -5965,9 +5944,7 @@ gain = (
     $ampunit = 0,
     $envampunit = 0,
     $envtimeunit = 2 -> (
-        if $gain == null then (
-            printerror("you must provide a @gain value in gain().")
-        );
+        BP_FN_CHECK_ARGS('gain', 'gain', $gain);
         $gain = $gain.getkey("source") ||| [ bpf($gain) ];
         [
             [ "fx" "gain" ]
@@ -6078,7 +6055,7 @@ buf2ptracks = (
     $frequnit = 0,
     $timeunit = 0,
     $downmix = 1 -> (
-        $buffer ||| printerror("you must provide a value for @buffer in topartialtracks().");
+        BP_FN_CHECK_ARGS('buf2ptracks', 'buffer', $buffer);
         if $buffer.getkey("source") == null then printerror($buffer "is not a buffer in topartialtracks().");
         $source = $buffer.process(bpthru()).getkey("source");
         BP_DISPATCH_FUNC("resynth", 
@@ -6225,9 +6202,7 @@ ptracks2buf = (
     $antimeunit = 1,
     $angleunit = 0,
     $frequnit = 0 -> (
-        if $frequencies == null then printerror("@frequencies cannot be null in frompartialtracks().");
-        if $magnitudes == null then printerror("@magnitudes cannot be null in frompartialtracks().");
-        if $phases == null then printerror("@phases cannot be null in frompartialtracks().");
+        BP_FN_CHECK_ARGS('ptracks2buf', 'frequencies', $frequencies, 'magnitudes', $magnitudes, 'phases', $phases);
         BP_DISPATCH_FUNC("resynth", 
             [ "synthesis" 
                 [ "params"
@@ -6328,8 +6303,9 @@ $addref(
 samps2buf = (
     $llll,
     $sr = 0 -> (
+        BP_FN_CHECK_ARGS('samps2buf', 'llll', $llll);
         if depth($llll) != 2 then (
-            printerror("samps2buf: @llll must have a depth of 2")
+            BP_FN_ERROR('samps2buf', '@llll must have a depth of 2')
         ) else (
             BP_DISPATCH_FUNC('ears', 
                 ['fromsamps' 
@@ -6516,6 +6492,7 @@ $addref(
 
 argsort = (
     $x, $function = null -> (
+        BP_FN_CHECK_ARGS('argsort', 'x', $x);
         $lambda = $function ||| ($a, $b -> $a < $b);
         $addrs = 1...length($x);
         sort($addrs @function ($a, $b -^ $x, $lambda -> $lambda($x:$a, $x:$b))) 
@@ -6610,6 +6587,7 @@ $addref(
 
 integrate = (
     $llll, $numsamples = 100, $order = 1, $origin = 0. -> (
+        BP_FN_CHECK_ARGS('intergrate', 'llll', $llll);
         for $arg in ['numsamples' $numsamples] ['order' $order] ['origin' $origin] with @unwrap 1 do (BP_MAXOBJ_BACHINTEGRATE($arg @out 'm'));
         BP_MAXOBJ_BACHINTEGRATE($llll) 
     ) 
@@ -6632,6 +6610,7 @@ $addref(
 
 mc2chroma = (
     $mc, $mod = 12 -> (
+        BP_FN_CHECK_ARGS('mc2chroma', 'mc', $mc);
         $cents = 100 / ($mod / 12);
         $mc = int(($mc / $cents * 1.) % $mod) + 1;
         $chroma = 0 :* $mod;
@@ -6655,6 +6634,7 @@ $addref(
 
 autoscale = (
     $x, $mode = 0 -> (
+        BP_FN_CHECK_ARGS('autoscale', 'x', $x);
         $minmax = minmax($x @depth -1 -1);
         $min = $minmax:1;
         $max = $minmax:3;
@@ -6681,6 +6661,7 @@ $addref(
 
 derive = (
     $llll, $numsamples = 100, $order = 1, $discrete = 0, $pad = 2 -> (
+        BP_FN_CHECK_ARGS('derive', 'llll', $llll);
         for $arg in ['pad' $pad] ['numsamples' $numsamples] ['order' $order] ['discrete' $discrete] with @unwrap 1 do (BP_MAXOBJ_BACHDERIVE($arg @out 'm'));
         BP_MAXOBJ_BACHDERIVE(
             $llll
@@ -6777,11 +6758,10 @@ $addref(
 
 createtree = (
     $data, $mode = 0 -> (
-        if $data == null then (
-            BP_FN_ERROR('createtree', 'you must provide at least one data point') 
-        ) else if depth($data) != 2 then (
+        $ok = BP_FN_CHECK_ARGS('createtree', 'data', $data);
+        if depth($data) != 2 then (
             BP_FN_ERROR('createtree', '@data must be a matrix or list of lists with depth of 2')
-        ) else (
+        ) else if $ok == 1 then (
             $numpoints = length($data);
             $cols = trans($data);
             $dims = length($cols);
@@ -6847,8 +6827,8 @@ $addref(
 
 querytree = (
     $tree, $point -> (
+        BP_FN_CHECK_ARGS('querytree', 'tree', $tree, 'point', $point);
         BP_SANDBOX_OUT = null;
-        ($tree ||| $point ||| BP_FN_ERROR('querytree', 'you must provide both @tree and @point'));
         $treedims = getkey($tree, 'dims');
         if $treedims == null then BP_FN_ERROR('querytree', 'invalid tree:' $tree) else (
             $point = flat($point);
