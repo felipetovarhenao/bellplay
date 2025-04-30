@@ -65,10 +65,10 @@ if exists($keymappath) == 0 then (
                 ## map pitch to exported sample path
                 $keymap.$pitch _= $path
             ) 
-        );
-        ## write updated keymap to file
-        write($keymap, $keymappath) 
-    ) 
+        )
+    );
+    ## write updated keymap to file
+    write($keymap, $keymappath) 
 ) else (
     ## if keymap file exists, read it into memory
     $keymap = read($keymappath) 
