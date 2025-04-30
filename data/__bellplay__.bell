@@ -121,6 +121,19 @@ BP_FN_ERROR = (
     )
 );
 
+BP_FN_CHECK_ARGS = (
+    $origin, <...> -> (
+        $missing = null;
+        for $i in (1...($argcount / 2)) * 2 do (
+            if $args($i + 1) == null then ($missing _= $args($i)) 
+        );
+        if $missing == null then 1 else (
+            $details = for $m in $missing collect '@' + $m;
+            BP_FN_ERROR($origin, 'unexpected null value:' $details) 
+        ) 
+    ) 
+);
+
 ## ------------------------------------------------------------
 
 $addref = (
@@ -279,6 +292,7 @@ $addref(
 readfolder = (
     $path,
     $filetype = "audio" -> (
+        BP_FN_CHECK_ARGS('readfolder', 'path', $path);
         BP_TMP_FOLDER = null;
         $info = BP_GET_PATH_INFO_FUNC($path @locate 1);
         if $info."extension" != null then printerror("invalid folder path:" $path);
@@ -387,6 +401,7 @@ BP_MEDIA_FILES = [
 inspect = (
     $buffer, 
     $label = null -> (
+        BP_FN_CHECK_ARGS('inspect', 'buffer', $buffer);
         $source = $buffer.getkey("source");
         if $source == null then (
             printerror("invalid buffer in inspect():" $buffer)
@@ -630,7 +645,7 @@ addmarker = (
     $onset,
     $names = null,
     $role = null -> (
-        if $onset == null then printerror("You must provide a value for @onset in addmarker()");
+        BP_FN_CHECK_ARGS('addmarker', 'onset', $onset);
         if $role:1 == 'timesig' then (
             ($role:2 &&& $role:3) ||| printerror("'timesig' role must be followed by a time signature: <num> <den> ");
             $role = $role:1 [ right($role, 1) ]
@@ -665,9 +680,7 @@ $addref(
 
 pcdiff = (
     $a, $b, $mod = 12 -> ( 
-        if $a == null || $b == null then (
-            printerror("you must provide values for both @a and @b in pcdiff()")
-        );
+        BP_FN_CHECK_ARGS('pcdiff', 'a', $a, 'b', $b);
         $a = fmod($a, $mod); 
         $b = fmod($b, $mod); 
         $da = $b - $a;
@@ -878,9 +891,7 @@ $addref(
 
 samplelist = (
     $x, $i -> (
-        if $x == null || $i == null then (
-            printerror("you must provide values for @x and @i in samplelist()")
-        );
+        BP_FN_CHECK_ARGS('samplelist', 'x', $x, 'i', $i);
         $i = min(1, max(0, $i));
         $N = length($x);
         $i = scale($i, 0, 1, 1, $N);
@@ -986,9 +997,8 @@ $addref(
 
 getkey = (
     $llll, $key -> (
-        if $key == null || $llll == null then (
-            printerror("you must provide values for both @llll and @key in getkey()") 
-        ) else ($llll::1).$key
+        $ok = BP_FN_CHECK_ARGS('getkey', 'llll', $llll, 'key', $key);
+        if $ok == 1 then ($llll::1).$key
     )
 );
 
@@ -1007,9 +1017,8 @@ $addref(
 
 setkey = (
     $llll, $key, $val, $mode = 0 -> (
-        if $key == null || $llll == null then (
-            printerror("you must provide values for both @llll and @key in setkey()") 
-        ) else (
+        $ok = BP_FN_CHECK_ARGS('setkey', 'llll', $llll, 'key', $key);
+        if $ok == 1 then (
             if $mode == 0 || ($llll::1).$key != null then [ ($llll::1).$key = $val ] else [ $llll::1 [ $key $val ] ] 
         )
     )
@@ -1035,14 +1044,11 @@ $addref(
 
 mapkey = (
     $llll, $key, $func -> (
-        if $key == null || $llll == null || $func == null then (
-            printerror("you must provide values for @llll, @key, and @func and @key in mapkey().") 
-        );
+        BP_FN_CHECK_ARGS('mapkey', 'llll', $llll, 'key', $key, 'func', $func);
         setkey($llll, $key, $func(getkey($llll, $key), $llll))
     )
 );
 
-## $newvalue = 'dummy'
 $addref(
     @name "mapkey"
     @description "Modifies an existing llll key via a lambda function."
@@ -1063,6 +1069,7 @@ bpf = (
     $xfunc = ($x -> ($norm = maximum($x ||| 1.); sort(float($x) / if $norm != 0 then $norm else 1.))),
     $yfunc = null,
     $sfunc = null -> (
+        BP_FN_CHECK_ARGS('bpf', 'pts', $pts);
         $depth = depth($pts);
         $size = length($pts);
         if $depth == 1 then (
@@ -1706,9 +1713,7 @@ transcribe = (
     $metadata = null,
     $annotation = null -> (
         if $voice > BP_SCORE_CONFIG."numvoices" then printerror("@voice value in transcribe() exceeds the number of voices. Use scoreconfig() to change the number of voices.");
-        if $buffer == null then (
-            printerror("attempt to pass a null value as @buffer in transcribe()")
-        );
+        BP_FN_CHECK_ARGS('transcribe', 'buffer', $buffer);
         ## unpack buffer
         $buffer = $buffer::1;
 
@@ -2320,6 +2325,7 @@ analyze = (
     $yintolerance = 1,
     $frametime = 0,
     $bufinterp = 0 -> (
+        BP_FN_CHECK_ARGS('analyze', 'buffer', $buffer, 'descriptors', $descriptors);
         $source = $buffer.getkey("source");
         if $source == null then printerror("you must provide a value for @buffer in analyze().");
         if $descriptors == null then printerror("you must provide a value for @descriptors in analyze().");
@@ -3787,12 +3793,7 @@ process = (
     $commands = null, 
     $prefade = 0,
     $keepkeys = null -> (
-        if $buffer == null then (
-            printerror("attempt to pass null value as @buffer in process()")
-        );
-        if $commands == null then (
-            printerror("you must provide audio processing commands in process()")
-        );
+        BP_FN_CHECK_ARGS('process', 'buffer', $buffer, 'commands', $commands);
         for $cmd in $commands do if $cmd.getkey("fx") == null then printerror("invalid processing command in process():" $cmd);
         $source = $buffer.getkey("source");
         if $source == null then printerror("attempt to process invalid buffer in process():" $buffer);
@@ -6714,6 +6715,7 @@ $addref(
 
 splitbuf = (
     $buffer, $split = 500, $mode = 0, $overlap = 1, $partials = 1 -> (
+        BP_FN_CHECK_ARGS('splitbuf', 'buffer', $buffer);
         $source = $buffer.getkey('source');
         if $source == null then printerror('splitbuf: invalid buffer:' $buffer);
         if $split == null then printerror('splitbuf: @split cannot be null.');

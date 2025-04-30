@@ -13,10 +13,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `querytree`: Queries a k-dimensional tree. Replaces `searchtree`.
 - Dev:
   - Add `BP_FN_ERROR`.
+  - Add `BP_FN_CHECK_ARGS`.
 
 ### Changed
 
 - New `bellplay~` logo!
+- Improved error handling.
 
 ### Fixed
 
