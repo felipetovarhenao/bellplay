@@ -17,16 +17,16 @@ BP_RAND_RES = 2147483648;
 BP_URN = null;
 BP_SCRIPT_PATH = null;
 BP_DEFAULT_EZSAMPLER_KEYMAP = [6000 'guitar.wav' ];
+BP_BUFFER_CACHE = null;
+BP_PLAY_TOGGLE = 0;
+BP_SCORE_CONFIG = null;
+BP_CONFIG = null;
 BP_MAXOBJ_RANDOM = {max.random 2147483648 @seed 1};
 BP_MAXOBJ_ATOI = {max.atoi};
 BP_MAXOBJ_ITOA = {max.itoa};
 BP_MAXOBJ_BACHINTEGRATE = {bach.integrate};
 BP_MAXOBJ_BACHDERIVE = {bach.derive};
-BP_BUFFER_CACHE = null;
-BP_PLAY_TOGGLE = 0;
-BP_SCORE_CONFIG = null;
-BP_CONFIG = null;
-BP_CONFIG_FUNC = (
+BP_FN_CONFIG = (
     $action, $value -> (
         $bpconfigpath = '~/bellplay.config.txt';
         $exists = exists($bpconfigpath);
@@ -71,7 +71,7 @@ BP_CONFIG_FUNC = (
                         $importpath = parsepath($import);
                         $ext = getkey($importpath, 'extension');
                         if $ext == '.bell' && exists($import) == 1 then (
-                            BP_DISPATCH_FUNC('loadscript', $import);
+                            BP_FN_DISPATCH('loadscript', $import);
                             $import
                         ) else print('invalid import file:' $import ||| 'null') 
                     );
@@ -79,16 +79,16 @@ BP_CONFIG_FUNC = (
                     $update($bpconfig) 
                 ) 
             ) else if $action == 'get' then ($bpconfig.$value) 
-        ) else printerror('configuration not found', 0) 
+        ) else BP_FN_WARNING(@details 'configuration file not found.') 
     ) 
 );
-BP_ON_LAUNCH_FUNC = (
+BP_FN_ON_LAUNCH = (
     -> (
         ## load imports
-        BP_CONFIG_FUNC('init')
+        BP_FN_CONFIG('init')
     ) 
 );
-BP_ON_BEFORE_FUNC = (
+BP_FN_ON_BEFORE = (
     -> (
         BP_FN_SANDBOX_CLEAR();
         setseed(1); 
@@ -99,25 +99,37 @@ BP_ON_BEFORE_FUNC = (
         BP_PLAY_TOGGLE = 0
     )
 );
-BP_ON_AFTER_FUNC = (
+BP_FN_ON_AFTER = (
     -> (
         if BP_SCORE_CONFIG."showdynamics" == 1 then (
-            BP_DISPATCH_FUNC("roll", 
+            BP_FN_DISPATCH("roll", 
                  "velocities2dynamics" "@unnecessary" 1 "@thresh" 1. "@maxchars" 3
             );
-            BP_DISPATCH_FUNC("roll", 
+            BP_FN_DISPATCH("roll", 
                  "fixdynamics" "@inconsistent" 1 "@unnecessary" 1 
             )
         );
-        BP_PLAY_TOGGLE == 1 && BP_DISPATCH_FUNC("playtoggle", BP_PLAY_TOGGLE)
+        BP_PLAY_TOGGLE == 1 && BP_FN_DISPATCH("playtoggle", BP_PLAY_TOGGLE)
     )
 );
 
 BP_FN_ERROR = (
     $origin,
-    $details -> (
-        printerror($origin "→" $details);
+    $details,
+    $stop = 1 -> (
+        BP_FN_DISPATCH("console",
+            [ "code" $stop == 0 ]
+            [ "type" 2 - $stop ]
+            [ "text" ($origin &&& ($origin "→")) $details ]
+        );
         null
+    )
+);
+
+BP_FN_WARNING = (
+    $origin,
+    $details -> (
+        BP_FN_ERROR(@origin $origin @details $details @stop 0)
     )
 );
 
@@ -132,6 +144,14 @@ BP_FN_CHECK_ARGS = (
             BP_FN_ERROR($origin, 'unexpected null value:' $details) 
         ) 
     ) 
+);
+
+BP_FN_VALIDATE_BUFFER = (
+    $origin,
+    $buffer -> (
+        $source = getkey($buffer, "source");
+        $source ||| BP_FN_ERROR($origin, 'invalid buffer:' $buffer)
+    )
 );
 
 ## ------------------------------------------------------------
@@ -160,7 +180,7 @@ $addref = (
             );
             $arguments = ($required &&& [ "required:" $required ]) ($optional &&& [ "optional:" $optional ])
         );
-        
+
         BP_REF.$category _= [
             $name
             [ "description:" $description ] 
@@ -204,7 +224,7 @@ $addout = (
 
 ## ------------------------------------------------------------
 
-BP_DISPATCH_FUNC = (
+BP_FN_DISPATCH = (
     $to, $msg -> (
         $do1 = [ $to $msg ];
         null
@@ -213,14 +233,14 @@ BP_DISPATCH_FUNC = (
 
 ## ------------------------------------------------------------
 
-BP_GET_PATH_INFO_FUNC = (
+BP_FN_PATHINFO = (
     $x,
     $locate = 0 -> (
-        BP_DISPATCH_FUNC("pathinfo", $x);
+        BP_FN_DISPATCH("pathinfo", $x);
         if BP_PATH_INFO == null then (
-            printerror("invalid path:" $x) 
+            BP_FN_ERROR(@details "invalid path:" $x) 
         ) else if $locate == 1 && BP_PATH_INFO."extension" != null && BP_PATH_INFO."exists" == 0 then (
-            printerror("file not found:" $x)
+            BP_FN_ERROR(@details "file not found:" $x)
         );
         BP_PATH_INFO
     )
@@ -230,7 +250,7 @@ BP_GET_PATH_INFO_FUNC = (
 
 parsepath = (
     $path -> (
-        $info = BP_GET_PATH_INFO_FUNC($path);
+        $info = BP_FN_PATHINFO($path);
         [for $key in "name" "parent" "extension" collect (
                 $val = $info.$key;
                 $val &&& [ $key $val ]
@@ -272,7 +292,7 @@ $addref(
 
 exists = (
     $path -> (
-        $info = BP_GET_PATH_INFO_FUNC($path);
+        $info = BP_FN_PATHINFO($path);
         $info."exists"
     )
 );
@@ -292,10 +312,11 @@ $addref(
 readfolder = (
     $path,
     $filetype = "audio" -> (
-        BP_FN_CHECK_ARGS('readfolder', 'path', $path);
+        $self = 'readfolder';
+        BP_FN_CHECK_ARGS($self, 'path', $path);
         BP_TMP_FOLDER = null;
-        $info = BP_GET_PATH_INFO_FUNC($path @locate 1);
-        if $info."extension" != null then printerror("invalid folder path:" $path);
+        $info = BP_FN_PATHINFO($path @locate 1);
+        if $info."extension" != null then BP_FN_ERROR($self, "invalid folder path:" $path);
         $path = $info."path";
         $types = (
             [ "audio" "WAVE" "AIFF" "Mp3" ]
@@ -304,8 +325,8 @@ readfolder = (
             [ "folder" "fold" ]
             [ "all" ]
         ).$filetype;
-        if $filetype != "all" && $types == null then printerror("invalid file type:" $filetype);
-        BP_DISPATCH_FUNC("folder",
+        if $filetype != "all" && $types == null then BP_FN_ERROR($self, "invalid file type:" $filetype);
+        BP_FN_DISPATCH("folder",
             [ "types" $types ]
             [ $path ]
         );
@@ -334,21 +355,8 @@ $addref(
 
 BP_GET_BUFFER_INFO = (
     $buffer -> (
-        BP_DISPATCH_FUNC("bufferinfo", $buffer);
+        BP_FN_DISPATCH("bufferinfo", $buffer);
         BP_TMP_BUFFINFO
-    )
-);
-
-## ------------------------------------------------------------
-
-printerror = (
-    $text, $stop = 1 -> (
-        BP_DISPATCH_FUNC("console",
-            [ "code" $stop == 0 ]
-            [ "type" 2 - $stop ]
-            [ "text" $text ]
-        );
-        null
     )
 );
 
@@ -356,7 +364,7 @@ printerror = (
 
 interrupt = (
     $print = null -> (
-        BP_DISPATCH_FUNC("console",
+        BP_FN_DISPATCH("console",
             [ "code" 0 ]
             [ "type" 2 ]
             ($print &&& [ "text" $print ])
@@ -401,16 +409,13 @@ BP_MEDIA_FILES = [
 inspect = (
     $buffer, 
     $label = null -> (
-        BP_FN_CHECK_ARGS('inspect', 'buffer', $buffer);
-        $source = $buffer.getkey("source");
-        if $source == null then (
-            printerror("invalid buffer in inspect():" $buffer)
-        ) else (
-            BP_BUFFER_INSPECTOR _= [
-                [ "label" $label ||| $source ]
-                [ "data" left($buffer, 1) ]
-            ]
-        );
+        $self = 'inspect';
+        BP_FN_CHECK_ARGS($self, 'buffer', $buffer);
+        $source = BP_FN_VALIDATE_BUFFER($self, $buffer);
+        BP_BUFFER_INSPECTOR _= [
+            [ "label" $label ||| $source ]
+            [ "data" left($buffer, 1) ]
+        ];
         $buffer
     )
 );
@@ -453,13 +458,13 @@ $addref(
 
 ## ------------------------------------------------------------
 
-BP_NEWBUFF_FUNC = (
+BP_FN_NEWBUFF = (
     $source,
     $offset = 0,
     $info = 1,
     $pitch = 6000,
     $extras = null -> (
-        if $source == null then printerror("null buffer encountered");
+        $source ||| BP_FN_ERROR(@details "null buffer source encountered");
         $buffer = (
             [ "source" $source ]
             [ "sr" BP_SR ]
@@ -487,7 +492,7 @@ BP_NEWBUFF_FUNC = (
 
 tosymbol = (
     $x -> (
-        BP_DISPATCH_FUNC("sym", $x);
+        BP_FN_DISPATCH("sym", $x);
         BP_SYMBOL
     )
 );
@@ -518,7 +523,7 @@ $addref(
 
 ## ------------------------------------------------------------
 
-BP_REF_BUFFER_KEYS_OPTIONS = sort(for $x in BP_NEWBUFF_FUNC("dummy" @info 0)::1 collect $addopt(@value "'" + $x::(1 1) + "'"));
+BP_REF_BUFFER_KEYS_OPTIONS = sort(for $x in BP_FN_NEWBUFF("dummy" @info 0)::1 collect $addopt(@value "'" + $x::(1 1) + "'"));
 
 BP_REF_TIMEUNIT_OPTIONS = (
     $addopt(@value 0, @description "milliseconds")
@@ -645,17 +650,18 @@ addmarker = (
     $onset,
     $names = null,
     $role = null -> (
-        BP_FN_CHECK_ARGS('addmarker', 'onset', $onset);
+        $self = 'addmarker';
+        BP_FN_CHECK_ARGS($self, 'onset', $onset);
         if $role:1 == 'timesig' then (
-            ($role:2 &&& $role:3) ||| printerror("'timesig' role must be followed by a time signature: <num> <den> ");
+            ($role:2 &&& $role:3) ||| BP_FN_ERROR($self, "'timesig' role must be followed by a time signature: <num> <den>");
             $role = $role:1 [ right($role, 1) ]
         ) else if $role:1 == 'tempo' then (
-            ($role:2 &&& $role:3) ||| printerror("'tempo' role must be followed by a tempo assignment: <beat_unit> <bpm>");
+            ($role:2 &&& $role:3) ||| BP_FN_ERROR($self, "'tempo' role must be followed by a tempo assignment: <beat_unit> <bpm>");
             $role = $role:1 [ right($role, 1) ]
         ) else if $role &&& $role.intersection('barline' 'division' 'subdivision') == null then (
-            printerror("invalid marker role.")
+            BP_FN_ERROR($self, "invalid marker role")
         );
-        BP_DISPATCH_FUNC("roll", "addmarker" $onset [ $names ] $role)
+        BP_FN_DISPATCH("roll", "addmarker" $onset [ $names ] $role)
     )
 );
 
@@ -705,8 +711,8 @@ $addref(
 ## ------------------------------------------------------------
 
 buildcorpus = (
-    $files,
-    $descriptors,
+    $files = null,
+    $descriptors = null,
     $outpath = null,
     $segmode = 1,
     $overlap = 1,
@@ -716,17 +722,19 @@ buildcorpus = (
     $framerate = 86.1328,
     $silencethreshold = 0.02,
     $usecache = 1 -> (
-        if $files == null || $descriptors == null then printerror("You must provide a value for @files and @descriptors in buildcorpus().");
-        if $files.contains() != 16 then printerror('All elements in @files must by of type symbol in buildcorpus().');
-        if $segmode.intersection(0...2) == null then printerror("Invalid value for @segmode in buildcorpus():" $segmode);
-        if $segsize <= 0 then printerror("segmentation size must be greater than zero in buildcorpus().");
+        $self = 'buildcorpus';
+        BP_FN_CHECK_ARGS($self, 'files', $files, 'descriptors', $descriptors);
+        if $files.contains() != 16 then BP_FN_ERROR($self, 'all elements in @files must by of type symbol');
+        if $segmode.intersection(0...2) == null then BP_FN_ERROR($self, "invalid @segmode:" $segmode);
+        if $segsize <= 0 then BP_FN_ERROR($self, "segmentation size must be greater than zero");
 
         if $outpath != null then (
-            $pathinfo = BP_GET_PATH_INFO_FUNC($outpath);
-            if $pathinfo."extension" != ".llll" then (
-                printerror($outpath "is not a valid corpus extension.")
+            $pathinfo = BP_FN_PATHINFO($outpath);
+            $ext = $pathinfo."extension";
+            if $ext != ".llll" then (
+                BP_FN_ERROR($self, "invalid corpus extension:" $ext)
             ) else if $path."type" == 3 then (
-                printerror($outpath "is not a valid @outpath in buildcorpus().")
+                BP_FN_ERROR($self, "invalid @outpath:" $outpath)
             );
             $outpath = $pathinfo."path" + $pathinfo."extension"
         );
@@ -743,9 +751,9 @@ buildcorpus = (
         );
         
         for $file in $files do (
-            $pathinfo = BP_GET_PATH_INFO_FUNC($file);
+            $pathinfo = BP_FN_PATHINFO($file);
             if ($pathinfo."extension").intersection(BP_SUPPORTED_AUDIO_FORMATS) == null then (
-                printerror($file "is not a valid audio file.")
+                BP_FN_ERROR($self, "invalid audio file:" $file)
             ) else (
                 $path = $pathinfo."path" + $pathinfo."extension";
                 $buff = importaudio($path @usecache $usecache);
@@ -800,7 +808,7 @@ buildcorpus = (
             );
             [ $key $type ]
         );
-        BP_DISPATCH_FUNC("db", [ "erase" ] [ "addtable" "buffers" $template ]);
+        BP_FN_DISPATCH("db", [ "erase" ] [ "addtable" "buffers" $template ]);
         for $entry in $corpus do (
             $entry = ($entry::1).map(
                 ## nullify inf and nan values
@@ -808,11 +816,11 @@ buildcorpus = (
                     if $x.contains() <= 8 && ($x.abs() == BP_INF || $x.isnan()) then null else $x
                 )
             @maxdepth -1);
-            BP_DISPATCH_FUNC("db", [ "addentry" "buffers" $entry ])
+            BP_FN_DISPATCH("db", [ "addentry" "buffers" $entry ])
         );
 
         if $outpath != null then (
-            BP_DISPATCH_FUNC("db", [ "write" $outpath ] )
+            BP_FN_DISPATCH("db", [ "write" $outpath ] )
         )
     )
 );
@@ -844,15 +852,14 @@ $addref(
 
 setcorpus = (
     $filepath -> (
-        if $filepath == null then (
-            printerror("you must provide a value for @filepath in setcorpus()")
-        );
-        $pathinfo = BP_GET_PATH_INFO_FUNC($filepath @locate 1);
+        $self = 'setcorpus';
+        BP_FN_CHECK_ARGS($self, 'filepath', $filepath);
+        $pathinfo = BP_FN_PATHINFO($filepath @locate 1);
         $path = $pathinfo."path";
         $extension = $pathinfo."extension";
-        if $extension != ".llll" then printerror(if $extension == null then "you must provide a file path" else "invalid corpus extension:" $extension);
+        if $extension != ".llll" then BP_FN_ERROR($self, if $extension == null then "you must provide a file path" else "invalid corpus extension:" $extension);
         BP_DATABASE_OUTPUT = null;
-        BP_DISPATCH_FUNC("db", [ "read" $path + $extension ])
+        BP_FN_DISPATCH("db", [ "read" $path + $extension ])
     )
 );
 
@@ -869,7 +876,7 @@ $addref(
 
 getcorpuskeys = (
    $typed = 1 -> (
-        BP_DISPATCH_FUNC('db', [ "getcols" ]);
+        BP_FN_DISPATCH('db', [ "getcols" ]);
         $keys = (BP_DATABASE_OUTPUT::1).right(1);
         if $typed == 1 then $keys else for $x in $keys collect $x.flat():1
     )
@@ -945,7 +952,7 @@ mean = (
     $x, $weights = null -> (
         $N = length($x);
         if $weights != null then (
-            if length($weights) != $N then printerror("the number of weights must match the number of elements in mean().");
+            if length($weights) != $N then BP_FN_ERROR("mean", "the number of weights must match the number of elements.");
             $x *= $weights;
             $N = reduce($weights, #+)
         );
@@ -969,12 +976,9 @@ $addref(
 query = (
     $sql = "SELECT * FROM buffers", 
     $usecache = 1 -> (
-        if $sql == null then (
-            printerror("you must provide a value for @sql in query()")
-        );
-        BP_DISPATCH_FUNC("db", [ "query" $sql ]);
-        (if BP_DATABASE_OUTPUT == null then printerror("query did not yield any results:" tosymbol($sql)));
-        
+        BP_FN_CHECK_ARGS('query', 'sql', $sql);
+        BP_FN_DISPATCH("db", [ "query" $sql ]);
+        (if BP_DATABASE_OUTPUT == null then BP_FN_ERROR('query', "query did not yield any results:" tosymbol($sql)));
         $sources = thin(for $buff in BP_DATABASE_OUTPUT collect $buff.getkey("source"));
         $sourcemap = for $source in $sources collect [ $source importaudio($source @usecache $usecache).getkey("source") ];
         BP_DATABASE_OUTPUT = for $buff in BP_DATABASE_OUTPUT collect $buff.mapkey("source", $x -^ $sourcemap -> $sourcemap.$x);    
@@ -1049,6 +1053,7 @@ mapkey = (
     )
 );
 
+## $newvalue = dummy
 $addref(
     @name "mapkey"
     @description "Modifies an existing llll key via a lambda function."
@@ -1263,8 +1268,8 @@ $addref(
 ## ------------------------------------------------------------
 
 nearest = (
-    $list, 
-    $target, 
+    $list = null, 
+    $target = null, 
     $mode = 0 -> (
         BP_FN_CHECK_ARGS('nearest', 'list', $list, 'target', $target);
         $list = sort($list);
@@ -1371,8 +1376,9 @@ $addref(
 
 setseed = (
     $seed -> (
-        BP_FN_CHECK_ARGS('setseed', 'seed', $seed);
-        if $seed.contains() == 2 then BP_MAXOBJ_RANDOM("seed" $seed) else printerror("invalid seed value:" $seed);
+        $self = 'setseed';
+        BP_FN_CHECK_ARGS($self, 'seed', $seed);
+        if $seed.contains() == 2 then BP_MAXOBJ_RANDOM("seed" $seed) else BP_FN_ERROR($self, "invalid seed value:" $seed);
         null
     )
 );
@@ -1503,9 +1509,10 @@ $addref(
 
 urn = (
     $id = 0 -> (
-        BP_FN_CHECK_ARGS('urn', 'id', $id);
+        $self = 'urn';
+        BP_FN_CHECK_ARGS($self, 'id', $id);
         $urn = BP_URN.$id;
-        if $urn == null then printerror("A unique random number generator with id of" $id "doesn't exist yet. Use initurn() to initialize a new unique random number generator.") else (
+        if $urn == null then BP_FN_ERROR($self, "a unique random number generator with id of" $id "doesn't exist yet. Use initurn() to initialize a new unique random number generator.") else (
             $pool = $urn."pool";
             $next = $pool.left(1);
             $pool = $pool.right(1);
@@ -1736,8 +1743,10 @@ transcribe = (
     $keepduration = 1,
     $metadata = null,
     $annotation = null -> (
-        BP_FN_CHECK_ARGS('transcribe', 'buffer', $buffer);
-        if $voice > BP_SCORE_CONFIG."numvoices" then BP_FN_ERROR('transcribe', "@voice value in transcribe() exceeds the number of voices. Use scoreconfig() to change the number of voices.");
+        $self = 'transcribe';
+        BP_FN_CHECK_ARGS($self, 'buffer', $buffer);
+        $source = BP_FN_VALIDATE_BUFFER($self, $buffer);
+        if $voice > BP_SCORE_CONFIG."numvoices" then BP_FN_ERROR($self, "@voice exceeds the number of voices. Use scoreconfig() to change the number of voices.");
         ## unpack buffer
         $buffer = $buffer::1;
 
@@ -1782,14 +1791,14 @@ transcribe = (
             $dur /= $rate::(1 2)
         );
         
-        if $dur == null || $dur <= 0 then BP_FN_ERROR('transcribe', "invalid buffer duration:" $dur ||| 'null');
+        if $dur == null || $dur <= 0 then BP_FN_ERROR($self, "invalid buffer duration:" $dur ||| 'null');
         
         ## make size slot based on duration
         $size = [ 4 scale(log2(min(16384, max(1, $dur))), 0, 14, 25, 150) ];
 
         ## format note and add to roll
-        $note = [ $mc $dur $vel ["slots" [ 7 $buffer."source" ] [ 10 $buffer."offset" ] ($metadata &&& [ 3 $metadata ]) ($annotation &&& [ 24 $annotation ]) $pan $rate $gain $color $notehead $size ]];
-        BP_DISPATCH_FUNC("roll", "addchord" ($voice ||| 1) [ ($onset ||| 0) $note ])
+        $note = [ $mc $dur $vel ["slots" [ 7 $source ] [ 10 $buffer."offset" ] ($metadata &&& [ 3 $metadata ]) ($annotation &&& [ 24 $annotation ]) $pan $rate $gain $color $notehead $size ]];
+        BP_FN_DISPATCH("roll", "addchord" ($voice ||| 1) [ ($onset ||| 0) $note ])
     )
 );
 
@@ -1823,8 +1832,8 @@ render = (
    $fade = 5,
    $reset = 0,
    $process = null -> (
-        if $numchannels < 1 then printerror("number of channels must be greater than 0");
-        BP_DISPATCH_FUNC("sampler", 
+        if $numchannels < 1 then BP_FN_ERROR('render', "number of channels must be greater than 0");
+        BP_FN_DISPATCH("sampler", 
             [ "panmode" $panmode] 
             [ "numchannels" $numchannels ] 
             [ "sr" $sr ]
@@ -1833,13 +1842,13 @@ render = (
             [ "normalize" $normalize ]
             [ "spread" $spread ]
         );
-        BP_DISPATCH_FUNC("roll", "getlength");
-        BP_DISPATCH_FUNC("roll", "dump");
-        ($process &&& BP_DISPATCH_FUNC("sampler", [ "process" $process ] ));
-        BP_DISPATCH_FUNC("roll", "getdomain");
+        BP_FN_DISPATCH("roll", "getlength");
+        BP_FN_DISPATCH("roll", "dump");
+        ($process &&& BP_FN_DISPATCH("sampler", [ "process" $process ] ));
+        BP_FN_DISPATCH("roll", "getdomain");
         BP_PLAY_TOGGLE = $play;
-        ($reset == 1 && BP_DISPATCH_FUNC("roll", "clear"));
-        BP_NEWBUFF_FUNC(@source BP_RENDER_BUFF)
+        ($reset == 1 && BP_FN_DISPATCH("roll", "clear"));
+        BP_FN_NEWBUFF(@source BP_RENDER_BUFF)
     )
 );
 
@@ -1896,7 +1905,7 @@ scoreconfig = (
             [ 'tonedivision' $tonedivision ]
             [ 'showdynamics' $showdynamics ]
         );
-        for $msg in BP_SCORE_CONFIG with @unwrap 1 do BP_DISPATCH_FUNC('roll', $msg);
+        for $msg in BP_SCORE_CONFIG with @unwrap 1 do BP_FN_DISPATCH('roll', $msg);
         null
     )
 );
@@ -1951,15 +1960,16 @@ $addref(
 read = (
     $path,
     $ignore = 0 -> (
-        BP_FN_CHECK_ARGS('read', 'path', $path);
+        $self = 'read';
+        BP_FN_CHECK_ARGS($self, 'path', $path);
         BP_LLLL_READ = null;
-        $info = BP_GET_PATH_INFO_FUNC($path @locate 1);
+        $info = BP_FN_PATHINFO($path @locate 1);
         if (".txt" ".llll").intersection($info."extension") == null then (
-            printerror("invalid file extension for @path in read().")
+            BP_FN_ERROR($self, "invalid file extension")
         );
         $path = $info."path" + $info."extension";
         for $msg in ['ignore' $ignore] ['read' $path] with @unwrap 1 do (
-            BP_DISPATCH_FUNC("llllio", "read" $msg)
+            BP_FN_DISPATCH("llllio", "read" $msg)
         );
         BP_LLLL_READ
     )
@@ -1999,18 +2009,19 @@ write = (
     $maxdepth = -1,
     $negativeoctaves = 0,
     $parens = 0 -> (
-        BP_FN_CHECK_ARGS('write', 'data', $data, 'path', $path);
-        $info = BP_GET_PATH_INFO_FUNC($path);
+        $self = 'write';
+        BP_FN_CHECK_ARGS($self, 'data', $data, 'path', $path);
+        $info = BP_FN_PATHINFO($path);
         if (".txt" ".llll").intersection($info."extension") == null then (
-            printerror("invalid file extension for @path in write().")
+            BP_FN_ERROR($self, "invalid file extension for @path in write().")
         );
         if exists($info."parent") == 0 then (
-            printerror("write: invalid destination directory:" $info."parent")
+            BP_FN_ERROR($self, "invalid destination directory:" $info."parent")
         );
         $ext = $info."extension";
         $path = $info."path" + $ext;
         $cmd = if $ext == ".txt" then "writetxt" else "write";
-        BP_DISPATCH_FUNC("llllio", "write"
+        BP_FN_DISPATCH("llllio", "write"
             [ "data" $data ]
             [ "config" 
                 [ "escape" $escape ]
@@ -2057,9 +2068,10 @@ $addref(
 
 export = (
     $path, $stems = 0, $format = "float32", $vbrmode = "VBR", $bitrate = 0 -> (
-        BP_FN_CHECK_ARGS('export', 'path', $path);
+        $self = 'export';
+        BP_FN_CHECK_ARGS($self, 'path', $path);
         ## get path info
-        $pathinfo = BP_GET_PATH_INFO_FUNC($path);
+        $pathinfo = BP_FN_PATHINFO($path);
         $path = $pathinfo.'path';
         $ext = $pathinfo.'extension';
         $filepath = $path + $ext;
@@ -2067,16 +2079,16 @@ export = (
         ## check file type
         if $ext.intersection(BP_SUPPORTED_AUDIO_FORMATS) != null then (
             ## get audio format
-            BP_DISPATCH_FUNC("audioexport", [ "settings" [ "format" $format ] [ "vbrmode" $vbrmode ] [ "bitrate" $bitrate ] ] ["mode" $stems != 0] $pathinfo )
+            BP_FN_DISPATCH("audioexport", [ "settings" [ "format" $format ] [ "vbrmode" $vbrmode ] [ "bitrate" $bitrate ] ] ["mode" $stems != 0] $pathinfo )
         ) else if $ext == ".mid" || $ext == ".midi" then (
-            BP_DISPATCH_FUNC("roll", "exportmidi" $filepath)
+            BP_FN_DISPATCH("roll", "exportmidi" $filepath)
         ) else if $ext == ".llll" then (
-            BP_DISPATCH_FUNC(
+            BP_FN_DISPATCH(
                 'roll', 'dump' '@router' 'copy' 
             );
             write('roll' BP_TMP_ROLL_OUTPUT, $filepath)
         ) else (
-            printerror("file format is not supported:" $ext)
+            BP_FN_ERROR($self, "file format is not supported:" $ext)
         )
     )
 );
@@ -2114,25 +2126,26 @@ $addref(
 importaudio = (
     $path, 
     $usecache = 1 -> (
-        BP_FN_CHECK_ARGS('importaudio', 'path', $path);
+        $self = 'importaudio';
+        BP_FN_CHECK_ARGS($self, 'path', $path);
         $buffer = null;
         if $usecache == 1 then (
             $buffer = BP_BUFFER_CACHE.$path
         );
         if $buffer == null then (
             BP_TMP_BUFF = null;
-            $pathinfo = BP_GET_PATH_INFO_FUNC($path @locate 1);
+            $pathinfo = BP_FN_PATHINFO($path @locate 1);
             $ext = $pathinfo."extension";
             $filepath = $pathinfo."path" + $ext;
             if $ext.intersection(BP_SUPPORTED_AUDIO_FORMATS) != null then (
-                BP_DISPATCH_FUNC("import", [
+                BP_FN_DISPATCH("import", [
                     "audio"
                     $filepath
                 ])
             ) else (
-                printerror(if $ext == null then "you must provide a file path" else "invalid file extension:" $ext)
+                BP_FN_ERROR($self, if $ext == null then "you must provide a file path" else "invalid file extension:" $ext)
             );
-            $buffer = BP_NEWBUFF_FUNC(@source BP_TMP_BUFF @extras [ "file" $filepath ]);
+            $buffer = BP_FN_NEWBUFF(@source BP_TMP_BUFF @extras [ "file" $filepath ]);
             if BP_BUFFER_CACHE.$path == null then BP_BUFFER_CACHE _= [$path $buffer]
         );
         $buffer
@@ -2154,19 +2167,20 @@ $addref(
 
 importmidi = (
     $path -> (
-        BP_FN_CHECK_ARGS('importmidi', 'path', $path);
+        $self = 'importmidi';
+        BP_FN_CHECK_ARGS($self, 'path', $path);
         BP_TMP_ROLL_OUTPUT = null;
-        $pathinfo = BP_GET_PATH_INFO_FUNC($path @locate 1);
+        $pathinfo = BP_FN_PATHINFO($path @locate 1);
         $ext = $pathinfo."extension";
         $path = $pathinfo."path";
         $filepath = $path + $ext;
         if $ext == ".midi" || $ext == ".mid" then (
-            BP_DISPATCH_FUNC("import", [
+            BP_FN_DISPATCH("import", [
                 "roll"
                 $filepath
             ])
         ) else (
-            printerror(if $ext == null then "you must provide a file path" else "invalid file extension:" $ext)
+            BP_FN_ERROR($self, if $ext == null then "you must provide a file path" else "invalid file extension:" $ext)
         );
         BP_TMP_ROLL_OUTPUT
     )
@@ -2305,13 +2319,12 @@ analyze = (
     $yintolerance = 1,
     $frametime = 0,
     $bufinterp = 0 -> (
+        $self = 'analyze';
         BP_FN_CHECK_ARGS('analyze', 'buffer', $buffer, 'descriptors', $descriptors);
-        $source = $buffer.getkey("source");
-        if $source == null then printerror("you must provide a value for @buffer in analyze().");
-        if $descriptors == null then printerror("you must provide a value for @descriptors in analyze().");
+        $source = BP_FN_VALIDATE_BUFFER($self, $buffer);
         BP_ESSENTIA_OUTPUT = null;
         $source = $buffer.process(bpthru()).getkey("source");
-        BP_DISPATCH_FUNC("essentia",
+        BP_FN_DISPATCH("essentia",
             [ "buffer" $source ]
             [ "settings"
                 "@winstartfromzero" $winstartfromzero
@@ -2355,11 +2368,11 @@ analyze = (
             if $lastchar == '~' then (
                 $outkeys = $descr.getkey("output");
                 for $k in $outkeys do (
-                    $features.$k = BP_NEWBUFF_FUNC(@source $features.$k).process(bpthru())
+                    $features.$k = BP_FN_NEWBUFF(@source $features.$k).process(bpthru())
                 )
             )
         );
-        BP_DISPATCH_FUNC("essentia", [ "clear" "bang" ]);
+        BP_FN_DISPATCH("essentia", [ "clear" "bang" ]);
         $buffer = [ $buffer.flat(1) $features ]
     )
 );
@@ -2456,7 +2469,7 @@ BP_ESSENTIA_WRAPPER_FUNC = (
     $modes = 0...3 -> (
         $mode = intersection($mode, $modes);
         if $mode == null then (
-            printerror("invalid value for @mode in" $name "descriptor.")
+            BP_FN_ERROR($name, "invalid value for @mode. available modes:" $modes)
         ) else (
             $mode = ("" "..." ":::" "~"):($mode + 1);
             [ 
@@ -3446,7 +3459,7 @@ $addref(
 ## ------------------------------------------------------------
 
 beatsloudness = (
-    $beats,
+    $beats = null,
     $beatduration = 0.05,
     $beatwindowduration = 0.1,
     $frequencybands = 20 150 400 3200 7000 22000,
@@ -3773,14 +3786,14 @@ process = (
     $commands = null, 
     $prefade = 0,
     $keepkeys = null -> (
-        BP_FN_CHECK_ARGS('process', 'buffer', $buffer, 'commands', $commands);
-        for $cmd in $commands do if $cmd.getkey("fx") == null then printerror("invalid processing command in process():" $cmd);
-        $source = $buffer.getkey("source");
-        if $source == null then printerror("attempt to process invalid buffer in process():" $buffer);
-        $offset = $buffer.getkey("offset");
-        $duration = $buffer.getkey("duration");
-        $crop = $offset != 0 || $duration != $buffer.getkey("source_end");
-        BP_DISPATCH_FUNC("process",
+        $self = 'process';
+        BP_FN_CHECK_ARGS($self, 'buffer', $buffer, 'commands', $commands);
+        for $cmd in $commands do if $cmd.getkey("fx") == null then BP_FN_ERROR($self, "invalid processing command:" $cmd);
+        $source = BP_FN_VALIDATE_BUFFER($self, $buffer);
+        $offset = getkey($buffer, "offset");
+        $duration = getkey($buffer, "duration");
+        $crop = $offset != 0 || $duration != getkey($buffer, "source_end");
+        BP_FN_DISPATCH("process",
             [ "source" $source ]
             [ "process" 
                 (if $crop then crop(@start $offset, @end $offset + $duration))
@@ -3792,7 +3805,7 @@ process = (
             $val = $buffer.getkey($k);
             $val &&& [ $k $val ]
         );
-        for $buf in BP_TMP_BUFF collect BP_NEWBUFF_FUNC(
+        for $buf in BP_TMP_BUFF collect BP_FN_NEWBUFF(
             @source $buf
             @pitch $buffer.getkey("pitch") 
             @extras $extrakeys
@@ -3867,8 +3880,9 @@ crop = (
     $start = 0,
     $end = 1000,
     $timeunit = 0 -> (
-        if $end == null || $start == null then printerror("you must provide values for @start and @end in crop()");
-        if $end > 0 && $end <= $start then printerror("@end must be greater than @start in crop()");
+        $self = 'crop';
+        BP_FN_CHECK_ARGS($self, 'start', $start, 'end', $end);
+        if $end > 0 && $end <= $start then BP_FN_ERROR($self, "@end must be greater than @start");
         [
             ["fx" "crop"]
             ["params" 
@@ -4019,7 +4033,7 @@ BP_OSC_GEN_FUNC = (
             $duration = $frequency.getkey("duration");
             $frequency = mc2f(6000)
         );
-        BP_DISPATCH_FUNC("generate", 
+        BP_FN_DISPATCH("generate", 
             [
                 [ "fx" $name ]
                 [ "params" 
@@ -4034,7 +4048,7 @@ BP_OSC_GEN_FUNC = (
             ]
         );
         $pitch = f2mc($frequency);
-        BP_NEWBUFF_FUNC(@source BP_TMP_BUFF @pitch $pitch)
+        BP_FN_NEWBUFF(@source BP_TMP_BUFF @pitch $pitch)
     )
 );
 
@@ -4216,7 +4230,7 @@ envelope = (
         $depth = depth($envelope);
         $length = length($envelope);
         if $depth > 1 || $length > 1 then ($envelope = [ bpf($envelope) ]);
-        BP_DISPATCH_FUNC("generate", 
+        BP_FN_DISPATCH("generate", 
             [
                 [ "fx" "envelope"]
                 [ "params" 
@@ -4225,7 +4239,7 @@ envelope = (
                 ]
             ]
         );
-        BP_NEWBUFF_FUNC(@source BP_TMP_BUFF)
+        BP_FN_NEWBUFF(@source BP_TMP_BUFF)
     )
 );
 
@@ -4248,13 +4262,14 @@ clicks = (
     $impulse = 1,
     $ampunit = 0,
     $timeunit = 0 -> (
+        $self = 'clicks';
         for $x in ["onsets" $onsets] [ "gains" $gains ] [ "impulse" $impulse ] do (
             $k = $x::(1 2);
             if $k == null || $k.length() > 1  then (
-                printerror($x::(1 1) "must be a flat list")
+                BP_FN_ERROR($self, $x::(1 1) "must be a flat list")
             )
         );
-        BP_DISPATCH_FUNC("generate", 
+        BP_FN_DISPATCH("generate", 
             [
                 [ "fx" "clicks"]
                 [ "params" 
@@ -4264,7 +4279,7 @@ clicks = (
                 ]
             ]
         );
-        $buff = BP_NEWBUFF_FUNC(@source BP_TMP_BUFF);
+        $buff = BP_FN_NEWBUFF(@source BP_TMP_BUFF);
         if $buff.getkey('duration') < 2 then (
             $buff.process(
                 join(envelope(0 @duration 2))
@@ -4461,7 +4476,7 @@ biquad = (
                 [ "allpass" 8 ]
             ).$type
         );
-        if $type == null then printerror("invalid value for @type in biquad().");
+        $type &&& BP_FN_ERROR('biquad', "invalid value for @type");
         [
             [ "fx" "biquad" ]
             [ "params" 
@@ -4897,7 +4912,7 @@ retune = (
     $ambiencethreshold = 0.3,
     $amount = 100,
     $bypass = 100 -> (
-        if $pitchgrid == null then printerror("you must provide a value for @pitchgrid in retune().");
+        BP_FN_CHECK_ARGS('retune', 'pitchgrid', $pitchgrid);
         $pitchgrid = $pitchgrid.thin().fmod(12) * 100;
         $len = $pitchgrid.length();
         if $len <= 2 then (
@@ -6055,10 +6070,11 @@ buf2ptracks = (
     $frequnit = 0,
     $timeunit = 0,
     $downmix = 1 -> (
-        BP_FN_CHECK_ARGS('buf2ptracks', 'buffer', $buffer);
-        if $buffer.getkey("source") == null then printerror($buffer "is not a buffer in topartialtracks().");
+        $self = 'buf2ptracks';
+        BP_FN_CHECK_ARGS($self, 'buffer', $buffer);
+        BP_FN_VALIDATE_BUFFER($self, $buffer);
         $source = $buffer.process(bpthru()).getkey("source");
-        BP_DISPATCH_FUNC("resynth", 
+        BP_FN_DISPATCH("resynth", 
             [ "analysis" 
                 [ "winstartfromzero" $winstartfromzero ]
                 [ "framesize" $framesize ]
@@ -6109,7 +6125,7 @@ topartialtracks = (
     $frequnit = 0,
     $timeunit = 0,
     $downmix = 1 -> (
-        printerror('topartialtracks: this function will be deprecated. Use instead buf2ptracks.' @stop 0);
+        BP_FN_WARNING('topartialtracks', 'this function will be deprecated. Use instead buf2ptracks.');
         buf2ptracks(
             @buffer $buffer
             @winstartfromzero $winstartfromzero
@@ -6193,9 +6209,9 @@ $addref(
 ## ------------------------------------------------------------
 
 ptracks2buf = (
-    $frequencies,
-    $magnitudes,
-    $phases,
+    $frequencies = null,
+    $magnitudes = null,
+    $phases = null,
     $framesize = 2048,
     $hopsize = 512,
     $ampunit = 0,
@@ -6203,7 +6219,7 @@ ptracks2buf = (
     $angleunit = 0,
     $frequnit = 0 -> (
         BP_FN_CHECK_ARGS('ptracks2buf', 'frequencies', $frequencies, 'magnitudes', $magnitudes, 'phases', $phases);
-        BP_DISPATCH_FUNC("resynth", 
+        BP_FN_DISPATCH("resynth", 
             [ "synthesis" 
                 [ "params"
                     [ "framesize" $framesize ]
@@ -6218,7 +6234,7 @@ ptracks2buf = (
                 [ "frequencies" $frequencies ]
             ]
         );
-        BP_NEWBUFF_FUNC(@source BP_RESYNTH_SYNTHESIS)
+        BP_FN_NEWBUFF(@source BP_RESYNTH_SYNTHESIS)
     )
 );
 
@@ -6232,7 +6248,7 @@ frompartialtracks = (
     $antimeunit = 1,
     $angleunit = 0,
     $frequnit = 0 -> (
-        printerror('frompartialtracks: this function will be deprecated. Use instead ptracks2buf.' @stop 0);
+        BP_FN_WARNING('frompartialtracks', 'this function will be deprecated. Use instead ptracks2buf');
         ptracks2buf(
             @frequencies $frequencies
             @magnitudes $magnitudes
@@ -6279,12 +6295,11 @@ $addref(
 
 buf2samps = (
     $buffer -> (
-        $source = $buffer.getkey('source');
-        if $source != null then (
-            $source = $buffer.process(bpthru()).getkey("source");
-            BP_DISPATCH_FUNC('ears', ['tosamps' $source]);
-            BP_TMP_EARS_OUTPUT
-        )
+        BP_FN_VALIDATE_BUFFER('buf2samps', $buffer);
+        $source = $buffer.process(bpthru()).getkey("source");
+        BP_FN_DISPATCH('ears', ['tosamps' $source]);
+        BP_TMP_EARS_OUTPUT
+        
     )
 );
 
@@ -6303,18 +6318,19 @@ $addref(
 samps2buf = (
     $llll,
     $sr = 0 -> (
-        BP_FN_CHECK_ARGS('samps2buf', 'llll', $llll);
+        $self = 'samps2buf';
+        BP_FN_CHECK_ARGS($self, 'llll', $llll);
         if depth($llll) != 2 then (
-            BP_FN_ERROR('samps2buf', '@llll must have a depth of 2')
+            BP_FN_ERROR($self, '@llll must have a depth of 2')
         ) else (
-            BP_DISPATCH_FUNC('ears', 
+            BP_FN_DISPATCH('ears', 
                 ['fromsamps' 
                     ['sr' $sr]
                     ['source' $llll]
                 ]
             );
             $source = BP_TMP_EARS_OUTPUT;
-            BP_NEWBUFF_FUNC($source).process(bpthru())
+            BP_FN_NEWBUFF($source).process(bpthru())
         )
     )
 );
@@ -6381,7 +6397,7 @@ $addref(
         $addarg(@name "envtimeunit" @default 0 @type "int" @description "unit for time values inside envelopes/bpfs." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
-    ),
+    )
     @output $addout(@description "encoded buffer" @type "llll")
 );
 
@@ -6426,7 +6442,7 @@ $addref(
         $addarg(@name "angleunit" @default 0 @type "int" @description "unit for angles." @options 
             BP_REF_ANGLEUNIT_OPTIONS
         )
-    ),
+    )
     @output $addout(@description "decoded buffer" @type "llll")
 );
 
@@ -6696,10 +6712,9 @@ $addref(
 
 splitbuf = (
     $buffer, $split = 100, $mode = 0, $overlap = 1, $partials = 1 -> (
-        BP_FN_CHECK_ARGS('splitbuf', 'buffer', $buffer);
-        $source = $buffer.getkey('source');
-        if $source == null then printerror('splitbuf: invalid buffer:' $buffer);
-        if $split == null then printerror('splitbuf: @split cannot be null.');
+        $self = 'splitbuf';
+        BP_FN_CHECK_ARGS($self, 'buffer', $buffer, 'split', $split, 'mode', $mode);
+        BP_FN_VALIDATE_BUFFER($self, $buffer);
         $overlap = max($overlap, 1);
         $duration = $buffer.getkey('duration');
         $segs = null;
@@ -6729,7 +6744,7 @@ splitbuf = (
             for $offset in $offsets, $sdur in $segdurs do (
                 $segs _= $buffer.setkey('offset', $offset).setkey('duration', $sdur) 
             ) 
-        ) else (printerror('splitbuf: invalid mode:' $mode));
+        ) else BP_FN_ERROR($self, 'invalid @mode:' $mode);
         $segs
     ) 
 );
@@ -6827,13 +6842,14 @@ $addref(
 
 querytree = (
     $tree, $point -> (
-        BP_FN_CHECK_ARGS('querytree', 'tree', $tree, 'point', $point);
+        $self = 'querytree';
+        BP_FN_CHECK_ARGS($self, 'tree', $tree, 'point', $point);
         BP_SANDBOX_OUT = null;
         $treedims = getkey($tree, 'dims');
-        if $treedims == null then BP_FN_ERROR('querytree', 'invalid tree:' $tree) else (
+        if $treedims == null then BP_FN_ERROR($self, 'invalid tree:' $tree) else (
             $point = flat($point);
             $pointdims = length($point);
-            if $treedims != $pointdims then BP_FN_ERROR('querytree', '@point must be of length' $treedims) else (
+            if $treedims != $pointdims then BP_FN_ERROR($self, '@point must be of length' $treedims) else (
                 $ref = getkey($tree, 'ref');
                 $bias = getkey($tree, 'bias');
                 $spread = getkey($tree, 'spread');

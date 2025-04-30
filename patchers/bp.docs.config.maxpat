@@ -175,7 +175,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "$mute = $i1 != 0; BP_CONFIG_FUNC('map', $config -^ $mute -> ($config.'mutealert' = $mute; $config)) ",
+					"code" : "$mute = $i1 != 0; BP_FN_CONFIG('map', $config -^ $mute -> ($config.'mutealert' = $mute; $config)) ",
 					"id" : "obj-78",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -187,7 +187,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval $mute = $i1 != 0\\; BP_CONFIG_FUNC('map'\\, $config -^ $mute -> ($config.'mutealert' = $mute\\; $config)) @out m"
+					"text" : "bach.eval $mute = $i1 != 0\\; BP_FN_CONFIG('map'\\, $config -^ $mute -> ($config.'mutealert' = $mute\\; $config)) @out m"
 				}
 
 			}
@@ -205,7 +205,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_CONFIG_FUNC('get', 'mutealert') ",
+					"code" : "BP_FN_CONFIG('get', 'mutealert') ",
 					"id" : "obj-72",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -217,7 +217,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval BP_CONFIG_FUNC('get'\\, 'mutealert') @out m"
+					"text" : "bach.eval BP_FN_CONFIG('get'\\, 'mutealert') @out m"
 				}
 
 			}
@@ -277,7 +277,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "$folder = $x1; BP_CONFIG_FUNC('map', $config -^ $folder -> ($config.'tutorialsdir' = $folder; $config)) ",
+					"code" : "$folder = $x1; BP_FN_CONFIG('map', $config -^ $folder -> ($config.'tutorialsdir' = $folder; $config)) ",
 					"id" : "obj-97",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -289,7 +289,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval $folder = $x1\\; BP_CONFIG_FUNC('map'\\, $config -^ $folder -> ($config.'tutorialsdir' = $folder\\; $config))"
+					"text" : "bach.eval $folder = $x1\\; BP_FN_CONFIG('map'\\, $config -^ $folder -> ($config.'tutorialsdir' = $folder\\; $config))"
 				}
 
 			}
@@ -385,7 +385,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_CONFIG_FUNC('get', 'tutorialsdir') ",
+					"code" : "BP_FN_CONFIG('get', 'tutorialsdir') ",
 					"id" : "obj-63",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -397,7 +397,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval BP_CONFIG_FUNC('get'\\, 'tutorialsdir') @out m"
+					"text" : "bach.eval BP_FN_CONFIG('get'\\, 'tutorialsdir') @out m"
 				}
 
 			}
@@ -509,7 +509,7 @@
 							}
 , 							{
 								"box" : 								{
-									"code" : "BP_CONFIG_FUNC('get', 'defaulteditor') ",
+									"code" : "BP_FN_CONFIG('get', 'defaulteditor') ",
 									"id" : "obj-11",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -521,13 +521,13 @@
 										"versionnumber" : 80300
 									}
 ,
-									"text" : "bach.eval BP_CONFIG_FUNC('get'\\, 'defaulteditor')"
+									"text" : "bach.eval BP_FN_CONFIG('get'\\, 'defaulteditor')"
 								}
 
 							}
 , 							{
 								"box" : 								{
-									"code" : "$path = $x1; BP_CONFIG_FUNC('map', $config -^ $path -> ($config.'defaulteditor' = $path; $config)) ",
+									"code" : "$path = $x1; BP_FN_CONFIG('map', $config -^ $path -> ($config.'defaulteditor' = $path; $config)) ",
 									"id" : "obj-10",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
@@ -539,7 +539,7 @@
 										"versionnumber" : 80300
 									}
 ,
-									"text" : "bach.eval $path = $x1\\; BP_CONFIG_FUNC('map'\\, $config -^ $path -> ($config.'defaulteditor' = $path\\; $config))"
+									"text" : "bach.eval $path = $x1\\; BP_FN_CONFIG('map'\\, $config -^ $path -> ($config.'defaulteditor' = $path\\; $config))"
 								}
 
 							}
@@ -1454,7 +1454,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_CONFIG_FUNC('read'); BP_CONFIG_FUNC('get', 'imports') ",
+					"code" : "BP_FN_CONFIG('read'); BP_FN_CONFIG('get', 'imports') ",
 					"id" : "obj-1",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -1466,7 +1466,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval BP_CONFIG_FUNC('read')\\; BP_CONFIG_FUNC('get'\\, 'imports')"
+					"text" : "bach.eval BP_FN_CONFIG('read')\\; BP_FN_CONFIG('get'\\, 'imports')"
 				}
 
 			}
@@ -1676,7 +1676,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "$path = $x1; BP_CONFIG_FUNC('map', $config -^ $path -> ($config.'imports' = thin($config.'imports' $path); $config)) ",
+					"code" : "$path = $x1; BP_FN_CONFIG('map', $config -^ $path -> ($config.'imports' = thin($config.'imports' $path); $config)) ",
 					"id" : "obj-3",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -1688,7 +1688,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval $path = $x1\\; BP_CONFIG_FUNC('map'\\, $config -^ $path -> ($config.'imports' = thin($config.'imports' $path)\\; $config))"
+					"text" : "bach.eval $path = $x1\\; BP_FN_CONFIG('map'\\, $config -^ $path -> ($config.'imports' = thin($config.'imports' $path)\\; $config))"
 				}
 
 			}
@@ -1824,7 +1824,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "$x = $x1; BP_CONFIG_FUNC('map', $config -^ $x -> ($config.'imports' = $x; $config)) ",
+					"code" : "$x = $x1; BP_FN_CONFIG('map', $config -^ $x -> ($config.'imports' = $x; $config)) ",
 					"id" : "obj-7",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -1836,7 +1836,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval $x = $x1\\; BP_CONFIG_FUNC('map'\\, $config -^ $x -> ($config.'imports' = $x\\; $config))"
+					"text" : "bach.eval $x = $x1\\; BP_FN_CONFIG('map'\\, $config -^ $x -> ($config.'imports' = $x\\; $config))"
 				}
 
 			}

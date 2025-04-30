@@ -286,7 +286,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_CONFIG_FUNC('get', 'tutorialsdir') ",
+					"code" : "BP_FN_CONFIG('get', 'tutorialsdir') ",
 					"id" : "obj-3",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -298,7 +298,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval BP_CONFIG_FUNC('get'\\, 'tutorialsdir') @out m"
+					"text" : "bach.eval BP_FN_CONFIG('get'\\, 'tutorialsdir') @out m"
 				}
 
 			}
@@ -935,7 +935,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_DISPATCH_FUNC('loadscript', $x1) ",
+					"code" : "BP_FN_DISPATCH('loadscript', $x1) ",
 					"id" : "obj-29",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -947,7 +947,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval BP_DISPATCH_FUNC('loadscript'\\, $x1)"
+					"text" : "bach.eval BP_FN_DISPATCH('loadscript'\\, $x1)"
 				}
 
 			}

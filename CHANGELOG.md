@@ -12,8 +12,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `createtree`: Instantiates a k-dimensional tree. Replaces `buildtree`.
   - `querytree`: Queries a k-dimensional tree. Replaces `searchtree`.
 - Dev:
-  - Add `BP_FN_ERROR`.
-  - Add `BP_FN_CHECK_ARGS`.
+  - Major renaming of backend functions to follow consistent nomenclature:
+    - global functions: `BP_FN_*`
+    - global non-functions: `BP_*`
+  - Add `BP_FN_ERROR`, `BP_FN_WARNING`, `BP_FN_CHECK_ARGS`, and `BP_FN_VALIDATE_BUFFER`.
 
 ### Changed
 
@@ -29,6 +31,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `buildtree`: Replaced by `createtree`.
   - `searchtree`: Replaced by `querytree`.
   - `interpolate`: No longer useful.
+- Dev:
+  - `printerror`: replaced by `BP_FN_ERROR`.
 
 ## [0.2.8-beta] - 2025-04-28
 
@@ -71,7 +75,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `topartialtracks` to `buf2ptracks`
   - `frompartialtracks` to `ptracks2buf`.
 - development:
-  - `BP_ON_BEFORE_FUNC` and `BP_ON_AFTER_FUNC` added, to better manage pre and post runtime logic.
+  - `BP_FN_ON_BEFORE` and `BP_FN_ON_AFTER` added, to better manage pre and post runtime logic.
   - Resolved patcher theme issues from Max 9 upgrade.
 
 ### Fixed
@@ -218,8 +222,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Use python script to change app logo when standalone is not built from main.
 - Change default threshold in `effectiveduration` from 0.4 to 0.02.
 - Name changes:
-  - `getpathinfo` -> `BP_GET_PATH_INFO_FUNC`.
-  - `msg` -> `BP_DISPATCH_FUNC`.
+  - `getpathinfo` -> `BP_FN_PATHINFO`.
+  - `msg` -> `BP_FN_DISPATCH`.
   - `s`-prefixed random functions -> `x`-prefixed.
 - Show `dev` in UI version legend when in Max.
 - Update logo path to new computer.
@@ -309,7 +313,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - New arrangement of buttons in `bp.script` .
 - Better formatting and filtering time in `bp.corpus`, with silent errors in `dada.cartesian`.
 - Swapp of scatterplot with bach.tree in `corpus.lab UI`.
-- Change `bp_makebuffer` name to `BP_NEWBUFF_FUNC`.
+- Change `bp_makebuffer` name to `BP_FN_NEWBUFF`.
 - `live.gain~` now uses Lato font.
 - `getpathinfo` API now checks if path exists, and optionally raises an error if not. Used in importing functions to minimize errors at render.
 

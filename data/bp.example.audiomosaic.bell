@@ -30,8 +30,12 @@ buildcorpus(
 $bufs = query();
 ## Extract feature keys from the features list
 $featurekeys = for $f in $features collect $f.getkey('output'):-1;
+$buf2features = (
+    $buf -^ $featurekeys -> [for $k in $featurekeys collect $buf.getkey($k) ] 
+);
+$data = for $b in $bufs collect $buf2features($b);
 ## Build a search tree for efficient retrieval based on extracted features
-buildtree($bufs, $featurekeys);
+$tree = createtree($data);
 ## Import a target audio file for analysis
 $target = importaudio('drums.wav');
 ## Perform onset detection on the target audio
@@ -56,7 +60,9 @@ for $marker in $markers, $dur in $markerdurs do (
     ## Analyze the segment with the predefined feature descriptors
     $segment = $segment.analyze($features);
     ## Search the corpus for the best-matching segment
-    $match = searchtree($segment);
+    $point = $buf2features($segment);
+    $id = querytree($tree, $point);
+    $match = $bufs:$id;
     ## Transcribe the matched segment with onset and gain envelope settings
     $match.transcribe(
         ## Align match onset with detected marker

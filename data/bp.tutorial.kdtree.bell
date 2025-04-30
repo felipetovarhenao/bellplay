@@ -24,29 +24,20 @@ $source = $source.analyze(
 ## get list of transient-based onset times
 $markers = $source.getkey("onsets");
 
-## get inter-onset durations — we include total duration at the end to compute duration between last onset and end of file
-$durations = x2dx($markers $source.getkey("duration"));
-
-## create segments based on markers and inter-onset durations
-$segments = for $marker in $markers, $dur in $durations collect (
-    ## copy source buffer
-    $seg = $source;
-
-    ## change duration
-    $seg = $seg.setkey("duration", $dur);
-    
-    ## change offset (starting time within original buffer)
-    $seg = $seg.setkey("offset", $marker);
-
-    ## analyze segment and collect
-    $seg = $seg.analyze(
-        pitchmelodia()
-    );
-    if $seg.getkey("pitchmelodia") > 0 then $seg
+$segments = $source.splitbuf(@split $markers @mode 2);
+$data = null;
+$segments = for $seg in $segments collect (
+    $seg = $seg.analyze(pitchmelodia());
+    $pitch = $seg.getkey("pitchmelodia");
+    if $pitch > 0 then (
+        $data _= [$pitch];
+        $seg
+    )
 );
 
+
 ## build k-dimensional tree on segments' pitch values.
-buildtree($segments, "pitchmelodia");
+$tree = createtree($data);
 
 ## import MIDI file
 $events = importmidi("bach.mid");
@@ -69,7 +60,8 @@ for $event in $events do (
     $duration = $event.getkey("duration");
 
     ## find best match given MIDI event's pitch (apply random deviation to get slightly different matches for a given pitch)
-    $match = searchtree($pitch + rand(-$tolerance/2, $tolerance/2));
+    $matchindex = querytree($tree, $pitch + rand(-$tolerance/2, $tolerance/2));
+    $match = $segments:$matchindex;
     
     ## get cents deviation between target pitch and buffer match
     $detune = pitchdiff($match.getkey("pitchmelodia"), $pitch);

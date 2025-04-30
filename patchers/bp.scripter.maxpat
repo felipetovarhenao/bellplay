@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 520.0, 443.0, 762.0, 492.0 ],
+		"rect" : [ 183.0, 412.0, 762.0, 492.0 ],
 		"openinpresentation" : 1,
 		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
@@ -95,7 +95,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_ON_LAUNCH_FUNC() ",
+					"code" : "BP_FN_ON_LAUNCH() ",
 					"id" : "obj-213",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -107,7 +107,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval BP_ON_LAUNCH_FUNC()"
+					"text" : "bach.eval BP_FN_ON_LAUNCH()"
 				}
 
 			}
@@ -759,7 +759,7 @@
 
 							}
  ],
-						"originid" : "pat-4854",
+						"originid" : "pat-1333",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1146,7 +1146,7 @@
 
 							}
  ],
-						"originid" : "pat-4856",
+						"originid" : "pat-1335",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1573,7 +1573,7 @@
 
 							}
  ],
-						"originid" : "pat-4862",
+						"originid" : "pat-1341",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1627,7 +1627,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_ON_BEFORE_FUNC() ",
+					"code" : "BP_FN_ON_BEFORE() ",
 					"id" : "obj-163",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -1639,7 +1639,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval BP_ON_BEFORE_FUNC()"
+					"text" : "bach.eval BP_FN_ON_BEFORE()"
 				}
 
 			}
@@ -1739,7 +1739,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_ON_AFTER_FUNC(); BP_BUFFER_INSPECTOR ",
+					"code" : "BP_FN_ON_AFTER(); BP_BUFFER_INSPECTOR ",
 					"id" : "obj-135",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -1751,7 +1751,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval BP_ON_AFTER_FUNC()\\; BP_BUFFER_INSPECTOR"
+					"text" : "bach.eval BP_FN_ON_AFTER()\\; BP_BUFFER_INSPECTOR"
 				}
 
 			}
@@ -1988,7 +1988,7 @@
 
 							}
  ],
-						"originid" : "pat-4886",
+						"originid" : "pat-1365",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2273,7 +2273,7 @@
 
 							}
  ],
-						"originid" : "pat-4888",
+						"originid" : "pat-1367",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2464,7 +2464,7 @@
 
 							}
  ],
-						"originid" : "pat-4890",
+						"originid" : "pat-1369",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -2772,7 +2772,7 @@
 
 							}
  ],
-						"originid" : "pat-4894",
+						"originid" : "pat-1373",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -3297,7 +3297,7 @@
 
 							}
  ],
-						"originid" : "pat-4952",
+						"originid" : "pat-1431",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4624,7 +4624,7 @@
 
 							}
  ],
-						"originid" : "pat-4954",
+						"originid" : "pat-1433",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4678,19 +4678,18 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "if $x2 > 0 then $x1 else printerror('attempt to render empty sequence.') ",
 					"id" : "obj-97",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1305.5, 1284.0, 940.0, 23.0 ],
+					"patching_rect" : [ 1306.0, 1284.0, 939.5, 23.0 ],
 					"saved_object_attributes" : 					{
-						"embed" : 1,
+						"embed" : 0,
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval if $x2 > 0 then $x1 else printerror('attempt to render empty sequence.')"
+					"text" : "bach.eval if $x2 > 0 then $x1 else BP_FN_ERROR('render'\\, 'attempt to render empty sequence.') @embed 0"
 				}
 
 			}
@@ -4955,7 +4954,7 @@
 
 											}
  ],
-										"originid" : "pat-4964",
+										"originid" : "pat-1443",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -5275,7 +5274,7 @@
 
 							}
  ],
-						"originid" : "pat-4962",
+						"originid" : "pat-1441",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5595,7 +5594,7 @@
 
 							}
  ],
-						"originid" : "pat-5296",
+						"originid" : "pat-1775",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -6035,7 +6034,7 @@
 
 							}
  ],
-						"originid" : "pat-5456",
+						"originid" : "pat-1935",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -6233,7 +6232,7 @@
 
 											}
  ],
-										"originid" : "pat-5460",
+										"originid" : "pat-1939",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -6711,7 +6710,7 @@
 
 											}
  ],
-										"originid" : "pat-5464",
+										"originid" : "pat-1943",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -7012,7 +7011,7 @@
 
 							}
  ],
-						"originid" : "pat-5458",
+						"originid" : "pat-1937",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -10121,7 +10120,7 @@
 
 			}
  ],
-		"originid" : "pat-4760",
+		"originid" : "pat-1237",
 		"dependency_cache" : [ 			{
 				"name" : "bach.+.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
