@@ -10,6 +10,11 @@
 - Rewrite tutorials and examples involving `splitbuf` and kd-trees.
 - Improve control over score appearance via `setscore` (replacing `scoreconfig`).
 - Improve naming of i/o functions: `export`, `read`, `write`, `loadcorpus`, `setcorpus`, `importaudio`, `importmidi`.
+- Improve existing process ops:
+  - `groove`.
+- Add util functions:
+  - `createmarkov` and `querymarkov`.
+  - `float2rat`
 - GUI:
   - Add nav arrows in inspector window.
 - Explore integration of flucoma — datasets are doable via `bach.llll2dict` and `bach.dict2llll`.
