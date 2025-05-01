@@ -5,6 +5,8 @@
 !.github
 _*.bell
 !__sandbox__.bell
+data/*
+!data/*.bell
 # **/*.wav
 !tutorials/*
 mycorpus.llll
