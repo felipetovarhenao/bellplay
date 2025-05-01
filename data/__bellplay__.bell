@@ -73,7 +73,7 @@ BP_FN_CONFIG = (
                         if $ext == '.bell' && exists($import) == 1 then (
                             BP_FN_DISPATCH('loadscript', $import);
                             $import
-                        ) else print('invalid import file:' $import ||| 'null') 
+                        ) else BP_FN_WARNING(@details 'invalid import file:' $import ||| 'null') 
                     );
                     $bpconfig.'imports' = $imports;
                     $update($bpconfig) 
