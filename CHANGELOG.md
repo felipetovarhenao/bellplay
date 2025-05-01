@@ -24,6 +24,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Minor performance improvements: `r2dr` and `x2dx`.
 - Non-backward compatible changes:
   - `process`: arg renaming from `@commands` to `@operations`.
+- Dev:
+  - Change doc functions to also use `BP_REF*` prefix.
 
 ### Fixed
 
