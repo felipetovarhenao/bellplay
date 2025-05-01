@@ -1854,7 +1854,7 @@ render = (
 
 $addref(
     @name "render",
-    @description "Triggers audio rendering of all transcribed buffers via #transcribe, and returns the rendered buffer. Note that it's possible to apply post-rendering processing by passing audio processing commands (e.g., #reverse, #freeverb, #clip, etc.) to the @process arguments, but these audio modifications won't be accurately reflected in the score transcription. See #process function.",
+    @description "Triggers audio rendering of all transcribed buffers via #transcribe, and returns the rendered buffer. Note that it's possible to apply post-rendering processing by passing audio processing operations (e.g., #reverse, #freeverb, #clip, etc.) to the @process arguments, but these audio modifications won't be accurately reflected in the score transcription. See #process function.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "numchannels", @type "int", @default 2, @description "number of output channels.")
@@ -1874,7 +1874,7 @@ $addref(
         $addarg(@name "reset", @default 0 @type "int", @description "remove all previously transcribed buffers after rendering." @options
             BP_REF_SWITCH_OPTIONS
         )
-        $addarg(@name "process" @default "null" @type "list/llll/null", @description "optional post-rendering audio processing commands.")
+        $addarg(@name "process" @default "null" @type "list/llll/null", @description "optional post-rendering audio processing operations.")
     )
     @output $addout(@description "rendered buffer" @type "llll")
 );
@@ -3783,12 +3783,12 @@ $addref(
 
 process = (
     $buffer = null, 
-    $commands = null, 
+    $operations = null, 
     $prefade = 0,
     $keepkeys = null -> (
         $self = 'process';
-        BP_FN_CHECK_ARGS($self, 'buffer', $buffer, 'commands', $commands);
-        for $cmd in $commands do if $cmd.getkey("fx") == null then BP_FN_ERROR($self, "invalid processing command:" $cmd);
+        BP_FN_CHECK_ARGS($self, 'buffer', $buffer, 'operations', $operations);
+        for $op in $operations do if $op.getkey("fx") == null then BP_FN_ERROR($self, "invalid processing operation:" $op);
         $source = BP_FN_VALIDATE_BUFFER($self, $buffer);
         $offset = getkey($buffer, "offset");
         $duration = getkey($buffer, "duration");
@@ -3798,7 +3798,7 @@ process = (
             [ "process" 
                 (if $crop then crop(@start $offset, @end $offset + $duration))
                 ($prefade &&& $prefade > 0 &&& fade(@fadein $prefade, @fadeout $prefade))
-                $commands 
+                $operations 
             ]
         );
         $extrakeys = for $k in thin($keepkeys) collect (
@@ -3815,11 +3815,11 @@ process = (
 
 $addref(
     @name "process",
-    @description "Applies a sequence of DSP operations to the input buffer, prior to rendering, via audio processing commands. These commands are generated through functions (e.g., see #reverse, #paulstretch, #freeverb, #rubberband), which contain the parameters for that specific DSP operation. This results in a newly created buffer, with updated keys. To keep keys from the input buffer, such as keys associated with previous feature analyses, use the @keepkeys argument by passing an optional list of keys. See @process argument in #render.",
+    @description "Applies a sequence of DSP operations to the input buffer, prior to rendering, via audio processing operations. These operations are generated through functions (e.g., see #reverse, #paulstretch, #freeverb, #rubberband), which contain the parameters for that specific DSP operation. This results in a newly created buffer, with updated keys. To keep keys from the input buffer, such as keys associated with previous feature analyses, use the @keepkeys argument by passing an optional list of keys. See @process argument in #render.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "buffer", @type "llll", @description "buffer to process.")
-        $addarg(@name "commands", @type "llll", @description "list of audio process commands.")
+        $addarg(@name "operations", @type "llll", @description "list of audio process operations.")
         $addarg(@name "prefade", @default 0 @type "llll/null", @description "optional pre-fade amount, in milliseconds.")
         $addarg(@name "keepkeys", @default "null" @type "symbol/list/null", @description "optional list of keys to keep from input buffer.")
     ),
@@ -3854,7 +3854,7 @@ fade = (
 
 $addref(
     @name "fade",
-    @description "Audio process command for applying fadein/fadeout to a buffer. See #process.",
+    @description "Audio process operation for applying fadein/fadeout to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "fadein", @default 5, @type "int/float", @description "fade-in duration.")
@@ -3871,7 +3871,7 @@ $addref(
             BP_REF_TIMEUNIT_OPTIONS
         )
     ),
-    @output $addout(@description "fade command" @type "llll")
+    @output $addout(@description "fade operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -3896,7 +3896,7 @@ crop = (
 
 $addref(
     @name "crop",
-    @description "Audio process command for cropping a buffer. See #process.",
+    @description "Audio process operation for cropping a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "start" @default 0 @type "int/float", @description "start time.")
@@ -3905,7 +3905,7 @@ $addref(
             BP_REF_TIMEUNIT_OPTIONS
         )
     ),
-    @output $addout(@description "crop command" @type "llll")
+    @output $addout(@description "crop operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -3918,9 +3918,9 @@ reverse = ( -> [ [ "fx" "reverse" ] ]);
 
 $addref(
     @name "reverse",
-    @description "Audio process command for reversing a buffer. See #process.",
+    @description "Audio process operation for reversing a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
-    @output $addout(@description "reverse command" @type "llll")
+    @output $addout(@description "reverse operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -3929,9 +3929,9 @@ dcfilter = ( -> [ [ "fx" "dcfilter" ] ]);
 
 $addref(
     @name "dcfilter",
-    @description "Audio process command for removing DC offset from a buffer. See #process.",
+    @description "Audio process operation for removing DC offset from a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
-    @output $addout(@description "dcfilter command" @type "llll")
+    @output $addout(@description "dcfilter operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -3992,7 +3992,7 @@ freeverb = (
 
 $addref(
     @name "freeverb",
-    @description "Audio process command for applying reverb to a buffer. See #process function.",
+    @description "Audio process operation for applying reverb to a buffer. See #process function.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "roomsize", @default 0.5, @type "int/float", @description "reverb room size")
@@ -4006,7 +4006,7 @@ $addref(
         $addarg(@name "dry", @default 1, @type "int/float/llll", @description "amount of dry output, as either a single number or envelope.")
         $addarg(@name "wet", @default 0.16, @type "int/float/llll", @description "amount of wet output, as either a single number or envelope.")
     ),
-    @output $addout(@description "freeverb command" @type "llll")
+    @output $addout(@description "freeverb operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4332,7 +4332,7 @@ paulstretch = (
 
 $addref(
     @name "paulstretch",
-    @description "Audio process command for applying time-stretching to a buffer. See #process.",
+    @description "Audio process operation for applying time-stretching to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "stretching", @default 1, @type "int/float/llll", @description "stretching amount, as single number or envelope.")
@@ -4347,7 +4347,7 @@ $addref(
         )
         $addarg(@name "framesize", @default 8192, @type "int", @description "analysis frame size, in samples.")
     ),
-    @output $addout(@description "paulstretch command" @type "llll")
+    @output $addout(@description "paulstretch operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4374,7 +4374,7 @@ paulfreeze = (
 
 $addref(
     @name "paulfreeze",
-    @description "Audio process command for freezing a buffer. See #process.",
+    @description "Audio process operation for freezing a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "duration" @default 1000 @type "int/float" @description "freezing duration, based on @timeunit.")
@@ -4388,7 +4388,7 @@ $addref(
         )
         $addarg(@name "framesize", @default 8192, @type "int", @description "analysis frame size, in samples.")
     ),
-    @output $addout(@description "paulfreeze command" @type "llll")
+    @output $addout(@description "paulfreeze operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4407,12 +4407,12 @@ overdrive = (
 
 $addref(
     @name "overdrive",
-    @description "Audio process command for applying soft-clip distortion to a buffer. See #process.",
+    @description "Audio process operation for applying soft-clip distortion to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "factor", @type "int/float/llll", @description "amplitude distortion factor, either as single number or envelope.")
     ),
-    @output $addout(@description "overdrive command" @type "llll")
+    @output $addout(@description "overdrive operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4436,7 +4436,7 @@ window = (
 
 $addref(
     @name "window",
-    @description "Audio process command for applying a windowing function to a buffer. See #process.",
+    @description "Audio process operation for applying a windowing function to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "wintype", @default "'hann'", @type "symbol", @description "window type, as a symbol" @options
@@ -4450,7 +4450,7 @@ $addref(
             BP_REF_SWITCH_OPTIONS
         )
     ),
-    @output $addout(@description "window command" @type "llll")
+    @output $addout(@description "window operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4491,7 +4491,7 @@ biquad = (
 
 $addref(
     @name "biquad",
-    @description "Audio process command for applying biquad filtering to a buffer. See #process.",
+    @description "Audio process operation for applying biquad filtering to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "type", @type "int/symbol", @description "filter type, as a symbol or integer." @options
@@ -4509,7 +4509,7 @@ $addref(
         $addarg(@name "gain", @default 1, @type "int/float", @description "linear gain.")
         $addarg(@name "q", @default 80, @type "int/float", @description "resonance or slope, depending on @type.")
     ),
-    @output $addout(@description "biquad command" @type "llll")
+    @output $addout(@description "biquad operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4528,12 +4528,12 @@ clip = (
 
 $addref(
     @name "clip",
-    @description "Audio process command for applying hard-clip distortion to a buffer. See #process.",
+    @description "Audio process operation for applying hard-clip distortion to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "threshold" @default 1 @type "int/float/llll", @description "distortion amplitude threshold, either as single number or envelope.")
     ),
-    @output $addout(@description "clip command" @type "llll")
+    @output $addout(@description "clip operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4579,7 +4579,7 @@ rubberband = (
 
 $addref(
     @name "rubberband",
-    @description "Audio process command for applying rubberband pitch-shifting/time-stretching to a buffer. See #process.",
+    @description "Audio process operation for applying rubberband pitch-shifting/time-stretching to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "stretching", @default 1, @type "int/float/llll", @description "stretching amount, as single number or envelope.")
@@ -4629,7 +4629,7 @@ $addref(
             $addopt(@value 2 @description "smooth") 
         )
     ),
-    @output $addout(@description "rubberband command" @type "llll")
+    @output $addout(@description "rubberband operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4659,7 +4659,7 @@ soundtouch = (
 
 $addref(
     @name "soundtouch",
-    @description "Audio process command for applying soundtouch pitch-shifting/time-stretching to a buffer. See #process.",
+    @description "Audio process operation for applying soundtouch pitch-shifting/time-stretching to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "stretching", @default 1, @type "int/float", @description "stretching amount, as a single number.")
@@ -4680,7 +4680,7 @@ $addref(
             BP_REF_SWITCH_OPTIONS
         )
     ),
-    @output $addout(@description "soundtouch command" @type "llll")
+    @output $addout(@description "soundtouch operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4722,13 +4722,13 @@ groove = (
 
 $addref(
     @name "groove",
-    @description "Audio processing command for applying variable-rate sample playback to a buffer. See #process.",
+    @description "Audio processing operation for applying variable-rate sample playback to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "rate" @default 1 @type "int/float/list/llll", @description "playback rate, as either a single number, envelope, or control buffer.")
         $addarg(@name "duration" @default 1000 @type "int/float", @description "duration in milliseconds. Ignored if @rate is a buffer.")
     )
-    @output $addout(@description "groove command" @type "llll")
+    @output $addout(@description "groove operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4755,7 +4755,7 @@ freqshift = (
 
 $addref(
     @name "freqshift",
-    @description "Audio process command for applying frequency shifting to a buffer. See #process.",
+    @description "Audio process operation for applying frequency shifting to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "shift", @type "int/float/list/llll", @description "frequency shift in Hertz, as either a single number, an envelope or buffer.")
@@ -4763,7 +4763,7 @@ $addref(
             BP_REF_SWITCH_OPTIONS
         )
     ),
-    @output $addout(@description "freqshift command" @type "llll")
+    @output $addout(@description "freqshift operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4785,13 +4785,13 @@ degrade = (
 
 $addref(
     @name "degrade",
-    @description "Audio process command for reducing sampling rate and bit-depth of a buffer. See #process.",
+    @description "Audio process operation for reducing sampling rate and bit-depth of a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "ratio", @default 0.5, @type "int/float/llll", @description "sampling rate ratio.")
         $addarg(@name "bits", @default 4, @type "int/float/llll", @description "bit depth.")
     ),
-    @output $addout(@description "degrade command" @type "llll")
+    @output $addout(@description "degrade operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4814,7 +4814,7 @@ rounding = (
 
 $addref(
     @name "rounding",
-    @description "Audio process command for applying signal rounding to a buffer. See #process.",
+    @description "Audio process operation for applying signal rounding to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "value", @default 1, @type "int/float/list/llll", @description "rounding value, as either a single number, envelope, or buffer.")
@@ -4823,7 +4823,7 @@ $addref(
             $addopt(@value 1 @description "nearest")
         )
     ),
-    @output $addout(@description "rounding command" @type "llll")
+    @output $addout(@description "rounding operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4854,7 +4854,7 @@ teeth = (
 
 $addref(
     @name "teeth",
-    @description "Audio process command for applying comb filtering to a buffer, with feedforward and feedback delay control. See #process.",
+    @description "Audio process operation for applying comb filtering to a buffer, with feedforward and feedback delay control. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "feedforward", @default 5, @type "int/float/llll", @description "feedforward delay time, in milliseconds, as either a single number, envelope, or buffer.")
@@ -4863,7 +4863,7 @@ $addref(
         $addarg(@name "feedforwardgain", @default 0.5, @type "int/float/llll", @description "linear feedforward gain, as either a single number, envelope, or buffer.")
         $addarg(@name "feedbackgain", @default -0.5, @type "int/float/llll", @description "linear feedback gain, as either a single number, envelope, or buffer.")
     ),
-    @output $addout(@description "teeth command" @type "llll")
+    @output $addout(@description "teeth operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4889,7 +4889,7 @@ pong = (
 
 $addref(
     @name "pong",
-    @description "Audio process command for applying range limiting to a buffer. See #process.",
+    @description "Audio process operation for applying range limiting to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "low", @default -1, @type "int/float/llll", @description "low limit value, as either a single number, envelope, or buffer.")
@@ -4900,7 +4900,7 @@ $addref(
             $addopt(@value 2 @description "clip")
         )
     ),
-    @output $addout(@description "pong command" @type "llll")
+    @output $addout(@description "pong operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4943,7 +4943,7 @@ retune = (
 
 $addref(
     @name "retune",
-    @description "Audio process command for applying autotune-like pitch retuning to a buffer. See #process.",
+    @description "Audio process operation for applying autotune-like pitch retuning to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "pitchgrid", @default 0, @type "int/float/list", @description "pitch grid to retune to, as a list of pitch classes.")
@@ -4958,7 +4958,7 @@ $addref(
             $addopt(@value "'best'")
         )
     ),
-    @output $addout(@description "retune command" @type "llll")
+    @output $addout(@description "retune operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4981,13 +4981,13 @@ waveshape = (
 
 $addref(
     @name "waveshape",
-    @description "Audio process command for waveshaping a buffer. See #process.",
+    @description "Audio process operation for waveshaping a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "phase", @default -1 1, @type "int/float", @description "buffer phase envelope between -1 and 1, either as an envelope or a buffer.")
         $addarg(@name "duration", @default 1000, @type "int", @description "envelope duration in milliseconds. Ignored if @phase is a buffer.")
     ),
-    @output $addout(@description "waveshape command" @type "llll")
+    @output $addout(@description "waveshape operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5010,13 +5010,13 @@ scrub = (
 
 $addref(
     @name "scrub",
-    @description "Audio process command for scrubbing through a buffer. See #process.",
+    @description "Audio process operation for scrubbing through a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "phase", @default 0 1, @type "int/float", @description "buffer phase envelope between 0 and 1, either as an envelope or a buffer.")
         $addarg(@name "duration", @default 1000, @type "int", @description "envelope duration in milliseconds. Ignored if @phase is a buffer.")
     ),
-    @output $addout(@description "scrub command" @type "llll")
+    @output $addout(@description "scrub operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5036,7 +5036,7 @@ repeat = (
 
 $addref(
     @name "repeat",
-    @description "Audio process command for repeating a buffer. See #process.",
+    @description "Audio process operation for repeating a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "duration", @default 2, @type "int/float", @description "target duration, based on @timeunit.")
@@ -5044,7 +5044,7 @@ $addref(
             BP_REF_TIMEUNIT_OPTIONS
         )
     ),
-    @output $addout(@description "repeat command" @type "llll")
+    @output $addout(@description "repeat operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5072,7 +5072,7 @@ scaling = (
 
 $addref(
     @name "scaling",
-    @description "Audio process command for applying amplitude scaling to a buffer. See #process.",
+    @description "Audio process operation for applying amplitude scaling to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "inmin", @default 0, @type "int/float/llll", @description "input minimum value.")
@@ -5080,7 +5080,7 @@ $addref(
         $addarg(@name "outmin", @default 0, @type "int/float/llll", @description "output minimum value.")
         $addarg(@name "outmax", @default 1, @type "int/float/llll", @description "output maximum value.")
     ),
-    @output $addout(@description "scaling command" @type "llll")
+    @output $addout(@description "scaling operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5123,7 +5123,7 @@ mix = (
 
 $addref(
     @name "mix",
-    @description "Audio process command for mixing multiple buffers. See #process.",
+    @description "Audio process operation for mixing multiple buffers. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "buffers", @type "list/llll", @description "list of buffers to mix.")
@@ -5155,7 +5155,7 @@ $addref(
             BP_REF_NORMALIZE_OPTIONS
         )
     ),
-    @output $addout(@description "mix command" @type "llll")
+    @output $addout(@description "mix operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5222,9 +5222,9 @@ absolute = (
 
 $addref(
     @name "absolute",
-    @description "Audio process command for computing the absolute value of a buffer signal. See #process.",
+    @description "Audio process operation for computing the absolute value of a buffer signal. See #process.",
     @category BP_REF_LABEL_PROCESS,
-    @output $addout(@description "absolute command" @type "llll")
+    @output $addout(@description "absolute operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5240,9 +5240,9 @@ squareroot = (
 
 $addref(
     @name "squareroot",
-    @description "Audio process command for computing the square root of a buffer signal. See #process.",
+    @description "Audio process operation for computing the square root of a buffer signal. See #process.",
     @category BP_REF_LABEL_PROCESS,
-    @output $addout(@description "squareroot command" @type "llll")
+    @output $addout(@description "squareroot operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5266,13 +5266,13 @@ power = (
 
 $addref(
     @name "power",
-    @description "Audio process command for performing exponentiation on a buffer. See #process.",
+    @description "Audio process operation for performing exponentiation on a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "operand", @default 2 @type "int/float/llll", @description "value to raise buffer signal to, either as a single number, envelope, or buffer.")
         BP_BUFFER_ARITHMETIC_ARGS
     ),
-    @output $addout(@description "power command" @type "llll")
+    @output $addout(@description "power operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5296,13 +5296,13 @@ plus = (
 
 $addref(
     @name "plus",
-    @description "Audio process command for performing addition on a buffer. See #process.",
+    @description "Audio process operation for performing addition on a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "operand", @type "int/float/llll", @description "value to add to buffer, either as a single number, envelope, or buffer.")
         BP_BUFFER_ARITHMETIC_ARGS
     ),
-    @output $addout(@description "plus command" @type "llll")
+    @output $addout(@description "plus operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5326,13 +5326,13 @@ minus = (
 
 $addref(
     @name "minus",
-    @description "Audio process command for performing subtraction on a buffer. See #process.",
+    @description "Audio process operation for performing subtraction on a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "operand", @type "int/float/llll", @description "value to subtract from buffer, either as a single number, envelope, or buffer.")
         BP_BUFFER_ARITHMETIC_ARGS
     ),
-    @output $addout(@description "minus command" @type "llll")
+    @output $addout(@description "minus operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5356,13 +5356,13 @@ multiply = (
 
 $addref(
     @name "multiply",
-    @description "Audio process command for performing multiplication on a buffer. See #process.",
+    @description "Audio process operation for performing multiplication on a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "operand", @type "int/float/llll", @description "value to multiply buffer by either as a single number, envelope, or buffer.")
         BP_BUFFER_ARITHMETIC_ARGS
     ),
-    @output $addout(@description "multiply command" @type "llll")
+    @output $addout(@description "multiply operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5386,13 +5386,13 @@ divide = (
 
 $addref(
     @name "divide",
-    @description "Audio process command for performing division on a buffer. See #process.",
+    @description "Audio process operation for performing division on a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "operand", @type "int/float/llll", @description "value to divide buffer by either as a single number, envelope, or buffer.")
         BP_BUFFER_ARITHMETIC_ARGS
     ),
-    @output $addout(@description "divide command" @type "llll")
+    @output $addout(@description "divide operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5414,7 +5414,7 @@ wavesetrepeat = (
 
 $addref(
     @name "wavesetrepeat",
-    @description "Audio process command for applying waveset repetition to a buffer. See #process.",
+    @description "Audio process operation for applying waveset repetition to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "times",  @default 2, @type "int", @description "number of repetitions.")
@@ -5423,7 +5423,7 @@ $addref(
             BP_REF_SWITCH_OPTIONS
         )
     ),
-    @output $addout(@description "waveset repeat command" @type "llll")
+    @output $addout(@description "waveset repeat operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5443,13 +5443,13 @@ wavesetshuffle = (
 
 $addref(
     @name "wavesetshuffle",
-    @description "Audio process command for applying waveset shuffling to a buffer. See #process.",
+    @description "Audio process operation for applying waveset shuffling to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "maxdist", @default 1, @type "int", @description "maximum shuffling distance.")
         $addarg(@name "span", @default 1, @type "int", @description "number of negative-to-positive zero crossing regions that form a waveset.")
     ),
-    @output $addout(@description "waveset shuffle command" @type "llll")
+    @output $addout(@description "waveset shuffle operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5471,13 +5471,13 @@ rampsmooth = (
 
 $addref(
     @name "rampsmooth",
-    @description "Audio process command for applying rampsmoothing to a buffer. See #process.",
+    @description "Audio process operation for applying rampsmoothing to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "up", @default 1024, @type "int/list/llll", @description "ramp up, in samples, as either a single number, envelope, or buffer.")
         $addarg(@name "down", @default 1024, @type "int/list/llll", @description "ramp down, in samples, as either a single number, envelope, or buffer.")
     ),
-    @output $addout(@description "rampsmooth command" @type "llll")
+    @output $addout(@description "rampsmooth operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5498,7 +5498,7 @@ onepole = (
 
 $addref(
     @name "onepole",
-    @description "Audio process command for applying single-pole lowpass or highpass filtering to a buffer. See #process.",
+    @description "Audio process operation for applying single-pole lowpass or highpass filtering to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "cutoff", @default 1, @type "int/float", @description "cutoff frequency.")
@@ -5506,7 +5506,7 @@ $addref(
             BP_REF_SWITCH_OPTIONS
         )
     ),
-    @output $addout(@description "onepole command" @type "llll")
+    @output $addout(@description "onepole operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5528,7 +5528,7 @@ mixdown = (
 
 $addref(
     @name "mixdown",
-    @description "Audio process command for mixing down (or up) the number of channels of a buffer. See #process.",
+    @description "Audio process operation for mixing down (or up) the number of channels of a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "numchannels", @default 1, @type "int", @description "number of output channels.")
@@ -5544,7 +5544,7 @@ $addref(
             BP_REF_SWITCH_OPTIONS
         )
     ),
-    @output $addout(@description "onepole command" @type "llll")
+    @output $addout(@description "onepole operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5560,10 +5560,10 @@ fromdiffs = (
 
 $addref(
     @name "fromdiffs",
-    @description "Audio process command to perform discrete integration of a buffer. This is the equivalent of #dx2x for buffer samples. See #process.",
+    @description "Audio process operation to perform discrete integration of a buffer. This is the equivalent of #dx2x for buffer samples. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments null
-    @output $addout(@description "fromdiffs command" @type "llll")
+    @output $addout(@description "fromdiffs operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5579,10 +5579,10 @@ todiffs = (
 
 $addref(
     @name "todiffs",
-    @description "Audio process command to perform discrete differentiation of a buffer. This is the equivalent of #x2dx for buffer samples. See #process.",
+    @description "Audio process operation to perform discrete differentiation of a buffer. This is the equivalent of #x2dx for buffer samples. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments null
-    @output $addout(@description "todiffs command" @type "llll")
+    @output $addout(@description "todiffs operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5625,7 +5625,7 @@ join = (
 
 $addref(
     @name "join",
-    @description "Audio process command for concatenating one or more buffers to the processed buffer. See #process.",
+    @description "Audio process operation for concatenating one or more buffers to the processed buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "buffers", @type "llll", @description "buffers to concatenate.")
@@ -5648,7 +5648,7 @@ $addref(
             BP_REF_RESAMPLINGPOLICY_OPTIONS
         )
     ),
-    @output $addout(@description "join command" @type "llll")
+    @output $addout(@description "join operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5672,7 +5672,7 @@ trim = (
 
 $addref(
     @name "trim",
-    @description "Audio process command for applying silence-based trimming to a buffer. When the entire buffer is considered silent, the resulting buffer's duration will be a single audio sample. See #process.",
+    @description "Audio process operation for applying silence-based trimming to a buffer. When the entire buffer is considered silent, the resulting buffer's duration will be a single audio sample. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "threshold" @default 0.1 @type "int/float", @description "amplitude threshold at/below which samples are considered silence.")
@@ -5686,7 +5686,7 @@ $addref(
             BP_REF_SWITCH_OPTIONS
         )
     ),
-    @output $addout(@description "join command" @type "llll")
+    @output $addout(@description "join operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5746,7 +5746,7 @@ timesquash = (
 
 $addref(
     @name "timesquash",
-    @description "Audio process command for applying timesquash time compression to a buffer. This removes time from a sample by shifting portions of the spectrogram while preserving the relevant content. See #process.",
+    @description "Audio process operation for applying timesquash time compression to a buffer. This removes time from a sample by shifting portions of the spectrogram while preserving the relevant content. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "duration", @default 1, @type "int/float", @description "target duration, based on @timeunit.")
@@ -5795,7 +5795,7 @@ $addref(
         $addarg(@name "regularization", @default 0.01, @type "int/float", @description "how much energy of a bin smears on the ones above and below, between 0 and 1.")
         $addarg(@name "wintype", @default "'sqrthann'" "'sqrthann'", @type "list/symbol", @description "window type." @options BP_REF_WINDOW_OPTIONS)
     ),
-    @output $addout(@description "timesquash command" @type "llll")
+    @output $addout(@description "timesquash operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5824,7 +5824,7 @@ resample = (
 
 $addref(
     @name "resample",
-    @description "Audio process command for applying stretching/pitch shifting a buffer via resampling. See #process.",
+    @description "Audio process operation for applying stretching/pitch shifting a buffer via resampling. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "duration", @default 1, @type "int/float", @description "target duration, based on @timeunit.")
@@ -5842,7 +5842,7 @@ $addref(
         )
         $addarg(@name "resamplingfiltersize", @default 11, @type "int", @description "resampling filter size.")
     ),
-    @output $addout(@description "resample command" @type "llll")
+    @output $addout(@description "resample operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5882,7 +5882,7 @@ panning = (
 
 $addref(
     @name "panning",
-    @description "Audio process command for applying 1-D panning to a buffer. See #process.",
+    @description "Audio process operation for applying 1-D panning to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "position" @type "int/float/list/llll", @description "panning position, as either a single number, envelope, or buffer.")
@@ -5911,7 +5911,7 @@ $addref(
             BP_REF_TIMEUNIT_OPTIONS
         )
     ),
-    @output $addout(@description "panning command" @type "llll")
+    @output $addout(@description "panning operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5935,7 +5935,7 @@ normalize = (
 
 $addref(
     @name "normalize",
-    @description "Audio process command for normalizing the amplitude of a buffer. See #process.",
+    @description "Audio process operation for normalizing the amplitude of a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "level", @default -6, @type "int/float", @description "reference level.")
@@ -5947,7 +5947,7 @@ $addref(
             BP_REF_AMPUNIT_OPTIONS
         )
     ),
-    @output $addout(@description "normalize command" @type "llll")
+    @output $addout(@description "normalize operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -5977,7 +5977,7 @@ gain = (
 
 $addref(
     @name "gain",
-    @description "Audio process command for modifying a buffer's gain. See #process.",
+    @description "Audio process operation for modifying a buffer's gain. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "gain", @type "int/float/llll", @description "gain amount, as either a single number or envelope.")
@@ -5995,7 +5995,7 @@ $addref(
             BP_REF_TIMEUNIT_OPTIONS
         )
     ),
-    @output $addout(@description "gain command" @type "llll")
+    @output $addout(@description "gain operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -6027,7 +6027,7 @@ dynamics = (
 
 $addref(
     @name "dynamics",
-    @description "Audio process command for applying simple compression to a buffer. See #process.",
+    @description "Audio process operation for applying simple compression to a buffer. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         $addarg(@name "attack", @default 10, @type "int/float", @description "attack time.")
@@ -6043,7 +6043,7 @@ $addref(
             BP_REF_TIMEUNIT_OPTIONS
         )
     ),
-    @output $addout(@description "dynamics command" @type "llll")
+    @output $addout(@description "dynamics operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -6375,7 +6375,7 @@ hoaencode = (
 
 $addref(
     @name "hoaencode",
-    @description "Pans the input buffer and encodes it as a higher-order ambisonic buffer",
+    @description "Audio process operation for panning the input buffer and encode it as a higher-order ambisonic buffer",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         $addarg(@name "azimuth" @default 0 @type "int/float/llll" @description "azimuth or X coordinate.")
@@ -6398,7 +6398,7 @@ $addref(
             BP_REF_TIMEUNIT_OPTIONS
         )
     )
-    @output $addout(@description "encoded buffer" @type "llll")
+    @output $addout(@description "higher-order ambisonics encoding operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -6426,7 +6426,7 @@ hoadecode = (
 
 $addref(
     @name "hoadecode",
-    @description "Decodes higher-order ambisonic buffers for a set of loudspeakers or for binaural listening",
+    @description "Audio process operation for decoding higher-order ambisonic buffers for a set of loudspeakers or for binaural listening",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         $addarg(@name "azimuth" @default 0.78 2.35 @type "int/float/llll" @description "azimuth or X coordinate, for each loudspeaker.")
@@ -6443,7 +6443,7 @@ $addref(
             BP_REF_ANGLEUNIT_OPTIONS
         )
     )
-    @output $addout(@description "decoded buffer" @type "llll")
+    @output $addout(@description "higher-order ambisonics decoding operation" @type "llll")
 );
 
 ## ------------------------------------------------------------

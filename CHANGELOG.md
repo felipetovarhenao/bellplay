@@ -22,6 +22,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - New `bellplay~` logo!
 - Improved error handling.
 - Minor performance improvements: `r2dr` and `x2dx`.
+- Non-backward compatible changes:
+  - `process`: arg renaming from `@commands` to `@operations`.
 
 ### Fixed
 
@@ -113,7 +115,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - New `getchar` and `symlen` functions.
 - New `ezsampler` function.
 - New `guitar.wav` built-in sample.
-- New `fromdiffs` and `todiffs` processing commands.
+- New `fromdiffs` and `todiffs` processing operations.
 
 ### Changed
 
