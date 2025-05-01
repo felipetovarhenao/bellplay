@@ -17,6 +17,7 @@
 ## load source buffer
 $source = importaudio("trumpet.wav");
 
+## perform onset detection analysis on buffer
 $source = $source.analyze(
     onsets()
 );
@@ -24,19 +25,28 @@ $source = $source.analyze(
 ## get list of transient-based onset times
 $markers = $source.getkey("onsets");
 
+## split buffers into different segments, based on markers
 $segments = $source.splitbuf(@split $markers @mode 2);
+
+## initialize data
 $data = null;
+
+## iterate through segments to filter unpitched ones
 $segments = for $seg in $segments collect (
+    ## analyze current segment for pitch detection
     $seg = $seg.analyze(pitchmelodia());
+    ## get detected results
     $pitch = $seg.getkey("pitchmelodia");
+    ## reject segments with no detected pitch
     if $pitch > 0 then (
+        ## append pitch as list to data list
         $data _= [$pitch];
+        ## return segment to collect
         $seg
     )
 );
 
-
-## build k-dimensional tree on segments' pitch values.
+## create a k-dimensional tree on segments' pitch values.
 $tree = createtree($data);
 
 ## import MIDI file
@@ -44,7 +54,6 @@ $events = importmidi("bach.mid");
 
 ## MIDI output speed
 $speed = 1.33;
-
 
 ## tolerance for cent deviation when searching for pitch matches in tree
 $tolerance = 300;
@@ -59,8 +68,10 @@ for $event in $events do (
     $onset = $event.getkey("onset");
     $duration = $event.getkey("duration");
 
-    ## find best match given MIDI event's pitch (apply random deviation to get slightly different matches for a given pitch)
+    ## query tree for index of nearest pitch in tree.
     $matchindex = querytree($tree, $pitch + rand(-$tolerance/2, $tolerance/2));
+
+    ## extract segment based on match's index
     $match = $segments:$matchindex;
     
     ## get cents deviation between target pitch and buffer match
