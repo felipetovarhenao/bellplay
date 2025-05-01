@@ -1,5 +1,6 @@
 # TO DO
 
+- Add support for pitch syntax in `ezsampler` and ``transcribe`.
 - Adapt code base to new bell language version.
 - Migrate reference documentation to versioned web repo.
 - Deprecate `interpolate` or re-implement.
