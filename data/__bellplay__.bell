@@ -5654,7 +5654,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 trim = (
-    $threshold = 0.1,
+    $threshold = 0.01,
     $ampunit = 0,
     $start = 1,
     $end = 1 -> (
@@ -5675,7 +5675,7 @@ BP_REF_NEW(
     @description "Audio process operation for applying silence-based trimming to a buffer. When the entire buffer is considered silent, the resulting buffer's duration will be a single audio sample. See #process.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
-        BP_REF_ARG(@name "threshold" @default 0.1 @type "int/float", @description "amplitude threshold at/below which samples are considered silence.")
+        BP_REF_ARG(@name "threshold" @default 0.01 @type "int/float", @description "amplitude threshold at/below which samples are considered silence.")
         BP_REF_ARG(@name "ampunit", @default 0, @type "int", @description "amplitude unit for @threshold." @options
             BP_REF_AMPUNIT_OPTIONS
         )
