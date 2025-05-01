@@ -238,7 +238,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Correct default value for `@spread` in `render` and `panning` docs.
 - Fix `read` docs.
 - Fix `sscramble` sorting bias bug, in which last elements would be more likely to end up at the beginning.
-- Fix `schoose` bug from implementing `BP_CHOOSE_FUNCTION` and not setting arg defaults.
+- Fix `schoose` bug from implementing `BP_FN_CHOOSE` and not setting arg defaults.
 
 ### Removed
 
@@ -451,7 +451,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- Fix `frequency` buffer value in `BP_OSC_GEN_FUNC` bug for buffer-based frequencies.
+- Fix `frequency` buffer value in `BP_FN_OSC_GEN` bug for buffer-based frequencies.
 
 ### Removed
 

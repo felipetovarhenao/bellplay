@@ -1219,7 +1219,7 @@ scale = (
         BP_FN_CHECK_ARGS('scale', 'x', $x);
         $s = max(-1, min(1, $slope));
         $n = ($x - $inmin) / ($inmax - $inmin);
-        $n = BP_GET_BPF_INTERPOLATION_WEIGHT_FUNC($n, $s);
+        $n = BP_FN_GET_BPF_INTERPOLATION_WEIGHT($n, $s);
         $n * float($outmax - $outmin) + $outmin
     )
 );
@@ -1320,7 +1320,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-BP_RANDOM_CHOICE_FUNC = (
+BP_FN_RANDOM_CHOICE = (
     $choices, 
     $n = 1, 
     $weights = null,
@@ -1356,7 +1356,7 @@ choose = (
     $choices, 
     $n = 1, 
     $weights = null -> (
-        BP_RANDOM_CHOICE_FUNC($choices, $n, $weights)
+        BP_FN_RANDOM_CHOICE($choices, $n, $weights)
     )
 );
 
@@ -1441,7 +1441,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 xchoose = (
-    $choices, $n = 1, $weights = null -> BP_RANDOM_CHOICE_FUNC($choices, $n, $weights @mode 1)
+    $choices, $n = 1, $weights = null -> BP_FN_RANDOM_CHOICE($choices, $n, $weights @mode 1)
 );
 
 BP_REF_NEW(
@@ -2221,7 +2221,7 @@ BP_REF_NEW(
     y = 1-(1-t)^((1-slope)/(1+slope))
     for negative slopes.
 )#
-BP_GET_BPF_INTERPOLATION_WEIGHT_FUNC = (
+BP_FN_GET_BPF_INTERPOLATION_WEIGHT = (
     $t, $s -> (
         if $s >= 0 then (
             $t ** ((1 + $s) / (1 - $s)) 
@@ -2263,7 +2263,7 @@ samplebpf = (
                     ## normalize x
                     $t = $x.scale($lx, $rx, 0, 1);
                     ## get interpolation weight
-                    $w = BP_GET_BPF_INTERPOLATION_WEIGHT_FUNC($t, $s);
+                    $w = BP_FN_GET_BPF_INTERPOLATION_WEIGHT($t, $s);
                     ## apply weights
                     $y = $ly * (1 - $w) + $ry * $w
                 ) 
@@ -2358,7 +2358,7 @@ analyze = (
             ]
             [ "descriptors"
                 $descriptors
-                (if $frametime then BP_ESSENTIA_WRAPPER_FUNC(@name 'frametime' @mode 1))
+                (if $frametime then BP_FN_ESSENTIA(@name 'frametime' @mode 1))
             ]
         );
         $features = for $x in BP_ESSENTIA_OUTPUT collect [ ($x::1).flat(1) ];
@@ -2461,7 +2461,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-BP_ESSENTIA_WRAPPER_FUNC = (
+BP_FN_ESSENTIA = (
     $name,
     $settings = null,
     $output,
@@ -2488,7 +2488,7 @@ BP_ESSENTIA_WRAPPER_FUNC = (
 effectiveduration = (
     $thresholdratio = 0.02,
     $samplerate = 44100 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "effectiveduration"
             @settings (
                 "@samplerate" $samplerate
@@ -2511,7 +2511,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-envmaxtime = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "envmaxtime"));
+envmaxtime = ( -> BP_FN_ESSENTIA(@name "envmaxtime"));
 
 BP_REF_NEW(
     @name "envmaxtime",
@@ -2522,7 +2522,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-envmintime = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "envmintime"));
+envmintime = ( -> BP_FN_ESSENTIA(@name "envmintime"));
 
 BP_REF_NEW(
     @name "envmintime",
@@ -2541,7 +2541,7 @@ pitchyin = (
     $samplerate = 44100,
     $tolerance = 0.15,
     $mode = 0 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "pitchyin"
             @settings (
                 "@framesize" $framesize
@@ -2590,7 +2590,7 @@ BP_REF_NEW(
 ##     $samplerate = 44100,
 ##     $usebroadbadnoisecorrection = 1,
 ##     $mode = 0 -> (
-##         BP_ESSENTIA_WRAPPER_FUNC(
+##         BP_FN_ESSENTIA(
 ##             @name "snr"
 ##             @settings (
 ##                 "@maalpha" $maalpha
@@ -2628,7 +2628,7 @@ BP_REF_NEW(
 
 spectralkurtosis = (
     $mode = 0 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "spectralkurtosis"
             @mode $mode
             @modes 0...2
@@ -2651,7 +2651,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-temporalkurtosis = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "temporalkurtosis"));
+temporalkurtosis = ( -> BP_FN_ESSENTIA(@name "temporalkurtosis"));
 
 BP_REF_NEW(
     @name "temporalkurtosis"
@@ -2664,7 +2664,7 @@ BP_REF_NEW(
 
 spectralskewness = (
     $mode = 0 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "spectralskewness"
             @mode $mode
         )
@@ -2685,7 +2685,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-temporalskewness = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "temporalskewness"));
+temporalskewness = ( -> BP_FN_ESSENTIA(@name "temporalskewness"));
 
 BP_REF_NEW(
     @name "temporalskewness"
@@ -2698,7 +2698,7 @@ BP_REF_NEW(
 
 spectralspread = (
     $mode = 0 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "spectralspread"
             @mode $mode
         )
@@ -2719,7 +2719,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-temporalspread = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "temporalspread"));
+temporalspread = ( -> BP_FN_ESSENTIA(@name "temporalspread"));
 
 BP_REF_NEW(
     @name "temporalspread"
@@ -2732,7 +2732,7 @@ BP_REF_NEW(
 
 spectralvariance = (
     $mode = 0 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "spectralvariance"
             @mode $mode
         )
@@ -2753,7 +2753,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-temporalvariance = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "temporalvariance"));
+temporalvariance = ( -> BP_FN_ESSENTIA(@name "temporalvariance"));
 
 BP_REF_NEW(
     @name "temporalvariance"
@@ -2766,7 +2766,7 @@ BP_REF_NEW(
 
 energy = (
     $mode = 0 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "energy"
             @mode $mode
         )
@@ -2792,7 +2792,7 @@ energyband = (
     $stopcutofffrequency = 100,
     $samplerate = 44100,
     $mode = 0 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "energyband"
             @settings (
                 "@startcutofffrequency" $startcutofffrequency
@@ -2821,7 +2821,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-dissonance = ($mode = 0 -> BP_ESSENTIA_WRAPPER_FUNC(@name "dissonance" @mode $mode));
+dissonance = ($mode = 0 -> BP_FN_ESSENTIA(@name "dissonance" @mode $mode));
 
 BP_REF_NEW(
     @name "dissonance"
@@ -2837,7 +2837,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-strongpeak = ($mode = 0 -> BP_ESSENTIA_WRAPPER_FUNC(@name "strongpeak" @mode $mode));
+strongpeak = ($mode = 0 -> BP_FN_ESSENTIA(@name "strongpeak" @mode $mode));
 
 BP_REF_NEW(
     @name "strongpeak"
@@ -2853,7 +2853,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-inharmonicity = ($mode = 0 -> BP_ESSENTIA_WRAPPER_FUNC(@name "inharmonicity" @mode $mode));
+inharmonicity = ($mode = 0 -> BP_FN_ESSENTIA(@name "inharmonicity" @mode $mode));
 
 BP_REF_NEW(
     @name "inharmonicity"
@@ -2872,7 +2872,7 @@ BP_REF_NEW(
 zerocrossingrate = (
     $threshold = 0,
     $mode = 0 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "zerocrossingrate" 
             @mode $mode
             @settings (
@@ -2897,7 +2897,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-strongdecay = ( -> BP_ESSENTIA_WRAPPER_FUNC(@name "strongdecay"));
+strongdecay = ( -> BP_FN_ESSENTIA(@name "strongdecay"));
 
 BP_REF_NEW(
     @name "strongdecay"
@@ -2918,7 +2918,7 @@ BP_REF_NEW(
 ##     $maxharmonics = 20,
 ##     $tolerance = 0.2,
 ##     $mode = 0 -> (
-##         BP_ESSENTIA_WRAPPER_FUNC(
+##         BP_FN_ESSENTIA(
 ##             @name "harmonicpeaks" 
 ##             @mode $mode
 ##             @settings (
@@ -2934,7 +2934,7 @@ BP_REF_NEW(
 spectrum = (
     $size = 2048,
     $mode = 0 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "spectrum" 
             @mode $mode
             @settings "@size" $size
@@ -2961,7 +2961,7 @@ rhythm = (
     $maxtempo = 208,
     $mintempo = 40,
     $method = 'multifeature' -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "rhythmextractor2013" 
             @settings (
                 "@maxtempo" $maxtempo
@@ -2996,7 +2996,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-logattack = ( -> BP_ESSENTIA_WRAPPER_FUNC(
+logattack = ( -> BP_FN_ESSENTIA(
         @name "logattacktime"
         @output (
             "logattack"
@@ -3018,7 +3018,7 @@ BP_REF_NEW(
 
 chordsdetection = (
     $mode = 0 -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "chordsdetection"
             @mode $mode
             @modes 0...2
@@ -3062,7 +3062,7 @@ pitchmelodia = (
     $timecontinuity = 100,
     $polyphonic = 0,
     $mode = 0 -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name (if $polyphonic == 0 then "pitchmelodia" else "predominantpitchmelodia")
             @output "pitchmelodia" "pitchmelodia_confidence"
             @settings (
@@ -3151,7 +3151,7 @@ mfcc = (
     $warpingformula = 'htkmel',
     $weighting = 'warping',
     $mode = 0 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "mfcc"
             @settings (      
                 "@dcttype" $dcttype
@@ -3226,7 +3226,7 @@ flux = (
     $halfrectify = 0,
     $norm = "L2",
     $mode = 0 -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "flux"
             @settings (
                 "@halfrectify" $halfrectify
@@ -3264,7 +3264,7 @@ larm = (
     $releasetime = 1500,
     $samplerate = 44100,
     $mode = 0 -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "larm"
             @mode $mode
             @settings (
@@ -3297,7 +3297,7 @@ BP_REF_NEW(
 
 spectralcentroid = (
     $mode = 0 -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "spectralcentroid"
             @mode $mode
         )
@@ -3320,7 +3320,7 @@ BP_REF_NEW(
 
 temporalcentroid = ( 
     -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "temporalcentroid"
         )
     )
@@ -3339,7 +3339,7 @@ BP_REF_NEW(
 
 spectralflatness = (
     $mode = 0 -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "spectralflatness"
             @mode $mode
         )
@@ -3362,7 +3362,7 @@ BP_REF_NEW(
 
 temporalflatness = ( 
     -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "temporalflatness"
         )
     )
@@ -3389,7 +3389,7 @@ BP_REF_NEW(
 ##     $samplerate = 22050,
 ##     $staticdistribution = 0.15,
 ##     $mode = 0 -> ( 
-##         BP_ESSENTIA_WRAPPER_FUNC(
+##         BP_FN_ESSENTIA(
 ##             @name "spectralcontrast"
 ##             @mode $mode
 ##             @settings (
@@ -3431,7 +3431,7 @@ barkbands = (
     $numberbands = 27,
     $samplerate = 44100,
     $mode = 0 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "barkbands"
             @settings (
                 "@numberbands" $numberbands
@@ -3465,7 +3465,7 @@ beatsloudness = (
     $frequencybands = 20 150 400 3200 7000 22000,
     $samplerate = 44100 -> (
         BP_FN_CHECK_ARGS('beatsloudness', 'beats', $beats);
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "beatsloudness"
             @settings (
                 "@beats" $beats
@@ -3513,7 +3513,7 @@ bfcc = (
     $type = 'power',
     $weighting = 'warping',
     $mode = 0 -> (
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "bfcc"
             @settings (
                 "@dcttype" $dcttype
@@ -3577,7 +3577,7 @@ rolloff = (
     $cutoff = 0.85,
     $samplerate = 44100,
     $mode = 0 -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "rolloff"
             @settings (
                 "@cutoff" $cutoff
@@ -3607,7 +3607,7 @@ BP_REF_NEW(
 maxmagfreq = (
     $samplerate = 44100,
     $mode = 0 -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "maxmagfreq"
             @settings (
                 "@samplerate" $samplerate
@@ -3637,7 +3637,7 @@ onsets = (
     $delay = 5,
     $framerate = 86.1328,
     $silencethreshold = 0.02 -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "onsets"
             @settings (
                 "@alpha" $alpha
@@ -3667,7 +3667,7 @@ BP_REF_NEW(
 ## BUGGY
 ## onsetrate = (
 ##     -> ( 
-##         BP_ESSENTIA_WRAPPER_FUNC(
+##         BP_FN_ESSENTIA(
 ##             @name "onsetrate"
 ##         )
 ##     )
@@ -3686,7 +3686,7 @@ onsetdetection = (
     $method = "hfc",
     $samplerate = 44100,
     $mode = 1 -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "onsetdetection"
             @mode $mode
             @modes 1...3
@@ -3725,7 +3725,7 @@ tonalkey = (
     $usepolyphony = 1,
     $usethreechords = 1,
     $mode = 0 -> ( 
-        BP_ESSENTIA_WRAPPER_FUNC(
+        BP_FN_ESSENTIA(
             @name "key"
             @settings (
                 "@numharmonics" $numharmonics
@@ -4011,7 +4011,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-BP_OSC_GEN_FUNC = (
+BP_FN_OSC_GEN = (
     $name,
     $frequency = 440,
     $duration = 50,
@@ -4056,7 +4056,7 @@ BP_OSC_GEN_FUNC = (
 
 noise = (
     $duration = 50 -> (
-        BP_OSC_GEN_FUNC("noise", @duration $duration)
+        BP_FN_OSC_GEN("noise", @duration $duration)
     )
 );
 
@@ -4075,7 +4075,7 @@ BP_REF_NEW(
 randosc = (
     $frequency = 440,
     $duration = 50 -> (
-        BP_OSC_GEN_FUNC("rand", @frequency $frequency @duration $duration)
+        BP_FN_OSC_GEN("rand", @frequency $frequency @duration $duration)
     )
 );
 
@@ -4096,7 +4096,7 @@ cycle = (
     $frequency = 440, 
     $duration = 50,
     $phase = 0.25 -> (
-        BP_OSC_GEN_FUNC("cycle" @frequency $frequency @duration $duration @params [ "phase" float($phase) ])
+        BP_FN_OSC_GEN("cycle" @frequency $frequency @duration $duration @params [ "phase" float($phase) ])
     )
 );
 
@@ -4118,7 +4118,7 @@ rect = (
     $frequency = 440, 
     $duration = 50,
     $duty = 0.5 -> (
-        BP_OSC_GEN_FUNC("rect", @frequency $frequency, @duration $duration, @params [ "duty" $duty ])
+        BP_FN_OSC_GEN("rect", @frequency $frequency, @duration $duration, @params [ "duty" $duty ])
     )
 );
 
@@ -4139,7 +4139,7 @@ BP_REF_NEW(
 saw = (
     $frequency = 440, 
     $duration = 50 -> (
-        BP_OSC_GEN_FUNC("saw", @frequency $frequency, @duration $duration)
+        BP_FN_OSC_GEN("saw", @frequency $frequency, @duration $duration)
     )
 );
 
@@ -4160,7 +4160,7 @@ tri = (
     $frequency = 440, 
     $duration = 50,
     $duty = 0.5 -> (
-        BP_OSC_GEN_FUNC("tri", @frequency $frequency, @duration $duration, @params [ "duty" $duty ])
+        BP_FN_OSC_GEN("tri", @frequency $frequency, @duration $duration, @params [ "duty" $duty ])
     )
 );
 
@@ -4183,7 +4183,7 @@ triangle = (
     $duration = 50,
     $phase = 0,
     $offset = 0.5 -> (
-        BP_OSC_GEN_FUNC("triangle", @frequency phasor($frequency, @duration $duration @phase $phase), @duration $duration @params [ "phase" float($offset) ])
+        BP_FN_OSC_GEN("triangle", @frequency phasor($frequency, @duration $duration @phase $phase), @duration $duration @params [ "phase" float($offset) ])
     )
 );
 
@@ -4206,7 +4206,7 @@ phasor = (
     $frequency = 440, 
     $duration = 50,
     $phase = 0. -> (
-        BP_OSC_GEN_FUNC("phasor", @frequency $frequency, @duration $duration, @params [ "phase" float($phase) ])
+        BP_FN_OSC_GEN("phasor", @frequency $frequency, @duration $duration, @params [ "phase" float($phase) ])
     )
 );
 
@@ -5160,7 +5160,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-BP_BUFFER_ARITHMETIC_FUNC = (
+BP_FN_BUFFER_ARITHMETIC = (
     $name,
     $operand,
     $resamplingfiltersize = 11,
@@ -5213,7 +5213,7 @@ BP_BUFFER_ARITHMETIC_ARGS = (
 
 absolute = (
     -> (
-        BP_BUFFER_ARITHMETIC_FUNC(
+        BP_FN_BUFFER_ARITHMETIC(
             @name "abs"
             @operand 0
         )
@@ -5231,7 +5231,7 @@ BP_REF_NEW(
 
 squareroot = (
     -> (
-        BP_BUFFER_ARITHMETIC_FUNC(
+        BP_FN_BUFFER_ARITHMETIC(
             @name "sqrt"
             @operand 0
         )
@@ -5253,7 +5253,7 @@ power = (
     $resamplingmode = "sinc",
     $resamplingpolicy = 3,
     $envtimeunit = 2 -> (
-        BP_BUFFER_ARITHMETIC_FUNC(
+        BP_FN_BUFFER_ARITHMETIC(
             @name "pow"
             @operand $operand
             @resamplingfiltersize $resamplingfiltersize
@@ -5283,7 +5283,7 @@ plus = (
     $resamplingmode = "sinc",
     $resamplingpolicy = 3,
     $envtimeunit = 2 -> (
-        BP_BUFFER_ARITHMETIC_FUNC(
+        BP_FN_BUFFER_ARITHMETIC(
             @name "plus"
             @operand $operand
             @resamplingfiltersize $resamplingfiltersize
@@ -5313,7 +5313,7 @@ minus = (
     $resamplingmode = "sinc",
     $resamplingpolicy = 3,
     $envtimeunit = 2 -> (
-        BP_BUFFER_ARITHMETIC_FUNC(
+        BP_FN_BUFFER_ARITHMETIC(
             @name "minus"
             @operand $operand
             @resamplingfiltersize $resamplingfiltersize
@@ -5343,7 +5343,7 @@ multiply = (
     $resamplingmode = "sinc",
     $resamplingpolicy = 3,
     $envtimeunit = 2 -> (
-        BP_BUFFER_ARITHMETIC_FUNC(
+        BP_FN_BUFFER_ARITHMETIC(
             @name "times"
             @operand $operand
             @resamplingfiltersize $resamplingfiltersize
@@ -5373,7 +5373,7 @@ divide = (
     $resamplingmode = "sinc",
     $resamplingpolicy = 3,
     $envtimeunit = 2 -> (
-        BP_BUFFER_ARITHMETIC_FUNC(
+        BP_FN_BUFFER_ARITHMETIC(
             @name "div"
             @operand $operand
             @resamplingfiltersize $resamplingfiltersize
@@ -6567,9 +6567,9 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-BP_GCD_FUNC = $x, $y -> if $y == 0 then abs($x) else BP_GCD_FUNC($y, $x % $y);
+BP_FN_GCD = $x, $y -> if $y == 0 then abs($x) else BP_FN_GCD($y, $x % $y);
 
-gcd = $llll -> for $x in flat($llll) do $gcd = BP_GCD_FUNC($gcd ||| $x, $x);
+gcd = $llll -> for $x in flat($llll) do $gcd = BP_FN_GCD($gcd ||| $x, $x);
 
 BP_REF_NEW(
     @name "gcd",
@@ -6583,10 +6583,10 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-BP_LCM_FUNC = $x, $y -> if $x == 0 || $y == 0 then 0 else abs($x * $y) / BP_GCD_FUNC($x, $y);
+BP_FN_LCM = $x, $y -> if $x == 0 || $y == 0 then 0 else abs($x * $y) / BP_FN_GCD($x, $y);
 
 lcm = $llll -> (
-    for $x in flat($llll) do $lcm = max($lcm ||| $x, BP_LCM_FUNC($lcm ||| $x, $x))
+    for $x in flat($llll) do $lcm = max($lcm ||| $x, BP_FN_LCM($lcm ||| $x, $x))
 );
 
 BP_REF_NEW(
