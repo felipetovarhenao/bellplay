@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 232.0, 228.0, 812.0, 618.0 ],
+		"rect" : [ 628.0, 190.0, 831.0, 609.0 ],
 		"openinpresentation" : 1,
 		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
@@ -19,6 +19,50 @@
 		"enablevscroll" : 0,
 		"style" : "bellplay-gui-1",
 		"boxes" : [ 			{
+				"box" : 				{
+					"border" : 2.0,
+					"id" : "obj-20",
+					"justification" : 1,
+					"linecolor" : [ 0.352941176470588, 0.352941176470588, 0.352941176470588, 0.38 ],
+					"maxclass" : "live.line",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 2.0, 531.0, 5.0, 100.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 1.0, 530.0, 804.0, 5.0 ],
+					"saved_attribute_attributes" : 					{
+						"linecolor" : 						{
+							"expression" : ""
+						}
+
+					}
+
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"border" : 2.0,
+					"id" : "obj-14",
+					"justification" : 1,
+					"linecolor" : [ 0.352941176470588, 0.352941176470588, 0.352941176470588, 0.38 ],
+					"maxclass" : "live.line",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 10.0, 133.0, 5.0, 100.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 207.0, 804.0, 5.0 ],
+					"saved_attribute_attributes" : 					{
+						"linecolor" : 						{
+							"expression" : ""
+						}
+
+					}
+
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-17",
 					"maxclass" : "message",
@@ -46,7 +90,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 416.0, 369.0, 791.0, 23.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 316.358826144953298, 791.0, 23.0 ],
+					"presentation_rect" : [ 9.0, 443.0, 791.0, 23.0 ],
 					"text" : "You can support the development of bellplay~ by making a #donation.",
 					"underline" : 0
 				}
@@ -61,7 +105,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 309.0, 520.0, 91.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 279.358826144953298, 307.0, 35.0 ],
+					"presentation_rect" : [ 9.0, 406.0, 307.0, 35.0 ],
 					"text" : "support",
 					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
@@ -91,7 +135,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 46.5, 548.0, 150.0, 40.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 574.0, 790.0, 23.0 ],
+					"presentation_rect" : [ 9.0, 182.0, 795.0, 23.0 ],
 					"text" : "algorithmic audio in bell",
 					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ],
 					"textjustification" : 1
@@ -108,7 +152,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 718.0, 269.0, 85.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 389.0, 543.0, 66.0, 35.0 ],
+					"presentation_rect" : [ 390.0, 151.0, 66.0, 35.0 ],
 					"text" : "play~",
 					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
@@ -124,7 +168,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 718.0, 269.0, 72.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 353.0, 543.0, 45.0, 35.0 ],
+					"presentation_rect" : [ 354.0, 151.0, 45.0, 35.0 ],
 					"text" : "bell",
 					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
@@ -139,10 +183,10 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "jit_matrix" ],
-					"patching_rect" : [ 722.0, 152.0, 100.0, 100.0 ],
+					"patching_rect" : [ 722.0, 152.0, 100.421686746987945, 100.0 ],
 					"pic" : "logo.png",
 					"presentation" : 1,
-					"presentation_rect" : [ 342.0, 418.0, 123.0, 123.0 ]
+					"presentation_rect" : [ 334.0, 10.0, 140.0, 139.412117576484718 ]
 				}
 
 			}
@@ -158,7 +202,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 455.0, 41.0, 172.07092198581563, 67.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 621.380281690140805, 7.0, 177.0, 78.358826144953312 ]
+					"presentation_rect" : [ 660.0, 543.0, 125.0, 53.0 ]
 				}
 
 			}
@@ -174,7 +218,7 @@
 					"patching_rect" : [ 638.0, 47.0, 199.0, 48.577590040017782 ],
 					"pic" : "ccm_logo.png",
 					"presentation" : 1,
-					"presentation_rect" : [ 267.0, 7.0, 321.0, 78.358826144953312 ]
+					"presentation_rect" : [ 279.0, 542.0, 226.0, 55.168519341929745 ]
 				}
 
 			}
@@ -267,7 +311,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 505.0, 121.0, 604.0, 23.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 378.358826144953298, 790.0, 23.0 ],
+					"presentation_rect" : [ 9.0, 505.0, 790.0, 23.0 ],
 					"text" : "bellplay~is distributed under the terms of the GNU General Public License version 3 (GPL-v3.0). ",
 					"underline" : 0
 				}
@@ -291,7 +335,7 @@
 					"patching_rect" : [ 9.0, 311.0, 791.0, 40.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 2,
-					"presentation_rect" : [ 8.0, 237.358826144953298, 791.0, 40.0 ],
+					"presentation_rect" : [ 9.0, 364.0, 791.0, 40.0 ],
 					"text" : "This project relies primarily on the #bach ecosystem — a family of packages for computer-assisted composition in Max, developed by Andrea Agostini and Daniele Ghisi. It also relies, to a lesser degree, on the #ml.star library, developed by Benjamin D. Smith.",
 					"underline" : 0
 				}
@@ -315,7 +359,7 @@
 					"patching_rect" : [ 10.0, 121.0, 438.0, 107.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 4,
-					"presentation_rect" : [ 8.0, 124.358826144953312, 796.0, 74.0 ],
+					"presentation_rect" : [ 9.0, 251.0, 796.0, 74.0 ],
 					"text" : "bellplay~ is developed and maintained by Felipe Tovar-Henao, as part of his residency as the Charles H. Turner Postdoctoral Fellow at the University of Cincinnati College-Conservatory of Music.\n\nThe source code can be found at https://github.com/felipetovarhenao/bellplay/ ",
 					"underline" : 0
 				}
@@ -330,7 +374,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 10.0, 10.0, 307.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 200.358826144953298, 307.0, 35.0 ],
+					"presentation_rect" : [ 9.0, 327.0, 307.0, 35.0 ],
 					"text" : "acknowledgements",
 					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
@@ -345,7 +389,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 10.0, 47.0, 307.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 341.358826144953298, 307.0, 35.0 ],
+					"presentation_rect" : [ 9.0, 468.0, 307.0, 35.0 ],
 					"text" : "license",
 					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
@@ -360,7 +404,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 10.0, 84.0, 307.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 8.0, 87.358826144953312, 307.0, 35.0 ],
+					"presentation_rect" : [ 9.0, 214.0, 307.0, 35.0 ],
 					"text" : "credits",
 					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
 				}
@@ -452,7 +496,7 @@
 
 			}
  ],
-		"originid" : "pat-8250",
+		"originid" : "pat-6165",
 		"dependency_cache" : [ 			{
 				"name" : "bach.hypercomment.mxo",
 				"type" : "iLaX"
