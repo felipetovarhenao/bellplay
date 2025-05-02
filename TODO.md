@@ -11,6 +11,8 @@
 - Improve naming of i/o functions: `export`, `read`, `write`, `loadcorpus`, `setcorpus`, `importaudio`, `importmidi`.
 - Improve existing process ops:
   - `groove`.
+- Add new processing functions:
+  - `pink`, `modulo`, `buffir`, `zerox`, `thresh`, `svf`, `log`.
 - Add util functions:
   - `createmarkov` and `querymarkov`.
   - `float2rat`
