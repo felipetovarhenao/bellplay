@@ -6406,7 +6406,7 @@ BP_REF_NEW(
 hoadecode = (
     $azimuth = pi * (1/4 3/4 -3/4 -1/4),
     $elevation = 0 0 0 0,
-    $binaural = 0,
+    $binaural = 1,
     $dimension = '3D',
     $blocksamps = 64,
     $angleunit = 0 -> (
@@ -6431,7 +6431,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "azimuth" @default 0.78 2.35 @type "int/float/llll" @description "azimuth or X coordinate, for each loudspeaker.")
         BP_REF_ARG(@name "elevation" @default 0 0 @type "int/float/llll" @description "elevation or y coordinate.")
-        BP_REF_ARG(@name "binaural" @default 0 @type "int/float/llll" @description "binaural mode." @options
+        BP_REF_ARG(@name "binaural" @default 1 @type "int/float/llll" @description "binaural mode." @options
             BP_REF_SWITCH_OPTIONS
         )
         BP_REF_ARG(@name "dimension" @default "'3D'" @type "symbol" @description "dimensionality of ambisonics" @options 

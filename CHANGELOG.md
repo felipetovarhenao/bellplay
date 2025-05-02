@@ -25,6 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Non-backward compatible changes:
   - `process`: arg renaming from `@commands` to `@operations`.
 - `trim`: `@threshold` default is now `0.01`.
+- `hoadecode`: `@binaural` default is now `1`.
 - Dev:
   - Change doc functions to also use `BP_REF*` prefix.
 
