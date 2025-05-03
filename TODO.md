@@ -9,6 +9,7 @@
 - Rewrite tutorials and examples involving `splitbuf` and kd-trees.
 - Improve control over score appearance via `setscore` (replacing `scoreconfig`).
 - Improve naming of i/o functions: `export`, `read`, `write`, `loadcorpus`, `setcorpus`, `importaudio`, `importmidi`.
+- `getkey`: Add support for multiple keys and `@wrap` argument for weather values should be wrapped individually or not.
 - Improve existing process ops:
   - `groove`.
 - Add new processing functions:
