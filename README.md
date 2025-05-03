@@ -43,6 +43,30 @@ If you are new to bell or programming in general, please refer to the [bell tuto
 Additionally, to learn more about the bell programming language, please refer to its introductory publication:
 Giavitto, J.-L., & Agostini, A. (2019, June). Bell, a textual language for the bach library. ICMC 2019 - International Computer Music Conference. https://hal.science/hal-02348176
 
+### What about real-time?
+
+You might be wondering: what’s the point of learning a tool like **bellplay~** that operates strictly offline? Why not use something real-time instead?
+
+After all, the trend among many contemporary audio programmers is to use real-time environments like **Max**, **SuperCollider**, **ChucK**, **TidalCycles**, or **Sonic Pi**. Real-time tools are widely perceived as modern and expressive, while offline or deferred-time workflows are often dismissed as outdated.
+
+This perception, however, is both misleading and surprisingly common. It’s true that, historically, digital audio processing required time-consuming computations—processes that had to complete before any results could be heard. As computers grew more powerful, real-time processing became feasible and eventually ubiquitous, to the point where it's now taken for granted.
+
+But framing real-time computation as a strictly superior evolution of offline computation misses a crucial point: in most cases, the decision between real-time and offline workflows is not a matter of _better or worse_, but one of **contextual trade-offs**.
+
+To draw an analogy: saying “real-time is better than offline” is akin to claiming that _improvisation_ is superior to _composition_. Most musicians understand that both have their place, and many embrace both traditions without feeling the need to choose one over the other. The same applies to computational workflows.
+
+Consider the following examples of common audio tasks:
+
+- Reversing audio
+- Source separation
+- Time-stretching
+- Batch processing
+- Spectral editing
+
+These are either impossible to execute in real time, computationally impractical, or at best, only feasible under very specific constraints. More broadly, offline workflows—whether in music, painting, or code—allow for **iteration, reflection, and refinement**. These are qualities that real-time systems cannot offer by design.
+
+**bellplay~** embraces this offline paradigm intentionally. Its design favors experimentation, layering, and precision over immediacy. The absence of real-time support is not a limitation—it’s a deliberate **feature** aimed at empowering creative processes that benefit from deferred time.
+
 ### User community
 
 For questions, troubleshooting, bugs reports, feedback, feature requests, and more, join the official [bellplay~ Discord community](https://discord.gg/RKZxTwWvxd).
