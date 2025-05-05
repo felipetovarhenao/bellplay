@@ -6742,7 +6742,9 @@ splitbuf = (
             $offsets = sort($split);
             $segdurs = x2dx($offsets $duration);
             for $offset in $offsets, $sdur in $segdurs do (
-                $segs _= $buffer.setkey('offset', $offset).setkey('duration', $sdur) 
+                if $sdur > 0 then (
+                    $segs _= $buffer.setkey('offset', $offset).setkey('duration', $sdur)
+                ) 
             ) 
         ) else BP_FN_ERROR($self, 'invalid @mode:' $mode);
         $segs
