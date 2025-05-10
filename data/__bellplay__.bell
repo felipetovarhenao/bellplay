@@ -4476,7 +4476,7 @@ biquad = (
                 [ "allpass" 8 ]
             ).$type
         );
-        $type &&& BP_FN_ERROR('biquad', "invalid value for @type");
+        $type ||| BP_FN_ERROR('biquad', "invalid value for @type");
         [
             [ "fx" "biquad" ]
             [ "params" 
