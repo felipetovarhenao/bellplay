@@ -6376,7 +6376,7 @@ hoaencode = (
 BP_REF_NEW(
     @name "hoaencode",
     @description "Audio process operation for panning the input buffer and encode it as a higher-order ambisonic buffer",
-    @category BP_REF_LABEL_UTILS,
+    @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "azimuth" @default 0 @type "int/float/llll" @description "azimuth or X coordinate.")
         BP_REF_ARG(@name "elevation" @default 0 @type "int/float/llll" @description "elevation or y coordinate.")
@@ -6427,7 +6427,7 @@ hoadecode = (
 BP_REF_NEW(
     @name "hoadecode",
     @description "Audio process operation for decoding higher-order ambisonic buffers for a set of loudspeakers or for binaural listening",
-    @category BP_REF_LABEL_UTILS,
+    @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "azimuth" @default 0.78 2.35 @type "int/float/llll" @description "azimuth or X coordinate, for each loudspeaker.")
         BP_REF_ARG(@name "elevation" @default 0 0 @type "int/float/llll" @description "elevation or y coordinate.")
