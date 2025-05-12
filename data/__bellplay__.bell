@@ -6875,7 +6875,8 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 seq2markov = (
-    $data, $order = 1, $prepad = '<SOS>', $postpad = '<EOS>' -> (
+    $sequence, $order = 1, $prepad = '<SOS>', $postpad = '<EOS>' -> (
+        BP_FN_CHECK_ARGS('seq2markov', 'sequence', $sequence);
         ## Ensure order is at least 0 (negative orders are meaningless)
         $order = max(0, $order);
         ## Group the sequence into overlapping n-grams (of length $order + 1), with padding at both ends to handle boundary cases.
@@ -6884,7 +6885,7 @@ seq2markov = (
                 ## Prepend padding symbols for initial states
                 $prepad :* $order
                 ## The original data sequence
-                $data
+                $sequence
                 ## Append padding symbols for final states
                 $postpad :* $order
             ) 
@@ -6923,6 +6924,7 @@ BP_REF_NEW(
 
 markov2seq = (
     $matrix, $maxlength = 25, $start = null, $autoclear = 1, $useseed = 0, $prepad = '<SOS>', $postpad = '<EOS>' -> (
+        BP_FN_CHECK_ARGS('markov2seq', 'matrix', $matrix);
         ## Initialize random choice function (deterministic if $useseed == 1)
         $choose = if $useseed == 1 then xchoose else choose;
         ## Infer order of the Markov transition matrix
