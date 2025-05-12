@@ -1,7 +1,7 @@
 # TO DO
 
 - FIX `rhythm` extractor.
-- Add support for pitch syntax in `ezsampler` and ``transcribe`.
+- Add support for pitch syntax in `ezsampler` and `transcribe`.
 - Adapt code base to new bell language version.
 - Migrate reference documentation to versioned web repo.
 - Implement a better error API.
