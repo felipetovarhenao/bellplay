@@ -11,6 +11,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - New functions:
   - `createtree`: Instantiates a k-dimensional tree. Replaces `buildtree`.
   - `querytree`: Queries a k-dimensional tree. Replaces `searchtree`.
+  - `seq2markov`: Sequence to Markov matrix.
+  - `markov2seq`: Markov matrix to sequence.
 - Dev:
   - Major renaming of backend functions to follow consistent nomenclature:
     - global functions: `BP_FN_*`
