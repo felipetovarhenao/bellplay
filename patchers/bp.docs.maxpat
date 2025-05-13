@@ -21,6 +21,47 @@
 		"title" : "bellplay~ | about",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 572.0, 72.0, 106.0, 23.0 ],
+					"text" : "bp.utils.zoomctrl 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-77",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"patching_rect" : [ 572.0, 39.0, 40.0, 23.0 ],
+					"text" : "active"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-108",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 572.0, 108.0, 59.0, 23.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "zoom.js",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js zoom.js"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-2",
 					"maxclass" : "message",
 					"numinlets" : 2,
@@ -378,6 +419,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-108", 0 ],
+					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-21", 0 ],
 					"source" : [ "obj-14", 0 ]
 				}
@@ -546,13 +594,20 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"source" : [ "obj-77", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-8", 0 ]
 				}
 
 			}
  ],
-		"originid" : "pat-5864",
+		"originid" : "pat-28841",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
@@ -726,6 +781,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.utils.zoomctrl.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "ccm_logo.png",
 				"bootpath" : "~/Documents/bellplay/media",
 				"patcherrelativepath" : "../media",
@@ -757,6 +819,13 @@
 				"name" : "thru.maxpat",
 				"bootpath" : "C74:/patchers/m4l/Pluggo for Live resources/patches",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "zoom.js",
+				"bootpath" : "~/Documents/bellplay/code",
+				"patcherrelativepath" : "../code",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],

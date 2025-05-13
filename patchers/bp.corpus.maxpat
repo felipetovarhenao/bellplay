@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -20,6 +20,47 @@
 		"style" : "bellplay-gui-1",
 		"title" : "bellplay~ | corpus lab",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-125",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 12.0, 305.0, 59.0, 23.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "zoom.js",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js zoom.js"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-124",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 12.0, 268.0, 106.0, 23.0 ],
+					"text" : "bp.utils.zoomctrl 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-123",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"patching_rect" : [ 12.0, 232.0, 40.0, 23.0 ],
+					"text" : "active"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-135",
 					"maxclass" : "comment",
@@ -73,7 +114,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -258,7 +299,7 @@
 
 							}
  ],
-						"originid" : "pat-8094",
+						"originid" : "pat-31447",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -291,7 +332,6 @@
 					"patching_rect" : [ 1000.0, 549.0, 114.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
-						"globalpatchername" : "",
 						"style" : "subtlelight"
 					}
 ,
@@ -431,7 +471,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -585,7 +625,7 @@
 
 							}
  ],
-						"originid" : "pat-8100",
+						"originid" : "pat-31453",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -618,7 +658,6 @@
 					"patching_rect" : [ 1533.0, 507.0, 54.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
-						"globalpatchername" : "",
 						"style" : "subtlelight"
 					}
 ,
@@ -1500,8 +1539,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 12.0, 80.0, 24.0, 24.0 ],
-					"svg" : ""
+					"patching_rect" : [ 12.0, 80.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -1593,7 +1631,6 @@
 					"presentation_rect" : [ 189.0, 477.0, 53.0, 18.0 ],
 					"text" : "clear",
 					"textoncolor" : [ 1.0, 1.0, 1.0, 1.0 ],
-					"textovercolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 					"usetextovercolor" : 1
 				}
 
@@ -1613,7 +1650,6 @@
 					"presentation_rect" : [ 244.0, 477.0, 53.0, 18.0 ],
 					"text" : "apply",
 					"textoncolor" : [ 1.0, 1.0, 1.0, 1.0 ],
-					"textovercolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 					"usetextovercolor" : 1
 				}
 
@@ -1800,7 +1836,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 5,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1864,7 +1900,7 @@
 
 							}
  ],
-						"originid" : "pat-8118",
+						"originid" : "pat-31471",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1897,7 +1933,6 @@
 					"patching_rect" : [ 1729.0, 1818.0, 98.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
-						"globalpatchername" : "",
 						"style" : "subtlelight"
 					}
 ,
@@ -2845,6 +2880,20 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-124", 0 ],
+					"source" : [ "obj-123", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-125", 0 ],
+					"source" : [ "obj-124", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-143", 0 ],
 					"source" : [ "obj-129", 0 ]
 				}
@@ -3761,7 +3810,7 @@
 
 			}
  ],
-		"originid" : "pat-8092",
+		"originid" : "pat-31445",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
@@ -3862,6 +3911,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.utils.zoomctrl.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "dada.base.mxo",
 				"type" : "iLaX"
 			}
@@ -3873,6 +3929,13 @@
 				"name" : "thru.maxpat",
 				"bootpath" : "C74:/patchers/m4l/Pluggo for Live resources/patches",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "zoom.js",
+				"bootpath" : "~/Documents/bellplay/code",
+				"patcherrelativepath" : "../code",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],

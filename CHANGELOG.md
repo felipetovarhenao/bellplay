@@ -8,7 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
-- Add `zoom.js` script. Pending GUI integration.
+- GUI:
+  - New zoom in and out support via `shift+` and `shift-`.
 - New functions:
   - `createtree`: Instantiates a k-dimensional tree. Replaces `buildtree`.
   - `querytree`: Queries a k-dimensional tree. Replaces `searchtree`.
@@ -46,7 +47,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Dev:
   - `printerror`: replaced by `BP_FN_ERROR`.
 
-## [0.2.8-beta] - 2025-04-28 
+## [0.2.8-beta] - 2025-04-28
 
 ### Added
 

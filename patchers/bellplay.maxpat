@@ -24,6 +24,47 @@
 		"title" : "bellplay~ | algorithmic audio in bell",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-78",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 628.0, 1260.0, 106.0, 23.0 ],
+					"text" : "bp.utils.zoomctrl 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-77",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"patching_rect" : [ 628.0, 1224.0, 40.0, 23.0 ],
+					"text" : "active"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-108",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 628.0, 1296.0, 59.0, 23.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "zoom.js",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js zoom.js"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-73",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
@@ -719,7 +760,7 @@
 
 							}
  ],
-						"originid" : "pat-3995",
+						"originid" : "pat-23919",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2135,6 +2176,20 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-78", 0 ],
+					"source" : [ "obj-77", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-108", 0 ],
+					"source" : [ "obj-78", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-91", 0 ],
 					"source" : [ "obj-87", 0 ]
 				}
@@ -2162,7 +2217,7 @@
 
 			}
  ],
-		"originid" : "pat-3985",
+		"originid" : "pat-23907",
 		"parameters" : 		{
 			"obj-115" : [ "live.gain~", "GAIN", 0 ],
 			"parameterbanks" : 			{
@@ -2742,6 +2797,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.utils.zoomctrl.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "ccm_logo.png",
 				"bootpath" : "~/Documents/bellplay/media",
 				"patcherrelativepath" : "../media",
@@ -3045,6 +3107,13 @@
 				"name" : "thru.maxpat",
 				"bootpath" : "C74:/patchers/m4l/Pluggo for Live resources/patches",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "zoom.js",
+				"bootpath" : "~/Documents/bellplay/code",
+				"patcherrelativepath" : "../code",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],
