@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3828954983,
+	"modificationdate" : 3829991046,
 	"viewrect" : [ 25.0, 105.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -377,6 +377,14 @@
 					"projectrelativepath" : "./media"
 				}
 
+			}
+
+		}
+,
+		"code" : 		{
+			"zoom.js" : 			{
+				"kind" : "javascript",
+				"local" : 1
 			}
 
 		}
