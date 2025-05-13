@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 5,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -588,7 +588,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -759,7 +759,6 @@
 
 							}
  ],
-						"originid" : "pat-6267",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -841,7 +840,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1146,7 +1145,6 @@
 
 							}
  ],
-						"originid" : "pat-6269",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -1361,7 +1359,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1573,7 +1571,6 @@
 
 							}
  ],
-						"originid" : "pat-6275",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1819,14 +1816,14 @@
 				"box" : 				{
 					"bgcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 0.0 ],
 					"fontname" : "Lato",
-					"fontsize" : 10.0,
+					"fontsize" : 10.000000596046457,
 					"id" : "obj-131",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 1992.5, 1993.0, 133.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 296.0, 75.0, 461.0, 18.0 ],
+					"presentation_rect" : [ 294.666675448417664, 74.666668891906738, 462.000013768672943, 18.0 ],
 					"textcolor" : [ 0.501960784313725, 0.501960784313725, 0.501960784313725, 1.0 ],
 					"textjustification" : 2
 				}
@@ -1844,7 +1841,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1988,7 +1985,6 @@
 
 							}
  ],
-						"originid" : "pat-6299",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2078,7 +2074,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2273,7 +2269,6 @@
 
 							}
  ],
-						"originid" : "pat-6301",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -2337,7 +2332,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2464,7 +2459,6 @@
 
 							}
  ],
-						"originid" : "pat-6303",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -2600,7 +2594,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2772,7 +2766,6 @@
 
 							}
  ],
-						"originid" : "pat-6307",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -2850,7 +2843,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3297,7 +3290,6 @@
 
 							}
  ],
-						"originid" : "pat-6365",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -3348,7 +3340,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -4624,7 +4616,6 @@
 
 							}
  ],
-						"originid" : "pat-6367",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -4704,7 +4695,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -4874,7 +4865,7 @@
 										"appversion" : 										{
 											"major" : 9,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -4954,7 +4945,6 @@
 
 											}
  ],
-										"originid" : "pat-6377",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -5274,7 +5264,6 @@
 
 							}
  ],
-						"originid" : "pat-6375",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5360,7 +5349,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -5594,7 +5583,6 @@
 
 							}
  ],
-						"originid" : "pat-6709",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -5905,7 +5893,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -6034,7 +6022,6 @@
 
 							}
  ],
-						"originid" : "pat-6869",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -6085,7 +6072,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -6143,7 +6130,7 @@
 										"appversion" : 										{
 											"major" : 9,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -6232,7 +6219,6 @@
 
 											}
  ],
-										"originid" : "pat-6873",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -6326,7 +6312,7 @@
 										"appversion" : 										{
 											"major" : 9,
 											"minor" : 0,
-											"revision" : 5,
+											"revision" : 6,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -6710,7 +6696,6 @@
 
 											}
  ],
-										"originid" : "pat-6877",
 										"styles" : [ 											{
 												"name" : "bellplay-gui",
 												"default" : 												{
@@ -7011,7 +6996,6 @@
 
 							}
  ],
-						"originid" : "pat-6871",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -8322,7 +8306,7 @@
 					"outlettype" : [ "float", "float", "float", "float", "list", "" ],
 					"patching_rect" : [ 1509.5, 2264.0, 511.0, 97.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 295.0, 23.0, 462.0, 53.0 ],
+					"presentation_rect" : [ 294.000008761882782, 22.666667342185974, 463.333347141742706, 53.333334922790527 ],
 					"selectioncolor" : [ 0.964705882352941, 0.964705882352941, 0.964705882352941, 0.0 ],
 					"style" : "bellplay-gui",
 					"vticks" : 0,
@@ -8333,14 +8317,14 @@
 , 			{
 				"box" : 				{
 					"bgcolor" : [ 0.831372549019608, 0.831372549019608, 0.831372549019608, 1.0 ],
-					"fontsize" : 10.0,
+					"fontsize" : 10.000000596046457,
 					"id" : "obj-1",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 382.285714285714278, 460.0, 160.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 295.0, 75.0, 462.0, 18.0 ],
+					"presentation_rect" : [ 294.000008761882782, 74.666668891906738, 463.333347141742706, 18.0 ],
 					"style" : "bellplay-gui",
 					"text" : " ",
 					"textcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
@@ -8358,7 +8342,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 1169.0, 2375.0, 100.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 149.0, 23.0, 143.5, 22.0 ],
+					"presentation_rect" : [ 149.043481037020683, 23.043478690087795, 143.043480925261974, 21.913043886423111 ],
 					"style" : "bellplay-gui",
 					"text" : "corpus lab",
 					"textovercolor" : [ 0.56078431372549, 0.709803921568627, 0.843137254901961, 1.0 ],
@@ -10120,7 +10104,6 @@
 
 			}
  ],
-		"originid" : "pat-6171",
 		"dependency_cache" : [ 			{
 				"name" : "bach.+.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
@@ -10575,6 +10558,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.utils.zoomctrl.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "dada.base.mxo",
 				"type" : "iLaX"
 			}
@@ -10850,6 +10840,13 @@
 				"name" : "thru.maxpat",
 				"bootpath" : "C74:/patchers/m4l/Pluggo for Live resources/patches",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "zoom.js",
+				"bootpath" : "~/Documents/bellplay/code",
+				"patcherrelativepath" : "../code",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],
