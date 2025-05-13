@@ -6651,7 +6651,7 @@ BP_REF_NEW(
 autoscale = (
     $x, $mode = 0 -> (
         BP_FN_CHECK_ARGS('autoscale', 'x', $x);
-        $minmax = minmax($x @depth -1 -1);
+        $minmax = minmax(flat($x));
         $min = $minmax:1;
         $max = $minmax:3;
         $y = scale($x, $min, $max, 0, 1);

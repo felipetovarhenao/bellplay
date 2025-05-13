@@ -33,6 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- Fix bug in `autoscale`.
 - `hoaencode` and `hoadecode`: fix category in docs.
 
 ### Removed
