@@ -1949,7 +1949,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 1992.5, 1993.0, 133.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 294.666675448417664, 74.666668891906738, 462.000013768672943, 18.0 ],
+					"presentation_rect" : [ 294.0, 75.0, 463.411766432225704, 18.0 ],
 					"textcolor" : [ 0.501960784313725, 0.501960784313725, 0.501960784313725, 1.0 ],
 					"textjustification" : 2
 				}
@@ -8381,7 +8381,7 @@
 			}
 , 			{
 				"box" : 				{
-					"bgcolor" : [ 0.831372549019608, 0.831372549019608, 0.831372549019608, 1.0 ],
+					"bgcolor" : [ 0.870588235294118, 0.870588235294118, 0.870588235294118, 1.0 ],
 					"fontsize" : 10.000000596046457,
 					"id" : "obj-1",
 					"maxclass" : "comment",
@@ -8389,10 +8389,10 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 382.285714285714278, 460.0, 160.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 294.000008761882782, 74.666668891906738, 463.333347141742706, 18.0 ],
+					"presentation_rect" : [ 294.0, 75.0, 463.333347141742706, 18.0 ],
 					"style" : "bellplay-gui",
 					"text" : " ",
-					"textcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
+					"textcolor" : [ 0.349019607843137, 0.349019607843137, 0.349019607843137, 1.0 ],
 					"textjustification" : 1
 				}
 
@@ -10600,6 +10600,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "corpus-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "dada.base.mxo",
 				"type" : "iLaX"
 			}
@@ -10868,16 +10875,9 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "explore-icon.svg",
-				"bootpath" : "~/Desktop/bpgui",
-				"patcherrelativepath" : "../../../Desktop/bpgui",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "load-icon.svg",
-				"bootpath" : "~/Desktop/bpgui",
-				"patcherrelativepath" : "../../../Desktop/bpgui",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
 				"type" : "svg",
 				"implicit" : 1
 			}
@@ -10887,29 +10887,29 @@
 			}
 , 			{
 				"name" : "new-icon.svg",
-				"bootpath" : "~/Desktop/bpgui",
-				"patcherrelativepath" : "../../../Desktop/bpgui",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "play-icon.svg",
-				"bootpath" : "~/Desktop/bpgui",
-				"patcherrelativepath" : "../../../Desktop/bpgui",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "reload-icon.svg",
-				"bootpath" : "~/Desktop/bpgui",
-				"patcherrelativepath" : "../../../Desktop/bpgui",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
 				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "save-icon.svg",
-				"bootpath" : "~/Desktop/bpgui",
-				"patcherrelativepath" : "../../../Desktop/bpgui",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
 				"type" : "svg",
 				"implicit" : 1
 			}
