@@ -398,6 +398,7 @@ BP_MEDIA_FILES = [
     [ "midi"
         "bach.mid"
         "satie.mid"
+        "joplin.mid"
     ]
     [ "llll"
         "corpus_demo.llll"

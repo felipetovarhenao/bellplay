@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `querytree`: Queries a k-dimensional tree. Replaces `searchtree`.
   - `seq2markov`: Sequence to Markov matrix.
   - `markov2seq`: Markov matrix to sequence.
+- New built-in media: `joplin.mid` (_The Entertainer_).
 - Dev:
   - Major renaming of backend functions to follow consistent nomenclature:
     - global functions: `BP_FN_*`
