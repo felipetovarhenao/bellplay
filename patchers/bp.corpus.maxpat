@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 5,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -20,6 +20,54 @@
 		"style" : "bellplay-gui-1",
 		"title" : "bellplay~ | corpus lab",
 		"boxes" : [ 			{
+				"box" : 				{
+					"args" : [ "text", "playback OFF", "icon", "play-icon.svg", "texton", "playback ON", "iconon", "play-icon.svg", "mode", 1 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-144",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "bp.utils.button.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "", "", "int" ],
+					"patching_rect" : [ 1262.0, 2671.444444362074137, 143.000001065433025, 22.111111275851727 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 152.0, 27.0, 145.0, 22.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "text", "load corpus", "icon", "load-icon.svg" ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-126",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "bp.utils.button.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "", "", "int" ],
+					"patching_rect" : [ 341.0, 41.0, 103.0, 23.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 6.0, 27.0, 145.0, 22.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-125",
 					"maxclass" : "newobj",
@@ -114,7 +162,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -299,7 +347,6 @@
 
 							}
  ],
-						"originid" : "pat-31447",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -471,7 +518,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -625,7 +672,6 @@
 
 							}
  ],
-						"originid" : "pat-31453",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1836,7 +1882,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 5,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1900,7 +1946,6 @@
 
 							}
  ],
-						"originid" : "pat-31471",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1995,27 +2040,6 @@
 			}
 , 			{
 				"box" : 				{
-					"active" : 0,
-					"id" : "obj-208",
-					"maxclass" : "textbutton",
-					"mode" : 1,
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 1262.0, 2673.0, 100.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 152.0, 27.0, 145.0, 22.0 ],
-					"style" : "bellplay-gui",
-					"text" : "playback OFF",
-					"texton" : "playback ON",
-					"textovercolor" : [ 0.56078431372549, 0.709803921568627, 0.843137254901961, 1.0 ],
-					"usetextovercolor" : 1
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-207",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
@@ -2024,24 +2048,6 @@
 					"patching_rect" : [ 1262.0, 2712.0, 172.0, 23.0 ],
 					"style" : "bellplay-gui",
 					"text" : "gate 1 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-144",
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 341.0, 39.0, 100.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 6.0, 27.0, 145.0, 22.0 ],
-					"style" : "bellplay-gui",
-					"text" : "load corpus",
-					"textovercolor" : [ 0.56078431372549, 0.709803921568627, 0.843137254901961, 1.0 ],
-					"usetextovercolor" : 1
 				}
 
 			}
@@ -2894,6 +2900,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-122", 0 ],
+					"source" : [ "obj-126", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-143", 0 ],
 					"source" : [ "obj-129", 0 ]
 				}
@@ -2971,7 +2984,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-122", 0 ],
+					"destination" : [ "obj-207", 0 ],
 					"source" : [ "obj-144", 0 ]
 				}
 
@@ -3104,13 +3117,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-207", 0 ],
-					"source" : [ "obj-208", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-34", 0 ],
 					"source" : [ "obj-21", 0 ]
 				}
@@ -3223,7 +3229,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-208", 0 ],
+					"destination" : [ "obj-144", 0 ],
 					"source" : [ "obj-35", 0 ]
 				}
 
@@ -3258,7 +3264,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-208", 0 ],
+					"destination" : [ "obj-144", 0 ],
 					"source" : [ "obj-39", 0 ]
 				}
 
@@ -3810,7 +3816,6 @@
 
 			}
  ],
-		"originid" : "pat-31445",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
@@ -3904,6 +3909,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.utils.button.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bp.utils.debugmode.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
@@ -3924,6 +3936,20 @@
 , 			{
 				"name" : "dada.cartesian.mxo",
 				"type" : "iLaX"
+			}
+, 			{
+				"name" : "load-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "play-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "thru.maxpat",

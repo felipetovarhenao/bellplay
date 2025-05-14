@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -21,6 +21,150 @@
 		"style" : "bellplay-gui",
 		"title" : "bellplay~ | user-defined libraries",
 		"boxes" : [ 			{
+				"box" : 				{
+					"args" : [ "text", "remove", "icon", "minus-icon.svg", "active", 0 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-87",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "bp.utils.button.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "", "", "int" ],
+					"patching_rect" : [ 235.0, 1008.0, 92.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 154.0, 582.0, 145.0, 22.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "active", 0, "text", "open", "icon", "open-icon.svg" ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-85",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "bp.utils.button.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "", "", "int" ],
+					"patching_rect" : [ 318.0, 1467.5, 100.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 7.0, 534.0, 145.0, 22.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "text", "uncheck all", "icon", "uncheck-icon.svg" ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-83",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "bp.utils.button.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "", "", "int" ],
+					"patching_rect" : [ 547.0, 585.5, 100.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 154.0, 558.0, 145.0, 22.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "text", "check all", "icon", "check-icon.svg" ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-40",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "bp.utils.button.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "", "", "int" ],
+					"patching_rect" : [ 437.0, 585.5, 100.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 7.0, 558.0, 145.0, 22.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "text", "refresh", "icon", "reload-icon.svg" ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-38",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "bp.utils.button.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "", "", "int" ],
+					"patching_rect" : [ 81.0, 370.5, 95.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 154.0, 534.0, 145.0, 22.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "text", "add", "icon", "plus-icon.svg" ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-6",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "bp.utils.button.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "", "", "int" ],
+					"patching_rect" : [ 192.0, 251.0, 100.0, 22.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 7.0, 582.0, 145.0, 22.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"fontface" : 0,
 					"fontname" : "Lato Light",
@@ -270,7 +414,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 301.0, 108.0, 287.0, 21.0 ],
 					"style" : "bellplay-gui",
-					"text" : "'Native Editor (not recommended)'",
+					"text" : "Native Editor (not recommended)",
 					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
 
@@ -342,7 +486,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 301.0, 85.0, 288.0, 21.0 ],
 					"style" : "bellplay-gui",
-					"text" : "/Users/felipetovarhenao/Documents/",
+					"text" : "/Users/felipetovarhenao/Documents",
 					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ]
 				}
 
@@ -413,7 +557,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -858,7 +1002,6 @@
 
 							}
  ],
-						"originid" : "pat-11184",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -922,7 +1065,6 @@
 					"patching_rect" : [ 2003.0, 435.0, 71.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
-						"globalpatchername" : "",
 						"style" : "bellplay-gui"
 					}
 ,
@@ -1423,25 +1565,6 @@
 			}
 , 			{
 				"box" : 				{
-					"active" : 0,
-					"bgcolor" : [ 0.980392156862745, 0.980392156862745, 0.980392156862745, 1.0 ],
-					"id" : "obj-2",
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 318.0, 1469.0, 100.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 7.0, 534.0, 145.0, 22.0 ],
-					"style" : "bellplay-gui",
-					"text" : "open",
-					"usetextovercolor" : 1
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-5",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -1482,97 +1605,6 @@
 					"presentation_rect" : [ 7.0, 10.0, 307.0, 35.0 ],
 					"text" : "settings",
 					"textcolor" : [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bgcolor" : [ 0.980392156862745, 0.980392156862745, 0.980392156862745, 1.0 ],
-					"id" : "obj-40",
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 81.0, 372.0, 100.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 154.0, 534.0, 145.0, 22.0 ],
-					"style" : "bellplay-gui",
-					"text" : "refresh",
-					"usetextovercolor" : 1
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bgcolor" : [ 0.980392156862745, 0.980392156862745, 0.980392156862745, 1.0 ],
-					"id" : "obj-38",
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 192.0, 256.0, 100.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 7.0, 582.0, 145.0, 22.0 ],
-					"style" : "bellplay-gui",
-					"text" : "add",
-					"usetextovercolor" : 1
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bgcolor" : [ 0.980392156862745, 0.980392156862745, 0.980392156862745, 1.0 ],
-					"id" : "obj-37",
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 547.0, 586.5, 100.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 154.0, 558.0, 145.0, 22.0 ],
-					"style" : "bellplay-gui",
-					"text" : "uncheck all",
-					"usetextovercolor" : 1
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"bgcolor" : [ 0.980392156862745, 0.980392156862745, 0.980392156862745, 1.0 ],
-					"id" : "obj-36",
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 437.0, 586.5, 100.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 7.0, 558.0, 145.0, 22.0 ],
-					"style" : "bellplay-gui",
-					"text" : "check all",
-					"usetextovercolor" : 1
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"active" : 0,
-					"bgcolor" : [ 0.980392156862745, 0.980392156862745, 0.980392156862745, 1.0 ],
-					"id" : "obj-144",
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 235.0, 1009.0, 100.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 154.0, 582.0, 145.0, 22.0 ],
-					"style" : "bellplay-gui",
-					"text" : "remove",
-					"usetextovercolor" : 1
 				}
 
 			}
@@ -1885,13 +1917,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-48", 0 ],
-					"source" : [ "obj-144", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-14", 0 ],
 					"source" : [ "obj-15", 0 ]
 				}
@@ -1915,13 +1940,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-21", 0 ],
 					"source" : [ "obj-19", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-30", 0 ],
-					"source" : [ "obj-2", 0 ]
 				}
 
 			}
@@ -1962,7 +1980,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-2", 0 ],
+					"destination" : [ "obj-85", 0 ],
 					"source" : [ "obj-27", 0 ]
 				}
 
@@ -2046,21 +2064,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-16", 0 ],
-					"source" : [ "obj-36", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-12", 0 ],
-					"source" : [ "obj-37", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
+					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-38", 0 ]
 				}
 
@@ -2081,7 +2085,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
+					"destination" : [ "obj-16", 0 ],
 					"source" : [ "obj-40", 0 ]
 				}
 
@@ -2158,7 +2162,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-40", 0 ],
+					"destination" : [ "obj-38", 0 ],
 					"source" : [ "obj-5", 0 ]
 				}
 
@@ -2214,15 +2218,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-144", 0 ],
-					"source" : [ "obj-54", 1 ]
+					"destination" : [ "obj-85", 0 ],
+					"source" : [ "obj-54", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-2", 0 ],
-					"source" : [ "obj-54", 0 ]
+					"destination" : [ "obj-87", 0 ],
+					"source" : [ "obj-54", 1 ]
 				}
 
 			}
@@ -2272,6 +2276,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-58", 1 ],
 					"source" : [ "obj-59", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}
@@ -2446,6 +2457,27 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-12", 0 ],
+					"source" : [ "obj-83", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-30", 0 ],
+					"source" : [ "obj-85", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-48", 0 ],
+					"source" : [ "obj-87", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-23", 0 ],
 					"source" : [ "obj-9", 1 ]
 				}
@@ -2480,8 +2512,14 @@
 
 			}
  ],
-		"originid" : "pat-11180",
 		"dependency_cache" : [ 			{
+				"name" : "add-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
 			}
@@ -2560,10 +2598,52 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "bp.utils.button.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bp.utils.truncatetext.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "check-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "minus-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "open-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "reload-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "uncheck-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
 				"implicit" : 1
 			}
  ],
