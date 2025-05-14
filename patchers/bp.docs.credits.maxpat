@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 5,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -218,7 +218,7 @@
 					"patching_rect" : [ 638.0, 47.0, 199.0, 48.577590040017782 ],
 					"pic" : "ccm_logo.png",
 					"presentation" : 1,
-					"presentation_rect" : [ 279.0, 542.0, 226.0, 55.168519341929745 ]
+					"presentation_rect" : [ 303.0, 542.0, 226.0, 55.168519341929745 ]
 				}
 
 			}
@@ -496,7 +496,6 @@
 
 			}
  ],
-		"originid" : "pat-6165",
 		"dependency_cache" : [ 			{
 				"name" : "bach.hypercomment.mxo",
 				"type" : "iLaX"
