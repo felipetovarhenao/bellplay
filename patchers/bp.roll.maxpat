@@ -1080,7 +1080,7 @@
 					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"tonedivision" : 8,
 					"versionnumber" : 80300,
-					"voicenames" : [ "output" ],
+					"voicenames" : [ "timeline" ],
 					"voicenamesfont" : "Lato Light",
 					"voicespacing" : [ 100.0, 17.0 ],
 					"vzoom" : 115.0,

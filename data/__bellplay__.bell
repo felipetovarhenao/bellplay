@@ -1882,14 +1882,14 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 scoreconfig = (
-    $voicenames = "output",
+    $voicenames = "timeline",
     $clefs = "FFGG",
     $tonedivision = 8,
     $showdurations = 0,
     $showdynamics = 0,
     $midichannels = 1 -> (
         $config = for $clef in $clefs, $channel in $midichannels, $name in $voicenames with @iterationmode 1 collect (
-            [ ($clef ||| "G") ($channel ||| 1) ($name ||| "output") ]
+            [ ($clef ||| "G") ($channel ||| 1) ($name ||| "timeline") ]
         );
         $numvoices = length($config);
         $config = trans($config);

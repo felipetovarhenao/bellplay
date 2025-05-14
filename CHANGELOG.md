@@ -31,6 +31,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `process`: arg renaming from `@commands` to `@operations`.
 - `trim`: `@threshold` default is now `0.01`.
 - `hoadecode`: `@binaural` default is now `1`.
+- Default score part is _timeline_, replacing _output_.
 - Dev:
   - Change doc functions to also use `BP_REF*` prefix.
 
