@@ -16,7 +16,6 @@
 - Add new processing functions:
   - `pink`, `modulo`, `buffir`, `zerox`, `thresh`, `svf`, `log`.
 - Add util functions:
-  - `createmarkov` and `querymarkov`.
   - `float2rat`
 - GUI:
   - Add nav arrows in inspector window.
