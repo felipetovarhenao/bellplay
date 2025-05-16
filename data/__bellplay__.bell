@@ -493,9 +493,11 @@ BP_FN_NEWBUFF = (
 
 tosymbol = (
     $x -> (
-        BP_FN_DISPATCH("sym", $x);
-        BP_SYMBOL
-    )
+        if is($x) == 'symbol' then $x else (
+            BP_FN_DISPATCH('sym', $x);
+            BP_SYMBOL
+        ) 
+    ) 
 );
 
 BP_REF_NEW(
@@ -6551,8 +6553,10 @@ BP_REF_NEW(
 
 getchar = (
     $symbol, $i = 1 -> (
-        $i &&& BP_MAXOBJ_ITOA(
-            BP_MAXOBJ_ATOI($symbol @out 'm'):[int($i)] @out 'm' 
+        $i &&& tosymbol(
+            BP_MAXOBJ_ITOA(
+                BP_MAXOBJ_ATOI($symbol @out 'm'):[int($i)] @out 'm' 
+            )
         ) 
     ) 
 );

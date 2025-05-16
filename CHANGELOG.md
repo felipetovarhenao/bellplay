@@ -43,6 +43,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `fold`
 - `hoaencode` and `hoadecode`: fix category in docs.
 - `ptracks2buf`: Added missing description in docs.
+- `getchar`: Fix non-symbol output with integer inputs.
 
 ### Removed
 
