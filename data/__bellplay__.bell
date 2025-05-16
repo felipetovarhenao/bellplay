@@ -2444,7 +2444,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "pitchunit" @default 0 @type "int" @description "pitch unit" @options 
             BP_REF_PITCHUNIT_OPTIONS
         )
-        BP_REF_ARG(@name "timeunit" @default 0 @type "int" @description "time unit"
+        BP_REF_ARG(@name "timeunit" @default 0 @type "int" @description "time unit" @options
             BP_REF_TIMEUNIT_OPTIONS
         )
         BP_REF_ARG(@name "yinmaxfreq" @default 22050 @type "int/float" @description "maximum frequency for the YIN analysis.")
