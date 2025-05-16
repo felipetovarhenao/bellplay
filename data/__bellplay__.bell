@@ -6271,11 +6271,11 @@ BP_REF_NEW(
     @description "Converts a partial track analysis into a buffer.",
     @category BP_REF_LABEL_GEN,
     @arguments (
-        BP_REF_ARG(@name "frequencies" @type "llll")
-        BP_REF_ARG(@name "magnitudes" @type "llll")
-        BP_REF_ARG(@name "phases" @type "llll")
-        BP_REF_ARG(@name "framesize" @default 2048 @type "int")
-        BP_REF_ARG(@name "hopsize" @default 512 @type "int")
+        BP_REF_ARG(@name "frequencies" @type "llll" @description "frequency bins.")
+        BP_REF_ARG(@name "magnitudes" @type "llll" @description "magnitude bins.")
+        BP_REF_ARG(@name "phases" @type "llll" @description "phases bins.")
+        BP_REF_ARG(@name "framesize" @default 2048 @type "int" @description "frame size.")
+        BP_REF_ARG(@name "hopsize" @default 512 @type "int" @description "hop size.")
         BP_REF_ARG(@name "ampunit" @default 0 @type "int" @description "amplitude unit." @options 
             BP_REF_AMPUNIT_OPTIONS
         )
