@@ -1,10 +1,11 @@
 #(
+
 # Audio Descriptors
 
 One of the core features in **bellplay~** is our ability to analyze buffers to extract relevant information.
-This is done via the `'analyze'` function which, similar to 'process', allows us to perform multiple operations.
-In the case of `'analyze'`, these operations are known as audio descriptors, which we generate through functions.
-These audio descriptors specify the different parameters for that specific operation, which `'analyze'` takes as arguments.
+This is done via the `analyze` function which, similar to 'process', allows us to perform multiple operations.
+In the case of `analyze`, these operations are known as audio descriptors, which we generate through functions.
+These audio descriptors specify the different parameters for that specific operation, which `analyze` takes as arguments.
 As such, analyze outputs the analyze buffer with new keys, each associated with the specified descriptors.
 
 This tutorial shows a simple use-case of audio analysis in bell:
@@ -15,6 +16,7 @@ This tutorial shows a simple use-case of audio analysis in bell:
 4. With this information, we generate sinusoidal oscillators that temporally coincide with transients in the initial buffer.
 
 To learn about all available audio descriptors, please refer to the **bellplay~** reference documentation.
+
 )#
 ## generate buffer
 $buff = importaudio('drums.wav');
