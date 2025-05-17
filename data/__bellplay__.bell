@@ -2408,13 +2408,13 @@ BP_REF_NEW(
         BP_REF_ARG(@name "onsetdetectionmethod" @default "'complex'" @type "symbol" @description "onset detection method." @options
             BP_REF_ESSENTIA_ONSET_METHOD
         )
-        BP_REF_ARG(@name "peaksmaxnum" @default 100 @type "int" @description "maximum number of peaks for peaks analyis.")
+        BP_REF_ARG(@name "peaksmaxnum" @default 100 @type "int" @description "maximum number of peaks for peaks analysis.")
         BP_REF_ARG(@name "peaksorderby" @default "'complex'" @type "symbol" @description "ordering method of the peaks in the peaks analysis." @options 
             BP_REF_ESSENTIA_ONSET_METHOD
         )
-        BP_REF_ARG(@name "peaksmagthresh" @default 0 @type "int/float" @description "magnitude threshold for the peaks analyis.")
-        BP_REF_ARG(@name "peaksmaxfreq" @default 5000 @type "int/float" @description "maximum frequency for the peaks analyis.")
-        BP_REF_ARG(@name "peaksminfreq" @default 0 @type "int/float" @description "minimum frequency for the peaks analyis.")
+        BP_REF_ARG(@name "peaksmagthresh" @default 0 @type "int/float" @description "magnitude threshold for the peaks analysis.")
+        BP_REF_ARG(@name "peaksmaxfreq" @default 5000 @type "int/float" @description "maximum frequency for the peaks analysis.")
+        BP_REF_ARG(@name "peaksminfreq" @default 0 @type "int/float" @description "minimum frequency for the peaks analysis.")
         BP_REF_ARG(@name "summary" @default 3 @type "int" @description "summarization mode, for global analyses that are computed on a frame-by-frame basis." @options 
             BP_REF_OPT(@value 0 @description "use" "first" "frame.")
             BP_REF_OPT(@value 1 @description "use" "last" "frame.")
