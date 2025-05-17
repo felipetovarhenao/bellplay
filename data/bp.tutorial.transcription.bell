@@ -1,48 +1,39 @@
 #( 
-    --------------------------------
-    TRANSCRIPTION
-    --------------------------------
-    When transcribing buffers, we get to specify essential information about how each buffer fits within the final output.
-    For instance, specifying the time onset position (i.e., start time), gain, panning, and even resampling-based detuning amount in cents.
-    
-    The code below shows how a single buffer is transcribed multiple times, each time with different settings, to generate a simple melodic gesture.
-)#
 
+# Transcription
+    
+When transcribing buffers, we get to specify essential information about how each buffer fits within the final output.
+For instance, specifying the time onset position (i.e., start time), gain, panning, and even resampling-based detuning amount in cents.
+
+The code below shows how a single buffer is transcribed multiple times, each time with different settings, to generate a simple melodic gesture.
+
+)#
 ## generate a triangle wave oscillator as a buffer
 $buff = tri();
-
 ## number of notes (buffers)
 $numnotes = 25;
 $N = $numnotes - 1;
-
 ## total output duration
 $totaldur = 1500;
-
 ## iterate for each note
 for $i in 0...$N do (
     ## compute normalize value of temporal position within output (i.e., 0 = start, 1 = end) 
     $progress = $i / $N;
-
     ## make onsets equally spaced within the total duration
     $onset = $progress * $totaldur;
-
     ## panning goes from 0 (left) to 1 (right) with each iteration
     $pan = $progress;
-
     ## make gain exponentially softer
     $gain = (1 - $progress) ** 2;
-
     ## detuning amount from 0 to 1200 (octave) midicents with each iteration
     $detune = 1200 * $progress;
-    
     ## transcribe the same buffer, with different values for onset, gain, detuning amount, and panning.
     $buff.transcribe(
-        @onset $onset 
-        @gain $gain 
+        @onset $onset
+        @gain $gain
         @detune $detune
         @pan $pan
-    )
+    ) 
 );
-
 ## render transcribed buffers
 render()

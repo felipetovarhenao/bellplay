@@ -1,52 +1,39 @@
 #( 
-    --------------------------------
-    AUDIO CONTROL
-    -------------------------------- 
-    This tutorial shows how to use buffers to control audio parameters.
-    In this case, we use a buffer to control the frequency of an oscillator to achieve classic FM synthesis.
-)#
 
+# Audio Control
+
+This tutorial shows how to use buffers to control audio parameters.
+In this case, we use a buffer to control the frequency of an oscillator to achieve classic FM synthesis.
+
+)#
 ## buffer duration
 $dur = 3000;
-
 ## carrier frequency
 $carfq = 220;
-
 ## harmonicity ratio
 $harmratio = 1.333;
-
 ## modulation index as a equidistant linear envelope
 $modindex = 0 5 0;
-
 ## modulator frequency
 $modfq = $carfq * $harmratio;
-
 ## generate modulator oscillator buffer
 $mod = cycle(
-    @frequency $modfq 
-    @duration $dur
+    @frequency $modfq @duration $dur
 );
-
 ## apply audio processing to modulator buffer
 $mod = $mod.process(
-
     ## multiply amplitude
-    multiply($modfq * $modindex)
-
+    multiply($modfq * $modindex) 
     ## apply offset to oscillate around carrier frequency
-    plus($carfq)
+    plus($carfq) 
 );
-
 ## generate carrier oscillator buffer
 $car = cycle(
-
     ## use modulator buffer as frequency
-    @frequency $mod 
-
+    @frequency $mod
     ## we need to ensure carrier and modulator buffers match in duration
     @duration $dur
 );
-
 ## we only transcribe carrier buffer and render it
 $car.transcribe(@gain .125);
 render(@play 1)

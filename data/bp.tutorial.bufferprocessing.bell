@@ -1,33 +1,26 @@
 #( 
-    --------------------------------
-    BUFFER PROCESSING
-    --------------------------------
-    One of the core features of bellplay~ is the ability to dynamically and flexibly apply chains of DSP algorithms to our buffers. 
-    This tutorial shows a very basic example of this by applying reverse delay to an audio file.
-)#
 
+# Buffer Processing
+
+One of the core features of **bellplay~** is the ability to dynamically and flexibly apply chains of DSP algorithms to our buffers. 
+This tutorial shows a very basic example of this by applying reverse delay to an audio file.
+
+)#
 ## path to built-in audio file
 $path = 'drums.wav';
-
-## uncomment the line below to use a file path of your choosing
+## uncomment the line below👇 to use a file path of your choosing
 ## $path = "/path/to/my/file.wav";
-
 ## use file path to import audio file as a buffer
 $buff = importaudio($path);
-
 ## apply processing to buffer. Notice that we need re-assign the variable — operations in bell are not destructive/do not happen in-place.
 $buff = $buff.process(
-
     ## reverse buffer
-    reverse()
-
+    reverse() 
     ## apply reverb
-    freeverb(@tail 500)
-
+    freeverb(@tail 500) 
     ## reverse again
-    reverse()
+    reverse() 
 );
-
 ## transcribe and render
 $buff.transcribe(@gain .125);
 render(@play 1)

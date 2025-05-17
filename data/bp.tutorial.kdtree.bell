@@ -1,104 +1,83 @@
 #( 
-    --------------------------------
-    FEATURE-DRIVEN SAMPLING
-    -------------------------------- 
-    This tutorial shows how to build k-dimensional trees to efficiently perform feature-based search on buffers.
-    In this case, we use it to find the best buffer match for each pitch value in a MIDI file. 
-    In this tutorial, we do the following:
-        1. Slice a trumpet buffer into multiple onset-based segments, and analyze each.
-        2. Build a tree based on those segments, using pitch as the search metric/feature.
-        3. Load a MIDI file as a list of events.
-        4. For each event, we search the tree for the best pitch-wise buffer match.
-        5. We get the deviation between the matched buffer segment and the target pitch.
-        6. We transcribe the buffer match, using the MIDI event's onset and apply the pitch deviation.
-        7. Finally, we render the entire sequence and apply post-rendering reverb and gain normalization.
+
+# Feature-driven Sampling
+
+This tutorial shows how to build [k-dimensional trees](https://en.wikipedia.org/wiki/K-d_tree) to efficiently perform feature-based search on buffers.
+In this case, we use it to find the best buffer match for each pitch value in a MIDI file. 
+In this tutorial, we do the following:
+
+1. Slice a trumpet buffer into multiple onset-based segments, and analyze each.
+2. Build a tree based on those segments, using pitch as the search metric/feature.
+3. Load a MIDI file as a list of events.
+4. For each event, we search the tree for the best pitch-wise buffer match.
+5. We get the deviation between the matched buffer segment and the target pitch.
+6. We transcribe the buffer match, using the MIDI event's onset and apply the pitch deviation.
+7. Finally, we render the entire sequence and apply post-rendering reverb and gain normalization.
+
 )#
-
 ## load source buffer
-$source = importaudio("trumpet.wav");
-
+$source = importaudio('trumpet.wav');
 ## perform onset detection analysis on buffer
-$source = $source.analyze(
-    onsets()
-);
-
+$source = $source.analyze(onsets() );
 ## get list of transient-based onset times
-$markers = $source.getkey("onsets");
-
+$markers = $source.getkey('onsets');
 ## split buffers into different segments, based on markers
 $segments = $source.splitbuf(@split $markers @mode 2);
-
 ## initialize data
 $data = null;
-
 ## iterate through segments to filter unpitched ones
 $segments = for $seg in $segments collect (
     ## analyze current segment for pitch detection
     $seg = $seg.analyze(pitchmelodia());
     ## get detected results
-    $pitch = $seg.getkey("pitchmelodia");
+    $pitch = $seg.getkey('pitchmelodia');
     ## reject segments with no detected pitch
     if $pitch > 0 then (
         ## append pitch as list to data list
         $data _= [$pitch];
         ## return segment to collect
         $seg
-    )
+    ) 
 );
-
 ## create a k-dimensional tree on segments' pitch values.
 $tree = createtree($data);
-
 ## import MIDI file
-$events = importmidi("bach.mid");
-
+$events = importmidi('bach.mid');
 ## MIDI output speed
 $speed = 1.33;
-
 ## tolerance for cent deviation when searching for pitch matches in tree
 $tolerance = 300;
-
 ## gain envelope for every buffer match
 $gainenv = [0 0 0] [1 1 0.25] [10 0 -.25];
-
 ## iterate through MIDI events
 for $event in $events do (
     ## get pitch, onset, and duration info from event
-    $pitch = $event.getkey("pitch");
-    $onset = $event.getkey("onset");
-    $duration = $event.getkey("duration");
-
+    $pitch = $event.getkey('pitch');
+    $onset = $event.getkey('onset');
+    $duration = $event.getkey('duration');
     ## query tree for index of nearest pitch in tree.
     $matchindex = querytree($tree, $pitch + rand(-$tolerance/2, $tolerance/2));
-
     ## extract segment based on match's index
     $match = $segments:$matchindex;
-    
     ## get cents deviation between target pitch and buffer match
-    $detune = pitchdiff($match.getkey("pitchmelodia"), $pitch);
-    
+    $detune = pitchdiff($match.getkey('pitchmelodia'), $pitch);
     ## adjust duration to make up for resampling-based detuning
     $duration /= c2r($detune);
-
     ## modify match's duration via lambda function
-    $match = $match.mapkey("duration", $x -^ $duration -> min($x, $duration));
-
+    $match = $match.mapkey('duration', $x -^ $duration -> min($x, $duration));
     ## transcribe match using MIDI event's onset and pitch deviation
     $match.transcribe(
         @onset $onset / $speed
         @detune $detune
         @gain $gainenv
-        @pan rand()
-        @pitchkey "pitchmelodia"
-    )
+        @pan rand() 
+        @pitchkey 'pitchmelodia' 
+    ) 
 );
-
 ## trigger rendering
 render(
-    @play 1
-    @process (
+    @play 1 @process (
         ## apply reverb and normalization
-        freeverb()
-        normalize()
-    )
+        freeverb() normalize() 
+    ) 
 )

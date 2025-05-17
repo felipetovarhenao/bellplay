@@ -1,29 +1,23 @@
 #(
-    --------------------------------
-    CACHING DATA
-    --------------------------------
-    In bellplay~, computation-heavy operations such as building large corpora, 
-    analyzing lots of audio data, and more, can be take a very long time, thus 
-    making it more tedious to experiment with our scripts every time we run them.
-    In computing, one common solution to this problem is caching: storing data such 
-    that it can be served more quickly next time it's needed.
-    This tutorial shows how we can do something similar, by writing data in memory,
-    such that we can skip computationally expensive operations next time we run the script.
-    In this particular case, we manually generate a corpus or collection of analyzed buffers, and store
-    it for faster reuse next time the script is run.
 
-    You should notice a difference in computation time between the first time the script is run, and 
-    subsequent times.
+# Caching Data
+
+In **bellplay~**, computation-heavy operations such as building large corpora, analyzing lots of audio data, and more, can be take a very long time, thus making it more tedious to experiment with our scripts every time we run them.
+In computing, one common solution to this problem is [caching](https://en.wikipedia.org/wiki/Cache_(computing)): storing data such that it can be served more quickly next time it's needed.
+This tutorial shows how we can do something similar, by writing data in memory, such that we can skip computationally expensive operations next time we run the script. In this particular case, we manually generate a corpus or collection of analyzed buffers, and store it for faster reuse next time the script is run.
+
+You should notice a difference in computation time between the first time the script is run, and subsequent times.
+
 )#
 ## path to cached buffers file
 $cachedbufferspath = './cached_buffers.llll';
 ## check if cache file exists
 if exists($cachedbufferspath) == 0 then (
-    #(  
-        NOTE: This code block is only executed the very first time we run the script.
-        This also means that changes affecting this code block will be ignored afterwards, 
-        unless you delete `./cached_buffers.llll`
-    )#
+    ## ---- NOTE -----
+    ## This code block is only executed the very first time we run the script.
+    ## This also means that changes affecting this code block will be ignored afterwards, 
+    ## unless you delete `./cached_buffers.llll`
+    ## ---------------
     ## initialize cached buffers as null
     $cachedbuffers = null;
     ## get list of media files of type 'audio'
@@ -57,16 +51,15 @@ if exists($cachedbufferspath) == 0 then (
 ) else (
     ## if cache file exists, read cached buffers from file
     $cachedbuffers = read($cachedbufferspath);
-    #(
-        NOTE: In bellplay~, the "source" key of a buffer is **only valid within the script session** in which it was created. 
-        If we store a buffer to a file and later reload it, its "source" key will no longer point to a valid resource, 
-        because temporary buffers are not permanently saved on disk. 
-    
-        However, if we have access to the original file path (stored in the "file" key by `importaudio()`), 
-        we can recover a valid "source" by re-importing the original file. 
-        This lets us "refresh" the stale "source" values of stored buffers and reuse them correctly, without 
-        losing data such as pre-computed features (e.g., `pitchmelodia`).
-    )#
+    ## ---- NOTE -----
+    ## In **bellplay~**, the "source" key of a buffer is **only valid within the script session** in which it was created. 
+    ## If we store a buffer to a file and later reload it, its "source" key will no longer point to a valid resource, 
+    ## because temporary buffers are not permanently saved on disk. 
+    ## However, if we have access to the original file path (stored in the "file" key by `importaudio()`), 
+    ## we can recover a valid "source" by re-importing the original file. 
+    ## This lets us "refresh" the stale "source" values of stored buffers and reuse them correctly, without 
+    ## losing data such as pre-computed features (e.g., `pitchmelodia`).
+    ## ---------------
     ## iterate over each buffer to refresh its source key
     $cachedbuffers = for $buf in $cachedbuffers collect (
         ## get original file path from buffer

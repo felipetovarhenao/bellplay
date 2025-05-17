@@ -1,19 +1,16 @@
 #( 
-    --------------------------------
-    CREATING AUDIO CORPORA
-    --------------------------------
 
-    This tutorial shows how to create a simple corpus based on the long-term loudness, and then load and use the corpus.
+# Creating Audio Corpora
+
+This tutorial shows how to create a simple corpus based on the long-term loudness, and then load and use the corpus.
+
 )#
-
 ## output path for corpus
-$corpuspath = "./mycorpus.llll";
-
+$corpuspath = './mycorpus.llll';
 ## create corpus if it doesn't exist yet
 if $corpuspath.exists() == 0 then (
     ## corpus files
-    $files = getmediafiles("audio");
-    
+    $files = getmediafiles('audio');
     ## create new corpus
     buildcorpus(
         @files $files
@@ -26,16 +23,14 @@ if $corpuspath.exists() == 0 then (
         ## set output path
         @outpath $corpuspath
     );
-    print("Corpus created. 👌🏽") 
+    print('Corpus created. 👌🏽') 
 ) else (
     ## load pre-existing corpus
     setcorpus($corpuspath) 
 );
-
 ## query corpus using SQLite3 syntax
-$buffers = query("SELECT * FROM buffers ORDER BY larm");
+$buffers = query('SELECT * FROM buffers ORDER BY larm');
 $onset = 0;
-
 ## transcribe buffer results from query
 for $buff in $buffers do (
     $buff.transcribe(
@@ -43,7 +38,6 @@ for $buff in $buffers do (
     );
     $onset += 33
 );
-
 ## trigger rendering
 render(
     @play 1 @process normalize() 

@@ -1,11 +1,11 @@
-#(
-    --------------------------------
-    BASIC GRANULATION
-    --------------------------------
-    An example of basic audio granulation, where short audio. Grains are 
-    extracted and reassembled to create a texture. It focuses on 
-    randomizing parameters like grain size and density, selecting source material, 
-    and layering grains to produce evolving, complex sonic results. 
+#(    
+
+# Basic Granulation
+
+An example of basic audio granulation, where short audio.
+Grains are extracted and reassembled to create a texture. 
+It focuses on randomizing parameters like grain size and density, selecting source material, and layering grains to produce evolving, complex sonic results. 
+
 )#
 ## Import sound to perform granulation on
 $buf = importaudio('singing.wav');

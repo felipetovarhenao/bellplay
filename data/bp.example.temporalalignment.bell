@@ -1,11 +1,10 @@
-#(
-    --------------------------------
-    ENVELOPE-AWARE TEMPORAL ALIGNMENT
-    --------------------------------
-    This example demonstrates how to align the envelopes of different audio samples 
-    based on their peak amplitude times. It first generates synthetic audio samples 
-    with random characteristics (as placeholders for, say, multiple one-shot samples), 
-    then analyzes their peak times, and finally aligns them so their peaks coincide.
+#(    
+
+# Envelope-aware Temporal Alignment
+
+This example demonstrates how to align the envelopes of different audio samples based on their peak amplitude times. 
+It first generates synthetic audio samples with random characteristics (as placeholders for, say, multiple one-shot samples), then analyzes their peak times, and finally aligns them so their peaks coincide.
+
 )#
 ## Generate a collection of 10 synthetic audio buffers
 $bufs = for $i in 1...10 collect (

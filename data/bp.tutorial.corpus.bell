@@ -1,13 +1,14 @@
 #( 
-    --------------------------------
-    AUDIO CORPORA
-    --------------------------------
-    One of the core features of bellplay~ is the ability to handle audio corpora — i.e., large collections of audio data. 
-    The first step is to create an audio corpus, which will be covered in a later tutorial. 
-    These audio corpora, which are saved as .llll files, can then be loaded into our scripts. 
-    In turn, this makes it possible to make queries on a corpus, in SQLite3 syntax, to retrieve buffers according to certain criteria.
 
-    This tutorial shows how to use a pre-existing corpus to retrieve buffers with well-defined pitch content, order them in pitch-wise descending order, and retune each buffer to conform to a Cm7 chord.
+# Audio Corpora
+
+One of the core features of **bellplay~** is the ability to handle audio corpora — i.e., large collections of audio data. 
+The first step is to create an audio corpus, which will be covered in a later tutorial. 
+These audio corpora, which are saved as .llll files, can then be loaded into our scripts. 
+In turn, this makes it possible to make queries on a corpus, in SQLite3 syntax, to retrieve buffers according to certain criteria.
+
+This tutorial shows how to use a pre-existing corpus to retrieve buffers with well-defined pitch content, order them in pitch-wise descending order, and retune each buffer to conform to a Cm7 chord.
+
 )#
 
 ## path to pre-existing corpus file

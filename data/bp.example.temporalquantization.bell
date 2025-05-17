@@ -1,9 +1,9 @@
-#(
-    --------------------------------
-    TEMPORAL QUANTIZATION
-    --------------------------------
-    A basic example of temporal quantization, where transient-based segments
-    are temporally shifted to align with a rhythmic grid.
+#(    
+
+# Temporal Quantization
+    
+A basic example of temporal quantization, where transient-based segments are temporally shifted to align with a rhythmic grid.
+
 )#
 ## Import an audio buffer from the file 'drums.wav'
 $b = importaudio('drums.wav');

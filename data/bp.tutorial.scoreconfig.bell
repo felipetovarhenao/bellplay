@@ -1,57 +1,48 @@
 #( 
-    --------------------------------
-    SCORE FORMATTING AND APPEARANCE
-    --------------------------------
-    "Depending on what you're doing, you might want to have more control over what the score transcription looks like. 
-    For instance, when exporting MIDI files, you might want to have different voices, with different midichannels, with different names, etc. 
-    This tutorial shows how to modify the default appearance of the score transcription in bellplay~.
-    
-    To learn more, make sure to read the reference documentation for #scoreconfig.
-)#
 
+# Score Formatting and Appearance
+
+Depending on what you're doing, you might want to have more control over what the score transcription looks like. 
+For instance, when exporting MIDI files, you might want to have different voices, with different midichannels, with different names, etc. 
+This tutorial shows how to modify the default appearance of the score transcription in **bellplay~**.
+
+To learn more, make sure to read the reference documentation for #scoreconfig.
+
+)#
 ## specify score appearance
 scoreconfig(
     ## names for each voice staff
-    @voicenames "sine" "triangle" "sawtooth"
-
+    @voicenames 'sine' 'triangle' 'sawtooth' 
     ## set clefs for each voice
-    @clefs "G" "Alto" "F"
-
+    @clefs 'G' 'Alto' 'F' 
     ## pitch tone division — in this case, quarter tone (only visual, does not affect audio)
     @tonedivision 4
-
     ## show durations as horizontal lines
     @showdurations 1
 );
-
 ## sinusoidal oscillator as first voice
 cycle(
-    @frequency 500 
-    @duration 4000
+    @frequency 500 @duration 4000
 ).transcribe(
-    @voice 1
-    @pan 0
+    @voice 1 @pan 0
 );
-
 ## triangular oscillator second voice
 tri(
-    @frequency 300 
-    @duration 3000
+    @frequency 300 @duration 3000
 ).transcribe(
     @onset 1000
     @voice 2
     @pan .5
 );
-
 ## sawtooth oscillator as third voice
 saw(
-    @frequency 200 
-    @duration 2000
+    @frequency 200 @duration 2000
 ).transcribe(
-    @onset 2000   
+    @onset 2000
     @voice 3
     @pan 1
 );
-
 ## render
-render(@play 1 @process normalize(-6))
+render(
+    @play 1 @process normalize(-6)
+)

@@ -1,77 +1,81 @@
 #( 
-    --------------------------------
-    BUFFER KEYS
 
-    Buffers in bellplay~ are simply nested lists of a specific set of key-value pairs. 
-    This can be verified, as it's done in this tutorial, by printing the buffer in the console.
+# Buffer Keys
 
-    These keys contain relevant information about the underlying audio data. 
-    For instance, the buffer's channel count, sampling rate, duration, source (i.e., where to find the audio data), and more.
-    This may also include more interesting information, such as estimated pitch, pitch salience, zero crossing rate, etc., which will be discussed in later tutorials.
+Buffers in **bellplay~** are simply nested lists of [key-value pairs](https://en.wikipedia.org/wiki/Name–value_pair). 
+Here's what a typically buffer looks like:
 
-    Relevant to this tutorial is our ability to access and/or modify this buffer properties or keys. 
+```bell title="my buffer"
+[
+    [ 'source' 'u357000940' ]
+    [ 'sr' 48000 ]
+    [ 'numchannels' 1 ]
+    [ 'max' 1.0 ]
+    [ 'min' -1.0 ]
+    [ 'maxabs' 1.0 ]
+    [ 'rms' 0.7071067709 ]
+    [ 'duration' 50.0 ]
+    [ 'offset' 0 ]
+    [ 'pitch' 6900.0 ]
+    [ 'source_end' 1000.0 ]
+]
+```
 
-    In bellplay~ this is done through primarily through 3 functions:
+These keys contain relevant information about the underlying audio data. 
+For instance, the buffer's channel count, sampling rate, duration, source (i.e., where to find the audio data), and more.
+This may also include more interesting information, such as estimated pitch, pitch salience, zero crossing rate, etc., which will be discussed in later tutorials.
 
-        "getkey": returns the value of a given key (access)
-        "setkey": overrides the value of a given key (modification)
-        "mapkey": overrides the value of a given key, based on the current value, via lambda functions (modification).
+Relevant to this tutorial is our ability to access and/or modify this buffer properties or keys. 
 
-    Crucially, modifications to buffer keys via "setkey" and "mapkey" do not actually modify the underlaying audio data - at least not directly.
-    Instead, the information contained in each of these key-value pairs is used by functions like transcribe(), process(), or analyze() use to determine how to treat the buffer.
-    
-    For instance, in the case of the 'transcribe' function, the 'pitch' key simply defines how the buffer is notated in staff notation, but has no impact in the audio data.
-    
-    Other properties, however, like duration, tell functions like 'transcribe', 'process' or 'analyze' how much of the audio data should be used.
-    In other words, they are "lazy" modifications, because it delays real modifications until it's actually needed.
-    In 'transcribe', this is specifically the case with the 'duration' and 'offset' keys.
-    As such, these setter-based modifications are not destructive or irreversible, and only take effect once the buffer goes through transcription, processing, or analysis.
+In **bellplay~** this is done through primarily through 3 functions:
 
-    The code below puts all this into practice
-    --------------------------------
+- `getkey`: returns the value of a given key (access).
+- `setkey`: overrides the value of a given key (modification).
+- `mapkey`: overrides the value of a given key, based on the current value, via [lambda functions](https://en.wikipedia.org/wiki/Anonymous_function) (modification).
+
+Crucially, modifications to buffer keys via `setkey` and `mapkey` do not actually modify the underlaying audio data - at least not directly.
+Instead, the information contained in each of these key-value pairs is used by functions like `transcribe`, `process`, or `analyze` use to determine how to treat the buffer.
+
+For instance, in the case of the `transcribe` function, the `'pitch'` key simply defines how the buffer is notated in staff notation, but has no impact in the audio data.
+
+Other keys, however, like `duration` or `offset`, tell functions like `transcribe`, `process` or `analyze` how much of the audio data should be used.
+In other words, they are ["lazy"](https://en.wikipedia.org/wiki/Lazy_evaluation) modifications, because it delays real modifications until it's actually needed.
+In `transcribe`, this is specifically the case with the `'duration'` and `'offset'` keys.
+As such, these setter-based modifications are not destructive or irreversible, and only take effect once the buffer goes through transcription, processing, or analysis.
+
+The code below puts all this into practice
+
 )#
-
 ## path to built-in audio file
-$path = "badinerie.wav";
-
-## uncomment the line below to use an audio file path of your choosing
+$path = 'badinerie.wav';
+## uncomment the line below👇 to use an audio file path of your choosing
 ## $path = "/path/to/your/file.wav"
-
 ## import audio file as buffer
 $buff = importaudio($path);
-
 ## we can print buffer variables and see what they look like
-print("This is what a typical buffer looks like 👇");
+print('This is what a typical buffer looks like 👇');
 print($buff);
-
 ## get and print buffer duration
-$buffdur = $buff.getkey("duration");
-print("buffer duration:" $buffdur);
-
+$buffdur = $buff.getkey('duration');
+print('buffer duration:' $buffdur);
 ## get and print buffer channel count
-$buffchans = $buff.getkey("numchannels");
-print("buffer channel count:" $buffchans);
-
+$buffchans = $buff.getkey('numchannels');
+print('buffer channel count:' $buffchans);
 ## change buffer duration and transcribe
-$buff = $buff.setkey("duration", 1000);
+$buff = $buff.setkey('duration', 1000);
 $buff.transcribe();
-
 ## define a lambda function that takes an input value, and adds 1000 to it.
 $myfunc = ($x -> $x + 1000);
-
 ## change buffer offset (i.e., where to start reading the buffer from) via a lambda function and transcribe
-$buff = $buff.mapkey("offset", $myfunc);
+$buff = $buff.mapkey('offset', $myfunc);
 $buff.transcribe(@onset 1500);
-
 ## change buffer pitch in midicents and transcribe
-#( 
-    NOTE: this only changes the notated pitch. 
-    To change the actual pitch, we would need to use @detune argument in transcribe(), or apply processing via the process() function. 
-    Please refer to the 'transcribe' documentation to learn more.
-)#
-$buff = $buff.setkey("pitch", 7200);
+## ---- NOTE -----
+## this only changes the notated pitch. 
+## To change the actual pitch, we would need to use `@detune` argument in `transcribe`, or apply processing via the `process` function. 
+## Please refer to the `transcribe` documentation to learn more.
+## ---------------
+$buff = $buff.setkey('pitch', 7200);
 $buff.transcribe(@onset 3000);
-
 ## render modified buffer
 render()
-

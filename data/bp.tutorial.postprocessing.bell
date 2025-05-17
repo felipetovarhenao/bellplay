@@ -1,13 +1,13 @@
 #( 
-    --------------------------------
-    POST-RENDERING PROCESSING
-    --------------------------------
 
-    Sometimes it can be more useful or desirable to apply processing to the entire output, instead of processing each buffer individually. 
-    This tutorial provides a basic example of how to apply processing after the transcribed buffers have been rendered.
-    
-    First, we transcribe two buffers, and process them individually to apply retuning such that they conform to a pentatonic major scale.
-    Once transcribed, we apply reverb and gain normalization to the entire rendered output, instead of doing it to each buffer.
+# Post-rendering Processing
+
+Sometimes it can be more useful or desirable to apply processing to the entire output, instead of processing each buffer individually. 
+This tutorial provides a basic example of how to apply processing after the transcribed buffers have been rendered.
+
+First, we transcribe two buffers, and process them individually to apply retuning such that they conform to a pentatonic major scale.
+Once transcribed, we apply reverb and gain normalization to the entire rendered output, instead of doing it to each buffer.
+
 )#
 
 ## list of files to import

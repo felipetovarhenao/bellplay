@@ -1,31 +1,29 @@
 #( 
-    --------------------------------
-    VARIABLE DECLARATIONS
-    --------------------------------
-    When writing code, it's often good practice to use descriptive names for our variables. 
-    For instance, it makes sense to name a variable "noise" to represent a noise signal, or "saw" to represent a sawtooth wave, etc.
 
-    Typically, when a variable name is a reserved or protected keyword in a programming language (e.g., "for", "while", "null", etc.), the parser will let us know that those keywords cannot be used as variable names.
-    This is also the case in bell — trying to use, say, "print" as a variable name is not allowed, because it is already a native function in bell.
-    However, this doesn't happen when using variables with the same name as those included in bellplay~, because they are not native bell functions.
-    This means that a bellplay~ function, like "render", would be silently overwritten if you create a variable with that name, and the parser wouldn't care to tell you.
-    This makes it extremely easy for you to accidentally "break" the application, unless we follow some best practices.
-    
-    That is why, in bellplay~, variable declarations should always be local (i.e., $<varname> instead <varname>) to prevent namespacing collisions.
-    In other words, you should only use global declarations (without the '$' prefix) when absolutely necessary, and make sure your variable name does not already exist in bellplay~.
-    If you accidentally use a global variable that already exists in bellplay~, simply restart the application to restore the values.
+# Variable Declarations
 
-    The code below illustrates how using local variables does not result in any namespace collisions.
+When writing code, it's often good practice to use descriptive names for our variables. 
+For instance, it makes sense to name a variable `noise` to represent a noise signal, or `saw` to represent a sawtooth wave, etc.
+
+Typically, when a variable name is a reserved or protected keyword in a programming language (e.g., `for`, `while`, `null`, etc.), the parser will let us know that those keywords cannot be used as variable names.
+This is also the case in bell — trying to use, say, `print` as a variable name is not allowed, because it is already a native function in bell.
+However, this doesn't happen when using variables with the same name as those included in **bellplay~**, because they are not native bell functions.
+This means that a **bellplay~** function, like `render`, would be silently overwritten if you create a variable with that name, and the parser wouldn't care to tell you.
+This makes it extremely easy for us to accidentally "break" the application, unless we follow some best practices.
+
+That is why, in **bellplay~**, variable declarations should always be local (i.e., `$<varname>` instead `<varname>`) to prevent namespacing collisions.
+In other words, you should only use global declarations (without the `$` prefix) when absolutely necessary, and make sure your variable name does not already exist in **bellplay~**.
+If you accidentally use a global variable that already exists in **bellplay~**, simply restart the application to restore the values.
+
+The code below illustrates how using local variables does not result in any namespace collisions.
+
 )#
-
-## generate a buffer with the global function "saw" and store it in the local variable "$saw"
+## generate a buffer with the global function `saw` and store it in the local variable `$saw`
 $saw = saw(@frequency 220 @duration 1000);
 $saw.transcribe(@gain .15);
-
-## generate a second buffer with the global function "saw" and override the previous value of the "$saw" variable
-## note that since the '$saw' variable is local (prefixed with $), it does not override the global 'saw' function.
+## generate a second buffer with the global function `saw` and override the previous value of the `$saw` variable
+## note that since the `$saw` variable is local (prefixed with `$`), it does not override the global `saw` function.
 $saw = saw(@frequency 330 @duration 1000);
 $saw.transcribe(@gain .15);
-
 ## render transcribed buffers
 render()

@@ -1,12 +1,10 @@
-#(
-    --------------------------------
-    AUDIO RESYNTHESIS
-    --------------------------------
-    A simple demonstration of granular quasi-resynthesis via partial tracks,
-    where an sound is used to guide the behavior of sinusoidal grains. 
-    It focuses on extracting partials trakcs, mapping them onto 
-    synthesis parameters, and rebuilding the sound with flexible control over 
-    pitch, register, and time.
+#(   
+
+# Audio Resynthesis
+
+A simple demonstration of granular quasi-resynthesis via partial tracks, where an sound is used to guide the behavior of sinusoidal grains. 
+It focuses on extracting partials trakcs, mapping them onto synthesis parameters, and rebuilding the sound with flexible control over pitch, register, and time.
+
 )#
 ## Import an audio buffer from the file 'poem.wav'
 $b = importaudio('poem.wav');

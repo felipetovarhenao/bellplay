@@ -1,22 +1,19 @@
 #( 
-    --------------------------------
-    BASIC WORKFLOW
-    --------------------------------
-    The general workflow of a bell script in bellplay~ is the following:
 
-    1.  Generation: buffers are created using synthesis or sampling techniques, and optionally analyzed/processed.
-    2.  Transcription: buffers are queued for rendering, each symbolically represented as a note in staff notation.
-    3.  Rendering: All transcribed buffers are compiled and rendered into a single audio buffer. 
-        This buffer can then be used for subsequent iterations of this workflow to refine the final output as needed. 
+# Basic Workflow
 
-    Below is an introductory example of a bell script in bellplay~, which generates a short sinusoidal wave at 440 Hz:
+The general workflow of a bell script in **bellplay~** is the following:
+
+1. **Generation**: buffers are created using synthesis or sampling techniques, and optionally analyzed/processed.
+2. **Transcription**: buffers are queued for rendering, each symbolically represented as a note in staff notation.
+3. **Rendering**: All transcribed buffers are compiled and rendered into a single audio buffer. This buffer can then be used for subsequent iterations of this workflow to refine the final output as needed. 
+
+Below is an introductory example of a _bell_ script in **bellplay~**, which generates a short sinusoidal wave at 440 Hz:
+
 )#
-
 ## first, let's generate buffer, in this case a sinusoidal oscillator.
 $osc = cycle();
-
 ## then we transcribe the buffer for rendering
 $osc.transcribe();
-
 ## finally, we render transcribed buffer
 render()

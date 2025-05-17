@@ -1,9 +1,9 @@
 #(
-    --------------------------------
-    GLISSANDO TEXTURE
-    --------------------------------
-    An example of using time-varying resampling to generate a 
-    polyphonic texture.
+
+# Glissando texture
+    
+An example of using time-varying resampling to generate a polyphonic texture.
+
 )#
 ## Import an audio buffer from the file 'poem.wav'
 $buf = importaudio('poem.wav');

@@ -1,10 +1,10 @@
 #( 
-    --------------------------------
-    WAVESHAPING BUFFERS
-    --------------------------------
-    A basic example of waveshaping in bellplay~, using a randomly generated breakpoint function. 
-    This BPF is applied to a drum loop to introduce nonlinear scrubbing, followed 
-    by spatialization using a dynamic pan envelope. 
+
+# Waveshaping Buffers
+    
+A basic example of waveshaping in **bellplay~**, using a randomly generated breakpoint function. 
+This BPF is applied to a drum loop to introduce nonlinear scrubbing, followed by spatialization using a dynamic pan envelope. 
+
 )#
 ## set number of breakpoints for the waveshaper
 $bpfsize = 100;

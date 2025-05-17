@@ -33,6 +33,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `trim`: `@threshold` default is now `0.01`.
 - `hoadecode`: `@binaural` default is now `1`.
 - Default score part is _timeline_, replacing _output_.
+- Learning resources (tutorials+examples):
+  - Header comment uses markdown syntax for easy porting to webdocs.
 - Dev:
   - Change doc functions to also use `BP_REF*` prefix.
 

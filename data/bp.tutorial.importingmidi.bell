@@ -1,60 +1,57 @@
 #( 
-    --------------------------------
-    IMPORTING MIDI 
-    --------------------------------
-    bellplay~ supports importing MIDI files (.mid or .midi) into our scripts, each described as a list of events.
-    Similar to bellplay~ buffers, each MIDI event consists of a set of keys with relevant information about each event.
-    This includes the event's pitch (midicents), duration, onset, velocity, voice number, and MIDI channel.
 
-    The code belows imports a MIDI file to render it as audio using a very basic guitar sampler.
+# Importing MIDI 
+
+**bellplay~** supports importing MIDI files (`.mid` or `.midi`) into our scripts, each described as a list of events.
+Similar to **bellplay~** buffers, each MIDI event consists of a set of keys with relevant information about each event, including:
+- `'pitch'`: pitch value in midicents.
+- `'duration'`: duration value in milliseconds.
+- `'velocity'`: velocity value, in the range of 0 to 127.
+- `'voice'`: voice number, as an integer.
+- `'channel'`: MIDI channel, as an integer.
+
+The code belows imports a MIDI file to render it as audio using a very basic guitar sampler.
+
 )#
-
 ## import MIDI file as a list of events
-$events = importmidi("satie.mid");
-
+$events = importmidi('satie.mid');
 ## set maximum number of midi events (or comment out the line below this one to process midi file)
 $maxevents = 100;
-
 ## get first n events, based on $maxevents
 $events = left($events, $maxevents);
-
 ## iterate through MIDI events and create a buffer for each
 for $event in $events do (
     ## retrieve pitch, duration, onset, and velocity information of current event
-    $pitch = $event.getkey("pitch");
-    $dur = $event.getkey("duration");
-    $onset = $event.getkey("onset");
-    $vel = $event.getkey("velocity");
-
+    $pitch = $event.print().getkey('pitch');
+    $dur = $event.getkey('duration');
+    $onset = $event.getkey('onset');
+    $vel = $event.getkey('velocity');
     ## we divide velocity by 127 to normalize it to a 0-1 range and use it as linear gain
     $gain = $vel / 127.;
-
-    ## generate a buffer with note info using bellplay~ built-in sampler
+    ## generate a buffer with note info using **bellplay~** built-in sampler
     ezsampler(
-        @pitch $pitch 
-        @duration $dur 
+        @pitch $pitch
+        @duration $dur
         @velocity $vel
     ).transcribe(
         ## add a slight random onset deviation to "humanize" output
-        @onset $onset + rand(-10, 10)
-        @gain $gain 
-        @pan rand() rand()
-    )
+        @onset $onset + rand(-10, 10) 
+        @gain $gain
+        @pan rand() rand() 
+    ) 
 );
-
 ## trigger rendering
 render(
-    @play 1 
-
+    @play 1
     ## apply post-render processing
     @process (
         ## apply reverse reverb
-        reverse() 
-        freeverb(@roomsize .9 @wet .1 @tail 0) 
-        reverse()
-
+        reverse() freeverb(
+            @roomsize .9
+            @wet .1
+            @tail 0
+        ) reverse() 
         ## normalize and apply 10 ms fade in
-        normalize(-12) 
-        fade(10, 0)
-    )
+        normalize(-12) fade(10, 0) 
+    ) 
 )

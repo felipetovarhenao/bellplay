@@ -1,10 +1,10 @@
 #(
-    --------------------------------
-    MIDI RETUNING
-    --------------------------------
-    An example of JI-based retuning of MIDI events. It's a basic
-    demonstration of how MIDI files can be algorithmically manipulated 
-    in non-conventional ways.
+
+# MIDI Retuning
+
+An example of JI-based retuning of MIDI events. 
+It's a basic demonstration of how MIDI files can be algorithmically manipulated in non-conventional ways.
+
 )#
 ## Define a set of pitch classes using ratio-to-pitch class conversion (based on LaMonte Young's WTP tuning)
 $pitchclasses = r2pc(1/1 567/512 9/8 147/128 21/16 1323/1024 189/128 3/2 49/32 7/4 441/256 63/32, 0);

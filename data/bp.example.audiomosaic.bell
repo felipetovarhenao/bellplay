@@ -1,11 +1,10 @@
 #(
-    --------------------------------
-    AUDIO MOSAICKING
-    --------------------------------
-    An example of basic audio mosaicking in bellplay~ — a target audio 
-    is reconstructed using a corpus of short audio segments. It outlines the 
-    process of setting up parameters for analysis, selecting audio fragments based 
-    on feature similarity, and assembling the final output. 
+
+# Audio Mosaicing
+
+An example of basic [audio mosaicking](https://www.francoispachet.fr/musaicing/) in **bellplay~** — a target audio is reconstructed using a corpus of short audio segments.
+It outlines the process of setting up parameters for analysis, selecting audio fragments based on feature similarity, and assembling the final output. 
+
 )#
 ## Define the audio features to extract (MFCC and loudness)
 $features = mfcc() larm();

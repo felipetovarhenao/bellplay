@@ -1,10 +1,10 @@
 #( 
-    --------------------------------
-    MARKERS
-    --------------------------------
 
-    Sometimes it's useful to include markers in the transcription.
-    For instance, to label things, or simply to debug something in our code.
+# Markers
+
+Sometimes it's useful to include markers in the transcription.
+For instance, to label things, or simply to debug something in our code.
+
 )#
 
 ## generate first 16 harmonics with fundamental frequency of 110 Hz

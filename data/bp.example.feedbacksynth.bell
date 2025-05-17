@@ -1,11 +1,10 @@
 #(
-    --------------------------------
-    FEEDBACK SYNTHESIS
-    --------------------------------
-    This code demonstrates a feedback-based synthesis technique, where buffers 
-    are routed back into their own processing chain to create a rich, evolving drone. 
-    It showcases the use of buffers as processing parameters, illustrating 
-    how feedback loops can be used creatively for sound design.
+
+# Feedback Synthesis
+
+This code demonstrates a feedback-based synthesis technique, where buffers are routed back into their own processing chain to create a rich, evolving drone. 
+It showcases the use of buffers as processing parameters, illustrating how feedback loops can be used creatively for sound design.
+
 )#
 ## Define the total duration of the synthesized sound in milliseconds
 $duration = 25000;

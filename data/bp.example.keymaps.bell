@@ -1,16 +1,16 @@
 #(
-    --------------------------------
-    GENERATING KEYMAPS
-    --------------------------------
-    This example automatically generates a custom keymap given a list of audio file paths:
-    - We import the audio files, detect onsets, and slice them into segments.
-    - Then analyze each segment’s pitch and loudness, keeping only relevant segments (e.g., pitch, non-silent).
-    - We quantize pitches to nearest 1/8th tone, export the valid segments as samples, and map them to their pitches.
-    - We save the final keymap to disk for reuse.
 
-    Once the keymap is ready, the script loads a MIDI file and, using an ezsampler,
-    triggers the appropriate audio samples based on the pitch, duration, and velocity of each MIDI event.
-    The final result is rendered as audio.
+# Generating Keymaps
+
+This example automatically generates a custom keymap given a list of audio file paths:
+- We import the audio files, detect onsets, and slice them into segments.
+- Then analyze each segment’s pitch and loudness, keeping only relevant segments (e.g., pitch, non-silent).
+- We quantize pitches to nearest 1/8th tone, export the valid segments as samples, and map them to their pitches.
+- We save the final keymap to disk for reuse.
+
+Once the keymap is ready, the script loads a MIDI file and, using an ezsampler, triggers the appropriate audio samples based on the pitch, duration, and velocity of each MIDI event.
+The final result is rendered as audio.
+
 )#
 ## path to custom keymap file
 $keymappath = './custom_keymap.txt';
@@ -65,7 +65,7 @@ if exists($keymappath) == 0 then (
                 ## map pitch to exported sample path
                 $keymap.$pitch _= $path
             ) 
-        )
+        ) 
     );
     ## write updated keymap to file
     write($keymap, $keymappath) 

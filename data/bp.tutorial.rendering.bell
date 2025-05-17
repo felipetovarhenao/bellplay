@@ -1,34 +1,27 @@
 #( 
-    --------------------------------
-    RENDERING
-    --------------------------------
 
-    Similar to the transcription stage, the rendering stage allows us to define important aspects about the final output.
-    For instance, the sampling rate, the number of output channels for the rendered output, how the panning of each transcribed buffer is interpreted given the number of channels.
+# Rendering
 
-    Although there are many more features to the render function to be explored in later tutorials, the code below shows a very basic example of this.
+Similar to the transcription stage, the rendering stage allows us to define important aspects about the final output.
+For instance, the sampling rate, the number of output channels for the rendered output, how the panning of each transcribed buffer is interpreted given the number of channels.
+
+Although there are many more features to the render function to be explored in later tutorials, the code below shows a very basic example of this.
+
 )#
-
 ## generate 2-second buffer with white noise and transcribe
 noise(@duration 2000).transcribe(
     @pan 0 1
-    
     ## we specify gain as break-point functions/envelope, which will be covered in a later tutorial
-    @gain [0 0 0] [1 0.5 0.5]
+    @gain [0 0 0] [1 0.5 0.5] 
 );
-
 ## render buffer and specify output channels, sampling rate, fade-in/out duration applied to every transcribed buffer
 render(
-    
     ## auto play after rendering
     @play 1
-
     ## number of output channels
     @numchannels 2
-
     ## sampling rate
     @sr 48000
-
     ## fade in/out duration
     @fade 0
 )

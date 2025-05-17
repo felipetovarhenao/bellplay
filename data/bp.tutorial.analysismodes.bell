@@ -1,67 +1,56 @@
 #( 
-    --------------------------------
-    AUDIO DESCRIPTOR MODES
-    --------------------------------
-    When analyzing buffers, we can specify the output format for many of the available audio descriptors.
-    In particular, there are 4 modes, which can be specified via the @mode argument:
 
-        0: global summary — i.e., one value for the entire buffer
-        1: time series — i.e., a series of values, one for each frame.
-        2: time-tagged time series — same as with time series, but each frame tagged with its time position.
-        3: buffer — i.e., same as with time-series, but instead of a list, the result of the analysis is a buffer.
+# Audio Descriptor Modes
 
-    Note that not all descriptors support every mode, so make sure to check the documentation to learn more about each.
+When analyzing buffers, we can specify the output format for many of the available audio descriptors.
+In particular, there are 4 modes, which can be specified via the `@mode` argument:
 
-    In this tutorial, we perform monophonic pitch analysis on a buffer.
-    Then, we manipulate the pitch information to perform diatonic transposition.
-    That information is then used to generate an envelope as a buffer, which in turn controls an oscillator.
-    Both the oscillator and the original buffer are transcribed.
+- `0`: global summary — i.e., one value for the entire buffer
+- `1`: time series — i.e., a series of values, one for each frame.
+- `2`: time-tagged time series — same as with time series, but each frame tagged with its time position.
+- `3`: buffer — i.e., same as with time-series, but instead of a list, the result of the analysis is a buffer.
+
+Note that not all descriptors support every mode, so make sure to check the documentation to learn more about each.
+
+In this tutorial, we perform monophonic pitch analysis on a buffer.
+Then, we manipulate the pitch information to perform diatonic transposition.
+That information is then used to generate an envelope as a buffer, which in turn controls an oscillator.
+Both the oscillator and the original buffer are transcribed.
+
 )#
-
 ## import an audio file as a buffer
-$buff = importaudio("singing.wav");
-
+$buff = importaudio('singing.wav');
 ## analyze buffer
 $buff = $buff.analyze(
-
     ## pitch analysis in time series mode
-    pitchmelodia(@mode 1)
-
+    pitchmelodia(@mode 1) 
     ## set the analysis pitch unit to Hertz
     @pitchunit 2
 );
-
 ## extract pitch analysis (in Hertz)
-$frequencies = $buff.getkey("pitchmelodia");
-
+$frequencies = $buff.getkey('pitchmelodia');
 ## modify pitch analysis information
 $frequencies = for $fq in $frequencies collect (
     ## only modify positive frequency values — i.e., to avoid nan values
     if $fq > 0 then (
         ## convert frequency to midicents and transpose by a neutral 6th
-        $pitch = f2mc($fq) + 850; 
-
+        $pitch = f2mc($fq) + 850;
         ## adjust pitch to fit Dm scale and convert back to frequency
-        mc2f($pitch + $pitch.pitchdiff(0 2 4 5 7 9 10))
-    ) else (
-        $fq
-    )
+        mc2f($pitch + $pitch.pitchdiff(0 2 4 5 7 9 10)) 
+    ) else ($fq) 
 );
-
 ## create frequency envelope from pitch analysis as a buffer
 $freqenv = envelope(
-    @envelope $frequencies 
-    @duration $buff.getkey("duration")
+    @envelope $frequencies @duration $buff.getkey('duration') 
 ).process(
     ## apply smoothing filter
-    rampsmooth()
+    rampsmooth() 
 );
-
 ## generate oscillator and transcribe
 tri(@frequency $freqenv).transcribe();
-
 ## transcribe original buffer
 $buff.transcribe();
-
 ## trigger rendering and normalize output
-render(@play 1 @process normalize())
+render(
+    @play 1 @process normalize() 
+)

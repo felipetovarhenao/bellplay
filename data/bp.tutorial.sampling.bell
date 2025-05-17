@@ -1,70 +1,70 @@
 #( 
-    --------------------------------
-    BASIC SAMPLING
-    --------------------------------
-    bellplay~ provides a basic utility function for general-purpose audio sampling, called ezsampler().
-    As explained in the reference documentation, ezsampler() takes information such as pitch, velocity, and 
-    duration, and generates a buffer that best approximates that information, given some sampling specification called keymap.
 
-    The code belows shows the different ways in which we can create sampler keymaps to use with ezsampler.
-    As always, check the reference documentation to understand the different parameters available in ezsampler().
+# Basic Sampling
+
+**bellplay~** provides a basic utility function for general-purpose audio sampling, called `ezsampler`.
+As explained in the reference documentation, `ezsampler` takes information such as pitch, velocity, and 
+duration, and generates a buffer that best approximates that information, given some sampling specification called keymap.
+
+The code belows shows the different ways in which we can create sampler keymaps to use with ezsampler.
+As always, check the reference documentation to understand the different parameters available in `ezsampler`.
+
 )#
-
 ## At its most basic, a sampler keymap is a list of pitches with a corresponding audio file.
 $keymap1 = (
     ## if we only provide one pitch-sample pair, the same sample is used for all pitches
-    [ 6000 "guitar.wav" ]
-); 
-
+    [6000 'guitar.wav' ] 
+);
 ## we can specify multiple pitch-sample pairs.
 $keymap2 = (
     ## this sample is used when pitch is closest to 6000
-    [ 6000 "guitar.wav" ] 
+    [6000 'guitar.wav' ] 
     ## this sample is used when pitch is closest to 6900
-    [ 6900 "flute.wav" ]
-); 
-
+    [6900 'flute.wav' ] 
+);
 ## we can also break down samples based on velocity
 $keymap3 = (
     ## this sample is used when pitch is closest to 6000
-    [ 6000 "guitar.wav"] 
+    [6000 'guitar.wav'] 
     ## these samples are used when pitch is closest to 6900
-    [ 6900 
+    [
+        6900
         ## this sample is used when pitch is closest to 6900 AND velocity is closest to 127
-        [ 127 "flute.wav"]
+        [127 'flute.wav'] 
         ## this sample is used when pitch is closest to 6900 AND velocity is closest to 0
-        [ 0 "viola.wav"]
-    ]
+        [0 'viola.wav'] 
+    ] 
 );
-
 ## we can make samplers less predictable by specifying multiple samples per pitch or velocity
 $keymap4 = (
     ## one these samples will be chosen at random when pitch is closest to 6900
-    [ 6900 "flute.wav" "viola.wav" ]
+    [
+        6900 'flute.wav' 'viola.wav' 
+    ] 
 );
-
 ## generate some pitches
 $numnotes = 8;
 $harmonics = f2mc((1...$numnotes) * 110);
 $onset = 0;
 $dur = 300;
-
 ## transcribe pitches using each keymap.
 for $keymap $id in [$keymap1] [$keymap2] [$keymap3] [$keymap4] with @unwrap 1 do (
-    addmarker($onset, "keymap" $id);
+    addmarker($onset, 'keymap' $id);
     for $mc in $harmonics do (
         ezsampler(
-            @pitch $mc 
-            @duration $dur * 1.1 ## subtle legato
+            @pitch $mc
+            @duration $dur * 1.1
+            ## subtle legato
             @keymap $keymap
-            @velocity rand(127) ## randomize velocity
-        ).transcribe(
-            @onset $onset
-        );
+            @velocity rand(127) 
+            ## randomize velocity
+            
+        ).transcribe( @onset $onset);
         $onset += $dur
     );
     $onset += 1000
 );
-
 ## trigger rendering
-render(@play 1 @process normalize(-3))
+render(
+    @play 1 @process normalize(-3) 
+)
