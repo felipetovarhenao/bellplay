@@ -6,35 +6,24 @@ Sometimes it's useful to include markers in the transcription.
 For instance, to label things, or simply to debug something in our code.
 
 )#
-
 ## generate first 16 harmonics with fundamental frequency of 110 Hz
 $harmonics = (1...16) * 110;
-
 ## envelope as breakpoint function 
 $envelope = [0 0 0] [1 .125 0.25] [10 0 -.25];
-
 ## iterate through each harmonic frequency
 for $fq $i in $harmonics do (
-
     ## make every onset 300 ms apart
     $onset = ($i - 1) * 300;
-
     ## add marker to identify position and number of each harmonic (optional)
     addmarker(@onset $onset @names $i);
-
     ## generate 1.5 sceonds of a sinusoidal oscillator as  buffer and transcribe
     cycle($fq @duration 1500).transcribe(
         @onset $onset
-
         ## apply previosly created envelope
         @gain $envelope
-
         ## random panning position
-        @pan rand()
-    )
+        @pan rand() 
+    ) 
 );
-
 ## render transcribed buffers
 render(@play 1)
-
-

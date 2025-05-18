@@ -6,14 +6,23 @@ When writing code, it's often good practice to use descriptive names for our var
 For instance, it makes sense to name a variable `noise` to represent a noise signal, or `saw` to represent a sawtooth wave, etc.
 
 Typically, when a variable name is a reserved or protected keyword in a programming language (e.g., `for`, `while`, `null`, etc.), the parser will let us know that those keywords cannot be used as variable names.
-This is also the case in bell — trying to use, say, `print` as a variable name is not allowed, because it is already a native function in bell.
-However, this doesn't happen when using variables with the same name as those included in **bellplay~**, because they are not native bell functions.
+This is also the case in _bell_ — trying to use, say, `print` as a variable name is not allowed, because it is already a native function in _bell_.
+However, this doesn't happen when using variables with the same name as those included in **bellplay~**, because they are not native _bell_ functions.
 This means that a **bellplay~** function, like `render`, would be silently overwritten if you create a variable with that name, and the parser wouldn't care to tell you.
 This makes it extremely easy for us to accidentally "break" the application, unless we follow some best practices.
 
-That is why, in **bellplay~**, variable declarations should always be local (i.e., `$<varname>` instead `<varname>`) to prevent namespacing collisions.
+That is why, in **bellplay~**, variable declarations should always be local (i.e., `$<varname>`), instead of global (`<varname>` or `<Varname>`) to prevent namespacing collisions.
 In other words, you should only use global declarations (without the `$` prefix) when absolutely necessary, and make sure your variable name does not already exist in **bellplay~**.
 If you accidentally use a global variable that already exists in **bellplay~**, simply restart the application to restore the values.
+
+:::tip
+In _bell_, the suggested convention is to capitalize global variables, like so:
+
+```bell {1}
+MyGlobalVariable = "I'm global!";
+$mylocalvariable = "I'm local!"
+```
+:::
 
 The code below illustrates how using local variables does not result in any namespace collisions.
 

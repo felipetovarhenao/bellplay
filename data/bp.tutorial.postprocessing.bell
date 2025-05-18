@@ -9,45 +9,32 @@ First, we transcribe two buffers, and process them individually to apply retunin
 Once transcribed, we apply reverb and gain normalization to the entire rendered output, instead of doing it to each buffer.
 
 )#
-
 ## list of files to import
 $files = (
-    "trumpet.wav" 
-    "singing.wav"
+    'trumpet.wav' 'singing.wav' 
 );
-
 ## pitch class grid, in this case a pentatonic major scale
 $pcgrid = 0 2 4 7 9;
-
 ## iterate through each file path in the list
 for $file in $files do (
-    
     ## import file as a buffer
     $buff = importaudio($file);
-
     ## apply retuning to conform to pitch class grid
-    $buff = $buff.process(
-        retune($pcgrid)
-    );
-
+    $buff = $buff.process(retune($pcgrid) );
     ## random panning value
     $pan = rand();
-
     ## transcribe buffer with random panning envelope
-    $buff.transcribe(@pan $pan (1 - $pan))
+    $buff.transcribe(@pan $pan (1 - $pan)) 
 );
-
 ## trigger rendering
 render(
     ## auto-play after rendering
-    @play 1 
-
+    @play 1
     ## apply post-processing
     @process (
         ## first reverb
-        freeverb(@roomsize .5)
+        freeverb(@roomsize .5) 
         ## then gain normalization to -12 dB
-        normalize(-12)
-    )
+        normalize(-12) 
+    ) 
 )
-

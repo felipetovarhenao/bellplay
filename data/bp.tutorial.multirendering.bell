@@ -5,7 +5,6 @@
 This tutorial demonstrates a very simple but consequential feature in **bellplay~** — namely, the ability to reuse rendered buffers multiple times to further refine and sculpt the final output into complex and intricate sounds.
 
 )#
-
 ## generate granular sequence
 for $n in 0...80 do (
     $fq = rand(20, 2000);
@@ -14,46 +13,35 @@ for $n in 0...80 do (
     $grain = saw($fq @duration 100);
     $grain.transcribe(
         @onset $onset
-        @gain $gain * hanning()
-        @pan rand()
-    )
+        @gain $gain * hanning() 
+        @pan rand() 
+    ) 
 );
-
 ## render into single buffer and clear transcription
 $buff = render(@reset 1).inspect('first render');
-
 ## create a comb-like delay by transcribing closely-spaced copies of the rendered buffer 
 for $n in 0...50 do (
-
     ## make onsets near-evenly spaced
     $onset = $n + $n * 7;
-
     ## make each copy gradually softer
     $gain = scale($n, 0, 50, 1, 0) ** 1.5;
     $buff.transcribe(
-        @onset $onset
-        @gain $gain
-    )
+        @onset $onset @gain $gain
+    ) 
 );
-
 ## render again and normalize to -6 dB, reset transcription afterwards
 $buff = render(
-    @reset 1 
-    @process normalize(-6)
-).inspect("second render");
-
+    @reset 1 @process normalize(-6) 
+).inspect('second render');
 ## transcribe rendered buffer twice, original and reversed, with soft left-right panning
 $buff.transcribe(@pan 0.1);
 $buff.process(
     ## reverse buffer before transcribing
-    reverse()
+    reverse() 
 ).transcribe(@pan .9);
-
 ## render one last time
 render(
-    @play 1 
-    @process freeverb(
-        @roomsize .85 
-        @wet [0 0 0] [1 .8 .5]
-    )
-).inspect("third and final render")
+    @play 1 @process freeverb(
+        @roomsize .85 @wet [0 0 0] [1 .8 .5] 
+    ) 
+).inspect('third and final render')

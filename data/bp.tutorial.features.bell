@@ -51,5 +51,5 @@ while $offset < $maxduration - $dur do (
 );
 ## render all grains and normalize output to be -6dB 
 render(
-    @play 1 @process normalize(-6)
+    @play 1 @process normalize(-6) 
 )
