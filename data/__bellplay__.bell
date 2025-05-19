@@ -2018,7 +2018,7 @@ write = (
         BP_FN_CHECK_ARGS($self, 'data', $data, 'path', $path);
         $info = BP_FN_PATHINFO($path);
         if (".txt" ".llll").intersection($info."extension") == null then (
-            BP_FN_ERROR($self, "invalid file extension for @path in write().")
+            BP_FN_ERROR($self, "invalid file extension for @path.")
         );
         if exists($info."parent") == 0 then (
             BP_FN_ERROR($self, "invalid destination directory:" $info."parent")
@@ -3097,7 +3097,7 @@ pitchmelodia = (
 
 BP_REF_NEW(
     @name "pitchmelodia"
-    @description "Audio descriptor to estimate the fundamental frequency corresponding to the melody of a monophonic music signal based on the MELODIA algorithm. While the algorithm is originally designed to extract the predominant melody from polyphonic music, this implementation is adapted for monophonic signals. The approach is based on the creation and characterization of pitch contours, time continuous sequences of pitch candidates grouped using auditory streaming cues. It is strongly advised to use the default parameter values which are optimized for this task, except for @minfrequency and @maxfrequency, which will be context-dependent. See `analyze`."
+    @description "Audio descriptor to estimate the fundamental frequency corresponding to the melody of a monophonic music signal based on the MELODIA algorithm. While the algorithm is originally designed to extract the predominant melody from polyphonic music, this implementation is adapted for monophonic signals. The approach is based on the creation and characterization of pitch contours, time continuous sequences of pitch candidates grouped using auditory streaming cues. It is strongly advised to use the default parameter values which are optimized for this task, except for `@minfrequency` and `@maxfrequency`, which will be context-dependent. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @ankeys "pitchmelodia" "pitchmelodia_confidence"
     @arguments (
@@ -3872,7 +3872,7 @@ BP_REF_NEW(
         )
         BP_REF_ARG(@name "fadeincurve", @default -0.25, @type "int/float", @description "fade-in curve amount, between -1 and 1.")
         BP_REF_ARG(@name "fadeoutcurve", @default 0.25, @type "int/float", @description "fade-out curve amount, between -1 and 1.")
-        BP_REF_ARG(@name "timeunit", @default 0 @type "int", @description "time unit for @start and @end." @options
+        BP_REF_ARG(@name "timeunit", @default 0 @type "int", @description "time unit for `@start` and `@end`." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
     ),
@@ -3906,7 +3906,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "start" @default 0 @type "int/float", @description "start time.")
         BP_REF_ARG(@name "end" @default 1000 @type "int/float", @description "end time. if negative, it counts from the end.")
-        BP_REF_ARG(@name "timeunit", @default 0 @type "int", @description "time unit for @start and @end." @options
+        BP_REF_ARG(@name "timeunit", @default 0 @type "int", @description "time unit for `@start` and `@end`." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
     ),
@@ -4341,10 +4341,10 @@ BP_REF_NEW(
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "stretching", @default 1, @type "int/float/llll", @description "stretching amount, as single number or envelope.")
-        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for @stretching." @options (
+        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for `@stretching`." @options (
             BP_REF_TIMEUNIT_OPTIONS
         ))
-        BP_REF_ARG(@name "envtimeunit", @default 2, @type "int", @description "time unit for @stretching envelope." @options 
+        BP_REF_ARG(@name "envtimeunit", @default 2, @type "int", @description "time unit for `@stretching` envelope." @options 
             BP_REF_TIMEUNIT_OPTIONS
         )
         BP_REF_ARG(@name "spectral", @default 1, @type "int", @description "stretching mode." @options 
@@ -4589,13 +4589,13 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "stretching", @default 1, @type "int/float/llll", @description "stretching amount, as single number or envelope.")
         BP_REF_ARG(@name "pitchshift", @default 0, @type "int/float/llll", @description "pitch shifting amount, as single number or envelope.")
-        BP_REF_ARG(@name "pitchunit", @default 0, @type "int", @description "unit for @pitchshift." @options
+        BP_REF_ARG(@name "pitchunit", @default 0, @type "int", @description "unit for `@pitchshift`." @options
             BP_REF_PITCH_FORMAT_OPTIONS
         )
-        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for @stretching." @options 
+        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for `@stretching`." @options 
             BP_REF_TIMEUNIT_OPTIONS
         )
-        BP_REF_ARG(@name "envtimeunit", @default 2, @type "int", @description "time unit for @stretching envelope." @options
+        BP_REF_ARG(@name "envtimeunit", @default 2, @type "int", @description "time unit for `@stretching` envelope." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
         BP_REF_ARG(@name "blocksize", @default 1024, @type "int", @description "size for granular processes, such as envelopes, in samples.")
@@ -4669,10 +4669,10 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "stretching", @default 1, @type "int/float", @description "stretching amount, as a single number.")
         BP_REF_ARG(@name "pitchshift", @default 0, @type "int/float", @description "pitch shifting amount, as single number.")
-        BP_REF_ARG(@name "pitchunit", @default 0, @type "int", @description "unit for @pitchshift." @options
+        BP_REF_ARG(@name "pitchunit", @default 0, @type "int", @description "unit for `@pitchshift`." @options
             BP_REF_PITCH_FORMAT_OPTIONS
         )
-        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for @stretching." @options 
+        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for `@stretching`." @options 
             BP_REF_TIMEUNIT_OPTIONS
         )
         BP_REF_ARG(@name "antialias", @default 0, @type "int", @description "anti-aliasing filter." @options 
@@ -5045,7 +5045,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "duration", @default 2, @type "int/float", @description "target duration, based on `@timeunit`.")
-        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for @duration." @options
+        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for `@duration`." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
     ),
@@ -5681,7 +5681,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "threshold" @default 0.01 @type "int/float", @description "amplitude threshold at/below which samples are considered silence.")
-        BP_REF_ARG(@name "ampunit", @default 0, @type "int", @description "amplitude unit for @threshold." @options
+        BP_REF_ARG(@name "ampunit", @default 0, @type "int", @description "amplitude unit for `@threshold`." @options
             BP_REF_AMPUNIT_OPTIONS
         )
         BP_REF_ARG(@name "start" @default 1 @type "int/float", @description "trim the beginning of the buffer." @options 
@@ -5755,7 +5755,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "duration", @default 1, @type "int/float", @description "target duration, based on `@timeunit`.")
-        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for @duration."
+        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for `@duration`."
             BP_REF_TIMEUNIT_OPTIONS
         )
         BP_REF_ARG(@name "timeblock", @default 4096, @type "int", @description "duration of each time block to be removed.")
@@ -5833,7 +5833,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "duration", @default 1, @type "int/float", @description "target duration, based on `@timeunit`.")
-        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for @duration." @options 
+        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for `@duration`." @options 
             BP_REF_TIMEUNIT_OPTIONS
         )
         BP_REF_ARG(@name "changesr", @default 0, @type "int", @description "change sampling rate." @options
@@ -5912,7 +5912,7 @@ BP_REF_NEW(
             BP_REF_SWITCH_OPTIONS
         )
         BP_REF_ARG(@name "spread", @type "int/float", @default 1, @description "multichannel panning spread, between 0 and 1.")
-        BP_REF_ARG(@name "envtimeunit", @default 2, @type "int", @description "time unit for @gain envelope." @options
+        BP_REF_ARG(@name "envtimeunit", @default 2, @type "int", @description "time unit for `@gain` envelope." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
     ),
@@ -5948,7 +5948,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "rms", @default 0, @type "int", @description "use root mean square." @options
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "ampunit", @default 1, @type "int", @description "amplitude unit for @level." @options
+        BP_REF_ARG(@name "ampunit", @default 1, @type "int", @description "amplitude unit for `@level`." @options
             BP_REF_AMPUNIT_OPTIONS
         )
     ),
@@ -5993,10 +5993,10 @@ BP_REF_NEW(
         BP_REF_ARG(@name "ampunit", @default 0, @type "int", @description "amplitude unit." @options
             BP_REF_AMPUNIT_OPTIONS
         )
-        BP_REF_ARG(@name "envampunit", @default 0, @type "int", @description "amplitude unit for @gain envelope." @options
+        BP_REF_ARG(@name "envampunit", @default 0, @type "int", @description "amplitude unit for `@gain` envelope." @options
             BP_REF_AMPUNIT_OPTIONS
         )
-        BP_REF_ARG(@name "envtimeunit", @default 2, @type "int", @description "time unit for @gain envelope." @options
+        BP_REF_ARG(@name "envtimeunit", @default 2, @type "int", @description "time unit for `@gain` envelope." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
     ),
