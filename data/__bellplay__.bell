@@ -6882,7 +6882,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 seq2markov = (
-    $sequence, $order = 1, $prepad = '<SOS>', $postpad = '<EOS>' -> (
+    $sequence, $order = 1, $prepad = '^', $postpad = '$' -> (
         BP_FN_CHECK_ARGS('seq2markov', 'sequence', $sequence);
         ## Ensure order is at least 0 (negative orders are meaningless)
         $order = max(0, $order);
@@ -6921,8 +6921,8 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "data" @type "llll" @description "input sequence from which the Markov model will be built.")
         BP_REF_ARG(@name "order" @default 1 @type "int" @description "order of the Markov chain, determining the length of history considered for state transitions.")
-        BP_REF_ARG(@name "prepad" @default '<SOS>' @type "symbol" @description "padding symbol used at the beginning of the sequence to handle initial states.")
-        BP_REF_ARG(@name "postpad" @default '<EOS>' @type 'symbol' @description "padding symbol used at the end of the sequence to handle final states")
+        BP_REF_ARG(@name "prepad" @default "'^'" @type "symbol" @description "padding symbol used at the beginning of the sequence to handle initial states.")
+        BP_REF_ARG(@name "postpad" @default "'$'" @type 'symbol' @description "padding symbol used at the end of the sequence to handle final states")
     )
     @output BP_REF_OUTPUT(@description "transition probability matrix in sparse form" @type "llll")
 );
@@ -6930,7 +6930,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 markov2seq = (
-    $matrix, $maxlength = 25, $start = null, $autoclear = 1, $useseed = 0, $prepad = '<SOS>', $postpad = '<EOS>' -> (
+    $matrix, $maxlength = 25, $start = null, $autoclear = 1, $useseed = 0, $prepad = '^', $postpad = '$' -> (
         BP_FN_CHECK_ARGS('markov2seq', 'matrix', $matrix);
         ## Initialize random choice function (deterministic if $useseed == 1)
         $choose = if $useseed == 1 then xchoose else choose;
@@ -7023,8 +7023,8 @@ BP_REF_NEW(
         BP_REF_ARG(@name "useseed" @default 0 @type "int" @description "Use seeded random function for persistent output" @options 
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "prepad" @default '<SOS>' @type "symbol" @description "padding symbol representing beginning of the sequence.")
-        BP_REF_ARG(@name "postpad" @default '<EOS>' @type 'symbol' @description "padding symbol representing end of a sequence.")
+        BP_REF_ARG(@name "prepad" @default "'^'" @type "symbol" @description "padding symbol representing beginning of the sequence.")
+        BP_REF_ARG(@name "postpad" @default "'$'" @type 'symbol' @description "padding symbol representing end of a sequence.")
         
     )
     @output BP_REF_OUTPUT(@description "generated sequence of elements based on the given Markov transition matrix" @type "llll")
