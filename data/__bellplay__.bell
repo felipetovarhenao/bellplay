@@ -5755,7 +5755,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "duration", @default 1, @type "int/float", @description "target duration, based on `@timeunit`.")
-        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for `@duration`."
+        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for `@duration`." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
         BP_REF_ARG(@name "timeblock", @default 4096, @type "int", @description "duration of each time block to be removed.")

@@ -47,6 +47,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `ptracks2buf`: Added missing description in docs.
 - `getchar`: Fix non-symbol output with integer inputs.
 - `analyze`: Fix typo in docs.
+- `timesquash`: fix bug in docs.
 
 ### Removed
 
