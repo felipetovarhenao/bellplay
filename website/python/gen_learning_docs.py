@@ -6,7 +6,7 @@ from utils.utils import get_lines
 
 
 # Input and output directories relative to script location
-SOURCE_DIR = os.path.abspath(os.path.join(BASE_DIR, "../../bellplay/data/"))
+SOURCE_DIR = os.path.abspath(os.path.join(BASE_DIR, "../../data/"))
 DEST_DIR = os.path.abspath(os.path.join(BASE_DIR, "../docs/learning/"))
 
 
