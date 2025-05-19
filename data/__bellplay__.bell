@@ -444,13 +444,13 @@ getmediafiles = (
 
 BP_REF_NEW(
     @name "getmediafiles",
-    @description "Returns a list of built-in media files in bellplay~.",
+    @description "Returns a list of built-in media files in **bellplay~**.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "type" @default "null" @type "symbol/null" @description "media file type" @options
             BP_REF_OPT(@value "null" @description "all" "files")
             BP_REF_OPT(@value "'audio'" @description "audio" "files")
-            BP_REF_OPT(@value "'midi'" @description "midi" "files")
+            BP_REF_OPT(@value "'midi'" @description "MIDI" "files")
             BP_REF_OPT(@value "'llll'" @description "llll" "files")
         )
     ),
@@ -614,8 +614,8 @@ BP_REF_CURVE_OPTIONS = (
 
 BP_REF_RESAMPLINGMODE_OPTIONS = (
     BP_REF_OPT(@value "'sinc'")
-    BP_REF_OPT(@value "'nearest" "neighbor'")
-    BP_REF_OPT(@value "'sample" "and" "hold'")
+    BP_REF_OPT(@value "'nearest neighbor'")
+    BP_REF_OPT(@value "'sample and hold'")
     BP_REF_OPT(@value "'linear'")
     BP_REF_OPT(@value "'quad'")
     BP_REF_OPT(@value "'cubic'")
@@ -623,16 +623,16 @@ BP_REF_RESAMPLINGMODE_OPTIONS = (
 
 BP_REF_RESAMPLINGPOLICY_OPTIONS = (
     BP_REF_OPT(@value 0 @description "don't")
-    BP_REF_OPT(@value 1 @description "to" "lowest")
-    BP_REF_OPT(@value 2 @description "to" "highest")
-    BP_REF_OPT(@value 3 @description "to" "most" "common")
-    BP_REF_OPT(@value 4 @description "to" "max." "current")
+    BP_REF_OPT(@value 1 @description "to lowest")
+    BP_REF_OPT(@value 2 @description "to highest")
+    BP_REF_OPT(@value 3 @description "to most common")
+    BP_REF_OPT(@value 4 @description "to max. current")
 );
 
 BP_REF_ESSENTIA_ANALYSIS_OPTIONS = (
     BP_REF_OPT(@value 0 @description "global")
-    BP_REF_OPT(@value 1 @description "time" "series")
-    BP_REF_OPT(@value 2 @description "time-tagged" "time" "series")
+    BP_REF_OPT(@value 1 @description "time series")
+    BP_REF_OPT(@value 2 @description "time-tagged time series")
     BP_REF_OPT(@value 3 @description "buffer")
 );
 
@@ -1106,8 +1106,8 @@ BP_REF_NEW(
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "pts" @type "list" @description "numeric list")
-        BP_REF_ARG(@name "xfunc" @default "<normalization_function>" @type "function/null" @description "optional lambda function for x axis")
-        BP_REF_ARG(@name "yfunc" @default "null" @type "function/null" @description "optional lambda function for y axis")
+        BP_REF_ARG(@name "xfunc" @default "<normalization_function>" @type "function/null" @description "optional lambda function for _x_ axis")
+        BP_REF_ARG(@name "yfunc" @default "null" @type "function/null" @description "optional lambda function for _y_ axis")
         BP_REF_ARG(@name "sfunc" @default "null" @type "function/null" @description "optional lambda function for bpf slope")
     )
     @output BP_REF_OUTPUT(@description "breakpoint function" @type "llll")
@@ -1859,7 +1859,7 @@ render = (
 
 BP_REF_NEW(
     @name "render",
-    @description "Triggers audio rendering of all transcribed buffers via `transcribe`, and returns the rendered buffer. Note that it's possible to apply post-rendering processing by passing audio processing operations (e.g., `reverse`, `freeverb`, `clip`, etc.) to the @process arguments, but these audio modifications won't be accurately reflected in the score transcription. See `process` function.",
+    @description "Triggers audio rendering of all transcribed buffers via `transcribe`, and returns the rendered buffer. Note that it's possible to apply post-rendering processing by passing audio processing operations (e.g., `reverse`, `freeverb`, `clip`, etc.) to the `@process` arguments, but these audio modifications won't be accurately reflected in the score transcription. See `process` function.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "numchannels", @type "int", @default 2, @description "number of output channels.")
@@ -2100,7 +2100,7 @@ export = (
 
 BP_REF_NEW(
     @name "export",
-    @description "Exports the rendered output as either an audio (.wav/aif/aiff/mp3), midi (.mid/midi), or roll (.llll) file, given a output path. For audio files, mono stem files can be separately exported with the @stems argument. See `render` function.",
+    @description "Exports the rendered output as either an audio (`.wav`, `.aif`, `.aiff`, `.mp3`), MIDI (`.mid`,`.midi`), or roll (`.llll`) file, given a output path. For audio files, mono stem files can be separately exported with the `@stems` argument. See `render` function.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "path", @type "symbol", @description "output file path.")
@@ -2159,7 +2159,7 @@ importaudio = (
 
 BP_REF_NEW(
     @name "importaudio",
-    @description "Imports an audio file (.wav/aif/aiff/mp3) as a buffer, given a file path.",
+    @description "Imports an audio file (`.wav`, `.aif`, `.aiff`, `.mp3`) as a buffer, given a file path.",
     @category BP_REF_LABEL_GEN,
     @arguments (
         BP_REF_ARG(@name "path", @type "symbol", @description "input audio file path.")
@@ -2193,7 +2193,7 @@ importmidi = (
 
 BP_REF_NEW(
     @name "importmidi",
-    @description "Imports a midi file, as a list of events, each with the following keys: 'pitch' , 'velocity', 'onset', 'voice', 'channel', and 'duration'",
+    @description "Imports a midi file, as a list of events, each with the following keys: `'pitch'` , `'velocity'`, `'onset'`, `'voice'`, `'channel'`, and `'duration'`",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "path", @type "symbol", @description "input midi file path.")
@@ -3820,7 +3820,7 @@ process = (
 
 BP_REF_NEW(
     @name "process",
-    @description "Applies a sequence of DSP operations to the input buffer, prior to rendering, via audio processing operations. These operations are generated through functions (e.g., see `reverse`, `paulstretch`, `freeverb`, `rubberband`), which contain the parameters for that specific DSP operation. This results in a newly created buffer, with updated keys. To keep keys from the input buffer, such as keys associated with previous feature analyses, use the @keepkeys argument by passing an optional list of keys. See @process argument in `render`.",
+    @description "Applies a sequence of DSP operations to the input buffer, prior to rendering, via audio processing operations. These operations are generated through functions (e.g., see `reverse`, `paulstretch`, `freeverb`, `rubberband`), which contain the parameters for that specific DSP operation. This results in a newly created buffer, with updated keys. To keep keys from the input buffer, such as keys associated with previous feature analyses, use the `@keepkeys` argument by passing an optional list of keys. See `@process` argument in `render`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "buffer", @type "llll", @description "buffer to process.")
@@ -4297,7 +4297,7 @@ clicks = (
 
 BP_REF_NEW(
     @name "clicks",
-    @description "Generates a buffer containing a set of clicks at specific onsets. Note that if the first onset value is `0`, it might get silenced when the @fade argument in `render` is non-zero.",
+    @description "Generates a buffer containing a set of clicks at specific onsets. Note that if the first onset value is `0`, it might get silenced when the `@fade` argument in `render` is non-zero.",
     @category BP_REF_LABEL_GEN,
     @arguments (
         BP_REF_ARG(@name "onsets" @default 0 @type "int/float/list" @description "onset positions.")
@@ -4384,7 +4384,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "duration" @default 1000 @type "int/float" @description "freezing duration, based on `@timeunit`.")
         BP_REF_ARG(@name "position" @default 0 @type "int/float" @description "freezing time position")
-        BP_REF_ARG(@name "jitter" @default 0 @type "int/float" @description "variation around time position, in milliseconds. To use entire buffer, use 'all'.")
+        BP_REF_ARG(@name "jitter" @default 0 @type "int/float" @description "variation around time position, in milliseconds. To use entire buffer, use `'all'`.")
         BP_REF_ARG(@name "timeunit" @default 0 @type "int" @description "time unit.", @options 
             BP_REF_TIMEUNIT_OPTIONS
         )
@@ -4512,7 +4512,7 @@ BP_REF_NEW(
         )
         BP_REF_ARG(@name "frequency", @default 2000, @type "int/float", @description "cutoff/center frequency.")
         BP_REF_ARG(@name "gain", @default 1, @type "int/float", @description "linear gain.")
-        BP_REF_ARG(@name "q", @default 80, @type "int/float", @description "resonance or slope, depending on @type.")
+        BP_REF_ARG(@name "q", @default 80, @type "int/float", @description "resonance or slope, depending on `@type`.")
     ),
     @output BP_REF_OUTPUT(@description "biquad operation" @type "llll")
 );
@@ -6285,9 +6285,9 @@ BP_REF_NEW(
             BP_REF_TIMEUNIT_OPTIONS
         )
         BP_REF_ARG(@name "angleunit" @default 0 @type "int" @description "angle unit." @options 
-            BP_REF_OPT(@value 0 @description "'radians'")
-            BP_REF_OPT(@value 1 @description "'degrees'")
-            BP_REF_OPT(@value 2 @description "'turns'")
+            BP_REF_OPT(@value 0 @description "radians")
+            BP_REF_OPT(@value 1 @description "degrees")
+            BP_REF_OPT(@value 2 @description "turns")
         )
         BP_REF_ARG(@name "frequnit", @default 0, @type "int", @description "unit for frequency components in `@func`." @options 
             BP_REF_FREQUNIT_OPTIONS
