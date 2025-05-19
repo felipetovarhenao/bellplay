@@ -1033,7 +1033,7 @@ setkey = (
 
 BP_REF_NEW(
     @name "setkey"
-    @description "Sets the value of a given key in a llll. If @mode is 0 (default), values for non-existent keys are ignored."
+    @description "Sets the value of a given key in a `llll`. If `@mode` is 0 (_default_), values for non-existent keys are ignored."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "llll" @type "llll" @description "`llll` to modify.")
@@ -1262,7 +1262,7 @@ BP_REF_NEW(
     @description "Random floating point number generator."
     @category BP_REF_LABEL_UTILS
     @arguments (
-        BP_REF_ARG(@name "a" @default 1 @type "int/float" @description "max. value if @b is null, else min. value.")
+        BP_REF_ARG(@name "a" @default 1 @type "int/float" @description "max. value if `@b` is `null`, else min. value.")
         BP_REF_ARG(@name "b" @default 'null' @type "int/float/null" @description "max. value.")
     )
     @output BP_REF_OUTPUT(@description "random floating point number", @type "int/float")
@@ -1415,7 +1415,7 @@ BP_REF_NEW(
     @description "Seed-based random floating point number generator. See `setseed`.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
-        BP_REF_ARG(@name "a" @default 1 @type "int/float", @description "max. value if @b is null, else min. value.")
+        BP_REF_ARG(@name "a" @default 1 @type "int/float", @description "max. value if `@b` is null, else min. value.")
         BP_REF_ARG(@name "b" @default "null" @type "int/float/null", @description "max. value.")
     ),
     @output BP_REF_OUTPUT(@description "random number", @type "float")
@@ -1435,7 +1435,7 @@ BP_REF_NEW(
     @description "Seed-based random integer number generator. See `setseed`.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
-        BP_REF_ARG(@name "a" @default 1 @type "int", @description "max. value if @b is null, else min. value.")
+        BP_REF_ARG(@name "a" @default 1 @type "int", @description "max. value if `@b` is `null`, else min. value.")
         BP_REF_ARG(@name "b" @default "null" @type "int/null", @description "max. value.")
     ),
     @output BP_REF_OUTPUT(@description "random number", @type "integer")
@@ -4731,7 +4731,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "rate" @default 1 @type "int/float/list/llll", @description "playback rate, as either a single number, envelope, or control buffer.")
-        BP_REF_ARG(@name "duration" @default 1000 @type "int/float", @description "duration in milliseconds. Ignored if @rate is a buffer.")
+        BP_REF_ARG(@name "duration" @default 1000 @type "int/float", @description "duration in milliseconds. Ignored if `@rate` is a buffer.")
     )
     @output BP_REF_OUTPUT(@description "groove operation" @type "llll")
 );
@@ -4990,7 +4990,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "phase", @default -1 1, @type "int/float", @description "buffer phase envelope between -1 and 1, either as an envelope or a buffer.")
-        BP_REF_ARG(@name "duration", @default 1000, @type "int", @description "envelope duration in milliseconds. Ignored if @phase is a buffer.")
+        BP_REF_ARG(@name "duration", @default 1000, @type "int", @description "envelope duration in milliseconds. Ignored if `@phase` is a buffer.")
     ),
     @output BP_REF_OUTPUT(@description "waveshape operation" @type "llll")
 );
@@ -5019,7 +5019,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "phase", @default 0 1, @type "int/float", @description "buffer phase envelope between 0 and 1, either as an envelope or a buffer.")
-        BP_REF_ARG(@name "duration", @default 1000, @type "int", @description "envelope duration in milliseconds. Ignored if @phase is a buffer.")
+        BP_REF_ARG(@name "duration", @default 1000, @type "int", @description "envelope duration in milliseconds. Ignored if `@phase` is a buffer.")
     ),
     @output BP_REF_OUTPUT(@description "scrub operation" @type "llll")
 );
@@ -5907,7 +5907,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 3 @description "loudspeaker" "number" "—" "0-based")
             BP_REF_OPT(@value 4 @description "loudspeaker" "number" "—" "1-based")
         )
-        BP_REF_ARG(@name "range", @default 0 1, @type "list", @description "panning range, as a `<min>` `<max>` value pair. Ignored unless @rangetype is 0")
+        BP_REF_ARG(@name "range", @default 0 1, @type "list", @description "panning range, as a `<min>` `<max>` value pair. Ignored unless `@rangetype` is 0")
         BP_REF_ARG(@name "compensate", @default 1, @type "int", @description "Reduce gain for multichannel files by a factor of the number of channels." @options
             BP_REF_SWITCH_OPTIONS
         )
@@ -6768,7 +6768,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 1 @description "number of segments.")
             BP_REF_OPT(@value 2 @description "split points.")
         )
-        BP_REF_ARG(@name "overlap" @default 1 @type "int/float" @description "overlap factor. Ignored if @mode is 2.")
+        BP_REF_ARG(@name "overlap" @default 1 @type "int/float" @description "overlap factor. Ignored if `@mode` is 2.")
         BP_REF_ARG(@name "partials" @default 1 @type "int" @description "when mode < 2, always include trailing buffer." @options 
             BP_REF_SWITCH_OPTIONS
         )
