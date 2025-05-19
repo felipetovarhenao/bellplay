@@ -1,13 +1,43 @@
 # TO DO
 
+## v0.9.0-beta
+
+### Add
+
+- [ ] New bellplay examples:
+  - [ ] Markov chains.
+  - [ ] Seeded Random.
+  - [ ] What are buffers.
+  - [ ] Building your own library (starting with `v0.2.8-beta`).
+- [ ] Implement a better error API.
+  - [ ] checking required arguments
+  - [ ] invalid data types
+
+### Change
+
+- Provide new API for sql corpora.
+- Rewrite tutorials and examples involving `splitbuf` and kd-trees.
+- [ ] Doc improvements:
+  - [ ] Admonitions:
+    - [ ] Info: code auto-runs when saved.
+    - [ ] Lifetime of Global variables.
+  - [ ] Debugging
+  - In FAQ:
+    - [ ] Explain differences between bach/Max and bellplay.
+      - [ ] Pseudovariables.
+      - [ ] bell only.
+
+### Fix
+
+### Remove
+
 - FIX `rhythm` extractor.
+
+## Upcoming releases
+
 - Add support for pitch syntax in `ezsampler` and `transcribe`.
 - Adapt code base to new bell language version.
 - Migrate reference documentation to versioned web repo.
-- Implement a better error API.
-  - checking required arguments
-  - invalid data types
-- Rewrite tutorials and examples involving `splitbuf` and kd-trees.
 - Improve control over score appearance via `setscore` (replacing `scoreconfig`).
 - Improve naming of i/o functions: `export`, `read`, `write`, `loadcorpus`, `setcorpus`, `importaudio`, `importmidi`.
 - `getkey`: Add support for multiple keys and `@wrap` argument for weather values should be wrapped individually or not.
