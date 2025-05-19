@@ -375,7 +375,7 @@ interrupt = (
 
 BP_REF_NEW(
     @name "interrupt",
-    @description "Disables communication between the current script and the bellplay~ application, interrupting any remaining script operations.",
+    @description "Disables communication between the current script and the **bellplay~** application, interrupting any remaining script operations.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "print" @default "null" @type "anything" @description "something to print.")
@@ -991,7 +991,7 @@ query = (
 
 BP_REF_NEW(
     @name "query",
-    @description "Executes a `sqlite3` query on the current audio corpus, and returns the results. Every query should use 'buffers' as the table name. For instance: 'SELECT * FROM buffers'. See `setcorpus`.",
+    @description "Executes a `sqlite3` query on the current audio corpus, and returns the results. Every query should use 'buffers' as the table name. For instance: `'SELECT * FROM buffers'`. See `setcorpus`.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "sql" @type "symbol" @default "'SELECT * FROM buffers'" @description "sqlite3 query.")
