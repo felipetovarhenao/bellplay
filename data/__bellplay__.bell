@@ -278,7 +278,7 @@ thispath = (
 
 BP_REF_NEW(
     @name "thispath",
-    @description "Returns the path of the current script, as either a symbol or a parsed llll path. See `parsepath`.",
+    @description "Returns the path of the current script, as either a symbol or a parsed `llll` path. See `parsepath`.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "parse" @default 0 @type "int" @description "parse path." @options 
@@ -1680,7 +1680,7 @@ sortbykeys = (
 
 BP_REF_NEW(
     @name "sortbykeys"
-    @description "Sorts llll elements by a given set of keys. It assumes all keys are associated with single, quantifiable values."
+    @description "Sorts `llll` elements by a given set of keys. It assumes all keys are associated with single, quantifiable values."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "llll" @type "llll" @description "list to sort.")
@@ -1819,8 +1819,8 @@ BP_REF_NEW(
         BP_REF_ARG(@name "detune" @type "int/float" @default "null" @description "detuning amount in cents.")
         BP_REF_ARG(@name "voice" @type "int" @default 1 @description "voice assignment in score. See `scoreconfig` function.")
         BP_REF_ARG(@name "pitchkey" @type "symbol" @default "'pitch'" @description "key to use for pitch value in score transcription.")
-        BP_REF_ARG(@name "keepduration" @type "int" @default 1 @description "keep buffer's nominal duration value when detuning buffer via @detune.")
-        BP_REF_ARG(@name "metadata" @default 'null' @type "anything" @default 1 @description "data to associate with buffer. Useful when exporting roll in llll format.")
+        BP_REF_ARG(@name "keepduration" @type "int" @default 1 @description "keep buffer's nominal duration value when detuning buffer via `@detune`.")
+        BP_REF_ARG(@name "metadata" @default 'null' @type "anything" @default 1 @description "data to associate with buffer. Useful when exporting roll in `llll` format.")
         BP_REF_ARG(@name "annotation" @default 'null' @type "symbol/null" @default 1 @description "optional label to display next to transcribed buffer.")
     )
 );
@@ -1982,13 +1982,13 @@ read = (
 
 BP_REF_NEW(
     @name "read",
-    @description "Read .txt or native .llll data. The ignore attribute allows preventing some categories of symbols, such as parens, pitches and more, to be read according to the usual bell syntax.",
+    @description "Read `.txt` or native `.llll` data. The ignore attribute allows preventing some categories of symbols, such as parens, pitches and more, to be read according to the usual _bell_ syntax.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "path", @type "symbol", @description "input file path.")
         BP_REF_ARG(@name "ignore" @default 0 @type "symbol/null" @description "The ignore attribute can be set to any combination of the following characters" @options 
-            BP_REF_OPT(@value "'l'" @description "parens inside symbols are not llll levels, but symbols composed by parens only are kept as llll levels!")
-            BP_REF_OPT(@value "'L'" @description "all parens are not parsed as llll levels")
+            BP_REF_OPT(@value "'l'" @description "parens inside symbols are not `llll` levels, but symbols composed by parens only are kept as `llll` levels!")
+            BP_REF_OPT(@value "'L'" @description "all parens are not parsed as `llll` levels")
             BP_REF_OPT(@value "'p'" @description "ignore pitches, keep them as symbols")
             BP_REF_OPT(@value "'r'" @description "ignore rationals, keep them as symbols")
             BP_REF_OPT(@value "'e'" @description "ignore floating-point scientific notation, keep it as symbol")
@@ -2045,7 +2045,7 @@ write = (
 
 BP_REF_NEW(
     @name "write",
-    @description "Writes data into disk in either .txt or native .llll format.",
+    @description "Writes data into disk in either `.txt` or native `.llll` format.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "data" @type "anything" @description "data to write.")
@@ -2056,11 +2056,11 @@ BP_REF_NEW(
             BP_REF_OPT(@value 2 @description "double" "quotes")
             BP_REF_OPT(@value 3 @description "smart")
         )
-        BP_REF_ARG(@name "wrap" @default 0 @type "int" @description "column at which the text should be hard-wrapped in .txt format. 0 means no wrapping")
+        BP_REF_ARG(@name "wrap" @default 0 @type "int" @description "column at which the text should be hard-wrapped in `.txt` format. `0` means no wrapping")
         BP_REF_ARG(@name "indent" @default "'tab'" @type "symbol/int" @description "if value is integer, number of spaces per depth level used for indentation.")
-        BP_REF_ARG(@name "maxdecimals" @default 10 @type "int" @description "maximum number of decimal digits for .txt format.")
-        BP_REF_ARG(@name "maxdepth" @default -1 @type "int" @description "maximum depth level at which text indentation is performed for .txt format.")
-        BP_REF_ARG(@name "negativeoctaves" @default 0 @type "int" @description "use negative octaves, when in .txt format." @options 
+        BP_REF_ARG(@name "maxdecimals" @default 10 @type "int" @description "maximum number of decimal digits for `.txt` format.")
+        BP_REF_ARG(@name "maxdepth" @default -1 @type "int" @description "maximum depth level at which text indentation is performed for `.txt` format.")
+        BP_REF_ARG(@name "negativeoctaves" @default 0 @type "int" @description "use negative octaves, when in `.txt` format." @options 
             BP_REF_SWITCH_OPTIONS
         )
         BP_REF_ARG(@name "parens" @default 0 @type "int" @description "use parens." @options 
@@ -6769,7 +6769,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 2 @description "split points.")
         )
         BP_REF_ARG(@name "overlap" @default 1 @type "int/float" @description "overlap factor. Ignored if `@mode` is `2`.")
-        BP_REF_ARG(@name "partials" @default 1 @type "int" @description "when mode < 2, always include trailing buffer." @options 
+        BP_REF_ARG(@name "partials" @default 1 @type "int" @description "when `@mode < 2`, always include trailing buffer." @options 
             BP_REF_SWITCH_OPTIONS
         )
     ),
