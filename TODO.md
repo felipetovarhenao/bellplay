@@ -29,9 +29,9 @@
 
 ### Fix
 
-### Remove
-
 - FIX `rhythm` extractor.
+
+### Remove
 
 ## Upcoming releases
 
