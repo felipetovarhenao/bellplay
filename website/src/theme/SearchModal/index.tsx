@@ -103,6 +103,7 @@ const SearchModal: React.FC<Props> = ({ onClose }) => {
                 <div className={styles.resultsBlurb}>
                   <ReactMarkdown
                     components={{
+                      // <a/> element cannot be rendered as such to prevent hydration issues in Docusaurus
                       a: ({ node, ...props }) => <span {...props} />,
                     }}
                   >
