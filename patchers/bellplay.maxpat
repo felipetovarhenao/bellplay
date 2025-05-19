@@ -1370,7 +1370,7 @@
 					"patching_rect" : [ 443.0, 95.0, 224.0, 21.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 87.0, 62.0, 221.0, 21.0 ],
-					"text" : "© 2025 | https://felipe-tovar-henao.com",
+					"text" : "© 2025 | https://bellplay.net/",
 					"underline" : 0
 				}
 
