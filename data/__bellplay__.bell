@@ -516,7 +516,7 @@ isnan = ($x -> tosymbol($x) == 'nan');
 
 BP_REF_NEW(
     @name "isnan",
-    @description "Checks if the input argument is strictly a nan—i.e., 'not a number' — value.",
+    @description "Checks if the input argument is strictly a nan—i.e., 'not a number'—value.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "x"  @type "anything" @description "value to check")
@@ -843,7 +843,7 @@ BP_REF_NEW(
         )
         BP_REF_ARG(@name "overlap" @default 1 @type "int/float" @description "segment overlap factor, when `@segmode` is `2`.")
         BP_REF_ARG(@name "segsize" @default 100 @type "int" @description "segment duration in milliseconds, when `@segmode` is `2`.")
-        BP_REF_ARG(@name "alpha" @default 0.1 @type "float" @description "proportion of the mean included to reject smaller peaks — filters very short onsets.")
+        BP_REF_ARG(@name "alpha" @default 0.1 @type "float" @description "proportion of the mean included to reject smaller peaks—filters very short onsets.")
         BP_REF_ARG(@name "delay" @default 5 @type "int" @description "number of frames used to compute the threshold—size of short-onset filter.")
         BP_REF_ARG(@name "framerate" @default 86.1328 @type "float" @description "frames per second.")
         BP_REF_ARG(@name "silencethreshold" @default 0.02 @type "float" @description "threshold for silence.")
@@ -1033,7 +1033,7 @@ setkey = (
 
 BP_REF_NEW(
     @name "setkey"
-    @description "Sets the value of a given key in a `llll`. If `@mode` is 0 (_default_), values for non-existent keys are ignored."
+    @description "Sets the value of a given key in a `llll`. If `@mode` is `0` (_default_), values for non-existent keys are ignored."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "llll" @type "llll" @description "`llll` to modify.")
@@ -1125,7 +1125,7 @@ x2dx = (
 
 BP_REF_NEW(
     @name "x2dx"
-    @description "Takes a list of numbers and returns the differences — i.e., deltas — between adjacent elements. Inverse of `dx2x`."
+    @description "Takes a list of numbers and returns the differences—i.e., deltas—between adjacent elements. Inverse of `dx2x`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "x" @type "list" @description "list of numeric values.")
@@ -1144,7 +1144,7 @@ dx2x = (
 
 BP_REF_NEW(
     @name "dx2x"
-    @description "Takes a list of differences — i.e., deltas — and an optional starting value, and returns the cumulative sum between adjacent elements, as a list. Inverse of `x2dx`."
+    @description "Takes a list of differences—i.e., deltas—and an optional starting value, and returns the cumulative sum between adjacent elements, as a list. Inverse of `x2dx`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "dx" @type "list" @description "list of differences/deltas.")
@@ -2846,7 +2846,7 @@ strongpeak = ($mode = 0 -> BP_FN_ESSENTIA(@name "strongpeak" @mode $mode));
 
 BP_REF_NEW(
     @name "strongpeak"
-    @description "Audio descriptor to compute the strong peak of a buffer, defined as the ratio between the spectrum's maximum peak's magnitude and the 'bandwidth' of the peak above a threshold — i.e., half its amplitude. This ratio reveals whether the spectrum presents a very 'pronounced' maximum peak — i.e., the thinner and the higher the maximum of the spectrum is, the higher the ratio value. Note that 'bandwidth' is defined as the width of the peak in the log10-frequency domain. Using the log10-frequency domain allows this algorithm to compare strong peaks at lower frequencies with those from higher frequencies. See `analyze`."
+    @description "Audio descriptor to compute the strong peak of a buffer, defined as the ratio between the spectrum's maximum peak's magnitude and the 'bandwidth' of the peak above a threshold—i.e., half its amplitude. This ratio reveals whether the spectrum presents a very 'pronounced' maximum peak—i.e., the thinner and the higher the maximum of the spectrum is, the higher the ratio value. Note that 'bandwidth' is defined as the width of the peak in the log10-frequency domain. Using the log10-frequency domain allows this algorithm to compare strong peaks at lower frequencies with those from higher frequencies. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -3107,7 +3107,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "guessunvoiced" @default 0 @type "int" @description "estimate pitch for non-voiced segments." @options
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "harmonicweight" @default 0.8 @type "int/float" @description "weight decay ratio between two consequent harmonics. Use 1 for no decay.")
+        BP_REF_ARG(@name "harmonicweight" @default 0.8 @type "int/float" @description "weight decay ratio between two consequent harmonics. Use `1` for no decay.")
         BP_REF_ARG(@name "hopsize" @default 1024 @type "int" @description "hop size with which the pitch salience function was computed.")
         BP_REF_ARG(@name "magnitudecompression" @default 1 @type "int" @description "magnitude compression parameter for the salience function." @options
             BP_REF_OPT(@value 0 @description "maximum compression")
@@ -3127,10 +3127,10 @@ BP_REF_NEW(
         BP_REF_ARG(@name "polyphonic" @default 0 @type "int" @description "optimize for polyphonic buffer." @options 
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "voicevibrato" @default 0 @type 'int' @description "detect voice vibrato, when `@polyphonic` is 1." @options 
+        BP_REF_ARG(@name "voicevibrato" @default 0 @type 'int' @description "detect voice vibrato, when `@polyphonic` is `1`." @options 
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "voicingtolerance" @default 0.2 @type 'int/float' @description "voicing tolerance between -1 and 1.4, when `@polyphonic` is 1.")
+        BP_REF_ARG(@name "voicingtolerance" @default 0.2 @type 'int/float' @description "voicing tolerance between -1 and 1.4, when `@polyphonic` is `1`.")
         BP_REF_ARG(@name "mode" @default 0 @type "int" @description "analysis mode." @options
             BP_REF_ESSENTIA_ANALYSIS_OPTIONS
         )
@@ -3449,7 +3449,7 @@ barkbands = (
 
 BP_REF_NEW(
     @name "barkbands"
-    @description "Audio descriptor to compute the Bark bands of a spectrum. For each bark band the power-spectrum — i.e., mag-squared — is summed. See `analyze`."
+    @description "Audio descriptor to compute the Bark bands of a spectrum. For each bark band the power-spectrum—i.e., mag-squared—is summed. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "numberbands" @default 27 @type "int" @description "number of desired barkbands.")
@@ -3595,7 +3595,7 @@ rolloff = (
 
 BP_REF_NEW(
     @name "rolloff"
-    @description "Audio descriptor to compute the roll-off frequency of a spectrum. The roll-off frequency is defined as the frequency under which some percentage — i.e., cutoff — of the total energy of the spectrum is contained. The roll-off frequency can be used to distinguish between harmonic — i.e., below roll-off — and noisy sounds — i.e., above roll-off. See `analyze`."
+    @description "Audio descriptor to compute the roll-off frequency of a spectrum. The roll-off frequency is defined as the frequency under which some percentage—i.e., cutoff—of the total energy of the spectrum is contained. The roll-off frequency can be used to distinguish between harmonic—i.e., below roll-off—and noisy sounds—i.e., above roll-off. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "cutoff" @default 0.85 @type "float" @description "the ratio of total energy to attain before yielding the roll-off frequency.")
@@ -3659,8 +3659,8 @@ BP_REF_NEW(
     @description "Audio descriptor to compute the onset positions in a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
-        BP_REF_ARG(@name "alpha" @default 0.1 @type "float" @description "proportion of the mean included to reject smaller peaks — filters very short onsets.")
-        BP_REF_ARG(@name "delay" @default 5 @type "int" @description "number of frames used to compute the threshold — size of short-onset filter.")
+        BP_REF_ARG(@name "alpha" @default 0.1 @type "float" @description "proportion of the mean included to reject smaller peaks—filters very short onsets.")
+        BP_REF_ARG(@name "delay" @default 5 @type "int" @description "number of frames used to compute the threshold—size of short-onset filter.")
         BP_REF_ARG(@name "framerate" @default 86.1328 @type "float" @description "frames per second.")
         BP_REF_ARG(@name "silencethreshold" @default 0.02 @type "float" @description "threshold for silence.")
     )
@@ -3758,11 +3758,11 @@ BP_REF_NEW(
         BP_REF_ARG(@name "profiletype" @default "'bgate'" @description "the type of polyphic profile to use for correlation calculation." @options
             BP_REF_OPT(@value "'diatonic'" @description "binary profile with diatonic notes of both modes.")
             BP_REF_OPT(@value "'tonic triad'" @description "just the notes of the major and minor chords. exclusively for testing.")
-            BP_REF_OPT(@value "'krumhansl'" @description "reference key profiles based on cognitive experiments — useful for pop music.")
+            BP_REF_OPT(@value "'krumhansl'" @description "reference key profiles based on cognitive experiments—useful for pop music.")
             BP_REF_OPT(@value "'temperley'" @description "key profiles extracted from corpus analysis of euroclassical music, especially in minor keys.")
             BP_REF_OPT(@value "'shaath'" @description "profiles based on Krumhansl's specifically tuned to popular and electronic music.")
-            BP_REF_OPT(@value "'noland'" @description "profiles from Bach's 'Well Tempered Klavier'.")
-            BP_REF_OPT(@value "'edma'" @description "automatic profiles extracted from corpus analysis of EDM — better than Shaath's")
+            BP_REF_OPT(@value "'noland'" @description "profiles from Bach's _Well Tempered Klavier_.")
+            BP_REF_OPT(@value "'edma'" @description "automatic profiles extracted from corpus analysis of EDM—better than Shaath's")
             BP_REF_OPT(@value "'edmm'" @description "same as edma, but manually tweaked according to heuristic observation.")
             BP_REF_OPT(@value "'braw'" @description "profiles obtained by calculating the median profile for each mode from a subset of BeatPort dataset.")
             BP_REF_OPT(@value "'bgate'" @description "same as braw but zeroing the 4 less relevant elements of each profile.")
@@ -3771,10 +3771,10 @@ BP_REF_NEW(
         BP_REF_ARG(@name "usemajmin" @default 0  @type "int" @description "use a third profile called 'majmin' for ambiguous tracks. Only avalable for the edma, bgate and braw profiles." @options
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "usepolyphony" @default 1 @type "int"  @description "enables the use of polyphonic profiles to define key profiles — this includes the contributions from triads as well as pitch harmonics." @options
+        BP_REF_ARG(@name "usepolyphony" @default 1 @type "int"  @description "enables the use of polyphonic profiles to define key profiles—this includes the contributions from triads as well as pitch harmonics." @options
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "usethreechords" @default 1 @type "int"  @description "consider only the 3 main triad chords of the key — i.e., T, D, SD — to build the polyphonic profiles." @options
+        BP_REF_ARG(@name "usethreechords" @default 1 @type "int"  @description "consider only the 3 main triad chords of the key—i.e., T, D, SD—to build the polyphonic profiles." @options
             BP_REF_SWITCH_OPTIONS
         )
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -3964,7 +3964,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "buffer", @type "llll", @description "buffer to extract channels from.")
-        BP_REF_ARG(@name "channels" @default "null" @type "int/list/llll/null", @description "number to channels to extract — ignored when `@all` is `1`.")
+        BP_REF_ARG(@name "channels" @default "null" @type "int/list/llll/null", @description "number to channels to extract—ignored when `@all` is `1`.")
         BP_REF_ARG(@name "all" @default 1 @type "int", @description "extract all channels." @options 
             BP_REF_SWITCH_OPTIONS
         )
@@ -4297,7 +4297,7 @@ clicks = (
 
 BP_REF_NEW(
     @name "clicks",
-    @description "Generates a buffer containing a set of clicks at specific onsets. Note that if the first onset value is 0, it might get silenced when the @fade argument in `render` is non-zero.",
+    @description "Generates a buffer containing a set of clicks at specific onsets. Note that if the first onset value is `0`, it might get silenced when the @fade argument in `render` is non-zero.",
     @category BP_REF_LABEL_GEN,
     @arguments (
         BP_REF_ARG(@name "onsets" @default 0 @type "int/float/list" @description "onset positions.")
@@ -5767,12 +5767,12 @@ BP_REF_NEW(
         BP_REF_ARG(@name "xfadetype", @default 1, @type "int", @description "cross fade type." @options 
             BP_REF_CURVE_OPTIONS
         )
-        BP_REF_ARG(@name "glbleed", @default 4, @type "int", @description "number of frames of invalidation for the Griffin-Lim algorithm, when `@phasehandling` is 2.")
-        BP_REF_ARG(@name "glnumiter", @default 10, @type "int", @description "number of Griffin-Lim iterations, when `@phasehandling` is 2.")
-        BP_REF_ARG(@name "glrandomize", @default 0, @type "int", @description "randomize the phases of the regions subject to the Griffin-Lim algorithm, when `@phasehandling` is 2." @options
+        BP_REF_ARG(@name "glbleed", @default 4, @type "int", @description "number of frames of invalidation for the Griffin-Lim algorithm, when `@phasehandling` is `2`.")
+        BP_REF_ARG(@name "glnumiter", @default 10, @type "int", @description "number of Griffin-Lim iterations, when `@phasehandling` is `2`.")
+        BP_REF_ARG(@name "glrandomize", @default 0, @type "int", @description "randomize the phases of the regions subject to the Griffin-Lim algorithm, when `@phasehandling` is `2`." @options
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "glrect", @default 1, @type "int", @description "invalidate whole rectangular regions whose phases are recomputed via the Griffin-Lim algorithm, when `@phasehandling` is 2." @options 
+        BP_REF_ARG(@name "glrect", @default 1, @type "int", @description "invalidate whole rectangular regions whose phases are recomputed via the Griffin-Lim algorithm, when `@phasehandling` is `2`." @options 
             BP_REF_SWITCH_OPTIONS
         )
         BP_REF_ARG(@name "batchsize", @default 1, @type "int", @description "number of seams processed in batch.")
@@ -5907,7 +5907,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 3 @description "loudspeaker" "number" "—" "0-based")
             BP_REF_OPT(@value 4 @description "loudspeaker" "number" "—" "1-based")
         )
-        BP_REF_ARG(@name "range", @default 0 1, @type "list", @description "panning range, as a `<min>` `<max>` value pair. Ignored unless `@rangetype` is 0")
+        BP_REF_ARG(@name "range", @default 0 1, @type "list", @description "panning range, as a `<min>` `<max>` value pair. Ignored unless `@rangetype` is `0`")
         BP_REF_ARG(@name "compensate", @default 1, @type "int", @description "Reduce gain for multichannel files by a factor of the number of channels." @options
             BP_REF_SWITCH_OPTIONS
         )
@@ -6206,7 +6206,7 @@ BP_REF_NEW(
         ##     BP_REF_OPT(@value 0 @description "sinusoidal")
         ##     BP_REF_OPT(@value 1 @description "stochastic" "+" "sinusoidal")
         ## )
-        ## BP_REF_ARG(@name "stocf", @default 0.2, @type "int/float", @description "decimation factor of stochastic approximation. Ignored if @stochastic is 0.")
+        ## BP_REF_ARG(@name "stocf", @default 0.2, @type "int/float", @description "decimation factor of stochastic approximation. Ignored if @stochastic is `0`.")
     ),
     @output BP_REF_OUTPUT(@description "partial track analysis" @type "llll")
 );
@@ -6768,7 +6768,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 1 @description "number of segments.")
             BP_REF_OPT(@value 2 @description "split points.")
         )
-        BP_REF_ARG(@name "overlap" @default 1 @type "int/float" @description "overlap factor. Ignored if `@mode` is 2.")
+        BP_REF_ARG(@name "overlap" @default 1 @type "int/float" @description "overlap factor. Ignored if `@mode` is `2`.")
         BP_REF_ARG(@name "partials" @default 1 @type "int" @description "when mode < 2, always include trailing buffer." @options 
             BP_REF_SWITCH_OPTIONS
         )
