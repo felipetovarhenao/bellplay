@@ -22,7 +22,7 @@ $events = left($events, $maxevents);
 ## iterate through MIDI events and create a buffer for each
 for $event in $events do (
     ## retrieve pitch, duration, onset, and velocity information of current event
-    $pitch = $event.print().getkey('pitch');
+    $pitch = $event.getkey('pitch');
     $dur = $event.getkey('duration');
     $onset = $event.getkey('onset');
     $vel = $event.getkey('velocity');
