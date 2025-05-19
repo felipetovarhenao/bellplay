@@ -18,6 +18,11 @@
 - Provide new API for sql corpora.
 - Rewrite tutorials and examples involving `splitbuf` and kd-trees.
 - [ ] Doc improvements:
+  - [ ] Better function tags:
+    - Data utilities
+    - Buffer utilities.
+    - Buffer operations
+    - Audio descriptors
   - [ ] Admonitions:
     - [ ] Info: code auto-runs when saved.
     - [ ] Lifetime of Global variables.
