@@ -35,8 +35,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1005.050455927848816, 103.030297994613647, 217.0, 37.0 ],
-					"text" : ";\rmax launchbrowser https://bellplay.net/"
+					"patching_rect" : [ 1005.050455927848816, 103.030297994613647, 271.0, 37.0 ],
+					"text" : ";\rmax launchbrowser https://bellplay.net/docs/intro"
 				}
 
 			}
