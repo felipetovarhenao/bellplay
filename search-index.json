@@ -9,7 +9,7 @@
       "operation",
       "true"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/absolute"
+    "path": "docs/reference/audio-processing/absolute"
   },
   {
     "title": "`addmarker`",
@@ -21,7 +21,7 @@
       "onset",
       "null"
     ],
-    "path": "/bellplay/docs/reference/utilities/addmarker"
+    "path": "docs/reference/utilities/addmarker"
   },
   {
     "title": "`analyze`",
@@ -33,7 +33,7 @@
       "spectral",
       "frequency"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/analyze"
+    "path": "docs/reference/audio-analysis/analyze"
   },
   {
     "title": "`argsort`",
@@ -45,7 +45,7 @@
       "argsort",
       "x"
     ],
-    "path": "/bellplay/docs/reference/utilities/argsort"
+    "path": "docs/reference/utilities/argsort"
   },
   {
     "title": "`atodb`",
@@ -57,7 +57,7 @@
       "amplitude",
       "decibels"
     ],
-    "path": "/bellplay/docs/reference/utilities/atodb"
+    "path": "docs/reference/utilities/atodb"
   },
   {
     "title": "`autoscale`",
@@ -69,7 +69,7 @@
       "autoscale",
       "x"
     ],
-    "path": "/bellplay/docs/reference/utilities/autoscale"
+    "path": "docs/reference/utilities/autoscale"
   },
   {
     "title": "`barkbands`",
@@ -81,7 +81,7 @@
       "bell",
       "numberbands"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/barkbands"
+    "path": "docs/reference/audio-analysis/barkbands"
   },
   {
     "title": "`beatsloudness`",
@@ -93,7 +93,7 @@
       "mode",
       "audio"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/beatsloudness"
+    "path": "docs/reference/audio-analysis/beatsloudness"
   },
   {
     "title": "`bfcc`",
@@ -105,7 +105,7 @@
       "mode",
       "liftering"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/bfcc"
+    "path": "docs/reference/audio-analysis/bfcc"
   },
   {
     "title": "`biquad`",
@@ -117,7 +117,7 @@
       "gain",
       "required"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/biquad"
+    "path": "docs/reference/audio-processing/biquad"
   },
   {
     "title": "`bpf`",
@@ -129,7 +129,7 @@
       "xfunc",
       "null"
     ],
-    "path": "/bellplay/docs/reference/utilities/bpf"
+    "path": "docs/reference/utilities/bpf"
   },
   {
     "title": "`buf2ptracks`",
@@ -141,7 +141,7 @@
       "frequency",
       "unit"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/buf2ptracks"
+    "path": "docs/reference/audio-analysis/buf2ptracks"
   },
   {
     "title": "`buf2samps`",
@@ -153,7 +153,7 @@
       "required",
       "true"
     ],
-    "path": "/bellplay/docs/reference/utilities/buf2samps"
+    "path": "docs/reference/utilities/buf2samps"
   },
   {
     "title": "`buildcorpus`",
@@ -165,7 +165,7 @@
       "int",
       "segmentation"
     ],
-    "path": "/bellplay/docs/reference/utilities/buildcorpus"
+    "path": "docs/reference/utilities/buildcorpus"
   },
   {
     "title": "`c2r`",
@@ -177,7 +177,7 @@
       "bell",
       "ratio"
     ],
-    "path": "/bellplay/docs/reference/utilities/c2r"
+    "path": "docs/reference/utilities/c2r"
   },
   {
     "title": "`choose`",
@@ -189,7 +189,7 @@
       "choices",
       "required"
     ],
-    "path": "/bellplay/docs/reference/utilities/choose"
+    "path": "docs/reference/utilities/choose"
   },
   {
     "title": "`chordsdetection`",
@@ -201,7 +201,7 @@
       "llll",
       "descriptor"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/chordsdetection"
+    "path": "docs/reference/audio-analysis/chordsdetection"
   },
   {
     "title": "`clicks`",
@@ -213,7 +213,7 @@
       "impulse",
       "samples"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/clicks"
+    "path": "docs/reference/audio-generation/clicks"
   },
   {
     "title": "`clip`",
@@ -225,7 +225,7 @@
       "process",
       "operation"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/clip"
+    "path": "docs/reference/audio-processing/clip"
   },
   {
     "title": "`createtree`",
@@ -237,7 +237,7 @@
       "createtree",
       "required"
     ],
-    "path": "/bellplay/docs/reference/utilities/createtree"
+    "path": "docs/reference/utilities/createtree"
   },
   {
     "title": "`crop`",
@@ -249,7 +249,7 @@
       "time",
       "timeunit"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/crop"
+    "path": "docs/reference/audio-processing/crop"
   },
   {
     "title": "`cycle`",
@@ -261,7 +261,7 @@
       "phase",
       "cycle"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/cycle"
+    "path": "docs/reference/audio-generation/cycle"
   },
   {
     "title": "`dbtoa`",
@@ -273,7 +273,7 @@
       "decibels",
       "linear"
     ],
-    "path": "/bellplay/docs/reference/utilities/dbtoa"
+    "path": "docs/reference/utilities/dbtoa"
   },
   {
     "title": "`dcfilter`",
@@ -285,7 +285,7 @@
       "operation",
       "true"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/dcfilter"
+    "path": "docs/reference/audio-processing/dcfilter"
   },
   {
     "title": "`degrade`",
@@ -297,7 +297,7 @@
       "llll",
       "process"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/degrade"
+    "path": "docs/reference/audio-processing/degrade"
   },
   {
     "title": "`derive`",
@@ -309,7 +309,7 @@
       "order",
       "integration"
     ],
-    "path": "/bellplay/docs/reference/utilities/derive"
+    "path": "docs/reference/utilities/derive"
   },
   {
     "title": "`dissonance`",
@@ -321,7 +321,7 @@
       "bell",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/dissonance"
+    "path": "docs/reference/audio-analysis/dissonance"
   },
   {
     "title": "`divide`",
@@ -333,7 +333,7 @@
       "resampling",
       "operand"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/divide"
+    "path": "docs/reference/audio-processing/divide"
   },
   {
     "title": "`dr2r`",
@@ -345,7 +345,7 @@
       "st",
       "ratios"
     ],
-    "path": "/bellplay/docs/reference/utilities/dr2r"
+    "path": "docs/reference/utilities/dr2r"
   },
   {
     "title": "`dx2x`",
@@ -357,7 +357,7 @@
       "dx",
       "required"
     ],
-    "path": "/bellplay/docs/reference/utilities/dx2x"
+    "path": "docs/reference/utilities/dx2x"
   },
   {
     "title": "`dynamics`",
@@ -369,7 +369,7 @@
       "release",
       "knee"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/dynamics"
+    "path": "docs/reference/audio-processing/dynamics"
   },
   {
     "title": "`effectiveduration`",
@@ -381,7 +381,7 @@
       "duration",
       "threshold"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/effectiveduration"
+    "path": "docs/reference/audio-analysis/effectiveduration"
   },
   {
     "title": "`energy`",
@@ -393,7 +393,7 @@
       "bell",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/energy"
+    "path": "docs/reference/audio-analysis/energy"
   },
   {
     "title": "`energyband`",
@@ -405,7 +405,7 @@
       "energy",
       "frequency"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/energyband"
+    "path": "docs/reference/audio-analysis/energyband"
   },
   {
     "title": "`envelope`",
@@ -417,7 +417,7 @@
       "single",
       "number"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/envelope"
+    "path": "docs/reference/audio-generation/envelope"
   },
   {
     "title": "`envmaxtime`",
@@ -429,7 +429,7 @@
       "descriptor",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/envmaxtime"
+    "path": "docs/reference/audio-analysis/envmaxtime"
   },
   {
     "title": "`envmintime`",
@@ -441,7 +441,7 @@
       "descriptor",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/envmintime"
+    "path": "docs/reference/audio-analysis/envmintime"
   },
   {
     "title": "`exists`",
@@ -453,7 +453,7 @@
       "symbol",
       "required"
     ],
-    "path": "/bellplay/docs/reference/utilities/exists"
+    "path": "docs/reference/utilities/exists"
   },
   {
     "title": "`expand`",
@@ -465,7 +465,7 @@
       "required",
       "true"
     ],
-    "path": "/bellplay/docs/reference/utilities/expand"
+    "path": "docs/reference/utilities/expand"
   },
   {
     "title": "`export`",
@@ -477,7 +477,7 @@
       "export",
       "stems"
     ],
-    "path": "/bellplay/docs/reference/utilities/export"
+    "path": "docs/reference/utilities/export"
   },
   {
     "title": "`ezsampler`",
@@ -489,7 +489,7 @@
       "duration",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/ezsampler"
+    "path": "docs/reference/audio-generation/ezsampler"
   },
   {
     "title": "`fade`",
@@ -501,7 +501,7 @@
       "int",
       "fadein"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/fade"
+    "path": "docs/reference/audio-processing/fade"
   },
   {
     "title": "`flux`",
@@ -513,7 +513,7 @@
       "buffer",
       "bell"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/flux"
+    "path": "docs/reference/audio-analysis/flux"
   },
   {
     "title": "`fold`",
@@ -525,7 +525,7 @@
       "number",
       "output"
     ],
-    "path": "/bellplay/docs/reference/utilities/fold"
+    "path": "docs/reference/utilities/fold"
   },
   {
     "title": "`freeverb`",
@@ -537,7 +537,7 @@
       "wet",
       "reverb"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/freeverb"
+    "path": "docs/reference/audio-processing/freeverb"
   },
   {
     "title": "`freqshift`",
@@ -549,7 +549,7 @@
       "required",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/freqshift"
+    "path": "docs/reference/audio-processing/freqshift"
   },
   {
     "title": "`fromdiffs`",
@@ -561,7 +561,7 @@
       "operation",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/fromdiffs"
+    "path": "docs/reference/audio-processing/fromdiffs"
   },
   {
     "title": "`gain`",
@@ -573,7 +573,7 @@
       "samples",
       "unit"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/gain"
+    "path": "docs/reference/audio-processing/gain"
   },
   {
     "title": "`gcd`",
@@ -585,7 +585,7 @@
       "int",
       "greatest"
     ],
-    "path": "/bellplay/docs/reference/utilities/gcd"
+    "path": "docs/reference/utilities/gcd"
   },
   {
     "title": "`getchannels`",
@@ -597,7 +597,7 @@
       "getchannels",
       "required"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/getchannels"
+    "path": "docs/reference/audio-processing/getchannels"
   },
   {
     "title": "`getchar`",
@@ -609,7 +609,7 @@
       "indices",
       "characters"
     ],
-    "path": "/bellplay/docs/reference/utilities/getchar"
+    "path": "docs/reference/utilities/getchar"
   },
   {
     "title": "`getcorpuskeys`",
@@ -621,7 +621,7 @@
       "keys",
       "true"
     ],
-    "path": "/bellplay/docs/reference/utilities/getcorpuskeys"
+    "path": "docs/reference/utilities/getcorpuskeys"
   },
   {
     "title": "`getkey`",
@@ -633,7 +633,7 @@
       "getkey",
       "symbol"
     ],
-    "path": "/bellplay/docs/reference/utilities/getkey"
+    "path": "docs/reference/utilities/getkey"
   },
   {
     "title": "`getmediafiles`",
@@ -645,7 +645,7 @@
       "media",
       "getmediafiles"
     ],
-    "path": "/bellplay/docs/reference/utilities/getmediafiles"
+    "path": "docs/reference/utilities/getmediafiles"
   },
   {
     "title": "`groove`",
@@ -657,7 +657,7 @@
       "buffer",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/groove"
+    "path": "docs/reference/audio-processing/groove"
   },
   {
     "title": "`hanning`",
@@ -669,7 +669,7 @@
       "window",
       "true"
     ],
-    "path": "/bellplay/docs/reference/utilities/hanning"
+    "path": "docs/reference/utilities/hanning"
   },
   {
     "title": "`hoadecode`",
@@ -681,7 +681,7 @@
       "decoding",
       "hoadecode"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/hoadecode"
+    "path": "docs/reference/audio-processing/hoadecode"
   },
   {
     "title": "`hoaencode`",
@@ -693,7 +693,7 @@
       "coordinate",
       "order"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/hoaencode"
+    "path": "docs/reference/audio-processing/hoaencode"
   },
   {
     "title": "`importaudio`",
@@ -705,7 +705,7 @@
       "importaudio",
       "symbol"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/importaudio"
+    "path": "docs/reference/audio-generation/importaudio"
   },
   {
     "title": "`importmidi`",
@@ -717,7 +717,7 @@
       "symbol",
       "required"
     ],
-    "path": "/bellplay/docs/reference/utilities/importmidi"
+    "path": "docs/reference/utilities/importmidi"
   },
   {
     "title": "`inharmonicity`",
@@ -729,7 +729,7 @@
       "bell",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/inharmonicity"
+    "path": "docs/reference/audio-analysis/inharmonicity"
   },
   {
     "title": "`initurn`",
@@ -741,7 +741,7 @@
       "identifier",
       "size"
     ],
-    "path": "/bellplay/docs/reference/utilities/initurn"
+    "path": "docs/reference/utilities/initurn"
   },
   {
     "title": "`inspect`",
@@ -753,7 +753,7 @@
       "inspect",
       "required"
     ],
-    "path": "/bellplay/docs/reference/utilities/inspect"
+    "path": "docs/reference/utilities/inspect"
   },
   {
     "title": "`integrate`",
@@ -765,7 +765,7 @@
       "integration",
       "origin"
     ],
-    "path": "/bellplay/docs/reference/utilities/integrate"
+    "path": "docs/reference/utilities/integrate"
   },
   {
     "title": "`interrupt`",
@@ -777,7 +777,7 @@
       "script",
       "true"
     ],
-    "path": "/bellplay/docs/reference/utilities/interrupt"
+    "path": "docs/reference/utilities/interrupt"
   },
   {
     "title": "`isnan`",
@@ -789,7 +789,7 @@
       "anything",
       "required"
     ],
-    "path": "/bellplay/docs/reference/utilities/isnan"
+    "path": "docs/reference/utilities/isnan"
   },
   {
     "title": "`join`",
@@ -801,7 +801,7 @@
       "join",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/join"
+    "path": "docs/reference/audio-processing/join"
   },
   {
     "title": "`larm`",
@@ -813,7 +813,7 @@
       "power",
       "mode"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/larm"
+    "path": "docs/reference/audio-analysis/larm"
   },
   {
     "title": "`lcm`",
@@ -825,7 +825,7 @@
       "int",
       "least"
     ],
-    "path": "/bellplay/docs/reference/utilities/lcm"
+    "path": "docs/reference/utilities/lcm"
   },
   {
     "title": "`logattack`",
@@ -837,7 +837,7 @@
       "envelope",
       "maximum"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/logattack"
+    "path": "docs/reference/audio-analysis/logattack"
   },
   {
     "title": "`mapkey`",
@@ -849,7 +849,7 @@
       "lambda",
       "function"
     ],
-    "path": "/bellplay/docs/reference/utilities/mapkey"
+    "path": "docs/reference/utilities/mapkey"
   },
   {
     "title": "`markov2seq`",
@@ -861,7 +861,7 @@
       "llll",
       "markov"
     ],
-    "path": "/bellplay/docs/reference/utilities/markov2seq"
+    "path": "docs/reference/utilities/markov2seq"
   },
   {
     "title": "`maxmagfreq`",
@@ -873,7 +873,7 @@
       "samplerate",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/maxmagfreq"
+    "path": "docs/reference/audio-analysis/maxmagfreq"
   },
   {
     "title": "`mc2chroma`",
@@ -885,7 +885,7 @@
       "mc",
       "required"
     ],
-    "path": "/bellplay/docs/reference/utilities/mc2chroma"
+    "path": "docs/reference/utilities/mc2chroma"
   },
   {
     "title": "`mc2pc`",
@@ -897,7 +897,7 @@
       "true",
       "bell"
     ],
-    "path": "/bellplay/docs/reference/utilities/mc2pc"
+    "path": "docs/reference/utilities/mc2pc"
   },
   {
     "title": "`mean`",
@@ -909,7 +909,7 @@
       "x",
       "required"
     ],
-    "path": "/bellplay/docs/reference/utilities/mean"
+    "path": "docs/reference/utilities/mean"
   },
   {
     "title": "`median`",
@@ -921,7 +921,7 @@
       "required",
       "element"
     ],
-    "path": "/bellplay/docs/reference/utilities/median"
+    "path": "docs/reference/utilities/median"
   },
   {
     "title": "`mfcc`",
@@ -933,7 +933,7 @@
       "symbol",
       "spectrum"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/mfcc"
+    "path": "docs/reference/audio-analysis/mfcc"
   },
   {
     "title": "`minus`",
@@ -945,7 +945,7 @@
       "resampling",
       "operand"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/minus"
+    "path": "docs/reference/audio-processing/minus"
   },
   {
     "title": "`mix`",
@@ -957,7 +957,7 @@
       "resampling",
       "unit"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/mix"
+    "path": "docs/reference/audio-processing/mix"
   },
   {
     "title": "`mixdown`",
@@ -969,7 +969,7 @@
       "mixdown",
       "numchannels"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/mixdown"
+    "path": "docs/reference/audio-processing/mixdown"
   },
   {
     "title": "`multiply`",
@@ -981,7 +981,7 @@
       "resampling",
       "operand"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/multiply"
+    "path": "docs/reference/audio-processing/multiply"
   },
   {
     "title": "`nearest`",
@@ -993,7 +993,7 @@
       "target",
       "value"
     ],
-    "path": "/bellplay/docs/reference/utilities/nearest"
+    "path": "docs/reference/utilities/nearest"
   },
   {
     "title": "`noise`",
@@ -1005,7 +1005,7 @@
       "llll",
       "true"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/noise"
+    "path": "docs/reference/audio-generation/noise"
   },
   {
     "title": "`normalize`",
@@ -1017,7 +1017,7 @@
       "int",
       "rms"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/normalize"
+    "path": "docs/reference/audio-processing/normalize"
   },
   {
     "title": "`octreduce`",
@@ -1029,7 +1029,7 @@
       "true",
       "bell"
     ],
-    "path": "/bellplay/docs/reference/utilities/octreduce"
+    "path": "docs/reference/utilities/octreduce"
   },
   {
     "title": "`onepole`",
@@ -1041,7 +1041,7 @@
       "llll",
       "process"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/onepole"
+    "path": "docs/reference/audio-processing/onepole"
   },
   {
     "title": "`onsetdetection`",
@@ -1053,7 +1053,7 @@
       "mode",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/onsetdetection"
+    "path": "docs/reference/audio-analysis/onsetdetection"
   },
   {
     "title": "`onsets`",
@@ -1065,7 +1065,7 @@
       "alpha",
       "delay"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/onsets"
+    "path": "docs/reference/audio-analysis/onsets"
   },
   {
     "title": "`overdrive`",
@@ -1077,7 +1077,7 @@
       "llll",
       "process"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/overdrive"
+    "path": "docs/reference/audio-processing/overdrive"
   },
   {
     "title": "`panning`",
@@ -1089,7 +1089,7 @@
       "range",
       "position"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/panning"
+    "path": "docs/reference/audio-processing/panning"
   },
   {
     "title": "`parsepath`",
@@ -1101,7 +1101,7 @@
       "parsepath",
       "symbol"
     ],
-    "path": "/bellplay/docs/reference/utilities/parsepath"
+    "path": "docs/reference/utilities/parsepath"
   },
   {
     "title": "`paulfreeze`",
@@ -1113,7 +1113,7 @@
       "paulfreeze",
       "timeunit"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/paulfreeze"
+    "path": "docs/reference/audio-processing/paulfreeze"
   },
   {
     "title": "`paulstretch`",
@@ -1125,7 +1125,7 @@
       "milliseconds",
       "difference"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/paulstretch"
+    "path": "docs/reference/audio-processing/paulstretch"
   },
   {
     "title": "`pcdiff`",
@@ -1137,7 +1137,7 @@
       "b",
       "mod"
     ],
-    "path": "/bellplay/docs/reference/utilities/pcdiff"
+    "path": "docs/reference/utilities/pcdiff"
   },
   {
     "title": "`phasor`",
@@ -1149,7 +1149,7 @@
       "phase",
       "phasor"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/phasor"
+    "path": "docs/reference/audio-generation/phasor"
   },
   {
     "title": "`pitchdiff`",
@@ -1161,7 +1161,7 @@
       "target",
       "midicents"
     ],
-    "path": "/bellplay/docs/reference/utilities/pitchdiff"
+    "path": "docs/reference/utilities/pitchdiff"
   },
   {
     "title": "`pitchmelodia`",
@@ -1173,7 +1173,7 @@
       "polyphonic",
       "allowed"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/pitchmelodia"
+    "path": "docs/reference/audio-analysis/pitchmelodia"
   },
   {
     "title": "`pitchyin`",
@@ -1185,7 +1185,7 @@
       "mode",
       "frequency"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/pitchyin"
+    "path": "docs/reference/audio-analysis/pitchyin"
   },
   {
     "title": "`plus`",
@@ -1197,7 +1197,7 @@
       "resampling",
       "operand"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/plus"
+    "path": "docs/reference/audio-processing/plus"
   },
   {
     "title": "`pong`",
@@ -1209,7 +1209,7 @@
       "mode",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/pong"
+    "path": "docs/reference/audio-processing/pong"
   },
   {
     "title": "`power`",
@@ -1221,7 +1221,7 @@
       "resampling",
       "operand"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/power"
+    "path": "docs/reference/audio-processing/power"
   },
   {
     "title": "`process`",
@@ -1233,7 +1233,7 @@
       "process",
       "keys"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/process"
+    "path": "docs/reference/audio-processing/process"
   },
   {
     "title": "`ptracks2buf`",
@@ -1245,7 +1245,7 @@
       "unit",
       "phases"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/ptracks2buf"
+    "path": "docs/reference/audio-generation/ptracks2buf"
   },
   {
     "title": "`query`",
@@ -1257,7 +1257,7 @@
       "usecache",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/utilities/query"
+    "path": "docs/reference/utilities/query"
   },
   {
     "title": "`querytree`",
@@ -1269,7 +1269,7 @@
       "point",
       "nearest"
     ],
-    "path": "/bellplay/docs/reference/utilities/querytree"
+    "path": "docs/reference/utilities/querytree"
   },
   {
     "title": "`r2c`",
@@ -1281,7 +1281,7 @@
       "true",
       "bell"
     ],
-    "path": "/bellplay/docs/reference/utilities/r2c"
+    "path": "docs/reference/utilities/r2c"
   },
   {
     "title": "`r2dr`",
@@ -1293,7 +1293,7 @@
       "ratios",
       "quotients"
     ],
-    "path": "/bellplay/docs/reference/utilities/r2dr"
+    "path": "docs/reference/utilities/r2dr"
   },
   {
     "title": "`r2mc`",
@@ -1305,7 +1305,7 @@
       "midicents",
       "true"
     ],
-    "path": "/bellplay/docs/reference/utilities/r2mc"
+    "path": "docs/reference/utilities/r2mc"
   },
   {
     "title": "`r2pc`",
@@ -1317,7 +1317,7 @@
       "pc",
       "class"
     ],
-    "path": "/bellplay/docs/reference/utilities/r2pc"
+    "path": "docs/reference/utilities/r2pc"
   },
   {
     "title": "`rampsmooth`",
@@ -1329,7 +1329,7 @@
       "process",
       "operation"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/rampsmooth"
+    "path": "docs/reference/audio-processing/rampsmooth"
   },
   {
     "title": "`rand`",
@@ -1341,7 +1341,7 @@
       "null",
       "random"
     ],
-    "path": "/bellplay/docs/reference/utilities/rand"
+    "path": "docs/reference/utilities/rand"
   },
   {
     "title": "`randosc`",
@@ -1353,7 +1353,7 @@
       "randosc",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/randosc"
+    "path": "docs/reference/audio-generation/randosc"
   },
   {
     "title": "`read`",
@@ -1365,7 +1365,7 @@
       "parens",
       "keep"
     ],
-    "path": "/bellplay/docs/reference/utilities/read"
+    "path": "docs/reference/utilities/read"
   },
   {
     "title": "`readfolder`",
@@ -1377,7 +1377,7 @@
       "file",
       "folder"
     ],
-    "path": "/bellplay/docs/reference/utilities/readfolder"
+    "path": "docs/reference/utilities/readfolder"
   },
   {
     "title": "`rect`",
@@ -1389,7 +1389,7 @@
       "duty",
       "rect"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/rect"
+    "path": "docs/reference/audio-generation/rect"
   },
   {
     "title": "`render`",
@@ -1401,7 +1401,7 @@
       "buffer",
       "spread"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/render"
+    "path": "docs/reference/audio-processing/render"
   },
   {
     "title": "`repeat`",
@@ -1413,7 +1413,7 @@
       "llll",
       "process"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/repeat"
+    "path": "docs/reference/audio-processing/repeat"
   },
   {
     "title": "`resample`",
@@ -1425,7 +1425,7 @@
       "samples",
       "difference"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/resample"
+    "path": "docs/reference/audio-processing/resample"
   },
   {
     "title": "`retune`",
@@ -1437,7 +1437,7 @@
       "retune",
       "amount"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/retune"
+    "path": "docs/reference/audio-processing/retune"
   },
   {
     "title": "`revbpf`",
@@ -1449,7 +1449,7 @@
       "function",
       "revbpf"
     ],
-    "path": "/bellplay/docs/reference/utilities/revbpf"
+    "path": "docs/reference/utilities/revbpf"
   },
   {
     "title": "`reverse`",
@@ -1461,7 +1461,7 @@
       "operation",
       "true"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/reverse"
+    "path": "docs/reference/audio-processing/reverse"
   },
   {
     "title": "`rhythm`",
@@ -1473,7 +1473,7 @@
       "bell",
       "maxtempo"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/rhythm"
+    "path": "docs/reference/audio-analysis/rhythm"
   },
   {
     "title": "`rolloff`",
@@ -1485,7 +1485,7 @@
       "bell",
       "cutoff"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/rolloff"
+    "path": "docs/reference/audio-analysis/rolloff"
   },
   {
     "title": "`rounding`",
@@ -1497,7 +1497,7 @@
       "llll",
       "process"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/rounding"
+    "path": "docs/reference/audio-processing/rounding"
   },
   {
     "title": "`rubberband`",
@@ -1509,7 +1509,7 @@
       "rubberband",
       "milliseconds"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/rubberband"
+    "path": "docs/reference/audio-processing/rubberband"
   },
   {
     "title": "`samplebpf`",
@@ -1521,7 +1521,7 @@
       "samplebpf",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/utilities/samplebpf"
+    "path": "docs/reference/utilities/samplebpf"
   },
   {
     "title": "`samplelist`",
@@ -1533,7 +1533,7 @@
       "x",
       "interpolated"
     ],
-    "path": "/bellplay/docs/reference/utilities/samplelist"
+    "path": "docs/reference/utilities/samplelist"
   },
   {
     "title": "`samps2buf`",
@@ -1545,7 +1545,7 @@
       "sr",
       "samples"
     ],
-    "path": "/bellplay/docs/reference/utilities/samps2buf"
+    "path": "docs/reference/utilities/samps2buf"
   },
   {
     "title": "`saw`",
@@ -1557,7 +1557,7 @@
       "saw",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/saw"
+    "path": "docs/reference/audio-generation/saw"
   },
   {
     "title": "`scale`",
@@ -1569,7 +1569,7 @@
       "scale",
       "output"
     ],
-    "path": "/bellplay/docs/reference/utilities/scale"
+    "path": "docs/reference/utilities/scale"
   },
   {
     "title": "`scaling`",
@@ -1581,7 +1581,7 @@
       "inmin",
       "inmax"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/scaling"
+    "path": "docs/reference/audio-processing/scaling"
   },
   {
     "title": "`scoreconfig`",
@@ -1593,7 +1593,7 @@
       "voice",
       "clefs"
     ],
-    "path": "/bellplay/docs/reference/utilities/scoreconfig"
+    "path": "docs/reference/utilities/scoreconfig"
   },
   {
     "title": "`scrub`",
@@ -1605,7 +1605,7 @@
       "duration",
       "envelope"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/scrub"
+    "path": "docs/reference/audio-processing/scrub"
   },
   {
     "title": "`seq2markov`",
@@ -1617,7 +1617,7 @@
       "data",
       "order"
     ],
-    "path": "/bellplay/docs/reference/utilities/seq2markov"
+    "path": "docs/reference/utilities/seq2markov"
   },
   {
     "title": "`setcorpus`",
@@ -1629,7 +1629,7 @@
       "symbol",
       "required"
     ],
-    "path": "/bellplay/docs/reference/utilities/setcorpus"
+    "path": "docs/reference/utilities/setcorpus"
   },
   {
     "title": "`setkey`",
@@ -1641,7 +1641,7 @@
       "mode",
       "values"
     ],
-    "path": "/bellplay/docs/reference/utilities/setkey"
+    "path": "docs/reference/utilities/setkey"
   },
   {
     "title": "`setseed`",
@@ -1653,7 +1653,7 @@
       "required",
       "random"
     ],
-    "path": "/bellplay/docs/reference/utilities/setseed"
+    "path": "docs/reference/utilities/setseed"
   },
   {
     "title": "`sortbykeys`",
@@ -1665,7 +1665,7 @@
       "list",
       "sortbykeys"
     ],
-    "path": "/bellplay/docs/reference/utilities/sortbykeys"
+    "path": "docs/reference/utilities/sortbykeys"
   },
   {
     "title": "`soundtouch`",
@@ -1677,7 +1677,7 @@
       "pitchshift",
       "quick"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/soundtouch"
+    "path": "docs/reference/audio-processing/soundtouch"
   },
   {
     "title": "`spectralcentroid`",
@@ -1689,7 +1689,7 @@
       "bell",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/spectralcentroid"
+    "path": "docs/reference/audio-analysis/spectralcentroid"
   },
   {
     "title": "`spectralflatness`",
@@ -1701,7 +1701,7 @@
       "bell",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/spectralflatness"
+    "path": "docs/reference/audio-analysis/spectralflatness"
   },
   {
     "title": "`spectralkurtosis`",
@@ -1713,7 +1713,7 @@
       "llll",
       "descriptor"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/spectralkurtosis"
+    "path": "docs/reference/audio-analysis/spectralkurtosis"
   },
   {
     "title": "`spectralskewness`",
@@ -1725,7 +1725,7 @@
       "bell",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/spectralskewness"
+    "path": "docs/reference/audio-analysis/spectralskewness"
   },
   {
     "title": "`spectralspread`",
@@ -1737,7 +1737,7 @@
       "bell",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/spectralspread"
+    "path": "docs/reference/audio-analysis/spectralspread"
   },
   {
     "title": "`spectralvariance`",
@@ -1749,7 +1749,7 @@
       "bell",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/spectralvariance"
+    "path": "docs/reference/audio-analysis/spectralvariance"
   },
   {
     "title": "`spectrum`",
@@ -1761,7 +1761,7 @@
       "magnitude",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/spectrum"
+    "path": "docs/reference/audio-analysis/spectrum"
   },
   {
     "title": "`splitbuf`",
@@ -1773,7 +1773,7 @@
       "llll",
       "segment"
     ],
-    "path": "/bellplay/docs/reference/utilities/splitbuf"
+    "path": "docs/reference/utilities/splitbuf"
   },
   {
     "title": "`squareroot`",
@@ -1785,7 +1785,7 @@
       "operation",
       "true"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/squareroot"
+    "path": "docs/reference/audio-processing/squareroot"
   },
   {
     "title": "`strongdecay`",
@@ -1797,7 +1797,7 @@
       "mode",
       "decay"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/strongdecay"
+    "path": "docs/reference/audio-analysis/strongdecay"
   },
   {
     "title": "`strongpeak`",
@@ -1809,7 +1809,7 @@
       "buffer",
       "ratio"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/strongpeak"
+    "path": "docs/reference/audio-analysis/strongpeak"
   },
   {
     "title": "`symlen`",
@@ -1821,7 +1821,7 @@
       "required",
       "int"
     ],
-    "path": "/bellplay/docs/reference/utilities/symlen"
+    "path": "docs/reference/utilities/symlen"
   },
   {
     "title": "`teeth`",
@@ -1833,7 +1833,7 @@
       "gain",
       "either"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/teeth"
+    "path": "docs/reference/audio-processing/teeth"
   },
   {
     "title": "`temporalcentroid`",
@@ -1845,7 +1845,7 @@
       "descriptor",
       "temporal"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/temporalcentroid"
+    "path": "docs/reference/audio-analysis/temporalcentroid"
   },
   {
     "title": "`temporalflatness`",
@@ -1857,7 +1857,7 @@
       "llll",
       "descriptor"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/temporalflatness"
+    "path": "docs/reference/audio-analysis/temporalflatness"
   },
   {
     "title": "`temporalkurtosis`",
@@ -1869,7 +1869,7 @@
       "descriptor",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/temporalkurtosis"
+    "path": "docs/reference/audio-analysis/temporalkurtosis"
   },
   {
     "title": "`temporalskewness`",
@@ -1881,7 +1881,7 @@
       "descriptor",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/temporalskewness"
+    "path": "docs/reference/audio-analysis/temporalskewness"
   },
   {
     "title": "`temporalspread`",
@@ -1893,7 +1893,7 @@
       "descriptor",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/temporalspread"
+    "path": "docs/reference/audio-analysis/temporalspread"
   },
   {
     "title": "`temporalvariance`",
@@ -1905,7 +1905,7 @@
       "descriptor",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/temporalvariance"
+    "path": "docs/reference/audio-analysis/temporalvariance"
   },
   {
     "title": "`thispath`",
@@ -1917,7 +1917,7 @@
       "thispath",
       "current"
     ],
-    "path": "/bellplay/docs/reference/utilities/thispath"
+    "path": "docs/reference/utilities/thispath"
   },
   {
     "title": "`timesquash`",
@@ -1929,7 +1929,7 @@
       "phasehandling",
       "time"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/timesquash"
+    "path": "docs/reference/audio-processing/timesquash"
   },
   {
     "title": "`todiffs`",
@@ -1941,7 +1941,7 @@
       "operation",
       "buffer"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/todiffs"
+    "path": "docs/reference/audio-processing/todiffs"
   },
   {
     "title": "`tonalkey`",
@@ -1953,7 +1953,7 @@
       "tonalkey",
       "mode"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/tonalkey"
+    "path": "docs/reference/audio-analysis/tonalkey"
   },
   {
     "title": "`tosymbol`",
@@ -1965,7 +1965,7 @@
       "anything",
       "required"
     ],
-    "path": "/bellplay/docs/reference/utilities/tosymbol"
+    "path": "docs/reference/utilities/tosymbol"
   },
   {
     "title": "`transcribe`",
@@ -1977,7 +1977,7 @@
       "value",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/utilities/transcribe"
+    "path": "docs/reference/utilities/transcribe"
   },
   {
     "title": "`tri`",
@@ -1989,7 +1989,7 @@
       "duty",
       "tri"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/tri"
+    "path": "docs/reference/audio-generation/tri"
   },
   {
     "title": "`triangle`",
@@ -2001,7 +2001,7 @@
       "phase",
       "offset"
     ],
-    "path": "/bellplay/docs/reference/audio-generation/triangle"
+    "path": "docs/reference/audio-generation/triangle"
   },
   {
     "title": "`trim`",
@@ -2013,7 +2013,7 @@
       "end",
       "ampunit"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/trim"
+    "path": "docs/reference/audio-processing/trim"
   },
   {
     "title": "`urn`",
@@ -2025,7 +2025,7 @@
       "unique",
       "random"
     ],
-    "path": "/bellplay/docs/reference/utilities/urn"
+    "path": "docs/reference/utilities/urn"
   },
   {
     "title": "`wavesetrepeat`",
@@ -2037,7 +2037,7 @@
       "times",
       "span"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/wavesetrepeat"
+    "path": "docs/reference/audio-processing/wavesetrepeat"
   },
   {
     "title": "`wavesetshuffle`",
@@ -2049,7 +2049,7 @@
       "span",
       "llll"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/wavesetshuffle"
+    "path": "docs/reference/audio-processing/wavesetshuffle"
   },
   {
     "title": "`waveshape`",
@@ -2061,7 +2061,7 @@
       "duration",
       "envelope"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/waveshape"
+    "path": "docs/reference/audio-processing/waveshape"
   },
   {
     "title": "`window`",
@@ -2073,7 +2073,7 @@
       "winnormalized",
       "zeropadding"
     ],
-    "path": "/bellplay/docs/reference/audio-processing/window"
+    "path": "docs/reference/audio-processing/window"
   },
   {
     "title": "`write`",
@@ -2085,7 +2085,7 @@
       "required",
       "write"
     ],
-    "path": "/bellplay/docs/reference/utilities/write"
+    "path": "docs/reference/utilities/write"
   },
   {
     "title": "`x2dx`",
@@ -2097,7 +2097,7 @@
       "adjacent",
       "elements"
     ],
-    "path": "/bellplay/docs/reference/utilities/x2dx"
+    "path": "docs/reference/utilities/x2dx"
   },
   {
     "title": "`xchoose`",
@@ -2109,7 +2109,7 @@
       "xchoose",
       "required"
     ],
-    "path": "/bellplay/docs/reference/utilities/xchoose"
+    "path": "docs/reference/utilities/xchoose"
   },
   {
     "title": "`xrand`",
@@ -2121,7 +2121,7 @@
       "null",
       "float"
     ],
-    "path": "/bellplay/docs/reference/utilities/xrand"
+    "path": "docs/reference/utilities/xrand"
   },
   {
     "title": "`xrandom`",
@@ -2133,7 +2133,7 @@
       "xrandom",
       "null"
     ],
-    "path": "/bellplay/docs/reference/utilities/xrandom"
+    "path": "docs/reference/utilities/xrandom"
   },
   {
     "title": "`xscramble`",
@@ -2145,7 +2145,7 @@
       "list",
       "true"
     ],
-    "path": "/bellplay/docs/reference/utilities/xscramble"
+    "path": "docs/reference/utilities/xscramble"
   },
   {
     "title": "`zerocrossingrate`",
@@ -2157,7 +2157,7 @@
       "buffer",
       "zero"
     ],
-    "path": "/bellplay/docs/reference/audio-analysis/zerocrossingrate"
+    "path": "docs/reference/audio-analysis/zerocrossingrate"
   },
   {
     "title": "Acknowledgments",
@@ -2169,7 +2169,7 @@
       "several",
       "key"
     ],
-    "path": "/bellplay/docs/about/acknowledgments"
+    "path": "docs/about/acknowledgments"
   },
   {
     "title": "Audio Control",
@@ -2181,7 +2181,7 @@
       "modulator",
       "audio"
     ],
-    "path": "/bellplay/docs/learning/tutorials/audiocontrol"
+    "path": "docs/learning/tutorials/audiocontrol"
   },
   {
     "title": "Audio Corpora",
@@ -2193,7 +2193,7 @@
       "pitch",
       "buffer"
     ],
-    "path": "/bellplay/docs/learning/tutorials/corpus"
+    "path": "docs/learning/tutorials/corpus"
   },
   {
     "title": "Audio Descriptor Modes",
@@ -2205,7 +2205,7 @@
       "time",
       "series"
     ],
-    "path": "/bellplay/docs/learning/tutorials/analysismodes"
+    "path": "docs/learning/tutorials/analysismodes"
   },
   {
     "title": "Audio Descriptors",
@@ -2217,7 +2217,7 @@
       "descriptors",
       "onset"
     ],
-    "path": "/bellplay/docs/learning/tutorials/analysis"
+    "path": "docs/learning/tutorials/analysis"
   },
   {
     "title": "Audio Mosaicing",
@@ -2229,7 +2229,7 @@
       "analysis",
       "target"
     ],
-    "path": "/bellplay/docs/learning/examples/audiomosaic"
+    "path": "docs/learning/examples/audiomosaic"
   },
   {
     "title": "Audio Resynthesis",
@@ -2241,7 +2241,7 @@
       "audio",
       "pitch"
     ],
-    "path": "/bellplay/docs/learning/examples/resynthesis"
+    "path": "docs/learning/examples/resynthesis"
   },
   {
     "title": "Automation",
@@ -2253,7 +2253,7 @@
       "frequency",
       "wave"
     ],
-    "path": "/bellplay/docs/learning/tutorials/automation"
+    "path": "docs/learning/tutorials/automation"
   },
   {
     "title": "Basic Granulation",
@@ -2265,7 +2265,7 @@
       "duration",
       "graindur"
     ],
-    "path": "/bellplay/docs/learning/examples/basicgranulation"
+    "path": "docs/learning/examples/basicgranulation"
   },
   {
     "title": "Basic Sampling",
@@ -2277,7 +2277,7 @@
       "used",
       "keymap"
     ],
-    "path": "/bellplay/docs/learning/tutorials/sampling"
+    "path": "docs/learning/tutorials/sampling"
   },
   {
     "title": "Basic Workflow",
@@ -2289,7 +2289,7 @@
       "buffers",
       "rendering"
     ],
-    "path": "/bellplay/docs/learning/tutorials/basicworkflow"
+    "path": "docs/learning/tutorials/basicworkflow"
   },
   {
     "title": "Buffer Keys",
@@ -2301,7 +2301,7 @@
       "keys",
       "print"
     ],
-    "path": "/bellplay/docs/learning/tutorials/bufferkeys"
+    "path": "docs/learning/tutorials/bufferkeys"
   },
   {
     "title": "Buffer Processing",
@@ -2313,7 +2313,7 @@
       "file",
       "processing"
     ],
-    "path": "/bellplay/docs/learning/tutorials/bufferprocessing"
+    "path": "docs/learning/tutorials/bufferprocessing"
   },
   {
     "title": "Caching Data",
@@ -2325,7 +2325,7 @@
       "time",
       "buffers"
     ],
-    "path": "/bellplay/docs/learning/tutorials/caching"
+    "path": "docs/learning/tutorials/caching"
   },
   {
     "title": "Creating Audio Corpora",
@@ -2337,7 +2337,7 @@
       "create",
       "corpuspath"
     ],
-    "path": "/bellplay/docs/learning/tutorials/buildcorpus"
+    "path": "docs/learning/tutorials/buildcorpus"
   },
   {
     "title": "credits",
@@ -2349,7 +2349,7 @@
       "felipe",
       "develop"
     ],
-    "path": "/bellplay/docs/about/credits"
+    "path": "docs/about/credits"
   },
   {
     "title": "Envelope-aware Temporal Alignment",
@@ -2361,7 +2361,7 @@
       "maxpeaktime",
       "onset"
     ],
-    "path": "/bellplay/docs/learning/examples/temporalalignment"
+    "path": "docs/learning/examples/temporalalignment"
   },
   {
     "title": "Exporting",
@@ -2373,7 +2373,7 @@
       "exporting",
       "midi"
     ],
-    "path": "/bellplay/docs/learning/tutorials/export"
+    "path": "docs/learning/tutorials/export"
   },
   {
     "title": "Feature-driven Sampling",
@@ -2385,7 +2385,7 @@
       "buffer",
       "tree"
     ],
-    "path": "/bellplay/docs/learning/tutorials/kdtree"
+    "path": "docs/learning/tutorials/kdtree"
   },
   {
     "title": "Feedback Synthesis",
@@ -2397,7 +2397,7 @@
       "rand",
       "range"
     ],
-    "path": "/bellplay/docs/learning/examples/feedbacksynth"
+    "path": "docs/learning/examples/feedbacksynth"
   },
   {
     "title": "Frequently Asked Questions",
@@ -2409,7 +2409,7 @@
       "bell",
       "need"
     ],
-    "path": "/bellplay/docs/faq"
+    "path": "docs/faq"
   },
   {
     "title": "Generating Keymaps",
@@ -2421,7 +2421,7 @@
       "midi",
       "retrieve"
     ],
-    "path": "/bellplay/docs/learning/examples/keymaps"
+    "path": "docs/learning/examples/keymaps"
   },
   {
     "title": "Glissando texture",
@@ -2433,7 +2433,7 @@
       "set",
       "texture"
     ],
-    "path": "/bellplay/docs/learning/examples/gliss"
+    "path": "docs/learning/examples/gliss"
   },
   {
     "title": "Importing Audio",
@@ -2445,7 +2445,7 @@
       "relative",
       "absolute"
     ],
-    "path": "/bellplay/docs/learning/tutorials/importingaudio"
+    "path": "docs/learning/tutorials/importingaudio"
   },
   {
     "title": "Importing MIDI",
@@ -2457,7 +2457,7 @@
       "onset",
       "event"
     ],
-    "path": "/bellplay/docs/learning/tutorials/importingmidi"
+    "path": "docs/learning/tutorials/importingmidi"
   },
   {
     "title": "Inspecting Buffers",
@@ -2469,7 +2469,7 @@
       "inspect",
       "label"
     ],
-    "path": "/bellplay/docs/learning/tutorials/bufferinspector"
+    "path": "docs/learning/tutorials/bufferinspector"
   },
   {
     "title": "Installation",
@@ -2481,7 +2481,7 @@
       "windows",
       "editor"
     ],
-    "path": "/bellplay/docs/installation"
+    "path": "docs/installation"
   },
   {
     "title": "Introduction",
@@ -2493,7 +2493,7 @@
       "rendering",
       "introduction"
     ],
-    "path": "/bellplay/docs/intro"
+    "path": "docs/intro"
   },
   {
     "title": "License",
@@ -2505,7 +2505,7 @@
       "gnu",
       "general"
     ],
-    "path": "/bellplay/docs/about/license"
+    "path": "docs/about/license"
   },
   {
     "title": "Markers",
@@ -2517,7 +2517,7 @@
       "harmonics",
       "generate"
     ],
-    "path": "/bellplay/docs/learning/tutorials/markers"
+    "path": "docs/learning/tutorials/markers"
   },
   {
     "title": "MIDI Retuning",
@@ -2529,7 +2529,7 @@
       "onset",
       "duration"
     ],
-    "path": "/bellplay/docs/learning/examples/midiretuning"
+    "path": "docs/learning/examples/midiretuning"
   },
   {
     "title": "More Audio Features",
@@ -2541,7 +2541,7 @@
       "grain",
       "offset"
     ],
-    "path": "/bellplay/docs/learning/tutorials/features"
+    "path": "docs/learning/tutorials/features"
   },
   {
     "title": "Multi-rendering",
@@ -2553,7 +2553,7 @@
       "gain",
       "buffer"
     ],
-    "path": "/bellplay/docs/learning/tutorials/multirendering"
+    "path": "docs/learning/tutorials/multirendering"
   },
   {
     "title": "Post-rendering Processing",
@@ -2565,7 +2565,7 @@
       "file",
       "pan"
     ],
-    "path": "/bellplay/docs/learning/tutorials/postprocessing"
+    "path": "docs/learning/tutorials/postprocessing"
   },
   {
     "title": "Rendering",
@@ -2577,7 +2577,7 @@
       "buffer",
       "sampling"
     ],
-    "path": "/bellplay/docs/learning/tutorials/rendering"
+    "path": "docs/learning/tutorials/rendering"
   },
   {
     "title": "Score Formatting and Appearance",
@@ -2589,7 +2589,7 @@
       "different",
       "oscillator"
     ],
-    "path": "/bellplay/docs/learning/tutorials/scoreconfig"
+    "path": "docs/learning/tutorials/scoreconfig"
   },
   {
     "title": "Support",
@@ -2601,7 +2601,7 @@
       "development",
       "make"
     ],
-    "path": "/bellplay/docs/about/support"
+    "path": "docs/about/support"
   },
   {
     "title": "Temporal Quantization",
@@ -2613,7 +2613,7 @@
       "markers",
       "segment"
     ],
-    "path": "/bellplay/docs/learning/examples/temporalquantization"
+    "path": "docs/learning/examples/temporalquantization"
   },
   {
     "title": "Transcription",
@@ -2625,7 +2625,7 @@
       "buffer",
       "buffers"
     ],
-    "path": "/bellplay/docs/learning/tutorials/transcription"
+    "path": "docs/learning/tutorials/transcription"
   },
   {
     "title": "Variable Declarations",
@@ -2637,7 +2637,7 @@
       "name",
       "bell"
     ],
-    "path": "/bellplay/docs/learning/tutorials/variables"
+    "path": "docs/learning/tutorials/variables"
   },
   {
     "title": "Waveshaping Buffers",
@@ -2649,6 +2649,6 @@
       "using",
       "bpf"
     ],
-    "path": "/bellplay/docs/learning/examples/waveshaping"
+    "path": "docs/learning/examples/waveshaping"
   }
 ]
