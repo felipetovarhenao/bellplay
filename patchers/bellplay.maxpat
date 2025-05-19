@@ -24,6 +24,18 @@
 		"title" : "bellplay~ | algorithmic audio in bell",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-75",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1163.0, 161.0, 133.0, 23.0 ],
+					"text" : "r open-bellplay-settings"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-78",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -69,7 +81,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 0,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1052.0, 394.0, 69.0, 23.0 ],
+					"patching_rect" : [ 1116.0, 43.0, 69.0, 23.0 ],
 					"text" : "bp.sandbox"
 				}
 
@@ -952,7 +964,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1117.0, 279.0, 54.0, 23.0 ],
+					"patching_rect" : [ 1117.0, 246.0, 54.0, 23.0 ],
 					"text" : "pcontrol"
 				}
 
@@ -964,7 +976,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1117.0, 239.0, 35.0, 23.0 ],
+					"patching_rect" : [ 1117.0, 206.0, 35.0, 23.0 ],
 					"text" : "open"
 				}
 
@@ -975,30 +987,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1117.0, 318.0, 50.0, 23.0 ],
+					"patching_rect" : [ 1117.0, 285.0, 50.0, 23.0 ],
 					"text" : "bp.docs"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"align" : 2,
-					"bgcolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 0.0 ],
-					"fontsize" : 11.0,
-					"id" : "obj-92",
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 1117.0, 204.0, 100.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 652.0, 95.0, 150.82143223285675, 18.000000268220901 ],
-					"text" : "open documentation",
-					"textjustification" : 2,
-					"textoncolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
-					"textovercolor" : [ 0.56078431372549, 0.709803921568627, 0.843137254901961, 1.0 ],
-					"usetextovercolor" : 1
 				}
 
 			}
@@ -2102,7 +2092,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-92", 0 ],
+					"destination" : [ "obj-88", 0 ],
 					"source" : [ "obj-60", 0 ]
 				}
 
@@ -2183,6 +2173,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-88", 0 ],
+					"source" : [ "obj-75", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-78", 0 ],
 					"source" : [ "obj-77", 0 ]
 				}
@@ -2213,13 +2210,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-28", 0 ],
 					"source" : [ "obj-9", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-88", 0 ],
-					"source" : [ "obj-92", 0 ]
 				}
 
 			}
@@ -2472,6 +2462,13 @@
 , 			{
 				"name" : "bach.write.mxo",
 				"type" : "iLaX"
+			}
+, 			{
+				"name" : "book-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "bp.bufferinspector.maxpat",
@@ -3184,6 +3181,13 @@
 				"bootpath" : "~/Documents/bellplay/media",
 				"patcherrelativepath" : "../media",
 				"type" : "PNG",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "settings-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
 				"implicit" : 1
 			}
 , 			{

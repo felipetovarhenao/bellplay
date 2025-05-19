@@ -18,6 +18,78 @@
 		"style" : "bellplay-gui-1",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-225",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 1324.242359519004822, 142.424235463142395, 134.0, 23.0 ],
+					"text" : "s open-bellplay-settings"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-83",
+					"linecount" : 2,
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1005.050455927848816, 103.030297994613647, 270.0, 37.0 ],
+					"text" : ";\rmax launchbrowser http://localhost:3000/bellplay"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "text", "settings", "icon", "settings-icon.svg" ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-32",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "bp.utils.button.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "", "", "int" ],
+					"patching_rect" : [ 1324.242359519004822, 103.030297994613647, 123.913044512271881, 22.463768303394318 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 149.0, 1.043478, 143.043481000000014, 21.913043999999999 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "text", "about", "icon", "book-icon.svg" ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-31",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "bp.utils.button.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "", "", "int" ],
+					"patching_rect" : [ 1005.050455927848816, 55.555552840232849, 143.000001065433025, 22.111111275851727 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 4.0, 1.0, 143.0, 22.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"args" : [ "text", "play", "icon", "play-icon.svg", "texton", "stop", "iconon", "play-icon.svg", "active", 0, "mode", 1, "neutral", 1 ],
 					"bgmode" : 0,
 					"border" : 0,
@@ -35,7 +107,7 @@
 					"outlettype" : [ "", "", "int" ],
 					"patching_rect" : [ 936.0, 690.5797159075737, 143.000001065433025, 22.111111275851727 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 149.0, 71.0, 143.0, 22.0 ],
+					"presentation_rect" : [ 149.0, 73.0, 143.0, 22.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -59,7 +131,7 @@
 					"outlettype" : [ "", "", "int" ],
 					"patching_rect" : [ 1812.0, 1908.444444362074137, 143.000001065433025, 22.111111275851727 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 149.0, 47.0, 143.0, 22.0 ],
+					"presentation_rect" : [ 149.0, 49.0, 143.0, 22.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -83,7 +155,7 @@
 					"outlettype" : [ "", "", "int" ],
 					"patching_rect" : [ 1168.840589463710785, 2373.188425600528717, 123.913044512271881, 22.463768303394318 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 149.043481000000014, 23.043479000000001, 143.043481000000014, 21.913043999999999 ],
+					"presentation_rect" : [ 149.0, 25.0, 143.043481000000014, 21.913043999999999 ],
 					"viewvisibility" : 1
 				}
 
@@ -107,7 +179,7 @@
 					"outlettype" : [ "", "", "int" ],
 					"patching_rect" : [ 197.727270841598511, 539.772722125053406, 121.022726118564606, 22.727277874946594 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 3.75, 71.0, 143.0, 22.0 ],
+					"presentation_rect" : [ 3.75, 73.0, 143.0, 22.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -131,7 +203,7 @@
 					"outlettype" : [ "", "", "int" ],
 					"patching_rect" : [ 504.0, 11.944444362074137, 143.000001065433025, 22.111111275851727 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 4.0, 23.0, 143.0, 22.0 ],
+					"presentation_rect" : [ 4.0, 25.0, 143.0, 22.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -155,7 +227,7 @@
 					"outlettype" : [ "", "", "int" ],
 					"patching_rect" : [ 13.0, 38.444444362074137, 143.000001065433025, 22.111111275851727 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 4.0, 47.0, 143.0, 22.0 ],
+					"presentation_rect" : [ 4.0, 49.0, 143.0, 22.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -697,7 +769,7 @@
 					"outlettype" : [ "", "float", "float", "int", "" ],
 					"patching_rect" : [ 1305.5, 1033.0, 940.0, 181.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 2.0, 92.0, 758.0, 398.0 ],
+					"presentation_rect" : [ 1.725490257143974, 94.000003326684237, 758.0, 398.0 ],
 					"varname" : "rollviewer",
 					"viewvisibility" : 1
 				}
@@ -1942,14 +2014,14 @@
 				"box" : 				{
 					"bgcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 0.0 ],
 					"fontname" : "Lato",
-					"fontsize" : 10.000000596046457,
+					"fontsize" : 9.192412769653194,
 					"id" : "obj-131",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1992.5, 1993.0, 133.0, 18.0 ],
+					"patching_rect" : [ 1992.5, 1993.0, 127.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 294.0, 75.0, 463.411766432225704, 18.0 ],
+					"presentation_rect" : [ 294.000008761882782, 77.000002294778824, 462.750013791024685, 18.0 ],
 					"textcolor" : [ 0.501960784313725, 0.501960784313725, 0.501960784313725, 1.0 ],
 					"textjustification" : 2
 				}
@@ -7847,23 +7919,6 @@
 			}
 , 			{
 				"box" : 				{
-					"fontface" : 2,
-					"fontsize" : 11.0,
-					"id" : "obj-32",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 13.0, 13.0, 466.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 4.0, 1.0, 673.0, 20.0 ],
-					"style" : "bellplay-gui",
-					"text" : "Load a .bell file to run your script. The loaded script will automatically run every time it's saved.",
-					"textcolor" : [ 0.556862745098039, 0.556862745098039, 0.556862745098039, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"comment" : "",
 					"id" : "obj-10",
 					"index" : 0,
@@ -8371,7 +8426,7 @@
 					"outlettype" : [ "float", "float", "float", "float", "list", "" ],
 					"patching_rect" : [ 1509.5, 2264.0, 511.0, 97.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 294.000008761882782, 22.666667342185974, 463.333347141742706, 53.333334922790527 ],
+					"presentation_rect" : [ 294.000005476176739, 1.043478280305862, 462.608704268932343, 77.130436219274998 ],
 					"selectioncolor" : [ 0.964705882352941, 0.964705882352941, 0.964705882352941, 0.0 ],
 					"style" : "bellplay-gui",
 					"vticks" : 0,
@@ -8382,14 +8437,14 @@
 , 			{
 				"box" : 				{
 					"bgcolor" : [ 0.870588235294118, 0.870588235294118, 0.870588235294118, 1.0 ],
-					"fontsize" : 10.000000596046457,
+					"fontsize" : 9.192412769653194,
 					"id" : "obj-1",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 382.285714285714278, 460.0, 160.0, 18.0 ],
+					"patching_rect" : [ 382.285714285714278, 460.0, 153.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 294.0, 75.0, 463.333347141742706, 18.0 ],
+					"presentation_rect" : [ 294.000008761882782, 77.000002294778824, 462.666680455207825, 18.0 ],
 					"style" : "bellplay-gui",
 					"text" : " ",
 					"textcolor" : [ 0.349019607843137, 0.349019607843137, 0.349019607843137, 1.0 ],
@@ -9541,6 +9596,20 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-83", 0 ],
+					"source" : [ "obj-31", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-225", 0 ],
+					"source" : [ "obj-32", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-74", 1 ],
 					"source" : [ "obj-33", 0 ]
 				}
@@ -10348,6 +10417,13 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "book-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bp.bufferinspector.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
@@ -10908,6 +10984,13 @@
 			}
 , 			{
 				"name" : "save-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "settings-icon.svg",
 				"bootpath" : "~/Documents/bellplay/media",
 				"patcherrelativepath" : "../media",
 				"type" : "svg",
