@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 796.8">
+  <defs>
+    <clipPath id="clippath">
+      <rect y="0" width="800" height="796.8" rx="149.67" ry="149.67" style="fill: none;"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect y="0" width="800" height="796.8" style="fill: none;"/>
+    </clipPath>
+  </defs>
+  <g style="clip-path: url(#clippath);">
+    <g style="clip-path: url(#clippath-1);">
+      <rect y="0" width="800" height="796.8" style="fill: #fff;"/>
+      <path d="M383.39,806.8h-.01v.74h-180.08v-10.74C203.29,685.15,112.1,594.32,0,594.32h-10.04V-10.74h180.08v465.97c61.97,30.59,114.49,77.27,152.17,135.32,37.93,58.45,58.9,125.83,60.98,195.5h.19v20.74Z" style="fill: #262626;"/>
+      <path d="M810.06-10.37h-.01v-.74h-180.08V-.37c0,111.65-91.2,202.48-203.29,202.48h-10.04v605.06h180.08v-465.97c61.97-30.59,114.49-77.27,152.17-135.32,37.93-58.45,58.9-125.83,60.98-195.5h.19V-10.37Z" style="fill: #262626;"/>
+      <path d="M364.55,596.53l18.82,33.79V-10.74h-180.08v445.95l5.01,2.89c65.51,37.75,119.54,92.53,156.25,158.43Z" style="fill: #f05657;"/>
+      <path d="M791.22,199.9l18.82-33.78v641.05h-180.08v-445.95l5.01-2.89c65.51-37.75,119.54-92.53,156.25-158.43Z" style="fill: #75cad3;"/>
+      <path d="M170.04,796.8v.78s-.05,9.96-.05,9.96H-10.04v-180.1H0c93.76,0,170.04,75.97,170.04,169.36Z" style="fill: #7babdb;"/>
+      <path d="M596.71-.37c0-.19,0-.39,0-.58l-.04-10.16h-180.03v180.1h10.04c93.76,0,170.04-75.97,170.04-169.36Z" style="fill: #fdba57;"/>
+    </g>
+  </g>
+</svg>

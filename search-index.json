@@ -1,0 +1,2654 @@
+[
+  {
+    "title": "`absolute`",
+    "blurb": "",
+    "keywords": [
+      "absolute",
+      "llll",
+      "process",
+      "operation",
+      "true"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/absolute"
+  },
+  {
+    "title": "`addmarker`",
+    "blurb": "",
+    "keywords": [
+      "marker",
+      "role",
+      "names",
+      "onset",
+      "null"
+    ],
+    "path": "/bellplay/docs/reference/utilities/addmarker"
+  },
+  {
+    "title": "`analyze`",
+    "blurb": "",
+    "keywords": [
+      "int",
+      "analysis",
+      "difference",
+      "spectral",
+      "frequency"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/analyze"
+  },
+  {
+    "title": "`argsort`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "function",
+      "sorted",
+      "argsort",
+      "x"
+    ],
+    "path": "/bellplay/docs/reference/utilities/argsort"
+  },
+  {
+    "title": "`atodb`",
+    "blurb": "",
+    "keywords": [
+      "atodb",
+      "required",
+      "linear",
+      "amplitude",
+      "decibels"
+    ],
+    "path": "/bellplay/docs/reference/utilities/atodb"
+  },
+  {
+    "title": "`autoscale`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "normalization",
+      "mode",
+      "autoscale",
+      "x"
+    ],
+    "path": "/bellplay/docs/reference/utilities/autoscale"
+  },
+  {
+    "title": "`barkbands`",
+    "blurb": "",
+    "keywords": [
+      "barkbands",
+      "mode",
+      "int",
+      "bell",
+      "numberbands"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/barkbands"
+  },
+  {
+    "title": "`beatsloudness`",
+    "blurb": "",
+    "keywords": [
+      "beatsloudness",
+      "list",
+      "beats",
+      "mode",
+      "audio"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/beatsloudness"
+  },
+  {
+    "title": "`bfcc`",
+    "blurb": "",
+    "keywords": [
+      "int",
+      "bfcc",
+      "type",
+      "mode",
+      "liftering"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/bfcc"
+  },
+  {
+    "title": "`biquad`",
+    "blurb": "",
+    "keywords": [
+      "biquad",
+      "type",
+      "frequency",
+      "gain",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/biquad"
+  },
+  {
+    "title": "`bpf`",
+    "blurb": "",
+    "keywords": [
+      "function",
+      "list",
+      "bpf",
+      "xfunc",
+      "null"
+    ],
+    "path": "/bellplay/docs/reference/utilities/bpf"
+  },
+  {
+    "title": "`buf2ptracks`",
+    "blurb": "",
+    "keywords": [
+      "int",
+      "buffer",
+      "samples",
+      "frequency",
+      "unit"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/buf2ptracks"
+  },
+  {
+    "title": "`buf2samps`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "llll",
+      "samples",
+      "required",
+      "true"
+    ],
+    "path": "/bellplay/docs/reference/utilities/buf2samps"
+  },
+  {
+    "title": "`buildcorpus`",
+    "blurb": "",
+    "keywords": [
+      "required",
+      "segmode",
+      "file",
+      "int",
+      "segmentation"
+    ],
+    "path": "/bellplay/docs/reference/utilities/buildcorpus"
+  },
+  {
+    "title": "`c2r`",
+    "blurb": "",
+    "keywords": [
+      "cents",
+      "required",
+      "true",
+      "bell",
+      "ratio"
+    ],
+    "path": "/bellplay/docs/reference/utilities/c2r"
+  },
+  {
+    "title": "`choose`",
+    "blurb": "",
+    "keywords": [
+      "choose",
+      "list",
+      "weights",
+      "choices",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/utilities/choose"
+  },
+  {
+    "title": "`chordsdetection`",
+    "blurb": "",
+    "keywords": [
+      "chordsdetection",
+      "mode",
+      "bell",
+      "llll",
+      "descriptor"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/chordsdetection"
+  },
+  {
+    "title": "`clicks`",
+    "blurb": "",
+    "keywords": [
+      "clicks",
+      "onsets",
+      "gains",
+      "impulse",
+      "samples"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/clicks"
+  },
+  {
+    "title": "`clip`",
+    "blurb": "",
+    "keywords": [
+      "clip",
+      "threshold",
+      "llll",
+      "process",
+      "operation"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/clip"
+  },
+  {
+    "title": "`createtree`",
+    "blurb": "",
+    "keywords": [
+      "data",
+      "llll",
+      "mode",
+      "createtree",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/utilities/createtree"
+  },
+  {
+    "title": "`crop`",
+    "blurb": "",
+    "keywords": [
+      "end",
+      "start",
+      "crop",
+      "time",
+      "timeunit"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/crop"
+  },
+  {
+    "title": "`cycle`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "frequency",
+      "duration",
+      "phase",
+      "cycle"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/cycle"
+  },
+  {
+    "title": "`dbtoa`",
+    "blurb": "",
+    "keywords": [
+      "dbtoa",
+      "db",
+      "required",
+      "decibels",
+      "linear"
+    ],
+    "path": "/bellplay/docs/reference/utilities/dbtoa"
+  },
+  {
+    "title": "`dcfilter`",
+    "blurb": "",
+    "keywords": [
+      "dcfilter",
+      "llll",
+      "process",
+      "operation",
+      "true"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/dcfilter"
+  },
+  {
+    "title": "`degrade`",
+    "blurb": "",
+    "keywords": [
+      "degrade",
+      "ratio",
+      "bits",
+      "llll",
+      "process"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/degrade"
+  },
+  {
+    "title": "`derive`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "pad",
+      "function",
+      "order",
+      "integration"
+    ],
+    "path": "/bellplay/docs/reference/utilities/derive"
+  },
+  {
+    "title": "`dissonance`",
+    "blurb": "",
+    "keywords": [
+      "dissonance",
+      "mode",
+      "buffer",
+      "bell",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/dissonance"
+  },
+  {
+    "title": "`divide`",
+    "blurb": "",
+    "keywords": [
+      "divide",
+      "buffer",
+      "int",
+      "resampling",
+      "operand"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/divide"
+  },
+  {
+    "title": "`dr2r`",
+    "blurb": "",
+    "keywords": [
+      "list",
+      "dr",
+      "required",
+      "st",
+      "ratios"
+    ],
+    "path": "/bellplay/docs/reference/utilities/dr2r"
+  },
+  {
+    "title": "`dx2x`",
+    "blurb": "",
+    "keywords": [
+      "list",
+      "starting",
+      "value",
+      "dx",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/utilities/dx2x"
+  },
+  {
+    "title": "`dynamics`",
+    "blurb": "",
+    "keywords": [
+      "ratio",
+      "dynamics",
+      "attack",
+      "release",
+      "knee"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/dynamics"
+  },
+  {
+    "title": "`effectiveduration`",
+    "blurb": "",
+    "keywords": [
+      "effectiveduration",
+      "envelope",
+      "signal",
+      "duration",
+      "threshold"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/effectiveduration"
+  },
+  {
+    "title": "`energy`",
+    "blurb": "",
+    "keywords": [
+      "energy",
+      "mode",
+      "buffer",
+      "bell",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/energy"
+  },
+  {
+    "title": "`energyband`",
+    "blurb": "",
+    "keywords": [
+      "energyband",
+      "int",
+      "mode",
+      "energy",
+      "frequency"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/energyband"
+  },
+  {
+    "title": "`envelope`",
+    "blurb": "",
+    "keywords": [
+      "envelope",
+      "duration",
+      "llll",
+      "single",
+      "number"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/envelope"
+  },
+  {
+    "title": "`envmaxtime`",
+    "blurb": "",
+    "keywords": [
+      "envmaxtime",
+      "bell",
+      "llll",
+      "descriptor",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/envmaxtime"
+  },
+  {
+    "title": "`envmintime`",
+    "blurb": "",
+    "keywords": [
+      "envmintime",
+      "bell",
+      "llll",
+      "descriptor",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/envmintime"
+  },
+  {
+    "title": "`exists`",
+    "blurb": "",
+    "keywords": [
+      "true",
+      "exists",
+      "path",
+      "symbol",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/utilities/exists"
+  },
+  {
+    "title": "`expand`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "llll",
+      "expand",
+      "required",
+      "true"
+    ],
+    "path": "/bellplay/docs/reference/utilities/expand"
+  },
+  {
+    "title": "`export`",
+    "blurb": "",
+    "keywords": [
+      "bitrate",
+      "path",
+      "symbol",
+      "export",
+      "stems"
+    ],
+    "path": "/bellplay/docs/reference/utilities/export"
+  },
+  {
+    "title": "`ezsampler`",
+    "blurb": "",
+    "keywords": [
+      "pitch",
+      "velocity",
+      "key",
+      "duration",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/ezsampler"
+  },
+  {
+    "title": "`fade`",
+    "blurb": "",
+    "keywords": [
+      "curve",
+      "fade",
+      "duration",
+      "int",
+      "fadein"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/fade"
+  },
+  {
+    "title": "`flux`",
+    "blurb": "",
+    "keywords": [
+      "flux",
+      "norm",
+      "mode",
+      "buffer",
+      "bell"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/flux"
+  },
+  {
+    "title": "`fold`",
+    "blurb": "",
+    "keywords": [
+      "fold",
+      "x",
+      "required",
+      "number",
+      "output"
+    ],
+    "path": "/bellplay/docs/reference/utilities/fold"
+  },
+  {
+    "title": "`freeverb`",
+    "blurb": "",
+    "keywords": [
+      "tail",
+      "freeverb",
+      "dry",
+      "wet",
+      "reverb"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/freeverb"
+  },
+  {
+    "title": "`freqshift`",
+    "blurb": "",
+    "keywords": [
+      "freqshift",
+      "shift",
+      "negative",
+      "required",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/freqshift"
+  },
+  {
+    "title": "`fromdiffs`",
+    "blurb": "",
+    "keywords": [
+      "fromdiffs",
+      "llll",
+      "process",
+      "operation",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/fromdiffs"
+  },
+  {
+    "title": "`gain`",
+    "blurb": "",
+    "keywords": [
+      "gain",
+      "int",
+      "envelope",
+      "samples",
+      "unit"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/gain"
+  },
+  {
+    "title": "`gcd`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "gcd",
+      "required",
+      "int",
+      "greatest"
+    ],
+    "path": "/bellplay/docs/reference/utilities/gcd"
+  },
+  {
+    "title": "`getchannels`",
+    "blurb": "",
+    "keywords": [
+      "channels",
+      "buffer",
+      "llll",
+      "getchannels",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/getchannels"
+  },
+  {
+    "title": "`getchar`",
+    "blurb": "",
+    "keywords": [
+      "symbol",
+      "required",
+      "getchar",
+      "indices",
+      "characters"
+    ],
+    "path": "/bellplay/docs/reference/utilities/getchar"
+  },
+  {
+    "title": "`getcorpuskeys`",
+    "blurb": "",
+    "keywords": [
+      "getcorpuskeys",
+      "typed",
+      "corpus",
+      "keys",
+      "true"
+    ],
+    "path": "/bellplay/docs/reference/utilities/getcorpuskeys"
+  },
+  {
+    "title": "`getkey`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "key",
+      "required",
+      "getkey",
+      "symbol"
+    ],
+    "path": "/bellplay/docs/reference/utilities/getkey"
+  },
+  {
+    "title": "`getmediafiles`",
+    "blurb": "",
+    "keywords": [
+      "files",
+      "list",
+      "type",
+      "media",
+      "getmediafiles"
+    ],
+    "path": "/bellplay/docs/reference/utilities/getmediafiles"
+  },
+  {
+    "title": "`groove`",
+    "blurb": "",
+    "keywords": [
+      "rate",
+      "groove",
+      "duration",
+      "buffer",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/groove"
+  },
+  {
+    "title": "`hanning`",
+    "blurb": "",
+    "keywords": [
+      "hanning",
+      "length",
+      "list",
+      "window",
+      "true"
+    ],
+    "path": "/bellplay/docs/reference/utilities/hanning"
+  },
+  {
+    "title": "`hoadecode`",
+    "blurb": "",
+    "keywords": [
+      "binaural",
+      "azimuth",
+      "elevation",
+      "decoding",
+      "hoadecode"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/hoadecode"
+  },
+  {
+    "title": "`hoaencode`",
+    "blurb": "",
+    "keywords": [
+      "azimuth",
+      "elevation",
+      "distance",
+      "coordinate",
+      "order"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/hoaencode"
+  },
+  {
+    "title": "`importaudio`",
+    "blurb": "",
+    "keywords": [
+      "path",
+      "file",
+      "buffer",
+      "importaudio",
+      "symbol"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/importaudio"
+  },
+  {
+    "title": "`importmidi`",
+    "blurb": "",
+    "keywords": [
+      "path",
+      "midi",
+      "importmidi",
+      "symbol",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/utilities/importmidi"
+  },
+  {
+    "title": "`inharmonicity`",
+    "blurb": "",
+    "keywords": [
+      "inharmonicity",
+      "mode",
+      "buffer",
+      "bell",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/inharmonicity"
+  },
+  {
+    "title": "`initurn`",
+    "blurb": "",
+    "keywords": [
+      "urn",
+      "random",
+      "unique",
+      "identifier",
+      "size"
+    ],
+    "path": "/bellplay/docs/reference/utilities/initurn"
+  },
+  {
+    "title": "`inspect`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "llll",
+      "label",
+      "inspect",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/utilities/inspect"
+  },
+  {
+    "title": "`integrate`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "function",
+      "order",
+      "integration",
+      "origin"
+    ],
+    "path": "/bellplay/docs/reference/utilities/integrate"
+  },
+  {
+    "title": "`interrupt`",
+    "blurb": "",
+    "keywords": [
+      "print",
+      "interrupt",
+      "null",
+      "script",
+      "true"
+    ],
+    "path": "/bellplay/docs/reference/utilities/interrupt"
+  },
+  {
+    "title": "`isnan`",
+    "blurb": "",
+    "keywords": [
+      "true",
+      "isnan",
+      "x",
+      "anything",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/utilities/isnan"
+  },
+  {
+    "title": "`join`",
+    "blurb": "",
+    "keywords": [
+      "int",
+      "buffers",
+      "llll",
+      "join",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/join"
+  },
+  {
+    "title": "`larm`",
+    "blurb": "",
+    "keywords": [
+      "larm",
+      "int",
+      "time",
+      "power",
+      "mode"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/larm"
+  },
+  {
+    "title": "`lcm`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "lcm",
+      "required",
+      "int",
+      "least"
+    ],
+    "path": "/bellplay/docs/reference/utilities/lcm"
+  },
+  {
+    "title": "`logattack`",
+    "blurb": "",
+    "keywords": [
+      "logattack",
+      "attack",
+      "time",
+      "envelope",
+      "maximum"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/logattack"
+  },
+  {
+    "title": "`mapkey`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "required",
+      "key",
+      "lambda",
+      "function"
+    ],
+    "path": "/bellplay/docs/reference/utilities/mapkey"
+  },
+  {
+    "title": "`markov2seq`",
+    "blurb": "",
+    "keywords": [
+      "sequence",
+      "matrix",
+      "state",
+      "llll",
+      "markov"
+    ],
+    "path": "/bellplay/docs/reference/utilities/markov2seq"
+  },
+  {
+    "title": "`maxmagfreq`",
+    "blurb": "",
+    "keywords": [
+      "maxmagfreq",
+      "mode",
+      "bell",
+      "samplerate",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/maxmagfreq"
+  },
+  {
+    "title": "`mc2chroma`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "chroma",
+      "vector",
+      "mc",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/utilities/mc2chroma"
+  },
+  {
+    "title": "`mc2pc`",
+    "blurb": "",
+    "keywords": [
+      "mc",
+      "required",
+      "pitch",
+      "true",
+      "bell"
+    ],
+    "path": "/bellplay/docs/reference/utilities/mc2pc"
+  },
+  {
+    "title": "`mean`",
+    "blurb": "",
+    "keywords": [
+      "mean",
+      "list",
+      "weights",
+      "x",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/utilities/mean"
+  },
+  {
+    "title": "`median`",
+    "blurb": "",
+    "keywords": [
+      "median",
+      "list",
+      "x",
+      "required",
+      "element"
+    ],
+    "path": "/bellplay/docs/reference/utilities/median"
+  },
+  {
+    "title": "`mfcc`",
+    "blurb": "",
+    "keywords": [
+      "int",
+      "type",
+      "mfcc",
+      "symbol",
+      "spectrum"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/mfcc"
+  },
+  {
+    "title": "`minus`",
+    "blurb": "",
+    "keywords": [
+      "minus",
+      "buffer",
+      "int",
+      "resampling",
+      "operand"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/minus"
+  },
+  {
+    "title": "`mix`",
+    "blurb": "",
+    "keywords": [
+      "int",
+      "mix",
+      "buffers",
+      "resampling",
+      "unit"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/mix"
+  },
+  {
+    "title": "`mixdown`",
+    "blurb": "",
+    "keywords": [
+      "channels",
+      "int",
+      "output",
+      "mixdown",
+      "numchannels"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/mixdown"
+  },
+  {
+    "title": "`multiply`",
+    "blurb": "",
+    "keywords": [
+      "multiply",
+      "buffer",
+      "int",
+      "resampling",
+      "operand"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/multiply"
+  },
+  {
+    "title": "`nearest`",
+    "blurb": "",
+    "keywords": [
+      "list",
+      "nearest",
+      "required",
+      "target",
+      "value"
+    ],
+    "path": "/bellplay/docs/reference/utilities/nearest"
+  },
+  {
+    "title": "`noise`",
+    "blurb": "",
+    "keywords": [
+      "noise",
+      "duration",
+      "buffer",
+      "llll",
+      "true"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/noise"
+  },
+  {
+    "title": "`normalize`",
+    "blurb": "",
+    "keywords": [
+      "level",
+      "normalize",
+      "mix",
+      "int",
+      "rms"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/normalize"
+  },
+  {
+    "title": "`octreduce`",
+    "blurb": "",
+    "keywords": [
+      "ratios",
+      "octreduce",
+      "required",
+      "true",
+      "bell"
+    ],
+    "path": "/bellplay/docs/reference/utilities/octreduce"
+  },
+  {
+    "title": "`onepole`",
+    "blurb": "",
+    "keywords": [
+      "highpass",
+      "onepole",
+      "cutoff",
+      "llll",
+      "process"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/onepole"
+  },
+  {
+    "title": "`onsetdetection`",
+    "blurb": "",
+    "keywords": [
+      "onsetdetection",
+      "spectral",
+      "method",
+      "mode",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/onsetdetection"
+  },
+  {
+    "title": "`onsets`",
+    "blurb": "",
+    "keywords": [
+      "onsets",
+      "float",
+      "bell",
+      "alpha",
+      "delay"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/onsets"
+  },
+  {
+    "title": "`overdrive`",
+    "blurb": "",
+    "keywords": [
+      "overdrive",
+      "factor",
+      "required",
+      "llll",
+      "process"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/overdrive"
+  },
+  {
+    "title": "`panning`",
+    "blurb": "",
+    "keywords": [
+      "panning",
+      "int",
+      "number",
+      "range",
+      "position"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/panning"
+  },
+  {
+    "title": "`parsepath`",
+    "blurb": "",
+    "keywords": [
+      "path",
+      "file",
+      "folder",
+      "parsepath",
+      "symbol"
+    ],
+    "path": "/bellplay/docs/reference/utilities/parsepath"
+  },
+  {
+    "title": "`paulfreeze`",
+    "blurb": "",
+    "keywords": [
+      "duration",
+      "position",
+      "time",
+      "paulfreeze",
+      "timeunit"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/paulfreeze"
+  },
+  {
+    "title": "`paulstretch`",
+    "blurb": "",
+    "keywords": [
+      "stretching",
+      "samples",
+      "int",
+      "milliseconds",
+      "difference"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/paulstretch"
+  },
+  {
+    "title": "`pcdiff`",
+    "blurb": "",
+    "keywords": [
+      "required",
+      "pitch",
+      "pcdiff",
+      "b",
+      "mod"
+    ],
+    "path": "/bellplay/docs/reference/utilities/pcdiff"
+  },
+  {
+    "title": "`phasor`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "frequency",
+      "duration",
+      "phase",
+      "phasor"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/phasor"
+  },
+  {
+    "title": "`pitchdiff`",
+    "blurb": "",
+    "keywords": [
+      "required",
+      "pitch",
+      "targets",
+      "target",
+      "midicents"
+    ],
+    "path": "/bellplay/docs/reference/utilities/pitchdiff"
+  },
+  {
+    "title": "`pitchmelodia`",
+    "blurb": "",
+    "keywords": [
+      "int",
+      "pitch",
+      "salience",
+      "polyphonic",
+      "allowed"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/pitchmelodia"
+  },
+  {
+    "title": "`pitchyin`",
+    "blurb": "",
+    "keywords": [
+      "pitchyin",
+      "int",
+      "tolerance",
+      "mode",
+      "frequency"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/pitchyin"
+  },
+  {
+    "title": "`plus`",
+    "blurb": "",
+    "keywords": [
+      "plus",
+      "buffer",
+      "int",
+      "resampling",
+      "operand"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/plus"
+  },
+  {
+    "title": "`pong`",
+    "blurb": "",
+    "keywords": [
+      "pong",
+      "low",
+      "high",
+      "mode",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/pong"
+  },
+  {
+    "title": "`power`",
+    "blurb": "",
+    "keywords": [
+      "power",
+      "buffer",
+      "int",
+      "resampling",
+      "operand"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/power"
+  },
+  {
+    "title": "`process`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "llll",
+      "operations",
+      "process",
+      "keys"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/process"
+  },
+  {
+    "title": "`ptracks2buf`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "required",
+      "int",
+      "unit",
+      "phases"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/ptracks2buf"
+  },
+  {
+    "title": "`query`",
+    "blurb": "",
+    "keywords": [
+      "query",
+      "buffers",
+      "sql",
+      "usecache",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/utilities/query"
+  },
+  {
+    "title": "`querytree`",
+    "blurb": "",
+    "keywords": [
+      "tree",
+      "llll",
+      "required",
+      "point",
+      "nearest"
+    ],
+    "path": "/bellplay/docs/reference/utilities/querytree"
+  },
+  {
+    "title": "`r2c`",
+    "blurb": "",
+    "keywords": [
+      "ratios",
+      "required",
+      "cents",
+      "true",
+      "bell"
+    ],
+    "path": "/bellplay/docs/reference/utilities/r2c"
+  },
+  {
+    "title": "`r2dr`",
+    "blurb": "",
+    "keywords": [
+      "list",
+      "r",
+      "required",
+      "ratios",
+      "quotients"
+    ],
+    "path": "/bellplay/docs/reference/utilities/r2dr"
+  },
+  {
+    "title": "`r2mc`",
+    "blurb": "",
+    "keywords": [
+      "ratios",
+      "required",
+      "mc",
+      "midicents",
+      "true"
+    ],
+    "path": "/bellplay/docs/reference/utilities/r2mc"
+  },
+  {
+    "title": "`r2pc`",
+    "blurb": "",
+    "keywords": [
+      "ratios",
+      "pitch",
+      "required",
+      "pc",
+      "class"
+    ],
+    "path": "/bellplay/docs/reference/utilities/r2pc"
+  },
+  {
+    "title": "`rampsmooth`",
+    "blurb": "",
+    "keywords": [
+      "rampsmooth",
+      "buffer",
+      "llll",
+      "process",
+      "operation"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/rampsmooth"
+  },
+  {
+    "title": "`rand`",
+    "blurb": "",
+    "keywords": [
+      "b",
+      "value",
+      "rand",
+      "null",
+      "random"
+    ],
+    "path": "/bellplay/docs/reference/utilities/rand"
+  },
+  {
+    "title": "`randosc`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "frequency",
+      "duration",
+      "randosc",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/randosc"
+  },
+  {
+    "title": "`read`",
+    "blurb": "",
+    "keywords": [
+      "ignore",
+      "symbols",
+      "read",
+      "parens",
+      "keep"
+    ],
+    "path": "/bellplay/docs/reference/utilities/read"
+  },
+  {
+    "title": "`readfolder`",
+    "blurb": "",
+    "keywords": [
+      "list",
+      "path",
+      "symbol",
+      "file",
+      "folder"
+    ],
+    "path": "/bellplay/docs/reference/utilities/readfolder"
+  },
+  {
+    "title": "`rect`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "frequency",
+      "duration",
+      "duty",
+      "rect"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/rect"
+  },
+  {
+    "title": "`render`",
+    "blurb": "",
+    "keywords": [
+      "int",
+      "audio",
+      "process",
+      "buffer",
+      "spread"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/render"
+  },
+  {
+    "title": "`repeat`",
+    "blurb": "",
+    "keywords": [
+      "duration",
+      "repeat",
+      "timeunit",
+      "llll",
+      "process"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/repeat"
+  },
+  {
+    "title": "`resample`",
+    "blurb": "",
+    "keywords": [
+      "duration",
+      "int",
+      "milliseconds",
+      "samples",
+      "difference"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/resample"
+  },
+  {
+    "title": "`retune`",
+    "blurb": "",
+    "keywords": [
+      "pitch",
+      "threshold",
+      "correction",
+      "retune",
+      "amount"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/retune"
+  },
+  {
+    "title": "`revbpf`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "bpf",
+      "breakpoint",
+      "function",
+      "revbpf"
+    ],
+    "path": "/bellplay/docs/reference/utilities/revbpf"
+  },
+  {
+    "title": "`reverse`",
+    "blurb": "",
+    "keywords": [
+      "reverse",
+      "llll",
+      "process",
+      "operation",
+      "true"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/reverse"
+  },
+  {
+    "title": "`rhythm`",
+    "blurb": "",
+    "keywords": [
+      "method",
+      "rhythm",
+      "tempo",
+      "bell",
+      "maxtempo"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/rhythm"
+  },
+  {
+    "title": "`rolloff`",
+    "blurb": "",
+    "keywords": [
+      "rolloff",
+      "frequency",
+      "mode",
+      "bell",
+      "cutoff"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/rolloff"
+  },
+  {
+    "title": "`rounding`",
+    "blurb": "",
+    "keywords": [
+      "rounding",
+      "value",
+      "nearest",
+      "llll",
+      "process"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/rounding"
+  },
+  {
+    "title": "`rubberband`",
+    "blurb": "",
+    "keywords": [
+      "int",
+      "stretching",
+      "samples",
+      "rubberband",
+      "milliseconds"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/rubberband"
+  },
+  {
+    "title": "`samplebpf`",
+    "blurb": "",
+    "keywords": [
+      "bpf",
+      "required",
+      "function",
+      "samplebpf",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/utilities/samplebpf"
+  },
+  {
+    "title": "`samplelist`",
+    "blurb": "",
+    "keywords": [
+      "list",
+      "required",
+      "samplelist",
+      "x",
+      "interpolated"
+    ],
+    "path": "/bellplay/docs/reference/utilities/samplelist"
+  },
+  {
+    "title": "`samps2buf`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "buffer",
+      "required",
+      "sr",
+      "samples"
+    ],
+    "path": "/bellplay/docs/reference/utilities/samps2buf"
+  },
+  {
+    "title": "`saw`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "frequency",
+      "duration",
+      "saw",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/saw"
+  },
+  {
+    "title": "`scale`",
+    "blurb": "",
+    "keywords": [
+      "value",
+      "slope",
+      "input",
+      "scale",
+      "output"
+    ],
+    "path": "/bellplay/docs/reference/utilities/scale"
+  },
+  {
+    "title": "`scaling`",
+    "blurb": "",
+    "keywords": [
+      "scaling",
+      "value",
+      "output",
+      "inmin",
+      "inmax"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/scaling"
+  },
+  {
+    "title": "`scoreconfig`",
+    "blurb": "",
+    "keywords": [
+      "clef",
+      "treble",
+      "bass",
+      "voice",
+      "clefs"
+    ],
+    "path": "/bellplay/docs/reference/utilities/scoreconfig"
+  },
+  {
+    "title": "`scrub`",
+    "blurb": "",
+    "keywords": [
+      "phase",
+      "buffer",
+      "scrub",
+      "duration",
+      "envelope"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/scrub"
+  },
+  {
+    "title": "`seq2markov`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "sequence",
+      "symbol",
+      "data",
+      "order"
+    ],
+    "path": "/bellplay/docs/reference/utilities/seq2markov"
+  },
+  {
+    "title": "`setcorpus`",
+    "blurb": "",
+    "keywords": [
+      "file",
+      "setcorpus",
+      "filepath",
+      "symbol",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/utilities/setcorpus"
+  },
+  {
+    "title": "`setkey`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "required",
+      "key",
+      "mode",
+      "values"
+    ],
+    "path": "/bellplay/docs/reference/utilities/setkey"
+  },
+  {
+    "title": "`setseed`",
+    "blurb": "",
+    "keywords": [
+      "seed",
+      "setseed",
+      "int",
+      "required",
+      "random"
+    ],
+    "path": "/bellplay/docs/reference/utilities/setseed"
+  },
+  {
+    "title": "`sortbykeys`",
+    "blurb": "",
+    "keywords": [
+      "llll",
+      "keys",
+      "required",
+      "list",
+      "sortbykeys"
+    ],
+    "path": "/bellplay/docs/reference/utilities/sortbykeys"
+  },
+  {
+    "title": "`soundtouch`",
+    "blurb": "",
+    "keywords": [
+      "int",
+      "soundtouch",
+      "stretching",
+      "pitchshift",
+      "quick"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/soundtouch"
+  },
+  {
+    "title": "`spectralcentroid`",
+    "blurb": "",
+    "keywords": [
+      "spectralcentroid",
+      "mode",
+      "buffer",
+      "bell",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/spectralcentroid"
+  },
+  {
+    "title": "`spectralflatness`",
+    "blurb": "",
+    "keywords": [
+      "spectralflatness",
+      "mode",
+      "buffer",
+      "bell",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/spectralflatness"
+  },
+  {
+    "title": "`spectralkurtosis`",
+    "blurb": "",
+    "keywords": [
+      "spectralkurtosis",
+      "mode",
+      "bell",
+      "llll",
+      "descriptor"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/spectralkurtosis"
+  },
+  {
+    "title": "`spectralskewness`",
+    "blurb": "",
+    "keywords": [
+      "spectralskewness",
+      "mode",
+      "buffer",
+      "bell",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/spectralskewness"
+  },
+  {
+    "title": "`spectralspread`",
+    "blurb": "",
+    "keywords": [
+      "spectralspread",
+      "mode",
+      "buffer",
+      "bell",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/spectralspread"
+  },
+  {
+    "title": "`spectralvariance`",
+    "blurb": "",
+    "keywords": [
+      "spectralvariance",
+      "mode",
+      "buffer",
+      "bell",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/spectralvariance"
+  },
+  {
+    "title": "`spectrum`",
+    "blurb": "",
+    "keywords": [
+      "spectrum",
+      "size",
+      "mode",
+      "magnitude",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/spectrum"
+  },
+  {
+    "title": "`splitbuf`",
+    "blurb": "",
+    "keywords": [
+      "split",
+      "mode",
+      "buffer",
+      "llll",
+      "segment"
+    ],
+    "path": "/bellplay/docs/reference/utilities/splitbuf"
+  },
+  {
+    "title": "`squareroot`",
+    "blurb": "",
+    "keywords": [
+      "squareroot",
+      "llll",
+      "process",
+      "operation",
+      "true"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/squareroot"
+  },
+  {
+    "title": "`strongdecay`",
+    "blurb": "",
+    "keywords": [
+      "strongdecay",
+      "strong",
+      "signal",
+      "mode",
+      "decay"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/strongdecay"
+  },
+  {
+    "title": "`strongpeak`",
+    "blurb": "",
+    "keywords": [
+      "strongpeak",
+      "peak",
+      "mode",
+      "buffer",
+      "ratio"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/strongpeak"
+  },
+  {
+    "title": "`symlen`",
+    "blurb": "",
+    "keywords": [
+      "symbol",
+      "length",
+      "symlen",
+      "required",
+      "int"
+    ],
+    "path": "/bellplay/docs/reference/utilities/symlen"
+  },
+  {
+    "title": "`teeth`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "feedforward",
+      "feedback",
+      "gain",
+      "either"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/teeth"
+  },
+  {
+    "title": "`temporalcentroid`",
+    "blurb": "",
+    "keywords": [
+      "temporalcentroid",
+      "bell",
+      "llll",
+      "descriptor",
+      "temporal"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/temporalcentroid"
+  },
+  {
+    "title": "`temporalflatness`",
+    "blurb": "",
+    "keywords": [
+      "temporalflatness",
+      "buffer",
+      "bell",
+      "llll",
+      "descriptor"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/temporalflatness"
+  },
+  {
+    "title": "`temporalkurtosis`",
+    "blurb": "",
+    "keywords": [
+      "temporalkurtosis",
+      "bell",
+      "llll",
+      "descriptor",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/temporalkurtosis"
+  },
+  {
+    "title": "`temporalskewness`",
+    "blurb": "",
+    "keywords": [
+      "temporalskewness",
+      "bell",
+      "llll",
+      "descriptor",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/temporalskewness"
+  },
+  {
+    "title": "`temporalspread`",
+    "blurb": "",
+    "keywords": [
+      "temporalspread",
+      "bell",
+      "llll",
+      "descriptor",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/temporalspread"
+  },
+  {
+    "title": "`temporalvariance`",
+    "blurb": "",
+    "keywords": [
+      "temporalvariance",
+      "bell",
+      "llll",
+      "descriptor",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/temporalvariance"
+  },
+  {
+    "title": "`thispath`",
+    "blurb": "",
+    "keywords": [
+      "path",
+      "parse",
+      "llll",
+      "thispath",
+      "current"
+    ],
+    "path": "/bellplay/docs/reference/utilities/thispath"
+  },
+  {
+    "title": "`timesquash`",
+    "blurb": "",
+    "keywords": [
+      "int",
+      "energy",
+      "duration",
+      "phasehandling",
+      "time"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/timesquash"
+  },
+  {
+    "title": "`todiffs`",
+    "blurb": "",
+    "keywords": [
+      "todiffs",
+      "llll",
+      "process",
+      "operation",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/todiffs"
+  },
+  {
+    "title": "`tonalkey`",
+    "blurb": "",
+    "keywords": [
+      "profiles",
+      "profile",
+      "int",
+      "tonalkey",
+      "mode"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/tonalkey"
+  },
+  {
+    "title": "`tosymbol`",
+    "blurb": "",
+    "keywords": [
+      "symbol",
+      "tosymbol",
+      "x",
+      "anything",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/utilities/tosymbol"
+  },
+  {
+    "title": "`transcribe`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "null",
+      "gain",
+      "value",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/utilities/transcribe"
+  },
+  {
+    "title": "`tri`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "frequency",
+      "duration",
+      "duty",
+      "tri"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/tri"
+  },
+  {
+    "title": "`triangle`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "frequency",
+      "duration",
+      "phase",
+      "offset"
+    ],
+    "path": "/bellplay/docs/reference/audio-generation/triangle"
+  },
+  {
+    "title": "`trim`",
+    "blurb": "",
+    "keywords": [
+      "buffer",
+      "trim",
+      "threshold",
+      "end",
+      "ampunit"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/trim"
+  },
+  {
+    "title": "`urn`",
+    "blurb": "",
+    "keywords": [
+      "urn",
+      "id",
+      "int",
+      "unique",
+      "random"
+    ],
+    "path": "/bellplay/docs/reference/utilities/urn"
+  },
+  {
+    "title": "`wavesetrepeat`",
+    "blurb": "",
+    "keywords": [
+      "waveset",
+      "int",
+      "wavesetrepeat",
+      "times",
+      "span"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/wavesetrepeat"
+  },
+  {
+    "title": "`wavesetshuffle`",
+    "blurb": "",
+    "keywords": [
+      "waveset",
+      "wavesetshuffle",
+      "maxdist",
+      "span",
+      "llll"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/wavesetshuffle"
+  },
+  {
+    "title": "`waveshape`",
+    "blurb": "",
+    "keywords": [
+      "phase",
+      "buffer",
+      "waveshape",
+      "duration",
+      "envelope"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/waveshape"
+  },
+  {
+    "title": "`window`",
+    "blurb": "",
+    "keywords": [
+      "window",
+      "int",
+      "wintype",
+      "winnormalized",
+      "zeropadding"
+    ],
+    "path": "/bellplay/docs/reference/audio-processing/window"
+  },
+  {
+    "title": "`write`",
+    "blurb": "",
+    "keywords": [
+      "int",
+      "format",
+      "data",
+      "required",
+      "write"
+    ],
+    "path": "/bellplay/docs/reference/utilities/write"
+  },
+  {
+    "title": "`x2dx`",
+    "blurb": "",
+    "keywords": [
+      "list",
+      "x",
+      "required",
+      "adjacent",
+      "elements"
+    ],
+    "path": "/bellplay/docs/reference/utilities/x2dx"
+  },
+  {
+    "title": "`xchoose`",
+    "blurb": "",
+    "keywords": [
+      "list",
+      "weights",
+      "choices",
+      "xchoose",
+      "required"
+    ],
+    "path": "/bellplay/docs/reference/utilities/xchoose"
+  },
+  {
+    "title": "`xrand`",
+    "blurb": "",
+    "keywords": [
+      "b",
+      "value",
+      "xrand",
+      "null",
+      "float"
+    ],
+    "path": "/bellplay/docs/reference/utilities/xrand"
+  },
+  {
+    "title": "`xrandom`",
+    "blurb": "",
+    "keywords": [
+      "b",
+      "integer",
+      "value",
+      "xrandom",
+      "null"
+    ],
+    "path": "/bellplay/docs/reference/utilities/xrandom"
+  },
+  {
+    "title": "`xscramble`",
+    "blurb": "",
+    "keywords": [
+      "xscramble",
+      "llll",
+      "required",
+      "list",
+      "true"
+    ],
+    "path": "/bellplay/docs/reference/utilities/xscramble"
+  },
+  {
+    "title": "`zerocrossingrate`",
+    "blurb": "",
+    "keywords": [
+      "zerocrossingrate",
+      "threshold",
+      "mode",
+      "buffer",
+      "zero"
+    ],
+    "path": "/bellplay/docs/reference/audio-analysis/zerocrossingrate"
+  },
+  {
+    "title": "Acknowledgments",
+    "blurb": "**bellplay~** relies on several key tools and frameworks:",
+    "keywords": [
+      "tools",
+      "acknowledgments",
+      "relies",
+      "several",
+      "key"
+    ],
+    "path": "/bellplay/docs/about/acknowledgments"
+  },
+  {
+    "title": "Audio Control",
+    "blurb": "This tutorial shows how to use buffers to control audio parameters.",
+    "keywords": [
+      "buffer",
+      "frequency",
+      "carrier",
+      "modulator",
+      "audio"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/audiocontrol"
+  },
+  {
+    "title": "Audio Corpora",
+    "blurb": "One of the core features of **bellplay~** is the ability to handle audio corpora — i.e., large collections of audio data.",
+    "keywords": [
+      "audio",
+      "corpus",
+      "buffers",
+      "pitch",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/corpus"
+  },
+  {
+    "title": "Audio Descriptor Modes",
+    "blurb": "When analyzing buffers, we can specify the output format for many of the available audio descriptors.",
+    "keywords": [
+      "buffer",
+      "pitch",
+      "analysis",
+      "time",
+      "series"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/analysismodes"
+  },
+  {
+    "title": "Audio Descriptors",
+    "blurb": "One of the core features in **bellplay~** is our ability to analyze buffers to extract relevant information.",
+    "keywords": [
+      "analyze",
+      "buffer",
+      "onsets",
+      "descriptors",
+      "onset"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/analysis"
+  },
+  {
+    "title": "Audio Mosaicing",
+    "blurb": "An example of basic [audio mosaicking](https://www.francoispachet.fr/musaicing/) in **bellplay~** — a target audio is reconstructed using a corpus of short audio segments.",
+    "keywords": [
+      "audio",
+      "features",
+      "onset",
+      "analysis",
+      "target"
+    ],
+    "path": "/bellplay/docs/learning/examples/audiomosaic"
+  },
+  {
+    "title": "Audio Resynthesis",
+    "blurb": "A simple demonstration of granular quasi-resynthesis via partial tracks, where an sound is used to guide the behavior of sinusoidal grains.",
+    "keywords": [
+      "onset",
+      "frequency",
+      "apply",
+      "audio",
+      "pitch"
+    ],
+    "path": "/bellplay/docs/learning/examples/resynthesis"
+  },
+  {
+    "title": "Automation",
+    "blurb": "In many cases, we will want to have some kind of DAW-style automation of certain parameters when generating or processing audio in our scripts.",
+    "keywords": [
+      "dur",
+      "fq",
+      "oscillator",
+      "frequency",
+      "wave"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/automation"
+  },
+  {
+    "title": "Basic Granulation",
+    "blurb": "An example of basic audio granulation, where short audio.",
+    "keywords": [
+      "grain",
+      "onset",
+      "offset",
+      "duration",
+      "graindur"
+    ],
+    "path": "/bellplay/docs/learning/examples/basicgranulation"
+  },
+  {
+    "title": "Basic Sampling",
+    "blurb": "**bellplay~** provides a basic utility function for general-purpose audio sampling, called `ezsampler`.",
+    "keywords": [
+      "pitch",
+      "closest",
+      "velocity",
+      "used",
+      "keymap"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/sampling"
+  },
+  {
+    "title": "Basic Workflow",
+    "blurb": "The general workflow of a bell script in **bellplay~** is the following:",
+    "keywords": [
+      "buffer",
+      "workflow",
+      "bell",
+      "buffers",
+      "rendering"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/basicworkflow"
+  },
+  {
+    "title": "Buffer Keys",
+    "blurb": "Buffers in **bellplay~** are simply nested lists of [key-value pairs](https://en.wikipedia.org/wiki/Name–value_pair).",
+    "keywords": [
+      "buffer",
+      "transcribe",
+      "audio",
+      "keys",
+      "print"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/bufferkeys"
+  },
+  {
+    "title": "Buffer Processing",
+    "blurb": "One of the core features of **bellplay~** is the ability to dynamically and flexibly apply chains of DSP algorithms to our buffers.",
+    "keywords": [
+      "path",
+      "buffer",
+      "reverse",
+      "file",
+      "processing"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/bufferprocessing"
+  },
+  {
+    "title": "Caching Data",
+    "blurb": "In **bellplay~**, computation-heavy operations such as building large corpora, analyzing lots of audio data, and more, can be take a very long time, thus making it more tedious to experiment with our scripts every time we run them.",
+    "keywords": [
+      "file",
+      "buffer",
+      "pitch",
+      "time",
+      "buffers"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/caching"
+  },
+  {
+    "title": "Creating Audio Corpora",
+    "blurb": "This tutorial shows how to create a simple corpus based on the long-term loudness, and then load and use the corpus.",
+    "keywords": [
+      "corpus",
+      "files",
+      "onset",
+      "create",
+      "corpuspath"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/buildcorpus"
+  },
+  {
+    "title": "credits",
+    "blurb": "I’m [Felipe Tovar-Henao](https://felipe-tovar-henao.com), and I develop and maintain **bellplay~**.",
+    "keywords": [
+      "residency",
+      "title",
+      "credits",
+      "felipe",
+      "develop"
+    ],
+    "path": "/bellplay/docs/about/credits"
+  },
+  {
+    "title": "Envelope-aware Temporal Alignment",
+    "blurb": "This example demonstrates how to align the envelopes of different audio samples based on their peak amplitude times.",
+    "keywords": [
+      "peak",
+      "time",
+      "random",
+      "maxpeaktime",
+      "onset"
+    ],
+    "path": "/bellplay/docs/learning/examples/temporalalignment"
+  },
+  {
+    "title": "Exporting",
+    "blurb": "Although the **bellplay~** graphical user-interface (GUI) allows us to export the final output of each script, it's sometimes useful being able to programmatically do the same through our scripts.",
+    "keywords": [
+      "export",
+      "buffer",
+      "audiopath",
+      "exporting",
+      "midi"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/export"
+  },
+  {
+    "title": "Feature-driven Sampling",
+    "blurb": "This tutorial shows how to build [k-dimensional trees](https://en.wikipedia.org/wiki/K-d_tree) to efficiently perform feature-based search on buffers.",
+    "keywords": [
+      "pitch",
+      "match",
+      "segments",
+      "buffer",
+      "tree"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/kdtree"
+  },
+  {
+    "title": "Feedback Synthesis",
+    "blurb": "This code demonstrates a feedback-based synthesis technique, where buffers are routed back into their own processing chain to create a rich, evolving drone.",
+    "keywords": [
+      "duration",
+      "frequency",
+      "random",
+      "rand",
+      "range"
+    ],
+    "path": "/bellplay/docs/learning/examples/feedbacksynth"
+  },
+  {
+    "title": "Frequently Asked Questions",
+    "blurb": "Yes—some familiarity with programming concepts is recommended.",
+    "keywords": [
+      "use",
+      "audio",
+      "max",
+      "bell",
+      "need"
+    ],
+    "path": "/bellplay/docs/faq"
+  },
+  {
+    "title": "Generating Keymaps",
+    "blurb": "This example automatically generates a custom keymap given a list of audio file paths:",
+    "keywords": [
+      "pitch",
+      "keymap",
+      "file",
+      "midi",
+      "retrieve"
+    ],
+    "path": "/bellplay/docs/learning/examples/keymaps"
+  },
+  {
+    "title": "Glissando texture",
+    "blurb": "An example of using time-varying resampling to generate a polyphonic texture.",
+    "keywords": [
+      "cents",
+      "pan",
+      "glissando",
+      "set",
+      "texture"
+    ],
+    "path": "/bellplay/docs/learning/examples/gliss"
+  },
+  {
+    "title": "Importing Audio",
+    "blurb": "In **bellplay~** we can also generate buffers by importing our own audio files into our scripts.",
+    "keywords": [
+      "path",
+      "file",
+      "audio",
+      "relative",
+      "absolute"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/importingaudio"
+  },
+  {
+    "title": "Importing MIDI",
+    "blurb": "**bellplay~** supports importing MIDI files (`.mid` or `.midi`) into our scripts, each described as a list of events.",
+    "keywords": [
+      "midi",
+      "events",
+      "pitch",
+      "onset",
+      "event"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/importingmidi"
+  },
+  {
+    "title": "Inspecting Buffers",
+    "blurb": "An essential part of writing code is being able to debug unwanted or unexpected behaviors.",
+    "keywords": [
+      "buffer",
+      "envelope",
+      "buffers",
+      "inspect",
+      "label"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/bufferinspector"
+  },
+  {
+    "title": "Installation",
+    "blurb": "To run **bellplay~**, you can either:",
+    "keywords": [
+      "run",
+      "max",
+      "macos",
+      "windows",
+      "editor"
+    ],
+    "path": "/bellplay/docs/installation"
+  },
+  {
+    "title": "Introduction",
+    "blurb": "**bellplay~** is a framework and software for offline algorithmic audio in the `bell` programming language.",
+    "keywords": [
+      "audio",
+      "bell",
+      "buffers",
+      "rendering",
+      "introduction"
+    ],
+    "path": "/bellplay/docs/intro"
+  },
+  {
+    "title": "License",
+    "blurb": "**bellplay~** is distributed under the terms of the **GNU General Public License version 3 (GPL-3.0)**.",
+    "keywords": [
+      "license",
+      "distributed",
+      "terms",
+      "gnu",
+      "general"
+    ],
+    "path": "/bellplay/docs/about/license"
+  },
+  {
+    "title": "Markers",
+    "blurb": "Sometimes it's useful to include markers in the transcription.",
+    "keywords": [
+      "onset",
+      "envelope",
+      "markers",
+      "harmonics",
+      "generate"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/markers"
+  },
+  {
+    "title": "MIDI Retuning",
+    "blurb": "An example of JI-based retuning of MIDI events.",
+    "keywords": [
+      "pitch",
+      "midi",
+      "retuning",
+      "onset",
+      "duration"
+    ],
+    "path": "/bellplay/docs/learning/examples/midiretuning"
+  },
+  {
+    "title": "More Audio Features",
+    "blurb": "This tutorial provides an additional example for using buffer analysis features for audio processing.",
+    "keywords": [
+      "buffer",
+      "audio",
+      "pitch",
+      "grain",
+      "offset"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/features"
+  },
+  {
+    "title": "Multi-rendering",
+    "blurb": "This tutorial demonstrates a very simple but consequential feature in **bellplay~** — namely, the ability to reuse rendered buffers multiple times to further refine and sculpt the final output into complex and intricate sounds.",
+    "keywords": [
+      "render",
+      "n",
+      "onset",
+      "gain",
+      "buffer"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/multirendering"
+  },
+  {
+    "title": "Post-rendering Processing",
+    "blurb": "Sometimes it can be more useful or desirable to apply processing to the entire output, instead of processing each buffer individually.",
+    "keywords": [
+      "apply",
+      "processing",
+      "buffer",
+      "file",
+      "pan"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/postprocessing"
+  },
+  {
+    "title": "Rendering",
+    "blurb": "Similar to the transcription stage, the rendering stage allows us to define important aspects about the final output.",
+    "keywords": [
+      "output",
+      "rendering",
+      "channels",
+      "buffer",
+      "sampling"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/rendering"
+  },
+  {
+    "title": "Score Formatting and Appearance",
+    "blurb": "Depending on what you're doing, you might want to have more control over what the score transcription looks like.",
+    "keywords": [
+      "voice",
+      "score",
+      "appearance",
+      "different",
+      "oscillator"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/scoreconfig"
+  },
+  {
+    "title": "Support",
+    "blurb": "If you're using **bellplay~** and want to support its development:",
+    "keywords": [
+      "support",
+      "using",
+      "want",
+      "development",
+      "make"
+    ],
+    "path": "/bellplay/docs/about/support"
+  },
+  {
+    "title": "Temporal Quantization",
+    "blurb": "A basic example of temporal quantization, where transient-based segments are temporally shifted to align with a rhythmic grid.",
+    "keywords": [
+      "onset",
+      "buffer",
+      "analysis",
+      "markers",
+      "segment"
+    ],
+    "path": "/bellplay/docs/learning/examples/temporalquantization"
+  },
+  {
+    "title": "Transcription",
+    "blurb": "When transcribing buffers, we get to specify essential information about how each buffer fits within the final output.",
+    "keywords": [
+      "gain",
+      "onset",
+      "progress",
+      "buffer",
+      "buffers"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/transcription"
+  },
+  {
+    "title": "Variable Declarations",
+    "blurb": "When writing code, it's often good practice to use descriptive names for our variables.",
+    "keywords": [
+      "variable",
+      "saw",
+      "global",
+      "name",
+      "bell"
+    ],
+    "path": "/bellplay/docs/learning/tutorials/variables"
+  },
+  {
+    "title": "Waveshaping Buffers",
+    "blurb": "A basic example of waveshaping in **bellplay~**, using a randomly generated breakpoint function.",
+    "keywords": [
+      "waveshaping",
+      "breakpoint",
+      "function",
+      "using",
+      "bpf"
+    ],
+    "path": "/bellplay/docs/learning/examples/waveshaping"
+  }
+]
