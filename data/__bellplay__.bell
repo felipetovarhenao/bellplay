@@ -676,11 +676,11 @@ BP_REF_NEW(
         BP_REF_ARG(@name "onset" @type "int/float" @description "marker onset position.")
         BP_REF_ARG(@name "names" @default "null" @type "symbol/list/null" @description "optional list of marker names.")
         BP_REF_ARG(@name "role" @default "null" @type "symbol/list/null" @description "optional marker role." @options
-            BP_REF_OPT(@value 'tempo <unit> <bpm>' @description "tempo marker role, followed by a tempo specification, as a unit ratio and bpm value.")
-            BP_REF_OPT(@value 'timesig <time_sig_num> <time_sig_den>' @description "time signature marker role, followed by a time signature, as a pair of numerator and denominator.")
-            BP_REF_OPT(@value 'barline' @description "barline marker role")
-            BP_REF_OPT(@value 'division' @description "beat division marker role")
-            BP_REF_OPT(@value 'subdivision' @description "beat subdivision marker role")
+            BP_REF_OPT(@value "'tempo <unit> <bpm>'" @description "tempo marker role, followed by a tempo specification, as a unit ratio and bpm value.")
+            BP_REF_OPT(@value "'timesig <time_sig_num> <time_sig_den>'" @description "time signature marker role, followed by a time signature, as a pair of numerator and denominator.")
+            BP_REF_OPT(@value "'barline'" @description "barline marker role")
+            BP_REF_OPT(@value "'division'" @description "beat division marker role")
+            BP_REF_OPT(@value "'subdivision'" @description "beat subdivision marker role")
         )
     )
 );
@@ -1102,7 +1102,7 @@ bpf = (
 
 BP_REF_NEW(
     @name "bpf"
-    @description "Formats an numeric list into a breakpoint function, in the form of [<x> <y> <slope>] tuples. By default, <x> is normalized to the 0-1 range. To prevent this, set @xfunc to null."
+    @description "Formats an numeric list into a breakpoint function, in the form of [`<x>` `<y>` `<slope>`] tuples. By default, `<x>` is normalized to the 0-1 range. To prevent this, set `@xfunc` to null."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "pts" @type "list" @description "numeric list")
@@ -5907,7 +5907,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 3 @description "loudspeaker" "number" "—" "0-based")
             BP_REF_OPT(@value 4 @description "loudspeaker" "number" "—" "1-based")
         )
-        BP_REF_ARG(@name "range", @default 0 1, @type "list", @description "panning range, as a <min> <max> value pair. Ignored unless @rangetype is 0")
+        BP_REF_ARG(@name "range", @default 0 1, @type "list", @description "panning range, as a `<min>` `<max>` value pair. Ignored unless @rangetype is 0")
         BP_REF_ARG(@name "compensate", @default 1, @type "int", @description "Reduce gain for multichannel files by a factor of the number of channels." @options
             BP_REF_SWITCH_OPTIONS
         )
