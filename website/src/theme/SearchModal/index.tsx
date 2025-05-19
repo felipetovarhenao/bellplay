@@ -101,7 +101,13 @@ const SearchModal: React.FC<Props> = ({ onClose }) => {
               </div>
               {doc.blurb !== "" && (
                 <div className={styles.resultsBlurb}>
-                  <ReactMarkdown>{doc.blurb}</ReactMarkdown>
+                  <ReactMarkdown
+                    components={{
+                      a: ({ node, ...props }) => <span {...props} />,
+                    }}
+                  >
+                    {doc.blurb}
+                  </ReactMarkdown>
                 </div>
               )}
             </a>
