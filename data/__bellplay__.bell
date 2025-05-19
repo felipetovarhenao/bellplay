@@ -1504,7 +1504,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "size" @default 10 @type "int", @description "number of unique random numbers.")
         BP_REF_ARG(@name "id" @default 0 @type "int/float/symbol", @description "identifier for unique random number generator.")
-        BP_REF_ARG(@name "useseed" @default 0 @type "list/llll", @description "use random seed for URN associated with @id.")
+        BP_REF_ARG(@name "useseed" @default 0 @type "list/llll", @description "use random seed for URN associated with `@id`.")
     )
 );
 
