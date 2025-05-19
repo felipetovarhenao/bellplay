@@ -22,7 +22,7 @@ const SearchModal: React.FC<Props> = ({ onClose }) => {
 
   // Fetch search index
   useEffect(() => {
-    fetch("/bellplay/search-index.json")
+    fetch("/search-index.json")
       .then((res) => res.json())
       .then((data: Doc[]) => setIndex(data))
       .catch(() => setIndex([]));
