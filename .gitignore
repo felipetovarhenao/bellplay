@@ -12,3 +12,36 @@ data/*
 mycorpus.llll
 cached_buffers.llll
 **/__pycache__
+
+
+# ------- DOCS ----------
+# Dependencies
+website/node_modules
+
+# Production
+website/build
+
+# Generated files
+website/.docusaurus
+website/.cache-loader
+
+# Misc
+website/.DS_Store
+website/.env.local
+website/.env.development.local
+website/.env.test.local
+website/.env.production.local
+
+website/npm-debug.log*
+website/yarn-debug.log*
+website/yarn-error.log*
+website/bp.*
+
+# temp
+website/docs/tutorials/*.md
+website/docs/reference/*/
+website/docs/reference/**/*.md
+website/docs/learning/*/*
+website/python/*.txt
+website/**/*.llll
+website/static/search-index.json
