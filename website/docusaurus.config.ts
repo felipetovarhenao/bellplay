@@ -11,10 +11,10 @@ const config: Config = {
   stylesheets: ["https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"],
 
   // Set the production url of your site here
-  url: "https://felipetovarhenao.github.io/",
+  url: "https://bellplay.net/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/bellplay",
+  baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
