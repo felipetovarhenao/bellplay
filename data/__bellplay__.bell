@@ -4382,7 +4382,7 @@ BP_REF_NEW(
     @description "Audio process operation for freezing a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
-        BP_REF_ARG(@name "duration" @default 1000 @type "int/float" @description "freezing duration, based on @timeunit.")
+        BP_REF_ARG(@name "duration" @default 1000 @type "int/float" @description "freezing duration, based on `@timeunit`.")
         BP_REF_ARG(@name "position" @default 0 @type "int/float" @description "freezing time position")
         BP_REF_ARG(@name "jitter" @default 0 @type "int/float" @description "variation around time position, in milliseconds. To use entire buffer, use 'all'.")
         BP_REF_ARG(@name "timeunit" @default 0 @type "int" @description "time unit.", @options 
@@ -5044,7 +5044,7 @@ BP_REF_NEW(
     @description "Audio process operation for repeating a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
-        BP_REF_ARG(@name "duration", @default 2, @type "int/float", @description "target duration, based on @timeunit.")
+        BP_REF_ARG(@name "duration", @default 2, @type "int/float", @description "target duration, based on `@timeunit`.")
         BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for @duration." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
@@ -5754,7 +5754,7 @@ BP_REF_NEW(
     @description "Audio process operation for applying timesquash time compression to a buffer. This removes time from a sample by shifting portions of the spectrogram while preserving the relevant content. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
-        BP_REF_ARG(@name "duration", @default 1, @type "int/float", @description "target duration, based on @timeunit.")
+        BP_REF_ARG(@name "duration", @default 1, @type "int/float", @description "target duration, based on `@timeunit`.")
         BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for @duration."
             BP_REF_TIMEUNIT_OPTIONS
         )
@@ -5832,7 +5832,7 @@ BP_REF_NEW(
     @description "Audio process operation for applying stretching/pitch shifting a buffer via resampling. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
-        BP_REF_ARG(@name "duration", @default 1, @type "int/float", @description "target duration, based on @timeunit.")
+        BP_REF_ARG(@name "duration", @default 1, @type "int/float", @description "target duration, based on `@timeunit`.")
         BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "time unit for @duration." @options 
             BP_REF_TIMEUNIT_OPTIONS
         )
