@@ -1,0 +1,27 @@
+$replacespaces = (
+    $x -> (
+        $regex = {regexp \\\\s @substitute - @tosymbol 1};
+        $regex(
+            $x @out 'm' @fetch 1
+        ) ||| $x
+    ) 
+);
+ReferenceSections = trans(BP_REF)::1.sort();
+FolderNames = for $x in ReferenceSections collect $replacespaces($x);
+$break = '
+';
+write(
+    @data for $x in FolderNames collect $x + $break
+    @path './reference_folders.txt' 
+    @escape 0
+);
+LearningSections = BP_DOCS_TUTORIALS.trans()::1;
+LearningFiles = for $section in LearningSections collect (
+    for $item in BP_DOCS_TUTORIALS.$section collect ($item.getkey('file')) 
+);
+LearningFiles = for $f $i in LearningFiles collect $f + (if $i < length(LearningFiles) then $break else '');
+write(
+    @data LearningFiles
+    @path './learning_files.txt' 
+    @escape 0
+)

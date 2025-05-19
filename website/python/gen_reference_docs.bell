@@ -1,0 +1,155 @@
+## -------------------
+ReferenceFoldersFile = './reference_folders.txt';
+ReferenceSections = sort(trans(BP_REF)::1);
+ReferenceDirPath = '../docs/reference/';
+ReferenceFolders = read(ReferenceFoldersFile);
+if length(ReferenceSections) != length(ReferenceFolders) then BP_FN_ERROR(@details 'mismatching number of output folders');
+## -------------------
+BP_REF_WRITE_MARKDOWN = (
+    $data = null, $path = null, $escape = 3, $wrap = 0, $indent = 'tab', $maxdecimals = 10, $maxdepth = -1, $negativeoctaves = 0, $parens = 0 -> (
+        $self = 'writemd';
+        BP_FN_CHECK_ARGS(
+            $self, 'data', $data, 'path', $path
+        );
+        $info = BP_FN_PATHINFO($path);
+        if ('.md').intersection($info.'extension') == null then (BP_FN_ERROR($self, 'invalid file extension for @path in write().') );
+        if exists($info.'parent') == 0 then (BP_FN_ERROR($self, 'invalid destination directory:' $info.'parent') );
+        $ext = $info.'extension';
+        $path = $info.'path' + $ext;
+        $cmd = if $ext == '.md' then 'writetxt' else 'write';
+        BP_FN_DISPATCH(
+            'llllio', 'write' [ 'data' $data] [
+                'config' [ 'escape' $escape] [ 'wrap' $wrap] [ 'indent' $indent] [ 'maxdecimals' $maxdecimals] [ 'maxdepth' $maxdepth] [ 'negativeoctaves' $negativeoctaves] [ 'parens' $parens] [$cmd $path] 
+            ] 
+        );
+        BP_LLLL_READ
+    ) 
+);
+joinsym = (
+    $symbols -> (
+        $out = '';
+        $len = length($symbols);
+        for $s $i in $symbols do ($out = $out + $s + (if $i < $len then ' ' else '') );
+        $out
+    ) 
+);
+concatsym = (
+    <...> -> (
+        $symbol = '';
+        for $i in 1...$argcount do (
+            $x = $args($i) ||| BP_FN_ERROR(
+                'concatsym', 'null symbol:' $args(1...$argcount) 
+            );
+            for $elem in $x do (
+                $type = is($elem);
+                if $type != 'symbol' then BP_FN_ERROR('concatsym', 'non-symbol found:' $elem);
+                $symbol = $symbol + $elem
+            ) 
+        );
+        $symbol
+    ) 
+);
+$br = '
+';
+$tab = '    ';
+$open = '(';
+$close = ')';
+## -------------------
+if exists('./ref.llll') == 0 then write(
+    BP_REF, './ref.llll' @escape 0
+);
+## -------------------
+for $docsection $sectionid in ReferenceSections do (
+    $functions = BP_REF.$docsection;
+    for $entry in $functions do (
+        $markdown = '';
+        $funcname = $entry:(1 1);
+        $markdown = concatsym(
+            $markdown, '---', $br, 'hide_title: true', $br, '---', $br * 2, '## `', $funcname, '`', $br * 2
+        );
+        $funcdescr = $entry.getkey('description:');
+        $funcargs = $entry.getkey('arguments:');
+        $funcsig = '```bell' + $br + $funcname + $open;
+        $hasargs = $funcargs != 'none';
+        $funcref = '';
+        if $hasargs == 1 then (
+            $funcsig = concatsym($funcsig, $br);
+            $funcref = concatsym($funcref, $br, '**Arguments**:', $br, $br) 
+        );
+        for $arggroup in $funcargs do (
+            $argcat = $arggroup:(1 1);
+            $arguments = $arggroup.$argcat;
+            for $arg in $arguments do (
+                $argname = $arg:(1 1);
+                $argdescr = $arg.getkey('description:');
+                $argtype = $arg.getkey('type:');
+                $funcref = concatsym(
+                    $funcref, ' - `', $argname, '` [_**', $argtype, '**_]: ', $argdescr
+                );
+                if $argcat == 'required:' then ($funcref = concatsym($funcref, ' (_required_)'));
+                $funcref = concatsym($funcref, $br);
+                $argdefault = $arg.getkey('default:') ||| ' ## ' + $argtype + ' (required)';
+                if is($argdefault) != 'symbol' then ($argdefault = tosymbol($argdefault));
+                $funcsig = concatsym($funcsig, $tab, $argname, ' ', $argdefault, $br);
+                $argopts = $arg.getkey('options:');
+                for $argopt in $argopts with @unwrap 1 do (
+                    $key = $argopt:1;
+                    $keylen = symlen($key);
+                    $lastchar = getchar($key, $keylen);
+                    if $lastchar == ':' then (
+                        $key = getchar($key, 1...($keylen - 1)) 
+                    );
+                    if is($key) != 'symbol' then ($key = tosymbol($key));
+                    $val = $argopt.right(1);
+                    $val = if $val != null then joinsym(':' $val) else '';
+                    $funcref = concatsym(
+                        $funcref, $tab, '- `', $key, '`', $val, $br
+                    ) 
+                ) 
+            ) 
+        );
+        $funcout = $entry.getkey('output:');
+        $funcoutdescr = $funcout.'description:';
+        $funcouttype = $funcout.'type:';
+        $funcsig = concatsym(
+            $funcsig, $close, ' -> ', ($funcouttype ||| 'null'), $br, '```', $br
+        );
+        $markdown = concatsym($markdown, $funcsig, $br);
+        $outkeys = $entry.getkey('resulting buffer keys:').flat();
+        if $outkeys != null && $funcname != 'analyze' then (
+            $funcdescr = concatsym($funcdescr, $br, $br, 'The resulting buffer will be updated with the following keys:', $br);
+            for $outkey in $outkeys do ($funcdescr = concatsym(
+                $funcdescr, '- `', $outkey, '`', $br
+            ));
+            ## ---------------- NOTE ----------------
+            ## this should eventually be done from bellplay~ and keep this logic as streamlined and agnostic as possible
+            $funcdescr = concatsym(
+                $funcdescr, $br, $br, 'Which can be applied and accessed like so:', $br, $br, '```bell showLineNumbers', $br
+            );
+            $funcdescr = concatsym(
+                $funcdescr, '$buf = $buf.analyze', $open, $funcname, $open, $close, $close, ';', $br
+            );
+            for $outkey $outkeyid in $outkeys do (
+                $keysymlen = symlen($outkey);
+                $outkeyname = getchar($outkey, 2...($keysymlen - 1));
+                $funcdescr = concatsym(
+                    $funcdescr, '$', $outkeyname, ' = ', '$buf.getkey' $open, $outkey, $close, if $outkeyid < length($outkeys) then ';' else '', $br
+                ) 
+            );
+            $funcdescr = concatsym($funcdescr, '```') 
+            ## --------------------------------------
+            
+        );
+        $markdown = concatsym($markdown, $funcdescr, $br);
+        if $hasargs == 1 then ($markdown = concatsym($markdown, $br, '---', $br, $funcref));
+        if $funcouttype != null then $markdown = concatsym(
+            $markdown, $br, '---', $br, $br, '**Output**', $br, $br, $funcoutdescr, ' [**_', $funcouttype , '_**]', $br
+        );
+        $mdpath = ReferenceDirPath + ReferenceFolders:$sectionid + '/' + $funcname + '.md';
+        BP_REF_WRITE_MARKDOWN(
+            @data $markdown
+            @path $mdpath
+            @escape 0
+        ) 
+    ) 
+)

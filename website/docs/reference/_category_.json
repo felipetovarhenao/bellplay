@@ -1,0 +1,8 @@
+{
+    "label": "Reference",
+    "position": 3,
+    "className": "sidebar-reference",
+    "link": {
+        "type": "generated-index"
+    }
+}

@@ -1,0 +1,59 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+@keyframes slide-down {
+  from {
+    translate: 0px -20px;
+  }
+  to {
+    translate: 0px 0px;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(-45deg, var(--ifm-color-primary-darkest), var(--ifm-color-primary-dark), #75cad3, #7babdb);
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.logo {
+  animation: slide-down 1.5s ease-in-out 0s 1 normal forwards, fade-in 1.5s ease-in-out 0s 1 normal forwards;
+}
+
+.title {
+  animation: slide-down 1s ease-in-out 0s 1 normal forwards, fade-in 1s ease-in-out 0s 1 normal forwards;
+}
+[data-theme="dark"] {
+  .title {
+    color: #eaeaea;
+  }
+}
+.subtitle {
+  font-variant: small-caps;
+  font-weight: bold;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: slide-down 0.75s ease-in-out 0s 1 normal forwards, fade-in 0.75s ease-in-out 0s 1 normal forwards;
+  gap: 15px;
+}
