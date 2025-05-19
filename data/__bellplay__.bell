@@ -261,7 +261,7 @@ parsepath = (
 
 BP_REF_NEW(
     @name "parsepath",
-    @description "Parses a given path into key-value pairs for the following properties: 'name' (file or folder name), 'parent' (path of parent directory), and 'extension' (file extension, if not a folder). See #getkey.",
+    @description "Parses a given path into key-value pairs for the following properties: `'name'` (file or folder name), `'parent'` (path of parent directory), and `'extension'` (file extension, if not a folder). See `getkey`.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "path" @type "symbol" @description "file or folder path.")
@@ -278,7 +278,7 @@ thispath = (
 
 BP_REF_NEW(
     @name "thispath",
-    @description "Returns the path of the current script, as either a symbol or a parsed llll path. See #parsepath.",
+    @description "Returns the path of the current script, as either a symbol or a parsed llll path. See `parsepath`.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "parse" @default 0 @type "int" @description "parse path." @options 
@@ -299,12 +299,12 @@ exists = (
 
 BP_REF_NEW(
     @name "exists"
-    @description "Checks if a file or folder exists. Returns 1 if true or 0 if false."
+    @description "Checks if a file or folder exists. Returns `1` if true or `0` if false."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "path" @type "symbol" @description "file or folder path.")
     )
-    @output BP_REF_OUTPUT(@description "1 if true, 0 if false." @type "int")
+    @output BP_REF_OUTPUT(@description "`1` if true, `0` if false." @type "int")
 );
 
 ## ------------------------------------------------------------
@@ -423,13 +423,13 @@ inspect = (
 
 BP_REF_NEW(
     @name "inspect",
-    @description "Adds input buffer to the buffer inspector window, which opens up once the script evaluation is over, displaying relevant buffer information — useful for debugging buffers.",
+    @description "Adds input buffer to the buffer inspector window, which opens up once the script evaluation is over, displaying relevant buffer information—useful for debugging buffers.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "buffer" @type "llll" @description "media file type.")
         BP_REF_ARG(@name "label" @default "null" @type "symbol/null" @description "optional buffer inspector label.")
     )
-    @output BP_REF_OUTPUT(@description "buffer", @type "llll")
+    @output BP_REF_OUTPUT(@description "buffer" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -505,9 +505,9 @@ BP_REF_NEW(
     @description "Casts input value as a symbol.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
-        BP_REF_ARG(@name "x",  @type "anything" @description "value to cast")
+        BP_REF_ARG(@name "x"  @type "anything" @description "value to cast")
     ),
-    @output BP_REF_OUTPUT(@description "symbol", @type "symbol")
+    @output BP_REF_OUTPUT(@description "symbol" @type "symbol")
 );
 
 ## ------------------------------------------------------------
@@ -516,12 +516,12 @@ isnan = ($x -> tosymbol($x) == 'nan');
 
 BP_REF_NEW(
     @name "isnan",
-    @description "Checks if the input argument is strictly a nan — i.e., 'not a number' — value.",
+    @description "Checks if the input argument is strictly a nan—i.e., 'not a number' — value.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
-        BP_REF_ARG(@name "x",  @type "anything" @description "value to check")
+        BP_REF_ARG(@name "x"  @type "anything" @description "value to check")
     ),
-    @output BP_REF_OUTPUT(@description "0 if false, 1 if true.", @type "int")
+    @output BP_REF_OUTPUT(@description "`0` if false, `1` if true.", @type "int")
 );
 
 ## ------------------------------------------------------------
@@ -670,7 +670,7 @@ addmarker = (
 
 BP_REF_NEW(
     @name "addmarker"
-    @description "Inserts a marker into the transcription score, given an onset time and, optionally, a list of names and/or role associated with that marker. Note that if marker role is assigned, names are not displayed in the score but are still associated with the marker. Roles are particularly useful when exporting scores as llll files for quantization purposes."
+    @description "Inserts a marker into the transcription score, given an onset time and, optionally, a list of names and/or role associated with that marker. Note that if marker role is assigned, names are not displayed in the score but are still associated with the marker. Roles are particularly useful when exporting scores as `llll` files for quantization purposes."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "onset" @type "int/float" @description "marker onset position.")
@@ -678,9 +678,9 @@ BP_REF_NEW(
         BP_REF_ARG(@name "role" @default "null" @type "symbol/list/null" @description "optional marker role." @options
             BP_REF_OPT(@value "'tempo <unit> <bpm>'" @description "tempo marker role, followed by a tempo specification, as a unit ratio and bpm value.")
             BP_REF_OPT(@value "'timesig <time_sig_num> <time_sig_den>'" @description "time signature marker role, followed by a time signature, as a pair of numerator and denominator.")
-            BP_REF_OPT(@value "'barline'" @description "barline marker role")
-            BP_REF_OPT(@value "'division'" @description "beat division marker role")
-            BP_REF_OPT(@value "'subdivision'" @description "beat subdivision marker role")
+            BP_REF_OPT(@value "'barline'" @description "barline marker role.")
+            BP_REF_OPT(@value "'division'" @description "beat division marker role.")
+            BP_REF_OPT(@value "'subdivision'" @description "beat subdivision marker role.")
         )
     )
 );
@@ -830,21 +830,21 @@ buildcorpus = (
 
 BP_REF_NEW(
     @name "buildcorpus"
-    @description "Creates a buffer corpus from a list of audio file paths, and writes it into disk as a .llll file. See #analyze and #onsets."
+    @description "Creates a buffer corpus from a list of audio file paths, and writes it into disk as a `.llll` file. See `analyze` and `onsets`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "files" @type "symbol/list" @description "list of audio file paths.")
         BP_REF_ARG(@name "descriptors" @type "llll" @description "list of audio descriptors.")
-        BP_REF_ARG(@name "outpath" @default "null" @type "symbol/null" @description "optional output corpus path, as an .llll file. If null, the corpus is not written into memory.")
+        BP_REF_ARG(@name "outpath" @default "null" @type "symbol/null" @description "optional output corpus path, as an `.llll` file. If `null`, the corpus is not written into memory.")
         BP_REF_ARG(@name "segmode" @default 1 @type "int" @description "buffer segmentation mode." @options 
             BP_REF_OPT(@value 0 @description "no" "segmentation")
             BP_REF_OPT(@value 1 @description "'onsets'-based" "segmentation")
             BP_REF_OPT(@value 2 @description "blind" "segmentation")
         )
-        BP_REF_ARG(@name "overlap" @default 1 @type "int/float" @description "segment overlap factor, when @segmode is 2.")
-        BP_REF_ARG(@name "segsize" @default 100 @type "int" @description "segment duration in milliseconds, when @segmode is 2.")
+        BP_REF_ARG(@name "overlap" @default 1 @type "int/float" @description "segment overlap factor, when `@segmode` is `2`.")
+        BP_REF_ARG(@name "segsize" @default 100 @type "int" @description "segment duration in milliseconds, when `@segmode` is `2`.")
         BP_REF_ARG(@name "alpha" @default 0.1 @type "float" @description "proportion of the mean included to reject smaller peaks — filters very short onsets.")
-        BP_REF_ARG(@name "delay" @default 5 @type "int" @description "number of frames used to compute the threshold — size of short-onset filter.")
+        BP_REF_ARG(@name "delay" @default 5 @type "int" @description "number of frames used to compute the threshold—size of short-onset filter.")
         BP_REF_ARG(@name "framerate" @default 86.1328 @type "float" @description "frames per second.")
         BP_REF_ARG(@name "silencethreshold" @default 0.02 @type "float" @description "threshold for silence.")
         BP_REF_USE_CACHE_ARG
@@ -868,10 +868,10 @@ setcorpus = (
 
 BP_REF_NEW(
     @name "setcorpus",
-    @description "Loads an audio corpus, given a path to a .llll file. See #query function.",
+    @description "Loads an audio corpus, given a path to a `.llll` file. See `query` function.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
-        BP_REF_ARG(@name "filepath" @type "symbol" @description "file path to .llll corpus file.")
+        BP_REF_ARG(@name "filepath" @type "symbol" @description "file path to `.llll` corpus file.")
     )
 );
 
@@ -887,7 +887,7 @@ getcorpuskeys = (
 
 BP_REF_NEW(
     @name "getcorpuskeys"
-    @description "Returns a list with the current corpus' keys. See #setcorpus, #buildcorpus, and #query."
+    @description "Returns a list with the current corpus' keys. See `setcorpus`, `buildcorpus`, and `query`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "typed" @default 1 @type "int" @description "include the data type for each key." @options 
@@ -991,13 +991,13 @@ query = (
 
 BP_REF_NEW(
     @name "query",
-    @description "Executes a #sqlite3 query on the current audio corpus, and returns the results. Every query should use 'buffers' as the table name. For instance: 'SELECT * FROM buffers'. See #setcorpus.",
+    @description "Executes a `sqlite3` query on the current audio corpus, and returns the results. Every query should use 'buffers' as the table name. For instance: 'SELECT * FROM buffers'. See `setcorpus`.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "sql" @type "symbol" @default "'SELECT * FROM buffers'" @description "sqlite3 query.")
         BP_REF_USE_CACHE_ARG
     ),
-    @output BP_REF_OUTPUT(@description "list of buffers", @type "llll")
+    @output BP_REF_OUTPUT(@description "list of buffers" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -1036,15 +1036,15 @@ BP_REF_NEW(
     @description "Sets the value of a given key in a llll. If @mode is 0 (default), values for non-existent keys are ignored."
     @category BP_REF_LABEL_UTILS
     @arguments (
-        BP_REF_ARG(@name "llll" @type "llll" @description "llll to modify.")
-        BP_REF_ARG(@name "key" @type "symbol" @description "name of llll key.")
-        BP_REF_ARG(@name "val" @type "anything" @description "new value for llll key.")
+        BP_REF_ARG(@name "llll" @type "llll" @description "`llll` to modify.")
+        BP_REF_ARG(@name "key" @type "symbol" @description "name of `llll` key.")
+        BP_REF_ARG(@name "val" @type "anything" @description "new value for `llll` key.")
         BP_REF_ARG(@name "mode" @default 0 @type "int" @description "behavior mode." @options 
             BP_REF_OPT(@value 0 @description "only set values for existing keys")        
             BP_REF_OPT(@value 1 @description "always set values and create new keys when necessary.")        
         )
     )
-    @output BP_REF_OUTPUT(@description "modified llll", @type "llll")
+    @output BP_REF_OUTPUT(@description "modified `llll`", @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -1059,14 +1059,14 @@ mapkey = (
 ## $newvalue = dummy
 BP_REF_NEW(
     @name "mapkey"
-    @description "Modifies an existing llll key via a lambda function."
+    @description "Modifies an existing `llll` key via a lambda function."
     @category BP_REF_LABEL_UTILS
     @arguments (
-        BP_REF_ARG(@name "llll" @type "llll" @description "llll to modify.")
-        BP_REF_ARG(@name "key" @type "symbol" @description "name of llll key.")
-        BP_REF_ARG(@name "func" @type "lambda function" @description "lambda function with signature $currentvalue, $currentbuffer -> $newvalue.")
+        BP_REF_ARG(@name "llll" @type "llll" @description "`llll` to modify.")
+        BP_REF_ARG(@name "key" @type "symbol" @description "name of `llll` key.")
+        BP_REF_ARG(@name "func" @type "lambda function" @description "lambda function with signature `$x, $llll -> $y`.")
     )
-    @output BP_REF_OUTPUT(@description "modified llll" @type "llll")
+    @output BP_REF_OUTPUT(@description "modified `llll`" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -1102,7 +1102,7 @@ bpf = (
 
 BP_REF_NEW(
     @name "bpf"
-    @description "Formats an numeric list into a breakpoint function, in the form of [`<x>` `<y>` `<slope>`] tuples. By default, `<x>` is normalized to the 0-1 range. To prevent this, set `@xfunc` to null."
+    @description "Formats an numeric list into a breakpoint function, in the form of [`<x>` `<y>` `<slope>`] tuples. By default, `<x>` is normalized to the  0-1 range. To prevent this, set `@xfunc` to `null`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "pts" @type "list" @description "numeric list")
@@ -1125,7 +1125,7 @@ x2dx = (
 
 BP_REF_NEW(
     @name "x2dx"
-    @description "Takes a list of numbers and returns the differences — i.e., deltas — between adjacent elements. Inverse of #dx2x."
+    @description "Takes a list of numbers and returns the differences — i.e., deltas — between adjacent elements. Inverse of `dx2x`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "x" @type "list" @description "list of numeric values.")
@@ -1144,7 +1144,7 @@ dx2x = (
 
 BP_REF_NEW(
     @name "dx2x"
-    @description "Takes a list of differences — i.e., deltas — and an optional starting value, and returns the cumulative sum between adjacent elements, as a list. Inverse of #x2dx."
+    @description "Takes a list of differences — i.e., deltas — and an optional starting value, and returns the cumulative sum between adjacent elements, as a list. Inverse of `x2dx`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "dx" @type "list" @description "list of differences/deltas.")
@@ -1164,7 +1164,7 @@ r2dr = (
 
 BP_REF_NEW(
     @name "r2dr"
-    @description "Takes a list of ratios or factors and returns the quotients between adjacent elements. Inverse of #dr2r."
+    @description "Takes a list of ratios or factors and returns the quotients between adjacent elements. Inverse of `dr2r`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "r" @type "list" @description "list of ratios.")
@@ -1183,7 +1183,7 @@ dr2r = (
 
 BP_REF_NEW(
     @name "dr2r"
-    @description "Takes a list of ratios and an optional starting value, and returns the cumulative multiplication between adjacent elements, as a list. Inverse of #r2dr."
+    @description "Takes a list of ratios and an optional starting value, and returns the cumulative multiplication between adjacent elements, as a list. Inverse of `r2dr`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "dr" @type "list" @description "list of ratios.")
@@ -1207,7 +1207,7 @@ revbpf = (
 
 BP_REF_NEW(
     @name "revbpf",
-    @description "Reverses a breakpoint function. See #bpf.",
+    @description "Reverses a breakpoint function. See `bpf`.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "bpf", @type "llll", @description "breakpoint function to reverse")
@@ -1388,7 +1388,7 @@ setseed = (
 
 BP_REF_NEW(
     @name "setseed"
-    @description "Sets the random seed for the #xrand, #xrandom, #xchoose, #xscramble, and #urn functions."
+    @description "Sets the random seed for the `xrand`, `xrandom`, `xchoose`, `xscramble`, and `urn` functions."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "seed", @type "int", @description "random seed")
@@ -1412,7 +1412,7 @@ xrand = (
 
 BP_REF_NEW(
     @name "xrand",
-    @description "Seed-based random floating point number generator. See #setseed.",
+    @description "Seed-based random floating point number generator. See `setseed`.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "a" @default 1 @type "int/float", @description "max. value if @b is null, else min. value.")
@@ -1432,7 +1432,7 @@ xrandom = (
 
 BP_REF_NEW(
     @name "xrandom",
-    @description "Seed-based random integer number generator. See #setseed.",
+    @description "Seed-based random integer number generator. See `setseed`.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "a" @default 1 @type "int", @description "max. value if @b is null, else min. value.")
@@ -1449,7 +1449,7 @@ xchoose = (
 
 BP_REF_NEW(
     @name "xchoose",
-    @description "Choose randomly one or more elements from a list, with optional probability weights. See #setseed.",
+    @description "Choose randomly one or more elements from a list, with optional probability weights. See `setseed`.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "choices", @type "list", @description "list to choose from.")
@@ -1473,7 +1473,7 @@ xscramble = (
 
 BP_REF_NEW(
     @name "xscramble"
-    @description "Seed-based random shuffling of elements. See #setseed."
+    @description "Seed-based random shuffling of elements. See `setseed`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "llll" @type "list/llll", @description "list to scramble.")
@@ -1499,7 +1499,7 @@ initurn = (
 
 BP_REF_NEW(
     @name "initurn"
-    @description "Initializes a new unique random number generator (URN), given a size and a URN identifier. Once initialized, the identifier can be used to generate unique random numbers with the #urn function. This allows for independent URNs of different sizes to be used within the same script. If a URN associated with the identifier already exists, the URN is reset. The initialized URN can be optionally be seed-based. See #setseed."
+    @description "Initializes a new unique random number generator (URN), given a size and a URN identifier. Once initialized, the identifier can be used to generate unique random numbers with the `urn` function. This allows for independent URNs of different sizes to be used within the same script. If a URN associated with the identifier already exists, the URN is reset. The initialized URN can be optionally be seed-based. See `setseed`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "size" @default 10 @type "int", @description "number of unique random numbers.")
@@ -1533,7 +1533,7 @@ urn = (
 
 BP_REF_NEW(
     @name "urn"
-    @description "Returns a unique random number for a given URN identifier. Note that you must call #initurn first to initialize the URN."
+    @description "Returns a unique random number for a given URN identifier. Note that you must call `initurn` first to initialize the URN."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "id" @default 0 @type "int/float/symbol", @description "identifier for URN.")
@@ -1809,15 +1809,15 @@ transcribe = (
 
 BP_REF_NEW(
     @name "transcribe",
-    @description "Adds input buffer to the rendering sequence. See #render function."
+    @description "Adds input buffer to the rendering sequence. See `render` function."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "buffer" @type "llll" @description "buffer to add to rendering sequence.")
         BP_REF_ARG(@name "onset" @type "int/float" @default 0, @description "buffer onset in milliseconds.")
         BP_REF_ARG(@name "pan" @type "int/float/list/llll" @default "null" @description "normalized panning value or envelope.")
-        BP_REF_ARG(@name "gain" @type "int/float/llll" @default "null" @description "linear gain value or envelope. Use the #gain function for values greater than 1.")
+        BP_REF_ARG(@name "gain" @type "int/float/llll" @default "null" @description "linear gain value or envelope. Use the `gain` function for values greater than 1.")
         BP_REF_ARG(@name "detune" @type "int/float" @default "null" @description "detuning amount in cents.")
-        BP_REF_ARG(@name "voice" @type "int" @default 1 @description "voice assignment in score. See #scoreconfig function.")
+        BP_REF_ARG(@name "voice" @type "int" @default 1 @description "voice assignment in score. See `scoreconfig` function.")
         BP_REF_ARG(@name "pitchkey" @type "symbol" @default "'pitch'" @description "key to use for pitch value in score transcription.")
         BP_REF_ARG(@name "keepduration" @type "int" @default 1 @description "keep buffer's nominal duration value when detuning buffer via @detune.")
         BP_REF_ARG(@name "metadata" @default 'null' @type "anything" @default 1 @description "data to associate with buffer. Useful when exporting roll in llll format.")
@@ -1859,7 +1859,7 @@ render = (
 
 BP_REF_NEW(
     @name "render",
-    @description "Triggers audio rendering of all transcribed buffers via #transcribe, and returns the rendered buffer. Note that it's possible to apply post-rendering processing by passing audio processing operations (e.g., #reverse, #freeverb, #clip, etc.) to the @process arguments, but these audio modifications won't be accurately reflected in the score transcription. See #process function.",
+    @description "Triggers audio rendering of all transcribed buffers via `transcribe`, and returns the rendered buffer. Note that it's possible to apply post-rendering processing by passing audio processing operations (e.g., `reverse`, `freeverb`, `clip`, etc.) to the @process arguments, but these audio modifications won't be accurately reflected in the score transcription. See `process` function.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "numchannels", @type "int", @default 2, @description "number of output channels.")
@@ -1917,7 +1917,7 @@ scoreconfig = (
 
 BP_REF_NEW(
     @name "scoreconfig",
-    @description "Configures the score appearance, such as the clefs, voice names, tone division, etc. See #transcribe.",
+    @description "Configures the score appearance, such as the clefs, voice names, tone division, etc. See `transcribe`.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "voicenames", @default "'output'" @type "list/symbol", @description "voice names.")
@@ -2100,7 +2100,7 @@ export = (
 
 BP_REF_NEW(
     @name "export",
-    @description "Exports the rendered output as either an audio (.wav/aif/aiff/mp3), midi (.mid/midi), or roll (.llll) file, given a output path. For audio files, mono stem files can be separately exported with the @stems argument. See #render function.",
+    @description "Exports the rendered output as either an audio (.wav/aif/aiff/mp3), midi (.mid/midi), or roll (.llll) file, given a output path. For audio files, mono stem files can be separately exported with the @stems argument. See `render` function.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "path", @type "symbol", @description "output file path.")
@@ -2281,7 +2281,7 @@ samplebpf = (
 
 BP_REF_NEW(
     @name "samplebpf",
-    @description "Samples an interpolated value from a breakpoint function, given a list of normalized indices. See #bpf function.",
+    @description "Samples an interpolated value from a breakpoint function, given a list of normalized indices. See `bpf` function.",
     @category BP_REF_LABEL_UTILS,
     @arguments (
         BP_REF_ARG(@name "bpf" @type "llll" @description "breakpoint function")
@@ -2384,7 +2384,7 @@ analyze = (
 
 BP_REF_NEW(
     @name "analyze",
-    @description "Applies a sequence of audio analysis operations to the input buffer, via audio descriptors. These descriptors are generated through functions (e.g., see #flux, #dissonance, #spectrum), which contain the parameters for that specific audio analysis.",
+    @description "Applies a sequence of audio analysis operations to the input buffer, via audio descriptors. These descriptors are generated through functions (e.g., see `flux`, `dissonance`, `spectrum`), which contain the parameters for that specific audio analysis.",
     @category BP_REF_LABEL_ANALYSIS,
     @arguments (
         BP_REF_ARG(@name "buffer" @type "llll", @description "buffer to analyze.")
@@ -2423,7 +2423,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 4 @description "median" "through" "frames.")
             BP_REF_OPT(@value 5 @description "mode" "through" "frames.")
         )
-        BP_REF_ARG(@name "summaryweight" @default 1 @type "int" @description "summarization weight, when @summary is 4." @options 
+        BP_REF_ARG(@name "summaryweight" @default 1 @type "int" @description "summarization weight, when `@summary` is 4." @options 
             BP_REF_OPT(@value 0 @description "none.")
             BP_REF_OPT(@value 1 @description "rms.")
             BP_REF_OPT(@value 2 @description "loudness.")
@@ -2505,7 +2505,7 @@ effectiveduration = (
 
 BP_REF_NEW(
     @name "effectiveduration",
-    @description "Audio descriptor to compute the effective duration of an envelope signal. The effective duration is a measure of the time the signal is perceptually meaningful. This is approximated by the time the envelope is above or equal to a given threshold and is above the -90db noise floor. This measure allows to distinguish percussive sounds from sustained sounds but depends on the signal length. By default, this algorithm uses 40% of the envelope maximum as the threshold which is suited for short sounds. Note, that the 0% thresold corresponds to the duration of signal above -90db noise floor, while the 100% thresold corresponds to the number of times the envelope takes its maximum value. See #analyze.",
+    @description "Audio descriptor to compute the effective duration of an envelope signal. The effective duration is a measure of the time the signal is perceptually meaningful. This is approximated by the time the envelope is above or equal to a given threshold and is above the -90db noise floor. This measure allows to distinguish percussive sounds from sustained sounds but depends on the signal length. By default, this algorithm uses 40% of the envelope maximum as the threshold which is suited for short sounds. Note, that the 0% thresold corresponds to the duration of signal above -90db noise floor, while the 100% thresold corresponds to the number of times the envelope takes its maximum value. See `analyze`.",
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "thresholdratio" @default 0.02 @type "int/float" @description "ratio of the envelope maximum to be used as the threshold.")
@@ -2520,7 +2520,7 @@ envmaxtime = ( -> BP_FN_ESSENTIA(@name "envmaxtime"));
 
 BP_REF_NEW(
     @name "envmaxtime",
-    @description "Audio descriptor to extract the time at which the global maxima of the buffer's envelope occurs. See #analyze.",
+    @description "Audio descriptor to extract the time at which the global maxima of the buffer's envelope occurs. See `analyze`.",
     @category BP_REF_LABEL_ANALYSIS,
     @output BP_REF_OUTPUT(@description "envmaxtime descriptor" @type "llll")
 );
@@ -2531,7 +2531,7 @@ envmintime = ( -> BP_FN_ESSENTIA(@name "envmintime"));
 
 BP_REF_NEW(
     @name "envmintime",
-    @description "Audio descriptor to extract the time at which the global minima of the buffer's envelope occurs. See #analyze.",
+    @description "Audio descriptor to extract the time at which the global minima of the buffer's envelope occurs. See `analyze`.",
     @category BP_REF_LABEL_ANALYSIS,
     @output BP_REF_OUTPUT(@description "envmintime descriptor" @type "llll")
 );
@@ -2564,7 +2564,7 @@ pitchyin = (
 
 BP_REF_NEW(
     @name "pitchyin",
-    @description "Audio descriptor to estimate the fundamental frequency of a monophonic buffer. It is an implementation of the Yin algorithm for computations in the time domain. See #analyze.",
+    @description "Audio descriptor to estimate the fundamental frequency of a monophonic buffer. It is an implementation of the Yin algorithm for computations in the time domain. See `analyze`.",
     @category BP_REF_LABEL_ANALYSIS
     @ankeys "pitchyin" "pitchyin_confidence"
     @arguments (
@@ -2613,7 +2613,7 @@ BP_REF_NEW(
 
 ## BP_REF_NEW(
 ##     @name "snr",
-##     @description "Audio descriptor to compute the signal-to-noise ratio for a buffer in a frame-wise manner. The algorithm assumes that the noise is gaussian and that there is a region of noise, without signal, at the beginning of the buffer in order to estimate the power spectral density of the noise. See #analyze.",
+##     @description "Audio descriptor to compute the signal-to-noise ratio for a buffer in a frame-wise manner. The algorithm assumes that the noise is gaussian and that there is a region of noise, without signal, at the beginning of the buffer in order to estimate the power spectral density of the noise. See `analyze`.",
 ##     @category BP_REF_LABEL_ANALYSIS,
 ##     @arguments (
 ##         BP_REF_ARG(@name "maalpha" @default 0.95 @type "int/float" @description "alpha coefficient for the EMA SNR estimation.")
@@ -2643,7 +2643,7 @@ spectralkurtosis = (
 
 BP_REF_NEW(
     @name "spectralkurtosis"
-    @description "Audio descriptor to compute the spectral kurtosis of a buffer. See #analyze."
+    @description "Audio descriptor to compute the spectral kurtosis of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @anmodes 0...2
     @arguments (
@@ -2660,7 +2660,7 @@ temporalkurtosis = ( -> BP_FN_ESSENTIA(@name "temporalkurtosis"));
 
 BP_REF_NEW(
     @name "temporalkurtosis"
-    @description "Audio descriptor to compute the temporal kurtosis of a buffer. See #analyze."
+    @description "Audio descriptor to compute the temporal kurtosis of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @output BP_REF_OUTPUT(@description "temporalkurtosis descriptor" @type "llll")
 );
@@ -2678,7 +2678,7 @@ spectralskewness = (
 
 BP_REF_NEW(
     @name "spectralskewness"
-    @description "Audio descriptor to compute the spectral skewness of a buffer. See #analyze."
+    @description "Audio descriptor to compute the spectral skewness of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -2694,7 +2694,7 @@ temporalskewness = ( -> BP_FN_ESSENTIA(@name "temporalskewness"));
 
 BP_REF_NEW(
     @name "temporalskewness"
-    @description "Audio descriptor to compute the temporal skewness of a buffer. See #analyze."
+    @description "Audio descriptor to compute the temporal skewness of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @output BP_REF_OUTPUT(@description "temporalskewness descriptor" @type "llll")
 );
@@ -2712,7 +2712,7 @@ spectralspread = (
 
 BP_REF_NEW(
     @name "spectralspread"
-    @description "Audio descriptor to compute the spectral spread of a buffer. See #analyze."
+    @description "Audio descriptor to compute the spectral spread of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -2728,7 +2728,7 @@ temporalspread = ( -> BP_FN_ESSENTIA(@name "temporalspread"));
 
 BP_REF_NEW(
     @name "temporalspread"
-    @description "Audio descriptor to compute the temporal spread of a buffer. See #analyze."
+    @description "Audio descriptor to compute the temporal spread of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @output BP_REF_OUTPUT(@description "temporalspread descriptor" @type "llll")
 );
@@ -2746,7 +2746,7 @@ spectralvariance = (
 
 BP_REF_NEW(
     @name "spectralvariance"
-    @description "Audio descriptor to compute the spectral variance of a buffer. See #analyze."
+    @description "Audio descriptor to compute the spectral variance of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -2762,7 +2762,7 @@ temporalvariance = ( -> BP_FN_ESSENTIA(@name "temporalvariance"));
 
 BP_REF_NEW(
     @name "temporalvariance"
-    @description "Audio descriptor to compute the temporal variance of a buffer. See #analyze."
+    @description "Audio descriptor to compute the temporal variance of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @output BP_REF_OUTPUT(@description "temporalvariance descriptor" @type "llll")
 );
@@ -2780,7 +2780,7 @@ energy = (
 
 BP_REF_NEW(
     @name "energy"
-    @description "Audio descriptor to compute the energy of a buffer. See #analyze."
+    @description "Audio descriptor to compute the energy of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -2811,7 +2811,7 @@ energyband = (
 
 BP_REF_NEW(
     @name "energyband"
-    @description "Audio descriptor to compute energy in a given frequency band of a spectrum including both start and stop cutoff frequencies. See #analyze."
+    @description "Audio descriptor to compute energy in a given frequency band of a spectrum including both start and stop cutoff frequencies. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "startcutofffrequency" @type "int" @default 0 @description "start frequency from which to sum the energy.")
@@ -2830,7 +2830,7 @@ dissonance = ($mode = 0 -> BP_FN_ESSENTIA(@name "dissonance" @mode $mode));
 
 BP_REF_NEW(
     @name "dissonance"
-    @description "Audio descriptor to compute the sensory dissonance of a buffer. See #analyze."
+    @description "Audio descriptor to compute the sensory dissonance of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -2846,7 +2846,7 @@ strongpeak = ($mode = 0 -> BP_FN_ESSENTIA(@name "strongpeak" @mode $mode));
 
 BP_REF_NEW(
     @name "strongpeak"
-    @description "Audio descriptor to compute the strong peak of a buffer, defined as the ratio between the spectrum's maximum peak's magnitude and the 'bandwidth' of the peak above a threshold — i.e., half its amplitude. This ratio reveals whether the spectrum presents a very 'pronounced' maximum peak — i.e., the thinner and the higher the maximum of the spectrum is, the higher the ratio value. Note that 'bandwidth' is defined as the width of the peak in the log10-frequency domain. Using the log10-frequency domain allows this algorithm to compare strong peaks at lower frequencies with those from higher frequencies. See #analyze."
+    @description "Audio descriptor to compute the strong peak of a buffer, defined as the ratio between the spectrum's maximum peak's magnitude and the 'bandwidth' of the peak above a threshold — i.e., half its amplitude. This ratio reveals whether the spectrum presents a very 'pronounced' maximum peak — i.e., the thinner and the higher the maximum of the spectrum is, the higher the ratio value. Note that 'bandwidth' is defined as the width of the peak in the log10-frequency domain. Using the log10-frequency domain allows this algorithm to compare strong peaks at lower frequencies with those from higher frequencies. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -2862,7 +2862,7 @@ inharmonicity = ($mode = 0 -> BP_FN_ESSENTIA(@name "inharmonicity" @mode $mode))
 
 BP_REF_NEW(
     @name "inharmonicity"
-    @description "Audio descriptor to calculate the inharmonicity of a buffer. See #analyze."
+    @description "Audio descriptor to calculate the inharmonicity of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -2889,7 +2889,7 @@ zerocrossingrate = (
 
 BP_REF_NEW(
     @name "zerocrossingrate"
-    @description "Audio descriptor to compute the zero-crossing rate of a buffer, defined as the number of sign changes between consecutive signal values divided by the total number of values. Noisy signals tend to have higher zero-crossing rate. In order to avoid small variations around zero caused by noise, a threshold around zero is given to consider a valid zerocrosing whenever the boundary is crossed. See #analyze."
+    @description "Audio descriptor to compute the zero-crossing rate of a buffer, defined as the number of sign changes between consecutive signal values divided by the total number of values. Noisy signals tend to have higher zero-crossing rate. In order to avoid small variations around zero caused by noise, a threshold around zero is given to consider a valid zerocrosing whenever the boundary is crossed. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "threshold" @default 0 @type "int/float" @description "the threshold which will be taken as the zero axis in both positive and negative sign.")
@@ -2906,7 +2906,7 @@ strongdecay = ( -> BP_FN_ESSENTIA(@name "strongdecay"));
 
 BP_REF_NEW(
     @name "strongdecay"
-    @description "Audio descriptor to compute the strong decay of a buffer. The strong decay is built from the non-linear combination of the signal energy and the signal temporal centroid, the latter being the balance of the absolute value of the signal. A signal containing a temporal centroid near its start boundary and a strong energy is said to have a strong decay. See #analyze."
+    @description "Audio descriptor to compute the strong decay of a buffer. The strong decay is built from the non-linear combination of the signal energy and the signal temporal centroid, the latter being the balance of the absolute value of the signal. A signal containing a temporal centroid near its start boundary and a strong energy is said to have a strong decay. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -2949,7 +2949,7 @@ spectrum = (
 
 BP_REF_NEW(
     @name "spectrum"
-    @description "Audio descriptor to compute the magnitude spectrum of a buffer. The resulting magnitude spectrum has a size which is half the size of the input array plus one. Bins contain raw (linear) magnitude values. See #analyze."
+    @description "Audio descriptor to compute the magnitude spectrum of a buffer. The resulting magnitude spectrum has a size which is half the size of the input array plus one. Bins contain raw (linear) magnitude values. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "size" @default 2048 @type "int", @description "frame size.")
@@ -2985,7 +2985,7 @@ rhythm = (
 
 BP_REF_NEW(
     @name "rhythm"
-    @description "Audio descriptor for extract the beat positions and estimate their confidence as well as tempo in bpm for a buffer. See #analyze."
+    @description "Audio descriptor for extract the beat positions and estimate their confidence as well as tempo in bpm for a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @ankeys "rhythm_bpm" "rhythm_ticks" "rhythm_estimates" "rhythm_intervals"
     @arguments (
@@ -3013,7 +3013,7 @@ logattack = ( -> BP_FN_ESSENTIA(
 
 BP_REF_NEW(
     @name "logattack"
-    @description "Audio descriptor to compute the log (base 10) of the attack time of buffer's envelope. The attack time is defined as the time duration from when the sound becomes perceptually audible to when it reaches its maximum intensity. By default, the start of the attack is estimated as the point where the signal envelope reaches 20% of its maximum value in order to account for possible noise presence. Also by default, the end of the attack is estimated as as the point where the signal envelope has reached 90% of its maximum value, in order to account for the possibility that the max value occurres after the log-attack, as in trumpet sounds. See #analyze."
+    @description "Audio descriptor to compute the log (base 10) of the attack time of buffer's envelope. The attack time is defined as the time duration from when the sound becomes perceptually audible to when it reaches its maximum intensity. By default, the start of the attack is estimated as the point where the signal envelope reaches 20% of its maximum value in order to account for possible noise presence. Also by default, the end of the attack is estimated as as the point where the signal envelope has reached 90% of its maximum value, in order to account for the possibility that the max value occurres after the log-attack, as in trumpet sounds. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @ankeys "logattack" "logattack_start" "logattack_stop"
     @output BP_REF_OUTPUT(@description "logattack descriptor" @type "llll")
@@ -3033,7 +3033,7 @@ chordsdetection = (
 
 BP_REF_NEW(
     @name "chordsdetection"
-    @description "Audio descriptor to perform chord estimation on a buffer. See #analyze."
+    @description "Audio descriptor to perform chord estimation on a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @anmodes 0...2
     @arguments (
@@ -3097,7 +3097,7 @@ pitchmelodia = (
 
 BP_REF_NEW(
     @name "pitchmelodia"
-    @description "Audio descriptor to estimate the fundamental frequency corresponding to the melody of a monophonic music signal based on the MELODIA algorithm. While the algorithm is originally designed to extract the predominant melody from polyphonic music, this implementation is adapted for monophonic signals. The approach is based on the creation and characterization of pitch contours, time continuous sequences of pitch candidates grouped using auditory streaming cues. It is strongly advised to use the default parameter values which are optimized for this task, except for @minfrequency and @maxfrequency, which will be context-dependent. See #analyze."
+    @description "Audio descriptor to estimate the fundamental frequency corresponding to the melody of a monophonic music signal based on the MELODIA algorithm. While the algorithm is originally designed to extract the predominant melody from polyphonic music, this implementation is adapted for monophonic signals. The approach is based on the creation and characterization of pitch contours, time continuous sequences of pitch candidates grouped using auditory streaming cues. It is strongly advised to use the default parameter values which are optimized for this task, except for @minfrequency and @maxfrequency, which will be context-dependent. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @ankeys "pitchmelodia" "pitchmelodia_confidence"
     @arguments (
@@ -3127,10 +3127,10 @@ BP_REF_NEW(
         BP_REF_ARG(@name "polyphonic" @default 0 @type "int" @description "optimize for polyphonic buffer." @options 
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "voicevibrato" @default 0 @type 'int' @description "detect voice vibrato, when @polyphonic is 1." @options 
+        BP_REF_ARG(@name "voicevibrato" @default 0 @type 'int' @description "detect voice vibrato, when `@polyphonic` is 1." @options 
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "voicingtolerance" @default 0.2 @type 'int/float' @description "voicing tolerance between -1 and 1.4, when @polyphonic is 1.")
+        BP_REF_ARG(@name "voicingtolerance" @default 0.2 @type 'int/float' @description "voicing tolerance between -1 and 1.4, when `@polyphonic` is 1.")
         BP_REF_ARG(@name "mode" @default 0 @type "int" @description "analysis mode." @options
             BP_REF_ESSENTIA_ANALYSIS_OPTIONS
         )
@@ -3182,7 +3182,7 @@ mfcc = (
 
 BP_REF_NEW(
     @name "mfcc"
-    @description "Audio descriptor to compute the mel-frequency cepstrum coefficients of a buffer's spectrum. As there is no standard implementation, the MFCC-FB40 is used by default. See #analyze."
+    @description "Audio descriptor to compute the mel-frequency cepstrum coefficients of a buffer's spectrum. As there is no standard implementation, the MFCC-FB40 is used by default. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @ankeys "mfcc_bands" "mfcc"
     @arguments (
@@ -3244,7 +3244,7 @@ flux = (
 
 BP_REF_NEW(
     @name "flux"
-    @description "Audio descriptor to compute the spectral flux of a buffer. See #analyze."
+    @description "Audio descriptor to compute the spectral flux of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "halfrectify" @default 0 @type "int", @description "half-rectify the differences in each spectrum bin." @options
@@ -3284,7 +3284,7 @@ larm = (
 
 BP_REF_NEW(
     @name "larm"
-    @description "Audio descriptor to estimate the long-term loudness of a buffer. See #analyze."
+    @description "Audio descriptor to estimate the long-term loudness of a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "attacktime" @default 10 @type "int" @description "attack time of the first order lowpass in the attack phase.")
@@ -3311,7 +3311,7 @@ spectralcentroid = (
 
 BP_REF_NEW(
     @name "spectralcentroid"
-    @description "Audio descriptor to calculate the spectral centroid of a buffer, defined as the 'center of mass' of the spectrum, in Hertz. Perceptually, it has a robust connection with the impression of 'brightness' of a sound, and therefore is used to characterize musical timbre. It is calculated as the weighted mean of the frequencies present in the signal, with their magnitudes as the weights. See #analyze."
+    @description "Audio descriptor to calculate the spectral centroid of a buffer, defined as the 'center of mass' of the spectrum, in Hertz. Perceptually, it has a robust connection with the impression of 'brightness' of a sound, and therefore is used to characterize musical timbre. It is calculated as the weighted mean of the frequencies present in the signal, with their magnitudes as the weights. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -3333,7 +3333,7 @@ temporalcentroid = (
 
 BP_REF_NEW(
     @name "temporalcentroid"
-    @description "Audio descriptor to calculate the temporal centroid of a buffer, defined as the point in time that is a temporal balancing point of the sound's energy. See #analyze."
+    @description "Audio descriptor to calculate the temporal centroid of a buffer, defined as the point in time that is a temporal balancing point of the sound's energy. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
     )
@@ -3353,7 +3353,7 @@ spectralflatness = (
 
 BP_REF_NEW(
     @name "spectralflatness"
-    @description "Audio descriptor to calculate the spectral flatness of a buffer, defined as the ratio between the spectrum's geometric mean and arithmetic mean. See #analyze."
+    @description "Audio descriptor to calculate the spectral flatness of a buffer, defined as the ratio between the spectrum's geometric mean and arithmetic mean. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -3375,7 +3375,7 @@ temporalflatness = (
 
 BP_REF_NEW(
     @name "temporalflatness"
-    @description "Audio descriptor to calculate the temporal flatness of a buffer, defined as the ratio between the buffer envelope's geometric mean and arithmetic mean. Flatness is undefined for empty input and negative values, therefore an exception is thrown in any both cases. See #analyze."
+    @description "Audio descriptor to calculate the temporal flatness of a buffer, defined as the ratio between the buffer envelope's geometric mean and arithmetic mean. Flatness is undefined for empty input and negative values, therefore an exception is thrown in any both cases. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
     )
@@ -3413,7 +3413,7 @@ BP_REF_NEW(
 
 ## BP_REF_NEW(
 ##     @name "spectralcontrast"
-##     @description "Audio descriptor to calculate the spectral contrast of a buffer. See #analyze."
+##     @description "Audio descriptor to calculate the spectral contrast of a buffer. See `analyze`."
 ##     @category BP_REF_LABEL_ANALYSIS
 ##     @arguments (
 ##         BP_REF_ARG(@name "framesize" @default 2048 @type "int" @description "size of the fft frames.")
@@ -3449,7 +3449,7 @@ barkbands = (
 
 BP_REF_NEW(
     @name "barkbands"
-    @description "Audio descriptor to compute the Bark bands of a spectrum. For each bark band the power-spectrum — i.e., mag-squared — is summed. See #analyze."
+    @description "Audio descriptor to compute the Bark bands of a spectrum. For each bark band the power-spectrum — i.e., mag-squared — is summed. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "numberbands" @default 27 @type "int" @description "number of desired barkbands.")
@@ -3486,7 +3486,7 @@ beatsloudness = (
 
 BP_REF_NEW(
     @name "beatsloudness"
-    @description "Audio descriptor to compute the spectrum energy of beats in an audio signal given their positions. The energy is computed both on the whole frequency range and for each of the specified frequency bands. See #analyze."
+    @description "Audio descriptor to compute the spectrum energy of beats in an audio signal given their positions. The energy is computed both on the whole frequency range and for each of the specified frequency bands. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @ankeys "beatsloudness" "beatsloudness_bandratio"
     @arguments (
@@ -3541,7 +3541,7 @@ bfcc = (
 
 BP_REF_NEW(
     @name "bfcc"
-    @description "Audio descriptor to compute the bark-frequency cepstrum coefficients of a spectrum. Bark bands and their subsequent usage in cepstral analysis have shown to be useful in percussive content. See #analyze."
+    @description "Audio descriptor to compute the bark-frequency cepstrum coefficients of a spectrum. Bark bands and their subsequent usage in cepstral analysis have shown to be useful in percussive content. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @ankeys "bfcc_bands" "bfcc"
     @arguments (
@@ -3595,7 +3595,7 @@ rolloff = (
 
 BP_REF_NEW(
     @name "rolloff"
-    @description "Audio descriptor to compute the roll-off frequency of a spectrum. The roll-off frequency is defined as the frequency under which some percentage — i.e., cutoff — of the total energy of the spectrum is contained. The roll-off frequency can be used to distinguish between harmonic — i.e., below roll-off — and noisy sounds — i.e., above roll-off. See #analyze."
+    @description "Audio descriptor to compute the roll-off frequency of a spectrum. The roll-off frequency is defined as the frequency under which some percentage — i.e., cutoff — of the total energy of the spectrum is contained. The roll-off frequency can be used to distinguish between harmonic — i.e., below roll-off — and noisy sounds — i.e., above roll-off. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "cutoff" @default 0.85 @type "float" @description "the ratio of total energy to attain before yielding the roll-off frequency.")
@@ -3624,7 +3624,7 @@ maxmagfreq = (
 
 BP_REF_NEW(
     @name "maxmagfreq"
-    @description "Audio descriptor to compute the frequency with the largest magnitude in a spectrum. See #analyze."
+    @description "Audio descriptor to compute the frequency with the largest magnitude in a spectrum. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "samplerate" @default 44100 @type "int" @description "sampling rate.")
@@ -3656,7 +3656,7 @@ onsets = (
 
 BP_REF_NEW(
     @name "onsets"
-    @description "Audio descriptor to compute the onset positions in a buffer. See #analyze."
+    @description "Audio descriptor to compute the onset positions in a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "alpha" @default 0.1 @type "float" @description "proportion of the mean included to reject smaller peaks — filters very short onsets.")
@@ -3680,7 +3680,7 @@ BP_REF_NEW(
 
 ## BP_REF_NEW(
 ##     @name "onsetrate"
-##     @description "Audio descriptor to compute the number of onsets per second and their position in time for an audio signal. Onset detection functions are computed using both high frequency content and complex-domain methods available in #onsetdetection. Please note that due to a dependence on #onsets, this descriptor is only valid for audio signals with a sampling rate of 44100 Hz. See #analyze."
+##     @description "Audio descriptor to compute the number of onsets per second and their position in time for an audio signal. Onset detection functions are computed using both high frequency content and complex-domain methods available in `onsetdetection`. Please note that due to a dependence on `onsets`, this descriptor is only valid for audio signals with a sampling rate of 44100 Hz. See `analyze`."
 ##     @category BP_REF_LABEL_ANALYSIS
 ##     @output BP_REF_OUTPUT(@description "onsetrate descriptor" @type "llll")
 ## );
@@ -3705,7 +3705,7 @@ onsetdetection = (
 
 BP_REF_NEW(
     @name "onsetdetection"
-    @description "Audio descriptor to compute buffer onsets, given various onset detection functions. See #analyze."
+    @description "Audio descriptor to compute buffer onsets, given various onset detection functions. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "method" @default "'hfc'" @description "the method used for onset detection." @options 
@@ -3749,7 +3749,7 @@ tonalkey = (
 
 BP_REF_NEW(
     @name "tonalkey"
-    @description "Audio descriptor to perform tonal key signature estimation on a buffer. See #analyze."
+    @description "Audio descriptor to perform tonal key signature estimation on a buffer. See `analyze`."
     @category BP_REF_LABEL_ANALYSIS
     @anmodes 0...2
     @arguments (
@@ -3820,7 +3820,7 @@ process = (
 
 BP_REF_NEW(
     @name "process",
-    @description "Applies a sequence of DSP operations to the input buffer, prior to rendering, via audio processing operations. These operations are generated through functions (e.g., see #reverse, #paulstretch, #freeverb, #rubberband), which contain the parameters for that specific DSP operation. This results in a newly created buffer, with updated keys. To keep keys from the input buffer, such as keys associated with previous feature analyses, use the @keepkeys argument by passing an optional list of keys. See @process argument in #render.",
+    @description "Applies a sequence of DSP operations to the input buffer, prior to rendering, via audio processing operations. These operations are generated through functions (e.g., see `reverse`, `paulstretch`, `freeverb`, `rubberband`), which contain the parameters for that specific DSP operation. This results in a newly created buffer, with updated keys. To keep keys from the input buffer, such as keys associated with previous feature analyses, use the @keepkeys argument by passing an optional list of keys. See @process argument in `render`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "buffer", @type "llll", @description "buffer to process.")
@@ -3859,7 +3859,7 @@ fade = (
 
 BP_REF_NEW(
     @name "fade",
-    @description "Audio process operation for applying fadein/fadeout to a buffer. See #process.",
+    @description "Audio process operation for applying fadein/fadeout to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "fadein", @default 5, @type "int/float", @description "fade-in duration.")
@@ -3901,7 +3901,7 @@ crop = (
 
 BP_REF_NEW(
     @name "crop",
-    @description "Audio process operation for cropping a buffer. See #process.",
+    @description "Audio process operation for cropping a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "start" @default 0 @type "int/float", @description "start time.")
@@ -3923,7 +3923,7 @@ reverse = ( -> [ [ "fx" "reverse" ] ]);
 
 BP_REF_NEW(
     @name "reverse",
-    @description "Audio process operation for reversing a buffer. See #process.",
+    @description "Audio process operation for reversing a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @output BP_REF_OUTPUT(@description "reverse operation" @type "llll")
 );
@@ -3934,7 +3934,7 @@ dcfilter = ( -> [ [ "fx" "dcfilter" ] ]);
 
 BP_REF_NEW(
     @name "dcfilter",
-    @description "Audio process operation for removing DC offset from a buffer. See #process.",
+    @description "Audio process operation for removing DC offset from a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @output BP_REF_OUTPUT(@description "dcfilter operation" @type "llll")
 );
@@ -3964,7 +3964,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "buffer", @type "llll", @description "buffer to extract channels from.")
-        BP_REF_ARG(@name "channels" @default "null" @type "int/list/llll/null", @description "number to channels to extract — ignored when @all is 1.")
+        BP_REF_ARG(@name "channels" @default "null" @type "int/list/llll/null", @description "number to channels to extract — ignored when `@all` is `1`.")
         BP_REF_ARG(@name "all" @default 1 @type "int", @description "extract all channels." @options 
             BP_REF_SWITCH_OPTIONS
         )
@@ -3997,7 +3997,7 @@ freeverb = (
 
 BP_REF_NEW(
     @name "freeverb",
-    @description "Audio process operation for applying reverb to a buffer. See #process function.",
+    @description "Audio process operation for applying reverb to a buffer. See `process` function.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "roomsize", @default 0.5, @type "int/float", @description "reverb room size")
@@ -4297,7 +4297,7 @@ clicks = (
 
 BP_REF_NEW(
     @name "clicks",
-    @description "Generates a buffer containing a set of clicks at specific onsets. Note that if the first onset value is 0, it might get silenced when the @fade argument in #render is non-zero.",
+    @description "Generates a buffer containing a set of clicks at specific onsets. Note that if the first onset value is 0, it might get silenced when the @fade argument in `render` is non-zero.",
     @category BP_REF_LABEL_GEN,
     @arguments (
         BP_REF_ARG(@name "onsets" @default 0 @type "int/float/list" @description "onset positions.")
@@ -4337,7 +4337,7 @@ paulstretch = (
 
 BP_REF_NEW(
     @name "paulstretch",
-    @description "Audio process operation for applying time-stretching to a buffer. See #process.",
+    @description "Audio process operation for applying time-stretching to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "stretching", @default 1, @type "int/float/llll", @description "stretching amount, as single number or envelope.")
@@ -4379,7 +4379,7 @@ paulfreeze = (
 
 BP_REF_NEW(
     @name "paulfreeze",
-    @description "Audio process operation for freezing a buffer. See #process.",
+    @description "Audio process operation for freezing a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "duration" @default 1000 @type "int/float" @description "freezing duration, based on @timeunit.")
@@ -4412,7 +4412,7 @@ overdrive = (
 
 BP_REF_NEW(
     @name "overdrive",
-    @description "Audio process operation for applying soft-clip distortion to a buffer. See #process.",
+    @description "Audio process operation for applying soft-clip distortion to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "factor", @type "int/float/llll", @description "amplitude distortion factor, either as single number or envelope.")
@@ -4441,7 +4441,7 @@ window = (
 
 BP_REF_NEW(
     @name "window",
-    @description "Audio process operation for applying a windowing function to a buffer. See #process.",
+    @description "Audio process operation for applying a windowing function to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "wintype", @default "'hann'", @type "symbol", @description "window type, as a symbol" @options
@@ -4496,7 +4496,7 @@ biquad = (
 
 BP_REF_NEW(
     @name "biquad",
-    @description "Audio process operation for applying biquad filtering to a buffer. See #process.",
+    @description "Audio process operation for applying biquad filtering to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "type", @type "int/symbol", @description "filter type, as a symbol or integer." @options
@@ -4533,7 +4533,7 @@ clip = (
 
 BP_REF_NEW(
     @name "clip",
-    @description "Audio process operation for applying hard-clip distortion to a buffer. See #process.",
+    @description "Audio process operation for applying hard-clip distortion to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "threshold" @default 1 @type "int/float/llll", @description "distortion amplitude threshold, either as single number or envelope.")
@@ -4584,7 +4584,7 @@ rubberband = (
 
 BP_REF_NEW(
     @name "rubberband",
-    @description "Audio process operation for applying rubberband pitch-shifting/time-stretching to a buffer. See #process.",
+    @description "Audio process operation for applying rubberband pitch-shifting/time-stretching to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "stretching", @default 1, @type "int/float/llll", @description "stretching amount, as single number or envelope.")
@@ -4664,7 +4664,7 @@ soundtouch = (
 
 BP_REF_NEW(
     @name "soundtouch",
-    @description "Audio process operation for applying soundtouch pitch-shifting/time-stretching to a buffer. See #process.",
+    @description "Audio process operation for applying soundtouch pitch-shifting/time-stretching to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "stretching", @default 1, @type "int/float", @description "stretching amount, as a single number.")
@@ -4727,7 +4727,7 @@ groove = (
 
 BP_REF_NEW(
     @name "groove",
-    @description "Audio processing operation for applying variable-rate sample playback to a buffer. See #process.",
+    @description "Audio processing operation for applying variable-rate sample playback to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "rate" @default 1 @type "int/float/list/llll", @description "playback rate, as either a single number, envelope, or control buffer.")
@@ -4760,7 +4760,7 @@ freqshift = (
 
 BP_REF_NEW(
     @name "freqshift",
-    @description "Audio process operation for applying frequency shifting to a buffer. See #process.",
+    @description "Audio process operation for applying frequency shifting to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "shift", @type "int/float/list/llll", @description "frequency shift in Hertz, as either a single number, an envelope or buffer.")
@@ -4790,7 +4790,7 @@ degrade = (
 
 BP_REF_NEW(
     @name "degrade",
-    @description "Audio process operation for reducing sampling rate and bit-depth of a buffer. See #process.",
+    @description "Audio process operation for reducing sampling rate and bit-depth of a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "ratio", @default 0.5, @type "int/float/llll", @description "sampling rate ratio.")
@@ -4819,7 +4819,7 @@ rounding = (
 
 BP_REF_NEW(
     @name "rounding",
-    @description "Audio process operation for applying signal rounding to a buffer. See #process.",
+    @description "Audio process operation for applying signal rounding to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "value", @default 1, @type "int/float/list/llll", @description "rounding value, as either a single number, envelope, or buffer.")
@@ -4859,7 +4859,7 @@ teeth = (
 
 BP_REF_NEW(
     @name "teeth",
-    @description "Audio process operation for applying comb filtering to a buffer, with feedforward and feedback delay control. See #process.",
+    @description "Audio process operation for applying comb filtering to a buffer, with feedforward and feedback delay control. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "feedforward", @default 5, @type "int/float/llll", @description "feedforward delay time, in milliseconds, as either a single number, envelope, or buffer.")
@@ -4894,7 +4894,7 @@ pong = (
 
 BP_REF_NEW(
     @name "pong",
-    @description "Audio process operation for applying range limiting to a buffer. See #process.",
+    @description "Audio process operation for applying range limiting to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "low", @default -1, @type "int/float/llll", @description "low limit value, as either a single number, envelope, or buffer.")
@@ -4948,7 +4948,7 @@ retune = (
 
 BP_REF_NEW(
     @name "retune",
-    @description "Audio process operation for applying autotune-like pitch retuning to a buffer. See #process.",
+    @description "Audio process operation for applying autotune-like pitch retuning to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "pitchgrid", @default 0, @type "int/float/list", @description "pitch grid to retune to, as a list of pitch classes.")
@@ -4986,7 +4986,7 @@ waveshape = (
 
 BP_REF_NEW(
     @name "waveshape",
-    @description "Audio process operation for waveshaping a buffer. See #process.",
+    @description "Audio process operation for waveshaping a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "phase", @default -1 1, @type "int/float", @description "buffer phase envelope between -1 and 1, either as an envelope or a buffer.")
@@ -5015,7 +5015,7 @@ scrub = (
 
 BP_REF_NEW(
     @name "scrub",
-    @description "Audio process operation for scrubbing through a buffer. See #process.",
+    @description "Audio process operation for scrubbing through a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "phase", @default 0 1, @type "int/float", @description "buffer phase envelope between 0 and 1, either as an envelope or a buffer.")
@@ -5041,7 +5041,7 @@ repeat = (
 
 BP_REF_NEW(
     @name "repeat",
-    @description "Audio process operation for repeating a buffer. See #process.",
+    @description "Audio process operation for repeating a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "duration", @default 2, @type "int/float", @description "target duration, based on @timeunit.")
@@ -5077,7 +5077,7 @@ scaling = (
 
 BP_REF_NEW(
     @name "scaling",
-    @description "Audio process operation for applying amplitude scaling to a buffer. See #process.",
+    @description "Audio process operation for applying amplitude scaling to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "inmin", @default 0, @type "int/float/llll", @description "input minimum value.")
@@ -5128,7 +5128,7 @@ mix = (
 
 BP_REF_NEW(
     @name "mix",
-    @description "Audio process operation for mixing multiple buffers. See #process.",
+    @description "Audio process operation for mixing multiple buffers. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "buffers", @type "list/llll", @description "list of buffers to mix.")
@@ -5227,7 +5227,7 @@ absolute = (
 
 BP_REF_NEW(
     @name "absolute",
-    @description "Audio process operation for computing the absolute value of a buffer signal. See #process.",
+    @description "Audio process operation for computing the absolute value of a buffer signal. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @output BP_REF_OUTPUT(@description "absolute operation" @type "llll")
 );
@@ -5245,7 +5245,7 @@ squareroot = (
 
 BP_REF_NEW(
     @name "squareroot",
-    @description "Audio process operation for computing the square root of a buffer signal. See #process.",
+    @description "Audio process operation for computing the square root of a buffer signal. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @output BP_REF_OUTPUT(@description "squareroot operation" @type "llll")
 );
@@ -5271,7 +5271,7 @@ power = (
 
 BP_REF_NEW(
     @name "power",
-    @description "Audio process operation for performing exponentiation on a buffer. See #process.",
+    @description "Audio process operation for performing exponentiation on a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "operand", @default 2 @type "int/float/llll", @description "value to raise buffer signal to, either as a single number, envelope, or buffer.")
@@ -5301,7 +5301,7 @@ plus = (
 
 BP_REF_NEW(
     @name "plus",
-    @description "Audio process operation for performing addition on a buffer. See #process.",
+    @description "Audio process operation for performing addition on a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "operand", @type "int/float/llll", @description "value to add to buffer, either as a single number, envelope, or buffer.")
@@ -5331,7 +5331,7 @@ minus = (
 
 BP_REF_NEW(
     @name "minus",
-    @description "Audio process operation for performing subtraction on a buffer. See #process.",
+    @description "Audio process operation for performing subtraction on a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "operand", @type "int/float/llll", @description "value to subtract from buffer, either as a single number, envelope, or buffer.")
@@ -5361,7 +5361,7 @@ multiply = (
 
 BP_REF_NEW(
     @name "multiply",
-    @description "Audio process operation for performing multiplication on a buffer. See #process.",
+    @description "Audio process operation for performing multiplication on a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "operand", @type "int/float/llll", @description "value to multiply buffer by either as a single number, envelope, or buffer.")
@@ -5391,7 +5391,7 @@ divide = (
 
 BP_REF_NEW(
     @name "divide",
-    @description "Audio process operation for performing division on a buffer. See #process.",
+    @description "Audio process operation for performing division on a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "operand", @type "int/float/llll", @description "value to divide buffer by either as a single number, envelope, or buffer.")
@@ -5419,7 +5419,7 @@ wavesetrepeat = (
 
 BP_REF_NEW(
     @name "wavesetrepeat",
-    @description "Audio process operation for applying waveset repetition to a buffer. See #process.",
+    @description "Audio process operation for applying waveset repetition to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "times",  @default 2, @type "int", @description "number of repetitions.")
@@ -5448,7 +5448,7 @@ wavesetshuffle = (
 
 BP_REF_NEW(
     @name "wavesetshuffle",
-    @description "Audio process operation for applying waveset shuffling to a buffer. See #process.",
+    @description "Audio process operation for applying waveset shuffling to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "maxdist", @default 1, @type "int", @description "maximum shuffling distance.")
@@ -5476,7 +5476,7 @@ rampsmooth = (
 
 BP_REF_NEW(
     @name "rampsmooth",
-    @description "Audio process operation for applying rampsmoothing to a buffer. See #process.",
+    @description "Audio process operation for applying rampsmoothing to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "up", @default 1024, @type "int/list/llll", @description "ramp up, in samples, as either a single number, envelope, or buffer.")
@@ -5503,7 +5503,7 @@ onepole = (
 
 BP_REF_NEW(
     @name "onepole",
-    @description "Audio process operation for applying single-pole lowpass or highpass filtering to a buffer. See #process.",
+    @description "Audio process operation for applying single-pole lowpass or highpass filtering to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "cutoff", @default 1, @type "int/float", @description "cutoff frequency.")
@@ -5533,7 +5533,7 @@ mixdown = (
 
 BP_REF_NEW(
     @name "mixdown",
-    @description "Audio process operation for mixing down (or up) the number of channels of a buffer. See #process.",
+    @description "Audio process operation for mixing down (or up) the number of channels of a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "numchannels", @default 1, @type "int", @description "number of output channels.")
@@ -5565,7 +5565,7 @@ fromdiffs = (
 
 BP_REF_NEW(
     @name "fromdiffs",
-    @description "Audio process operation to perform discrete integration of a buffer. This is the equivalent of #dx2x for buffer samples. See #process.",
+    @description "Audio process operation to perform discrete integration of a buffer. This is the equivalent of `dx2x` for buffer samples. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments null
     @output BP_REF_OUTPUT(@description "fromdiffs operation" @type "llll")
@@ -5584,7 +5584,7 @@ todiffs = (
 
 BP_REF_NEW(
     @name "todiffs",
-    @description "Audio process operation to perform discrete differentiation of a buffer. This is the equivalent of #x2dx for buffer samples. See #process.",
+    @description "Audio process operation to perform discrete differentiation of a buffer. This is the equivalent of `x2dx` for buffer samples. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments null
     @output BP_REF_OUTPUT(@description "todiffs operation" @type "llll")
@@ -5630,7 +5630,7 @@ join = (
 
 BP_REF_NEW(
     @name "join",
-    @description "Audio process operation for concatenating one or more buffers to the processed buffer. See #process.",
+    @description "Audio process operation for concatenating one or more buffers to the processed buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "buffers", @type "llll", @description "buffers to concatenate.")
@@ -5677,7 +5677,7 @@ trim = (
 
 BP_REF_NEW(
     @name "trim",
-    @description "Audio process operation for applying silence-based trimming to a buffer. When the entire buffer is considered silent, the resulting buffer's duration will be a single audio sample. See #process.",
+    @description "Audio process operation for applying silence-based trimming to a buffer. When the entire buffer is considered silent, the resulting buffer's duration will be a single audio sample. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "threshold" @default 0.01 @type "int/float", @description "amplitude threshold at/below which samples are considered silence.")
@@ -5751,7 +5751,7 @@ timesquash = (
 
 BP_REF_NEW(
     @name "timesquash",
-    @description "Audio process operation for applying timesquash time compression to a buffer. This removes time from a sample by shifting portions of the spectrogram while preserving the relevant content. See #process.",
+    @description "Audio process operation for applying timesquash time compression to a buffer. This removes time from a sample by shifting portions of the spectrogram while preserving the relevant content. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "duration", @default 1, @type "int/float", @description "target duration, based on @timeunit.")
@@ -5767,12 +5767,12 @@ BP_REF_NEW(
         BP_REF_ARG(@name "xfadetype", @default 1, @type "int", @description "cross fade type." @options 
             BP_REF_CURVE_OPTIONS
         )
-        BP_REF_ARG(@name "glbleed", @default 4, @type "int", @description "number of frames of invalidation for the Griffin-Lim algorithm, when @phasehandling is 2.")
-        BP_REF_ARG(@name "glnumiter", @default 10, @type "int", @description "number of Griffin-Lim iterations, when @phasehandling is 2.")
-        BP_REF_ARG(@name "glrandomize", @default 0, @type "int", @description "randomize the phases of the regions subject to the Griffin-Lim algorithm, when @phasehandling is 2." @options
+        BP_REF_ARG(@name "glbleed", @default 4, @type "int", @description "number of frames of invalidation for the Griffin-Lim algorithm, when `@phasehandling` is 2.")
+        BP_REF_ARG(@name "glnumiter", @default 10, @type "int", @description "number of Griffin-Lim iterations, when `@phasehandling` is 2.")
+        BP_REF_ARG(@name "glrandomize", @default 0, @type "int", @description "randomize the phases of the regions subject to the Griffin-Lim algorithm, when `@phasehandling` is 2." @options
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "glrect", @default 1, @type "int", @description "invalidate whole rectangular regions whose phases are recomputed via the Griffin-Lim algorithm, when @phasehandling is 2." @options 
+        BP_REF_ARG(@name "glrect", @default 1, @type "int", @description "invalidate whole rectangular regions whose phases are recomputed via the Griffin-Lim algorithm, when `@phasehandling` is 2." @options 
             BP_REF_SWITCH_OPTIONS
         )
         BP_REF_ARG(@name "batchsize", @default 1, @type "int", @description "number of seams processed in batch.")
@@ -5829,7 +5829,7 @@ resample = (
 
 BP_REF_NEW(
     @name "resample",
-    @description "Audio process operation for applying stretching/pitch shifting a buffer via resampling. See #process.",
+    @description "Audio process operation for applying stretching/pitch shifting a buffer via resampling. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "duration", @default 1, @type "int/float", @description "target duration, based on @timeunit.")
@@ -5887,7 +5887,7 @@ panning = (
 
 BP_REF_NEW(
     @name "panning",
-    @description "Audio process operation for applying 1-D panning to a buffer. See #process.",
+    @description "Audio process operation for applying 1-D panning to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "position" @type "int/float/list/llll", @description "panning position, as either a single number, envelope, or buffer.")
@@ -5940,7 +5940,7 @@ normalize = (
 
 BP_REF_NEW(
     @name "normalize",
-    @description "Audio process operation for normalizing the amplitude of a buffer. See #process.",
+    @description "Audio process operation for normalizing the amplitude of a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "level", @default -6, @type "int/float", @description "reference level.")
@@ -5982,7 +5982,7 @@ gain = (
 
 BP_REF_NEW(
     @name "gain",
-    @description "Audio process operation for modifying a buffer's gain. See #process.",
+    @description "Audio process operation for modifying a buffer's gain. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "gain", @type "int/float/llll", @description "gain amount, as either a single number or envelope.")
@@ -6032,7 +6032,7 @@ dynamics = (
 
 BP_REF_NEW(
     @name "dynamics",
-    @description "Audio process operation for applying simple compression to a buffer. See #process.",
+    @description "Audio process operation for applying simple compression to a buffer. See `process`.",
     @category BP_REF_LABEL_PROCESS,
     @arguments (
         BP_REF_ARG(@name "attack", @default 10, @type "int/float", @description "attack time.")
@@ -6833,7 +6833,7 @@ createtree = (
 
 BP_REF_NEW(
     @name "createtree"
-    @description "Creates a k-dimensional tree for optimized nearest-neighbor search of multidimensional data. See #querytree."
+    @description "Creates a k-dimensional tree for optimized nearest-neighbor search of multidimensional data. See `querytree`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "data" @type "llll" @description "data as a list of numeric lists.")
@@ -6870,7 +6870,7 @@ querytree = (
 
 BP_REF_NEW(
     @name "querytree"
-    @description "Given a k-dimensional tree and a target point with the same dimensionality, returns the index position of the nearest neighbor in that tree. See #createtree."
+    @description "Given a k-dimensional tree and a target point with the same dimensionality, returns the index position of the nearest neighbor in that tree. See `createtree`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "tree" @type "llll" @description "k-dimensional tree.")
@@ -6916,7 +6916,7 @@ seq2markov = (
 
 BP_REF_NEW(
     @name "seq2markov"
-    @description "Constructs a Markov chain from a given sequence of data. See #markov2seq."
+    @description "Constructs a Markov chain from a given sequence of data. See `markov2seq`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "data" @type "llll" @description "input sequence from which the Markov model will be built.")
@@ -7011,7 +7011,7 @@ markov2seq = (
 
 BP_REF_NEW(
     @name "markov2seq"
-    @description "Generates a sequence using a given Markov transition matrix. If a starting state is specified, the function attempts to find transitions from it. Otherwise, it selects a random state from the transition matrix. The function supports both 0th-order Markov chains (where each state is chosen independently with a probability distribution) and higher-order Markov chains (where state transitions depend on previous elements). If the sequence reaches the maximum length or no valid transitions are available, generation stops. See #seq2markov."
+    @description "Generates a sequence using a given Markov transition matrix. If a starting state is specified, the function attempts to find transitions from it. Otherwise, it selects a random state from the transition matrix. The function supports both 0th-order Markov chains (where each state is chosen independently with a probability distribution) and higher-order Markov chains (where state transitions depend on previous elements). If the sequence reaches the maximum length or no valid transitions are available, generation stops. See `seq2markov`."
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "matrix" @type "llll" @description "transition probability matrix.")
