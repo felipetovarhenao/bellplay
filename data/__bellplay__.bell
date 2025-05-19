@@ -2389,14 +2389,14 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "buffer" @type "llll", @description "buffer to analyze.")
         BP_REF_ARG(@name "descriptors" @type "llll" @description "list of audio descriptors.")
-        BP_REF_ARG(@name "winstartfromzero" @default 0 @type "int" @description "center first window at @framesize / 2 instead of 0." @options 
+        BP_REF_ARG(@name "winstartfromzero" @default 0 @type "int" @description "center first window at `@framesize / 2` instead of `0`." @options 
             BP_REF_SWITCH_OPTIONS
         )
         BP_REF_ARG(@name "framesize" @default 2048 @type "int" @description "analysis frame size or window size.")
         BP_REF_ARG(@name "hopsize" @default 1024 @type "int" @description "analysis hop size.")
         BP_REF_ARG(@name "numframes" @default "'auto'" @type "int/symbol" @description "number of analysis frames." @options
-            BP_REF_OPT(@value "'auto'" @description "infer from @framesize and @hopsize.")
-            BP_REF_OPT(@value ">0" @description "ignores @hopsize.")
+            BP_REF_OPT(@value "'auto'" @description "infer from `@framesize` and `@hopsize`.")
+            BP_REF_OPT(@value ">0" @description "ignores `@hopsize`.")
         )
         BP_REF_ARG(@name "overlap" @default 1 @type "int" @description "overlap factor between analysis window size and hop size.")
         BP_REF_ARG(@name "wintype" @default "'hann'" @type "int" @description "window type" @options
@@ -2423,7 +2423,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 4 @description "median" "through" "frames.")
             BP_REF_OPT(@value 5 @description "mode" "through" "frames.")
         )
-        BP_REF_ARG(@name "summaryweight" @default 1 @type "int" @description "summarization weight, when `@summary` is 4." @options 
+        BP_REF_ARG(@name "summaryweight" @default 1 @type "int" @description "summarization weight, when `@summary` is `4`." @options 
             BP_REF_OPT(@value 0 @description "none.")
             BP_REF_OPT(@value 1 @description "rms.")
             BP_REF_OPT(@value 2 @description "loudness.")
@@ -2431,22 +2431,22 @@ BP_REF_NEW(
         BP_REF_ARG(@name "summarypositive" @default 0 @type "int" @description "only summarize with positive values." @options
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "ampunit" @default 0 @type "int" @description "amplitude unit" @options
+        BP_REF_ARG(@name "ampunit" @default 0 @type "int" @description "amplitude unit." @options
             BP_REF_AMPUNIT_OPTIONS
         )
-        BP_REF_ARG(@name "antimeunit" @default 1 @type "int" @description "analysis time unit" @options
+        BP_REF_ARG(@name "antimeunit" @default 1 @type "int" @description "analysis time unit." @options
             BP_REF_ANTIMEUNIT_OPTIONS
         )
-        BP_REF_ARG(@name "envtimeunit" @default 0 @type "int" @description "envelope time unit" @options
+        BP_REF_ARG(@name "envtimeunit" @default 0 @type "int" @description "envelope time unit." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
-        BP_REF_ARG(@name "frequnit" @default 0 @type "int" @description "frequency unit" @options 
+        BP_REF_ARG(@name "frequnit" @default 0 @type "int" @description "frequency unit." @options 
             BP_REF_FREQUNIT_OPTIONS   
         )
-        BP_REF_ARG(@name "pitchunit" @default 0 @type "int" @description "pitch unit" @options 
+        BP_REF_ARG(@name "pitchunit" @default 0 @type "int" @description "pitch unit." @options 
             BP_REF_PITCHUNIT_OPTIONS
         )
-        BP_REF_ARG(@name "timeunit" @default 0 @type "int" @description "time unit" @options
+        BP_REF_ARG(@name "timeunit" @default 0 @type "int" @description "time unit." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
         BP_REF_ARG(@name "yinmaxfreq" @default 22050 @type "int/float" @description "maximum frequency for the YIN analysis.")
@@ -2455,7 +2455,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "frametime" @default 0 @type "int" @description "retrieve analysis window time positions as a separate feature." @options
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "bufinterp" @default 0 @type "int" @description "interpolation mode" @options 
+        BP_REF_ARG(@name "bufinterp" @default 0 @type "int" @description "interpolation mode." @options 
             BP_REF_OPT(@value 0 @description "no" "interpolation")
             BP_REF_OPT(@value 1 @description "lower" "neighbor")
             BP_REF_OPT(@value 2 @description "linear")
@@ -2505,7 +2505,7 @@ effectiveduration = (
 
 BP_REF_NEW(
     @name "effectiveduration",
-    @description "Audio descriptor to compute the effective duration of an envelope signal. The effective duration is a measure of the time the signal is perceptually meaningful. This is approximated by the time the envelope is above or equal to a given threshold and is above the -90db noise floor. This measure allows to distinguish percussive sounds from sustained sounds but depends on the signal length. By default, this algorithm uses 40% of the envelope maximum as the threshold which is suited for short sounds. Note, that the 0% thresold corresponds to the duration of signal above -90db noise floor, while the 100% thresold corresponds to the number of times the envelope takes its maximum value. See `analyze`.",
+    @description "Audio descriptor to compute the effective duration of an envelope signal. The effective duration is a measure of the time the signal is perceptually meaningful. This is approximated by the time the envelope is above or equal to a given threshold and is above the -90dB noise floor. This measure allows to distinguish percussive sounds from sustained sounds but depends on the signal length. By default, this algorithm uses 40% of the envelope maximum as the threshold which is suited for short sounds. Note, that the 0% thresold corresponds to the duration of signal above -90db noise floor, while the 100% thresold corresponds to the number of times the envelope takes its maximum value. See `analyze`.",
     @category BP_REF_LABEL_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "thresholdratio" @default 0.02 @type "int/float" @description "ratio of the envelope maximum to be used as the threshold.")
@@ -3189,7 +3189,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "dcttype" @default 2 @type "int" @description "DCT type.")
         BP_REF_ARG(@name "highfrequencybound" @default 11000 @type "int/float" @description "upper bound of the frequency range, in Hz.")
         BP_REF_ARG(@name "inputsize" @default 1025 @type "int" @description "size of input spectrum.")
-        BP_REF_ARG(@name "liftering" @default 0 @type "int" @description "liftering coefficient. Use '0' to bypass it.")
+        BP_REF_ARG(@name "liftering" @default 0 @type "int" @description "liftering coefficient. Use `0` to bypass it.")
         BP_REF_ARG(@name "logtype" @default "'dbamp'" @type "symbol" @description "logarithmic compression type." @options 
             BP_REF_OPT(@value "'natural'")
             BP_REF_OPT(@value "'dbpow'")
@@ -3491,7 +3491,7 @@ BP_REF_NEW(
     @ankeys "beatsloudness" "beatsloudness_bandratio"
     @arguments (
         BP_REF_ARG(@name "beats" @type "list" @description "duration of the window in which the beat will be restricted.")
-        BP_REF_ARG(@name "beatduration" @type "int/float" @default 0.05 @description "duration of the window in which to look for the beginning of the beat, centered around the values in @beats.")
+        BP_REF_ARG(@name "beatduration" @type "int/float" @default 0.05 @description "duration of the window in which to look for the beginning of the beat, centered around the values in `@beats`.")
         BP_REF_ARG(@name "beatwindowduration" @type "int/float" @default 0.1 @description "list of beat positions.")
         BP_REF_ARG(@name "frequencybands"  @type "list" @default 20 150 400 3200 7000 22000 @description "list of bands to compute energy ratios.")
         BP_REF_ARG(@name "samplerate" @type "int"  @default 44100 @description "audio sampling rate.")
@@ -3548,7 +3548,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "dcttype" @default 2 @type "int" @description "DCT type.")
         BP_REF_ARG(@name "highfrequencybound" @default 11000 @type "int/float" @description "upper bound of the frequency range.")
         BP_REF_ARG(@name "inputsize" @default 1025 @type "int" @description "size of input spectrum.")
-        BP_REF_ARG(@name "liftering" @default 0 @type "int" @description "liftering coefficient. Use 0 to bypass it.")
+        BP_REF_ARG(@name "liftering" @default 0 @type "int" @description "liftering coefficient. Use `0` to bypass it.")
         BP_REF_ARG(@name "logtype" @default "'dbamp'" @type "int" @description "logarithmic compression type." @options 
             BP_REF_OPT(@value "'dbpow'" @description "Use if working with power.")
             BP_REF_OPT(@value "'dbamp'" @description "Use if working with magnitudes.")
@@ -6193,7 +6193,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "angleunit" @default 0 @type "int" @description "angle unit." @options 
             BP_REF_ANGLEUNIT_OPTIONS
         )
-        BP_REF_ARG(@name "frequnit", @default 0, @type "int", @description "unit for frequency components in @func." @options 
+        BP_REF_ARG(@name "frequnit", @default 0, @type "int", @description "unit for frequency components in `@func`." @options 
             BP_REF_FREQUNIT_OPTIONS
         )
         BP_REF_ARG(@name "timeunit" @default 0 @type "int" @description "time unit." @options 
@@ -6289,7 +6289,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 1 @description "'degrees'")
             BP_REF_OPT(@value 2 @description "'turns'")
         )
-        BP_REF_ARG(@name "frequnit", @default 0, @type "int", @description "unit for frequency components in @func." @options 
+        BP_REF_ARG(@name "frequnit", @default 0, @type "int", @description "unit for frequency components in `@func`." @options 
             BP_REF_FREQUNIT_OPTIONS
         )
     ),
@@ -6346,7 +6346,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_UTILS
     @arguments (
         BP_REF_ARG(@name "llll" @type "llll" @description "audio samples to convert to a buffer.")
-        BP_REF_ARG(@name "sr" @type "int" @default 0 @description "sampling rate. use 0 for default sampling rate.")
+        BP_REF_ARG(@name "sr" @type "int" @default 0 @description "sampling rate. use `0` for default sampling rate.")
     )
     @output BP_REF_OUTPUT(@description "buffer" @type "llll")
 );
