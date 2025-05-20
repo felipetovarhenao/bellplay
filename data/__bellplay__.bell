@@ -6978,7 +6978,7 @@ BP_REF_NEW(
     @description "Constructs a Markov chain from a given sequence of data. See `markov2seq`."
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
-        BP_REF_ARG(@name "data" @type "llll" @description "input sequence from which the Markov model will be built.")
+        BP_REF_ARG(@name "sequence" @type "llll" @description "input sequence from which the Markov model will be built.")
         BP_REF_ARG(@name "order" @default 1 @type "int" @description "order of the Markov chain, determining the length of history considered for state transitions.")
         BP_REF_ARG(@name "prepad" @default "'^'" @type "symbol" @description "padding symbol used at the beginning of the sequence to handle initial states.")
         BP_REF_ARG(@name "postpad" @default "'$'" @type 'symbol' @description "padding symbol used at the end of the sequence to handle final states")
