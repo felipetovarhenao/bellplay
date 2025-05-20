@@ -2,10 +2,13 @@
 
 # Basic Workflow
 
-The general workflow of a bell script in **bellplay~** is the following:
+In **bellplay~**, the basic building block of our scripts is the _buffer_. 
+Conceptually, a **bellplay~** buffer is a structured container that holds information about a sound—this includes not just the raw waveform data, but also metadata such as duration, pitch, sample rate, number of channels, and more. 
+
+The general workflow and life-cycle of a buffer in a **bellplay~** script is the following:
 
 1. **Generation**: buffers are created using synthesis or sampling techniques, and optionally analyzed/processed.
-2. **Transcription**: buffers are queued for rendering, each symbolically represented as a note in staff notation.
+2. **Transcription**: buffers are queued for rendering, each symbolically represented as a note in staff notation—i.e., the timeline.
 3. **Rendering**: All transcribed buffers are compiled and rendered into a single audio buffer. This buffer can then be used for subsequent iterations of this workflow to refine the final output as needed. 
 
 Below is an introductory example of a _bell_ script in **bellplay~**, which generates a short sinusoidal wave at 440 Hz:
@@ -18,6 +21,7 @@ $osc.transcribe();
 ## finally, we render transcribed buffer
 render() 
 #( 
+
 :::info
 When you load a `.bell` file in _bellplay~_, the code is automatically evaluated everytime you save it. As such, it's worth memorizing and using the keyboard shortcut to save a file — `⌘+S` on Mac, and `Ctrl+S` on Windows.
 :::

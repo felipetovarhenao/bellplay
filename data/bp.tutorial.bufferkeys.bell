@@ -2,7 +2,7 @@
 
 # Buffer Keys
 
-Buffers in **bellplay~** are simply nested lists of [key-value pairs](https://en.wikipedia.org/wiki/Name–value_pair). 
+As mentioned in earlier tutorials, buffers in **bellplay~** are simply nested lists of [key-value pairs](https://en.wikipedia.org/wiki/Name–value_pair). 
 Here's what a typically buffer looks like:
 
 ```bell title="my buffer"
