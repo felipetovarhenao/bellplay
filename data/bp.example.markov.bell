@@ -1,0 +1,60 @@
+#(
+
+# Markov Music Generation 
+
+This script illustrates how to construct and use an nth-order [Markov model](https://en.wikipedia.org/wiki/Markov_model) from MIDI data in **bellplay~** for generative music. 
+
+It begins by importing a MIDI file as a list of note events, where each event includes keys like `'pitch'` and `'onset'`. 
+These events are then grouped into overlapping pairs. 
+For each pair, the pitch of the first event and the time difference (in milliseconds) between the two onsets are extracted and rounded. 
+These _pitch-timestep_ pairs form the training data for a Markov model, which is trained using `seq2markov` with order `1`.
+
+Once trained, the Markov model generates a new sequence of `[<pitch> <timestep>]` tuples via `markov2seq`. 
+This generated sequence is rendered as audio using the `ezsampler` function, where the onset time is computed by accumulating the timestep values. 
+
+)#
+## Load a MIDI file as list of note events
+$events = importmidi('joplin.mid');
+## Group MIDI events into overlapping pairs: (event₁, event₂), (event₂, event₃), ...
+$pairs = group(
+    @llll $events
+    @modulos 2
+    @overlap 1
+);
+## Convert each event pair into a Markov training state
+$trainseq = for $pair in $pairs with @unwrap 1 collect (
+    ## Extract the two consecutive events from the pair
+    $event1 = $pair:1;
+    $event2 = $pair:2;
+    ## Compute the time delta between the two events
+    $timestep = $event2.getkey('onset') - $event1.getkey('onset');
+    ## Construct a training tuple: (pitch, rounded timestep in milliseconds)
+    [$event1.getkey('pitch') round($timestep)] 
+);
+## Train a first-order Markov model from the training sequence
+$matrix = seq2markov(@sequence $trainseq @order 1);
+## Generate a random sequence of (pitch, timestep) tuples from the trained model
+$seq = markov2seq(
+    ## the trained Markov transition matrix
+    @matrix $matrix
+    ## initial state (optional): first item from training sequence
+    @start $trainseq:1
+    ## maximum number of steps in generated sequence
+    @maxlength 250
+    ## reset transition to random state if terminal state is reached
+    @autoclear 1
+);
+## Initialize onset variable
+$t = 0;
+## Iterate over generated events and render them using sampling
+for $event in $seq with @unwrap 1 do (
+    ## extract pitch and time increment
+    $pitch = $event:1;
+    $timestep = $event:2;
+    ## Synthesize the pitch using a sampler, scheduling it at time $t
+    ezsampler(@pitch $pitch).transcribe(@onset $t);
+    ## Increment the time by the event's timestep
+    $t += $timestep
+);
+## Trigger rendering and playback
+render(@play 1)

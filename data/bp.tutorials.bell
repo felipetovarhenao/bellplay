@@ -234,6 +234,14 @@ $addscript(
 );
 
 $addscript(
+    @name "markov music generation"
+    @file "markov"
+    @description "An example of music generation with Markov models."
+    @tags "markov" "generative+music"
+    @example 1
+);
+
+$addscript(
     @name "midi retuning"
     @file "midiretuning"
     @description "This script demonstrates microtonal retuning and MIDI processing. It retunes MIDI notes to custom pitch classes derived from ratio-based tuning, extends their durations, and synthesizes them with amplitude shaping."

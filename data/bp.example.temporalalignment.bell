@@ -9,9 +9,9 @@ It first generates synthetic audio samples with random characteristics (as place
 ## Generate a collection of 10 synthetic audio buffers
 $bufs = for $i in 1...10 collect (
     ## Define a random envelope for gain shaping
-    $env = [0 0 0] [rand(0.001, 0.5) 1 rand(0, 0.5)] [1 0 -rand(0, 0.5)];
+    $env = [0 0 0] [rand(0.001, 0.25) 1 rand(0, 0.5)] [1 0 -rand(0, 0.5)];
     ## Assign a random fundamental frequency and duration
-    $fq = random(1, 16) * 55;
+    $fq = random(1, 48) * 55;
     $dur = random(300, 4000);
     ## Label each buffer for debugging/inspection
     $label = 'sound' + tosymbol($i);

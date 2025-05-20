@@ -5,9 +5,9 @@
 ### Add
 
 - [ ] New bellplay examples:
-  - [ ] Markov chains.
+  - [x] Markov chains.
   - [ ] Seeded Random.
-  - [ ] What are buffers.
+  - [x] What are buffers.
   - [ ] Building your own library (starting with `v0.2.8-beta`).
 - [ ] Implement a better error API.
   - [ ] checking required arguments
