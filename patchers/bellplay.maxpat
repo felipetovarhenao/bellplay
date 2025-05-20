@@ -89,8 +89,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 443.0, 139.0, 229.0, 23.0 ],
-					"text" : "sprintf symout © %i | https://bellplay.net/"
+					"patching_rect" : [ 443.0, 139.0, 187.0, 23.0 ],
+					"text" : "sprintf © %i | https://bellplay.net/"
 				}
 
 			}
