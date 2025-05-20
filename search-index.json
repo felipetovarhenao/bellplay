@@ -4,12 +4,12 @@
     "blurb": "",
     "keywords": [
       "absolute",
-      "llll",
       "process",
       "operation",
-      "true"
+      "buffer",
+      "bell"
     ],
-    "path": "/docs/reference/audio-processing/absolute"
+    "path": "/docs/reference/buffer-operations/absolute"
   },
   {
     "title": "`addmarker`",
@@ -21,7 +21,7 @@
       "onset",
       "null"
     ],
-    "path": "/docs/reference/utilities/addmarker"
+    "path": "/docs/reference/data-utilities/addmarker"
   },
   {
     "title": "`analyze`",
@@ -33,7 +33,7 @@
       "spectral",
       "frequency"
     ],
-    "path": "/docs/reference/audio-analysis/analyze"
+    "path": "/docs/reference/buffer-analysis/analyze"
   },
   {
     "title": "`argsort`",
@@ -45,7 +45,7 @@
       "argsort",
       "x"
     ],
-    "path": "/docs/reference/utilities/argsort"
+    "path": "/docs/reference/data-utilities/argsort"
   },
   {
     "title": "`atodb`",
@@ -57,7 +57,7 @@
       "amplitude",
       "decibels"
     ],
-    "path": "/docs/reference/utilities/atodb"
+    "path": "/docs/reference/data-utilities/atodb"
   },
   {
     "title": "`autoscale`",
@@ -69,7 +69,7 @@
       "autoscale",
       "x"
     ],
-    "path": "/docs/reference/utilities/autoscale"
+    "path": "/docs/reference/data-utilities/autoscale"
   },
   {
     "title": "`barkbands`",
@@ -81,7 +81,7 @@
       "bell",
       "numberbands"
     ],
-    "path": "/docs/reference/audio-analysis/barkbands"
+    "path": "/docs/reference/buffer-analysis/barkbands"
   },
   {
     "title": "`beatsloudness`",
@@ -93,7 +93,7 @@
       "mode",
       "audio"
     ],
-    "path": "/docs/reference/audio-analysis/beatsloudness"
+    "path": "/docs/reference/buffer-analysis/beatsloudness"
   },
   {
     "title": "`bfcc`",
@@ -105,7 +105,7 @@
       "mode",
       "liftering"
     ],
-    "path": "/docs/reference/audio-analysis/bfcc"
+    "path": "/docs/reference/buffer-analysis/bfcc"
   },
   {
     "title": "`biquad`",
@@ -115,9 +115,9 @@
       "type",
       "frequency",
       "gain",
-      "required"
+      "process"
     ],
-    "path": "/docs/reference/audio-processing/biquad"
+    "path": "/docs/reference/buffer-operations/biquad"
   },
   {
     "title": "`bpf`",
@@ -129,7 +129,7 @@
       "xfunc",
       "null"
     ],
-    "path": "/docs/reference/utilities/bpf"
+    "path": "/docs/reference/data-utilities/bpf"
   },
   {
     "title": "`buf2ptracks`",
@@ -141,7 +141,7 @@
       "frequency",
       "unit"
     ],
-    "path": "/docs/reference/audio-analysis/buf2ptracks"
+    "path": "/docs/reference/buffer-analysis/buf2ptracks"
   },
   {
     "title": "`buf2samps`",
@@ -153,7 +153,7 @@
       "required",
       "true"
     ],
-    "path": "/docs/reference/utilities/buf2samps"
+    "path": "/docs/reference/data-utilities/buf2samps"
   },
   {
     "title": "`buildcorpus`",
@@ -165,7 +165,7 @@
       "int",
       "segmentation"
     ],
-    "path": "/docs/reference/utilities/buildcorpus"
+    "path": "/docs/reference/data-utilities/buildcorpus"
   },
   {
     "title": "`c2r`",
@@ -177,7 +177,7 @@
       "bell",
       "ratio"
     ],
-    "path": "/docs/reference/utilities/c2r"
+    "path": "/docs/reference/data-utilities/c2r"
   },
   {
     "title": "`choose`",
@@ -189,7 +189,7 @@
       "choices",
       "required"
     ],
-    "path": "/docs/reference/utilities/choose"
+    "path": "/docs/reference/data-utilities/choose"
   },
   {
     "title": "`chordsdetection`",
@@ -201,7 +201,7 @@
       "llll",
       "descriptor"
     ],
-    "path": "/docs/reference/audio-analysis/chordsdetection"
+    "path": "/docs/reference/buffer-analysis/chordsdetection"
   },
   {
     "title": "`clicks`",
@@ -213,7 +213,7 @@
       "impulse",
       "samples"
     ],
-    "path": "/docs/reference/audio-generation/clicks"
+    "path": "/docs/reference/buffer-generation/clicks"
   },
   {
     "title": "`clip`",
@@ -221,11 +221,11 @@
     "keywords": [
       "clip",
       "threshold",
-      "llll",
       "process",
-      "operation"
+      "operation",
+      "buffer"
     ],
-    "path": "/docs/reference/audio-processing/clip"
+    "path": "/docs/reference/buffer-operations/clip"
   },
   {
     "title": "`createtree`",
@@ -237,19 +237,19 @@
       "createtree",
       "required"
     ],
-    "path": "/docs/reference/utilities/createtree"
+    "path": "/docs/reference/data-utilities/createtree"
   },
   {
     "title": "`crop`",
     "blurb": "",
     "keywords": [
       "end",
-      "start",
       "crop",
-      "time",
-      "timeunit"
+      "start",
+      "process",
+      "operation"
     ],
-    "path": "/docs/reference/audio-processing/crop"
+    "path": "/docs/reference/buffer-operations/crop"
   },
   {
     "title": "`cycle`",
@@ -261,7 +261,7 @@
       "phase",
       "cycle"
     ],
-    "path": "/docs/reference/audio-generation/cycle"
+    "path": "/docs/reference/buffer-generation/cycle"
   },
   {
     "title": "`dbtoa`",
@@ -273,19 +273,19 @@
       "decibels",
       "linear"
     ],
-    "path": "/docs/reference/utilities/dbtoa"
+    "path": "/docs/reference/data-utilities/dbtoa"
   },
   {
     "title": "`dcfilter`",
     "blurb": "",
     "keywords": [
       "dcfilter",
-      "llll",
       "process",
       "operation",
-      "true"
+      "buffer",
+      "bell"
     ],
-    "path": "/docs/reference/audio-processing/dcfilter"
+    "path": "/docs/reference/buffer-operations/dcfilter"
   },
   {
     "title": "`degrade`",
@@ -293,11 +293,11 @@
     "keywords": [
       "degrade",
       "ratio",
-      "bits",
-      "llll",
-      "process"
+      "process",
+      "operation",
+      "buffer"
     ],
-    "path": "/docs/reference/audio-processing/degrade"
+    "path": "/docs/reference/buffer-operations/degrade"
   },
   {
     "title": "`derive`",
@@ -309,7 +309,7 @@
       "order",
       "integration"
     ],
-    "path": "/docs/reference/utilities/derive"
+    "path": "/docs/reference/data-utilities/derive"
   },
   {
     "title": "`dissonance`",
@@ -321,7 +321,7 @@
       "bell",
       "llll"
     ],
-    "path": "/docs/reference/audio-analysis/dissonance"
+    "path": "/docs/reference/buffer-analysis/dissonance"
   },
   {
     "title": "`divide`",
@@ -329,11 +329,11 @@
     "keywords": [
       "divide",
       "buffer",
-      "int",
-      "resampling",
-      "operand"
+      "process",
+      "operation",
+      "int"
     ],
-    "path": "/docs/reference/audio-processing/divide"
+    "path": "/docs/reference/buffer-operations/divide"
   },
   {
     "title": "`dr2r`",
@@ -345,7 +345,7 @@
       "st",
       "ratios"
     ],
-    "path": "/docs/reference/utilities/dr2r"
+    "path": "/docs/reference/data-utilities/dr2r"
   },
   {
     "title": "`dx2x`",
@@ -357,19 +357,19 @@
       "dx",
       "required"
     ],
-    "path": "/docs/reference/utilities/dx2x"
+    "path": "/docs/reference/data-utilities/dx2x"
   },
   {
     "title": "`dynamics`",
     "blurb": "",
     "keywords": [
-      "ratio",
       "dynamics",
+      "ratio",
       "attack",
       "release",
       "knee"
     ],
-    "path": "/docs/reference/audio-processing/dynamics"
+    "path": "/docs/reference/buffer-operations/dynamics"
   },
   {
     "title": "`effectiveduration`",
@@ -381,7 +381,7 @@
       "duration",
       "threshold"
     ],
-    "path": "/docs/reference/audio-analysis/effectiveduration"
+    "path": "/docs/reference/buffer-analysis/effectiveduration"
   },
   {
     "title": "`energy`",
@@ -393,7 +393,7 @@
       "bell",
       "llll"
     ],
-    "path": "/docs/reference/audio-analysis/energy"
+    "path": "/docs/reference/buffer-analysis/energy"
   },
   {
     "title": "`energyband`",
@@ -405,7 +405,7 @@
       "energy",
       "frequency"
     ],
-    "path": "/docs/reference/audio-analysis/energyband"
+    "path": "/docs/reference/buffer-analysis/energyband"
   },
   {
     "title": "`envelope`",
@@ -417,7 +417,7 @@
       "single",
       "number"
     ],
-    "path": "/docs/reference/audio-generation/envelope"
+    "path": "/docs/reference/buffer-generation/envelope"
   },
   {
     "title": "`envmaxtime`",
@@ -429,7 +429,7 @@
       "descriptor",
       "buffer"
     ],
-    "path": "/docs/reference/audio-analysis/envmaxtime"
+    "path": "/docs/reference/buffer-analysis/envmaxtime"
   },
   {
     "title": "`envmintime`",
@@ -441,7 +441,7 @@
       "descriptor",
       "buffer"
     ],
-    "path": "/docs/reference/audio-analysis/envmintime"
+    "path": "/docs/reference/buffer-analysis/envmintime"
   },
   {
     "title": "`exists`",
@@ -453,7 +453,7 @@
       "symbol",
       "required"
     ],
-    "path": "/docs/reference/utilities/exists"
+    "path": "/docs/reference/data-utilities/exists"
   },
   {
     "title": "`expand`",
@@ -465,7 +465,7 @@
       "required",
       "true"
     ],
-    "path": "/docs/reference/utilities/expand"
+    "path": "/docs/reference/data-utilities/expand"
   },
   {
     "title": "`export`",
@@ -477,7 +477,7 @@
       "export",
       "stems"
     ],
-    "path": "/docs/reference/utilities/export"
+    "path": "/docs/reference/data-utilities/export"
   },
   {
     "title": "`ezsampler`",
@@ -489,19 +489,19 @@
       "duration",
       "buffer"
     ],
-    "path": "/docs/reference/audio-generation/ezsampler"
+    "path": "/docs/reference/buffer-generation/ezsampler"
   },
   {
     "title": "`fade`",
     "blurb": "",
     "keywords": [
-      "curve",
       "fade",
-      "duration",
-      "int",
-      "fadein"
+      "curve",
+      "process",
+      "operation",
+      "buffer"
     ],
-    "path": "/docs/reference/audio-processing/fade"
+    "path": "/docs/reference/buffer-operations/fade"
   },
   {
     "title": "`flux`",
@@ -513,7 +513,7 @@
       "buffer",
       "bell"
     ],
-    "path": "/docs/reference/audio-analysis/flux"
+    "path": "/docs/reference/buffer-analysis/flux"
   },
   {
     "title": "`fold`",
@@ -525,43 +525,43 @@
       "number",
       "output"
     ],
-    "path": "/docs/reference/utilities/fold"
+    "path": "/docs/reference/data-utilities/fold"
   },
   {
     "title": "`freeverb`",
     "blurb": "",
     "keywords": [
-      "tail",
       "freeverb",
+      "tail",
       "dry",
       "wet",
-      "reverb"
+      "process"
     ],
-    "path": "/docs/reference/audio-processing/freeverb"
+    "path": "/docs/reference/buffer-operations/freeverb"
   },
   {
     "title": "`freqshift`",
     "blurb": "",
     "keywords": [
       "freqshift",
+      "buffer",
       "shift",
       "negative",
-      "required",
-      "llll"
+      "process"
     ],
-    "path": "/docs/reference/audio-processing/freqshift"
+    "path": "/docs/reference/buffer-operations/freqshift"
   },
   {
     "title": "`fromdiffs`",
     "blurb": "",
     "keywords": [
       "fromdiffs",
-      "llll",
+      "buffer",
       "process",
       "operation",
-      "buffer"
+      "bell"
     ],
-    "path": "/docs/reference/audio-processing/fromdiffs"
+    "path": "/docs/reference/buffer-operations/fromdiffs"
   },
   {
     "title": "`gain`",
@@ -569,11 +569,11 @@
     "keywords": [
       "gain",
       "int",
-      "envelope",
-      "samples",
-      "unit"
+      "process",
+      "operation",
+      "buffer"
     ],
-    "path": "/docs/reference/audio-processing/gain"
+    "path": "/docs/reference/buffer-operations/gain"
   },
   {
     "title": "`gcd`",
@@ -585,7 +585,7 @@
       "int",
       "greatest"
     ],
-    "path": "/docs/reference/utilities/gcd"
+    "path": "/docs/reference/data-utilities/gcd"
   },
   {
     "title": "`getchannels`",
@@ -597,7 +597,7 @@
       "getchannels",
       "required"
     ],
-    "path": "/docs/reference/audio-processing/getchannels"
+    "path": "/docs/reference/buffer-utilities/getchannels"
   },
   {
     "title": "`getchar`",
@@ -609,7 +609,7 @@
       "indices",
       "characters"
     ],
-    "path": "/docs/reference/utilities/getchar"
+    "path": "/docs/reference/data-utilities/getchar"
   },
   {
     "title": "`getcorpuskeys`",
@@ -621,7 +621,7 @@
       "keys",
       "true"
     ],
-    "path": "/docs/reference/utilities/getcorpuskeys"
+    "path": "/docs/reference/data-utilities/getcorpuskeys"
   },
   {
     "title": "`getkey`",
@@ -633,7 +633,7 @@
       "getkey",
       "symbol"
     ],
-    "path": "/docs/reference/utilities/getkey"
+    "path": "/docs/reference/data-utilities/getkey"
   },
   {
     "title": "`getmediafiles`",
@@ -645,19 +645,19 @@
       "media",
       "getmediafiles"
     ],
-    "path": "/docs/reference/utilities/getmediafiles"
+    "path": "/docs/reference/data-utilities/getmediafiles"
   },
   {
     "title": "`groove`",
     "blurb": "",
     "keywords": [
-      "rate",
-      "groove",
-      "duration",
       "buffer",
-      "llll"
+      "groove",
+      "rate",
+      "duration",
+      "operation"
     ],
-    "path": "/docs/reference/audio-processing/groove"
+    "path": "/docs/reference/buffer-operations/groove"
   },
   {
     "title": "`hanning`",
@@ -669,19 +669,19 @@
       "window",
       "true"
     ],
-    "path": "/docs/reference/utilities/hanning"
+    "path": "/docs/reference/data-utilities/hanning"
   },
   {
     "title": "`hoadecode`",
     "blurb": "",
     "keywords": [
       "binaural",
+      "hoadecode",
       "azimuth",
       "elevation",
-      "decoding",
-      "hoadecode"
+      "operation"
     ],
-    "path": "/docs/reference/audio-processing/hoadecode"
+    "path": "/docs/reference/buffer-operations/hoadecode"
   },
   {
     "title": "`hoaencode`",
@@ -690,10 +690,10 @@
       "azimuth",
       "elevation",
       "distance",
-      "coordinate",
-      "order"
+      "buffer",
+      "coordinate"
     ],
-    "path": "/docs/reference/audio-processing/hoaencode"
+    "path": "/docs/reference/buffer-operations/hoaencode"
   },
   {
     "title": "`importaudio`",
@@ -705,7 +705,7 @@
       "importaudio",
       "symbol"
     ],
-    "path": "/docs/reference/audio-generation/importaudio"
+    "path": "/docs/reference/buffer-generation/importaudio"
   },
   {
     "title": "`importmidi`",
@@ -717,7 +717,7 @@
       "symbol",
       "required"
     ],
-    "path": "/docs/reference/utilities/importmidi"
+    "path": "/docs/reference/data-utilities/importmidi"
   },
   {
     "title": "`inharmonicity`",
@@ -729,7 +729,7 @@
       "bell",
       "llll"
     ],
-    "path": "/docs/reference/audio-analysis/inharmonicity"
+    "path": "/docs/reference/buffer-analysis/inharmonicity"
   },
   {
     "title": "`initurn`",
@@ -741,7 +741,7 @@
       "identifier",
       "size"
     ],
-    "path": "/docs/reference/utilities/initurn"
+    "path": "/docs/reference/data-utilities/initurn"
   },
   {
     "title": "`inspect`",
@@ -753,7 +753,7 @@
       "inspect",
       "required"
     ],
-    "path": "/docs/reference/utilities/inspect"
+    "path": "/docs/reference/data-utilities/inspect"
   },
   {
     "title": "`integrate`",
@@ -765,7 +765,7 @@
       "integration",
       "origin"
     ],
-    "path": "/docs/reference/utilities/integrate"
+    "path": "/docs/reference/data-utilities/integrate"
   },
   {
     "title": "`interrupt`",
@@ -777,7 +777,7 @@
       "script",
       "true"
     ],
-    "path": "/docs/reference/utilities/interrupt"
+    "path": "/docs/reference/data-utilities/interrupt"
   },
   {
     "title": "`isnan`",
@@ -789,19 +789,19 @@
       "anything",
       "required"
     ],
-    "path": "/docs/reference/utilities/isnan"
+    "path": "/docs/reference/data-utilities/isnan"
   },
   {
     "title": "`join`",
     "blurb": "",
     "keywords": [
+      "buffer",
       "int",
-      "buffers",
-      "llll",
       "join",
-      "buffer"
+      "buffers",
+      "llll"
     ],
-    "path": "/docs/reference/audio-processing/join"
+    "path": "/docs/reference/buffer-operations/join"
   },
   {
     "title": "`larm`",
@@ -813,7 +813,7 @@
       "power",
       "mode"
     ],
-    "path": "/docs/reference/audio-analysis/larm"
+    "path": "/docs/reference/buffer-analysis/larm"
   },
   {
     "title": "`lcm`",
@@ -825,7 +825,7 @@
       "int",
       "least"
     ],
-    "path": "/docs/reference/utilities/lcm"
+    "path": "/docs/reference/data-utilities/lcm"
   },
   {
     "title": "`logattack`",
@@ -837,7 +837,7 @@
       "envelope",
       "maximum"
     ],
-    "path": "/docs/reference/audio-analysis/logattack"
+    "path": "/docs/reference/buffer-analysis/logattack"
   },
   {
     "title": "`mapkey`",
@@ -849,7 +849,7 @@
       "lambda",
       "function"
     ],
-    "path": "/docs/reference/utilities/mapkey"
+    "path": "/docs/reference/data-utilities/mapkey"
   },
   {
     "title": "`markov2seq`",
@@ -861,7 +861,7 @@
       "llll",
       "markov"
     ],
-    "path": "/docs/reference/utilities/markov2seq"
+    "path": "/docs/reference/data-utilities/markov2seq"
   },
   {
     "title": "`maxmagfreq`",
@@ -873,7 +873,7 @@
       "samplerate",
       "llll"
     ],
-    "path": "/docs/reference/audio-analysis/maxmagfreq"
+    "path": "/docs/reference/buffer-analysis/maxmagfreq"
   },
   {
     "title": "`mc2chroma`",
@@ -885,7 +885,7 @@
       "mc",
       "required"
     ],
-    "path": "/docs/reference/utilities/mc2chroma"
+    "path": "/docs/reference/data-utilities/mc2chroma"
   },
   {
     "title": "`mc2pc`",
@@ -897,7 +897,7 @@
       "true",
       "bell"
     ],
-    "path": "/docs/reference/utilities/mc2pc"
+    "path": "/docs/reference/data-utilities/mc2pc"
   },
   {
     "title": "`mean`",
@@ -909,7 +909,7 @@
       "x",
       "required"
     ],
-    "path": "/docs/reference/utilities/mean"
+    "path": "/docs/reference/data-utilities/mean"
   },
   {
     "title": "`median`",
@@ -921,7 +921,7 @@
       "required",
       "element"
     ],
-    "path": "/docs/reference/utilities/median"
+    "path": "/docs/reference/data-utilities/median"
   },
   {
     "title": "`mfcc`",
@@ -933,19 +933,19 @@
       "symbol",
       "spectrum"
     ],
-    "path": "/docs/reference/audio-analysis/mfcc"
+    "path": "/docs/reference/buffer-analysis/mfcc"
   },
   {
     "title": "`minus`",
     "blurb": "",
     "keywords": [
-      "minus",
       "buffer",
-      "int",
-      "resampling",
-      "operand"
+      "minus",
+      "process",
+      "operation",
+      "int"
     ],
-    "path": "/docs/reference/audio-processing/minus"
+    "path": "/docs/reference/buffer-operations/minus"
   },
   {
     "title": "`mix`",
@@ -954,22 +954,22 @@
       "int",
       "mix",
       "buffers",
-      "resampling",
-      "unit"
+      "buffer",
+      "resampling"
     ],
-    "path": "/docs/reference/audio-processing/mix"
+    "path": "/docs/reference/buffer-operations/mix"
   },
   {
     "title": "`mixdown`",
     "blurb": "",
     "keywords": [
       "channels",
-      "int",
-      "output",
       "mixdown",
-      "numchannels"
+      "process",
+      "operation",
+      "buffer"
     ],
-    "path": "/docs/reference/audio-processing/mixdown"
+    "path": "/docs/reference/buffer-operations/mixdown"
   },
   {
     "title": "`multiply`",
@@ -977,11 +977,11 @@
     "keywords": [
       "multiply",
       "buffer",
-      "int",
-      "resampling",
-      "operand"
+      "process",
+      "operation",
+      "int"
     ],
-    "path": "/docs/reference/audio-processing/multiply"
+    "path": "/docs/reference/buffer-operations/multiply"
   },
   {
     "title": "`nearest`",
@@ -993,7 +993,7 @@
       "target",
       "value"
     ],
-    "path": "/docs/reference/utilities/nearest"
+    "path": "/docs/reference/data-utilities/nearest"
   },
   {
     "title": "`noise`",
@@ -1005,19 +1005,19 @@
       "llll",
       "true"
     ],
-    "path": "/docs/reference/audio-generation/noise"
+    "path": "/docs/reference/buffer-generation/noise"
   },
   {
     "title": "`normalize`",
     "blurb": "",
     "keywords": [
-      "level",
       "normalize",
+      "level",
       "mix",
-      "int",
-      "rms"
+      "process",
+      "operation"
     ],
-    "path": "/docs/reference/audio-processing/normalize"
+    "path": "/docs/reference/buffer-operations/normalize"
   },
   {
     "title": "`octreduce`",
@@ -1029,19 +1029,19 @@
       "true",
       "bell"
     ],
-    "path": "/docs/reference/utilities/octreduce"
+    "path": "/docs/reference/data-utilities/octreduce"
   },
   {
     "title": "`onepole`",
     "blurb": "",
     "keywords": [
-      "highpass",
       "onepole",
+      "highpass",
       "cutoff",
-      "llll",
-      "process"
+      "process",
+      "operation"
     ],
-    "path": "/docs/reference/audio-processing/onepole"
+    "path": "/docs/reference/buffer-operations/onepole"
   },
   {
     "title": "`onsetdetection`",
@@ -1053,7 +1053,7 @@
       "mode",
       "buffer"
     ],
-    "path": "/docs/reference/audio-analysis/onsetdetection"
+    "path": "/docs/reference/buffer-analysis/onsetdetection"
   },
   {
     "title": "`onsets`",
@@ -1065,7 +1065,7 @@
       "alpha",
       "delay"
     ],
-    "path": "/docs/reference/audio-analysis/onsets"
+    "path": "/docs/reference/buffer-analysis/onsets"
   },
   {
     "title": "`overdrive`",
@@ -1073,11 +1073,11 @@
     "keywords": [
       "overdrive",
       "factor",
-      "required",
-      "llll",
-      "process"
+      "process",
+      "operation",
+      "buffer"
     ],
-    "path": "/docs/reference/audio-processing/overdrive"
+    "path": "/docs/reference/buffer-operations/overdrive"
   },
   {
     "title": "`panning`",
@@ -1087,9 +1087,9 @@
       "int",
       "number",
       "range",
-      "position"
+      "buffer"
     ],
-    "path": "/docs/reference/audio-processing/panning"
+    "path": "/docs/reference/buffer-operations/panning"
   },
   {
     "title": "`parsepath`",
@@ -1101,19 +1101,19 @@
       "parsepath",
       "symbol"
     ],
-    "path": "/docs/reference/utilities/parsepath"
+    "path": "/docs/reference/data-utilities/parsepath"
   },
   {
     "title": "`paulfreeze`",
     "blurb": "",
     "keywords": [
+      "paulfreeze",
       "duration",
       "position",
-      "time",
-      "paulfreeze",
-      "timeunit"
+      "buffer",
+      "time"
     ],
-    "path": "/docs/reference/audio-processing/paulfreeze"
+    "path": "/docs/reference/buffer-operations/paulfreeze"
   },
   {
     "title": "`paulstretch`",
@@ -1121,11 +1121,11 @@
     "keywords": [
       "stretching",
       "samples",
+      "paulstretch",
       "int",
-      "milliseconds",
-      "difference"
+      "milliseconds"
     ],
-    "path": "/docs/reference/audio-processing/paulstretch"
+    "path": "/docs/reference/buffer-operations/paulstretch"
   },
   {
     "title": "`pcdiff`",
@@ -1137,7 +1137,7 @@
       "b",
       "mod"
     ],
-    "path": "/docs/reference/utilities/pcdiff"
+    "path": "/docs/reference/data-utilities/pcdiff"
   },
   {
     "title": "`phasor`",
@@ -1149,7 +1149,7 @@
       "phase",
       "phasor"
     ],
-    "path": "/docs/reference/audio-generation/phasor"
+    "path": "/docs/reference/buffer-generation/phasor"
   },
   {
     "title": "`pitchdiff`",
@@ -1161,7 +1161,7 @@
       "target",
       "midicents"
     ],
-    "path": "/docs/reference/utilities/pitchdiff"
+    "path": "/docs/reference/data-utilities/pitchdiff"
   },
   {
     "title": "`pitchmelodia`",
@@ -1173,7 +1173,7 @@
       "polyphonic",
       "allowed"
     ],
-    "path": "/docs/reference/audio-analysis/pitchmelodia"
+    "path": "/docs/reference/buffer-analysis/pitchmelodia"
   },
   {
     "title": "`pitchyin`",
@@ -1185,55 +1185,55 @@
       "mode",
       "frequency"
     ],
-    "path": "/docs/reference/audio-analysis/pitchyin"
+    "path": "/docs/reference/buffer-analysis/pitchyin"
   },
   {
     "title": "`plus`",
     "blurb": "",
     "keywords": [
-      "plus",
       "buffer",
-      "int",
-      "resampling",
-      "operand"
+      "plus",
+      "process",
+      "operation",
+      "int"
     ],
-    "path": "/docs/reference/audio-processing/plus"
+    "path": "/docs/reference/buffer-operations/plus"
   },
   {
     "title": "`pong`",
     "blurb": "",
     "keywords": [
+      "buffer",
       "pong",
       "low",
       "high",
-      "mode",
-      "buffer"
+      "mode"
     ],
-    "path": "/docs/reference/audio-processing/pong"
+    "path": "/docs/reference/buffer-operations/pong"
   },
   {
     "title": "`power`",
     "blurb": "",
     "keywords": [
-      "power",
       "buffer",
-      "int",
-      "resampling",
-      "operand"
+      "power",
+      "process",
+      "operation",
+      "int"
     ],
-    "path": "/docs/reference/audio-processing/power"
+    "path": "/docs/reference/buffer-operations/power"
   },
   {
     "title": "`process`",
     "blurb": "",
     "keywords": [
       "buffer",
-      "llll",
       "operations",
+      "llll",
       "process",
       "keys"
     ],
-    "path": "/docs/reference/audio-processing/process"
+    "path": "/docs/reference/buffer-operations/process"
   },
   {
     "title": "`ptracks2buf`",
@@ -1245,7 +1245,7 @@
       "unit",
       "phases"
     ],
-    "path": "/docs/reference/audio-generation/ptracks2buf"
+    "path": "/docs/reference/buffer-generation/ptracks2buf"
   },
   {
     "title": "`query`",
@@ -1257,7 +1257,7 @@
       "usecache",
       "llll"
     ],
-    "path": "/docs/reference/utilities/query"
+    "path": "/docs/reference/data-utilities/query"
   },
   {
     "title": "`querytree`",
@@ -1269,7 +1269,7 @@
       "point",
       "nearest"
     ],
-    "path": "/docs/reference/utilities/querytree"
+    "path": "/docs/reference/data-utilities/querytree"
   },
   {
     "title": "`r2c`",
@@ -1281,7 +1281,7 @@
       "true",
       "bell"
     ],
-    "path": "/docs/reference/utilities/r2c"
+    "path": "/docs/reference/data-utilities/r2c"
   },
   {
     "title": "`r2dr`",
@@ -1293,7 +1293,7 @@
       "ratios",
       "quotients"
     ],
-    "path": "/docs/reference/utilities/r2dr"
+    "path": "/docs/reference/data-utilities/r2dr"
   },
   {
     "title": "`r2mc`",
@@ -1305,7 +1305,7 @@
       "midicents",
       "true"
     ],
-    "path": "/docs/reference/utilities/r2mc"
+    "path": "/docs/reference/data-utilities/r2mc"
   },
   {
     "title": "`r2pc`",
@@ -1317,19 +1317,19 @@
       "pc",
       "class"
     ],
-    "path": "/docs/reference/utilities/r2pc"
+    "path": "/docs/reference/data-utilities/r2pc"
   },
   {
     "title": "`rampsmooth`",
     "blurb": "",
     "keywords": [
-      "rampsmooth",
       "buffer",
-      "llll",
+      "rampsmooth",
       "process",
-      "operation"
+      "operation",
+      "bell"
     ],
-    "path": "/docs/reference/audio-processing/rampsmooth"
+    "path": "/docs/reference/buffer-operations/rampsmooth"
   },
   {
     "title": "`rand`",
@@ -1341,7 +1341,7 @@
       "null",
       "random"
     ],
-    "path": "/docs/reference/utilities/rand"
+    "path": "/docs/reference/data-utilities/rand"
   },
   {
     "title": "`randosc`",
@@ -1353,7 +1353,7 @@
       "randosc",
       "llll"
     ],
-    "path": "/docs/reference/audio-generation/randosc"
+    "path": "/docs/reference/buffer-generation/randosc"
   },
   {
     "title": "`read`",
@@ -1365,7 +1365,7 @@
       "parens",
       "keep"
     ],
-    "path": "/docs/reference/utilities/read"
+    "path": "/docs/reference/data-utilities/read"
   },
   {
     "title": "`readfolder`",
@@ -1377,7 +1377,7 @@
       "file",
       "folder"
     ],
-    "path": "/docs/reference/utilities/readfolder"
+    "path": "/docs/reference/data-utilities/readfolder"
   },
   {
     "title": "`rect`",
@@ -1389,7 +1389,7 @@
       "duty",
       "rect"
     ],
-    "path": "/docs/reference/audio-generation/rect"
+    "path": "/docs/reference/buffer-generation/rect"
   },
   {
     "title": "`render`",
@@ -1401,7 +1401,7 @@
       "buffer",
       "spread"
     ],
-    "path": "/docs/reference/audio-processing/render"
+    "path": "/docs/reference/buffer-utilities/render"
   },
   {
     "title": "`repeat`",
@@ -1410,34 +1410,34 @@
       "duration",
       "repeat",
       "timeunit",
-      "llll",
-      "process"
+      "process",
+      "operation"
     ],
-    "path": "/docs/reference/audio-processing/repeat"
+    "path": "/docs/reference/buffer-operations/repeat"
   },
   {
     "title": "`resample`",
     "blurb": "",
     "keywords": [
       "duration",
+      "resample",
       "int",
       "milliseconds",
-      "samples",
-      "difference"
+      "samples"
     ],
-    "path": "/docs/reference/audio-processing/resample"
+    "path": "/docs/reference/buffer-operations/resample"
   },
   {
     "title": "`retune`",
     "blurb": "",
     "keywords": [
       "pitch",
+      "retune",
       "threshold",
       "correction",
-      "retune",
       "amount"
     ],
-    "path": "/docs/reference/audio-processing/retune"
+    "path": "/docs/reference/buffer-operations/retune"
   },
   {
     "title": "`revbpf`",
@@ -1449,19 +1449,19 @@
       "function",
       "revbpf"
     ],
-    "path": "/docs/reference/utilities/revbpf"
+    "path": "/docs/reference/data-utilities/revbpf"
   },
   {
     "title": "`reverse`",
     "blurb": "",
     "keywords": [
       "reverse",
-      "llll",
       "process",
       "operation",
-      "true"
+      "buffer",
+      "bell"
     ],
-    "path": "/docs/reference/audio-processing/reverse"
+    "path": "/docs/reference/buffer-operations/reverse"
   },
   {
     "title": "`rhythm`",
@@ -1473,7 +1473,7 @@
       "bell",
       "maxtempo"
     ],
-    "path": "/docs/reference/audio-analysis/rhythm"
+    "path": "/docs/reference/buffer-analysis/rhythm"
   },
   {
     "title": "`rolloff`",
@@ -1485,31 +1485,31 @@
       "bell",
       "cutoff"
     ],
-    "path": "/docs/reference/audio-analysis/rolloff"
+    "path": "/docs/reference/buffer-analysis/rolloff"
   },
   {
     "title": "`rounding`",
     "blurb": "",
     "keywords": [
       "rounding",
+      "buffer",
       "value",
       "nearest",
-      "llll",
       "process"
     ],
-    "path": "/docs/reference/audio-processing/rounding"
+    "path": "/docs/reference/buffer-operations/rounding"
   },
   {
     "title": "`rubberband`",
     "blurb": "",
     "keywords": [
       "int",
+      "rubberband",
       "stretching",
       "samples",
-      "rubberband",
       "milliseconds"
     ],
-    "path": "/docs/reference/audio-processing/rubberband"
+    "path": "/docs/reference/buffer-operations/rubberband"
   },
   {
     "title": "`samplebpf`",
@@ -1521,7 +1521,7 @@
       "samplebpf",
       "llll"
     ],
-    "path": "/docs/reference/utilities/samplebpf"
+    "path": "/docs/reference/data-utilities/samplebpf"
   },
   {
     "title": "`samplelist`",
@@ -1533,7 +1533,7 @@
       "x",
       "interpolated"
     ],
-    "path": "/docs/reference/utilities/samplelist"
+    "path": "/docs/reference/data-utilities/samplelist"
   },
   {
     "title": "`samps2buf`",
@@ -1545,7 +1545,7 @@
       "sr",
       "samples"
     ],
-    "path": "/docs/reference/utilities/samps2buf"
+    "path": "/docs/reference/data-utilities/samps2buf"
   },
   {
     "title": "`saw`",
@@ -1557,7 +1557,7 @@
       "saw",
       "llll"
     ],
-    "path": "/docs/reference/audio-generation/saw"
+    "path": "/docs/reference/buffer-generation/saw"
   },
   {
     "title": "`scale`",
@@ -1569,7 +1569,7 @@
       "scale",
       "output"
     ],
-    "path": "/docs/reference/utilities/scale"
+    "path": "/docs/reference/data-utilities/scale"
   },
   {
     "title": "`scaling`",
@@ -1577,11 +1577,11 @@
     "keywords": [
       "scaling",
       "value",
-      "output",
-      "inmin",
-      "inmax"
+      "process",
+      "operation",
+      "buffer"
     ],
-    "path": "/docs/reference/audio-processing/scaling"
+    "path": "/docs/reference/buffer-operations/scaling"
   },
   {
     "title": "`scoreconfig`",
@@ -1593,31 +1593,31 @@
       "voice",
       "clefs"
     ],
-    "path": "/docs/reference/utilities/scoreconfig"
+    "path": "/docs/reference/data-utilities/scoreconfig"
   },
   {
     "title": "`scrub`",
     "blurb": "",
     "keywords": [
-      "phase",
       "buffer",
       "scrub",
+      "phase",
       "duration",
-      "envelope"
+      "process"
     ],
-    "path": "/docs/reference/audio-processing/scrub"
+    "path": "/docs/reference/buffer-operations/scrub"
   },
   {
     "title": "`seq2markov`",
     "blurb": "",
     "keywords": [
-      "llll",
       "sequence",
+      "llll",
       "symbol",
-      "data",
-      "order"
+      "order",
+      "markov"
     ],
-    "path": "/docs/reference/utilities/seq2markov"
+    "path": "/docs/reference/data-utilities/seq2markov"
   },
   {
     "title": "`setcorpus`",
@@ -1629,7 +1629,7 @@
       "symbol",
       "required"
     ],
-    "path": "/docs/reference/utilities/setcorpus"
+    "path": "/docs/reference/data-utilities/setcorpus"
   },
   {
     "title": "`setkey`",
@@ -1641,7 +1641,7 @@
       "mode",
       "values"
     ],
-    "path": "/docs/reference/utilities/setkey"
+    "path": "/docs/reference/data-utilities/setkey"
   },
   {
     "title": "`setseed`",
@@ -1653,7 +1653,7 @@
       "required",
       "random"
     ],
-    "path": "/docs/reference/utilities/setseed"
+    "path": "/docs/reference/data-utilities/setseed"
   },
   {
     "title": "`sortbykeys`",
@@ -1665,19 +1665,19 @@
       "list",
       "sortbykeys"
     ],
-    "path": "/docs/reference/utilities/sortbykeys"
+    "path": "/docs/reference/data-utilities/sortbykeys"
   },
   {
     "title": "`soundtouch`",
     "blurb": "",
     "keywords": [
-      "int",
       "soundtouch",
+      "int",
       "stretching",
       "pitchshift",
       "quick"
     ],
-    "path": "/docs/reference/audio-processing/soundtouch"
+    "path": "/docs/reference/buffer-operations/soundtouch"
   },
   {
     "title": "`spectralcentroid`",
@@ -1689,7 +1689,7 @@
       "bell",
       "llll"
     ],
-    "path": "/docs/reference/audio-analysis/spectralcentroid"
+    "path": "/docs/reference/buffer-analysis/spectralcentroid"
   },
   {
     "title": "`spectralflatness`",
@@ -1701,7 +1701,7 @@
       "bell",
       "llll"
     ],
-    "path": "/docs/reference/audio-analysis/spectralflatness"
+    "path": "/docs/reference/buffer-analysis/spectralflatness"
   },
   {
     "title": "`spectralkurtosis`",
@@ -1713,7 +1713,7 @@
       "llll",
       "descriptor"
     ],
-    "path": "/docs/reference/audio-analysis/spectralkurtosis"
+    "path": "/docs/reference/buffer-analysis/spectralkurtosis"
   },
   {
     "title": "`spectralskewness`",
@@ -1725,7 +1725,7 @@
       "bell",
       "llll"
     ],
-    "path": "/docs/reference/audio-analysis/spectralskewness"
+    "path": "/docs/reference/buffer-analysis/spectralskewness"
   },
   {
     "title": "`spectralspread`",
@@ -1737,7 +1737,7 @@
       "bell",
       "llll"
     ],
-    "path": "/docs/reference/audio-analysis/spectralspread"
+    "path": "/docs/reference/buffer-analysis/spectralspread"
   },
   {
     "title": "`spectralvariance`",
@@ -1749,7 +1749,7 @@
       "bell",
       "llll"
     ],
-    "path": "/docs/reference/audio-analysis/spectralvariance"
+    "path": "/docs/reference/buffer-analysis/spectralvariance"
   },
   {
     "title": "`spectrum`",
@@ -1761,7 +1761,7 @@
       "magnitude",
       "buffer"
     ],
-    "path": "/docs/reference/audio-analysis/spectrum"
+    "path": "/docs/reference/buffer-analysis/spectrum"
   },
   {
     "title": "`splitbuf`",
@@ -1773,19 +1773,19 @@
       "llll",
       "segment"
     ],
-    "path": "/docs/reference/utilities/splitbuf"
+    "path": "/docs/reference/data-utilities/splitbuf"
   },
   {
     "title": "`squareroot`",
     "blurb": "",
     "keywords": [
       "squareroot",
-      "llll",
       "process",
       "operation",
-      "true"
+      "buffer",
+      "bell"
     ],
-    "path": "/docs/reference/audio-processing/squareroot"
+    "path": "/docs/reference/buffer-operations/squareroot"
   },
   {
     "title": "`strongdecay`",
@@ -1797,7 +1797,7 @@
       "mode",
       "decay"
     ],
-    "path": "/docs/reference/audio-analysis/strongdecay"
+    "path": "/docs/reference/buffer-analysis/strongdecay"
   },
   {
     "title": "`strongpeak`",
@@ -1809,7 +1809,7 @@
       "buffer",
       "ratio"
     ],
-    "path": "/docs/reference/audio-analysis/strongpeak"
+    "path": "/docs/reference/buffer-analysis/strongpeak"
   },
   {
     "title": "`symlen`",
@@ -1821,7 +1821,7 @@
       "required",
       "int"
     ],
-    "path": "/docs/reference/utilities/symlen"
+    "path": "/docs/reference/data-utilities/symlen"
   },
   {
     "title": "`teeth`",
@@ -1833,7 +1833,7 @@
       "gain",
       "either"
     ],
-    "path": "/docs/reference/audio-processing/teeth"
+    "path": "/docs/reference/buffer-operations/teeth"
   },
   {
     "title": "`temporalcentroid`",
@@ -1845,7 +1845,7 @@
       "descriptor",
       "temporal"
     ],
-    "path": "/docs/reference/audio-analysis/temporalcentroid"
+    "path": "/docs/reference/buffer-analysis/temporalcentroid"
   },
   {
     "title": "`temporalflatness`",
@@ -1857,7 +1857,7 @@
       "llll",
       "descriptor"
     ],
-    "path": "/docs/reference/audio-analysis/temporalflatness"
+    "path": "/docs/reference/buffer-analysis/temporalflatness"
   },
   {
     "title": "`temporalkurtosis`",
@@ -1869,7 +1869,7 @@
       "descriptor",
       "buffer"
     ],
-    "path": "/docs/reference/audio-analysis/temporalkurtosis"
+    "path": "/docs/reference/buffer-analysis/temporalkurtosis"
   },
   {
     "title": "`temporalskewness`",
@@ -1881,7 +1881,7 @@
       "descriptor",
       "buffer"
     ],
-    "path": "/docs/reference/audio-analysis/temporalskewness"
+    "path": "/docs/reference/buffer-analysis/temporalskewness"
   },
   {
     "title": "`temporalspread`",
@@ -1893,7 +1893,7 @@
       "descriptor",
       "buffer"
     ],
-    "path": "/docs/reference/audio-analysis/temporalspread"
+    "path": "/docs/reference/buffer-analysis/temporalspread"
   },
   {
     "title": "`temporalvariance`",
@@ -1905,7 +1905,7 @@
       "descriptor",
       "buffer"
     ],
-    "path": "/docs/reference/audio-analysis/temporalvariance"
+    "path": "/docs/reference/buffer-analysis/temporalvariance"
   },
   {
     "title": "`thispath`",
@@ -1917,7 +1917,7 @@
       "thispath",
       "current"
     ],
-    "path": "/docs/reference/utilities/thispath"
+    "path": "/docs/reference/data-utilities/thispath"
   },
   {
     "title": "`timesquash`",
@@ -1927,21 +1927,21 @@
       "energy",
       "duration",
       "phasehandling",
-      "time"
+      "timesquash"
     ],
-    "path": "/docs/reference/audio-processing/timesquash"
+    "path": "/docs/reference/buffer-operations/timesquash"
   },
   {
     "title": "`todiffs`",
     "blurb": "",
     "keywords": [
       "todiffs",
-      "llll",
+      "buffer",
       "process",
       "operation",
-      "buffer"
+      "bell"
     ],
-    "path": "/docs/reference/audio-processing/todiffs"
+    "path": "/docs/reference/buffer-operations/todiffs"
   },
   {
     "title": "`tonalkey`",
@@ -1953,7 +1953,7 @@
       "tonalkey",
       "mode"
     ],
-    "path": "/docs/reference/audio-analysis/tonalkey"
+    "path": "/docs/reference/buffer-analysis/tonalkey"
   },
   {
     "title": "`tosymbol`",
@@ -1965,7 +1965,7 @@
       "anything",
       "required"
     ],
-    "path": "/docs/reference/utilities/tosymbol"
+    "path": "/docs/reference/data-utilities/tosymbol"
   },
   {
     "title": "`transcribe`",
@@ -1977,7 +1977,7 @@
       "value",
       "llll"
     ],
-    "path": "/docs/reference/utilities/transcribe"
+    "path": "/docs/reference/data-utilities/transcribe"
   },
   {
     "title": "`tri`",
@@ -1989,7 +1989,7 @@
       "duty",
       "tri"
     ],
-    "path": "/docs/reference/audio-generation/tri"
+    "path": "/docs/reference/buffer-generation/tri"
   },
   {
     "title": "`triangle`",
@@ -2001,7 +2001,7 @@
       "phase",
       "offset"
     ],
-    "path": "/docs/reference/audio-generation/triangle"
+    "path": "/docs/reference/buffer-generation/triangle"
   },
   {
     "title": "`trim`",
@@ -2011,9 +2011,9 @@
       "trim",
       "threshold",
       "end",
-      "ampunit"
+      "process"
     ],
-    "path": "/docs/reference/audio-processing/trim"
+    "path": "/docs/reference/buffer-operations/trim"
   },
   {
     "title": "`urn`",
@@ -2025,55 +2025,55 @@
       "unique",
       "random"
     ],
-    "path": "/docs/reference/utilities/urn"
+    "path": "/docs/reference/data-utilities/urn"
   },
   {
     "title": "`wavesetrepeat`",
     "blurb": "",
     "keywords": [
       "waveset",
-      "int",
       "wavesetrepeat",
-      "times",
-      "span"
+      "process",
+      "operation",
+      "buffer"
     ],
-    "path": "/docs/reference/audio-processing/wavesetrepeat"
+    "path": "/docs/reference/buffer-operations/wavesetrepeat"
   },
   {
     "title": "`wavesetshuffle`",
     "blurb": "",
     "keywords": [
-      "waveset",
       "wavesetshuffle",
-      "maxdist",
-      "span",
-      "llll"
+      "process",
+      "operation",
+      "waveset",
+      "buffer"
     ],
-    "path": "/docs/reference/audio-processing/wavesetshuffle"
+    "path": "/docs/reference/buffer-operations/wavesetshuffle"
   },
   {
     "title": "`waveshape`",
     "blurb": "",
     "keywords": [
-      "phase",
       "buffer",
       "waveshape",
+      "phase",
       "duration",
-      "envelope"
+      "process"
     ],
-    "path": "/docs/reference/audio-processing/waveshape"
+    "path": "/docs/reference/buffer-operations/waveshape"
   },
   {
     "title": "`window`",
     "blurb": "",
     "keywords": [
       "window",
-      "int",
-      "wintype",
-      "winnormalized",
-      "zeropadding"
+      "process",
+      "operation",
+      "buffer",
+      "int"
     ],
-    "path": "/docs/reference/audio-processing/window"
+    "path": "/docs/reference/buffer-operations/window"
   },
   {
     "title": "`write`",
@@ -2085,7 +2085,7 @@
       "required",
       "write"
     ],
-    "path": "/docs/reference/utilities/write"
+    "path": "/docs/reference/data-utilities/write"
   },
   {
     "title": "`x2dx`",
@@ -2097,7 +2097,7 @@
       "adjacent",
       "elements"
     ],
-    "path": "/docs/reference/utilities/x2dx"
+    "path": "/docs/reference/data-utilities/x2dx"
   },
   {
     "title": "`xchoose`",
@@ -2109,7 +2109,7 @@
       "xchoose",
       "required"
     ],
-    "path": "/docs/reference/utilities/xchoose"
+    "path": "/docs/reference/data-utilities/xchoose"
   },
   {
     "title": "`xrand`",
@@ -2121,7 +2121,7 @@
       "null",
       "float"
     ],
-    "path": "/docs/reference/utilities/xrand"
+    "path": "/docs/reference/data-utilities/xrand"
   },
   {
     "title": "`xrandom`",
@@ -2133,7 +2133,7 @@
       "xrandom",
       "null"
     ],
-    "path": "/docs/reference/utilities/xrandom"
+    "path": "/docs/reference/data-utilities/xrandom"
   },
   {
     "title": "`xscramble`",
@@ -2145,7 +2145,7 @@
       "list",
       "true"
     ],
-    "path": "/docs/reference/utilities/xscramble"
+    "path": "/docs/reference/data-utilities/xscramble"
   },
   {
     "title": "`zerocrossingrate`",
@@ -2157,7 +2157,7 @@
       "buffer",
       "zero"
     ],
-    "path": "/docs/reference/audio-analysis/zerocrossingrate"
+    "path": "/docs/reference/buffer-analysis/zerocrossingrate"
   },
   {
     "title": "Acknowledgments",
@@ -2281,11 +2281,11 @@
   },
   {
     "title": "Basic Workflow",
-    "blurb": "The general workflow of a bell script in **bellplay~** is the following:",
+    "blurb": "In **bellplay~**, the basic building block of our scripts is the _buffer_.",
     "keywords": [
       "buffer",
       "workflow",
-      "bell",
+      "basic",
       "buffers",
       "rendering"
     ],
@@ -2293,7 +2293,7 @@
   },
   {
     "title": "Buffer Keys",
-    "blurb": "Buffers in **bellplay~** are simply nested lists of [key-value pairs](https://en.wikipedia.org/wiki/Name–value_pair).",
+    "blurb": "As mentioned in earlier tutorials, buffers in **bellplay~** are simply nested lists of [key-value pairs](https://en.wikipedia.org/wiki/Name–value_pair).",
     "keywords": [
       "buffer",
       "transcribe",
@@ -2520,6 +2520,18 @@
     "path": "/docs/learning/tutorials/markers"
   },
   {
+    "title": "Markov Music Generation",
+    "blurb": "This script illustrates how to construct and use an nth-order [Markov model](https://en.wikipedia.org/wiki/Markov_model) from MIDI data in **bellplay~** for generative music.",
+    "keywords": [
+      "events",
+      "pitch",
+      "timestep",
+      "markov",
+      "sequence"
+    ],
+    "path": "/docs/learning/examples/markov"
+  },
+  {
     "title": "MIDI Retuning",
     "blurb": "An example of JI-based retuning of MIDI events.",
     "keywords": [
@@ -2622,20 +2634,20 @@
       "gain",
       "onset",
       "progress",
-      "buffer",
-      "buffers"
+      "buffers",
+      "buffer"
     ],
     "path": "/docs/learning/tutorials/transcription"
   },
   {
     "title": "Variable Declarations",
-    "blurb": "When writing code, it's often good practice to use descriptive names for our variables.",
+    "blurb": "When writing code, it's good practice to use descriptive variable names.",
     "keywords": [
-      "variable",
       "saw",
+      "variable",
       "global",
-      "name",
-      "bell"
+      "bell",
+      "names"
     ],
     "path": "/docs/learning/tutorials/variables"
   },
