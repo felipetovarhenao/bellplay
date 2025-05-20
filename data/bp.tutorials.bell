@@ -73,6 +73,13 @@ $addscript(
 );
 
 $addscript(
+    @name "randomness"
+    @file "randomness"
+    @description "This tutorial provides an overview of different random functions available in bellplay~."
+    @tags "random" "seed"
+);
+
+$addscript(
     @name "parametric automation"
     @file "automation"
     @description "In many cases, we will want to have some kind of DAW-style automation of certain parameters when generating or processing audio in our scripts. One way of doing this is through breakpoint functions — numeric lists that describe a certain shape or trajectory. This tutorial shows the different syntaxes available in bellplay~ for specifying breakpoint functions."

@@ -1,0 +1,139 @@
+#( 
+
+# Randomness
+
+Randomness is frequently used in algorithmic music to introduce variation and unpredictability. However, in many compositional workflows, **reproducibility** is just as important. In **bellplay\~**, there are two types of random functions:
+
+* **Unseeded**: always produce different results.
+  Examples: `rand`, `choose`, `urn`.
+* **Seeded** (prefixed with `x`): produce the same result each time when a non-zero seed is set.
+  Examples: `xrand`, `xchoose`, `xrandom`, `xscramble`, `urn` (when seeded via `setseed`).
+
+The seeded variants allow you to control randomness and make your scripts deterministic and repeatable.
+
+---
+
+## `rand` vs `xrand`
+
+The `rand` function produces a random float and is **not** seedable.
+
+```bell 
+## will return a different result every time
+print(rand(0, 1))
+```
+
+In contrast, `xrand` is a seeded version:
+
+```bell 
+## set the random seed
+setseed(@seed 42);
+## will return the same value every time the script is run
+print(xrand(0, 1))
+```
+
+:::info
+If `setseed` is not called, the default seed for all seeded functions is `1`.
+:::
+
+---
+
+## `choose` vs `xchoose`
+
+`choose` selects elements from a list, non-deterministically:
+
+```bell
+$files = 'flute.wav' 'viola.wav' 'guitar.wav';
+print(choose(@choices $files))
+```
+
+With `xchoose`, the result becomes reproducible if a seed is set:
+
+```bell
+setseed(@seed 99);
+$files = 'flute.wav' 'viola.wav' 'guitar.wav';
+print(xchoose(@choices $files))
+```
+
+---
+
+## `xscramble`: Seeded Shuffling
+
+The `xscramble` function randomly reorders a list, but deterministically with a seed.
+
+```bell
+setseed(@seed 7);
+$items = 1 2 3 4 5;
+print(xscramble(@llll $items))
+```
+
+---
+
+## `urn`: Controlled Non-Repetition
+
+The `urn` function generates unique numbers without repetition. It can be seeded using `setseed`, enabling deterministic but non-repeating behavior.
+
+```bell 
+setseed(@seed 2025);
+initurn(
+    @id 'myseq' 
+    @size 4
+    @useseed 1
+);
+for $i in (0...10) do (
+    print(urn(@id 'myseq')) 
+)
+```
+
+---
+
+## Putting It All Together
+
+The following example demonstrates how to use `setseed` to control all aspects of an algorithmic audio texture: random sample selection, pitch, pan, and onset spacing.
+
+)#
+## set a fixed seed so all random choices are reproducible
+setseed(@seed 1001);
+## list of sample file names to be randomly selected
+$samples = 'flute.wav' 'viola.wav' 'guitar.wav';
+## list of pitch values in midicents
+$pitches = (6900 7000 7100);
+## initialize onset time
+$onset = 0;
+## generate six randomized events
+for $i in (0...6) do (
+    ## randomly choose one of the sample files
+    $samp = xchoose(@choices $samples);
+    ## randomly choose a pitch
+    $pitch = xchoose(@choices $pitches);
+    ## randomly choose a duration between 300 and 600 ms
+    $dur = xrand(@a 300 @b 600);
+    ## randomly choose a pan position between left (0) and right (1)
+    $pan = xrand(@a 0 @b 1);
+    ## import the selected sample and transcribe it with the random parameters
+    importaudio($samp).transcribe(
+        @onset $onset
+        @pitch $pitch
+        @duration $dur
+        @pan $pan
+    );
+    ## advance onset time by a random amount between 200 and 400 ms
+    $onset += xrand(@a 200 @b 400) 
+);
+## render all transcribed buffers and play the result
+render(@play 1) 
+#(
+
+## Summary
+
+| Function    | Seeded?           | Returns | Use Case                    |
+| ----------- | ----------------- | ------- | --------------------------- |
+| `rand`      | ❌                 | float   | quick randomness            |
+| `xrand`     | ✅                 | float   | reproducible randomness     |
+| `choose`    | ❌                 | any     | random choice               |
+| `xchoose`   | ✅                 | any     | repeatable random choice    |
+| `xscramble` | ✅                 | list    | deterministic shuffling     |
+| `urn`       | ✅ (via `setseed`) | int     | deterministic non-repeating |
+
+Using `setseed` lets you design stochastic processes that behave consistently, which is particularly useful in collaborative work, score rendering, or iterative design.
+
+)#

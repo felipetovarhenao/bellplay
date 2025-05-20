@@ -69,12 +69,12 @@ const config: Config = {
       defaultMode: "light",
     },
     // social card
-    image: "img/logo.png",
+    image: "img/bellplay-logo.png",
     navbar: {
       title: "bellplay~",
       logo: {
         alt: "bellplay logo",
-        src: "img/logo.png",
+        src: "img/bellplay-logo.png",
       },
       items: [
         { to: "/docs/category/reference", label: "Reference", position: "left" },

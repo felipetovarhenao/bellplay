@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3830563371,
+	"modificationdate" : 3830602493,
 	"viewrect" : [ 25.0, 104.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -711,6 +711,11 @@
 			}
 ,
 			"bp.example.markov.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"bp.tutorial.randomness.bell" : 			{
 				"kind" : "textfile",
 				"local" : 1
 			}

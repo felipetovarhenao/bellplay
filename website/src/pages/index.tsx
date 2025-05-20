@@ -15,7 +15,7 @@ function HomepageHeader() {
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        <img className={styles.logo} style={{ maxWidth: "180px" }} src="img/logo.png" alt="" />
+        <img className={styles.logo} style={{ maxWidth: "180px" }} src="img/bellplay-logo.png" alt="" />
         <Heading as="h1" className={clsx("hero__title", styles.title)}>
           {siteConfig.title}
         </Heading>
