@@ -42,6 +42,6 @@ website/docs/tutorials/*.md
 website/docs/reference/*/
 website/docs/reference/**/*.md
 website/docs/learning/*/*
-website/python/*.txt
+website/gen/*.txt
 website/**/*.llll
 website/static/search-index.json
