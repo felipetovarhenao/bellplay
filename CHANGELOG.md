@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `markov2seq`: Markov matrix to sequence.
 - New built-in media: `joplin.mid` (_The Entertainer_).
 - **MAJOR**: New web-based documentation.
+  - `process` and `analyze` related functions include usage example in reference.
 - Dev:
   - Major renaming of backend functions to follow consistent nomenclature:
     - global functions: `BP_FN_*`
