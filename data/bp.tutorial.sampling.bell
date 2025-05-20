@@ -59,7 +59,7 @@ for $keymap $id in [$keymap1] [$keymap2] [$keymap3] [$keymap4] with @unwrap 1 do
             @velocity rand(127) 
             ## randomize velocity
             
-        ).transcribe( @onset $onset);
+        ).transcribe(@onset $onset);
         $onset += $dur
     );
     $onset += 1000

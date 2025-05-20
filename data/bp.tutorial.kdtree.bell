@@ -18,7 +18,7 @@ In this tutorial, we do the following:
 ## load source buffer
 $source = importaudio('trumpet.wav');
 ## perform onset detection analysis on buffer
-$source = $source.analyze(onsets() );
+$source = $source.analyze(onsets());
 ## get list of transient-based onset times
 $markers = $source.getkey('onsets');
 ## split buffers into different segments, based on markers

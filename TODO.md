@@ -16,7 +16,9 @@
 ### Change
 
 - Provide new API for sql corpora.
-- Rewrite tutorials and examples involving `splitbuf` and kd-trees.
+- [ ] Rewrite tutorials and examples involving:
+  - [ ] `splitbuf`.
+  - [ ] `createtree` and `searchtree`.
 - [ ] Doc improvements:
   - [ ] Better function tags:
     - Data utilities
