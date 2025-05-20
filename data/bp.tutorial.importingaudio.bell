@@ -9,7 +9,7 @@ For this, we use the `importaudio` function, which takes a file path as a symbol
 In **bellplay~**, file paths can be either relative or absolute. Here are some examples:
 
 - A **relative path** refers to a location relative to the current script's directory. For instance, `'./samples/kick.wav'` refers to a file in a `samples` subdirectory located next to your script.
-- An **absolute path** points to a fixed location on your filesystem. For example, `'/Users/joe/samples/snare.wav'` refers to a specific file, regardless of where your script is located.
+- An **absolute path** points to a fixed location on your filesystem. For example, `'/Users/alice/samples/snare.wav'` refers to a specific file, regardless of where your script is located.
 - A path starting with `'~/'` is a shorthand for the current user's home directory, e.g., `'~/Downloads/beat.wav'`.
 
 Always ensure that the file you are referencing exists at the specified path. In later tutorials we will take a look at using the `exists` function for this.
