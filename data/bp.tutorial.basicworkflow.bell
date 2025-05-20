@@ -16,4 +16,9 @@ $osc = cycle();
 ## then we transcribe the buffer for rendering
 $osc.transcribe();
 ## finally, we render transcribed buffer
-render()
+render() 
+#( 
+:::info
+When you load a `.bell` file in _bellplay~_, the code is automatically evaluated everytime you save it. As such, it's worth memorizing and using the keyboard shortcut to save a file — `⌘+S` on Mac, and `Ctrl+S` on Windows.
+:::
+)#

@@ -46,4 +46,7 @@
   .theme-admonition-tip.alert.alert--success {
     background-color: #1f483b;
   }
+  .theme-admonition-warning.alert.alert--warning {
+    background-color: #8b6f3c;
+  }
 }

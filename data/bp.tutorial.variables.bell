@@ -2,29 +2,16 @@
 
 # Variable Declarations
 
-When writing code, it's often good practice to use descriptive names for our variables. 
-For instance, it makes sense to name a variable `noise` to represent a noise signal, or `saw` to represent a sawtooth wave, etc.
+When writing code, it's good practice to use descriptive variable names. For instance, `noise` to represent a noise signal, or `saw` for a sawtooth wave.
+Most programming languages prevent the use of reserved keywords (e.g., `for`, `while`, `null`) as variable names. The _bell_ language does this as well — using a reserved word like `print` as a variable name will raise a parser error.
+However, this is **not** the case for functions and names defined in **bellplay~**. These are not treated as native _bell_ functions, so defining a variable with the same name (e.g., `render`) will silently override the original value — without any warnings or errors.
 
-Typically, when a variable name is a reserved or protected keyword in a programming language (e.g., `for`, `while`, `null`, etc.), the parser will let us know that those keywords cannot be used as variable names.
-This is also the case in _bell_ — trying to use, say, `print` as a variable name is not allowed, because it is already a native function in _bell_.
-However, this doesn't happen when using variables with the same name as those included in **bellplay~**, because they are not native _bell_ functions.
-This means that a **bellplay~** function, like `render`, would be silently overwritten if you create a variable with that name, and the parser wouldn't care to tell you.
-This makes it extremely easy for us to accidentally "break" the application, unless we follow some best practices.
-
-That is why, in **bellplay~**, variable declarations should always be local (i.e., `$<varname>`), instead of global (`<varname>` or `<Varname>`) to prevent namespacing collisions.
-In other words, you should only use global declarations (without the `$` prefix) when absolutely necessary, and make sure your variable name does not already exist in **bellplay~**.
-If you accidentally use a global variable that already exists in **bellplay~**, simply restart the application to restore the values.
-
-:::tip
-In _bell_, the suggested convention is to capitalize global variables, like so:
-
-```bell {1}
-MyGlobalVariable = "I'm global!";
-$mylocalvariable = "I'm local!"
-```
+:::warning
+Overwriting global **bellplay~** function names (such as `render`, `saw`, `noise`, etc.) with your own global variables will **break** the application, often in ways that are hard to debug. There is no warning when this happens — the parser will accept the code, and the application will behave incorrectly.
 :::
 
-The code below illustrates how using local variables does not result in any namespace collisions.
+To avoid such conflicts, always declare variables **locally**, using the `$` prefix (e.g., `$saw`). Avoid global declarations unless absolutely necessary, and only after verifying that the name does not already exist in **bellplay~**.
+If a name conflict does occur, restart the application to restore the original environment.
 
 )#
 ## generate a buffer with the global function `saw` and store it in the local variable `$saw`
@@ -35,4 +22,15 @@ $saw.transcribe(@gain .15);
 $saw = saw(@frequency 330 @duration 1000);
 $saw.transcribe(@gain .15);
 ## render transcribed buffers
-render()
+render() 
+#( 
+:::tip
+By convention, global variables in _bell_ should be capitalized to distinguish them from local variables:
+
+```bell {1}
+MyGlobalVariable = "I'm global!"; ## good
+myglobalvariable = "I'm dangerously global!"; ## not recommended
+$mylocalvariable = "I'm local!"
+```
+:::
+)#

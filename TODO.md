@@ -23,9 +23,9 @@
     - Buffer utilities.
     - Buffer operations
     - Audio descriptors
-  - [ ] Admonitions:
-    - [ ] Info: code auto-runs when saved.
-    - [ ] Lifetime of Global variables.
+  - [x] Admonitions:
+    - [x] Info: code auto-runs when saved.
+    - [x] Lifetime of Global variables.
   - [ ] Debugging
   - In FAQ:
     - [ ] Explain differences between bach/Max and bellplay.
