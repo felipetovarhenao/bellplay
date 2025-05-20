@@ -218,7 +218,7 @@ BP_REF_NEW = (
                     "$operations = " + $open, 
                     $tab +  "reverse()",
                     $tab + "freeverb(@tail 1000)",
-                    $tab + "reverse(@roomsize 0.9)",
+                    $tab + "reverse()",
                     $close + ";",
                     "$buffer = $buffer.process($operations)"
                 );
