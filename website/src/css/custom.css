@@ -49,4 +49,7 @@
   .theme-admonition-warning.alert.alert--warning {
     background-color: #8b6f3c;
   }
+  .theme-admonition-danger.alert.alert--danger {
+    background-color: #5e232a;
+  }
 }

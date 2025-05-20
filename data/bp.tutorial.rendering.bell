@@ -5,7 +5,7 @@
 Similar to the transcription stage, the rendering stage allows us to define important aspects about the final output.
 For instance, the sampling rate, the number of output channels for the rendered output, how the panning of each transcribed buffer is interpreted given the number of channels.
 
-Although there are many more features to the render function to be explored in later tutorials, the code below shows a very basic example of this.
+Although there are many more features to the `render` function to be explored in later tutorials, the code below shows a very basic example of this.
 
 )#
 ## generate 2-second buffer with white noise and transcribe

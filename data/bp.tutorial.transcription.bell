@@ -36,4 +36,11 @@ for $i in 0...$N do (
     ) 
 );
 ## render transcribed buffers
-render()
+render() 
+#(
+
+:::danger
+Calling `render` before transcribing any buffers will raise an error.
+
+:::
+)#
