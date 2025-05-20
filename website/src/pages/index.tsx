@@ -8,6 +8,7 @@ import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Heading from "@theme/Heading";
 
 import styles from "./index.module.css";
+import VideoGallery from "../components/VideoGallery";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -102,6 +103,7 @@ export default function Home(): ReactNode {
       <main>
         <Overview />
         <HomepageFeatures />
+        {/* <VideoGallery videoIds={["hO467ibThX8", "Ft8I3PVoUWM"]} /> */}
       </main>
     </Layout>
   );
