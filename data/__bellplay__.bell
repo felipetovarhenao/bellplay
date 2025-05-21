@@ -198,7 +198,7 @@ BP_REF_PROCESS_EXAMPLE = (
 ## ------------------------------------------------------------
 
 BP_REF_NEW = (
-    $name, $description, $arguments, $output, $category = BP_REF_LABEL_DATA_UTILS, $anmodes = 0...3, $ankeys = null -> (
+    $name, $description, $arguments, $output, $category = BP_REF_LABEL_DATA_UTILS, $anmodes = 0...3, $ankeys = null, $usage = null -> (
         ## check if reference belongs to analysis/descriptor function
         if $category == BP_REF_LABEL_BUFFER_ANALYSIS then (
             ## check if descriptor supports multiple modes
@@ -215,17 +215,18 @@ BP_REF_NEW = (
                 $close = ")";
                 $tab = "    ";
                 $code = BP_REF_CODE_SNIPPET(
+                    "## define one or more processing operations",
                     "$operations = " + $open, 
                     $tab +  "reverse()",
                     $tab + "freeverb(@tail 1000)",
                     $tab + "reverse()",
                     $close + ";",
+                    "## apply operations to buffer",
                     "$buffer = $buffer.process($operations)"
                 );
-                $text = "Here's an basic example of how to apply processing operations to a buffer:";
-                $description = $description + ($text + $code)
+                $usage = $code
             ) else (
-                $description = $description + BP_REF_PROCESS_EXAMPLE($name)
+                $usage = BP_REF_PROCESS_EXAMPLE($name)
             )
         );
         ## if function has arguments, split required from optional ones.
@@ -253,6 +254,7 @@ BP_REF_NEW = (
                 )
             )
             [ "output:" ($output ||| "null") ]
+            [ "usage" $usage ]
         ]
     )
 );
@@ -2521,6 +2523,15 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "analyzed buffer" @type "llll")
+    @usage BP_REF_CODE_SNIPPET(
+        "## define one or more audio descriptors", 
+        "$descriptors = pitchmelodia() larm();", 
+        "## apply analysis", 
+        "$buffer = $buffer.analyze($descriptors);", 
+        "## extract results", 
+        "$larm = $buffer.getkey('larm');",
+        "$pitchmelodia = $buffer.getkey('pitchmelodia')"
+    )
 );
 
 ## ------------------------------------------------------------

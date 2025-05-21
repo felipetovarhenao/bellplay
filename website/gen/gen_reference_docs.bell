@@ -69,12 +69,13 @@ for $docsection $sectionid in ReferenceSections do (
         );
         $funcdescr = $entry.getkey('description:');
         $funcargs = $entry.getkey('arguments:');
+        $usage = $entry.getkey('usage');        
         $funcsig = '```bell' + $br + $funcname + $open;
         $hasargs = $funcargs != 'none';
         $funcref = '';
         if $hasargs == 1 then (
             $funcsig = concatsym($funcsig, $br);
-            $funcref = concatsym($funcref, $br, '**Arguments**:', $br, $br) 
+            $funcref = concatsym($funcref, $br, '### Arguments', $br, $br) 
         );
         for $arggroup in $funcargs do (
             $argcat = $arggroup:(1 1);
@@ -143,7 +144,10 @@ for $docsection $sectionid in ReferenceSections do (
         $markdown = concatsym($markdown, $funcdescr, $br);
         if $hasargs == 1 then ($markdown = concatsym($markdown, $br, '---', $br, $funcref));
         if $funcouttype != null then $markdown = concatsym(
-            $markdown, $br, '---', $br, $br, '**Output**', $br, $br, $funcoutdescr, ' [**_', $funcouttype , '_**]', $br
+            $markdown, $br, '---', $br, $br, '### Output', $br, $br, $funcoutdescr, ' [**_', $funcouttype , '_**]', $br
+        );
+        if $usage != null then (
+            $markdown = concatsym($markdown, $br, "---", $br, $br, '### Usage', joinsym($usage))
         );
         $mdpath = ReferenceDirPath + ReferenceFolders:$sectionid + '/' + $funcname + '.md';
         BP_REF_WRITE_MARKDOWN(
