@@ -25,6 +25,7 @@ for i, subdir in enumerate(FOLDER_NAMES):
     json_data = {
         "label": subdir.title(),
         "position": i + 1,
+        "collapsible": False,
         "link": {
             "type": "generated-index"
         }
