@@ -1,6 +1,7 @@
 BP_VERSION = "v0.2.8-beta";
 BP_SUPPORTED_AUDIO_FORMATS = ".wav" ".aif" ".aiff" ".mp3";
 BP_DATABASE_OUTPUT = null;
+BP_DATABASE_TABLES = null;
 BP_TREE_NORM = null;
 BP_REF_LABEL_DATA_UTILS = "data utilities";
 BP_REF_LABEL_BUFFER_OPERATIONS = "buffer operations";
@@ -102,6 +103,7 @@ BP_FN_ON_BEFORE = (
         scoreconfig();
         BP_URN = null; 
         BP_BUFFER_INSPECTOR = null;
+        BP_DATABASE_TABLES = null;
         BP_BUFFER_CACHE = null;
         BP_PLAY_TOGGLE = 0
     )
@@ -163,17 +165,32 @@ BP_FN_VALIDATE_BUFFER = (
 
 ## ------------------------------------------------------------
 
-BP_REF_CODE_SNIPPET = (
+BP_REF_MULTILINE = (
     <...> -> (
         $break = '
 ';
-        $snippet = $break + $break + '```bell showLineNumbers';
-        for $i in 1...$argcount do (
-            $line = $args($i);
-            $snippet = $snippet + $break + $line
+        $symbol = '';
+        $lines = $args(1...$argcount);
+        for $line in $lines do (
+            $symbol = $symbol + $line + (if $i < length($lines) then $break else "")
         );
-        $snippet = $snippet + $break + '```' + $break;
-        $snippet
+        $symbol
+    ) 
+);
+
+
+## ------------------------------------------------------------
+
+BP_REF_CODE_SNIPPET = (
+    <...> -> (
+        $lines = $args(1...$argcount);
+        BP_REF_MULTILINE(
+            '', 
+            '```bell showLineNumbers',
+            $lines, 
+            '```', 
+            ''
+        )
     ) 
 );
 
@@ -194,6 +211,15 @@ BP_REF_PROCESS_EXAMPLE = (
         $text + $code
     ) 
 );
+
+BP_REF_DATABASE_SNIPPET = BP_REF_CODE_SNIPPET(
+    "## import MIDI events to use as data
+$events = importmidi('bach.mid');
+## create `notes` table based on MIDI events
+createtable(@data $events @name 'notes');
+## Use SQL query to retrieve all events with pitch class 0
+$results = querytable('SELECT * FROM notes WHERE pitch % 1200 == 0');
+print($results) ## print results");
 
 ## ------------------------------------------------------------
 
@@ -938,6 +964,100 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+createtable = (
+    $data = null, $name = 'data' -> (
+        $self = 'createtable';
+        BP_FN_CHECK_ARGS(
+            $self, 'data', $data, 'name', $name
+        );
+        if $name == 'table' then BP_FN_ERROR($self, 'forbidden table name:' $name);
+        $table = for $keyval in $data::1 with @unwrap 1 collect (
+            $key = $keyval.left(1);
+            if is($key) != 'symbol' then (BP_FN_ERROR($self, 'invalid data. Every element must be structured as a list of key-value pairs:' $keyval) );
+            $val = $keyval.right(1);
+            $type = null;
+            $contains = $val.contains();
+            $type = if $val == null || is($val) == 'list' then (
+                ## ----
+                'l' 
+            ) else if $contains == 2 then (
+                ## ----
+                'i' 
+            ) else if $contains == 4 then (
+                ## ----
+                'r' 
+            ) else if $contains == 8 then (
+                ## ----
+                'f' 
+            ) else if $contains == 16 then (
+                ## ----
+                's' 
+            ) else if $contains == 256 then (
+                ## ----
+                'p' 
+            ) else (
+                ## ----
+                'l' 
+            );
+            [$key $type] 
+        );
+        BP_FN_DISPATCH(
+            'db',  (BP_DATABASE_TABLES ||| [ 'erase' ]) [ 'addtable' $name $table] 
+        );
+        for $entry in $data with @unwrap 1 do (
+            $entry = $entry.map(
+                ## nullify inf and nan values
+                $x -> (
+                    if $x.contains() <= 8 && ($x.abs() == BP_INF || $x.isnan()) then null else $x
+                ) @maxdepth -1
+            );
+            BP_FN_DISPATCH('db', [ 'addentry' $name $entry]) 
+        );
+        BP_DATABASE_TABLES _= $name;
+        null
+    ) 
+);
+
+BP_REF_NEW(
+    @name "createtable"
+    @description "Instantiates a [SQL](https://www.sqlitetutorial.net/) table given a list, where each element is expected to be a list of key-value pairs."
+    @category BP_REF_LABEL_DATA_UTILS
+    @arguments (
+        BP_REF_ARG(@name "data" @type "llll" @description "Data from which to build SQL table, each element structured as a list of key-value pairs.")
+        BP_REF_ARG(@name "name" @default "'data'" @type "symbol" @description "table name, to be used with `querytable`. For instance, for a table named `'mytable'`, a basic query would be `'SELECT * FROM mytable'`.")
+    )
+    @usage BP_REF_DATABASE_SNIPPET
+);
+
+## ------------------------------------------------------------
+
+querytable = (
+    $sql = null -> (
+        $self = 'querytable';
+        BP_FN_CHECK_ARGS('query', 'sql', $sql);
+        if is($sql) != 'symbol' then BP_FN_ERROR($self, '@sql must be a symbol:' $sql);
+        if BP_DATABASE_TABLES == null then BP_FN_ERROR($self, "you must create a table first.");
+        BP_FN_DISPATCH('db', ['query' $sql]);
+        if BP_DATABASE_OUTPUT == null then BP_FN_WARNING(
+            $self, 'SQL query did not yield any results:' tosymbol($sql) 
+        );
+        BP_DATABASE_OUTPUT
+    ) 
+);
+
+BP_REF_NEW(
+    @name "querytable"
+    @description "Performs a [SQL](https://www.sqlitetutorial.net/) query on previously created tables. See `createtable`."
+    @category BP_REF_LABEL_DATA_UTILS
+    @arguments (
+        BP_REF_ARG(@name "sql" @type "symbol" @description "SQL table query.")
+    )
+    @output BP_REF_OUTPUT(@description "query results." @type "llll/null")
+    @usage BP_REF_DATABASE_SNIPPET
+);
+
+## ------------------------------------------------------------
+
 getcorpuskeys = (
    $typed = 1 -> (
         BP_FN_DISPATCH('db', [ "getcols" ]);
@@ -1163,7 +1283,7 @@ bpf = (
 
 BP_REF_NEW(
     @name "bpf"
-    @description "Formats an numeric list into a breakpoint function, in the form of [`<x>` `<y>` `<slope>`] tuples. By default, `<x>` is normalized to the  0-1 range. To prevent this, set `@xfunc` to `null`."
+    @description "Formats an numeric list into a breakpoint function, in the form of [ `<x>` `<y>` `<slope>` ] tuples. By default, `<x>` is normalized to the  0-1 range. To prevent this, set `@xfunc` to `null`."
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "pts" @type "list" @description "numeric list")

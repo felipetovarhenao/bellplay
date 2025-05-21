@@ -69,7 +69,7 @@ for $docsection $sectionid in ReferenceSections do (
         );
         $funcdescr = $entry.getkey('description:');
         $funcargs = $entry.getkey('arguments:');
-        $usage = $entry.getkey('usage');        
+        $usage = $entry.getkey('usage');
         $funcsig = '```bell' + $br + $funcname + $open;
         $hasargs = $funcargs != 'none';
         $funcref = '';
@@ -84,14 +84,23 @@ for $docsection $sectionid in ReferenceSections do (
                 $argname = $arg:(1 1);
                 $argdescr = $arg.getkey('description:');
                 $argtype = $arg.getkey('type:');
+                $argdefault = $arg.getkey('default:');
                 $funcref = concatsym(
                     $funcref, ' - `', $argname, '` [_**', $argtype, '**_]: ', $argdescr
                 );
+                if $argdefault != null then (
+                    ## ---
+                    $funcref = concatsym(
+                        $funcref, ' ', $open, '_default_: ', '`', tosymbol($argdefault), '`', $close, '.' 
+                    ) 
+                    ## --
+                    
+                );
                 if $argcat == 'required:' then ($funcref = concatsym($funcref, ' (_required_)'));
                 $funcref = concatsym($funcref, $br);
-                $argdefault = $arg.getkey('default:') ||| ' ## ' + $argtype + ' (required)';
-                if is($argdefault) != 'symbol' then ($argdefault = tosymbol($argdefault));
-                $funcsig = concatsym($funcsig, $tab, $argname, ' ', $argdefault, $br);
+                $funcsig = concatsym(
+                    $funcsig, $tab, $argname, ' ', if $argdefault != null then tosymbol($argdefault) else ('## ' + $argtype + ' (required)'), $br
+                );
                 $argopts = $arg.getkey('options:');
                 for $argopt in $argopts with @unwrap 1 do (
                     $key = $argopt:1;
@@ -113,7 +122,7 @@ for $docsection $sectionid in ReferenceSections do (
         $funcoutdescr = $funcout.'description:';
         $funcouttype = $funcout.'type:';
         $funcsig = concatsym(
-            $funcsig, $close, ' -> ', ($funcouttype ||| 'null'), $br, '```', $br
+            $funcsig, $close, ' -> ',  ($funcouttype ||| 'null'), $br, '```', $br
         );
         $markdown = concatsym($markdown, $funcsig, $br);
         $outkeys = $entry.getkey('resulting buffer keys:').flat();
@@ -147,7 +156,9 @@ for $docsection $sectionid in ReferenceSections do (
             $markdown, $br, '---', $br, $br, '### Output', $br, $br, $funcoutdescr, ' [**_', $funcouttype , '_**]', $br
         );
         if $usage != null then (
-            $markdown = concatsym($markdown, $br, "---", $br, $br, '### Usage', joinsym($usage))
+            $markdown = concatsym(
+                $markdown, $br, '---', $br, $br, '### Usage', joinsym($usage) 
+            ) 
         );
         $mdpath = ReferenceDirPath + ReferenceFolders:$sectionid + '/' + $funcname + '.md';
         BP_REF_WRITE_MARKDOWN(

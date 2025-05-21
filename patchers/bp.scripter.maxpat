@@ -6097,19 +6097,18 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 59.0, 106.0, 280.0, 226.0 ],
+						"rect" : [ 59.0, 106.0, 278.0, 230.0 ],
 						"default_fontname" : "Lato",
 						"gridsize" : [ 15.0, 15.0 ],
 						"style" : "bellplay-gui",
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-1",
-									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "bang" ],
-									"patching_rect" : [ 11.0, 98.0, 227.0, 23.0 ],
+									"patching_rect" : [ 11.0, 98.0, 231.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"versionnumber" : 80300
 									}
@@ -6121,12 +6120,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-183",
-									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 3,
 									"outlettype" : [ "", "", "" ],
-									"patching_rect" : [ 11.0, 62.0, 190.0, 23.0 ],
+									"patching_rect" : [ 11.0, 62.0, 193.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"versionnumber" : 80300
 									}
@@ -6140,12 +6138,11 @@
 								"box" : 								{
 									"code" : "BP_DATABASE_OUTPUT = $x1 ",
 									"id" : "obj-164",
-									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 11.0, 188.0, 224.0, 23.0 ],
+									"patching_rect" : [ 11.0, 188.0, 228.0, 23.0 ],
 									"saved_object_attributes" : 									{
 										"embed" : 1,
 										"versionnumber" : 80300
@@ -6163,9 +6160,9 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
-									"patching_rect" : [ 11.0, 148.0, 117.0, 23.0 ],
+									"patching_rect" : [ 11.0, 148.0, 78.0, 23.0 ],
 									"style" : "bellplay-gui",
-									"text" : "dada.base #0corpus"
+									"text" : "dada.base #0"
 								}
 
 							}
@@ -6240,6 +6237,11 @@
 									"fontname" : [ "Lato" ],
 									"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 									"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
+									"syntax_attrargcolor" : [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
+									"syntax_attributecolor" : [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],
+									"syntax_objargcolor" : [ 0.776470588235294, 0.635294117647059, 0.494117647058824, 1.0 ],
+									"syntax_objectcolor" : [ 0.462745098039216, 0.4, 0.294117647058824, 1.0 ],
+									"textcolor" : [ 0.462745098039216, 0.462745098039216, 0.462745098039216, 1.0 ],
 									"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
 								}
 ,
