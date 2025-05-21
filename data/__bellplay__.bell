@@ -197,15 +197,18 @@ BP_REF_CODE_SNIPPET = (
 ## ------------------------------------------------------------
 
 BP_REF_PROCESS_EXAMPLE = (
-    $name -> (
+    $name, $params = "", $buffer = "importaudio('singing.wav')" -> (
         $open = "(";
         $close = ")";
         $break = "
 ";
         $tab = "    ";
         $code = BP_REF_CODE_SNIPPET(
-            "$op = " + $name + "();",
-            "$buffer = $buffer.process($op)"
+            "$buffer = " + $buffer + "; ## input buffer",
+            "$op = " + $name + "(" + $params + "); ## processing operation",
+            "$buffer.inspect('before process');",
+            "$buffer = $buffer.process($op); ## apply processing",
+            "$buffer.inspect('after process')"
         );
         $text = $break + $break + "This operation can be applied to a buffer, via the `process` function:" + $break;
         $text + $code
@@ -247,11 +250,13 @@ BP_REF_NEW = (
                     $tab + "freeverb(@tail 1000)",
                     $tab + "reverse()",
                     $close + ";",
+                    "$buffer.inspect('before process');",
                     "## apply operations to buffer",
-                    "$buffer = $buffer.process($operations)"
+                    "$buffer = $buffer.process($operations);",
+                    "$buffer.inspect('after process')"
                 );
                 $usage = $code
-            ) else (
+            ) else if $usage == null then (
                 $usage = BP_REF_PROCESS_EXAMPLE($name)
             )
         );
@@ -436,6 +441,7 @@ BP_REF_NEW(
         )
     )
     @output BP_REF_OUTPUT(@description "list of file paths", @type "list")
+    @usage BP_REF_CODE_SNIPPET("$files = readfolder('/path/to/folder')")
 );
 
 ## ------------------------------------------------------------
@@ -462,10 +468,16 @@ interrupt = (
 
 BP_REF_NEW(
     @name "interrupt",
-    @description "Disables communication between the current script and the **bellplay~** application, interrupting any remaining script operations.",
+    @description "Disables communication between the current script and the **bellplay~** application, interrupting any backend-dependent operations. Useful for [last-failing](https://en.wikipedia.org/wiki/Fail-fast_system).",
     @category BP_REF_LABEL_DATA_UTILS,
     @arguments (
         BP_REF_ARG(@name "print" @default "null" @type "anything" @description "something to print.")
+    )
+    @usage BP_REF_CODE_SNIPPET(
+        '$gate = 0; ## set to non-zero to enable',
+        'print($gate);',
+        'if $gate == 0 then interrupt("interrupting!");',
+        'print(cycle()); ## null if communication is interrupted'
     )
 );
 
@@ -4190,16 +4202,16 @@ BP_REF_NEW(
     @description "Audio process operation for applying reverb to a buffer. See `process` function.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "roomsize", @default 0.5, @type "int/float", @description "reverb room size")
-        BP_REF_ARG(@name "damp", @default 0.5, @type "int/float", @description "damping coefficient")
-        BP_REF_ARG(@name "width", @default 0.5, @type "int/float", @description "panning width/spread, from 0 to 1.")
-        BP_REF_ARG(@name "tail", @default -1, @type "int/float", @description "duration of reverb tail in ms." @options 
-            BP_REF_OPT(@value -1 @description "auto")
-            BP_REF_OPT(@value 0 @description "no" "tail")
-            BP_REF_OPT(@value ">0" @description "duration" "in" "ms")
+        BP_REF_ARG(@name "roomsize" @default '0.5' @type "int/float" @description "reverb room size")
+        BP_REF_ARG(@name "damp" @default '0.5' @type "int/float" @description "damping coefficient")
+        BP_REF_ARG(@name "width" @default '0.5' @type "int/float" @description "panning width/spread, from 0 to 1.")
+        BP_REF_ARG(@name "tail" @default '-1' @type "int/float" @description "duration of reverb tail in ms." @options 
+            BP_REF_OPT(@value -1 @description "auto.")
+            BP_REF_OPT(@value 0 @description "no tail.")
+            BP_REF_OPT(@value ">0" @description "duration in ms.")
         )
-        BP_REF_ARG(@name "dry", @default 1, @type "int/float/llll", @description "amount of dry output, as either a single number or envelope.")
-        BP_REF_ARG(@name "wet", @default 0.16, @type "int/float/llll", @description "amount of wet output, as either a single number or envelope.")
+        BP_REF_ARG(@name "dry" @default 1 @type "int/float/llll" @description "amount of dry output, as either a single number or envelope.")
+        BP_REF_ARG(@name "wet" @default '0.16' @type "int/float/llll" @description "amount of wet output, as either a single number or envelope.")
     ),
     @output BP_REF_OUTPUT(@description "freeverb operation" @type "llll")
 );
@@ -4605,7 +4617,7 @@ BP_REF_NEW(
     @description "Audio process operation for applying soft-clip distortion to a buffer. See `process`.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "factor", @type "int/float/llll", @description "amplitude distortion factor, either as single number or envelope.")
+        BP_REF_ARG(@name "factor" @default 1 @type "int/float/llll", @description "amplitude distortion factor, either as single number or envelope.")
     ),
     @output BP_REF_OUTPUT(@description "overdrive operation" @type "llll")
 );
@@ -4685,11 +4697,12 @@ biquad = (
 );
 
 BP_REF_NEW(
-    @name "biquad",
-    @description "Audio process operation for applying biquad filtering to a buffer. See `process`.",
-    @category BP_REF_LABEL_BUFFER_OPERATIONS,
+    @name "biquad"
+    @description "Audio process operation for applying biquad filtering to a buffer. See `process`."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
-        BP_REF_ARG(@name "type", @type "int/symbol", @description "filter type, as a symbol or integer." @options
+        BP_REF_ARG(@name "frequency" @default 2000 @type "int/float" @description "cutoff/center frequency.")
+        BP_REF_ARG(@name "type" @type "int/symbol" @default 2 @description "filter type, as a symbol or integer." @options
             BP_REF_OPT(@value 0 @description "lowpass")
             BP_REF_OPT(@value 1 @description "highpass")
             BP_REF_OPT(@value 2 @description "bandpass")
@@ -4700,10 +4713,9 @@ BP_REF_NEW(
             BP_REF_OPT(@value 7 @description "resonant")
             BP_REF_OPT(@value 8 @description "allpass")
         )
-        BP_REF_ARG(@name "frequency", @default 2000, @type "int/float", @description "cutoff/center frequency.")
-        BP_REF_ARG(@name "gain", @default 1, @type "int/float", @description "linear gain.")
-        BP_REF_ARG(@name "q", @default 80, @type "int/float", @description "resonance or slope, depending on `@type`.")
-    ),
+        BP_REF_ARG(@name "gain" @default 1 @type "int/float" @description "linear gain.")
+        BP_REF_ARG(@name "q" @default 80 @type "int/float" @description "resonance or slope, depending on `@type`.")
+    )
     @output BP_REF_OUTPUT(@description "biquad operation" @type "llll")
 );
 
@@ -4929,7 +4941,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 freqshift = (
-    $shift,
+    $shift = 0,
     $negative = 0 -> (
         BP_FN_CHECK_ARGS('freqshift', 'shift', $shift);
         $source = $shift.getkey("source");
@@ -4953,7 +4965,7 @@ BP_REF_NEW(
     @description "Audio process operation for applying frequency shifting to a buffer. See `process`.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "shift", @type "int/float/list/llll", @description "frequency shift in Hertz, as either a single number, an envelope or buffer.")
+        BP_REF_ARG(@name "shift" @default 0 @type "int/float/list/llll", @description "frequency shift in Hertz, as either a single number, an envelope or buffer.")
         BP_REF_ARG(@name "negative" @default 0 @type "int", @description "Include negative sideband  in output." @options
             BP_REF_SWITCH_OPTIONS
         )
@@ -5351,6 +5363,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "mix operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE("mix", BP_REF_MULTILINE("", "    @buffers importaudio('guitar.wav') importaudio('drums.wav')"))
 );
 
 ## ------------------------------------------------------------
@@ -5503,7 +5516,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 minus = (
-    $operand,
+    $operand = 0,
     $resamplingfiltersize = 11,
     $resamplingmode = "sinc",
     $resamplingpolicy = 3,
@@ -5524,7 +5537,7 @@ BP_REF_NEW(
     @description "Audio process operation for performing subtraction on a buffer. See `process`.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "operand", @type "int/float/llll", @description "value to subtract from buffer, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "operand" @type "int/float/llll" @default 0 @description "value to subtract from buffer, either as a single number, envelope, or buffer.")
         BP_BUFFER_ARITHMETIC_ARGS
     ),
     @output BP_REF_OUTPUT(@description "minus operation" @type "llll")
@@ -5563,7 +5576,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 divide = (
-    $operand,
+    $operand = 1,
     $resamplingfiltersize = 11,
     $resamplingmode = "sinc",
     $resamplingpolicy = 3,
@@ -5584,7 +5597,7 @@ BP_REF_NEW(
     @description "Audio process operation for performing division on a buffer. See `process`.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "operand", @type "int/float/llll", @description "value to divide buffer by either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "operand" @default 1 @type "int/float/llll" @description "value to divide buffer by either as a single number, envelope, or buffer.")
         BP_BUFFER_ARITHMETIC_ARGS
     ),
     @output BP_REF_OUTPUT(@description "divide operation" @type "llll")
@@ -5844,6 +5857,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "join operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE("join", BP_REF_MULTILINE("", "    @buffers for $i in 1...10 collect cycle($i * 55, 100) ## buffers to join"))
 );
 
 ## ------------------------------------------------------------
@@ -5870,7 +5884,7 @@ BP_REF_NEW(
     @description "Audio process operation for applying silence-based trimming to a buffer. When the entire buffer is considered silent, the resulting buffer's duration will be a single audio sample. See `process`.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "threshold" @default 0.01 @type "int/float", @description "amplitude threshold at/below which samples are considered silence.")
+        BP_REF_ARG(@name "threshold" @default '0.01' @type "int/float", @description "amplitude threshold at/below which samples are considered silence.")
         BP_REF_ARG(@name "ampunit", @default 0, @type "int", @description "amplitude unit for `@threshold`." @options
             BP_REF_AMPUNIT_OPTIONS
         )
@@ -6080,7 +6094,7 @@ BP_REF_NEW(
     @description "Audio process operation for applying 1-D panning to a buffer. See `process`.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "position" @type "int/float/list/llll", @description "panning position, as either a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "position" @default '0.5' @type "int/float/list/llll", @description "panning position, as either a single number, envelope, or buffer.")
         BP_REF_ARG(@name "numchannels", @default 2, @type "int", @description "number of output channels.")
         BP_REF_ARG(@name "panmode", @type "int", @default 0, @description "panning mode." @options 
             BP_REF_OPT(@value 0, @description "linear")
@@ -6148,7 +6162,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 gain = (
-    $gain,
+    $gain = 1,
     $resamplingfiltersize = 11,
     $resamplingmode = 'sinc',
     $ampunit = 0,
@@ -6175,7 +6189,7 @@ BP_REF_NEW(
     @description "Audio process operation for modifying a buffer's gain. See `process`.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "gain", @type "int/float/llll", @description "gain amount, as either a single number or envelope.")
+        BP_REF_ARG(@name "gain" @default 1 @type "int/float/llll", @description "gain amount, as either a single number or envelope.")
         BP_REF_ARG(@name "resamplingfiltersize", @default 11, @type "int", @description "resampling filter size, in samples.")
         BP_REF_ARG(@name "resamplingmode", @default "'sinc'", @type "symbol", @description "resampling mode." @options
             BP_REF_RESAMPLINGMODE_OPTIONS
@@ -6620,11 +6634,11 @@ hoadecode = (
 );
 
 BP_REF_NEW(
-    @name "hoadecode",
-    @description "Audio process operation for decoding higher-order ambisonic buffers for a set of loudspeakers or for binaural listening",
-    @category BP_REF_LABEL_BUFFER_OPERATIONS,
+    @name "hoadecode"
+    @description "Audio process operation for decoding higher-order ambisonic buffers for a set of loudspeakers or for binaural listening"
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
-        BP_REF_ARG(@name "azimuth" @default 0.78 2.35 @type "int/float/llll" @description "azimuth or X coordinate, for each loudspeaker.")
+        BP_REF_ARG(@name "azimuth" @default '0.78 2.35' @type "int/float/llll" @description "azimuth or X coordinate, for each loudspeaker.")
         BP_REF_ARG(@name "elevation" @default 0 0 @type "int/float/llll" @description "elevation or y coordinate.")
         BP_REF_ARG(@name "binaural" @default 1 @type "int/float/llll" @description "binaural mode." @options
             BP_REF_SWITCH_OPTIONS
