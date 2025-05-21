@@ -88,7 +88,7 @@ for $i in (0...10) do (
 
 ## Putting It All Together
 
-The following example demonstrates how to use `setseed` to control different parameters.
+The following script demonstrates how to use `setseed` to control different parameters.
 
 )#
 ## set seed for deterministic random behavior (try 0 to disable it)
