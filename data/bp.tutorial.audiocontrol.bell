@@ -1,6 +1,6 @@
 #( 
 
-# Audio Control
+# Buffer-based Parameters
 
 This tutorial shows how to use buffers to control audio parameters.
 In this case, we use a buffer to control the frequency of an oscillator to achieve classic FM synthesis.
