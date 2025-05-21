@@ -167,7 +167,7 @@ BP_REF_CODE_SNIPPET = (
     <...> -> (
         $break = '
 ';
-        $snippet = $break + $break + '```bell';
+        $snippet = $break + $break + '```bell showLineNumbers';
         for $i in 1...$argcount do (
             $line = $args($i);
             $snippet = $snippet + $break + $line
