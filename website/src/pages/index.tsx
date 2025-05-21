@@ -103,7 +103,27 @@ export default function Home(): ReactNode {
       <main>
         <Overview />
         <HomepageFeatures />
-        {/* <VideoGallery videoIds={["hO467ibThX8", "Ft8I3PVoUWM"]} /> */}
+        <VideoGallery
+          videoIds={[
+            "-cW-v4uSHuY",
+            // "hO467ibThX8",
+            // "m2X_8dU9Hlg",
+            // "vNV0tf9F_b4",
+            // "Ft8I3PVoUWM",
+            // "xB_QgI0mQUQ",
+            // "eycbSXPnAR4",
+            // "0XU5m2j8JKM",
+            // "0IDsvH09Rww",
+            // "6l3rrKYAkLs",
+            // "6l3rrKYAkLs",
+            // "WKr4Y1twDnQ",
+            // "eAK4iMOHRhw",
+            // "6JkJEIIFtQ4",
+            // "OD9ulufEsKs",
+            // "OD9ulufEsKs",
+            // "zQ2IwpBcrhE",
+          ]}
+        />
       </main>
     </Layout>
   );
