@@ -73,9 +73,11 @@ class MDParser:
             # Code blocks (``` delimited)
             if line.strip().startswith("```"):
                 if current_text:
-                    result.append(
-                        {"type": "text", "content": "\n".join(current_text).strip()})
-                    current_text = []
+                    content = "\n".join(current_text).strip()
+                    if content != "":
+                        result.append(
+                            {"type": "text", "content": "\n".join(current_text).strip()})
+                        current_text = []
                 code_lines = [line]
                 i += 1
                 while i < len(lines):
