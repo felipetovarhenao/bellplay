@@ -20,7 +20,7 @@
   - [ ] `splitbuf`.
   - [ ] `createtree` and `searchtree`.
 - [ ] Doc improvements:
-  - [ ] Better function tags:
+  - [x] Better function tags:
     - Data utilities
     - Buffer utilities.
     - Buffer operations
@@ -30,7 +30,7 @@
     - [x] Lifetime of Global variables.
   - [ ] Debugging
   - In FAQ:
-    - [ ] Explain differences between bach/Max and bellplay.
+    - [x] Explain differences between bach/Max and bellplay.
       - [ ] Pseudovariables.
       - [ ] bell only.
 
