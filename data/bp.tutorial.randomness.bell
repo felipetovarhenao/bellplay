@@ -88,39 +88,50 @@ for $i in (0...10) do (
 
 ## Putting It All Together
 
-The following example demonstrates how to use `setseed` to control all aspects of an algorithmic audio texture: random sample selection, pitch, pan, and onset spacing.
+The following example demonstrates how to use `setseed` to control different parameters.
 
 )#
-## set a fixed seed so all random choices are reproducible
-setseed(@seed 1001);
-## list of sample file names to be randomly selected
-$samples = 'flute.wav' 'viola.wav' 'guitar.wav';
-## list of pitch values in midicents
-$pitches = (6900 7000 7100);
+## set seed for deterministic random behavior (try 0 to disable it)
+setseed(120);
 ## initialize onset time
-$onset = 0;
-## generate six randomized events
-for $i in (0...6) do (
-    ## randomly choose one of the sample files
-    $samp = xchoose(@choices $samples);
-    ## randomly choose a pitch
-    $pitch = xchoose(@choices $pitches);
-    ## randomly choose a duration between 300 and 600 ms
-    $dur = xrand(@a 300 @b 600);
-    ## randomly choose a pan position between left (0) and right (1)
-    $pan = xrand(@a 0 @b 1);
-    ## import the selected sample and transcribe it with the random parameters
-    importaudio($samp).transcribe(
-        @onset $onset
-        @pitch $pitch
-        @duration $dur
+$t = 0;
+## total duration of the sequence in milliseconds
+$totdur = 10000;
+## define pitch class set (in symbolic pitch notation)
+$chord = c5 d5 e5 g5 b5;
+## generate events until reaching total duration
+while $t < $totdur do (
+    ## randomly select a pitch from the chord
+    $pitch = xchoose($chord);
+    ## choose a random octave transposition (±2 octaves, in midicents)
+    $octave = xrandom(-2, 3) * 1200;
+    ## randomly stereo panning (0 to 1)
+    $pan = xrand();
+    ## randomly choose duration between 1 and 5 seconds
+    $dur = xrand(1000, 5000);
+    ## randomly set gain (from soft to loud)
+    $gain = xrand(0.25, 1);
+    ## create a buffer using ezsampler with random pitch and duration
+    $b = ezsampler(@pitch $pitch + $octave @duration $dur);
+    ## transcribe the buffer with randomized parameters
+    $b.transcribe(
+        @onset $t
         @pan $pan
+        @gain $gain
     );
-    ## advance onset time by a random amount between 200 and 400 ms
-    $onset += xrand(@a 200 @b 400) 
+    ## increment time by a small random step to control event density
+    $incr = xrand(25, 300);
+    $t += $incr
 );
-## render all transcribed buffers and play the result
-render(@play 1) 
+## render and apply subtle reverb
+render(
+    @play 1 @process freeverb(
+        @roomsize 0.7
+        @damp 0.8
+        @width 0.25
+        @wet 0.1
+    ) 
+) 
 #(
 
 ## Summary
