@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "python3 python/main.py && docusaurus build",
+    "build": "python3 gen/main.py && docusaurus build",
     "deploy": "npm run build && gh-pages -d build -b gh-pages",
     "swizzle": "docusaurus swizzle",
     "docusaurus-deploy": "docusaurus deploy",
