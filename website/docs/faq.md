@@ -11,6 +11,8 @@ Yes—some familiarity with programming concepts is recommended. _bellplay~_ is 
 
 For users new to programming or the `bell` language, the [bell tutorials](https://felipetovarhenao.github.io/bell-tutorials/) provide a structured introduction, with examples geared toward musicians and sound artists.
 
+---
+
 ### Can I use _bellplay~_ for real-time audio?
 
 No. _bellplay~_ is designed exclusively for **offline** workflows. This means all audio rendering is deferred: you run a script, and it produces audio output once it completes. This enables features like multi-pass rendering, non-causal operations, and batch processing—techniques that are not feasible in real-time environments.
@@ -24,6 +26,16 @@ For real-time needs, consider alternatives like [Max](https://cycling74.com/), [
 Since _bellplay~_ is script-based, using a capable text editor is essential. Writing `.bell` files in a basic editor can be error-prone and difficult to navigate—especially as scripts grow in complexity.
 
 To improve the experience, it's recommended to use [Visual Studio Code](https://code.visualstudio.com/) along with the [`bellplay-plugin`](https://marketplace.visualstudio.com/items?itemName=tovarhenao.bellplay-plugin) extension. This provides syntax highlighting, autocompletion, and formatting tools that make editing more efficient and less error-prone.
+
+---
+
+### What is the difference between **bell** and **bellplay~**?
+
+**bell** is a programming language designed by Andrea Agostini and Jean Louis Giavitto, primarily for computer-assisted composition (CAC). It is a text-based language that runs inside the Max environment (via the _bach_ package), and supports algorithmic and symbolic music processing. It is highly expressive for defining music-oriented logic and data structures.
+
+**bellplay~**, on the other hand, is a software environment and framework built around the _bell_ language, extending it to handle audio synthesis, processing, analysis in a symbolic (i.e., notation-based) paradigm. While it uses _bell_ as the scripting language, **bellplay~** provides an integrated interface for algorithmic audio. It is tailored to facilitate the generation of audio and symbolic content within the same environment.
+
+In short, _bell_ is a programming language, and **bellplay~** the environment and framework built around _bell_ for algorithmic audio.
 
 ---
 
