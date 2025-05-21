@@ -1,7 +1,7 @@
 [
   {
     "title": "`absolute`",
-    "blurb": "",
+    "blurb": "Audio process operation for computing the absolute value of a buffer signal.",
     "keywords": [
       "absolute",
       "process",
@@ -13,7 +13,7 @@
   },
   {
     "title": "`addmarker`",
-    "blurb": "",
+    "blurb": "Inserts a marker into the transcription score, given an onset time and, optionally, a list of names and/or role associated with that marker.",
     "keywords": [
       "marker",
       "role",
@@ -25,7 +25,7 @@
   },
   {
     "title": "`analyze`",
-    "blurb": "",
+    "blurb": "Applies a sequence of audio analysis operations to the input buffer, via audio descriptors.",
     "keywords": [
       "int",
       "analysis",
@@ -37,7 +37,7 @@
   },
   {
     "title": "`argsort`",
-    "blurb": "",
+    "blurb": "Returns the indices that would sort an input llll in ascending order.",
     "keywords": [
       "llll",
       "function",
@@ -49,7 +49,7 @@
   },
   {
     "title": "`atodb`",
-    "blurb": "",
+    "blurb": "Linear amplitude to decibels conversion.",
     "keywords": [
       "atodb",
       "required",
@@ -61,7 +61,7 @@
   },
   {
     "title": "`autoscale`",
-    "blurb": "",
+    "blurb": "Applies auto-scaling normalization to a llll.",
     "keywords": [
       "llll",
       "normalization",
@@ -73,7 +73,7 @@
   },
   {
     "title": "`barkbands`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the Bark bands of a spectrum.",
     "keywords": [
       "barkbands",
       "mode",
@@ -85,7 +85,7 @@
   },
   {
     "title": "`beatsloudness`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the spectrum energy of beats in an audio signal given their positions.",
     "keywords": [
       "beatsloudness",
       "list",
@@ -97,7 +97,7 @@
   },
   {
     "title": "`bfcc`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the bark-frequency cepstrum coefficients of a spectrum.",
     "keywords": [
       "int",
       "bfcc",
@@ -109,7 +109,7 @@
   },
   {
     "title": "`biquad`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying biquad filtering to a buffer.",
     "keywords": [
       "biquad",
       "type",
@@ -121,7 +121,7 @@
   },
   {
     "title": "`bpf`",
-    "blurb": "",
+    "blurb": "Formats an numeric list into a breakpoint function, in the form of [`<x>` `<y>` `<slope>`] tuples.",
     "keywords": [
       "function",
       "list",
@@ -133,7 +133,7 @@
   },
   {
     "title": "`buf2ptracks`",
-    "blurb": "",
+    "blurb": "Converts a buffer into a partial track analysis.",
     "keywords": [
       "int",
       "buffer",
@@ -145,7 +145,7 @@
   },
   {
     "title": "`buf2samps`",
-    "blurb": "",
+    "blurb": "Buffer to samples conversion.",
     "keywords": [
       "buffer",
       "llll",
@@ -157,7 +157,7 @@
   },
   {
     "title": "`buildcorpus`",
-    "blurb": "",
+    "blurb": "Creates a buffer corpus from a list of audio file paths, and writes it into disk as a `.llll` file.",
     "keywords": [
       "required",
       "segmode",
@@ -169,7 +169,7 @@
   },
   {
     "title": "`c2r`",
-    "blurb": "",
+    "blurb": "Cents to ratio conversion.",
     "keywords": [
       "cents",
       "required",
@@ -181,7 +181,7 @@
   },
   {
     "title": "`choose`",
-    "blurb": "",
+    "blurb": "Choose randomly one or more elements from a list, with optional probability weights.",
     "keywords": [
       "choose",
       "list",
@@ -193,7 +193,7 @@
   },
   {
     "title": "`chordsdetection`",
-    "blurb": "",
+    "blurb": "Audio descriptor to perform chord estimation on a buffer.",
     "keywords": [
       "chordsdetection",
       "mode",
@@ -205,7 +205,7 @@
   },
   {
     "title": "`clicks`",
-    "blurb": "",
+    "blurb": "Generates a buffer containing a set of clicks at specific onsets.",
     "keywords": [
       "clicks",
       "onsets",
@@ -217,7 +217,7 @@
   },
   {
     "title": "`clip`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying hard-clip distortion to a buffer.",
     "keywords": [
       "clip",
       "threshold",
@@ -229,7 +229,7 @@
   },
   {
     "title": "`createtree`",
-    "blurb": "",
+    "blurb": "Creates a k-dimensional tree for optimized nearest-neighbor search of multidimensional data.",
     "keywords": [
       "data",
       "llll",
@@ -241,7 +241,7 @@
   },
   {
     "title": "`crop`",
-    "blurb": "",
+    "blurb": "Audio process operation for cropping a buffer.",
     "keywords": [
       "end",
       "crop",
@@ -253,7 +253,7 @@
   },
   {
     "title": "`cycle`",
-    "blurb": "",
+    "blurb": "Generates a sinusoidal oscillator as a buffer.",
     "keywords": [
       "buffer",
       "frequency",
@@ -265,7 +265,7 @@
   },
   {
     "title": "`dbtoa`",
-    "blurb": "",
+    "blurb": "Decibels to linear amplitude conversion.",
     "keywords": [
       "dbtoa",
       "db",
@@ -277,7 +277,7 @@
   },
   {
     "title": "`dcfilter`",
-    "blurb": "",
+    "blurb": "Audio process operation for removing DC offset from a buffer.",
     "keywords": [
       "dcfilter",
       "process",
@@ -289,7 +289,7 @@
   },
   {
     "title": "`degrade`",
-    "blurb": "",
+    "blurb": "Audio process operation for reducing sampling rate and bit-depth of a buffer.",
     "keywords": [
       "degrade",
       "ratio",
@@ -301,7 +301,7 @@
   },
   {
     "title": "`derive`",
-    "blurb": "",
+    "blurb": "Computes the derivative of a breakpoint function.",
     "keywords": [
       "llll",
       "pad",
@@ -313,7 +313,7 @@
   },
   {
     "title": "`dissonance`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the sensory dissonance of a buffer.",
     "keywords": [
       "dissonance",
       "mode",
@@ -325,7 +325,7 @@
   },
   {
     "title": "`divide`",
-    "blurb": "",
+    "blurb": "Audio process operation for performing division on a buffer.",
     "keywords": [
       "divide",
       "buffer",
@@ -337,7 +337,7 @@
   },
   {
     "title": "`dr2r`",
-    "blurb": "",
+    "blurb": "Takes a list of ratios and an optional starting value, and returns the cumulative multiplication between adjacent elements, as a list.",
     "keywords": [
       "list",
       "dr",
@@ -349,7 +349,7 @@
   },
   {
     "title": "`dx2x`",
-    "blurb": "",
+    "blurb": "Takes a list of differences—i.e., deltas—and an optional starting value, and returns the cumulative sum between adjacent elements, as a list.",
     "keywords": [
       "list",
       "starting",
@@ -361,7 +361,7 @@
   },
   {
     "title": "`dynamics`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying simple compression to a buffer.",
     "keywords": [
       "dynamics",
       "ratio",
@@ -373,7 +373,7 @@
   },
   {
     "title": "`effectiveduration`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the effective duration of an envelope signal.",
     "keywords": [
       "effectiveduration",
       "envelope",
@@ -385,7 +385,7 @@
   },
   {
     "title": "`energy`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the energy of a buffer.",
     "keywords": [
       "energy",
       "mode",
@@ -397,7 +397,7 @@
   },
   {
     "title": "`energyband`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute energy in a given frequency band of a spectrum including both start and stop cutoff frequencies.",
     "keywords": [
       "energyband",
       "int",
@@ -409,7 +409,7 @@
   },
   {
     "title": "`envelope`",
-    "blurb": "",
+    "blurb": "Generates an audio envelope as a buffer, given a single number or a breakpoint function.",
     "keywords": [
       "envelope",
       "duration",
@@ -421,7 +421,7 @@
   },
   {
     "title": "`envmaxtime`",
-    "blurb": "",
+    "blurb": "Audio descriptor to extract the time at which the global maxima of the buffer's envelope occurs.",
     "keywords": [
       "envmaxtime",
       "bell",
@@ -433,7 +433,7 @@
   },
   {
     "title": "`envmintime`",
-    "blurb": "",
+    "blurb": "Audio descriptor to extract the time at which the global minima of the buffer's envelope occurs.",
     "keywords": [
       "envmintime",
       "bell",
@@ -445,7 +445,7 @@
   },
   {
     "title": "`exists`",
-    "blurb": "",
+    "blurb": "Checks if a file or folder exists.",
     "keywords": [
       "true",
       "exists",
@@ -457,7 +457,7 @@
   },
   {
     "title": "`expand`",
-    "blurb": "",
+    "blurb": "Modifies offset and duration of a buffer, such that it uses the full length of its reference buffer.",
     "keywords": [
       "buffer",
       "llll",
@@ -469,7 +469,7 @@
   },
   {
     "title": "`export`",
-    "blurb": "",
+    "blurb": "Exports the rendered output as either an audio (`.wav`, `.aif`, `.aiff`, `.mp3`), MIDI (`.mid`,`.midi`), or roll (`.llll`) file, given a output path.",
     "keywords": [
       "bitrate",
       "path",
@@ -481,7 +481,7 @@
   },
   {
     "title": "`ezsampler`",
-    "blurb": "",
+    "blurb": "Generates a buffer given pitch, duration, and velocity values, and an optional list representing a sampler key map.",
     "keywords": [
       "pitch",
       "velocity",
@@ -493,7 +493,7 @@
   },
   {
     "title": "`fade`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying fadein/fadeout to a buffer.",
     "keywords": [
       "fade",
       "curve",
@@ -505,7 +505,7 @@
   },
   {
     "title": "`flux`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the spectral flux of a buffer.",
     "keywords": [
       "flux",
       "norm",
@@ -517,7 +517,7 @@
   },
   {
     "title": "`fold`",
-    "blurb": "",
+    "blurb": "Triangular function.",
     "keywords": [
       "fold",
       "x",
@@ -529,7 +529,7 @@
   },
   {
     "title": "`freeverb`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying reverb to a buffer.",
     "keywords": [
       "freeverb",
       "tail",
@@ -541,7 +541,7 @@
   },
   {
     "title": "`freqshift`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying frequency shifting to a buffer.",
     "keywords": [
       "freqshift",
       "buffer",
@@ -553,7 +553,7 @@
   },
   {
     "title": "`fromdiffs`",
-    "blurb": "",
+    "blurb": "Audio process operation to perform discrete integration of a buffer.",
     "keywords": [
       "fromdiffs",
       "buffer",
@@ -565,7 +565,7 @@
   },
   {
     "title": "`gain`",
-    "blurb": "",
+    "blurb": "Audio process operation for modifying a buffer's gain.",
     "keywords": [
       "gain",
       "int",
@@ -577,7 +577,7 @@
   },
   {
     "title": "`gcd`",
-    "blurb": "",
+    "blurb": "Computes the greatest common denominator of a list of integers.",
     "keywords": [
       "llll",
       "gcd",
@@ -589,7 +589,7 @@
   },
   {
     "title": "`getchannels`",
-    "blurb": "",
+    "blurb": "Extracts one or more buffer channels as individual buffers.",
     "keywords": [
       "channels",
       "buffer",
@@ -601,7 +601,7 @@
   },
   {
     "title": "`getchar`",
-    "blurb": "",
+    "blurb": "Given a symbol and one or more indices, it returns the characters corresponding to each index.",
     "keywords": [
       "symbol",
       "required",
@@ -613,7 +613,7 @@
   },
   {
     "title": "`getcorpuskeys`",
-    "blurb": "",
+    "blurb": "Returns a list with the current corpus' keys.",
     "keywords": [
       "getcorpuskeys",
       "typed",
@@ -625,7 +625,7 @@
   },
   {
     "title": "`getkey`",
-    "blurb": "",
+    "blurb": "Returns value associated with an llll key.",
     "keywords": [
       "llll",
       "key",
@@ -637,7 +637,7 @@
   },
   {
     "title": "`getmediafiles`",
-    "blurb": "",
+    "blurb": "Returns a list of built-in media files in **bellplay~**.",
     "keywords": [
       "files",
       "list",
@@ -649,7 +649,7 @@
   },
   {
     "title": "`groove`",
-    "blurb": "",
+    "blurb": "Audio processing operation for applying variable-rate sample playback to a buffer.",
     "keywords": [
       "buffer",
       "groove",
@@ -661,7 +661,7 @@
   },
   {
     "title": "`hanning`",
-    "blurb": "",
+    "blurb": "Generates a hanning window as a numeric list.",
     "keywords": [
       "hanning",
       "length",
@@ -673,7 +673,7 @@
   },
   {
     "title": "`hoadecode`",
-    "blurb": "",
+    "blurb": "Audio process operation for decoding higher-order ambisonic buffers for a set of loudspeakers or for binaural listening\n\nThis operation can be applied to a buffer, via the `process` function:",
     "keywords": [
       "binaural",
       "hoadecode",
@@ -685,7 +685,7 @@
   },
   {
     "title": "`hoaencode`",
-    "blurb": "",
+    "blurb": "Audio process operation for panning the input buffer and encode it as a higher-order ambisonic buffer\n\nThis operation can be applied to a buffer, via the `process` function:",
     "keywords": [
       "azimuth",
       "elevation",
@@ -697,7 +697,7 @@
   },
   {
     "title": "`importaudio`",
-    "blurb": "",
+    "blurb": "Imports an audio file (`.wav`, `.aif`, `.aiff`, `.mp3`) as a buffer, given a file path.",
     "keywords": [
       "path",
       "file",
@@ -709,7 +709,7 @@
   },
   {
     "title": "`importmidi`",
-    "blurb": "",
+    "blurb": "Imports a midi file, as a list of events, each with the following keys:",
     "keywords": [
       "path",
       "midi",
@@ -721,7 +721,7 @@
   },
   {
     "title": "`inharmonicity`",
-    "blurb": "",
+    "blurb": "Audio descriptor to calculate the inharmonicity of a buffer.",
     "keywords": [
       "inharmonicity",
       "mode",
@@ -733,7 +733,7 @@
   },
   {
     "title": "`initurn`",
-    "blurb": "",
+    "blurb": "Initializes a new unique random number generator (URN), given a size and a URN identifier.",
     "keywords": [
       "urn",
       "random",
@@ -745,7 +745,7 @@
   },
   {
     "title": "`inspect`",
-    "blurb": "",
+    "blurb": "Adds input buffer to the buffer inspector window, which opens up once the script evaluation is over, displaying relevant buffer information—useful for debugging buffers.",
     "keywords": [
       "buffer",
       "llll",
@@ -757,7 +757,7 @@
   },
   {
     "title": "`integrate`",
-    "blurb": "",
+    "blurb": "Computes the integral of a breakpoint function.",
     "keywords": [
       "llll",
       "function",
@@ -769,7 +769,7 @@
   },
   {
     "title": "`interrupt`",
-    "blurb": "",
+    "blurb": "Disables communication between the current script and the **bellplay~** application, interrupting any remaining script operations.",
     "keywords": [
       "print",
       "interrupt",
@@ -781,7 +781,7 @@
   },
   {
     "title": "`isnan`",
-    "blurb": "",
+    "blurb": "Checks if the input argument is strictly a nan—i.e., 'not a number'—value.",
     "keywords": [
       "true",
       "isnan",
@@ -793,7 +793,7 @@
   },
   {
     "title": "`join`",
-    "blurb": "",
+    "blurb": "Audio process operation for concatenating one or more buffers to the processed buffer.",
     "keywords": [
       "buffer",
       "int",
@@ -805,7 +805,7 @@
   },
   {
     "title": "`larm`",
-    "blurb": "",
+    "blurb": "Audio descriptor to estimate the long-term loudness of a buffer.",
     "keywords": [
       "larm",
       "int",
@@ -817,7 +817,7 @@
   },
   {
     "title": "`lcm`",
-    "blurb": "",
+    "blurb": "Computes the least common multiple of a list of integers.",
     "keywords": [
       "llll",
       "lcm",
@@ -829,7 +829,7 @@
   },
   {
     "title": "`logattack`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the log (base 10) of the attack time of buffer's envelope.",
     "keywords": [
       "logattack",
       "attack",
@@ -841,7 +841,7 @@
   },
   {
     "title": "`mapkey`",
-    "blurb": "",
+    "blurb": "Modifies an existing `llll` key via a lambda function.",
     "keywords": [
       "llll",
       "required",
@@ -853,7 +853,7 @@
   },
   {
     "title": "`markov2seq`",
-    "blurb": "",
+    "blurb": "Generates a sequence using a given Markov transition matrix.",
     "keywords": [
       "sequence",
       "matrix",
@@ -865,7 +865,7 @@
   },
   {
     "title": "`maxmagfreq`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the frequency with the largest magnitude in a spectrum.",
     "keywords": [
       "maxmagfreq",
       "mode",
@@ -877,7 +877,7 @@
   },
   {
     "title": "`mc2chroma`",
-    "blurb": "",
+    "blurb": "Midicents to chroma vector conversion.",
     "keywords": [
       "llll",
       "chroma",
@@ -889,7 +889,7 @@
   },
   {
     "title": "`mc2pc`",
-    "blurb": "",
+    "blurb": "midicent to pitch class conversion.",
     "keywords": [
       "mc",
       "required",
@@ -901,7 +901,7 @@
   },
   {
     "title": "`mean`",
-    "blurb": "",
+    "blurb": "Returns the mean value of a numeric list.",
     "keywords": [
       "mean",
       "list",
@@ -913,7 +913,7 @@
   },
   {
     "title": "`median`",
-    "blurb": "",
+    "blurb": "Returns the median element of a numeric list.",
     "keywords": [
       "median",
       "list",
@@ -925,7 +925,7 @@
   },
   {
     "title": "`mfcc`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the mel-frequency cepstrum coefficients of a buffer's spectrum.",
     "keywords": [
       "int",
       "type",
@@ -937,7 +937,7 @@
   },
   {
     "title": "`minus`",
-    "blurb": "",
+    "blurb": "Audio process operation for performing subtraction on a buffer.",
     "keywords": [
       "buffer",
       "minus",
@@ -949,7 +949,7 @@
   },
   {
     "title": "`mix`",
-    "blurb": "",
+    "blurb": "Audio process operation for mixing multiple buffers.",
     "keywords": [
       "int",
       "mix",
@@ -961,7 +961,7 @@
   },
   {
     "title": "`mixdown`",
-    "blurb": "",
+    "blurb": "Audio process operation for mixing down (or up) the number of channels of a buffer.",
     "keywords": [
       "channels",
       "mixdown",
@@ -973,7 +973,7 @@
   },
   {
     "title": "`multiply`",
-    "blurb": "",
+    "blurb": "Audio process operation for performing multiplication on a buffer.",
     "keywords": [
       "multiply",
       "buffer",
@@ -985,7 +985,7 @@
   },
   {
     "title": "`nearest`",
-    "blurb": "",
+    "blurb": "Given a target number, finds the nearest value in a numeric list via binary search.",
     "keywords": [
       "list",
       "nearest",
@@ -997,7 +997,7 @@
   },
   {
     "title": "`noise`",
-    "blurb": "",
+    "blurb": "Generates white noise as a buffer.",
     "keywords": [
       "noise",
       "duration",
@@ -1009,7 +1009,7 @@
   },
   {
     "title": "`normalize`",
-    "blurb": "",
+    "blurb": "Audio process operation for normalizing the amplitude of a buffer.",
     "keywords": [
       "normalize",
       "level",
@@ -1021,7 +1021,7 @@
   },
   {
     "title": "`octreduce`",
-    "blurb": "",
+    "blurb": "Reduces ratios to fit within the 1-2 range.",
     "keywords": [
       "ratios",
       "octreduce",
@@ -1033,7 +1033,7 @@
   },
   {
     "title": "`onepole`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying single-pole lowpass or highpass filtering to a buffer.",
     "keywords": [
       "onepole",
       "highpass",
@@ -1045,7 +1045,7 @@
   },
   {
     "title": "`onsetdetection`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute buffer onsets, given various onset detection functions.",
     "keywords": [
       "onsetdetection",
       "spectral",
@@ -1057,7 +1057,7 @@
   },
   {
     "title": "`onsets`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the onset positions in a buffer.",
     "keywords": [
       "onsets",
       "float",
@@ -1069,7 +1069,7 @@
   },
   {
     "title": "`overdrive`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying soft-clip distortion to a buffer.",
     "keywords": [
       "overdrive",
       "factor",
@@ -1081,7 +1081,7 @@
   },
   {
     "title": "`panning`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying 1-D panning to a buffer.",
     "keywords": [
       "panning",
       "int",
@@ -1093,7 +1093,7 @@
   },
   {
     "title": "`parsepath`",
-    "blurb": "",
+    "blurb": "Parses a given path into key-value pairs for the following properties:",
     "keywords": [
       "path",
       "file",
@@ -1105,7 +1105,7 @@
   },
   {
     "title": "`paulfreeze`",
-    "blurb": "",
+    "blurb": "Audio process operation for freezing a buffer.",
     "keywords": [
       "paulfreeze",
       "duration",
@@ -1117,7 +1117,7 @@
   },
   {
     "title": "`paulstretch`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying time-stretching to a buffer.",
     "keywords": [
       "stretching",
       "samples",
@@ -1129,7 +1129,7 @@
   },
   {
     "title": "`pcdiff`",
-    "blurb": "",
+    "blurb": "Signed pitch class difference.",
     "keywords": [
       "required",
       "pitch",
@@ -1141,7 +1141,7 @@
   },
   {
     "title": "`phasor`",
-    "blurb": "",
+    "blurb": "Generates a unipolar ramp oscillator as a buffer.",
     "keywords": [
       "buffer",
       "frequency",
@@ -1153,7 +1153,7 @@
   },
   {
     "title": "`pitchdiff`",
-    "blurb": "",
+    "blurb": "Given a list of target midicents and/or pitch classes, returns the signed difference between a pitch in midicents and the nearest midicent/pitch class target.",
     "keywords": [
       "required",
       "pitch",
@@ -1165,7 +1165,7 @@
   },
   {
     "title": "`pitchmelodia`",
-    "blurb": "",
+    "blurb": "Audio descriptor to estimate the fundamental frequency corresponding to the melody of a monophonic music signal based on the MELODIA algorithm.",
     "keywords": [
       "int",
       "pitch",
@@ -1177,7 +1177,7 @@
   },
   {
     "title": "`pitchyin`",
-    "blurb": "",
+    "blurb": "Audio descriptor to estimate the fundamental frequency of a monophonic buffer.",
     "keywords": [
       "pitchyin",
       "int",
@@ -1189,7 +1189,7 @@
   },
   {
     "title": "`plus`",
-    "blurb": "",
+    "blurb": "Audio process operation for performing addition on a buffer.",
     "keywords": [
       "buffer",
       "plus",
@@ -1201,7 +1201,7 @@
   },
   {
     "title": "`pong`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying range limiting to a buffer.",
     "keywords": [
       "buffer",
       "pong",
@@ -1213,7 +1213,7 @@
   },
   {
     "title": "`power`",
-    "blurb": "",
+    "blurb": "Audio process operation for performing exponentiation on a buffer.",
     "keywords": [
       "buffer",
       "power",
@@ -1225,7 +1225,7 @@
   },
   {
     "title": "`process`",
-    "blurb": "",
+    "blurb": "Applies a sequence of DSP operations to the input buffer, prior to rendering, via audio processing operations.",
     "keywords": [
       "buffer",
       "operations",
@@ -1237,7 +1237,7 @@
   },
   {
     "title": "`ptracks2buf`",
-    "blurb": "",
+    "blurb": "Converts a partial track analysis into a buffer.",
     "keywords": [
       "llll",
       "required",
@@ -1249,7 +1249,7 @@
   },
   {
     "title": "`query`",
-    "blurb": "",
+    "blurb": "Executes a `sqlite3` query on the current audio corpus, and returns the results.",
     "keywords": [
       "query",
       "buffers",
@@ -1261,7 +1261,7 @@
   },
   {
     "title": "`querytree`",
-    "blurb": "",
+    "blurb": "Given a k-dimensional tree and a target point with the same dimensionality, returns the index position of the nearest neighbor in that tree.",
     "keywords": [
       "tree",
       "llll",
@@ -1273,7 +1273,7 @@
   },
   {
     "title": "`r2c`",
-    "blurb": "",
+    "blurb": "Ratio to cents conversion.",
     "keywords": [
       "ratios",
       "required",
@@ -1285,7 +1285,7 @@
   },
   {
     "title": "`r2dr`",
-    "blurb": "",
+    "blurb": "Takes a list of ratios or factors and returns the quotients between adjacent elements.",
     "keywords": [
       "list",
       "r",
@@ -1297,7 +1297,7 @@
   },
   {
     "title": "`r2mc`",
-    "blurb": "",
+    "blurb": "Ratio to midicent conversion.",
     "keywords": [
       "ratios",
       "required",
@@ -1309,7 +1309,7 @@
   },
   {
     "title": "`r2pc`",
-    "blurb": "",
+    "blurb": "Ratio to pitch class conversion, assuming octave equivalence.",
     "keywords": [
       "ratios",
       "pitch",
@@ -1321,7 +1321,7 @@
   },
   {
     "title": "`rampsmooth`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying rampsmoothing to a buffer.",
     "keywords": [
       "buffer",
       "rampsmooth",
@@ -1333,7 +1333,7 @@
   },
   {
     "title": "`rand`",
-    "blurb": "",
+    "blurb": "Random floating point number generator.",
     "keywords": [
       "b",
       "value",
@@ -1345,7 +1345,7 @@
   },
   {
     "title": "`randosc`",
-    "blurb": "",
+    "blurb": "Generates a random oscillator as a buffer.",
     "keywords": [
       "buffer",
       "frequency",
@@ -1357,7 +1357,7 @@
   },
   {
     "title": "`read`",
-    "blurb": "",
+    "blurb": "Read `.txt` or native `.llll` data.",
     "keywords": [
       "ignore",
       "symbols",
@@ -1369,7 +1369,7 @@
   },
   {
     "title": "`readfolder`",
-    "blurb": "",
+    "blurb": "Returns a list of file paths in specified folder directory.",
     "keywords": [
       "list",
       "path",
@@ -1381,7 +1381,7 @@
   },
   {
     "title": "`rect`",
-    "blurb": "",
+    "blurb": "Generates a bipolar, anti-aliased rectangular (pulse) oscillator as a buffer.",
     "keywords": [
       "buffer",
       "frequency",
@@ -1393,7 +1393,7 @@
   },
   {
     "title": "`render`",
-    "blurb": "",
+    "blurb": "Triggers audio rendering of all transcribed buffers via `transcribe`, and returns the rendered buffer.",
     "keywords": [
       "int",
       "audio",
@@ -1405,7 +1405,7 @@
   },
   {
     "title": "`repeat`",
-    "blurb": "",
+    "blurb": "Audio process operation for repeating a buffer.",
     "keywords": [
       "duration",
       "repeat",
@@ -1417,7 +1417,7 @@
   },
   {
     "title": "`resample`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying stretching/pitch shifting a buffer via resampling.",
     "keywords": [
       "duration",
       "resample",
@@ -1429,7 +1429,7 @@
   },
   {
     "title": "`retune`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying autotune-like pitch retuning to a buffer.",
     "keywords": [
       "pitch",
       "retune",
@@ -1441,7 +1441,7 @@
   },
   {
     "title": "`revbpf`",
-    "blurb": "",
+    "blurb": "Reverses a breakpoint function.",
     "keywords": [
       "llll",
       "bpf",
@@ -1453,7 +1453,7 @@
   },
   {
     "title": "`reverse`",
-    "blurb": "",
+    "blurb": "Audio process operation for reversing a buffer.",
     "keywords": [
       "reverse",
       "process",
@@ -1465,7 +1465,7 @@
   },
   {
     "title": "`rhythm`",
-    "blurb": "",
+    "blurb": "Audio descriptor for extract the beat positions and estimate their confidence as well as tempo in bpm for a buffer.",
     "keywords": [
       "method",
       "rhythm",
@@ -1477,7 +1477,7 @@
   },
   {
     "title": "`rolloff`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the roll-off frequency of a spectrum.",
     "keywords": [
       "rolloff",
       "frequency",
@@ -1489,7 +1489,7 @@
   },
   {
     "title": "`rounding`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying signal rounding to a buffer.",
     "keywords": [
       "rounding",
       "buffer",
@@ -1501,7 +1501,7 @@
   },
   {
     "title": "`rubberband`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying rubberband pitch-shifting/time-stretching to a buffer.",
     "keywords": [
       "int",
       "rubberband",
@@ -1513,7 +1513,7 @@
   },
   {
     "title": "`samplebpf`",
-    "blurb": "",
+    "blurb": "Samples an interpolated value from a breakpoint function, given a list of normalized indices.",
     "keywords": [
       "bpf",
       "required",
@@ -1525,7 +1525,7 @@
   },
   {
     "title": "`samplelist`",
-    "blurb": "",
+    "blurb": "Samples an interpolated value from a numeric list given a normalized index.",
     "keywords": [
       "list",
       "required",
@@ -1537,7 +1537,7 @@
   },
   {
     "title": "`samps2buf`",
-    "blurb": "",
+    "blurb": "Samples to buffer conversion.",
     "keywords": [
       "llll",
       "buffer",
@@ -1549,7 +1549,7 @@
   },
   {
     "title": "`saw`",
-    "blurb": "",
+    "blurb": "Generates a bipolar, anti-aliased sawtooth oscillator as a buffer.",
     "keywords": [
       "buffer",
       "frequency",
@@ -1561,7 +1561,7 @@
   },
   {
     "title": "`scale`",
-    "blurb": "",
+    "blurb": "Scales an input value or list from a given range to another, with optional slope for non-linear scaling.",
     "keywords": [
       "value",
       "slope",
@@ -1573,7 +1573,7 @@
   },
   {
     "title": "`scaling`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying amplitude scaling to a buffer.",
     "keywords": [
       "scaling",
       "value",
@@ -1585,7 +1585,7 @@
   },
   {
     "title": "`scoreconfig`",
-    "blurb": "",
+    "blurb": "Configures the score appearance, such as the clefs, voice names, tone division, etc.",
     "keywords": [
       "clef",
       "treble",
@@ -1597,7 +1597,7 @@
   },
   {
     "title": "`scrub`",
-    "blurb": "",
+    "blurb": "Audio process operation for scrubbing through a buffer.",
     "keywords": [
       "buffer",
       "scrub",
@@ -1609,7 +1609,7 @@
   },
   {
     "title": "`seq2markov`",
-    "blurb": "",
+    "blurb": "Constructs a Markov chain from a given sequence of data.",
     "keywords": [
       "sequence",
       "llll",
@@ -1621,7 +1621,7 @@
   },
   {
     "title": "`setcorpus`",
-    "blurb": "",
+    "blurb": "Loads an audio corpus, given a path to a `.llll` file.",
     "keywords": [
       "file",
       "setcorpus",
@@ -1633,7 +1633,7 @@
   },
   {
     "title": "`setkey`",
-    "blurb": "",
+    "blurb": "Sets the value of a given key in a `llll`.",
     "keywords": [
       "llll",
       "required",
@@ -1645,7 +1645,7 @@
   },
   {
     "title": "`setseed`",
-    "blurb": "",
+    "blurb": "Sets the random seed for the `xrand`, `xrandom`, `xchoose`, `xscramble`, and `urn` functions.",
     "keywords": [
       "seed",
       "setseed",
@@ -1657,7 +1657,7 @@
   },
   {
     "title": "`sortbykeys`",
-    "blurb": "",
+    "blurb": "Sorts `llll` elements by a given set of keys.",
     "keywords": [
       "llll",
       "keys",
@@ -1669,7 +1669,7 @@
   },
   {
     "title": "`soundtouch`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying soundtouch pitch-shifting/time-stretching to a buffer.",
     "keywords": [
       "soundtouch",
       "int",
@@ -1681,7 +1681,7 @@
   },
   {
     "title": "`spectralcentroid`",
-    "blurb": "",
+    "blurb": "Audio descriptor to calculate the spectral centroid of a buffer, defined as the 'center of mass' of the spectrum, in Hertz.",
     "keywords": [
       "spectralcentroid",
       "mode",
@@ -1693,7 +1693,7 @@
   },
   {
     "title": "`spectralflatness`",
-    "blurb": "",
+    "blurb": "Audio descriptor to calculate the spectral flatness of a buffer, defined as the ratio between the spectrum's geometric mean and arithmetic mean.",
     "keywords": [
       "spectralflatness",
       "mode",
@@ -1705,7 +1705,7 @@
   },
   {
     "title": "`spectralkurtosis`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the spectral kurtosis of a buffer.",
     "keywords": [
       "spectralkurtosis",
       "mode",
@@ -1717,7 +1717,7 @@
   },
   {
     "title": "`spectralskewness`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the spectral skewness of a buffer.",
     "keywords": [
       "spectralskewness",
       "mode",
@@ -1729,7 +1729,7 @@
   },
   {
     "title": "`spectralspread`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the spectral spread of a buffer.",
     "keywords": [
       "spectralspread",
       "mode",
@@ -1741,7 +1741,7 @@
   },
   {
     "title": "`spectralvariance`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the spectral variance of a buffer.",
     "keywords": [
       "spectralvariance",
       "mode",
@@ -1753,7 +1753,7 @@
   },
   {
     "title": "`spectrum`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the magnitude spectrum of a buffer.",
     "keywords": [
       "spectrum",
       "size",
@@ -1765,7 +1765,7 @@
   },
   {
     "title": "`splitbuf`",
-    "blurb": "",
+    "blurb": "Splits a buffer into multiple segments.",
     "keywords": [
       "split",
       "mode",
@@ -1777,7 +1777,7 @@
   },
   {
     "title": "`squareroot`",
-    "blurb": "",
+    "blurb": "Audio process operation for computing the square root of a buffer signal.",
     "keywords": [
       "squareroot",
       "process",
@@ -1789,7 +1789,7 @@
   },
   {
     "title": "`strongdecay`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the strong decay of a buffer.",
     "keywords": [
       "strongdecay",
       "strong",
@@ -1801,7 +1801,7 @@
   },
   {
     "title": "`strongpeak`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the strong peak of a buffer, defined as the ratio between the spectrum's maximum peak's magnitude and the 'bandwidth' of the peak above a threshold—i.e., half its amplitude.",
     "keywords": [
       "strongpeak",
       "peak",
@@ -1813,7 +1813,7 @@
   },
   {
     "title": "`symlen`",
-    "blurb": "",
+    "blurb": "Returns the length of symbol.",
     "keywords": [
       "symbol",
       "length",
@@ -1825,7 +1825,7 @@
   },
   {
     "title": "`teeth`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying comb filtering to a buffer, with feedforward and feedback delay control.",
     "keywords": [
       "buffer",
       "feedforward",
@@ -1837,7 +1837,7 @@
   },
   {
     "title": "`temporalcentroid`",
-    "blurb": "",
+    "blurb": "Audio descriptor to calculate the temporal centroid of a buffer, defined as the point in time that is a temporal balancing point of the sound's energy.",
     "keywords": [
       "temporalcentroid",
       "bell",
@@ -1849,7 +1849,7 @@
   },
   {
     "title": "`temporalflatness`",
-    "blurb": "",
+    "blurb": "Audio descriptor to calculate the temporal flatness of a buffer, defined as the ratio between the buffer envelope's geometric mean and arithmetic mean.",
     "keywords": [
       "temporalflatness",
       "buffer",
@@ -1861,7 +1861,7 @@
   },
   {
     "title": "`temporalkurtosis`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the temporal kurtosis of a buffer.",
     "keywords": [
       "temporalkurtosis",
       "bell",
@@ -1873,7 +1873,7 @@
   },
   {
     "title": "`temporalskewness`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the temporal skewness of a buffer.",
     "keywords": [
       "temporalskewness",
       "bell",
@@ -1885,7 +1885,7 @@
   },
   {
     "title": "`temporalspread`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the temporal spread of a buffer.",
     "keywords": [
       "temporalspread",
       "bell",
@@ -1897,7 +1897,7 @@
   },
   {
     "title": "`temporalvariance`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the temporal variance of a buffer.",
     "keywords": [
       "temporalvariance",
       "bell",
@@ -1909,7 +1909,7 @@
   },
   {
     "title": "`thispath`",
-    "blurb": "",
+    "blurb": "Returns the path of the current script, as either a symbol or a parsed `llll` path.",
     "keywords": [
       "path",
       "parse",
@@ -1921,7 +1921,7 @@
   },
   {
     "title": "`timesquash`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying timesquash time compression to a buffer.",
     "keywords": [
       "int",
       "energy",
@@ -1933,7 +1933,7 @@
   },
   {
     "title": "`todiffs`",
-    "blurb": "",
+    "blurb": "Audio process operation to perform discrete differentiation of a buffer.",
     "keywords": [
       "todiffs",
       "buffer",
@@ -1945,7 +1945,7 @@
   },
   {
     "title": "`tonalkey`",
-    "blurb": "",
+    "blurb": "Audio descriptor to perform tonal key signature estimation on a buffer.",
     "keywords": [
       "profiles",
       "profile",
@@ -1957,7 +1957,7 @@
   },
   {
     "title": "`tosymbol`",
-    "blurb": "",
+    "blurb": "Casts input value as a symbol.",
     "keywords": [
       "symbol",
       "tosymbol",
@@ -1969,7 +1969,7 @@
   },
   {
     "title": "`transcribe`",
-    "blurb": "",
+    "blurb": "Adds input buffer to the rendering sequence.",
     "keywords": [
       "buffer",
       "null",
@@ -1981,7 +1981,7 @@
   },
   {
     "title": "`tri`",
-    "blurb": "",
+    "blurb": "Generates a bipolar, anti-aliased triangular oscillator as a buffer.",
     "keywords": [
       "buffer",
       "frequency",
@@ -1993,7 +1993,7 @@
   },
   {
     "title": "`triangle`",
-    "blurb": "",
+    "blurb": "Generates a triangular/ramp oscillator as a buffer.",
     "keywords": [
       "buffer",
       "frequency",
@@ -2005,7 +2005,7 @@
   },
   {
     "title": "`trim`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying silence-based trimming to a buffer.",
     "keywords": [
       "buffer",
       "trim",
@@ -2017,7 +2017,7 @@
   },
   {
     "title": "`urn`",
-    "blurb": "",
+    "blurb": "Returns a unique random number for a given URN identifier.",
     "keywords": [
       "urn",
       "id",
@@ -2029,7 +2029,7 @@
   },
   {
     "title": "`wavesetrepeat`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying waveset repetition to a buffer.",
     "keywords": [
       "waveset",
       "wavesetrepeat",
@@ -2041,7 +2041,7 @@
   },
   {
     "title": "`wavesetshuffle`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying waveset shuffling to a buffer.",
     "keywords": [
       "wavesetshuffle",
       "process",
@@ -2053,7 +2053,7 @@
   },
   {
     "title": "`waveshape`",
-    "blurb": "",
+    "blurb": "Audio process operation for waveshaping a buffer.",
     "keywords": [
       "buffer",
       "waveshape",
@@ -2065,7 +2065,7 @@
   },
   {
     "title": "`window`",
-    "blurb": "",
+    "blurb": "Audio process operation for applying a windowing function to a buffer.",
     "keywords": [
       "window",
       "process",
@@ -2077,7 +2077,7 @@
   },
   {
     "title": "`write`",
-    "blurb": "",
+    "blurb": "Writes data into disk in either `.txt` or native `.llll` format.",
     "keywords": [
       "int",
       "format",
@@ -2089,7 +2089,7 @@
   },
   {
     "title": "`x2dx`",
-    "blurb": "",
+    "blurb": "Takes a list of numbers and returns the differences—i.e., deltas—between adjacent elements.",
     "keywords": [
       "list",
       "x",
@@ -2101,7 +2101,7 @@
   },
   {
     "title": "`xchoose`",
-    "blurb": "",
+    "blurb": "Choose randomly one or more elements from a list, with optional probability weights.",
     "keywords": [
       "list",
       "weights",
@@ -2113,7 +2113,7 @@
   },
   {
     "title": "`xrand`",
-    "blurb": "",
+    "blurb": "Seed-based random floating point number generator.",
     "keywords": [
       "b",
       "value",
@@ -2125,7 +2125,7 @@
   },
   {
     "title": "`xrandom`",
-    "blurb": "",
+    "blurb": "Seed-based random integer number generator.",
     "keywords": [
       "b",
       "integer",
@@ -2137,7 +2137,7 @@
   },
   {
     "title": "`xscramble`",
-    "blurb": "",
+    "blurb": "Seed-based random shuffling of elements.",
     "keywords": [
       "xscramble",
       "llll",
@@ -2149,7 +2149,7 @@
   },
   {
     "title": "`zerocrossingrate`",
-    "blurb": "",
+    "blurb": "Audio descriptor to compute the zero-crossing rate of a buffer, defined as the number of sign changes between consecutive signal values divided by the total number of values.",
     "keywords": [
       "zerocrossingrate",
       "threshold",
@@ -2269,13 +2269,13 @@
   },
   {
     "title": "Basic Sampling",
-    "blurb": "**bellplay~** provides a basic utility function for general-purpose audio sampling, called `ezsampler`.",
+    "blurb": "In **bellplay~**, the `ezsampler` function provides a minimal but flexible interface for mapping symbolic pitch and velocity information to audio buffers.",
     "keywords": [
       "pitch",
-      "closest",
+      "keymap",
       "velocity",
-      "used",
-      "keymap"
+      "sample",
+      "ezsampler"
     ],
     "path": "/docs/learning/tutorials/sampling"
   },
@@ -2403,11 +2403,11 @@
     "title": "Frequently Asked Questions",
     "blurb": "Yes—some familiarity with programming concepts is recommended.",
     "keywords": [
-      "use",
       "audio",
-      "max",
       "bell",
-      "need"
+      "use",
+      "language",
+      "max"
     ],
     "path": "/docs/faq"
   },
@@ -2578,6 +2578,18 @@
       "pan"
     ],
     "path": "/docs/learning/tutorials/postprocessing"
+  },
+  {
+    "title": "Randomness",
+    "blurb": "Randomness is frequently used in algorithmic music to introduce variation and unpredictability.",
+    "keywords": [
+      "setseed",
+      "seed",
+      "random",
+      "xrand",
+      "seeded"
+    ],
+    "path": "/docs/learning/tutorials/randomness"
   },
   {
     "title": "Rendering",
