@@ -42,7 +42,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "settings", "icon", "settings-icon.svg" ],
+					"args" : [ "text", "Settings", "icon", "settings-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -66,7 +66,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "about", "icon", "book-icon.svg" ],
+					"args" : [ "text", "About", "icon", "book-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -90,7 +90,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "play", "icon", "play-icon.svg", "texton", "stop", "iconon", "play-icon.svg", "active", 0, "mode", 1, "neutral", 1 ],
+					"args" : [ "text", "Play", "icon", "play-icon.svg", "texton", "stop", "iconon", "play-icon.svg", "active", 0, "mode", 1, "neutral", 1 ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -114,7 +114,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "export audio", "icon", "save-icon.svg" ],
+					"args" : [ "text", "Export Audio", "icon", "save-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -138,7 +138,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "corpus lab", "icon", "corpus-icon.svg" ],
+					"args" : [ "text", "Corpus Lab", "icon", "corpus-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -162,7 +162,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "reload script", "icon", "reload-icon.svg" ],
+					"args" : [ "text", "Reload Script", "icon", "reload-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -186,7 +186,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "new script", "icon", "new-icon.svg" ],
+					"args" : [ "text", "New Script", "icon", "new-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -210,7 +210,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "load script", "icon", "load-icon.svg" ],
+					"args" : [ "text", "Load Script", "icon", "load-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
