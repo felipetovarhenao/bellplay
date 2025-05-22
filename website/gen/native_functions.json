@@ -1,0 +1,1451 @@
+[
+    {
+        "name": "apply",
+        "description": "Calls another function by passing it individual parameters expressed as two _lllls_, one for arguments passed by position, the other for arguments passed by name.",
+        "args": [
+            {
+                "name": "function"
+            },
+            {
+                "name": "argsbyposition"
+            },
+            {
+                "name": "argsbyname"
+            }
+        ],
+        "output": "output of `@function`"
+    },
+    {
+        "name": "$args",
+        "description": "Returns one or more arguments passed to the function that calls it, based on their indices. If called from the main function. Arguments after the ellipsis can't be returned by `$args`.",
+        "args": [
+            {
+                "name": "indices"
+            }
+        ]
+    },
+    {
+        "name": "abs",
+        "description": "Returns the absolute value of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "acos",
+        "description": "Returns the arc cosine value of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "acosh",
+        "description": "Returns the inverse hyperbolic cosine of `@x`",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "alter",
+        "description": "Returns the difference, in tones, between the pitch value of `@x` and its diatonic pitch name.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ],
+        "usage": "alter(Db4) ## returns -1/2"
+    },
+    {
+        "name": "asin",
+        "description": "Returns the arc sine value of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "asinh",
+        "description": "Returns the hyperbolic arc sine value of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "atan",
+        "description": "Returns the arc tangent value of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "atanh",
+        "description": "Returns the hyperbolic arc tangent value of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "ceil",
+        "description": "Rounds up the value of `@x` to the nearest integer.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "cents",
+        "description": "Converts the value of `@x` to MIDI cents.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "cos",
+        "description": "Returns the cosine value of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "cosh",
+        "description": "Returns the hyperbolic cosine value of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "degree",
+        "description": "MIDI cents to C-based diatonic scale degree conversion.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "den",
+        "description": "Returns the denominator of `@x`",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "exp",
+        "description": "Raises the constant `e` (`~2.71828`) to the power of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "exp2",
+        "description": "Raises 2 to the power of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "float",
+        "description": "Casts value of `@x` as a `float`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "floor",
+        "description": "Rounds down the value of `@x` to the nearest integer.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "int",
+        "description": "Casts value of `@x` as an `int`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "log",
+        "description": "Returns the natural logarithm of `@x`",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "log10",
+        "description": "Returns the logarithm base 10 of `@x`",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "log2",
+        "description": "Returns the logarithm base 2 of `@x`",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "num",
+        "description": "Returns the numerator of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "octave",
+        "description": "Returns the pitch octave level of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "pitch",
+        "description": "Casts value of `@x` as `pitch`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "rat",
+        "description": "Casts value of `@x` as `rat`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "round",
+        "description": "Rounds the value of `@x` to the nearest integer.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "sgn",
+        "description": "Returns the sign of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "sin",
+        "description": "Returns the sine value of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "sinh",
+        "description": "Returns the hyperbolic sine of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "sqrt",
+        "description": "Returns the square root of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "tan",
+        "description": "Returns the tangent of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "tanh",
+        "description": "Returns the hyperbolic tangent of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "trunc",
+        "description": "Truncates the value of `@x`.",
+        "args": [
+            {
+                "name": "x"
+            }
+        ]
+    },
+    {
+        "name": "atan2",
+        "description": "Returns the arctangent of `@x` and `@y`.",
+        "args": [
+            {
+                "name": "x"
+            },
+            {
+                "name": "y"
+            }
+        ]
+    },
+    {
+        "name": "enharm",
+        "description": "Given some pitch `@x` and a diatonic step `@y` relative to `@x`, returns the corresponding enharmonic value or respelling of that `@x`.",
+        "args": [
+            {
+                "name": "x"
+            },
+            {
+                "name": "y"
+            }
+        ],
+        "usage": "enharm(E4, 1); ## returns Fb4\nenharm(C4, -1); ## returns B#3"
+    },
+    {
+        "name": "fmod",
+        "description": "Returns `@x` modulo `@y`",
+        "args": [
+            {
+                "name": "x"
+            },
+            {
+                "name": "y"
+            }
+        ]
+    },
+    {
+        "name": "hypot",
+        "description": "Returns the hypotenuse of `@x` and `@y`",
+        "args": [
+            {
+                "name": "x"
+            },
+            {
+                "name": "y"
+            }
+        ]
+    },
+    {
+        "name": "max",
+        "description": "Returns the maximum value between `@x` an `@y`. ",
+        "args": [
+            {
+                "name": "x"
+            },
+            {
+                "name": "y"
+            }
+        ]
+    },
+    {
+        "name": "min",
+        "description": "Returns the minimum value between `@x` an `@y`.",
+        "args": [
+            {
+                "name": "x"
+            },
+            {
+                "name": "y"
+            }
+        ]
+    },
+    {
+        "name": "mod",
+        "description": "Returns `@x` modulo `@y`",
+        "args": [
+            {
+                "name": "x"
+            },
+            {
+                "name": "y"
+            }
+        ]
+    },
+    {
+        "name": "random",
+        "description": "Generates a random integer between `@x` and `@y`.",
+        "args": [
+            {
+                "name": "x"
+            },
+            {
+                "name": "y"
+            }
+        ]
+    },
+    {
+        "name": "approx",
+        "description": "Approximates a pitch value to the nearest tone division",
+        "args": [
+            {
+                "name": "pitch"
+            },
+            {
+                "name": "tonedivision"
+            }
+        ]
+    },
+    {
+        "name": "bessel",
+        "description": "Returns the Bessel function of the first kind of given `@order` at point `@x`.",
+        "args": [
+            {
+                "name": "x"
+            },
+            {
+                "name": "order"
+            }
+        ]
+    },
+    {
+        "name": "makepitchsc",
+        "description": "Generates a pitch, given a number of `@steps` along the C-based diatonic scale, and the desired MIDIcents value in `@cents`.",
+        "args": [
+            {
+                "name": "steps"
+            },
+            {
+                "name": "cents"
+            }
+        ],
+        "usage": "$steps = 7 * 5; ## 7 diatonic steps * 5 octaves = C5\n$target = 5900; ## B4 in midicents\nmakepitchsc($steps, $target) ## Returns Cb5"
+    },
+    {
+        "name": "pow",
+        "description": "Returns the value of `@base` to the power of `@exponent`.",
+        "args": [
+            {
+                "name": "base"
+            },
+            {
+                "name": "exponent"
+            }
+        ]
+    },
+    {
+        "name": "makepitch",
+        "description": "Generates a `pitch` value, given a `@degree`, `@octave`, and `@alter`",
+        "args": [
+            {
+                "name": "degree"
+            },
+            {
+                "name": "octave"
+            },
+            {
+                "name": "alter"
+            }
+        ]
+    },
+    {
+        "name": "arithmser",
+        "description": "Returns an arithmetic series, understood as a list of evenly spaced numeric values. If one of the arguments is set to `null`, its value is automatically inferred from the other arguments.",
+        "args": [
+            {
+                "name": "start",
+                "default": null
+            },
+            {
+                "name": "end",
+                "default": null
+            },
+            {
+                "name": "step",
+                "default": 1
+            },
+            {
+                "name": "maxcount",
+                "default": 0
+            }
+        ],
+        "usage": "arithmser(0, 10, 1); ## 1...10\narithmser(0, 10, null, 3); ## 0 5 10\narithmser(0, null, 2, 4); ## 0 2 4 6\narithmser(null, 10, 2, 4) ## 4 6 8 10"
+    },
+    {
+        "name": "cartesianprod",
+        "description": "Returns the cartesian product of the sublists of an _llll_.",
+        "args": [
+            {
+                "name": "llll"
+            }
+        ]
+    },
+    {
+        "name": "classify",
+        "description": "Arranges elements into classes. When `@function` is `null`, it uses the default comparison function.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "function",
+                "default": null
+            }
+        ]
+    },
+    {
+        "name": "comb",
+        "description": "Returns all the k-combinations of an _llll_ for a range of `k`.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "kstart",
+                "default": 0
+            },
+            {
+                "name": "kend",
+                "default": "none"
+            },
+            {
+                "name": "maxcount",
+                "default": 0
+            }
+        ]
+    },
+    {
+        "name": "contains",
+        "description": "Returns a summary of the data types contained in an _llll_. The return value is encoded as a bit field, with the following values:\n\n- `1`: None\n- `2`: integer\n- `4`: rational\n- `8`: double\n- `16`: symbol\n- `32`: sublist\n- `256`: pitch.\n\nBy default, only the contents of the root level are considered. This can be changed with the `@mindepth` and `@maxdepth` arguments.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "delace",
+        "description": "Deinterlaces an _llll_ into a given number of _lllls_.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "count",
+                "default": 2
+            }
+        ]
+    },
+    {
+        "name": "depth",
+        "description": "Returns the depth of an _llll_.",
+        "args": [
+            {
+                "name": "llll"
+            }
+        ]
+    },
+    {
+        "name": "diff",
+        "description": "Returns the set difference of two _lllls_. A comparison function can be provided through the `@function` argument, otherwise it performs a stardard comparison.",
+        "args": [
+            {
+                "name": "llll1"
+            },
+            {
+                "name": "llll2"
+            },
+            {
+                "name": "function",
+                "default": null
+            }
+        ]
+    },
+    {
+        "name": "directin",
+        "description": "Receives data during evaluation from one direct inlet. It is useful for setting up lambda loops. Unlike what happens with its corresponding pseudovariables `$di<n>`, providing code containing the `directout()` function does not create automatically the direct inlet. For this reason, it is generally necessary to set the `@directins` object argument.",
+        "args": [
+            {
+                "name": "inlet"
+            }
+        ]
+    },
+    {
+        "name": "directout",
+        "description": "Outputs data from one or more direct outlets. The data are output as the function is evaluated. The return value of `directout()` is the last _llll_ output. Unlike what happens with its corresponding pseudovariables `$do<n>`, providing code containing the `directout()` function does not create automatically the direct outlets. For this reason, it is generally necessary to set the `@directouts` object argument.",
+        "args": [
+            {
+                "name": "outlets"
+            },
+            {
+                "name": "<...>"
+            }
+        ]
+    },
+    {
+        "name": "f2mc",
+        "description": "Converts all the numbers in an _llll_ from frequency to MIDI cents, with optional reference frequency and pitch.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "basefreq",
+                "default": 440
+            },
+            {
+                "name": "basepitch",
+                "default": 6900
+            }
+        ]
+    },
+    {
+        "name": "find",
+        "description": "Retrieves items from an _llll_, along with their addresses. The return value is an _llll_ composed by two sublists, the first containing the retrieved items, the second containing the addresses. An equality comparison function can be provided through the `@function` argument, otherwise it performs a stardard comparison.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "items",
+                "default": null
+            },
+            {
+                "name": "function",
+                "default": null
+            },
+            {
+                "name": "size",
+                "default": null
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "minidx",
+                "default": 1
+            },
+            {
+                "name": "maxidx",
+                "default": 1
+            },
+            {
+                "name": "idxreject",
+                "default": 0
+            },
+            {
+                "name": "depthreject",
+                "default": 0
+            },
+            {
+                "name": "maxcount",
+                "default": 0
+            },
+            {
+                "name": "unwrap",
+                "default": 0
+            },
+            {
+                "name": "depthpolicy",
+                "default": 0
+            },
+            {
+                "name": "recursive",
+                "default": 0
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "findaddrs",
+        "description": "Retrieves the addresses of items from an _llll_. An equality comparison function can be provided through the `@function` argument, , otherwise it performs a stardard comparison.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "items",
+                "default": null
+            },
+            {
+                "name": "function",
+                "default": null
+            },
+            {
+                "name": "size",
+                "default": null
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "minidx",
+                "default": 1
+            },
+            {
+                "name": "maxidx",
+                "default": 1
+            },
+            {
+                "name": "idxreject",
+                "default": 0
+            },
+            {
+                "name": "depthreject",
+                "default": 0
+            },
+            {
+                "name": "maxcount",
+                "default": 0
+            },
+            {
+                "name": "depthpolicy",
+                "default": 0
+            },
+            {
+                "name": "recursive",
+                "default": 0
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "finditems",
+        "description": "Retrieves items from an llll. The return value is an _llll_ composed by the retrieved items. An equality comparison function can be provided through the `@function` argument, , otherwise it performs a stardard comparison.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "items",
+                "default": null
+            },
+            {
+                "name": "function",
+                "default": null
+            },
+            {
+                "name": "size",
+                "default": null
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "minidx",
+                "default": 1
+            },
+            {
+                "name": "maxidx",
+                "default": 1
+            },
+            {
+                "name": "idxreject",
+                "default": 0
+            },
+            {
+                "name": "depthreject",
+                "default": 0
+            },
+            {
+                "name": "maxcount",
+                "default": 0
+            },
+            {
+                "name": "unwrap",
+                "default": 0
+            },
+            {
+                "name": "depthpolicy",
+                "default": 0
+            },
+            {
+                "name": "recursive",
+                "default": 0
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "flat",
+        "description": "Flattens depth levels of an _llll_.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "level",
+                "default": null
+            },
+            {
+                "name": "spikemode",
+                "default": 0
+            },
+            {
+                "name": "minlevel",
+                "default": 1
+            },
+            {
+                "name": "maxlevel",
+                "default": -1
+            }
+        ]
+    },
+    {
+        "name": "geomser",
+        "description": "Return a geomethric series, understood as a list where the ratio between adjacent elements is constant. If one of the arguments is set to `null`, its value is automatically inferred from the other arguments.",
+        "args": [
+            {
+                "name": "start",
+                "default": null
+            },
+            {
+                "name": "end",
+                "default": null
+            },
+            {
+                "name": "factor",
+                "default": null
+            },
+            {
+                "name": "maxcount",
+                "default": 0
+            }
+        ],
+        "usage": "geomser(1, null, 2, 5) ## Returns 1 2 4 8 16"
+    },
+    {
+        "name": "group",
+        "description": "Groups elements in sublists according to a regular size pattern.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "modulos",
+                "default": 1
+            },
+            {
+                "name": "overlap",
+                "default": 0
+            }
+        ],
+        "usage": "group(1 2 3 4, 2, 1) ## [1 2] [2 3] [3 4]"
+    },
+    {
+        "name": "inlet",
+        "description": "Returns the number of the inlet that triggered the computation. This is always `1`, unless you set the `@triggers` attribute to a different value. If the computation has been triggered by a trigger variable, rather than an inlet, the function returns `0`.",
+        "args": []
+    },
+    {
+        "name": "insert",
+        "description": "Inserts one or more elements in a list according to their positions.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "address",
+                "default": 1
+            },
+            {
+                "name": "model",
+                "default": null
+            },
+            {
+                "name": "multi",
+                "default": 0
+            },
+            {
+                "name": "sizes",
+                "default": 0
+            }
+        ]
+    },
+    {
+        "name": "intersection",
+        "description": "Returns the intersection of two _lllls_.",
+        "args": [
+            {
+                "name": "llll1"
+            },
+            {
+                "name": "llll2"
+            },
+            {
+                "name": "function",
+                "default": null
+            }
+        ]
+    },
+    {
+        "name": "is",
+        "description": "Returns the data type of the input, as one of the following symbols:\n\n- `integer`\n- `real`\n- `rational`\n- `symbol`\n- `llll`\n- `pitch`\n- `function`",
+        "args": [
+            {
+                "name": "llll"
+            }
+        ]
+    },
+    {
+        "name": "left",
+        "description": "Returns the left part of an _llll_ relative to an index.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "index",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "length",
+        "description": "Returns the number of elements in the root level of an _llll_.",
+        "args": [
+            {
+                "name": "llll"
+            }
+        ]
+    },
+    {
+        "name": "map",
+        "description": "Transforms an _llll_ element-wise, according to a given lambda function. The modification function actually receives three arguments: the element to be modified, its address in the original _llll_ and its address in the new llll—the two may be different, as the modification function can remove or insert new elements. If a sublist is encountered and `@maxdepth` has not been received yet, it is possible to choose whether to enter it and run pass the modification function its elements one by one, or pass the whole sublist. This is accomplished through the `@askfunction` argument, that can be set to a function receiving the same arguments as the modification function.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "modfunction",
+                "default": null
+            },
+            {
+                "name": "askfunction",
+                "default": null
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "maximum",
+        "description": "Returns the smallest number in an _llll_. According to the `@mindepth` and `@maxdepth` parameters, data in sublists are considered or not.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "mc2f",
+        "description": "Converts all the numbers (assumed to be MIDI cents) and pitches in an _llll_ to frequency, with optional reference frequency and pitch.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "basefreq",
+                "default": 440
+            },
+            {
+                "name": "basepitch",
+                "default": 6900
+            }
+        ]
+    },
+    {
+        "name": "minimum",
+        "description": "Returns the smallest number in an _llll_. According to the `@mindepth` and `@maxdepth` parameters, data in sublists are considered or not.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "minmax",
+        "description": "Returns an _llll_ composed of four elements, respectively the minimum value in the _llll_, its address, the maximum value and its address. According to the `@mindepth` and `@maxdepth` parameters, data in sublists are considered or not.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "nth",
+        "description": "Returns one or more elements from an _llll_ according to its address. If a placeholder is provided, it will be inserted in the place of non-existing elements.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "address",
+                "default": 1
+            },
+            {
+                "name": "placeholder",
+                "default": null
+            }
+        ]
+    },
+    {
+        "name": "outlet",
+        "description": "Assigns values to extra outlets, and returns the last (or only) value assigned. The order of the assigned values has no influence on the order in which they will be output, which will always be right-to-left, except if the same outlet is assigned more than one llll—in this case, the last assignment is the one that is retained. The same goes if the `outlet()` function is called more than once. If the `outlet()` function is called from a non-main function, it produces no effect besides returning the last argument's value.",
+        "args": [
+            {
+                "name": "outlets"
+            },
+            {
+                "name": "<...>"
+            }
+        ]
+    },
+    {
+        "name": "perm",
+        "description": "Returns one or more distinct permutations of an _llll_.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "maxcount",
+                "default": 0
+            }
+        ]
+    },
+    {
+        "name": "primeser",
+        "description": "Return sequences of primes.",
+        "args": [
+            {
+                "name": "min",
+                "default": -1
+            },
+            {
+                "name": "max",
+                "default": -1
+            },
+            {
+                "name": "maxcount",
+                "default": 0
+            }
+        ]
+    },
+    {
+        "name": "print",
+        "description": "Prints an _llll_ in the Max console. The return value is the _llll_ that has been printed.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "prepend"
+            },
+            {
+                "name": "maxdecimals",
+                "default": 6
+            },
+            {
+                "name": "error",
+                "default": 0
+            }
+        ]
+    },
+    {
+        "name": "prod",
+        "description": "Computes the product of the elements in an _llll_. By default, products are computed only the root level. This can be changed with the `@mindepth` and `@maxdepth` arguments.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "reduce",
+        "description": "Applies cumulatively a binary function to all the elements in an _llll_.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "function"
+            }
+        ]
+    },
+    {
+        "name": "rev",
+        "description": "Reverses the contents of an _llll_. By default, only the root level is changed. This can be changed with the `@mindepth` and `@maxdepth` arguments.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "right",
+        "description": "Returns the right part of an _llll_ relative to an index.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "index",
+                "default": -1
+            }
+        ]
+    },
+    {
+        "name": "rot",
+        "description": "Rotates the contents of an _llll_. By default, only the root level is changed. This can be changed with the `@mindepth` and `@maxdepth` arguments.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "shift",
+                "default": 1
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "scramble",
+        "description": "Shuffles randomly the elements of an _llll_.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "slice",
+        "description": "Divides an llll into two sublists according to a split point.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "index",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "sort",
+        "description": "Sorts an _llll_. An lambda `@function` can be optionally provided with the following signature:\n\n```bell\n$a, $b -> (\n\t## 1 if $a is lesser than $b\n)\n```",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "function",
+                "default": null
+            }
+        ]
+    },
+    {
+        "name": "subs",
+        "description": "Substitutes one or more elements of a list according to their positions.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "address",
+                "default": 1
+            },
+            {
+                "name": "model",
+                "default": null
+            },
+            {
+                "name": "multi",
+                "default": 0
+            },
+            {
+                "name": "sizes",
+                "default": 0
+            }
+        ]
+    },
+    {
+        "name": "sum",
+        "description": "Computes the sum of the elements in an _llll_. By default, only the root level is summed. This can be changed with the `@mindepth` and `@maxdepth` arguments.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "depth",
+                "default": null
+            },
+            {
+                "name": "mindepth",
+                "default": 1
+            },
+            {
+                "name": "maxdepth",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "symdiff",
+        "description": "Returns the symmetric difference of two _lllls_. A comparison function can be provided through the `@function` argument, otherwise it performs a stardard comparison",
+        "args": [
+            {
+                "name": "llll1"
+            },
+            {
+                "name": "llll2"
+            },
+            {
+                "name": "function",
+                "default": null
+            }
+        ]
+    },
+    {
+        "name": "thin",
+        "description": "Removes the duplicates from an _llll_.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "function",
+                "default": null
+            }
+        ]
+    },
+    {
+        "name": "trans",
+        "description": "Returns the matrix transposition of an _llll_.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "depths",
+                "default": 1
+            },
+            {
+                "name": "iterationmode",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "union",
+        "description": "Returns the union of two _lllls_.",
+        "args": [
+            {
+                "name": "llll1"
+            },
+            {
+                "name": "llll2"
+            },
+            {
+                "name": "function",
+                "default": null
+            }
+        ]
+    },
+    {
+        "name": "wrap",
+        "description": "Wraps an llll in parentheses, thus raising its overall depth.",
+        "args": [
+            {
+                "name": "llll"
+            },
+            {
+                "name": "levels",
+                "default": 1
+            }
+        ]
+    },
+    {
+        "name": "include",
+        "description": "The `include()` directive imports a bell file into the script. As a directive, the file path must be given without single or double quotes.",
+        "args": [
+            {
+                "name": "file"
+            }
+        ],
+        "usage": "include(/path/to/file.bell)"
+    }
+]
