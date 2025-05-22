@@ -130,25 +130,7 @@ for $docsection $sectionid in ReferenceSections do (
             $funcdescr = concatsym($funcdescr, $br, $br, 'The resulting buffer will be updated with the following keys:', $br);
             for $outkey in $outkeys do ($funcdescr = concatsym(
                 $funcdescr, '- `', $outkey, '`', $br
-            ));
-            ## ---------------- NOTE ----------------
-            ## this should eventually be done from bellplay~ and keep this logic as streamlined and agnostic as possible
-            $funcdescr = concatsym(
-                $funcdescr, $br, $br, 'Which can be applied and accessed like so:', $br, $br, '```bell showLineNumbers', $br
-            );
-            $funcdescr = concatsym(
-                $funcdescr, '$buf = $buf.analyze', $open, $funcname, $open, $close, $close, ';', $br
-            );
-            for $outkey $outkeyid in $outkeys do (
-                $keysymlen = symlen($outkey);
-                $outkeyname = getchar($outkey, 2...($keysymlen - 1));
-                $funcdescr = concatsym(
-                    $funcdescr, '$', $outkeyname, ' = ', '$buf.getkey' $open, $outkey, $close, if $outkeyid < length($outkeys) then ';' else '', $br
-                ) 
-            );
-            $funcdescr = concatsym($funcdescr, '```') 
-            ## --------------------------------------
-            
+            ))
         );
         $markdown = concatsym($markdown, $funcdescr, $br);
         if $hasargs == 1 then ($markdown = concatsym($markdown, $br, '---', $br, $funcref));

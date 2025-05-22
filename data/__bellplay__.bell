@@ -4,6 +4,7 @@ BP_DATABASE_OUTPUT = null;
 BP_DATABASE_TABLES = null;
 BP_TREE_NORM = null;
 BP_REF_LABEL_DATA_UTILS = "data utilities";
+BP_REF_LABEL_RANDOM_FUNCTIONS = "randomization";
 BP_REF_LABEL_BUFFER_OPERATIONS = "buffer operations";
 BP_REF_LABEL_BUFFER_GENERATION = "buffer generation";
 BP_REF_LABEL_BUFFER_ANALYSIS = "buffer analysis";
@@ -13,6 +14,7 @@ BP_REF = (for $i in (
     BP_REF_LABEL_BUFFER_OPERATIONS 
     BP_REF_LABEL_BUFFER_GENERATION 
     BP_REF_LABEL_BUFFER_ANALYSIS
+    BP_REF_LABEL_RANDOM_FUNCTIONS
     BP_REF_LABEL_BUFFER_UTILS
 ) collect [ $i ]);
 BP_REF_TIMEUNIT_OPTIONS = null;
@@ -210,7 +212,26 @@ BP_REF_PROCESS_EXAMPLE = (
             "$buffer = $buffer.process($op); ## apply processing",
             "$buffer.inspect('after process')"
         );
-        $text = $break + $break + "This operation can be applied to a buffer, via the `process` function:" + $break;
+        $text = $break + $break + "`" + $name + "` is meant to be used with the `process` function:" + $break;
+        $text + $code
+    ) 
+);
+
+BP_REF_ANALYZE_EXAMPLE = (
+    $name, $params = "", $buffer = "importaudio('singing.wav')" -> (
+        $open = "(";
+        $close = ")";
+        $break = "
+";
+        $tab = "    ";
+        $code = BP_REF_CODE_SNIPPET(
+            "$buffer = " + $buffer + "; ## input buffer",
+            "$descr = " + $name + "(" + $params + "); ## generate " + $name + " audio descriptor",
+            "$buffer.inspect('before analysis');",
+            "$buffer = $buffer.analyze($descr); ## apply analysis",
+            "$buffer.inspect('after analysis')"
+        );
+        $text = $break + $break + "`" + $name + "` is meant to be used with the `analyze` function:" + $break;
         $text + $code
     ) 
 );
@@ -228,6 +249,9 @@ print($results) ## print results");
 
 BP_REF_NEW = (
     $name, $description, $arguments, $output, $category = BP_REF_LABEL_DATA_UTILS, $anmodes = 0...3, $ankeys = null, $usage = null -> (
+        $open = "(";
+        $close = ")";
+        $tab = "    ";
         ## check if reference belongs to analysis/descriptor function
         if $category == BP_REF_LABEL_BUFFER_ANALYSIS then (
             ## check if descriptor supports multiple modes
@@ -236,15 +260,29 @@ BP_REF_NEW = (
                 ## if so, filter out unsupported modes
                 $mode."options:" = for $i in $anmodes collect ($mode."options:"):($i + 1)
             );
+            if $name == 'analyze' then (
+                $code = BP_REF_CODE_SNIPPET(
+                    "## generate one or more audio descriptors",
+                    "$descriptors = " + $open, 
+                    $tab +  "larm()",
+                    $tab + "pitchmelodia()",
+                    $tab + "spectralcentroid()",
+                    $close + ";",
+                    "$buffer.inspect('before analysis');",
+                    "## apply analysis to buffer",
+                    "$buffer = $buffer.analyze($descriptors);",
+                    "$buffer.inspect('after analysis')"
+                );
+                $usage = $code
+            ) else (
+                $usage = BP_REF_ANALYZE_EXAMPLE($name)
+            );
             ## re-assign modified arguments
             $arguments."@mode" = $mode
         ) else if $category == BP_REF_LABEL_BUFFER_OPERATIONS then (
             if $name == 'process' then (
-                $open = "(";
-                $close = ")";
-                $tab = "    ";
                 $code = BP_REF_CODE_SNIPPET(
-                    "## define one or more processing operations",
+                    "## generate one or more processing operations",
                     "$operations = " + $open, 
                     $tab +  "reverse()",
                     $tab + "freeverb(@tail 1000)",
@@ -812,170 +850,6 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-buildcorpus = (
-    $files = null,
-    $descriptors = null,
-    $outpath = null,
-    $segmode = 1,
-    $overlap = 1,
-    $segsize = 100,
-    $alpha = 0.1,
-    $delay = 5,
-    $framerate = 86.1328,
-    $silencethreshold = 0.02,
-    $usecache = 1 -> (
-        $self = 'buildcorpus';
-        BP_FN_CHECK_ARGS($self, 'files', $files, 'descriptors', $descriptors);
-        if $files.contains() != 16 then BP_FN_ERROR($self, 'all elements in @files must by of type symbol');
-        if $segmode.intersection(0...2) == null then BP_FN_ERROR($self, "invalid @segmode:" $segmode);
-        if $segsize <= 0 then BP_FN_ERROR($self, "segmentation size must be greater than zero");
-
-        if $outpath != null then (
-            $pathinfo = BP_FN_PATHINFO($outpath);
-            $ext = $pathinfo."extension";
-            if $ext != ".llll" then (
-                BP_FN_ERROR($self, "invalid corpus extension:" $ext)
-            ) else if $path."type" == 3 then (
-                BP_FN_ERROR($self, "invalid @outpath:" $outpath)
-            );
-            $outpath = $pathinfo."path" + $pathinfo."extension"
-        );
-
-        BP_DATABASE_OUTPUT = null;
-
-        $corpus = null;
-
-        $onsetdescriptor = onsets(
-            @alpha $alpha
-            @delay $delay
-            @framerate $framerate
-            @silencethreshold $silencethreshold
-        );
-        
-        for $file in $files do (
-            $pathinfo = BP_FN_PATHINFO($file);
-            if ($pathinfo."extension").intersection(BP_SUPPORTED_AUDIO_FORMATS) == null then (
-                BP_FN_ERROR($self, "invalid audio file:" $file)
-            ) else (
-                $path = $pathinfo."path" + $pathinfo."extension";
-                $buff = importaudio($path @usecache $usecache);
-                $segref = $buff;
-                $segments = null;
-                if $segmode != 0 then (
-                    if $segmode == 1 then (
-                        $buff = $buff.analyze(
-                            @descriptors $onsetdescriptor
-                        );
-                        $onsets = $buff.getkey("onsets") ||| 0;
-                        $durations = ($onsets $buff.getkey("source_end")).x2dx()
-                    ) else if $segmode == 2 then (
-                        $hopsize = $segsize / $overlap;
-                        $numsegs = max(1, ceil($buff.getkey("duration") / $hopsize));
-                        $onsets = (0...($numsegs - 1)) * $hopsize;
-                        $durations = $segsize :* $onsets.length()
-                    );
-                    for $onset in $onsets, $duration in $durations do (
-                        $segments _= $segref.setkey("offset", $onset).setkey("duration", $duration)
-                    )
-                ) else (
-                    $segments _= $buff
-                );
-                for $seg in $segments do (
-                    $seg = $seg.analyze(
-                        @descriptors $descriptors
-                    ).setkey("source", $path);
-                    $corpus _= $seg
-                )
-            )
-        );
-        $template = for $keyval in $corpus::1 with @unwrap 1 collect (
-            $key = $keyval.left(1);
-            $val = $keyval.right(1);
-            $type = null;
-            $contains = $val.contains();
-            $type = if $val == null || $val.length() > 1 || $val.depth() > 1 then (
-                "l"
-            ) else if $contains == 2 then (
-                "i"
-            ) else if $contains == 4 then (
-                "r"
-            ) else if $contains == 8 then (
-                "f"
-            ) else if $contains == 16 then (
-                "s"
-            ) else if $contains == 256 then (
-                "p"
-            ) else (
-                "l"
-            );
-            [ $key $type ]
-        );
-        BP_FN_DISPATCH("db", [ "erase" ] [ "addtable" "buffers" $template ]);
-        for $entry in $corpus do (
-            $entry = ($entry::1).map(
-                ## nullify inf and nan values
-                $x -> (
-                    if $x.contains() <= 8 && ($x.abs() == BP_INF || $x.isnan()) then null else $x
-                )
-            @maxdepth -1);
-            BP_FN_DISPATCH("db", [ "addentry" "buffers" $entry ])
-        );
-
-        if $outpath != null then (
-            BP_FN_DISPATCH("db", [ "write" $outpath ] )
-        )
-    )
-);
-
-BP_REF_NEW(
-    @name "buildcorpus"
-    @description "Creates a buffer corpus from a list of audio file paths, and writes it into disk as a `.llll` file. See `analyze` and `onsets`."
-    @category BP_REF_LABEL_DATA_UTILS
-    @arguments (
-        BP_REF_ARG(@name "files" @type "symbol/list" @description "list of audio file paths.")
-        BP_REF_ARG(@name "descriptors" @type "llll" @description "list of audio descriptors.")
-        BP_REF_ARG(@name "outpath" @default "null" @type "symbol/null" @description "optional output corpus path, as an `.llll` file. If `null`, the corpus is not written into memory.")
-        BP_REF_ARG(@name "segmode" @default 1 @type "int" @description "buffer segmentation mode." @options 
-            BP_REF_OPT(@value 0 @description "no" "segmentation")
-            BP_REF_OPT(@value 1 @description "'onsets'-based" "segmentation")
-            BP_REF_OPT(@value 2 @description "blind" "segmentation")
-        )
-        BP_REF_ARG(@name "overlap" @default 1 @type "int/float" @description "segment overlap factor, when `@segmode` is `2`.")
-        BP_REF_ARG(@name "segsize" @default 100 @type "int" @description "segment duration in milliseconds, when `@segmode` is `2`.")
-        BP_REF_ARG(@name "alpha" @default 0.1 @type "float" @description "proportion of the mean included to reject smaller peaks—filters very short onsets.")
-        BP_REF_ARG(@name "delay" @default 5 @type "int" @description "number of frames used to compute the threshold—size of short-onset filter.")
-        BP_REF_ARG(@name "framerate" @default 86.1328 @type "float" @description "frames per second.")
-        BP_REF_ARG(@name "silencethreshold" @default 0.02 @type "float" @description "threshold for silence.")
-        BP_REF_USE_CACHE_ARG
-    )
-);
-
-## ------------------------------------------------------------
-
-setcorpus = (
-    $filepath -> (
-        $self = 'setcorpus';
-        BP_FN_CHECK_ARGS($self, 'filepath', $filepath);
-        $pathinfo = BP_FN_PATHINFO($filepath @locate 1);
-        $path = $pathinfo."path";
-        $extension = $pathinfo."extension";
-        if $extension != ".llll" then BP_FN_ERROR($self, if $extension == null then "you must provide a file path" else "invalid corpus extension:" $extension);
-        BP_DATABASE_OUTPUT = null;
-        BP_FN_DISPATCH("db", [ "read" $path + $extension ])
-    )
-);
-
-BP_REF_NEW(
-    @name "setcorpus",
-    @description "Loads an audio corpus, given a path to a `.llll` file. See `query` function.",
-    @category BP_REF_LABEL_DATA_UTILS,
-    @arguments (
-        BP_REF_ARG(@name "filepath" @type "symbol" @description "file path to `.llll` corpus file.")
-    )
-);
-
-## ------------------------------------------------------------
-
 createtable = (
     $data = null, $name = 'data' -> (
         $self = 'createtable';
@@ -1070,25 +944,25 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-getcorpuskeys = (
-   $typed = 1 -> (
-        BP_FN_DISPATCH('db', [ "getcols" ]);
-        $keys = (BP_DATABASE_OUTPUT::1).right(1);
-        if $typed == 1 then $keys else for $x in $keys collect $x.flat():1
-    )
-);
+## gettablecols = (
+##    $typed = 1 -> (
+##         BP_FN_DISPATCH('db', [ "getcols" ]);
+##         $keys = (BP_DATABASE_OUTPUT::1).right(1);
+##         if $typed == 1 then $keys else for $x in $keys collect $x.flat():1
+##     )
+## );
 
-BP_REF_NEW(
-    @name "getcorpuskeys"
-    @description "Returns a list with the current corpus' keys. See `setcorpus`, `buildcorpus`, and `query`."
-    @category BP_REF_LABEL_DATA_UTILS
-    @arguments (
-        BP_REF_ARG(@name "typed" @default 1 @type "int" @description "include the data type for each key." @options 
-            BP_REF_SWITCH_OPTIONS
-        )
-    )
-    @output BP_REF_OUTPUT(@description "corpus keys" @type "list/llll")
-);
+## BP_REF_NEW(
+##     @name "gettablecols"
+##     @description "Returns a list with the current corpus' keys. See `setcorpus`, `buildcorpus`, and `query`."
+##     @category BP_REF_LABEL_DATA_UTILS
+##     @arguments (
+##         BP_REF_ARG(@name "typed" @default 1 @type "int" @description "include the data type for each key." @options 
+##             BP_REF_SWITCH_OPTIONS
+##         )
+##     )
+##     @output BP_REF_OUTPUT(@description "corpus keys" @type "list/llll")
+## );
 
 ## ------------------------------------------------------------
 
@@ -1165,32 +1039,6 @@ BP_REF_NEW(
         BP_REF_ARG(@name "weights" @default "null" @type "list/null" @description "optional weights.")
     ),
     @output BP_REF_OUTPUT(@description "mean value", @type "float")
-);
-
-## ------------------------------------------------------------
-
-query = (
-    $sql = "SELECT * FROM buffers", 
-    $usecache = 1 -> (
-        BP_FN_CHECK_ARGS('query', 'sql', $sql);
-        BP_FN_DISPATCH("db", [ "query" $sql ]);
-        (if BP_DATABASE_OUTPUT == null then BP_FN_ERROR('query', "query did not yield any results:" tosymbol($sql)));
-        $sources = thin(for $buff in BP_DATABASE_OUTPUT collect $buff.getkey("source"));
-        $sourcemap = for $source in $sources collect [ $source importaudio($source @usecache $usecache).getkey("source") ];
-        BP_DATABASE_OUTPUT = for $buff in BP_DATABASE_OUTPUT collect $buff.mapkey("source", $x -^ $sourcemap -> $sourcemap.$x);    
-        BP_DATABASE_OUTPUT
-    )
-);
-
-BP_REF_NEW(
-    @name "query",
-    @description "Executes a `sqlite3` query on the current audio corpus, and returns the results. Every query should use 'buffers' as the table name. For instance: `'SELECT * FROM buffers'`. See `setcorpus`.",
-    @category BP_REF_LABEL_DATA_UTILS,
-    @arguments (
-        BP_REF_ARG(@name "sql" @type "symbol" @default "'SELECT * FROM buffers'" @description "sqlite3 query.")
-        BP_REF_USE_CACHE_ARG
-    ),
-    @output BP_REF_OUTPUT(@description "list of buffers" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -1453,7 +1301,7 @@ rand = (
 BP_REF_NEW(
     @name "rand"
     @description "Random floating point number generator."
-    @category BP_REF_LABEL_DATA_UTILS
+    @category BP_REF_LABEL_RANDOM_FUNCTIONS
     @arguments (
         BP_REF_ARG(@name "a" @default 1 @type "int/float" @description "max. value if `@b` is `null`, else min. value.")
         BP_REF_ARG(@name "b" @default 'null' @type "int/float/null" @description "max. value.")
@@ -1559,7 +1407,7 @@ choose = (
 BP_REF_NEW(
     @name "choose",
     @description "Choose randomly one or more elements from a list, with optional probability weights.",
-    @category BP_REF_LABEL_DATA_UTILS,
+    @category BP_REF_LABEL_RANDOM_FUNCTIONS
     @arguments (
         BP_REF_ARG(@name "choices", @type "list", @description "list to choose from.")
         BP_REF_ARG(@name "n" @default 1 @type "int", @description "number of random choices.")
@@ -1605,12 +1453,12 @@ xrand = (
 
 BP_REF_NEW(
     @name "xrand",
-    @description "Seed-based random floating point number generator. See `setseed`.",
-    @category BP_REF_LABEL_DATA_UTILS,
+    @description "Seed-based random floating point number generator. See `setseed`."
+    @category BP_REF_LABEL_RANDOM_FUNCTIONS
     @arguments (
         BP_REF_ARG(@name "a" @default 1 @type "int/float", @description "max. value if `@b` is null, else min. value.")
         BP_REF_ARG(@name "b" @default "null" @type "int/float/null", @description "max. value.")
-    ),
+    )
     @output BP_REF_OUTPUT(@description "random number", @type "float")
 );
 
@@ -1626,7 +1474,7 @@ xrandom = (
 BP_REF_NEW(
     @name "xrandom",
     @description "Seed-based random integer number generator. See `setseed`.",
-    @category BP_REF_LABEL_DATA_UTILS,
+    @category BP_REF_LABEL_RANDOM_FUNCTIONS
     @arguments (
         BP_REF_ARG(@name "a" @default 1 @type "int", @description "max. value if `@b` is `null`, else min. value.")
         BP_REF_ARG(@name "b" @default "null" @type "int/null", @description "max. value.")
@@ -1643,7 +1491,7 @@ xchoose = (
 BP_REF_NEW(
     @name "xchoose",
     @description "Choose randomly one or more elements from a list, with optional probability weights. See `setseed`.",
-    @category BP_REF_LABEL_DATA_UTILS,
+    @category BP_REF_LABEL_RANDOM_FUNCTIONS
     @arguments (
         BP_REF_ARG(@name "choices", @type "list", @description "list to choose from.")
         BP_REF_ARG(@name "n", @default 1, @type "int", @description "number of random choices.")
@@ -1667,7 +1515,7 @@ xscramble = (
 BP_REF_NEW(
     @name "xscramble"
     @description "Seed-based random shuffling of elements. See `setseed`."
-    @category BP_REF_LABEL_DATA_UTILS
+    @category BP_REF_LABEL_RANDOM_FUNCTIONS
     @arguments (
         BP_REF_ARG(@name "llll" @type "list/llll", @description "list to scramble.")
     )
@@ -1693,7 +1541,7 @@ initurn = (
 BP_REF_NEW(
     @name "initurn"
     @description "Initializes a new unique random number generator (URN), given a size and a URN identifier. Once initialized, the identifier can be used to generate unique random numbers with the `urn` function. This allows for independent URNs of different sizes to be used within the same script. If a URN associated with the identifier already exists, the URN is reset. The initialized URN can be optionally be seed-based. See `setseed`."
-    @category BP_REF_LABEL_DATA_UTILS
+    @category BP_REF_LABEL_RANDOM_FUNCTIONS
     @arguments (
         BP_REF_ARG(@name "size" @default 10 @type "int", @description "number of unique random numbers.")
         BP_REF_ARG(@name "id" @default 0 @type "int/float/symbol", @description "identifier for unique random number generator.")
@@ -1727,7 +1575,7 @@ urn = (
 BP_REF_NEW(
     @name "urn"
     @description "Returns a unique random number for a given URN identifier. Note that you must call `initurn` first to initialize the URN."
-    @category BP_REF_LABEL_DATA_UTILS
+    @category BP_REF_LABEL_RANDOM_FUNCTIONS
     @arguments (
         BP_REF_ARG(@name "id" @default 0 @type "int/float/symbol", @description "identifier for URN.")
     )
@@ -2003,7 +1851,7 @@ transcribe = (
 BP_REF_NEW(
     @name "transcribe",
     @description "Adds input buffer to the rendering sequence. See `render` function."
-    @category BP_REF_LABEL_DATA_UTILS
+    @category BP_REF_LABEL_BUFFER_UTILS
     @arguments (
         BP_REF_ARG(@name "buffer" @type "llll" @description "buffer to add to rendering sequence.")
         BP_REF_ARG(@name "onset" @type "int/float" @default 0, @description "buffer onset in milliseconds.")
@@ -4902,7 +4750,7 @@ expand = (
 BP_REF_NEW(
     @name "expand",
     @description "Modifies offset and duration of a buffer, such that it uses the full length of its reference buffer.",
-    @category BP_REF_LABEL_DATA_UTILS,
+    @category BP_REF_LABEL_BUFFER_UTILS,
     @arguments (
         BP_REF_ARG(@name "buffer", @type "llll", @description "buffer to expand.")
     )
@@ -6508,14 +6356,13 @@ buf2samps = (
         $source = $buffer.process(bpthru()).getkey("source");
         BP_FN_DISPATCH('ears', ['tosamps' $source]);
         BP_TMP_EARS_OUTPUT
-        
     )
 );
 
 BP_REF_NEW(
     @name "buf2samps"
-    @description "Buffer to samples conversion.",
-    @category BP_REF_LABEL_DATA_UTILS,
+    @description "Buffer to samples conversion."
+    @category BP_REF_LABEL_BUFFER_UTILS
     @arguments (
         BP_REF_ARG(@name "buffer", @type "llll", @description "buffer to convert to audio samples.")
     )
@@ -6547,7 +6394,7 @@ samps2buf = (
 BP_REF_NEW(
     @name "samps2buf"
     @description "Samples to buffer conversion."
-    @category BP_REF_LABEL_DATA_UTILS
+    @category BP_REF_LABEL_BUFFER_UTILS
     @arguments (
         BP_REF_ARG(@name "llll" @type "llll" @description "audio samples to convert to a buffer.")
         BP_REF_ARG(@name "sr" @type "int" @default 0 @description "sampling rate. use `0` for default sampling rate.")
@@ -6963,7 +6810,7 @@ splitbuf = (
 BP_REF_NEW(
     @name "splitbuf"
     @description "Splits a buffer into multiple segments. Based on the split mode, it segments the buffer based on segment duration, number of segment, or split points."
-    @category BP_REF_LABEL_DATA_UTILS
+    @category BP_REF_LABEL_BUFFER_UTILS
     @arguments (
         BP_REF_ARG(@name "buffer" @type "llll" @description "buffer to segment.")
         BP_REF_ARG(@name "split" @default 100 @type "int/float/list" @description "split value, based on split mode.")
