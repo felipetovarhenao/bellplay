@@ -217,6 +217,21 @@ BP_REF_PROCESS_EXAMPLE = (
     ) 
 );
 
+BP_REF_GENERATION_EXAMPLE = (
+    $name, $params = "" -> (
+        $open = "(";
+        $close = ")";
+        $break = "
+";
+        $tab = "    ";
+        $code = BP_REF_CODE_SNIPPET(
+            "$buffer = " + $name + "(" + $params + ");",
+            "$buffer.inspect('generated buffer')"
+        );
+        $code
+    ) 
+);
+
 BP_REF_ANALYZE_EXAMPLE = (
     $name, $params = "", $buffer = "importaudio('singing.wav')" -> (
         $open = "(";
@@ -253,7 +268,9 @@ BP_REF_NEW = (
         $close = ")";
         $tab = "    ";
         ## check if reference belongs to analysis/descriptor function
-        if $category == BP_REF_LABEL_BUFFER_ANALYSIS then (
+        if $category == BP_REF_LABEL_BUFFER_GENERATION then (
+            $usage = BP_REF_GENERATION_EXAMPLE($name)
+        ) else if $category == BP_REF_LABEL_BUFFER_ANALYSIS then (
             ## check if descriptor supports multiple modes
             $mode = $arguments."@mode";
             if $mode != null then (

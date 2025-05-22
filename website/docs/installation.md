@@ -92,5 +92,5 @@ In **bellplay~**:
 
 ## Next Steps
 
-Once installed, explore the [tutorials](category/tutorials) page to run your first bell script.
+Once installed, explore the tutorials page to run your first bell script.
 If you're new to the language, visit the [bell tutorials](https://felipetovarhenao.github.io/bell-tutorials) for a musician-friendly introduction to the language.
