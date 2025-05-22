@@ -1,44 +1,55 @@
 #( 
 
-# Creating Audio Corpora
+# Audio corpora with SQL tables
 
-This tutorial shows how to create a simple corpus based on the long-term loudness, and then load and use the corpus.
+This tutorial demonstrates how to create an in-memory, queryable corpus of audio buffers by leveraging the `createtable` and `querytable` functions. 
+These functions allow you to structure and filter lllls using [SQLite3](https://www.sqlitetutorial.net/) queries based on specific keys.
+
+We begin by importing an audio file and splitting it into short fixed-length segments. Each segment is then analyzed using the `pitchmelodia` descriptor, which provides an estimation of predominant melody pitch and associated confidence values. 
+The results of this analysis are assembled into a structured table using `createtable`.
+
+Each element in the input data passed to `createtable` should be structured as a list of key-value pairs, where each key corresponds to a column name in the resulting table and each value is the corresponding data entry. 
+For example:
+
+```
+[
+    [ <key_1> <value_1> ]
+    [ <key_2> <value_2> ]
+    ...
+    [ <key_N> <value_N> ]
+]
+```
+
+This format ensures that the resulting table can be queried using standard SQL-style syntax, with each key becoming a column in the table schema.
+
+Once the table is created, we can query it using `querytable`, selecting only segments that meet certain criteria—here, those with a pitch confidence greater than `0.01`—and ordering them by [pitch class](https://en.wikipedia.org/wiki/Pitch_class) (pitch modulo 1200).
+
+Finally, the selected segments are rendered back as symbolic notes, placed at regular temporal intervals and randomized in the stereo field.
 
 )#
-## output path for corpus
-$corpuspath = './mycorpus.llll';
-## create corpus if it doesn't exist yet
-if $corpuspath.exists() == 0 then (
-    ## corpus files
-    $files = getmediafiles('audio');
-    ## create new corpus
-    buildcorpus(
-        @files $files
-        @descriptors (
-            ## analyze every file in terms of its long-term loudness
-            larm() 
-        ) 
-        ## onset-based segmentation
-        @segmode 1
-        ## set output path
-        @outpath $corpuspath
-    );
-    print('Corpus created. 👌🏽') 
-) else (
-    ## load pre-existing corpus
-    setcorpus($corpuspath) 
+## Import an audio file into a buffer
+$buffer = importaudio('trumpet.wav');
+## Split the buffer into fixed-length segments of 100 ms
+$segments = $buffer.splitbuf(@split 100);
+## Analyze each segment with the 'pitchmelodia' descriptor and collect the results
+$corpus = for $seg in $segments collect $seg.analyze(pitchmelodia());
+## Create an in-memory SQL table named 'corpus' from the analysis results
+createtable(
+    @data $corpus @name 'corpus' 
 );
-## query corpus using SQLite3 syntax
-$buffers = query('SELECT * FROM buffers ORDER BY larm');
+## Query the table to select segments with high pitch confidence,
+## ordered by pitch class (pitch modulo 1200)
+$results = querytable('SELECT * FROM corpus WHERE pitchmelodia_confidence > 0.01 ORDER BY (pitchmelodia % 1200)');
+## Initialize onset time for transcription
 $onset = 0;
-## transcribe buffer results from query
-for $buff in $buffers do (
-    $buff.transcribe(
-        @onset $onset @pan rand() 
+## Transcribe each selected segment with symbolic pitch and random panning
+for $seg in $results do (
+    $seg.transcribe(
+        @onset $onset
+        @pitchkey 'pitchmelodia' 
+        @pan rand() 
     );
-    $onset += 33
+    $onset += 50 # Increment onset time for next segment
 );
-## trigger rendering
-render(
-    @play 1 @process normalize() 
-)
+## Trigger rendering
+render(@play 1)

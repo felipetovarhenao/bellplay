@@ -1032,7 +1032,7 @@ createtable = (
 
 BP_REF_NEW(
     @name "createtable"
-    @description "Instantiates a [SQL](https://www.sqlitetutorial.net/) table given a list, where each element is expected to be a list of key-value pairs."
+    @description "Instantiates a [SQLite3](https://www.sqlitetutorial.net/) table given a list, where each element is expected to be a list of key-value pairs."
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "data" @type "llll" @description "Data from which to build SQL table, each element structured as a list of key-value pairs.")
@@ -1059,7 +1059,7 @@ querytable = (
 
 BP_REF_NEW(
     @name "querytable"
-    @description "Performs a [SQL](https://www.sqlitetutorial.net/) query on previously created tables. See `createtable`."
+    @description "Performs a [SQLite3](https://www.sqlitetutorial.net/) query on previously created tables. See `createtable`."
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "sql" @type "symbol" @description "SQL table query.")
