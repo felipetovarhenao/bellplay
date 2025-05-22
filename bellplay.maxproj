@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3830721855,
+	"modificationdate" : 3830798775,
 	"viewrect" : [ 25.0, 104.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -620,11 +620,6 @@
 				"local" : 1
 			}
 ,
-			"bp.tutorial.corpus.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
 			"bp.tutorial.analysismodes.bell" : 			{
 				"kind" : "textfile",
 				"local" : 1
@@ -775,7 +770,12 @@
 ,
 			"corpus_demo.llll" : 			{
 				"kind" : "llllfile",
-				"local" : 1
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/Documents/bellplay/media",
+					"projectrelativepath" : "./media"
+				}
+
 			}
 ,
 			"dev_logo.ico" : 			{

@@ -63,6 +63,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `buildcorpus`: Replaced by `createtable`.
   - `query`: Replaced by `querytable`.
   - `interpolate`: No longer useful.
+- Deprecated tutorials:
+  - `bp.tutorial.corpus`.
 - Dev:
   - `printerror`: replaced by `BP_FN_ERROR`.
 
