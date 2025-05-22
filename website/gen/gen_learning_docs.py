@@ -24,11 +24,7 @@ for i, subdir in enumerate(FOLDER_NAMES):
     # Create category.json file
     json_data = {
         "label": subdir.title(),
-        "position": i + 1,
-        "collapsible": False,
-        "link": {
-            "type": "generated-index"
-        }
+        "position": i + 1
     }
     with open(os.path.join(out_path, "_category_.json"), "w", encoding="utf-8") as json_file:
         import json
