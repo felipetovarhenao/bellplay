@@ -2586,7 +2586,7 @@ BP_REF_NEW(
     @description "Generates audio descriptor to compute the effective duration of an envelope signal. The effective duration is a measure of the time the signal is perceptually meaningful. This is approximated by the time the envelope is above or equal to a given threshold and is above the -90dB noise floor. This measure allows to distinguish percussive sounds from sustained sounds but depends on the signal length. By default, this algorithm uses 40% of the envelope maximum as the threshold which is suited for short sounds. Note, that the 0% thresold corresponds to the duration of signal above -90db noise floor, while the 100% thresold corresponds to the number of times the envelope takes its maximum value. See `analyze`.",
     @category BP_REF_LABEL_BUFFER_ANALYSIS
     @arguments (
-        BP_REF_ARG(@name "thresholdratio" @default 0.02 @type "int/float" @description "ratio of the envelope maximum to be used as the threshold.")
+        BP_REF_ARG(@name "thresholdratio" @default '0.02' @type "int/float" @description "ratio of the envelope maximum to be used as the threshold.")
         BP_REF_ARG(@name "samplerate" @default 44100 @type "int" @description "sampling rate.")
     )
     @output BP_REF_OUTPUT(@description "effectiveduration descriptor" @type "llll")
@@ -2653,7 +2653,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "maxfrequency" @default 22050 @type "int/float" @description "the maximum allowed frequency.")
         BP_REF_ARG(@name "minfrequency" @default 20 @type "int/float" @description "the minimum allowed frequency.")
         BP_REF_ARG(@name "samplerate" @default 44100 @type "int" @description "sampling rate of the input audio.")
-        BP_REF_ARG(@name "tolerance" @default 0.15 @type "int/float" @description "tolerance for peak detection.")
+        BP_REF_ARG(@name "tolerance" @default '0.15' @type "int/float" @description "tolerance for peak detection.")
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
             BP_REF_ESSENTIA_ANALYSIS_OPTIONS
         )
@@ -2694,11 +2694,11 @@ BP_REF_NEW(
 ##     @description "Generates audio descriptor to compute the signal-to-noise ratio for a buffer in a frame-wise manner. The algorithm assumes that the noise is gaussian and that there is a region of noise, without signal, at the beginning of the buffer in order to estimate the power spectral density of the noise. See `analyze`.",
 ##     @category BP_REF_LABEL_BUFFER_ANALYSIS,
 ##     @arguments (
-##         BP_REF_ARG(@name "maalpha" @default 0.95 @type "int/float" @description "alpha coefficient for the EMA SNR estimation.")
-##         BP_REF_ARG(@name "mmsealpha" @default 0.98 @type "int/float" @description "alpha coefficient for the MMSE estimation.")
-##         BP_REF_ARG(@name "noisealpha" @default 0.9 @type "int/float" @description "alpha coefficient for the EMA noise estimation.")
+##         BP_REF_ARG(@name "maalpha" @default '0.95' @type "int/float" @description "alpha coefficient for the EMA SNR estimation.")
+##         BP_REF_ARG(@name "mmsealpha" @default '0.98' @type "int/float" @description "alpha coefficient for the MMSE estimation.")
+##         BP_REF_ARG(@name "noisealpha" @default '0.9' @type "int/float" @description "alpha coefficient for the EMA noise estimation.")
 ##         BP_REF_ARG(@name "framesize" @default 512 @type "int" @description "size of the input frame.")
-##         BP_REF_ARG(@name "noisethreshold" @default 0.01 @type "int/float" @description "threshold to detect frames without signal.")
+##         BP_REF_ARG(@name "noisethreshold" @default '0.01' @type "int/float" @description "threshold to detect frames without signal.")
 ##         BP_REF_ARG(@name "samplerate" @default 44100 @type "int" @description "sampling rate of the audio signal.")
 ##         BP_REF_ARG(@name "usebroadbadnoisecorrection" @default 1 @type "int" @description "flag to apply the broadband noise correction factor." @options 
 ##             BP_REF_SWITCH_OPTIONS
@@ -3185,7 +3185,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "guessunvoiced" @default 0 @type "int" @description "estimate pitch for non-voiced segments." @options
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "harmonicweight" @default 0.8 @type "int/float" @description "weight decay ratio between two consequent harmonics. Use `1` for no decay.")
+        BP_REF_ARG(@name "harmonicweight" @default '0.8' @type "int/float" @description "weight decay ratio between two consequent harmonics. Use `1` for no decay.")
         BP_REF_ARG(@name "hopsize" @default 1024 @type "int" @description "hop size with which the pitch salience function was computed.")
         BP_REF_ARG(@name "magnitudecompression" @default 1 @type "int" @description "magnitude compression parameter for the salience function." @options
             BP_REF_OPT(@value 0 @description "maximum compression")
@@ -3196,9 +3196,9 @@ BP_REF_NEW(
         BP_REF_ARG(@name "minduration" @default 100 @type "int" @description "the minimum allowed contour duration.")
         BP_REF_ARG(@name "minfrequency" @default 40 @type "int/float" @description "the minimum allowed frequency for salience function peaks.")
         BP_REF_ARG(@name "numberharmonics" @default 20 @type "int" @description "number of considered harmonics.")
-        BP_REF_ARG(@name "peakdistributionthreshold" @default 0.9 @type "int/float" @description "allowed deviation below the peak salience mean over all frames.")
-        BP_REF_ARG(@name "peakframethreshold" @default 0.9 @type "int/float" @description "per-frame salience threshold factor.")
-        BP_REF_ARG(@name "pitchcontinuity" @default 27.5625 @type "int/float" @description "maximum allowed pitch change during 1 ms time period, in cents.")
+        BP_REF_ARG(@name "peakdistributionthreshold" @default '0.9' @type "int/float" @description "allowed deviation below the peak salience mean over all frames.")
+        BP_REF_ARG(@name "peakframethreshold" @default '0.9' @type "int/float" @description "per-frame salience threshold factor.")
+        BP_REF_ARG(@name "pitchcontinuity" @default '27.5625' @type "int/float" @description "maximum allowed pitch change during 1 ms time period, in cents.")
         BP_REF_ARG(@name "referencefrequency" @default 55 @type "int/float" @description "the reference frequency to cent conversion corresponding to the 0th cent bin.")
         BP_REF_ARG(@name "samplerate" @default 44100 @type "int" @description "the sampling rate of the audio signal.")
         BP_REF_ARG(@name "timecontinuity" @default 100 @type "int" @description "maximum allowed gap duration for a pitch contour, in milliseconds.")
@@ -3208,7 +3208,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "voicevibrato" @default 0 @type 'int' @description "detect voice vibrato, when `@polyphonic` is `1`." @options 
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "voicingtolerance" @default 0.2 @type 'int/float' @description "voicing tolerance between -1 and 1.4, when `@polyphonic` is `1`.")
+        BP_REF_ARG(@name "voicingtolerance" @default '0.2' @type 'int/float' @description "voicing tolerance between -1 and 1.4, when `@polyphonic` is `1`.")
         BP_REF_ARG(@name "mode" @default 0 @type "int" @description "analysis mode." @options
             BP_REF_ESSENTIA_ANALYSIS_OPTIONS
         )
@@ -3366,7 +3366,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_BUFFER_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "attacktime" @default 10 @type "int" @description "attack time of the first order lowpass in the attack phase.")
-        BP_REF_ARG(@name "power" @default 1.5 @type "int/float" @description "power used for averaging.")
+        BP_REF_ARG(@name "power" @default '1.5' @type "int/float" @description "power used for averaging.")
         BP_REF_ARG(@name "releasetime" @default 1500 @type "int" @description "release time of the first order lowpass in the release phase.")
         BP_REF_ARG(@name "samplerate" @default 44100 @type "int" @description "sampling rate.")
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
@@ -3569,8 +3569,8 @@ BP_REF_NEW(
     @ankeys "beatsloudness" "beatsloudness_bandratio"
     @arguments (
         BP_REF_ARG(@name "beats" @type "list" @description "duration of the window in which the beat will be restricted.")
-        BP_REF_ARG(@name "beatduration" @type "int/float" @default 0.05 @description "duration of the window in which to look for the beginning of the beat, centered around the values in `@beats`.")
-        BP_REF_ARG(@name "beatwindowduration" @type "int/float" @default 0.1 @description "list of beat positions.")
+        BP_REF_ARG(@name "beatduration" @type "int/float" @default '0.05' @description "duration of the window in which to look for the beginning of the beat, centered around the values in `@beats`.")
+        BP_REF_ARG(@name "beatwindowduration" @type "int/float" @default '0.1' @description "list of beat positions.")
         BP_REF_ARG(@name "frequencybands"  @type "list" @default 20 150 400 3200 7000 22000 @description "list of bands to compute energy ratios.")
         BP_REF_ARG(@name "samplerate" @type "int"  @default 44100 @description "audio sampling rate.")
         BP_REF_ARG(@name "mode" @type "int" @default 0 @description "analysis mode." @options
@@ -3676,7 +3676,7 @@ BP_REF_NEW(
     @description "Generates audio descriptor to compute the roll-off frequency of a spectrum. The roll-off frequency is defined as the frequency under which some percentage—i.e., cutoff—of the total energy of the spectrum is contained. The roll-off frequency can be used to distinguish between harmonic—i.e., below roll-off—and noisy sounds—i.e., above roll-off. See `analyze`."
     @category BP_REF_LABEL_BUFFER_ANALYSIS
     @arguments (
-        BP_REF_ARG(@name "cutoff" @default 0.85 @type "float" @description "the ratio of total energy to attain before yielding the roll-off frequency.")
+        BP_REF_ARG(@name "cutoff" @default '0.85' @type "float" @description "the ratio of total energy to attain before yielding the roll-off frequency.")
         BP_REF_ARG(@name "samplerate" @default 44100 @type "int" @description "sampling rate.")
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "analysis mode." @options
             BP_REF_ESSENTIA_ANALYSIS_OPTIONS
@@ -3737,10 +3737,10 @@ BP_REF_NEW(
     @description "Generates audio descriptor to compute the onset positions in a buffer. See `analyze`."
     @category BP_REF_LABEL_BUFFER_ANALYSIS
     @arguments (
-        BP_REF_ARG(@name "alpha" @default 0.1 @type "float" @description "proportion of the mean included to reject smaller peaks—filters very short onsets.")
+        BP_REF_ARG(@name "alpha" @default '0.1' @type "float" @description "proportion of the mean included to reject smaller peaks—filters very short onsets.")
         BP_REF_ARG(@name "delay" @default 5 @type "int" @description "number of frames used to compute the threshold—size of short-onset filter.")
-        BP_REF_ARG(@name "framerate" @default 86.1328 @type "float" @description "frames per second.")
-        BP_REF_ARG(@name "silencethreshold" @default 0.02 @type "float" @description "threshold for silence.")
+        BP_REF_ARG(@name "framerate" @default '86.1328' @type "float" @description "frames per second.")
+        BP_REF_ARG(@name "silencethreshold" @default '0.02' @type "float" @description "threshold for silence.")
     )
     @output BP_REF_OUTPUT(@description "onsets descriptor" @type "llll")
 );
@@ -3845,7 +3845,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value "'braw'" @description "profiles obtained by calculating the median profile for each mode from a subset of BeatPort dataset.")
             BP_REF_OPT(@value "'bgate'" @description "same as braw but zeroing the 4 less relevant elements of each profile.")
         )
-        BP_REF_ARG(@name "slope" @default 0.6 @type "int/float" @description "value of the slope of the exponential harmonic contribution to the polyphonic profile.")
+        BP_REF_ARG(@name "slope" @default '0.6' @type "int/float" @description "value of the slope of the exponential harmonic contribution to the polyphonic profile.")
         BP_REF_ARG(@name "usemajmin" @default 0  @type "int" @description "use a third profile called 'majmin' for ambiguous tracks. Only avalable for the edma, bgate and braw profiles." @options
             BP_REF_SWITCH_OPTIONS
         )
@@ -3948,8 +3948,8 @@ BP_REF_NEW(
         BP_REF_ARG(@name "fadeouttype",@default 0, @type "int", @description "fade-out type.", @options 
             BP_REF_CURVE_OPTIONS
         )
-        BP_REF_ARG(@name "fadeincurve", @default -0.25, @type "int/float", @description "fade-in curve amount, between -1 and 1.")
-        BP_REF_ARG(@name "fadeoutcurve", @default 0.25, @type "int/float", @description "fade-out curve amount, between -1 and 1.")
+        BP_REF_ARG(@name "fadeincurve", @default '-0.25', @type "int/float", @description "fade-in curve amount, between -1 and 1.")
+        BP_REF_ARG(@name "fadeoutcurve", @default '0.25', @type "int/float", @description "fade-out curve amount, between -1 and 1.")
         BP_REF_ARG(@name "timeunit", @default 0 @type "int", @description "time unit for `@start` and `@end`." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
@@ -4190,7 +4190,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "frequency, either as a single number, envelope, or buffer.")
         BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "buffer duration, in milliseconds")
-        BP_REF_ARG(@name "phase", @default 0.25, @type "int/float", @description "initial phase, in the 0–1 range.")
+        BP_REF_ARG(@name "phase", @default '0.25', @type "int/float", @description "initial phase, in the 0–1 range.")
     ),
     @output BP_REF_OUTPUT(@description "synthesized buffer" @type "llll")
 );
@@ -4212,7 +4212,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "frequency, either as a single number, envelope, or buffer.")
         BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "buffer duration, in milliseconds")
-        BP_REF_ARG(@name "duty", @default 0.5, @type "int/float/llll", @description "duty cycle in the range of 0-1, either as a number, envelope, or buffer.")
+        BP_REF_ARG(@name "duty", @default '0.5', @type "int/float/llll", @description "duty cycle in the range of 0-1, either as a number, envelope, or buffer.")
     ),
     @output BP_REF_OUTPUT(@description "synthesized buffer" @type "llll")
 );
@@ -4254,7 +4254,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "frequency, either as a single number, envelope, or buffer.")
         BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "buffer duration, in milliseconds")
-        BP_REF_ARG(@name "duty", @default 0.5, @type "int/float/llll", @description "duty cycle in the range of 0-1, either as a number, envelope, or buffer.")
+        BP_REF_ARG(@name "duty", @default '0.5', @type "int/float/llll", @description "duty cycle in the range of 0-1, either as a number, envelope, or buffer.")
     ),
     @output BP_REF_OUTPUT(@description "synthesized buffer" @type "llll")
 );
@@ -4278,7 +4278,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "frequency, either as a single number, envelope, or buffer.")
         BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "buffer duration, in milliseconds")
         BP_REF_ARG(@name "phase", @default 0, @type "int/float", @description "initial phase, in the 0-1 range.")
-        BP_REF_ARG(@name "offset", @default 0.5, @type "int/float", @description "peak position offset, in the 0-1 range.")
+        BP_REF_ARG(@name "offset", @default '0.5', @type "int/float", @description "peak position offset, in the 0-1 range.")
     ),
     @output BP_REF_OUTPUT(@description "synthesized buffer" @type "llll")
 );
@@ -4871,7 +4871,7 @@ BP_REF_NEW(
     @description "Generates audio process operation for reducing sampling rate and bit-depth of a buffer. See `process`.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "ratio", @default 0.5, @type "int/float/llll", @description "sampling rate ratio.")
+        BP_REF_ARG(@name "ratio", @default '0.5', @type "int/float/llll", @description "sampling rate ratio.")
         BP_REF_ARG(@name "bits", @default 4, @type "int/float/llll", @description "bit depth.")
     ),
     @output BP_REF_OUTPUT(@description "degrade operation" @type "llll")
@@ -4942,9 +4942,9 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "feedforward", @default 5, @type "int/float/llll", @description "feedforward delay time, in milliseconds, as either a single number, envelope, or buffer.")
         BP_REF_ARG(@name "feedback", @default 10, @type "int/float/llll", @description "feedback delay time, in milliseconds, as either a single number, envelope, or buffer.")
-        BP_REF_ARG(@name "gain", @default 0.5, @type "int/float/llll", @description "linear gain, as either a single number, envelope, or buffer.")
-        BP_REF_ARG(@name "feedforwardgain", @default 0.5, @type "int/float/llll", @description "linear feedforward gain, as either a single number, envelope, or buffer.")
-        BP_REF_ARG(@name "feedbackgain", @default -0.5, @type "int/float/llll", @description "linear feedback gain, as either a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "gain", @default '0.5', @type "int/float/llll", @description "linear gain, as either a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "feedforwardgain", @default '0.5', @type "int/float/llll", @description "linear feedforward gain, as either a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "feedbackgain", @default '-0.5', @type "int/float/llll", @description "linear feedback gain, as either a single number, envelope, or buffer.")
     ),
     @output BP_REF_OUTPUT(@description "teeth operation" @type "llll")
 );
@@ -5031,7 +5031,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "pitchgrid", @default 0, @type "int/float/list", @description "pitch grid to retune to, as a list of pitch classes.")
         BP_REF_ARG(@name "threshold" @default 0 @type "int/float" @description "correction threshold.")
-        BP_REF_ARG(@name "ambiencethreshold" @default 0.3 @type "int/float" @description "correction ambience threshold, between -10 and 10.")
+        BP_REF_ARG(@name "ambiencethreshold" @default '0.3' @type "int/float" @description "correction ambience threshold, between -10 and 10.")
         BP_REF_ARG(@name "amount" @default 100 @type "int/float" @description "pitch correction amount.")
         BP_REF_ARG(@name "bypass" @default 100 @type "int/float" @description "pitch correction auto-bypass threshold, at which signal passes unaffected.")
         BP_REF_ARG(@name "quality" @default "'basic'" @type "symbol" @description "pitch correction quality." @options
@@ -5877,7 +5877,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 1, @description "compensate")
             BP_REF_OPT(@value 2, @description "Griffin-Lim")
         )
-        BP_REF_ARG(@name "regularization", @default 0.01, @type "int/float", @description "how much energy of a bin smears on the ones above and below, between 0 and 1.")
+        BP_REF_ARG(@name "regularization", @default '0.01', @type "int/float", @description "how much energy of a bin smears on the ones above and below, between 0 and 1.")
         BP_REF_ARG(@name "wintype", @default "'sqrthann'" "'sqrthann'", @type "list/symbol", @description "window type." @options BP_REF_WINDOW_OPTIONS)
     ),
     @output BP_REF_OUTPUT(@description "timesquash operation" @type "llll")
@@ -6117,9 +6117,9 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "attack", @default 10, @type "int/float", @description "attack time.")
         BP_REF_ARG(@name "release", @default 50, @type "int/float", @description "release time.")
-        BP_REF_ARG(@name "knee", @default 0.7, @type "int/float", @description "knee width.")
+        BP_REF_ARG(@name "knee", @default '0.7', @type "int/float", @description "knee width.")
         BP_REF_ARG(@name "makeup", @default 0, @type "int/float", @description "make-up gain.")
-        BP_REF_ARG(@name "ratio", @default 1.5, @type "int/float", @description "compression ratio.")
+        BP_REF_ARG(@name "ratio", @default '1.5', @type "int/float", @description "compression ratio.")
         BP_REF_ARG(@name "thresh", @default -20, @type "int/float", @description "amplitude threshold.")
         BP_REF_ARG(@name "ampunit", @default 1, @type "int", @description "amplitude unit." @options
             BP_REF_AMPUNIT_OPTIONS
@@ -6249,8 +6249,8 @@ BP_REF_NEW(
         BP_REF_ARG(@name "framesize", @default 2048, @type "int", @description "window size, in samples.")
         BP_REF_ARG(@name "hopsize", @default 512, @type "int", @description "hop size, in samples.")
         BP_REF_ARG(@name "freqdevoffset" @default 20 @type "int" @description "frequency deviation offset.")
-        BP_REF_ARG(@name "freqdevslope" @default 0.01 @type "int/float" @description "frequency deviation slope.")
-        BP_REF_ARG(@name "magnitudethreshold", @default 2e-4, @type "float", @description "peak amplitude threshold.")
+        BP_REF_ARG(@name "freqdevslope" @default '0.01' @type "int/float" @description "frequency deviation slope.")
+        BP_REF_ARG(@name "magnitudethreshold", @default '2e-4', @type "float", @description "peak amplitude threshold.")
         BP_REF_ARG(@name "maxfrequency", @default 22050, @type "int/float", @description "max. frequency of the range to evaluate.")
         BP_REF_ARG(@name "minfrequency", @default 0, @type "int/float", @description "min. frequency of the range to evaluate.")
         BP_REF_ARG(@name "maxpeaks", @default 100, @type "int", @description "max. number of returned peaks.")
@@ -6286,7 +6286,7 @@ BP_REF_NEW(
         ##     BP_REF_OPT(@value 0 @description "sinusoidal")
         ##     BP_REF_OPT(@value 1 @description "stochastic" "+" "sinusoidal")
         ## )
-        ## BP_REF_ARG(@name "stocf", @default 0.2, @type "int/float", @description "decimation factor of stochastic approximation. Ignored if @stochastic is `0`.")
+        ## BP_REF_ARG(@name "stocf", @default '0.2', @type "int/float", @description "decimation factor of stochastic approximation. Ignored if @stochastic is `0`.")
     ),
     @output BP_REF_OUTPUT(@description "partial track analysis" @type "llll")
 );
