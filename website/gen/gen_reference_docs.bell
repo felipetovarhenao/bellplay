@@ -125,13 +125,6 @@ for $docsection $sectionid in ReferenceSections do (
             $funcsig, $close, ' -> ',  ($funcouttype ||| 'null'), $br, '```', $br
         );
         $markdown = concatsym($markdown, $funcsig, $br);
-        $outkeys = $entry.getkey('resulting buffer keys:').flat();
-        if $outkeys != null && $funcname != 'analyze' then (
-            $funcdescr = concatsym($funcdescr, $br, $br, 'The resulting buffer will be updated with the following keys:', $br);
-            for $outkey in $outkeys do ($funcdescr = concatsym(
-                $funcdescr, '- `', $outkey, '`', $br
-            ))
-        );
         $markdown = concatsym($markdown, $funcdescr, $br);
         if $hasargs == 1 then ($markdown = concatsym($markdown, $br, '---', $br, $funcref));
         if $funcouttype != null then $markdown = concatsym(

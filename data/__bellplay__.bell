@@ -291,7 +291,18 @@ BP_REF_NEW = (
                     "$buffer.inspect('after analysis')"
                 );
                 $usage = $code
-            ) else (
+            ) else if $name != 'buf2ptracks' then (
+                $ankeys = $ankeys ||| $name;
+                $description = BP_REF_MULTILINE($description, "", 'The resulting buffer will be updated with the following keys:', "");
+                $description = BP_REF_MULTILINE($description, '', for $ankey in $ankeys collect '- `' + $ankey + '`');
+                $description = BP_REF_MULTILINE(
+                    $description,
+                    "",
+                    ":::info",
+                    "`" + $name + "` is a mirror implementation of the same algorithm in the [Essentia](https://essentia.upf.edu/) library.",
+                    "For more details on the algorithm, please check the [Essentia Algorithms reference](https://essentia.upf.edu/algorithms_reference.html)."
+                    ":::"
+                );
                 $usage = BP_REF_ANALYZE_EXAMPLE($name)
             );
             ## re-assign modified arguments
