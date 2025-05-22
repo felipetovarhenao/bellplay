@@ -324,7 +324,7 @@
     },
     {
         "name": "trunc",
-        "description": "Truncates the value of `@x`.",
+        "description": "Returns the truncated value of `@x`.",
         "args": [
             {
                 "name": "x"
@@ -418,7 +418,7 @@
     },
     {
         "name": "random",
-        "description": "Generates a random integer between `@x` and `@y`.",
+        "description": "Returns a random integer between `@x` and `@y`.",
         "args": [
             {
                 "name": "x"
@@ -991,7 +991,7 @@
     },
     {
         "name": "map",
-        "description": "Transforms an _llll_ element-wise, according to a given lambda function. The modification function actually receives three arguments: the element to be modified, its address in the original _llll_ and its address in the new llll—the two may be different, as the modification function can remove or insert new elements. If a sublist is encountered and `@maxdepth` has not been received yet, it is possible to choose whether to enter it and run pass the modification function its elements one by one, or pass the whole sublist. This is accomplished through the `@askfunction` argument, that can be set to a function receiving the same arguments as the modification function.",
+        "description": "Transforms an _llll_ element-wise, according to a given lambda function. The modification function actually receives three arguments: the element to be modified, its address in the original _llll_ and its address in the new _llll_—the two may be different, as the modification function can remove or insert new elements. If a sublist is encountered and `@maxdepth` has not been received yet, it is possible to choose whether to enter it and run pass the modification function its elements one by one, or pass the whole sublist. This is accomplished through the `@askfunction` argument, that can be set to a function receiving the same arguments as the modification function.",
         "args": [
             {
                 "name": "llll"
@@ -1180,7 +1180,7 @@
     },
     {
         "name": "prod",
-        "description": "Computes the product of the elements in an _llll_. By default, products are computed only the root level. This can be changed with the `@mindepth` and `@maxdepth` arguments.",
+        "description": "Returns the product of the elements in an _llll_. By default, products are computed only the root level. This can be changed with the `@mindepth` and `@maxdepth` arguments.",
         "args": [
             {
                 "name": "llll"
@@ -1289,11 +1289,12 @@
                 "name": "maxdepth",
                 "default": 1
             }
-        ]
+        ],
+        "output": "Shuffled _llll_."
     },
     {
         "name": "slice",
-        "description": "Divides an _llll_ into two sublists according to a split point.",
+        "description": "Divides `@llll` into two sublists according to a split point.",
         "args": [
             {
                 "name": "llll"
@@ -1302,11 +1303,12 @@
                 "name": "index",
                 "default": 1
             }
-        ]
+        ],
+        "output": "Sublists"
     },
     {
         "name": "sort",
-        "description": "Sorts an _llll_. An lambda `@function` can be optionally provided with the following signature:\n\n```bell\n$a, $b -> (\n\t## 1 if $a is lesser than $b\n)\n```",
+        "description": "Returns a sorted `@llll`. An lambda `@function` can be optionally provided with the following signature:\n\n```bell\n$a, $b -> (\n\t## 1 if $a is lesser than $b\n)\n```",
         "args": [
             {
                 "name": "llll"
@@ -1344,7 +1346,7 @@
     },
     {
         "name": "sum",
-        "description": "Computes the sum of the elements in an _llll_. By default, only the root level is summed. This can be changed with the `@mindepth` and `@maxdepth` arguments.",
+        "description": "Returns the sum of the elements in `@llll`. By default, only the root level is summed. This can be changed with the `@mindepth` and `@maxdepth` arguments.",
         "args": [
             {
                 "name": "llll"
@@ -1390,7 +1392,8 @@
                 "name": "function",
                 "default": "null"
             }
-        ]
+        ],
+        "output": "`@llll` without duplicate elements."
     },
     {
         "name": "trans",
@@ -1427,7 +1430,7 @@
     },
     {
         "name": "wrap",
-        "description": "Wraps an llll in parentheses, thus raising its overall depth.",
+        "description": "Returns an _llll_ wrapped in parentheses, thus raising its overall depth.",
         "args": [
             {
                 "name": "llll"
@@ -1440,12 +1443,13 @@
     },
     {
         "name": "include",
-        "description": "The `include()` directive imports a bell file into the script. As a directive, the file path must be given without single or double quotes.",
+        "description": "The `include()` directive imports a _bell_ file into the script. As a directive, the file path must be given without single or double quotes.",
         "args": [
             {
                 "name": "file"
             }
         ],
+        "output": "null",
         "usage": "include(/path/to/file.bell)"
     }
 ]
