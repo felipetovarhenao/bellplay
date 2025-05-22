@@ -68,6 +68,11 @@ const config: Config = {
     colorMode: {
       defaultMode: "light",
     },
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+      },
+    },
     // social card
     image: "img/bellplay-logo.png",
     navbar: {
