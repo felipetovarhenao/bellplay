@@ -26,7 +26,6 @@ for reference_folder in REFERENCE_FOLDERS:
     json_data = {
         "label": reference_folder.replace("-", " ").title(),
         "position": REFERENCE_FOLDERS.index(reference_folder) + 1,
-        "collapsible": False,
         "className": "sidebar-reference"
     }
 
