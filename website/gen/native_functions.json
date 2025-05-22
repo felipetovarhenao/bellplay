@@ -533,7 +533,7 @@
             },
             {
                 "name": "function",
-                "default": null
+                "default": "null"
             }
         ]
     },
@@ -550,7 +550,7 @@
             },
             {
                 "name": "kend",
-                "default": "none"
+                "default": "'none'"
             },
             {
                 "name": "maxcount",
@@ -613,7 +613,7 @@
             },
             {
                 "name": "function",
-                "default": null
+                "default": "null"
             }
         ]
     },
@@ -668,15 +668,15 @@
             },
             {
                 "name": "function",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "size",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "depth",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "minidx",
@@ -733,15 +733,15 @@
             },
             {
                 "name": "function",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "size",
-                "default": null
+                "default": " null"
             },
             {
                 "name": "depth",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "minidx",
@@ -783,26 +783,26 @@
     },
     {
         "name": "finditems",
-        "description": "Retrieves items from an llll. The return value is an _llll_ composed by the retrieved items. An equality comparison function can be provided through the `@function` argument, , otherwise it performs a stardard comparison.",
+        "description": "Retrieves items from an _llll_. The return value is an _llll_ composed by the retrieved items. An equality comparison function can be provided through the `@function` argument, , otherwise it performs a stardard comparison.",
         "args": [
             {
                 "name": "llll"
             },
             {
                 "name": "items",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "function",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "size",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "depth",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "minidx",
@@ -855,7 +855,7 @@
             },
             {
                 "name": "level",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "spikemode",
@@ -930,7 +930,7 @@
             },
             {
                 "name": "model",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "multi",
@@ -954,7 +954,7 @@
             },
             {
                 "name": "function",
-                "default": null
+                "default": "null"
             }
         ]
     },
@@ -1002,11 +1002,11 @@
             },
             {
                 "name": "askfunction",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "depth",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "mindepth",
@@ -1027,7 +1027,7 @@
             },
             {
                 "name": "depth",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "mindepth",
@@ -1065,7 +1065,7 @@
             },
             {
                 "name": "depth",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "mindepth",
@@ -1086,7 +1086,7 @@
             },
             {
                 "name": "depth",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "mindepth",
@@ -1111,13 +1111,13 @@
             },
             {
                 "name": "placeholder",
-                "default": null
+                "default": "null"
             }
         ]
     },
     {
         "name": "outlet",
-        "description": "Assigns values to extra outlets, and returns the last (or only) value assigned. The order of the assigned values has no influence on the order in which they will be output, which will always be right-to-left, except if the same outlet is assigned more than one llll—in this case, the last assignment is the one that is retained. The same goes if the `outlet()` function is called more than once. If the `outlet()` function is called from a non-main function, it produces no effect besides returning the last argument's value.",
+        "description": "Assigns values to extra outlets, and returns the last (or only) value assigned. The order of the assigned values has no influence on the order in which they will be output, which will always be right-to-left, except if the same outlet is assigned more than one _llll_—in this case, the last assignment is the one that is retained. The same goes if the `outlet()` function is called more than once. If the `outlet()` function is called from a non-main function, it produces no effect besides returning the last argument's value.",
         "args": [
             {
                 "name": "outlets"
@@ -1187,7 +1187,7 @@
             },
             {
                 "name": "depth",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "mindepth",
@@ -1220,7 +1220,7 @@
             },
             {
                 "name": "depth",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "mindepth",
@@ -1258,7 +1258,7 @@
             },
             {
                 "name": "depth",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "mindepth",
@@ -1279,7 +1279,7 @@
             },
             {
                 "name": "depth",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "mindepth",
@@ -1293,7 +1293,7 @@
     },
     {
         "name": "slice",
-        "description": "Divides an llll into two sublists according to a split point.",
+        "description": "Divides an _llll_ into two sublists according to a split point.",
         "args": [
             {
                 "name": "llll"
@@ -1313,7 +1313,7 @@
             },
             {
                 "name": "function",
-                "default": null
+                "default": "null"
             }
         ]
     },
@@ -1330,7 +1330,7 @@
             },
             {
                 "name": "model",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "multi",
@@ -1351,7 +1351,7 @@
             },
             {
                 "name": "depth",
-                "default": null
+                "default": "null"
             },
             {
                 "name": "mindepth",
@@ -1375,7 +1375,7 @@
             },
             {
                 "name": "function",
-                "default": null
+                "default": "null"
             }
         ]
     },
@@ -1388,7 +1388,7 @@
             },
             {
                 "name": "function",
-                "default": null
+                "default": "null"
             }
         ]
     },
@@ -1421,7 +1421,7 @@
             },
             {
                 "name": "function",
-                "default": null
+                "default": "null"
             }
         ]
     },

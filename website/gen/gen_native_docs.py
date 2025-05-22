@@ -2,11 +2,13 @@ import json
 from pathlib import Path
 import re
 
+BASE_DIR = Path(__file__).resolve().parent
+
 # Input JSON file path
-json_file_path = './native_functions.json'
+json_file_path = BASE_DIR / 'native_functions.json'
 
 # Output directory for Markdown files
-output_dir = Path('./tmp')
+output_dir = BASE_DIR / 'tmp'
 output_dir.mkdir(exist_ok=True)
 
 # Template components
@@ -16,7 +18,7 @@ def format_arguments(args):
     result = "### Arguments\n\n"
     for arg in args:
         name = arg['name']
-        result += f" - `@{name} ?` [_**llll**_]: description. (_required_)\n"
+        result += f" - `@{name} {arg.get("default", "?")}` [_**llll**_] (_required_)\n"
     return result
 
 
@@ -25,7 +27,8 @@ def format_output(output):
 
 
 def format_signature(name, args):
-    formatted_args = '\n    '.join(f"@{arg['name']} ?" for arg in args)
+    formatted_args = '\n    '.join(
+        f"{("@" if arg['name'] != "<...>" else "") + arg["name"]} {arg.get("default", "?")}" for arg in args)
     return f"```bell\n{name}(\n    {formatted_args}\n) -> llll/null\n```"
 
 
@@ -50,7 +53,6 @@ for entry in data:
             output = match[0][1].capitalize()
             if output[-1] != '.':
                 output += '.'
-            print(output)
 
     md = f"""---
 hide_title: true
