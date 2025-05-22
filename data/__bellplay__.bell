@@ -173,26 +173,19 @@ BP_REF_MULTILINE = (
 ';
         $symbol = '';
         $lines = $args(1...$argcount);
-        for $line in $lines do (
-            $symbol = $symbol + $line + (if $i < length($lines) then $break else "")
-        );
+        for $line in $lines do ($symbol = $symbol + $line + $break);
         $symbol
     ) 
 );
 
-
 ## ------------------------------------------------------------
 
 BP_REF_CODE_SNIPPET = (
-    <...> -> (
+    <...>, $caption = null -> (
         $lines = $args(1...$argcount);
-        BP_REF_MULTILINE(
-            '', 
-            '```bell showLineNumbers',
-            $lines, 
-            '```', 
-            ''
-        )
+        $code = BP_REF_MULTILINE(
+            $caption '', '```bell showLineNumbers', $lines, '```', '' 
+        ) 
     ) 
 );
 
@@ -1958,6 +1951,17 @@ BP_REF_NEW(
         BP_REF_ARG(@name "process" @default "null" @type "list/llll/null", @description "optional post-rendering audio processing operations.")
     )
     @output BP_REF_OUTPUT(@description "rendered buffer" @type "llll")
+    @usage BP_REF_CODE_SNIPPET(
+        'for $x in (0...12) * 100 do (', 
+        '    $buf = ezsampler(@pitch 6000);', 
+        '    $buf.transcribe(', 
+        '        @onset $x', 
+        '        @pan $x / 1200.', 
+        '    )', 
+        ');', 
+        '$buffer = render(@play 1); ## returns the mix of all transcribed buffers', 
+        "$buffer.inspect('rendered buffer')"
+    )
 );
 
 ## ------------------------------------------------------------
