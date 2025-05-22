@@ -6,7 +6,7 @@ Depending on what you're doing, you might want to have more control over what th
 For instance, when exporting MIDI files, you might want to have different voices, with different midichannels, with different names, etc. 
 This tutorial shows how to modify the default appearance of the score transcription in **bellplay~**.
 
-To learn more, make sure to read the reference documentation for #scoreconfig.
+To learn more, make sure to read the reference documentation for `scoreconfig`.
 
 )#
 ## specify score appearance
