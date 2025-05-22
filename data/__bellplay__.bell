@@ -1892,6 +1892,13 @@ BP_REF_NEW(
         BP_REF_ARG(@name "metadata" @default 'null' @type "anything" @default 1 @description "data to associate with buffer. Useful when exporting roll in `llll` format.")
         BP_REF_ARG(@name "annotation" @default 'null' @type "symbol/null" @default 1 @description "optional label to display next to transcribed buffer.")
     )
+    @usage BP_REF_CODE_SNIPPET(
+        "$buffer = importaudio('guitar.wav');",
+        "for $x in (0...12) * 100 do (",
+        "    $buffer.transcribe(@onset $x @detune $x @pan $x / 1200.)",
+        ");",
+        "render(@play 1)"
+    )
 );
 
 ## ------------------------------------------------------------
