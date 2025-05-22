@@ -36,11 +36,11 @@ def build_search_index():
 
             full_path = os.path.join(root, fname)
             # compute URL‑style path by removing the .md extension and using forward slashes
-            rel = os.path.relpath(full_path, os.getcwd())
+            rel = os.path.relpath(full_path, DOCS_DIR)
             url_path = os.path.splitext(rel)[0].replace(os.sep, '/')
 
             entry = get_index_entry(full_path)
-            entry["path"] = f"/{url_path}"
+            entry["path"] = f"/docs/{url_path}"
             index.append(entry)
 
     # sort entries by title (case‑insensitive)
