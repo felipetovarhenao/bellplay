@@ -13,18 +13,42 @@ class BuiltinReferenceGenerator:
         result = "### Arguments\n\n"
         for arg in args:
             name = arg['name']
-            default = arg.get('default', '?')
+            argtype = arg['type']
+            default = arg.get('default', None)
+            if default is None:
+                default = '?'
             tag = '(_required_)'if default == '?' else f'(_default_: `{default}`)'
-            result += f" - `@{name}` [_**llll**_] {tag}\n"
+            description = arg.get('description', '')
+            result += f" - `@{name}` [_**{argtype}**_] {description}{tag}\n"
         return result
 
     def format_output(self, output):
-        return f"\n### Output\n\n{output} [**_llll/null_**]"
+        if output is None:
+            return ""
+        out_type = output["type"]
+        out_description = output["description"]
+        return f"\n### Output\n\n{out_description} [**_{out_type}_**]"
 
-    def format_signature(self, name, args):
-        formatted_args = '\n    '.join(
-            f"{('@' if arg['name'] != '<...>' else '') + arg['name']} {arg.get('default', '?')}" for arg in args)
-        return f"```bell\n{name}(\n    {formatted_args}\n) -> llll/null\n```"
+    def format_signature(self, entry):
+        args = entry.get('args', [])
+        name = entry['name']
+        if 'output' in entry:
+            outtype = entry['output']['type']
+        else:
+            outtype = 'null'
+        formatted_args_list = []
+        for arg in args:
+            if name != 'include':
+                argname = ('@' if arg['name'] != '<...>' else '') + arg['name']
+            else:
+                argname = ''
+            default = arg.get('default', None)
+            if default is None:
+                default = '? ## required'
+            formatted_args_list.append(f"{argname} {default}")
+        formatted_args = '\n    '.join(formatted_args_list)
+
+        return f"```bell\n{name}(\n    {formatted_args}\n) -> {outtype}\n```"
 
     def generate(self):
         with open(self.json_file_path, 'r', encoding='utf-8') as f:
@@ -32,24 +56,12 @@ class BuiltinReferenceGenerator:
 
         for entry in data:
             name = entry['name']
+            if name == 'include':
+                continue
             description = entry['description']
+            output = entry.get('output', None)
             args = entry.get('args', [])
             usage = entry.get('usage', None)
-            output = entry.get('output', None)
-
-            if not output:
-                match = re.findall(
-                    pattern=r"(^Returns \w+\b)([^.:,]+)",
-                    string=description,
-                )
-                if match:
-                    output = match[0][1].strip().capitalize()
-                    if output[-1] != '.':
-                        output += '.'
-                else:
-                    output = "_llll_"
-            else:
-                output = output.capitalize()
 
             md = f"""---
 hide_title: true
@@ -57,23 +69,34 @@ hide_title: true
 
 ## `{name}`
 
-{self.format_signature(name, args)}
+{self.format_signature(entry)}
 
 {description}
 
-:::info
-This is a built-in function in _bell_.
+:::note
+`{name}` is a built-in function in the _bell_ programming language and is not unique or exclusive to **bellplay~**.
 :::
+
 
 ---
 
 {self.format_arguments(args)}
+:::warning
+`{name}` will return `null` without raising an error if required arguments are not provided.
+:::
 {self.format_output(output)}
 """
 
             if usage:
                 md += f"\n---\n\n### Usage\n```bell\n{usage}\n```"
 
-            md_file = self.output_dir / f"{name.replace('$', 'dollar')}.md"
+            md_file = self.output_dir / f"{name}.md"
             with open(md_file, 'w', encoding='utf-8') as f:
                 f.write(md)
+
+
+if __name__ == '__main__':
+    base = Path(__file__).parent.resolve()
+    gen = BuiltinReferenceGenerator(
+        base / '../native_functions.json', base / '../../docs/reference/native-bell-functions/')
+    gen.generate()
