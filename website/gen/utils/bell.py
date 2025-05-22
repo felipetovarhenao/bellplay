@@ -6,8 +6,18 @@ import re
 class BuiltinReferenceGenerator:
     def __init__(self, json_file=Path, reference_dir=Path):
         self.json_file_path = json_file
-        self.output_dir = reference_dir
-        self.output_dir.mkdir(exist_ok=True)
+        self.output_dir = Path(reference_dir.resolve())
+        self.subdirs = []
+        self.default_subdir = None
+        for f in self.output_dir.iterdir():
+            if not f.is_dir():
+                continue
+            fname = f.name
+            match = re.search(r"(data)", fname, re.DOTALL)
+            if self.default_subdir is None and match:
+                self.default_subdir = fname
+
+            self.subdirs.append(fname)
 
     def format_arguments(self, args):
         result = "### Arguments\n\n"
@@ -21,6 +31,23 @@ class BuiltinReferenceGenerator:
             description = arg.get('description', '')
             result += f" - `@{name}` [_**{argtype}**_] {description}{tag}\n"
         return result
+
+    def entry_to_folder_name(self, entry):
+        folder_name = self.default_subdir
+        if folder_name is None:
+            raise ValueError('hi')
+        args = entry.get("args")
+        if 'rand' in entry['name']:
+            for fname in self.subdirs:
+                if 'rand' in fname:
+                    return fname
+
+        if args is not None:
+            for arg in args:
+                if arg['name'] in ['x', 'base', 'order', 'pitch', 'degree']:
+                    return 'math'
+
+        return folder_name
 
     def format_output(self, output):
         if output is None:
@@ -89,8 +116,9 @@ hide_title: true
 
             if usage:
                 md += f"\n---\n\n### Usage\n```bell\n{usage}\n```"
-
-            md_file = self.output_dir / f"{name}.md"
+            subdir = self.output_dir / self.entry_to_folder_name(entry)
+            subdir.mkdir(exist_ok=True)
+            md_file = subdir / f"{name}.md"
             with open(md_file, 'w', encoding='utf-8') as f:
                 f.write(md)
 
@@ -98,5 +126,5 @@ hide_title: true
 if __name__ == '__main__':
     base = Path(__file__).parent.resolve()
     gen = BuiltinReferenceGenerator(
-        base / '../native_functions.json', base / '../../docs/reference/native-bell-functions/')
+        base / '../native_functions.json', base / '../../docs/reference/')
     gen.generate()

@@ -9,16 +9,15 @@ from meta import BASE_DIR, METADATA_PATHS, BELLPLAY
 
 MARKDOWN_DOCS_DIR = BASE_DIR / "../docs/reference/"
 DOCGEN_SCRIPT = BASE_DIR / "gen_reference_docs.bell"
-BUILTIN_REFERENCE_FOLDER_NAME = "native-bell-functions"
-BUILTIN_REFERENCE_FOLDER = MARKDOWN_DOCS_DIR / BUILTIN_REFERENCE_FOLDER_NAME
 
 
 if MARKDOWN_DOCS_DIR.exists() and MARKDOWN_DOCS_DIR.is_dir():
     Cleaner(MARKDOWN_DOCS_DIR,
             exception_filter=lambda p: not p.name.endswith('.md')).delete()
 
-REFERENCE_FOLDERS = get_lines(
-    METADATA_PATHS["reference_folders"]) + [BUILTIN_REFERENCE_FOLDER_NAME]
+REFERENCE_FOLDERS = sorted(get_lines(
+    METADATA_PATHS["reference_folders"]) + ["math"])
+
 
 logger.action("Creating markdown subdirectories...")
 MARKDOWN_DOCS_DIR.mkdir(parents=True, exist_ok=True)
@@ -41,7 +40,7 @@ for reference_folder in REFERENCE_FOLDERS:
 logger.success("All reference folders created.")
 
 generator = BuiltinReferenceGenerator(
-    BASE_DIR / "native_functions.json", BUILTIN_REFERENCE_FOLDER)
+    BASE_DIR / "native_functions.json", MARKDOWN_DOCS_DIR)
 generator.generate()
 
 BELLPLAY.read(str(DOCGEN_SCRIPT))
