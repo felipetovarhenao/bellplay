@@ -111,7 +111,7 @@ hide_title: true
 {self.format_output(output)}
 
 :::warning
-`{name}` will return `null` without raising an error if required arguments are not provided.
+`{name}` will return `null` *without raising an error** if required arguments are not provided.
 :::
 """
 
