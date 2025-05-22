@@ -18,7 +18,7 @@
         ],
         "output": {
             "description": "output of input `@function`",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -33,7 +33,7 @@
         "usage": "$myfunc = (\n    <...> -> (\n        for $i in 1...$argcount do print('argument at position' $i '->' $args($i)\n    )\n);\n$myfunc('foo', 'bar', 'baz')",
         "output": {
             "description": "Positional arguments at positions `@indices`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -48,7 +48,7 @@
         ],
         "output": {
             "description": "Absolute value of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -63,7 +63,7 @@
         ],
         "output": {
             "description": "Arc cosine value of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -78,7 +78,7 @@
         ],
         "output": {
             "description": "Inverse hyperbolic cosine of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -93,7 +93,7 @@
         ],
         "output": {
             "description": "Difference in tones",
-            "type": "llll"
+            "type": "llll/null"
         },
         "usage": "alter(Db4) ## returns -1/2"
     },
@@ -109,7 +109,7 @@
         ],
         "output": {
             "description": "Arc sine value of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -124,7 +124,7 @@
         ],
         "output": {
             "description": "Hyperbolic arc sine value of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -139,7 +139,7 @@
         ],
         "output": {
             "description": "Arc tangent value of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -154,7 +154,7 @@
         ],
         "output": {
             "description": "Hyperbolic arc tangent value of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -169,7 +169,7 @@
         ],
         "output": {
             "description": "Up value of `@x` to the nearest integer.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -184,7 +184,7 @@
         ],
         "output": {
             "description": "Value of `@x` to midi cents.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -199,7 +199,7 @@
         ],
         "output": {
             "description": "Cosine value of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -214,7 +214,7 @@
         ],
         "output": {
             "description": "Hyperbolic cosine value of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -229,7 +229,7 @@
         ],
         "output": {
             "description": "Diatonic scale degree",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -244,7 +244,7 @@
         ],
         "output": {
             "description": "Denominator of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -258,8 +258,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Natural exponential of `@x`",
+            "type": "llll/null"
         }
     },
     {
@@ -273,8 +273,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "2 raised to the power of `@x`",
+            "type": "llll/null"
         }
     },
     {
@@ -288,8 +288,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "_llll_ casted as `float`",
+            "type": "llll/null"
         }
     },
     {
@@ -303,8 +303,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Floored value of `@x`",
+            "type": "llll/null"
         }
     },
     {
@@ -318,8 +318,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "_llll_ casted as `integer`",
+            "type": "llll/null"
         }
     },
     {
@@ -334,7 +334,7 @@
         ],
         "output": {
             "description": "Natural logarithm of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -349,7 +349,7 @@
         ],
         "output": {
             "description": "Logarithm base 10 of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -364,7 +364,7 @@
         ],
         "output": {
             "description": "Logarithm base 2 of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -379,7 +379,7 @@
         ],
         "output": {
             "description": "Numerator of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -394,7 +394,7 @@
         ],
         "output": {
             "description": "Pitch octave level of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -408,8 +408,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "_llll_ casted as `pitch`",
+            "type": "llll/null"
         }
     },
     {
@@ -423,8 +423,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "_llll_ casted as `rational`",
+            "type": "llll/null"
         }
     },
     {
@@ -438,8 +438,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Rounded _llll_",
+            "type": "llll/null"
         }
     },
     {
@@ -454,7 +454,7 @@
         ],
         "output": {
             "description": "Sign of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -469,7 +469,7 @@
         ],
         "output": {
             "description": "Sine value of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -484,7 +484,7 @@
         ],
         "output": {
             "description": "Hyperbolic sine of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -499,7 +499,7 @@
         ],
         "output": {
             "description": "Square root of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -514,7 +514,7 @@
         ],
         "output": {
             "description": "Tangent of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -529,7 +529,7 @@
         ],
         "output": {
             "description": "Hyperbolic tangent of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -544,7 +544,7 @@
         ],
         "output": {
             "description": "Truncated value of `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -564,7 +564,7 @@
         ],
         "output": {
             "description": "Arctangent of `@x` and `@y`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -584,8 +584,8 @@
         ],
         "usage": "enharm(E4, 1); ## returns Fb4\nenharm(C4, -1); ## returns B#3",
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Enharmonic pitch",
+            "type": "llll/null"
         }
     },
     {
@@ -604,8 +604,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "`@x` modulo `@y`",
+            "type": "llll/null"
         }
     },
     {
@@ -625,7 +625,7 @@
         ],
         "output": {
             "description": "Hypotenuse of `@x` and `@y`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -645,7 +645,7 @@
         ],
         "output": {
             "description": "Maximum value between `@x` an `@y`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -665,7 +665,7 @@
         ],
         "output": {
             "description": "Minimum value between `@x` an `@y`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -684,8 +684,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "`@x` modulo `@y`",
+            "type": "llll/null"
         }
     },
     {
@@ -705,7 +705,7 @@
         ],
         "output": {
             "description": "Random integer between `@x` and `@y`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -723,7 +723,7 @@
         ],
         "output": {
             "description": "Value of `@pitch` to the nearest tone division.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -742,7 +742,7 @@
         ],
         "output": {
             "description": "Bessel function of the first kind of given `@order` at point `@x`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -760,8 +760,8 @@
         ],
         "usage": "$steps = 7 * 5; ## 7 diatonic steps * 5 octaves = C5\n$target = 5900; ## B4 in midicents\nmakepitchsc($steps, $target) ## Returns Cb5",
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Generated pitch value(s)",
+            "type": "llll/null"
         }
     },
     {
@@ -781,7 +781,7 @@
         ],
         "output": {
             "description": "Value of `@base` to the power of `@exponent`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -802,8 +802,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Generated pitch value(s)",
+            "type": "llll/null"
         }
     },
     {
@@ -813,12 +813,12 @@
             {
                 "name": "start",
                 "default": null,
-                "type": "llll"
+                "type": "llll/null"
             },
             {
                 "name": "end",
                 "default": null,
-                "type": "llll"
+                "type": "llll/null"
             },
             {
                 "name": "step",
@@ -834,7 +834,7 @@
         "usage": "arithmser(0, 10, 1); ## 1...10\narithmser(0, 10, null, 3); ## 0 5 10\narithmser(0, null, 2, 4); ## 0 2 4 6\narithmser(null, 10, 2, 4) ## 4 6 8 10",
         "output": {
             "description": "Arithmetic series.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -848,7 +848,7 @@
         ],
         "output": {
             "description": "Cartesian product of the sublists of an _llll_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -867,7 +867,7 @@
         ],
         "output": {
             "description": "Classified `@llll`",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -896,12 +896,12 @@
         ],
         "output": {
             "description": "The k-combinations of an _llll_ for a range of `k`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
         "name": "contains",
-        "description": "Returns a summary of the data types contained in an _llll_. The return value is encoded as a bit field, with the following values:\n\n- `1`: None\n- `2`: integer\n- `4`: rational\n- `8`: double\n- `16`: symbol\n- `32`: sublist\n- `256`: pitch.\n\nBy default, only the contents of the root level are considered. This can be changed with the `@mindepth` and `@maxdepth` arguments.",
+        "description": "Returns a summary of the data types contained in an _llll_. The return value is encoded as a bit field, with the following values:\n\n- `1`: `null`\n- `2`: integer\n- `4`: rational\n- `8`: double (float)\n- `16`: symbol\n- `32`: sublist\n- `256`: pitch.\n\nBy default, only the contents of the root level are considered. This can be changed with the `@mindepth` and `@maxdepth` arguments.",
         "args": [
             {
                 "name": "llll",
@@ -910,7 +910,7 @@
             {
                 "name": "depth",
                 "default": null,
-                "type": "int/llll"
+                "type": "int/llll/null"
             },
             {
                 "name": "mindepth",
@@ -925,7 +925,7 @@
         ],
         "output": {
             "description": "Summary of the data types contained in an _llll_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -944,7 +944,7 @@
         ],
         "output": {
             "description": "Deinterlaced _llll_",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -958,7 +958,7 @@
         ],
         "output": {
             "description": "Depth of input _llll_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -981,7 +981,7 @@
         ],
         "output": {
             "description": "Set difference of two _lllls_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -995,7 +995,7 @@
         ],
         "output": {
             "description": "Value of direct inlet.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1013,7 +1013,7 @@
         ],
         "output": {
             "description": "Output data",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1037,7 +1037,7 @@
         ],
         "output": {
             "description": "The numbers in an _llll_ from frequency to midi cents.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1051,7 +1051,7 @@
             {
                 "name": "items",
                 "default": null,
-                "type": "llll"
+                "type": "llll/null"
             },
             {
                 "name": "function",
@@ -1120,8 +1120,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Found elements and their addresses, if any.",
+            "type": "llll/null"
         }
     },
     {
@@ -1135,7 +1135,7 @@
             {
                 "name": "items",
                 "default": null,
-                "type": "llll"
+                "type": "llll/null"
             },
             {
                 "name": "function",
@@ -1199,8 +1199,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Addresses of found elements, if any.",
+            "type": "llll/null"
         }
     },
     {
@@ -1283,8 +1283,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Found elements, if any.",
+            "type": "llll/null"
         }
     },
     {
@@ -1317,28 +1317,28 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Flattened _llll_",
+            "type": "llll/null"
         }
     },
     {
         "name": "geomser",
-        "description": "Return a geomethric series, understood as a list where the ratio between adjacent elements is constant. If one of the arguments is set to `null`, its value is automatically inferred from the other arguments.",
+        "description": "Returns a geomethric series, understood as a list where the ratio between adjacent elements is constant. If one of the arguments is set to `null`, its value is automatically inferred from the other arguments.",
         "args": [
             {
                 "name": "start",
                 "default": null,
-                "type": "llll"
+                "type": "llll/null"
             },
             {
                 "name": "end",
                 "default": null,
-                "type": "llll"
+                "type": "llll/null"
             },
             {
                 "name": "factor",
                 "default": null,
-                "type": "llll"
+                "type": "llll/null"
             },
             {
                 "name": "maxcount",
@@ -1348,8 +1348,8 @@
         ],
         "usage": "geomser(1, null, 2, 5) ## Returns 1 2 4 8 16",
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Geometric series",
+            "type": "llll/null"
         }
     },
     {
@@ -1373,8 +1373,8 @@
         ],
         "usage": "group(1 2 3 4, 2, 1) ## [1 2] [2 3] [3 4]",
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "_llll_ of grouped elements.",
+            "type": "llll/null"
         }
     },
     {
@@ -1383,7 +1383,7 @@
         "args": [],
         "output": {
             "description": "Number of the inlet that triggered the computation.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1416,8 +1416,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Modified _llll_",
+            "type": "llll/null"
         }
     },
     {
@@ -1440,7 +1440,7 @@
         ],
         "output": {
             "description": "Intersection of two _lllls_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1454,7 +1454,7 @@
         ],
         "output": {
             "description": "Data type of the input.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1473,7 +1473,7 @@
         ],
         "output": {
             "description": "Left part of an _llll_ relative to an index.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1487,7 +1487,7 @@
         ],
         "output": {
             "description": "Number of elements in the root level of an _llll_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1501,7 +1501,7 @@
             {
                 "name": "modfunction",
                 "default": null,
-                "type": "function"
+                "type": "function/null"
             },
             {
                 "name": "askfunction",
@@ -1525,8 +1525,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Modified _llll_",
+            "type": "llll/null"
         }
     },
     {
@@ -1555,7 +1555,7 @@
         ],
         "output": {
             "description": "Smallest number in an _llll_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1579,7 +1579,7 @@
         ],
         "output": {
             "description": "The numbers (assumed to be midi cents) and pitches in an _llll_ to frequency.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1608,7 +1608,7 @@
         ],
         "output": {
             "description": "Smallest number in an _llll_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1636,8 +1636,8 @@
             }
         ],
         "output": {
-            "description": "_llll_ composed of four elements.",
-            "type": "llll"
+            "description": "_minmax_ information, structured as follows: `<min> [<min_address>] <max> [<max_address>]`",
+            "type": "llll/null"
         }
     },
     {
@@ -1661,7 +1661,7 @@
         ],
         "output": {
             "description": "Or more elements from an _llll_ according to its address.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1678,8 +1678,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Assigned values.",
+            "type": "llll/null"
         }
     },
     {
@@ -1698,7 +1698,7 @@
         ],
         "output": {
             "description": "Or more distinct permutations of an _llll_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1722,8 +1722,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Prime series",
+            "type": "llll/null"
         }
     },
     {
@@ -1750,8 +1750,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Printed value",
+            "type": "llll/null"
         }
     },
     {
@@ -1780,7 +1780,7 @@
         ],
         "output": {
             "description": "Product of the elements in an _llll_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1797,8 +1797,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Reduced value.",
+            "type": "llll/null"
         }
     },
     {
@@ -1826,8 +1826,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Reversed _llll_",
+            "type": "llll/null"
         }
     },
     {
@@ -1846,7 +1846,7 @@
         ],
         "output": {
             "description": "Right part of an _llll_ relative to an index.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1879,8 +1879,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Rotated _llll_",
+            "type": "llll/null"
         }
     },
     {
@@ -1909,7 +1909,7 @@
         ],
         "output": {
             "description": "Shuffled _llll_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1928,7 +1928,7 @@
         ],
         "output": {
             "description": "Sublists",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1947,7 +1947,7 @@
         ],
         "output": {
             "description": "Sorted `@llll`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -1980,8 +1980,8 @@
             }
         ],
         "output": {
-            "description": "_llll_",
-            "type": "llll"
+            "description": "Modified _llll_",
+            "type": "llll/null"
         }
     },
     {
@@ -2010,7 +2010,7 @@
         ],
         "output": {
             "description": "Sum of the elements in `@llll`.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -2033,7 +2033,7 @@
         ],
         "output": {
             "description": "Symmetric difference of two _lllls_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -2052,7 +2052,7 @@
         ],
         "output": {
             "description": "`@llll` without duplicate elements.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -2076,7 +2076,7 @@
         ],
         "output": {
             "description": "Matrix transposition of an _llll_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -2099,7 +2099,7 @@
         ],
         "output": {
             "description": "Union of two _lllls_.",
-            "type": "llll"
+            "type": "llll/null"
         }
     },
     {
@@ -2117,8 +2117,8 @@
             }
         ],
         "output": {
-            "description": "_llll_ wrapped in parentheses.",
-            "type": "llll"
+            "description": "Wrapped _llll_.",
+            "type": "llll/null"
         }
     },
     {
