@@ -90,6 +90,25 @@ class MDParser:
                 i += 1
                 continue
 
+            if line.strip().startswith(":::"):
+                if current_text:
+                    content = "\n".join(current_text).strip()
+                    if content != "":
+                        result.append(
+                            {"type": "text", "content": "\n".join(current_text).strip()})
+                        current_text = []
+                admon_lines = [line]
+                i += 1
+                while i < len(lines):
+                    admon_lines.append(lines[i])
+                    if lines[i].strip().startswith(":::"):
+                        break
+                    i += 1
+                result.append(
+                    {"type": "admonition", "content": "\n".join(admon_lines).strip()})
+                i += 1
+                continue
+
             # Accumulate regular text
             current_text.append(line)
             i += 1
@@ -112,8 +131,10 @@ class MDParser:
             content = block['content']
             blurb = re.match(r'.*?[\.!?:](?=\s|$)', content, re.MULTILINE)
             if not blurb:
-                return content
-            return blurb[0]
+                blurb = content
+            else:
+                blurb = blurb[0]
+            return blurb.splitlines()[0]
 
     def get_keywords(self, n: int = 5):
 
@@ -124,7 +145,7 @@ class MDParser:
         # Tokenize and clean
         tokens = word_tokenize(text.lower())
         words = [w for w in tokens if w.isalpha(
-        ) and w not in stopwords.words('english')]
+        ) and w not in stopwords.words('english') and len(w) > 1]
 
         # Rank by frequency
         return [x[0] for x in Counter(words).most_common(n)]
