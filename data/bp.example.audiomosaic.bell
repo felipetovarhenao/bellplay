@@ -4,7 +4,7 @@
 
 An example of basic [audio mosaicking](https://www.francoispachet.fr/musaicing/) in **bellplay\~**, where a target audio file is reconstructed using segments drawn from a small audio corpus.
 
-This tutorial demonstrates how to use onset-based segmentation and multi-dimensional audio features (MFCCs and loudness) to match fragments of a target to acoustically similar units in a pre-analyzed corpus. 
+The script below demonstrates how to use onset-based segmentation and multi-dimensional audio features (MFCCs and loudness) to match fragments of a target to acoustically similar units in a pre-analyzed corpus. 
 The target is not reconstructed literally, but instead approximated by audio segments from the corpus.
 
 A key aspect of the process is the use of a feature tree, built from the corpus, which allows fast approximate nearest-neighbor retrieval based on the extracted descriptors. 
