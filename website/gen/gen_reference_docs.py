@@ -28,7 +28,7 @@ for reference_folder in REFERENCE_FOLDERS:
     logger.info(f"Created directory: {reference_folder}")
 
     json_data = {
-        "label": reference_folder.replace("-", " ").title(),
+        "label": reference_folder.replace("-", " ").capitalize(),
         "position": REFERENCE_FOLDERS.index(reference_folder) + 1,
         "className": "sidebar-reference"
     }
