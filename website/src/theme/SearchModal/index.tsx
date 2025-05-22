@@ -75,7 +75,7 @@ const SearchModal: React.FC<Props> = ({ onClose }) => {
           autoFocus
           type="text"
           className={styles.modalInput}
-          placeholder="Type to search…"
+          placeholder="Search docs..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => {
