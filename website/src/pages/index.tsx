@@ -21,7 +21,7 @@ function HomepageHeader() {
         </Heading>
         <p className={clsx("hero__subtitle", styles.title, styles.subtitle)}>{siteConfig.tagline}</p>
         <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/docs/intro">
+          <Link className="button button--secondary button--lg" to="/docs/">
             Get Started
           </Link>
           <BellplayDownloadLink />
