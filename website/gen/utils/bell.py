@@ -30,6 +30,7 @@ class BuiltinReferenceGenerator:
             tag = '(_required_)'if default == '?' else f'(_default_: `{default}`)'
             description = arg.get('description', '')
             result += f" - `@{name}` [_**{argtype}**_] {description}{tag}\n"
+        result += '\n---\n'
         return result
 
     def entry_to_folder_name(self, entry):
@@ -54,7 +55,7 @@ class BuiltinReferenceGenerator:
             return ""
         out_type = output["type"]
         out_description = output["description"]
-        return f"\n### Output\n\n{out_description} [**_{out_type}_**]"
+        return f"### Output\n\n{out_description} [**_{out_type}_**]"
 
     def format_signature(self, entry):
         args = entry.get('args', [])
@@ -98,20 +99,20 @@ hide_title: true
 
 {self.format_signature(entry)}
 
-{description}
-
 :::note
 `{name}` is a built-in function in the _bell_ programming language and is not unique or exclusive to **bellplay~**.
 :::
 
+{description}
 
 ---
 
 {self.format_arguments(args)}
+{self.format_output(output)}
+
 :::warning
 `{name}` will return `null` without raising an error if required arguments are not provided.
 :::
-{self.format_output(output)}
 """
 
             if usage:
