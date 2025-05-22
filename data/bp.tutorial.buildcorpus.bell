@@ -11,7 +11,7 @@ The results of this analysis are assembled into a structured table using `create
 Each element in the input data passed to `createtable` should be structured as a list of key-value pairs, where each key corresponds to a column name in the resulting table and each value is the corresponding data entry. 
 For example:
 
-```
+```bell title="expected structure for each data item"
 [
     [ <key_1> <value_1> ]
     [ <key_2> <value_2> ]
@@ -49,7 +49,9 @@ for $seg in $results do (
         @pitchkey 'pitchmelodia' 
         @pan rand() 
     );
-    $onset += 50 ## Increment onset time for next segment
+    $onset += 50
+    ## Increment onset time for next segment
+    
 );
 ## Trigger rendering
 render(@play 1)
