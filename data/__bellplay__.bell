@@ -201,9 +201,8 @@ BP_REF_PROCESS_EXAMPLE = (
         $code = BP_REF_CODE_SNIPPET(
             "$buffer = " + $buffer + "; ## input buffer",
             "$op = " + $name + "(" + $params + "); ## processing operation",
-            "$buffer.inspect('before process');",
             "$buffer = $buffer.process($op); ## apply processing",
-            "$buffer.inspect('after process')"
+            "$buffer.inspect('after " + $name + " process')"
         );
         $text = $break + $break + "`" + $name + "` is meant to be used with the `process` function:" + $break;
         $text + $code
@@ -219,7 +218,7 @@ BP_REF_GENERATION_EXAMPLE = (
         $tab = "    ";
         $code = BP_REF_CODE_SNIPPET(
             "$buffer = " + $name + "(" + $params + ");",
-            "$buffer.inspect('generated buffer')"
+            "$buffer.inspect('" + $name + " buffer')"
         );
         $code
     ) 
@@ -2246,6 +2245,7 @@ BP_REF_NEW(
         BP_REF_USE_CACHE_ARG
     ),
     @output BP_REF_OUTPUT(@description "buffer" @type "llll")
+    @usage BP_REF_GENERATION_EXAMPLE("importaudio", "'badinerie.wav'")
 );
 
 ## ------------------------------------------------------------
@@ -3967,6 +3967,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "fade operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('fade', '@fadein 2000 @fadeout 2000')
 );
 
 ## ------------------------------------------------------------
@@ -4001,6 +4002,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "crop operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('crop', '@start 1000 @end 2000')
 );
 
 ## ------------------------------------------------------------
@@ -4347,6 +4349,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "duration", @default 1000, @type "int", @description "envelope duration, in milliseconds")
     ),
     @output BP_REF_OUTPUT(@description "envelope" @type "llll")
+    @usage BP_REF_GENERATION_EXAMPLE('envelope', '[0 0 0] [1 1 0.5]')
 );
 
 ## ------------------------------------------------------------
@@ -4401,6 +4404,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "clicks buffer" @type "llll")
+    @usage BP_REF_GENERATION_EXAMPLE("clicks", "@onsets 0 200 400 600 800 1000")
 );
 
 ## ------------------------------------------------------------
@@ -4629,6 +4633,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "threshold" @default 1 @type "int/float/llll", @description "distortion amplitude threshold, either as single number or envelope.")
     ),
     @output BP_REF_OUTPUT(@description "clip operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('clip', '0.05')
 );
 
 ## ------------------------------------------------------------
@@ -4824,6 +4829,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "duration" @default 1000 @type "int/float", @description "duration in milliseconds. Ignored if `@rate` is a buffer.")
     )
     @output BP_REF_OUTPUT(@description "groove operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('groove', '@rate 0.5 2 @duration 5000')
 );
 
 ## ------------------------------------------------------------
@@ -4859,6 +4865,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "freqshift operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('freqshift', '-20')
 );
 
 ## ------------------------------------------------------------
@@ -5489,6 +5496,7 @@ BP_REF_NEW(
         BP_BUFFER_ARITHMETIC_ARGS
     ),
     @output BP_REF_OUTPUT(@description "divide operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('divide', '[0 1 0] [1 10 -0.125]')
 );
 
 ## ------------------------------------------------------------
@@ -6093,6 +6101,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "gain operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('gain', '[0 1 0] [1 0 -0.25]')
 );
 
 ## ------------------------------------------------------------
@@ -6696,6 +6705,17 @@ BP_REF_NEW(
         BP_REF_USE_CACHE_ARG
     )
     @output BP_REF_OUTPUT(@description "buffer" @type "llll")
+    @usage BP_REF_CODE_SNIPPET("$chord = c5 e5 g5 b5;
+$keymap = [6900 'viola.wav'];
+for $pitch in $chord do (
+    ezsampler(
+        @pitch $pitch 
+        @keymap $keymap
+        @duration 6500
+    ).transcribe()
+);
+render(@play 1)"
+    )
 );
 
 ## ------------------------------------------------------------
