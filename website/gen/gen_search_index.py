@@ -40,7 +40,7 @@ def build_search_index():
             url_path = os.path.splitext(rel)[0].replace(os.sep, '/')
 
             entry = get_index_entry(full_path)
-            entry["path"] = f"/docs/{url_path}"
+            entry["path"] = re.sub(r"/index$", "", f"/docs/{url_path}")
             index.append(entry)
 
     # sort entries by title (case‑insensitive)
