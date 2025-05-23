@@ -69,6 +69,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - GUI:
   - All tabs (_TUTORIALS_, _REFERENCE_, _ABOUT_, _CREDITS_). Replaced by single, simpler window with settings.
   - Tutorials and reference and all info about bellplay~ now live in web-hosted docs.
+  - Corpus lab button replaced by `Console` button.
 - Dev:
   - `printerror`: replaced by `BP_FN_ERROR`.
 

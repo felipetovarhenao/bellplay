@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3830868667,
+	"modificationdate" : 3830874506,
 	"viewrect" : [ 25.0, 104.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -474,16 +474,6 @@
 
 			}
 ,
-			"corpus-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
 			"plus-icon.svg" : 			{
 				"kind" : "vectorimagefile",
 				"local" : 1,
@@ -515,6 +505,16 @@
 			}
 ,
 			"settings-icon.svg" : 			{
+				"kind" : "vectorimagefile",
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/Documents/bellplay/media",
+					"projectrelativepath" : "./media"
+				}
+
+			}
+,
+			"console-icon.svg" : 			{
 				"kind" : "vectorimagefile",
 				"local" : 1,
 				"singleton" : 				{
