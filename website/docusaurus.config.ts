@@ -111,11 +111,11 @@ const config: Config = {
             },
             {
               label: "Reference",
-              to: "/docs/reference",
+              to: "/docs/reference/buffer-analysis/analyze",
             },
             {
               label: "Learning",
-              to: "/docs/learning",
+              to: "/docs/learning/tutorials/basicworkflow",
             },
           ],
         },
