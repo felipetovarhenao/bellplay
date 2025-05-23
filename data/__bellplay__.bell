@@ -930,7 +930,28 @@ createtable = (
 
 BP_REF_NEW(
     @name "createtable"
-    @description "Instantiates a [SQLite3](https://www.sqlitetutorial.net/) table given a list, where each element is expected to be a list of key-value pairs."
+    @description BP_REF_MULTILINE("Instantiates a [SQLite3](https://www.sqlitetutorial.net/) table based on `@data`",
+    'Each element in the `@data` should be structured as a _llll_ of key-value pairs, where each key corresponds to a column name in the resulting table and each value is the corresponding data entry. 
+For example:
+
+```bell title="expected structure for each data item"
+[ ## item 1
+    [ <key_1> <value_1> ]
+    [ <key_2> <value_2> ]
+    ...
+    [ <key_N> <value_N> ]
+]
+...
+[ ## item N
+    [ <key_1> <value_1> ]
+    [ <key_2> <value_2> ]
+    ...
+    [ <key_N> <value_N> ]
+]
+```
+
+This format ensures that the resulting table can be queried using standard SQL-style syntax, with each key becoming a column in the table schema.'
+    )
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "data" @type "llll" @description "Data from which to build SQL table, each element structured as a list of key-value pairs.")
