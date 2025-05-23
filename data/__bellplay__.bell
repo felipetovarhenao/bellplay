@@ -3552,44 +3552,45 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-beatsloudness = (
-    $beats = null,
-    $beatduration = 0.05,
-    $beatwindowduration = 0.1,
-    $frequencybands = 20 150 400 3200 7000 22000,
-    $samplerate = 44100 -> (
-        BP_FN_CHECK_ARGS('beatsloudness', 'beats', $beats);
-        BP_FN_ESSENTIA(
-            @name "beatsloudness"
-            @settings (
-                "@beats" $beats
-                "@beatduration" $beatduration
-                "@beatwindowduration" $beatwindowduration
-                "@frequencybands" $frequencybands
-                "@samplerate" $samplerate
-            )
-            @output "beatsloudness" "beatsloudness_bandratio"
-        )
-    )
-);
+## BUGGY
+## beatsloudness = (
+##     $beats = null,
+##     $beatduration = 0.05,
+##     $beatwindowduration = 0.1,
+##     $frequencybands = 20 150 400 3200 7000 22000,
+##     $samplerate = 44100 -> (
+##         BP_FN_CHECK_ARGS('beatsloudness', 'beats', $beats);
+##         BP_FN_ESSENTIA(
+##             @name "beatsloudness"
+##             @settings (
+##                 "@beats" $beats
+##                 "@beatduration" $beatduration
+##                 "@beatwindowduration" $beatwindowduration
+##                 "@frequencybands" $frequencybands
+##                 "@samplerate" $samplerate
+##             )
+##             @output "beatsloudness" "beatsloudness_bandratio"
+##         )
+##     )
+## );
 
-BP_REF_NEW(
-    @name "beatsloudness"
-    @description "Generates audio descriptor to compute the spectrum energy of beats in an audio signal given their positions. The energy is computed both on the whole frequency range and for each of the specified frequency bands. See `analyze`."
-    @category BP_REF_LABEL_BUFFER_ANALYSIS
-    @ankeys "beatsloudness" "beatsloudness_bandratio"
-    @arguments (
-        BP_REF_ARG(@name "beats" @type "list" @description "duration of the window in which the beat will be restricted.")
-        BP_REF_ARG(@name "beatduration" @type "int/float" @default '0.05' @description "duration of the window in which to look for the beginning of the beat, centered around the values in `@beats`.")
-        BP_REF_ARG(@name "beatwindowduration" @type "int/float" @default '0.1' @description "list of beat positions.")
-        BP_REF_ARG(@name "frequencybands"  @type "list" @default 20 150 400 3200 7000 22000 @description "list of bands to compute energy ratios.")
-        BP_REF_ARG(@name "samplerate" @type "int"  @default 44100 @description "audio sampling rate.")
-        BP_REF_ARG(@name "mode" @type "int" @default 0 @description "analysis mode." @options
-            BP_REF_ESSENTIA_ANALYSIS_OPTIONS
-        )
-    )
-    @output BP_REF_OUTPUT(@description "beatsloudness descriptor" @type "llll")
-);
+## BP_REF_NEW(
+##     @name "beatsloudness"
+##     @description "Generates audio descriptor to compute the spectrum energy of beats in an audio signal given their positions. The energy is computed both on the whole frequency range and for each of the specified frequency bands. See `analyze`."
+##     @category BP_REF_LABEL_BUFFER_ANALYSIS
+##     @ankeys "beatsloudness" "beatsloudness_bandratio"
+##     @arguments (
+##         BP_REF_ARG(@name "beats" @type "list" @description "duration of the window in which the beat will be restricted.")
+##         BP_REF_ARG(@name "beatduration" @type "int/float" @default '0.05' @description "duration of the window in which to look for the beginning of the beat, centered around the values in `@beats`.")
+##         BP_REF_ARG(@name "beatwindowduration" @type "int/float" @default '0.1' @description "list of beat positions.")
+##         BP_REF_ARG(@name "frequencybands"  @type "list" @default 20 150 400 3200 7000 22000 @description "list of bands to compute energy ratios.")
+##         BP_REF_ARG(@name "samplerate" @type "int"  @default 44100 @description "audio sampling rate.")
+##         BP_REF_ARG(@name "mode" @type "int" @default 0 @description "analysis mode." @options
+##             BP_REF_ESSENTIA_ANALYSIS_OPTIONS
+##         )
+##     )
+##     @output BP_REF_OUTPUT(@description "beatsloudness descriptor" @type "llll")
+## );
 
 ## ------------------------------------------------------------
 
