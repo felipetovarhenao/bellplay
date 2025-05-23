@@ -880,7 +880,7 @@ createtable = (
         BP_FN_CHECK_ARGS(
             $self, 'data', $data, 'name', $name
         );
-        if $name == 'table' then BP_FN_ERROR($self, 'forbidden table name:' $name);
+        if intersection($name, 'table' 'all') != null then BP_FN_ERROR($self, 'forbidden table name:' $name);
         $table = for $keyval in $data::1 with @unwrap 1 collect (
             $key = $keyval.left(1);
             if is($key) != 'symbol' then (BP_FN_ERROR($self, 'invalid data. Every element must be structured as a list of key-value pairs:' $keyval) );
@@ -965,6 +965,86 @@ BP_REF_NEW(
     )
     @output BP_REF_OUTPUT(@description "query results." @type "llll/null")
     @usage BP_REF_DATABASE_SNIPPET
+);
+
+## ------------------------------------------------------------
+
+writetable = (
+    $path = null, $name = 'all' -> (
+        $self = 'writetable';
+        BP_FN_CHECK_ARGS(
+            $self, 'path', $path, 'name', $name
+        );
+        if is($path) != 'symbol' then BP_FN_ERROR($self, 'invalid @path type:' $path);
+        if is($name) != 'symbol' then BP_FN_ERROR($self, 'invalid @name type:' $name);
+        $info = BP_FN_PATHINFO($path);
+        $ext = $info.'extension';
+        if $ext != '.llll' then BP_FN_ERROR($self, 'invalid @path extension:' $ext ||| 'null');
+        $path = $info.'path' + $ext;
+        if BP_DATABASE_TABLES == null then BP_FN_ERROR($self, 'you must create a table first.');
+        if $name == 'all' then (
+            BP_FN_DISPATCH('db', ['write' $path]) 
+        ) else (
+            BP_FN_DISPATCH('db', ['dump']);
+            $db = BP_DATABASE_OUTPUT;
+            $stop = 0;
+            for $table in $db as $stop == 0 do (
+                if $table.getkey($name) != null then (
+                    $stop = 1;
+                    write(@data $table @path $path) 
+                ) 
+            );
+            if $stop == 0 then BP_FN_ERROR($self, "table doesn't exist:" $name) 
+        );
+        null
+    ) 
+);
+
+BP_REF_NEW(
+    @name "querytable"
+    @description "Performs a [SQLite3](https://www.sqlitetutorial.net/) query on previously created tables. See `createtable`."
+    @category BP_REF_LABEL_DATA_UTILS
+    @arguments (
+        BP_REF_ARG(@name "sql" @type "symbol" @description "SQL table query.")
+    )
+    @output BP_REF_OUTPUT(@description "query results." @type "llll/null")
+    @usage BP_REF_DATABASE_SNIPPET
+);
+
+## ------------------------------------------------------------
+
+readtable = (
+    $path -> (
+        $self = 'readtable';
+        $info = BP_FN_PATHINFO($path);
+        $ext = $info.'extension';
+        if $ext != '.llll' then BP_FN_ERROR($self, 'invalid @path extension:' $ext ||| 'null');
+        $path = $info.'path' + $ext;
+        $db = read($path);
+        if BP_DATABASE_TABLES == null then BP_FN_DISPATCH('db', [ 'erase' ]);
+        $allentries = null;
+        $tablenames = for $tbl in $db with @unwrap 1 do (
+            $header = $tbl::1;
+            $name = $header:1;
+            $entries = for $x in $tbl::2 with @unwrap 1 collect [$x.right(1)];
+            $allentries _= [$entries];
+            $tablenames _= $name
+        );
+        if BP_DATABASE_TABLES == null then (
+            BP_FN_DISPATCH(
+                'db', ['read' $path] 
+            ) 
+        ) else (
+            for $tname in $tablenames, $entries in $allentries with @unwrap 1 do (
+                if intersection(BP_DATABASE_TABLES, $tname) == null then (
+                    createtable($entries, $tname);
+                    BP_DATABASE_TABLES _= $tname
+                ) else BP_FN_ERROR($self, 'table name conflicts with an extisting table:' $tname) 
+            ) 
+        );
+        BP_DATABASE_TABLES _= $tablenames;
+        $tablenames
+    ) 
 );
 
 ## ------------------------------------------------------------
