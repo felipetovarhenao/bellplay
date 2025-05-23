@@ -912,7 +912,7 @@ createtable = (
             [$key $type] 
         );
         BP_FN_DISPATCH(
-            'db',  (BP_DATABASE_TABLES ||| [ 'erase' ]) [ 'addtable' $name $table] 
+            'db',  (if BP_DATABASE_TABLES == null then [ 'erase' ]) [ 'addtable' $name $table] 
         );
         for $entry in $data with @unwrap 1 do (
             $entry = $entry.map(
@@ -943,8 +943,9 @@ BP_REF_NEW(
 
 querytable = (
     $sql = null -> (
+        BP_DATABASE_OUTPUT = null;
         $self = 'querytable';
-        BP_FN_CHECK_ARGS('query', 'sql', $sql);
+        BP_FN_CHECK_ARGS($self, 'sql', $sql);
         if is($sql) != 'symbol' then BP_FN_ERROR($self, '@sql must be a symbol:' $sql);
         if BP_DATABASE_TABLES == null then BP_FN_ERROR($self, "you must create a table first.");
         BP_FN_DISPATCH('db', ['query' $sql]);
