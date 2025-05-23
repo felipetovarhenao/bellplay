@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - New built-in media: `joplin.mid` (_The Entertainer_).
 - **MAJOR**: New web-based documentation.
   - `process` and `analyze` related functions include usage example in reference.
+  - GUI now only deals with user settings.
 - Dev:
   - Major renaming of backend functions to follow consistent nomenclature:
     - global functions: `BP_FN_*`
@@ -65,6 +66,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `interpolate`: No longer useful.
 - Deprecated tutorials:
   - `bp.tutorial.corpus`.
+- GUI:
+  - All tabs (_TUTORIALS_, _REFERENCE_, _ABOUT_, _CREDITS_). Replaced by single, simpler window with settings.
+  - Tutorials and reference and all info about bellplay~ now live in web-hosted docs.
 - Dev:
   - `printerror`: replaced by `BP_FN_ERROR`.
 

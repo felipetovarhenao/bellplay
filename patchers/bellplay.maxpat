@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 6,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -537,7 +537,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 6,
+							"revision" : 7,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1071,8 +1071,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1117.0, 360.0, 50.0, 23.0 ],
-					"text" : "bp.docs"
+					"patching_rect" : [ 1117.0, 360.0, 78.0, 23.0 ],
+					"text" : "bp.ui.settings"
 				}
 
 			}
@@ -2398,10 +2398,6 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "bach.deferlow.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "bach.div.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
 				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
@@ -2433,10 +2429,6 @@
 				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
 				"type" : "JSON",
 				"implicit" : 1
-			}
-, 			{
-				"name" : "bach.find.mxo",
-				"type" : "iLaX"
 			}
 , 			{
 				"name" : "bach.flat.mxo",
@@ -2611,55 +2603,6 @@
 			}
 , 			{
 				"name" : "bp.corpus.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bp.docs.about.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bp.docs.config.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bp.docs.credits.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bp.docs.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bp.docs.reference.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bp.docs.tutorials.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bp.docs.window.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -2883,6 +2826,34 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.ui.library.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.ui.preferences.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.ui.separator.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.ui.settings.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bp.utils.button.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
@@ -2925,13 +2896,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "bp.utils.searchbar.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "bp.utils.truncatetext.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
@@ -2943,13 +2907,6 @@
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "ccm_logo.png",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{
@@ -3235,13 +3192,6 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "gpl_logo.png",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "PNG",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "load-icon.svg",
 				"bootpath" : "~/Documents/bellplay/media",
 				"patcherrelativepath" : "../media",
@@ -3306,13 +3256,6 @@
 				"bootpath" : "~/Documents/bellplay/media",
 				"patcherrelativepath" : "../media",
 				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "search.png",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{

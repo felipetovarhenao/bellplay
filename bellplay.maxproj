@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3830798775,
+	"modificationdate" : 3830868667,
 	"viewrect" : [ 25.0, 104.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -31,11 +31,6 @@
 				"local" : 1
 			}
 ,
-			"bp.docs.about.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
 			"bp.process.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1
@@ -51,22 +46,12 @@
 				"local" : 1
 			}
 ,
-			"bp.docs.reference.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
 			"bp.utils.getbuffer.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1
 			}
 ,
 			"bp.utils.searchbar.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.docs.credits.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1
 			}
@@ -161,21 +146,6 @@
 				"local" : 1
 			}
 ,
-			"bp.docs.tutorials.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.docs.window.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.docs.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
 			"bp.process.degrade~.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1
@@ -231,11 +201,6 @@
 				"local" : 1
 			}
 ,
-			"bp.docs.config.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
 			"bp.utils.truncatetext.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1
@@ -257,6 +222,26 @@
 			}
 ,
 			"bp.utils.button.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1
+			}
+,
+			"bp.ui.library.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1
+			}
+,
+			"bp.ui.settings.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1
+			}
+,
+			"bp.ui.separator.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1
+			}
+,
+			"bp.ui.preferences.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1
 			}
@@ -500,6 +485,36 @@
 			}
 ,
 			"plus-icon.svg" : 			{
+				"kind" : "vectorimagefile",
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/Documents/bellplay/media",
+					"projectrelativepath" : "./media"
+				}
+
+			}
+,
+			"alert-icon.svg" : 			{
+				"kind" : "vectorimagefile",
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/Documents/bellplay/media",
+					"projectrelativepath" : "./media"
+				}
+
+			}
+,
+			"book-icon.svg" : 			{
+				"kind" : "vectorimagefile",
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/Documents/bellplay/media",
+					"projectrelativepath" : "./media"
+				}
+
+			}
+,
+			"settings-icon.svg" : 			{
 				"kind" : "vectorimagefile",
 				"local" : 1,
 				"singleton" : 				{
