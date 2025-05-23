@@ -1571,6 +1571,10 @@ BP_REF_NEW(
         BP_REF_ARG(@name "id" @default 0 @type "int/float/symbol", @description "identifier for unique random number generator.")
         BP_REF_ARG(@name "useseed" @default 0 @type "list/llll", @description "use random seed for URN associated with `@id`.")
     )
+    @usage BP_REF_CODE_SNIPPET(
+        "initurn(@size 3 @id 'myurn'); ## initialize URN",
+        "for $i in 1...30 do print(urn(@id 'myurn')) ## call URN"
+    )
 );
 
 ## ------------------------------------------------------------
@@ -1604,6 +1608,10 @@ BP_REF_NEW(
         BP_REF_ARG(@name "id" @default 0 @type "int/float/symbol", @description "identifier for URN.")
     )
     @output BP_REF_OUTPUT(@description "unique random number", @type "int")
+    @usage BP_REF_CODE_SNIPPET(
+        "initurn(@size 3 @id 'myurn'); ## initialize URN",
+        "for $i in 1...30 do print(urn(@id 'myurn')) ## call URN"
+    )
 );
 
 ## ------------------------------------------------------------
@@ -1662,6 +1670,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "ratios", @type "list/int/rat/float", @description "ratios to reduce.")
     ),
     @output BP_REF_OUTPUT(@description "list of pitch classes", @type "list/int/float")
+    @usage BP_REF_CODE_SNIPPET("octreduce(1 5/4 3/2 2 5/2 3) ## 1 5/4 3/2 1 5/4 3/2")
 );
 
 ## ------------------------------------------------------------
@@ -1683,6 +1692,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "pc", @default 0 @type "int/float", @description "pitch class of fundamental")
     ),
     @output BP_REF_OUTPUT(@description "list of pitch classes", @type "list/int/float")
+    @usage BP_REF_CODE_SNIPPET("r2pc(1 5/4 3/2) ## 0 3.86 7.02")
 );
 
 ## ------------------------------------------------------------
@@ -1697,6 +1707,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "mc", @type "list/int/float", @description "midicents to convert.")
     ),
     @output BP_REF_OUTPUT(@description "list of pitch classes", @type "list/int/float")
+    @usage BP_REF_CODE_SNIPPET('mc2pc(c5 e5 g5) ## 0 4 7')
 );
 
 ## ------------------------------------------------------------
@@ -1717,6 +1728,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "mc", @default 6000 @type "int/float", @description "fundamental in midicents")
     ),
     @output BP_REF_OUTPUT(@description "list of midicents", @type "list/int/float")
+    @usage BP_REF_CODE_SNIPPET('r2mc(1 5/4 3/2) ## 6000 6386 6702')
 );
 
 ## ------------------------------------------------------------
@@ -1733,6 +1745,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "ratios", @type "list/int/float", @description "ratios to convert.")
     ),
     @output BP_REF_OUTPUT(@description "list of cents", @type "list/int/float")
+    @usage BP_REF_CODE_SNIPPET('r2c(1 5/4 3/2) ## 0 386 702')
 );
 
 ## ------------------------------------------------------------
