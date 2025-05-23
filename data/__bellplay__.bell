@@ -262,7 +262,7 @@ BP_REF_NEW = (
         $tab = "    ";
         ## check if reference belongs to analysis/descriptor function
         if $category == BP_REF_LABEL_BUFFER_GENERATION then (
-            $usage = BP_REF_GENERATION_EXAMPLE($name)
+            $usage = $usage ||| BP_REF_GENERATION_EXAMPLE($name)
         ) else if $category == BP_REF_LABEL_BUFFER_ANALYSIS then (
             ## check if descriptor supports multiple modes
             $mode = $arguments."@mode";
@@ -6251,8 +6251,51 @@ topartialtracks = (
 
 BP_REF_NEW(
     @name "buf2ptracks",
-    @description "Converts a buffer into a partial track analysis.",
-    @category BP_REF_LABEL_BUFFER_ANALYSIS,
+    @description BP_REF_MULTILINE(
+        "Converts a buffer into partial tracks via analysis, consisting of a _llll_ with the keys `frequencies`, `magnitudes`, and `phases`, structured as follows:",
+        "",
+        BP_REF_CODE_SNIPPET(
+            "[
+    [ 'frequencies'
+        [ ## buffer channel 1
+            [ <fq_1> <fq_2> ... <fq_N> ] ## frame 1
+            ...
+            [ <fq_1> <fq_2> ... <fq_N> ] ## frame N
+        ]
+        ...
+        [ ## buffer channel N
+            ...
+        ]
+    ]
+    [ 'magnitudes'
+        [ ## buffer channel 1
+            [ <mag_1> <mag_2> ... <mag_N> ] ## frame 1
+            ...
+            [ <mag_1> <mag_2> ... <mag_N> ] ## frame N
+        ]
+        ...
+        [ ## buffer channel N
+            ...
+        ]
+    ]
+    [ 'phases'
+        [ ## buffer channel 1
+            [ <phase_1> <phase_2> ... <phase_N> ] ## frame 1
+            ...
+            [ <phase_1> <phase_2> ... <phase_N> ] ## frame N
+        ]
+        ...
+        [ ## buffer channel N
+            ...
+        ]
+    ]
+]"
+        ),
+        ":::warning",
+        "`buf2ptracks` is computationally expensive and can take a long time.",
+        ":::"
+    )
+    @category BP_REF_LABEL_BUFFER_ANALYSIS
     @arguments (
         BP_REF_ARG(@name "buffer" @type "llll" @description "buffer to analyze.")
         BP_REF_ARG(@name "winstartfromzero", @default 0, @type "int", @description "first window starts at zero" @options
@@ -6301,6 +6344,39 @@ BP_REF_NEW(
         ## BP_REF_ARG(@name "stocf", @default '0.2', @type "int/float", @description "decimation factor of stochastic approximation. Ignored if @stochastic is `0`.")
     ),
     @output BP_REF_OUTPUT(@description "partial track analysis" @type "llll")
+    @usage BP_REF_CODE_SNIPPET("$buffer = importaudio('poem.wav').setkey('duration', 1500); ## input buffer
+$sr = $buffer.getkey('sr'); ## get sampling rate
+$hopsize = 512; ## set hop size
+$ptracks = $buffer.buf2ptracks(@magnitudethreshold 0.01 @hopsize $hopsize); ## extract partial tracks
+## unpack frequency, magnitude, and phase tracks
+$freqs = $ptracks.getkey('frequencies');
+$mags = $ptracks.getkey('magnitudes');
+$phases = $ptracks.getkey('phases');
+ 
+$stretch = 8; ## define stretching amount
+## compute ms frame duration based on hop size and sampling rate
+$framedur = ($hopsize / $sr) * 1000.;
+## parallel iteration through every numeric value
+for $fq $addr in $freqs, $mag in $mags, $ph in $phases with @maxdepth -1 do (
+    ## skip invalid frequencies
+    if $fq > 0 then (
+        $frame = $addr:-2; ## frame id from address
+        $onset = $frame * $framedur; ## frame onset time
+        $grain = cycle( ## sine grain
+            @frequency $fq
+            @phase $ph
+            @duration $framedur * $stretch * 4 ## overlap of 4
+        );
+        $env = [0 0 0] [0.5 $mag * 0.25 -0.25] [1 0 0.25]; ## grain envelope
+        $grain.transcribe(
+            @onset $onset * $stretch ## apply time stretching
+            @gain $env
+            @pan rand() 
+        ) 
+    ) 
+);
+render(@play 1)"
+    )
 );
 
 ## ------------------------------------------------------------
@@ -6362,7 +6438,13 @@ frompartialtracks = (
 
 BP_REF_NEW(
     @name "ptracks2buf",
-    @description "Converts a partial track analysis into a buffer.",
+    @description BP_REF_MULTILINE(
+        "Converts a partial track analysis, which can be generated via the `buf2ptracks` function, into a buffer.",
+        ""
+        ":::warning",
+        "`buf2ptracks` is computationally expensive and can take a long time.",
+        ":::"
+    )
     @category BP_REF_LABEL_BUFFER_GENERATION,
     @arguments (
         BP_REF_ARG(@name "frequencies" @type "llll" @description "frequency bins.")
@@ -6386,6 +6468,22 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "buffer" @type "llll")
+    @usage BP_REF_CODE_SNIPPET("$buffer = importaudio('poem.wav').setkey('duration', 1500); ## input buffer
+$ptracks = $buffer.buf2ptracks(@magnitudethreshold 0.001); ## extract partial tracks
+## unpack frequency, magnitude, and phase tracks
+$freqs = $ptracks.getkey('frequencies');
+$mags = $ptracks.getkey('magnitudes');
+$phases = $ptracks.getkey('phases');
+## resynthesize to buffer
+$resynth = ptracks2buf(
+    @frequencies $freqs
+    @magnitudes $mags
+    @phases $phases
+);
+## transcribe and render
+$resynth.transcribe();
+render(@play 1)"
+    )
 );
 
 ## ------------------------------------------------------------
