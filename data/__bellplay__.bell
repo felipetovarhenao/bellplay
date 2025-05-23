@@ -840,6 +840,10 @@ BP_REF_NEW(
             BP_REF_OPT(@value "'subdivision'" @description "beat subdivision marker role.")
         )
     )
+    @usage BP_REF_CODE_SNIPPET("$onsets = 0 500 1000 1500 2000;
+for $onset $i in $onsets do (
+    addmarker(@onset $onset @names $i)
+)")
 );
 
 ## ------------------------------------------------------------
@@ -6983,6 +6987,15 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "list of segmented buffers." @type "llll")
+    @usage BP_REF_CODE_SNIPPET("$buf = importaudio('singing.wav');
+$segdur = 250;
+$segments = $buf.splitbuf(@split $segdur); ## split into 200 ms segments;
+$onset = 0;
+for $seg in rev($segments) do (
+    $seg.transcribe(@onset $onset);
+    $onset += $segdur
+);
+render(@play 1)")
 );
 
 ## ------------------------------------------------------------
