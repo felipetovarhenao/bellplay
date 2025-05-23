@@ -1672,14 +1672,15 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-135",
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 627.0, 867.0, 40.0, 21.0 ],
+					"patching_rect" : [ 627.0, 867.0, 40.0, 35.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 561.0, 12.0, 53.0, 21.0 ],
 					"style" : "bellplay-gui",
-					"text" : "driver",
+					"text" : "Driver",
 					"textcolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ]
 				}
 
@@ -1687,14 +1688,15 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-133",
+					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 483.0, 916.0, 43.0, 21.0 ],
+					"patching_rect" : [ 483.0, 916.0, 43.0, 35.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 561.0, 37.0, 56.0, 21.0 ],
 					"style" : "bellplay-gui",
-					"text" : "device",
+					"text" : "Device",
 					"textcolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ]
 				}
 
@@ -1709,7 +1711,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 561.0, 62.0, 81.0, 21.0 ],
 					"style" : "bellplay-gui",
-					"text" : "sampling rate",
+					"text" : "Sampling rate",
 					"textcolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ]
 				}
 
@@ -2361,6 +2363,13 @@
 		}
 ,
 		"dependency_cache" : [ 			{
+				"name" : "alert-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bach.+.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
 				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
@@ -2602,13 +2611,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "bp.corpus.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "bp.ears.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
@@ -2791,13 +2793,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "bp.sampler.poly~.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "bp.sandbox.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
@@ -2917,7 +2912,14 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "corpus-icon.svg",
+				"name" : "code-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "console-icon.svg",
 				"bootpath" : "~/Documents/bellplay/media",
 				"patcherrelativepath" : "../media",
 				"type" : "svg",
@@ -2925,10 +2927,6 @@
 			}
 , 			{
 				"name" : "dada.base.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "dada.cartesian.mxo",
 				"type" : "iLaX"
 			}
 , 			{

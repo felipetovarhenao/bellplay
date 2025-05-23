@@ -66,7 +66,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "About", "icon", "book-icon.svg" ],
+					"args" : [ "text", "Documentation", "icon", "book-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -114,7 +114,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "Export Audio", "icon", "save-icon.svg" ],
+					"args" : [ "text", "Export audio", "icon", "save-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -162,7 +162,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "Reload Script", "icon", "reload-icon.svg" ],
+					"args" : [ "text", "Reload script", "icon", "reload-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -186,7 +186,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "New Script", "icon", "new-icon.svg" ],
+					"args" : [ "text", "New script", "icon", "new-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -210,7 +210,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "Load Script", "icon", "load-icon.svg" ],
+					"args" : [ "text", "Load script", "icon", "load-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
