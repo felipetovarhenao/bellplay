@@ -253,6 +253,20 @@ createdbtable(@data $events @name 'notes');
 $results = querydb('SELECT * FROM notes WHERE pitch % 1200 == 0');
 print($results) ## print results");
 
+BP_REF_DATABASE_IO_SNIPPET = BP_REF_CODE_SNIPPET("$events = importmidi('bach.mid'); ## MIDI as table data
+$db1 = 'first'; ## database name 1
+$db2 = 'second'; ## database name 2
+$path = './mydb.llll'; ## output path
+createdbtable(
+    @data $events ## table data
+    @name 'events' ## table name
+    @db $db1 ## database name 1
+);
+writedb(@path $path @db $db1); ## write database 1
+readdb(@path $path @db $db2); ## read and load into database 2
+$results = querydb('SELECT * FROM events', $db2); ## query database 2
+print($results)");
+
 ## ------------------------------------------------------------
 
 BP_REF_NEW = (
@@ -966,7 +980,8 @@ This format ensures that the resulting table can be queried using standard SQL-s
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "data" @type "llll" @description "Data from which to build SQL table, each element structured as a list of key-value pairs.")
-        BP_REF_ARG(@name "name" @default "'data'" @type "symbol" @description "table name, to be used with `querydb`. For instance, for a table named `'mytable'`, a basic query would be `'SELECT * FROM mytable'`.")
+        BP_REF_ARG(@name "name" @default "'data'" @type "symbol" @description "SQL Table name, to be used with `querydb`. For instance, for a table named `'mytable'`, a basic query would be `'SELECT * FROM mytable'`.")
+        BP_REF_ARG(@name "db" @default "null" @type "symbol/null" @description "Optional database name. If set to `null`, `'main'` is used as the default database name.")
     )
     @usage BP_REF_DATABASE_SNIPPET
 );
@@ -996,6 +1011,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "sql" @type "symbol" @description "SQL table query.")
+        BP_REF_ARG(@name "db" @default "null" @type "symbol/null" @description "Optional database name. If set to `null`, `'main'` is used as the default database name.")
     )
     @output BP_REF_OUTPUT(@description "query results." @type "llll/null")
     @usage BP_REF_DATABASE_SNIPPET
@@ -1024,13 +1040,14 @@ writedb = (
 
 BP_REF_NEW(
     @name "writedb"
-    @description "Write SQLite3 database `@db` as a `.llll` file."
+    @description "Write [SQLite3](https://www.sqlitetutorial.net/) database `@db` as a `.llll` file."
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "path" @type "symbol" @description "destination path for SQL database with llll extension..")
+        BP_REF_ARG(@name "db" @default "null" @type "symbol/null" @description "Optional database name. If set to `null`, `'main'` is used as the default database name.")
     )
     @output BP_REF_OUTPUT(@description "query results." @type "llll/null")
-    @usage BP_REF_DATABASE_SNIPPET
+    @usage BP_REF_DATABASE_IO_SNIPPET
 );
 
 ## ------------------------------------------------------------
@@ -1042,7 +1059,7 @@ readdb = (
         $ext = $info.'extension';
         if $ext != '.llll' then BP_FN_ERROR($self, 'invalid @path extension:' $ext ||| 'null');
         $path = $info.'path' + $ext;
-        $db = null ||| 'main';
+        $db = $db ||| 'main';
         if BP_DATABASE_TABLES.$db != null then BP_FN_ERROR($self, "database already in use. Use a different @db name:" $db);
         BP_DATABASE_OUTPUT = null;
         BP_FN_DISPATCH('db', ['name' $db] ['erase']);
@@ -1053,6 +1070,18 @@ readdb = (
         BP_DATABASE_TABLES _= [$db $names];
         $names
     ) 
+);
+
+BP_REF_NEW(
+    @name "readdb"
+    @description "Loads [SQLite3](https://www.sqlitetutorial.net/) database from `.llll` file."
+    @category BP_REF_LABEL_DATA_UTILS
+    @arguments (
+        BP_REF_ARG(@name "path" @type "symbol" @description "destination path for SQL database with `.llll` extension..")
+        BP_REF_ARG(@name "db" @default "null" @type "symbol/null" @description "Optional database name. If set to `null`, `'main'` is used as the default database name.")
+    )
+    @output BP_REF_OUTPUT(@description "query results." @type "llll/null")
+    @usage BP_REF_DATABASE_IO_SNIPPET
 );
 
 ## ------------------------------------------------------------
