@@ -25,6 +25,23 @@
 		"title" : "bellplay~ | settings",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 5.263157665729523, 358.0, 277.0, 23.0 ],
+					"saved_object_attributes" : 					{
+						"embed" : 0,
+						"versionnumber" : 80300
+					}
+,
+					"text" : "bach.eval @file bp.tutorials.bell @embed 0 @auto 1"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-125",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -300,6 +317,13 @@
 			}
  ],
 		"dependency_cache" : [ 			{
+				"name" : "alert-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
 			}
@@ -430,9 +454,65 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "check-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "code-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "minus-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "open-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "plus-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "reload-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "thru.maxpat",
 				"bootpath" : "C74:/patchers/m4l/Pluggo for Live resources/patches",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "uncheck-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "zoom.js",
+				"bootpath" : "~/Documents/bellplay/code",
+				"patcherrelativepath" : "../code",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],
