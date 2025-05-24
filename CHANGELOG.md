@@ -17,7 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `createdbtable`: Instantiates a SQL table/database. Replaces `buildcorpus`.
   - `querydb`: Queries a SQL database. Replaces `query`.
   - `readdb`: Reads SQL database as `.llll` file. Replaces `setcorpus`.
-  - `writedb`: Writes SQL database as `.llll` file. Replaces `loadcorpus`.
+  - `writedb`: Replaces `@outpath` in now deprecated `buildcorpus`.
   - `seq2markov`: Sequence to Markov matrix.
   - `markov2seq`: Markov matrix to sequence.
 - New built-in media: `joplin.mid` (_The Entertainer_).
@@ -64,6 +64,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `buildtree`: Replaced by `createtree`.
   - `searchtree`: Replaced by `querytree`.
   - `buildcorpus`: Replaced by `createdbtable`.
+  - `setcorpus`: Replaced by `readdb`.
   - `query`: Replaced by `querydb`.
   - `interpolate`: No longer useful.
 - Deprecated tutorials:
