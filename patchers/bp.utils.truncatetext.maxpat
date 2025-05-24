@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -17,7 +17,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -40,7 +40,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "$len = length($x1); $maxsize = 64 ||| $x2; $mid = $maxsize / 2; if $len <= $maxsize then $x1 else $x1.left($mid - 1) 8230 $x1.right(-$mid) ",
+					"code" : "$len = length($x1); $maxsize = $x2 ||| 48; $mid = $maxsize / 2; if $len <= $maxsize then $x1 else $x1.left($mid - 1) 8230 $x1.right(-$mid) ",
 					"id" : "obj-76",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
@@ -52,7 +52,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval $len = length($x1)\\; $maxsize = 64 ||| $x2\\; $mid = $maxsize / 2\\; if $len <= $maxsize then $x1 else $x1.left($mid - 1) 8230 $x1.right(-$mid) @out m"
+					"text" : "bach.eval $len = length($x1)\\; $maxsize = $x2 ||| 48\\; $mid = $maxsize / 2\\; if $len <= $maxsize then $x1 else $x1.left($mid - 1) 8230 $x1.right(-$mid) @out m"
 				}
 
 			}
@@ -72,7 +72,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-89",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -85,7 +85,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-90",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -130,13 +130,6 @@
 
 			}
  ],
-		"originid" : "pat-3960",
-		"dependency_cache" : [ 			{
-				"name" : "bach.eval.mxo",
-				"type" : "iLaX"
-			}
- ],
-		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "bellplay-gui",
 				"default" : 				{

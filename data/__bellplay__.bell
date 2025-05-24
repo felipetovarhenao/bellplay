@@ -58,13 +58,18 @@ BP_FN_CONFIG = (
                 ] 
                 ## mute sound alert when getting errors
                 [ 'mutealert' 0] 
+                ## open console automatically after runtime
+                [ 'openwin' 1] 
             );
             if $exists == 0 then ($bpconfig = $defaultconfig) else (
                 $bpconfig = read(@path $bpconfigpath);
                 $defaultkeys = trans($defaultconfig)::1;
+                $bpconfigkeys = trans($bpconfig)::1;
                 for $key in $defaultkeys do (
                     $val = $bpconfig.$key;
-                    if $val == null then ($bpconfig.$key = $defaultconfig.$key) 
+                    if $val == null && intersection($bpconfigkeys, $key) == null then (
+                        $bpconfig _= [$key $defaultconfig.$key]
+                    ) 
                 );
                 $bpconfig.'version' = BP_VERSION
             );

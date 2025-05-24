@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - GUI:
   - New zoom in and out support via `shift+` and `shift-`.
   - New button styling, with matching SVG icons, via `bp.utils.button`.
+  - Preferences include allowing control over console automatically opening.
 - New functions:
   - `createtree`: Instantiates a k-dimensional tree. Replaces `buildtree`.
   - `querytree`: Queries a k-dimensional tree. Replaces `searchtree`.

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 122.0, 247.0, 425.0, 527.0 ],
+		"rect" : [ 122.0, 247.0, 423.0, 603.0 ],
 		"openinpresentation" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
 		"toolbarvisible" : 0,
@@ -184,7 +184,7 @@
 					"offset" : [ 0.0, 0.0 ],
 					"patching_rect" : [ 327.0, 396.0, 410.320816457271576, 68.828814297914505 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 7.0, 67.0, 410.320816457271576, 68.828814297914505 ],
+					"presentation_rect" : [ 7.0, 67.0, 410.0, 146.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -230,7 +230,7 @@
 					"offset" : [ 0.0, 0.0 ],
 					"patching_rect" : [ 327.0, 467.0, 410.566347066313028, 24.333263456821442 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 7.0, 138.0, 410.566347066313028, 24.333263456821442 ],
+					"presentation_rect" : [ 6.716826466843486, 215.0, 410.566347066313028, 24.333263456821442 ],
 					"viewvisibility" : 1
 				}
 
@@ -267,7 +267,7 @@
 					"offset" : [ 0.0, 0.0 ],
 					"patching_rect" : [ 327.0, 38.0, 410.535747591406107, 355.432440530508757 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 7.0, 164.0, 410.535747591406107, 355.432440530508757 ],
+					"presentation_rect" : [ 6.716826466843486, 241.0, 410.535747591406107, 355.432440530508757 ],
 					"viewvisibility" : 1
 				}
 
@@ -317,13 +317,6 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "alert-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
 			}
@@ -454,65 +447,9 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "check-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "code-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "minus-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "open-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "plus-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "reload-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "thru.maxpat",
 				"bootpath" : "C74:/patchers/m4l/Pluggo for Live resources/patches",
 				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "uncheck-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "zoom.js",
-				"bootpath" : "~/Documents/bellplay/code",
-				"patcherrelativepath" : "../code",
-				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],
