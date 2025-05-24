@@ -1598,7 +1598,7 @@ BP_REF_NEW(
     @description "Seed-based random floating point number generator. See `setseed`."
     @category BP_REF_LABEL_RANDOM_FUNCTIONS
     @arguments (
-        BP_REF_ARG(@name "a" @default 1 @type "int/float", @description "max. value if `@b` is null, else min. value.")
+        BP_REF_ARG(@name "a" @default 1 @type "int/float", @description "max. value if `@b` is `null`, else min. value.")
         BP_REF_ARG(@name "b" @default "null" @type "int/float/null", @description "max. value.")
     )
     @output BP_REF_OUTPUT(@description "random number", @type "float")
@@ -2201,12 +2201,12 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "path", @type "symbol", @description "input file path.")
         BP_REF_ARG(@name "ignore" @default 0 @type "symbol/null" @description "The ignore attribute can be set to any combination of the following characters" @options 
-            BP_REF_OPT(@value "'l'" @description "parens inside symbols are not `llll` levels, but symbols composed by parens only are kept as `llll` levels!")
-            BP_REF_OPT(@value "'L'" @description "all parens are not parsed as `llll` levels")
+            BP_REF_OPT(@value "'l'" @description "parens inside symbols are not _llll_ levels, but symbols composed by parens only are kept as _llll_ levels!")
+            BP_REF_OPT(@value "'L'" @description "all parens are not parsed as _llll_ levels")
             BP_REF_OPT(@value "'p'" @description "ignore pitches, keep them as symbols")
             BP_REF_OPT(@value "'r'" @description "ignore rationals, keep them as symbols")
             BP_REF_OPT(@value "'e'" @description "ignore floating-point scientific notation, keep it as symbol")
-            BP_REF_OPT(@value "'s'" @description "keep the special symbols nil and null as symbols")
+            BP_REF_OPT(@value "'s'" @description "keep the special symbols `nil` and `null` as symbols")
             BP_REF_OPT(@value "'b'" @description "symbols with a backtick are interpreted literally, with the backtick included")
             BP_REF_OPT(@value 0 @description "don't ignore anything")
             BP_REF_OPT(@value 1 @description "ignore everything")
@@ -6826,8 +6826,8 @@ BP_REF_NEW(
     @category BP_REF_LABEL_BUFFER_GENERATION,
     @arguments (
         BP_REF_ARG(@name "pitch", @default 6000 @type "int/float", @description "target pitch in midicents.")
-        BP_REF_ARG(@name "duration" @default 2000 @type "int/float", @description "target duration in milliseconds. Set to null to get the sample's max. duration.")
-        BP_REF_ARG(@name "velocity" @default 64 @type "int/float", @description "target velocity, from 0 to 127. Used only when keymap has velocity-based options.")
+        BP_REF_ARG(@name "duration" @default 2000 @type "int/float", @description "target duration in milliseconds. Set to `null` to get the sample's max. duration.")
+        BP_REF_ARG(@name "velocity" @default 64 @type "int/float", @description "target velocity, from `0` to `127`. Used only when keymap has velocity-based options.")
         BP_REF_ARG(@name "keymap" @default "null" @type "llll", @description "key mapping, with pitch in midicents as key and file path as value")
         BP_REF_ARG(@name "resample" @default 1 @type "int" @description "resample buffer to match target pitch." @options
             BP_REF_OPT(@value 0 @description "off")
@@ -7369,7 +7369,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "matrix" @type "llll" @description "transition probability matrix.")
         BP_REF_ARG(@name "maxlength" @default 25 @type "int" @description "maximum length of the generated sequence.")
-        BP_REF_ARG(@name "start" @default "null" @type "int" @description "initial state for the sequence. If null, a random state is chosen.")
+        BP_REF_ARG(@name "start" @default "null" @type "int" @description "initial state for the sequence. If `null`, a random state is chosen.")
         BP_REF_ARG(@name "autoclear" @default 1 @type "int" @description "Allow sequence to automatically reset when no valid transitions exist." @options 
             BP_REF_SWITCH_OPTIONS
         )
