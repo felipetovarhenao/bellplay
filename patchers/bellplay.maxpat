@@ -24,6 +24,17 @@
 		"title" : "bellplay~ | algorithmic audio in bell",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-51",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patching_rect" : [ 1116.0, 146.0, 84.0, 23.0 ],
+					"text" : "bp.ui.menubar"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-98",
 					"maxclass" : "message",
 					"numinlets" : 2,
@@ -113,7 +124,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1163.0, 236.0, 133.0, 23.0 ],
+					"patching_rect" : [ 1010.0, 433.0, 133.0, 23.0 ],
 					"text" : "r open-bellplay-settings"
 				}
 
@@ -310,43 +321,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 768.0, 248.0, 150.0, 37.0 ],
 					"text" : "; max getruntime #0runtime"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-61",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 1117.0, 155.0, 67.0, 23.0 ],
-					"text" : "loadmess 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-60",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 1117.0, 236.0, 33.0, 23.0 ],
-					"text" : "sel 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-51",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 4,
-					"outlettype" : [ "int", "int", "int", "int" ],
-					"patching_rect" : [ 1117.0, 194.0, 56.0, 23.0 ],
-					"save" : [ "#N", "menubar", 4, 0, ";", "#X", "about", "About", "bellplay~", ";", "#X", "closeitem", ";", "#X", "end", ";" ],
-					"text" : "menubar"
 				}
 
 			}
@@ -1048,7 +1022,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1117.0, 321.0, 54.0, 23.0 ],
+					"patching_rect" : [ 1010.0, 515.0, 54.0, 23.0 ],
 					"text" : "pcontrol"
 				}
 
@@ -1060,7 +1034,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1117.0, 281.0, 35.0, 23.0 ],
+					"patching_rect" : [ 1010.0, 475.0, 35.0, 23.0 ],
 					"text" : "open"
 				}
 
@@ -1071,7 +1045,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1117.0, 360.0, 78.0, 23.0 ],
+					"patching_rect" : [ 1010.0, 554.0, 78.0, 23.0 ],
 					"text" : "bp.ui.settings"
 				}
 
@@ -2107,13 +2081,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-60", 0 ],
-					"source" : [ "obj-51", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-67", 0 ],
 					"source" : [ "obj-53", 0 ]
 				}
@@ -2172,20 +2139,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-29", 0 ],
 					"source" : [ "obj-6", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-88", 0 ],
-					"source" : [ "obj-60", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-51", 0 ],
-					"source" : [ "obj-61", 0 ]
 				}
 
 			}
@@ -2822,6 +2775,13 @@
 			}
 , 			{
 				"name" : "bp.ui.library.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.ui.menubar.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
