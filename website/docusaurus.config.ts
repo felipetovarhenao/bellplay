@@ -117,6 +117,10 @@ const config: Config = {
               label: "Learning",
               to: "/docs/learning/tutorials/basicworkflow",
             },
+            {
+              label: "Tags",
+              to: "/docs/tags",
+            },
           ],
         },
         {

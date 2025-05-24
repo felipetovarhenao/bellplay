@@ -64,10 +64,12 @@ for $docsection $sectionid in ReferenceSections do (
     for $entry in $functions do (
         $markdown = '';
         $funcname = $entry:(1 1);
+        $yaml = 'hide_title: true' + $br;
         $markdown = concatsym(
-            $markdown, '---', $br, 'hide_title: true', $br, '---', $br * 2, '## `', $funcname, '`', $br * 2
+            $markdown, '## `', $funcname, '`', $br * 2
         );
         $funcdescr = $entry.getkey('description:');
+        $functags = $entry.getkey('tags');
         $funcargs = $entry.getkey('arguments:');
         $usage = $entry.getkey('usage');
         $funcsig = '```bell' + $br + $funcname + $open;
@@ -136,6 +138,17 @@ for $docsection $sectionid in ReferenceSections do (
             ) 
         );
         $mdpath = ReferenceDirPath + ReferenceFolders:$sectionid + '/' + $funcname + '.md';
+        if $functags != null then (
+            $tags = concatsym('tags: [');
+            for $tag $tagid in $functags do (
+                $tags = concatsym($tags, $tag);
+                if $tagid < length($functags) then ($tags = concatsym($tags, ', ')) 
+            );
+            $tags = concatsym($tags, ']');
+            $yaml = concatsym($yaml, $tags, $br) 
+        );
+        $yaml = concatsym('---', $br, $yaml, '---', $br * 2);
+        $markdown = concatsym($yaml, $markdown);
         BP_REF_WRITE_MARKDOWN(
             @data $markdown
             @path $mdpath
