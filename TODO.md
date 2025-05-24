@@ -10,16 +10,17 @@
   - [x] What are buffers.
   - [ ] Building your own library (starting with `v0.2.8-beta`).
 - [ ] Implement a better error API.
-  - [ ] checking required arguments
+  - [x] checking required arguments
   - [ ] invalid data types
 - [ ] Validate descriptors in `analyze`.
 
 ### Change
 
-- Provide new API for sql corpora.
-- [ ] Rewrite tutorials and examples involving:
-  - [ ] `splitbuf`.
-  - [ ] `createtree` and `searchtree`.
+- [ ] Update/improve inspector UI
+- [x] Provide new API for sql corpora.
+- [x] Rewrite tutorials and examples involving:
+  - [x] `splitbuf`.
+  - [x] `createtree` and `searchtree`.
 - [ ] Doc improvements:
   - [x] Better function tags:
     - Data utilities
