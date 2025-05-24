@@ -276,7 +276,8 @@ BP_REF_NEW = (
         $tab = "    ";
         ## check if reference belongs to analysis/descriptor function
         if $category == BP_REF_LABEL_BUFFER_GENERATION then (
-            $usage = $usage ||| BP_REF_GENERATION_EXAMPLE($name)
+            $usage = $usage ||| BP_REF_GENERATION_EXAMPLE($name);
+            $tags _= 'inspect'
         ) else if $category == BP_REF_LABEL_BUFFER_ANALYSIS then (
             ## check if descriptor supports multiple modes
             $mode = $arguments."@mode";
@@ -299,7 +300,7 @@ BP_REF_NEW = (
                 );
                 $usage = $code
             ) else if $name != 'buf2ptracks' then (
-                $tags _= 'analyze';
+                $tags _= 'analyze' 'inspect';
                 $ankeys = $ankeys ||| $name;
                 $description = BP_REF_MULTILINE($description, "", 'The resulting buffer will be updated with the following keys:', "");
                 $description = BP_REF_MULTILINE($description, '', for $ankey in $ankeys collect '- `' + $ankey + '`');
@@ -333,7 +334,7 @@ BP_REF_NEW = (
             ) else if $usage == null then (
                 $usage = BP_REF_PROCESS_EXAMPLE($name)
             );
-            $tags _= 'process'
+            $tags _= 'process' 'inspect'
         );
         ## if function has arguments, split required from optional ones.
         if $arguments != null then (
@@ -2714,6 +2715,7 @@ BP_REF_NEW(
         "$larm = $buffer.getkey('larm');",
         "$pitchmelodia = $buffer.getkey('pitchmelodia')"
     )
+    @tags 'larm' 'pitchmelodia' 'spectralcentroid'
 );
 
 ## ------------------------------------------------------------
@@ -4370,6 +4372,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "phase", @default '0.25', @type "int/float", @description "initial phase, in the 0–1 range.")
     ),
     @output BP_REF_OUTPUT(@description "synthesized buffer" @type "llll")
+    @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
 );
 
 ## ------------------------------------------------------------
@@ -4392,6 +4395,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "duty", @default '0.5', @type "int/float/llll", @description "duty cycle in the range of 0-1, either as a number, envelope, or buffer.")
     ),
     @output BP_REF_OUTPUT(@description "synthesized buffer" @type "llll")
+    @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
 );
 
 ## ------------------------------------------------------------
@@ -4412,6 +4416,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "buffer duration, in milliseconds")
     ),
     @output BP_REF_OUTPUT(@description "synthesized buffer" @type "llll")
+    @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
 );
 
 ## ------------------------------------------------------------
@@ -4434,6 +4439,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "duty", @default '0.5', @type "int/float/llll", @description "duty cycle in the range of 0-1, either as a number, envelope, or buffer.")
     ),
     @output BP_REF_OUTPUT(@description "synthesized buffer" @type "llll")
+    @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
 );
 
 ## ------------------------------------------------------------
@@ -4448,16 +4454,17 @@ triangle = (
 );
 
 BP_REF_NEW(
-    @name "triangle",
-    @description "Generates a triangular/ramp oscillator as a buffer.",
-    @category BP_REF_LABEL_BUFFER_GENERATION,
+    @name "triangle"
+    @description "Generates a triangular/ramp oscillator as a buffer."
+    @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
         BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "frequency, either as a single number, envelope, or buffer.")
         BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "buffer duration, in milliseconds")
         BP_REF_ARG(@name "phase", @default 0, @type "int/float", @description "initial phase, in the 0-1 range.")
         BP_REF_ARG(@name "offset", @default '0.5', @type "int/float", @description "peak position offset, in the 0-1 range.")
-    ),
+    )
     @output BP_REF_OUTPUT(@description "synthesized buffer" @type "llll")
+    @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
 );
 
 ## ------------------------------------------------------------
@@ -4472,14 +4479,15 @@ phasor = (
 
 BP_REF_NEW(
     @name "phasor",
-    @description "Generates a unipolar ramp oscillator as a buffer.",
+    @description "Generates a unipolar ramp oscillator as a buffer."
     @category BP_REF_LABEL_BUFFER_GENERATION,
     @arguments (
         BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "frequency, either as a single number, envelope, or buffer.")
         BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "buffer duration, in milliseconds")
         BP_REF_ARG(@name "phase", @default 0, @type "int/float", @description "initial phase, in the 0-1 range.")
-    ),
+    )
     @output BP_REF_OUTPUT(@description "synthesized buffer" @type "llll")
+    @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
 );
 
 ## ------------------------------------------------------------
@@ -4513,6 +4521,7 @@ BP_REF_NEW(
     ),
     @output BP_REF_OUTPUT(@description "envelope" @type "llll")
     @usage BP_REF_GENERATION_EXAMPLE('envelope', '[0 0 0] [1 1 0.5]')
+    @tags 'bpf'
 );
 
 ## ------------------------------------------------------------
@@ -4610,6 +4619,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "framesize", @default 8192, @type "int", @description "analysis frame size, in samples.")
     ),
     @output BP_REF_OUTPUT(@description "paulstretch operation" @type "llll")
+    @tags 'paulstretch' 'paulfreeze' 'soundtouch' 'rubberband'
 );
 
 ## ------------------------------------------------------------
@@ -4651,6 +4661,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "framesize", @default 8192, @type "int", @description "analysis frame size, in samples.")
     ),
     @output BP_REF_OUTPUT(@description "paulfreeze operation" @type "llll")
+    @tags 'paulstretch' 'paulfreeze' 'soundtouch' 'rubberband'
 );
 
 ## ------------------------------------------------------------
@@ -4675,6 +4686,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "factor" @default 1 @type "int/float/llll", @description "amplitude distortion factor, either as single number or envelope.")
     ),
     @output BP_REF_OUTPUT(@description "overdrive operation" @type "llll")
+    @tags 'clip'
 );
 
 ## ------------------------------------------------------------
@@ -4772,6 +4784,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "q" @default 80 @type "int/float" @description "resonance or slope, depending on `@type`.")
     )
     @output BP_REF_OUTPUT(@description "biquad operation" @type "llll")
+    @tags 'onepole'
 );
 
 ## ------------------------------------------------------------
@@ -4797,6 +4810,7 @@ BP_REF_NEW(
     ),
     @output BP_REF_OUTPUT(@description "clip operation" @type "llll")
     @usage BP_REF_PROCESS_EXAMPLE('clip', '0.05')
+    @tags 'overdrive'
 );
 
 ## ------------------------------------------------------------
@@ -4893,6 +4907,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "rubberband operation" @type "llll")
+    @tags 'paulstretch' 'paulfreeze' 'soundtouch' 'rubberband'
 );
 
 ## ------------------------------------------------------------
@@ -4944,6 +4959,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "soundtouch operation" @type "llll")
+    @tags 'paulstretch' 'paulfreeze' 'soundtouch' 'rubberband'
 );
 
 ## ------------------------------------------------------------
@@ -5089,6 +5105,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "rounding operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('rounding', '0.2')
 );
 
 ## ------------------------------------------------------------
@@ -5166,6 +5183,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "pong operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('pong', '@low -0.125 @high 0.133')
 );
 
 ## ------------------------------------------------------------
@@ -5253,6 +5271,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "duration", @default 1000, @type "int", @description "envelope duration in milliseconds. Ignored if `@phase` is a buffer.")
     ),
     @output BP_REF_OUTPUT(@description "waveshape operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('waveshape', '@phase for $x in 0...90 collect [$x xrand(-1, 1) xrand(-0.25, 0.25)] @duration 3000')
 );
 
 ## ------------------------------------------------------------
@@ -5282,6 +5301,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "duration", @default 1000, @type "int", @description "envelope duration in milliseconds. Ignored if `@phase` is a buffer.")
     ),
     @output BP_REF_OUTPUT(@description "scrub operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('scrub', '@phase [0 0 0] [1 1 0.5] @duration 10000')
 );
 
 ## ------------------------------------------------------------
@@ -5310,6 +5330,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "repeat operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('repeat', '25' @buffer "importaudio('drums.wav').setkey('duration', 50)")
 );
 
 ## ------------------------------------------------------------
@@ -6111,6 +6132,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "resamplingfiltersize", @default 11, @type "int", @description "resampling filter size.")
     ),
     @output BP_REF_OUTPUT(@description "resample operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('resample', '[0 1 0] [1 0.5 -0.25]')
 );
 
 ## ------------------------------------------------------------

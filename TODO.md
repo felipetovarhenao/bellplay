@@ -12,6 +12,7 @@
 - [ ] Implement a better error API.
   - [ ] checking required arguments
   - [ ] invalid data types
+- [ ] Validate descriptors in `analyze`.
 
 ### Change
 
