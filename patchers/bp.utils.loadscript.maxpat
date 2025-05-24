@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 54.0, 121.0, 1224.0, 962.0 ],
+		"rect" : [ 54.0, 121.0, 575.0, 921.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"style" : "bellplay-gui",
 		"boxes" : [ 			{
