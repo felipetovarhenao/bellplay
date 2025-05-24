@@ -7233,6 +7233,20 @@ BP_REF_NEW(
 );
 
 ## ------------------------------------------------------------
+BP_REF_MARKOV_SNIPPET = BP_REF_CODE_SNIPPET("$events = importaudio('bach.wav'); ## import MIDI file
+## get pitch from each event
+$pitches = for $e in $events collect $e.getkey('pitch');
+## build 2nd-order Markov model from pitch sequence
+$matrix = seq2markov(@sequence $pitches @order 2);
+## generate pitch sequence of size 50 from Markov model
+$pitchseq = markov2seq(@matrix $matrix @maxlength 50);
+$t = 0;
+## Transcribe pitches
+for $pitch in $pitchseq do (
+    ezsampler(@pitch $pitch).transcribe($t);
+    $t += 120
+);
+render(@play 1)");
 
 seq2markov = (
     $sequence, $order = 1, $prepad = '^', $postpad = '$' -> (
@@ -7278,6 +7292,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "postpad" @default "'$'" @type 'symbol' @description "padding symbol used at the end of the sequence to handle final states")
     )
     @output BP_REF_OUTPUT(@description "transition probability matrix in sparse form" @type "llll")
+    @usage BP_REF_MARKOV_SNIPPET
 );
 
 ## ------------------------------------------------------------
@@ -7381,6 +7396,7 @@ BP_REF_NEW(
         
     )
     @output BP_REF_OUTPUT(@description "generated sequence of elements based on the given Markov transition matrix" @type "llll")
+    @usage BP_REF_MARKOV_SNIPPET
 );
 
 ## ------------------------------------------------------------
