@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbellplay_docs=self.webpackChunkbellplay_docs||[]).push([[2125],{58538:e=>{e.exports=JSON.parse('{"tag":{"label":"revbpf","permalink":"/docs/tags/revbpf","allTagsPath":"/docs/tags","count":1,"items":[{"id":"reference/data-utilities/bpf","title":"bpf","description":"bpf","permalink":"/docs/reference/data-utilities/bpf"}],"unlisted":false}}')}}]);
