@@ -1043,7 +1043,7 @@ BP_REF_NEW(
     @description "Write [SQLite3](https://www.sqlitetutorial.net/) database `@db` as a `.llll` file."
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
-        BP_REF_ARG(@name "path" @type "symbol" @description "destination path for SQL database with llll extension..")
+        BP_REF_ARG(@name "path" @type "symbol" @description "destination path for SQL database as a `.llll` file.")
         BP_REF_ARG(@name "db" @default "null" @type "symbol/null" @description "Optional database name. If set to `null`, `'main'` is used as the default database name.")
     )
     @output BP_REF_OUTPUT(@description "query results." @type "llll/null")
@@ -1193,12 +1193,12 @@ getkey = (
 );
 
 BP_REF_NEW(
-    @description "Returns value associated with an llll key."
+    @description "Returns value associated with an _llll_ key."
     @name "getkey"
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "llll" @type "llll" @description "list to get key of.")
-        BP_REF_ARG(@name "key" @type "symbol" @description "name of llll key.")
+        BP_REF_ARG(@name "key" @type "symbol" @description "name of _llll_ key.")
     )
     @output BP_REF_OUTPUT(@description "value associated with key" @type "anything")
 );
@@ -6648,7 +6648,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "buffer", @type "llll", @description "buffer to convert to audio samples.")
     )
-    @output BP_REF_OUTPUT(@description "buffer samples as a llll" @type "llll")
+    @output BP_REF_OUTPUT(@description "buffer samples as a _llll_" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -6866,10 +6866,10 @@ argsort = (
 
 BP_REF_NEW(
     @name "argsort",
-    @description "Returns the indices that would sort an input llll in ascending order. Instead of returning a sorted version of the llll, it provides an index permutation that, when applied to the original llll, results in a sorted sequence.",
+    @description "Returns the indices that would sort an input _llll_ in ascending order. Instead of returning a sorted version of the _llll_, it provides an index permutation that, when applied to the original _llll_, results in a sorted sequence.",
     @category BP_REF_LABEL_DATA_UTILS,
     @arguments (
-        BP_REF_ARG(@name "x" @type "llll" @description "llll to sort.")
+        BP_REF_ARG(@name "x" @type "llll" @description "_llll_ to sort.")
         BP_REF_ARG(@name "function" @default "null" @type "function", @description "optional lambda sorting function.")
     )
     @output BP_REF_OUTPUT(@description "sorted indices" @type "llll")
@@ -7012,7 +7012,7 @@ autoscale = (
 
 BP_REF_NEW(
     @name "autoscale"
-    @description "Applies auto-scaling normalization to a llll."
+    @description "Applies auto-scaling normalization to a _llll_."
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "x" @type "llll" @description "numeric list.")
@@ -7021,7 +7021,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 1 @description "1-sum normalization")
         )
     ),
-    @output BP_REF_OUTPUT(@description "auto-scaled llll" @type "llll")
+    @output BP_REF_OUTPUT(@description "auto-scaled _llll_" @type "llll")
 );
 
 ## ------------------------------------------------------------
