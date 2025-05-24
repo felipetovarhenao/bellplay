@@ -73,22 +73,32 @@ for fname in LEARNING_FILES:
         title = base_name
 
     # Build markdown
-    md_lines = ["---", f"sidebar_position: {file_order}",
-                f"title: {file_order + 1}. {title}", "---", ""]
+    yaml_header = [f"sidebar_position: {file_order}",
+                   f"title: {file_order + 1}. {title}"]
+    md_lines = []
+    tags = []
     for typ, val in parts:
         if typ == "comment":
             md_lines.append(val.strip())
             md_lines.append("")
         else:
+            snippet = val.strip()
+            matches = re.findall(
+                r"\b[a-z2]+(?=\()", snippet, flags=re.MULTILINE)
+            tags.extend(matches)
             md_lines.append(
                 f"```bell title=\"{title.lower().replace(" ", "_")}.bell\" showLineNumbers")
-            md_lines.append(val.strip())
+            md_lines.append(snippet)
             md_lines.append("```")
             md_lines.append("")
+    if len(tags) > 0:
+        tag_str = ", ".join(sorted(list(set(tags))))
+        yaml_header.append(f"tags: [{tag_str}]")
 
+    yaml_header = ['---', *yaml_header, '---', ""]
     # Write to file
     out_file = os.path.join(DEST_DIR, kind, base_name + ".md")
     with open(out_file, "w", encoding="utf-8") as f:
-        md = "\n".join(md_lines)
+        md = "\n".join(yaml_header + md_lines)
         f.write(md)
     FILE_COUNT_MAP[kind] += 1
