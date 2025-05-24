@@ -14,8 +14,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - New functions:
   - `createtree`: Instantiates a k-dimensional tree. Replaces `buildtree`.
   - `querytree`: Queries a k-dimensional tree. Replaces `searchtree`.
-  - `createtable`: Instantiates a SQL table. Replaces `buildcorpus`.
-  - `querytable`: Queries a SQL table. Replaces `query`.
+  - `createdbtable`: Instantiates a SQL table/database. Replaces `buildcorpus`.
+  - `querydb`: Queries a SQL database. Replaces `query`.
+  - `readdb`: Reads SQL database as `.llll` file. Replaces `setcorpus`.
+  - `writedb`: Writes SQL database as `.llll` file. Replaces `loadcorpus`.
   - `seq2markov`: Sequence to Markov matrix.
   - `markov2seq`: Markov matrix to sequence.
 - New built-in media: `joplin.mid` (_The Entertainer_).
@@ -61,8 +63,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Deprecated functions:
   - `buildtree`: Replaced by `createtree`.
   - `searchtree`: Replaced by `querytree`.
-  - `buildcorpus`: Replaced by `createtable`.
-  - `query`: Replaced by `querytable`.
+  - `buildcorpus`: Replaced by `createdbtable`.
+  - `query`: Replaced by `querydb`.
   - `interpolate`: No longer useful.
 - Deprecated tutorials:
   - `bp.tutorial.corpus`.

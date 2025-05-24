@@ -2,13 +2,13 @@
 
 # Audio corpora with SQL tables
 
-This tutorial demonstrates how to create an in-memory, queryable corpus of audio buffers by leveraging the `createtable` and `querytable` functions. 
+This tutorial demonstrates how to create an in-memory, queryable corpus of audio buffers by leveraging the `createdbtable` and `querydb` functions. 
 These functions allow you to structure and filter lllls using [SQLite3](https://www.sqlitetutorial.net/) queries based on specific keys.
 
 We begin by importing an audio file and splitting it into short fixed-length segments. Each segment is then analyzed using the `pitchmelodia` descriptor, which provides an estimation of predominant melody pitch and associated confidence values. 
-The results of this analysis are assembled into a structured table using `createtable`.
+The results of this analysis are assembled into a structured table using `createdbtable`.
 
-Each element in the input data passed to `createtable` should be structured as a list of key-value pairs, where each key corresponds to a column name in the resulting table and each value is the corresponding data entry. 
+Each element in the input data passed to `createdbtable` should be structured as a list of key-value pairs, where each key corresponds to a column name in the resulting table and each value is the corresponding data entry. 
 For example:
 
 ```bell title="expected structure for each data item"
@@ -22,7 +22,7 @@ For example:
 
 This format ensures that the resulting table can be queried using standard SQL-style syntax, with each key becoming a column in the table schema.
 
-Once the table is created, we can query it using `querytable`, selecting only segments that meet certain criteria—here, those with a pitch confidence greater than `0.01`—and ordering them by [pitch class](https://en.wikipedia.org/wiki/Pitch_class) (pitch modulo 1200).
+Once the table is created, we can query it using `querydb`, selecting only segments that meet certain criteria—here, those with a pitch confidence greater than `0.01`—and ordering them by [pitch class](https://en.wikipedia.org/wiki/Pitch_class) (pitch modulo 1200).
 
 Finally, the selected segments are rendered back as symbolic notes, placed at regular temporal intervals and randomized in the stereo field.
 
@@ -34,12 +34,12 @@ $segments = $buffer.splitbuf(@split 100);
 ## Analyze each segment with the 'pitchmelodia' descriptor and collect the results
 $corpus = for $seg in $segments collect $seg.analyze(pitchmelodia());
 ## Create an in-memory SQL table named 'corpus' from the analysis results
-createtable(
+createdbtable(
     @data $corpus @name 'corpus' 
 );
 ## Query the table to select segments with high pitch confidence,
 ## ordered by pitch class (pitch modulo 1200)
-$results = querytable('SELECT * FROM corpus WHERE pitchmelodia_confidence > 0.01 ORDER BY (pitchmelodia % 1200)');
+$results = querydb('SELECT * FROM corpus WHERE pitchmelodia_confidence > 0.01 ORDER BY (pitchmelodia % 1200)');
 ## Initialize onset time for transcription
 $onset = 0;
 ## Transcribe each selected segment with symbolic pitch and random panning
