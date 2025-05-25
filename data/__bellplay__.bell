@@ -1770,10 +1770,10 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-a2db = ($a -> 20 * log10($a));
+atodb = ($a -> 20 * log10($a));
 
 BP_REF_NEW(
-    @name "a2db"
+    @name "atodb"
     @description "Linear amplitude to decibels conversion."
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
@@ -1784,10 +1784,10 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-db2a = ($db -> 10 ** ($db/20));
+dbtoa = ($db -> 10 ** ($db/20));
 
 BP_REF_NEW(
-    @name "db2a"
+    @name "dbtoa"
     @description "Decibels to linear amplitude conversion."
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
