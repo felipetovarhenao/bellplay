@@ -30,7 +30,7 @@
                 "type": "llll"
             }
         ],
-        "usage": "$myfunc = (\n    <...> -> (\n        for $i in 1...$argcount do print('argument at position' $i '->' $args($i)\n    )\n);\n$myfunc('foo', 'bar', 'baz')",
+        "usage": "$myfunc = (\n    <...> -> (\n        for $i in 1...$argcount do print('argument at position' $i '->' $args($i))\n    )\n);\n$myfunc('foo', 'bar', 'baz')",
         "output": {
             "description": "Positional arguments at positions `@indices`.",
             "type": "llll/null"
