@@ -33,6 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- `dbtoa` and `atodb` renamed to `db2a` and `a2db` for consistency.
 - Tutorials and examples now available in top menu, not GUI.
 - New `bellplay~` logo!
 - Improved error handling.

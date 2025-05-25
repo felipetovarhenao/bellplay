@@ -9,6 +9,7 @@ BP_REF_LABEL_BUFFER_OPERATIONS = "buffer operations";
 BP_REF_LABEL_BUFFER_GENERATION = "buffer generation";
 BP_REF_LABEL_BUFFER_ANALYSIS = "buffer analysis";
 BP_REF_LABEL_BUFFER_UTILS = "buffer utilities";
+BP_REF_LABEL_MATH = "math";
 BP_REF = (for $i in (
     BP_REF_LABEL_DATA_UTILS 
     BP_REF_LABEL_BUFFER_OPERATIONS 
@@ -16,6 +17,7 @@ BP_REF = (for $i in (
     BP_REF_LABEL_BUFFER_ANALYSIS
     BP_REF_LABEL_RANDOM_FUNCTIONS
     BP_REF_LABEL_BUFFER_UTILS
+    BP_REF_LABEL_MATH
 ) collect [ $i ]);
 BP_REF_TIMEUNIT_OPTIONS = null;
 BP_REF_AUDIO_DOMAIN_OPTIONS = null;
@@ -1166,7 +1168,7 @@ median = (
 BP_REF_NEW(
     @name "median"
     @description "Returns the median element of a numeric list."
-    @category BP_REF_LABEL_DATA_UTILS
+    @category BP_REF_LABEL_MATH
     @arguments (
         BP_REF_ARG(@name "x" @type "list" @description "numeric list.")
     )
@@ -1191,7 +1193,7 @@ mean = (
 BP_REF_NEW(
     @name "mean",
     @description "Returns the mean value of a numeric list.",
-    @category BP_REF_LABEL_DATA_UTILS,
+    @category BP_REF_LABEL_MATH,
     @arguments (
         BP_REF_ARG(@name "x",  @type "list" @description "numeric list.")
         BP_REF_ARG(@name "weights" @default "null" @type "list/null" @description "optional weights.")
@@ -1768,10 +1770,10 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-atodb = ($a -> 20 * log10($a));
+a2db = ($a -> 20 * log10($a));
 
 BP_REF_NEW(
-    @name "atodb"
+    @name "a2db"
     @description "Linear amplitude to decibels conversion."
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
@@ -1782,10 +1784,10 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-dbtoa = ($db -> 10 ** ($db/20));
+db2a = ($db -> 10 ** ($db/20));
 
 BP_REF_NEW(
-    @name "dbtoa"
+    @name "db2a"
     @description "Decibels to linear amplitude conversion."
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
@@ -6980,7 +6982,7 @@ gcd = $llll -> for $x in flat($llll) do $gcd = BP_FN_GCD($gcd ||| $x, $x);
 BP_REF_NEW(
     @name "gcd",
     @description "Computes the greatest common denominator of a list of integers.",
-    @category BP_REF_LABEL_DATA_UTILS,
+    @category BP_REF_LABEL_MATH,
     @arguments (
         BP_REF_ARG(@name "llll" @type "llll" @description "list of integers.")
     ),
@@ -6998,7 +7000,7 @@ lcm = $llll -> (
 BP_REF_NEW(
     @name "lcm"
     @description "Computes the least common multiple of a list of integers."
-    @category BP_REF_LABEL_DATA_UTILS
+    @category BP_REF_LABEL_MATH
     @arguments (
         BP_REF_ARG(@name "llll" @type "llll" @description "list of integers.")
     ),
