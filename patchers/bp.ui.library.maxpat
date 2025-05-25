@@ -156,7 +156,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "Refresh", "icon", "reload-icon.svg" ],
+					"args" : [ "text", "Reload", "icon", "reload-icon.svg" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
