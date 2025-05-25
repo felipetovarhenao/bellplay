@@ -26,8 +26,8 @@ class BuiltinReferenceGenerator:
             argtype = arg['type']
             default = arg.get('default', None)
             if default is None:
-                default = '?'
-            tag = '(_required_)'if default == '?' else f'(_default_: `{default}`)'
+                default = ''
+            tag = '(_required_)'if default == '' else f'(_default_: `{default}`)'
             description = arg.get('description', '')
             result += f" - `@{name}` [_**{argtype}**_] {description}{tag}\n"
         result += '\n---\n'
@@ -72,7 +72,7 @@ class BuiltinReferenceGenerator:
                 argname = ''
             default = arg.get('default', None)
             if default is None:
-                default = '? ## required'
+                default = ' ## required'
             formatted_args_list.append(f"{argname} {default}")
         formatted_args = '\n    '.join(formatted_args_list)
 

@@ -290,7 +290,7 @@ BP_REF_NEW = (
             $mode = $arguments."@mode";
             if $mode != null then (
                 ## if so, filter out unsupported modes
-                $mode."options:" = for $i in $anmodes collect ($mode."options:"):($i + 1)
+                $mode.'options' = for $i in $anmodes collect ($mode.'options'):($i + 1)
             );
             if $name == 'analyze' then (
                 $code = BP_REF_CODE_SNIPPET(
@@ -347,18 +347,18 @@ BP_REF_NEW = (
         if $arguments != null then (
             $required = null;
             $optional = null;
-            for $arg in $arguments do if ($arg::1)."default:" == null then (
+            for $arg in $arguments do if ($arg::1)."default" == null then (
                 $required _= $arg 
             ) else (
                 $optional _= $arg
             );
-            $arguments = ($required &&& [ "required:" $required ]) ($optional &&& [ "optional:" $optional ])
+            $arguments = ($required &&& [ "required" $required ]) ($optional &&& [ "optional" $optional ])
         );
 
         BP_REF.$category _= [
             $name
-            [ "description:" $description ] 
-            [ "arguments:" ($arguments ||| "none") ] 
+            [ "description" $description ] 
+            [ "arguments" ($arguments ||| "none") ] 
             (
                 ## if function is a descriptor, show name of analysis keys
                 if $category == BP_REF_LABEL_BUFFER_ANALYSIS then (
@@ -367,7 +367,7 @@ BP_REF_NEW = (
                     [ "resulting buffer keys:" $ankeys ]
                 )
             )
-            [ "output:" ($output ||| "null") ]
+            [ "output" ($output ||| "null") ]
             [ "usage" $usage ]
             [ "tags" diff($tags, $name) ]
         ]
@@ -379,11 +379,11 @@ BP_REF_NEW = (
 BP_REF_ARG = (
     $name, $description, $type = "list", $default = null, $options = null -> (
         [
-            "@" + $name + (if $default == null then " ?" else "")
-            [ "description:" $description ]
-            [ "type:" $type ]
-            ($default &&& [ "default:" $default ])
-            ($options &&& [ "options:" $options ])
+            "@" + $name
+            [ "description" $description ]
+            [ 'type' $type ]
+            ($default &&& [ 'default' $default ])
+            ($options &&& [ 'options' $options ])
         ]
     )
 );
@@ -395,7 +395,7 @@ BP_REF_OPT = (
 );
 
 BP_REF_OUTPUT = (
-    $description, $type -> [ "description:" $description ] [ "type:" $type ]
+    $description, $type -> [ 'description' $description ] [ 'type' $type ]
 );
 
 ## ------------------------------------------------------------

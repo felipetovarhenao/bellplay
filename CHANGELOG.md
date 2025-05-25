@@ -48,6 +48,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - Header comment uses markdown syntax for easy porting to webdocs.
 - Dev:
   - Change doc functions to also use `BP_REF*` prefix.
+  - Don't use colon in reference entry keys.
 
 ### Fixed
 

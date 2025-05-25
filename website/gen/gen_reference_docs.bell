@@ -68,9 +68,9 @@ for $docsection $sectionid in ReferenceSections do (
         $markdown = concatsym(
             $markdown, '## `', $funcname, '`', $br * 2
         );
-        $funcdescr = $entry.getkey('description:');
+        $funcdescr = $entry.getkey('description');
         $functags = $entry.getkey('tags');
-        $funcargs = $entry.getkey('arguments:');
+        $funcargs = $entry.getkey('arguments');
         $usage = $entry.getkey('usage');
         $funcsig = '```bell' + $br + $funcname + $open;
         $hasargs = $funcargs != 'none';
@@ -84,9 +84,9 @@ for $docsection $sectionid in ReferenceSections do (
             $arguments = $arggroup.$argcat;
             for $arg in $arguments do (
                 $argname = $arg:(1 1);
-                $argdescr = $arg.getkey('description:');
-                $argtype = $arg.getkey('type:');
-                $argdefault = $arg.getkey('default:');
+                $argdescr = $arg.getkey('description');
+                $argtype = $arg.getkey('type');
+                $argdefault = $arg.getkey('default');
                 $funcref = concatsym(
                     $funcref, ' - `', $argname, '` [_**', $argtype, '**_]: ', $argdescr
                 );
@@ -98,12 +98,12 @@ for $docsection $sectionid in ReferenceSections do (
                     ## --
                     
                 );
-                if $argcat == 'required:' then ($funcref = concatsym($funcref, ' (_required_)'));
+                if $argcat == 'required' then ($funcref = concatsym($funcref, ' (_required_)'));
                 $funcref = concatsym($funcref, $br);
                 $funcsig = concatsym(
                     $funcsig, $tab, $argname, ' ', if $argdefault != null then tosymbol($argdefault) else ('## ' + $argtype + ' (required)'), $br
                 );
-                $argopts = $arg.getkey('options:');
+                $argopts = $arg.getkey('options');
                 for $argopt in $argopts with @unwrap 1 do (
                     $key = $argopt:1;
                     $keylen = symlen($key);
@@ -120,9 +120,9 @@ for $docsection $sectionid in ReferenceSections do (
                 ) 
             ) 
         );
-        $funcout = $entry.getkey('output:');
-        $funcoutdescr = $funcout.'description:';
-        $funcouttype = $funcout.'type:';
+        $funcout = $entry.getkey('output');
+        $funcoutdescr = $funcout.'description';
+        $funcouttype = $funcout.'type';
         $funcsig = concatsym(
             $funcsig, $close, ' -> ',  ($funcouttype ||| 'null'), $br, '```', $br
         );
