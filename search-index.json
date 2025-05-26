@@ -279,11 +279,11 @@
     "title": "`bpf`",
     "blurb": "Formats an numeric list into a breakpoint function, in the form of [ `<x>` `<y>` `<slope>` ] tuples.",
     "keywords": [
+      "bpf",
       "null",
       "function",
       "list",
-      "default",
-      "bpf"
+      "default"
     ],
     "path": "/docs/reference/data-utilities/bpf"
   },
@@ -316,9 +316,9 @@
     "blurb": "Cents to ratio conversion.",
     "keywords": [
       "cents",
+      "bell",
       "required",
       "true",
-      "bell",
       "ratio"
     ],
     "path": "/docs/reference/data-utilities/c2r"
@@ -676,10 +676,10 @@
     "blurb": "Takes a list of ratios and an optional starting value, and returns the cumulative multiplication between adjacent elements, as a list.",
     "keywords": [
       "list",
+      "bell",
       "dr",
       "required",
-      "st",
-      "ratios"
+      "st"
     ],
     "path": "/docs/reference/data-utilities/dr2r"
   },
@@ -690,8 +690,8 @@
       "list",
       "starting",
       "value",
-      "dx",
-      "required"
+      "bell",
+      "dx"
     ],
     "path": "/docs/reference/data-utilities/dx2x"
   },
@@ -988,10 +988,10 @@
     "blurb": "Triangular function.",
     "keywords": [
       "fold",
+      "bell",
       "required",
       "number",
-      "output",
-      "true"
+      "output"
     ],
     "path": "/docs/reference/data-utilities/fold"
   },
@@ -1053,7 +1053,7 @@
       "int",
       "greatest"
     ],
-    "path": "/docs/reference/data-utilities/gcd"
+    "path": "/docs/reference/math/gcd"
   },
   {
     "title": "`geomser`",
@@ -1098,8 +1098,8 @@
       "llll",
       "key",
       "required",
-      "getkey",
-      "symbol"
+      "bell",
+      "getkey"
     ],
     "path": "/docs/reference/data-utilities/getkey"
   },
@@ -1377,7 +1377,7 @@
       "int",
       "least"
     ],
-    "path": "/docs/reference/data-utilities/lcm"
+    "path": "/docs/reference/math/lcm"
   },
   {
     "title": "`left`",
@@ -1489,13 +1489,13 @@
   },
   {
     "title": "`mapkey`",
-    "blurb": "Modifies an existing `llll` key via a lambda function.",
+    "blurb": "Modifies an existing `llll` key via a lambda function, with signature `($x, $llll -> $y)`.",
     "keywords": [
       "llll",
       "required",
       "key",
-      "lambda",
-      "function"
+      "func",
+      "lambda"
     ],
     "path": "/docs/reference/data-utilities/mapkey"
   },
@@ -1593,7 +1593,7 @@
       "required",
       "null"
     ],
-    "path": "/docs/reference/data-utilities/mean"
+    "path": "/docs/reference/math/mean"
   },
   {
     "title": "`median`",
@@ -1605,7 +1605,7 @@
       "element",
       "numeric"
     ],
-    "path": "/docs/reference/data-utilities/median"
+    "path": "/docs/reference/math/median"
   },
   {
     "title": "`mfcc`",
@@ -1959,11 +1959,11 @@
     "title": "`pitchdiff`",
     "blurb": "Given a list of target midicents and/or pitch classes, returns the signed difference between a pitch in midicents and the nearest midicent/pitch class target.",
     "keywords": [
+      "pitchdiff",
       "required",
       "pitch",
       "targets",
-      "target",
-      "midicents"
+      "target"
     ],
     "path": "/docs/reference/data-utilities/pitchdiff"
   },
@@ -2140,10 +2140,10 @@
     "blurb": "Takes a list of ratios or factors and returns the quotients between adjacent elements.",
     "keywords": [
       "list",
+      "bell",
       "required",
       "ratios",
-      "quotients",
-      "adjacent"
+      "quotients"
     ],
     "path": "/docs/reference/data-utilities/r2dr"
   },
@@ -2355,11 +2355,11 @@
     "title": "`revbpf`",
     "blurb": "Reverses a breakpoint function.",
     "keywords": [
-      "bpf",
       "llll",
+      "bpf",
+      "revbpf",
       "breakpoint",
-      "function",
-      "revbpf"
+      "function"
     ],
     "path": "/docs/reference/data-utilities/revbpf"
   },
@@ -2514,8 +2514,8 @@
       "value",
       "slope",
       "default",
-      "input",
-      "scale"
+      "scale",
+      "input"
     ],
     "path": "/docs/reference/data-utilities/scale"
   },
@@ -2587,7 +2587,7 @@
       "required",
       "key",
       "mode",
-      "values"
+      "bell"
     ],
     "path": "/docs/reference/data-utilities/setkey"
   },
@@ -3244,10 +3244,10 @@
     "blurb": "Takes a list of numbers and returns the differences—i.e., deltas—between adjacent elements.",
     "keywords": [
       "list",
+      "bell",
       "required",
       "adjacent",
-      "elements",
-      "true"
+      "elements"
     ],
     "path": "/docs/reference/data-utilities/x2dx"
   },
