@@ -1210,8 +1210,15 @@ getkey = (
     )
 );
 
+BP_REF_KEYFUNC_DESCRIPTION = " It assumes the _llll_ consists of key-value pairs, and is wrapped at the top level, like so:" + BP_REF_CODE_SNIPPET("[
+    [ '<key1>' <value1> ]
+    [ '<key2>' <value2> ]
+    ...
+    [ '<keyN>' <valueN> ]
+]");
+
 BP_REF_NEW(
-    @description "Returns value associated with an _llll_ key."
+    @description "Returns value associated with an _llll_ key." + BP_REF_KEYFUNC_DESCRIPTION
     @name "getkey"
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
@@ -1219,6 +1226,11 @@ BP_REF_NEW(
         BP_REF_ARG(@name "key" @type "symbol" @description "name of _llll_ key.")
     )
     @output BP_REF_OUTPUT(@description "value associated with key" @type "anything")
+    @usage BP_REF_CODE_SNIPPET('$point = [["x" 1.5] ["y" 0.3]];
+$x = $point.getkey("x");
+$y = $point.getkey("y");
+print($x); ## 1.5
+print($y) ## 0.3')
     @tags 'setkey' 'mapkey'
 );
 
@@ -1235,7 +1247,7 @@ setkey = (
 
 BP_REF_NEW(
     @name "setkey"
-    @description "Sets the value of a given key in a `llll`. If `@mode` is `0` (_default_), values for non-existent keys are ignored."
+    @description "Sets the value of a given key in a `llll`. If `@mode` is `0` (_default_), values for non-existent keys are ignored." + BP_REF_KEYFUNC_DESCRIPTION
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "llll" @type "llll" @description "`llll` to modify.")
@@ -1247,6 +1259,9 @@ BP_REF_NEW(
         )
     )
     @output BP_REF_OUTPUT(@description "modified `llll`", @type "llll")
+    @usage BP_REF_CODE_SNIPPET('$point = [["x" 1.5] ["y" 0.3]];
+$point = $point.setkey("x", -2); ## reassign to update
+print($point) ## [["x" -2] ["y" 0.3]]')
     @tags 'mapkey' 'getkey'
 );
 
@@ -1261,14 +1276,18 @@ mapkey = (
 
 BP_REF_NEW(
     @name "mapkey"
-    @description "Modifies an existing `llll` key via a lambda function."
+    @description "Modifies an existing `llll` key via a lambda function, with signature `($x, $llll -> $y)`." + BP_REF_KEYFUNC_DESCRIPTION
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "llll" @type "llll" @description "`llll` to modify.")
         BP_REF_ARG(@name "key" @type "symbol" @description "name of `llll` key.")
-        BP_REF_ARG(@name "func" @type "lambda function" @description "lambda function with signature `$x, $llll -> $y`.")
+        BP_REF_ARG(@name "func" @type "lambda function" @description "lambda function.")
     )
-    @output BP_REF_OUTPUT(@description "modified `llll`" @type "llll")
+    @output BP_REF_OUTPUT(@description "Modified `llll`" @type "llll")
+    @usage BP_REF_CODE_SNIPPET('$nums = [["one" 1] ["two" 2]];
+$func = ($val -> $val :* 4);
+$nums = $nums.mapkey("one", $func); ## re-assign to update
+print($nums) ## [["one" 1 1 1 1] ["two" 2]]')
     @tags 'setkey' 'getkey'
 );
 
@@ -1334,7 +1353,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "x" @type "list" @description "list of numeric values.")
     )
-    @output BP_REF_OUTPUT(@description "difference between adjacent elements, as a list." @type "list")
+    @output BP_REF_OUTPUT(@description "Difference between adjacent elements, as a list." @type "list")
     @tags 'dx2x' 'r2dr' 'dr2r'
 );
 
@@ -1355,7 +1374,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "dx" @type "list" @description "list of differences/deltas.")
         BP_REF_ARG(@name "st" @default 0 @type "int/float" @description "optional starting value.")
     )
-    @output BP_REF_OUTPUT(@description "cumulative sum of differences from starting value." @type "list")
+    @output BP_REF_OUTPUT(@description "Cumulative sum of differences from starting value." @type "list")
     @tags 'x2dx' 'r2dr' 'dr2r'
 );
 
@@ -1375,7 +1394,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "r" @type "list" @description "list of ratios.")
     )
-    @output BP_REF_OUTPUT(@description "list of quotients between adjacent elements" @type "list")
+    @output BP_REF_OUTPUT(@description "List of quotients between adjacent elements" @type "list")
     @tags 'dx2x' 'x2dx' 'dr2r'
 );
 
@@ -1396,7 +1415,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "dr" @type "list" @description "list of ratios.")
         BP_REF_ARG(@name "st" @default 1 @type "int/float" @description "starting value")
     )
-    @output BP_REF_OUTPUT(@description "cumulative multiplication between adjacent elements." @type "list")
+    @output BP_REF_OUTPUT(@description "Cumulative multiplication between adjacent elements." @type "list")
     @tags 'dx2x' 'x2dx' 'r2dr'
 );
 
@@ -1420,7 +1439,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "bpf", @type "llll", @description "breakpoint function to reverse")
     ),
-    @output BP_REF_OUTPUT(@description "breakpoint function", @type "llll")
+    @output BP_REF_OUTPUT(@description "Breakpoint function", @type "llll")
     @tags 'bpf'
 );
 
@@ -1448,7 +1467,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "outmax" @type "int/float" @default 1 @description "output maxiumum value.")
         BP_REF_ARG(@name "slope" @type "int/float" @default 0 @description "slope between -1 and 1. 0 means no slope.")
     )
-    @output BP_REF_OUTPUT(@description "scaled input" @type "int/float/list/llll")
+    @output BP_REF_OUTPUT(@description "Scaled input" @type "int/float/list/llll")
     @tags 'autoscale'
 );
 
@@ -1475,7 +1494,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "a" @default 1 @type "int/float" @description "max. value if `@b` is `null`, else min. value.")
         BP_REF_ARG(@name "b" @default 'null' @type "int/float/null" @description "max. value.")
     )
-    @output BP_REF_OUTPUT(@description "random floating point number", @type "int/float")
+    @output BP_REF_OUTPUT(@description "Random floating point number", @type "int/float")
     @tags 'random' 'xrand'
 );
 
@@ -1529,7 +1548,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 1 @description "output address.")        
         )
     )
-    @output BP_REF_OUTPUT(@description "nearest value or address" @type "int/float")
+    @output BP_REF_OUTPUT(@description "Nearest value or address" @type "int/float")
 );
 
 ## ------------------------------------------------------------
@@ -1583,7 +1602,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "n" @default 1 @type "int", @description "number of random choices.")
         BP_REF_ARG(@name "weights" @default "null" @type "list/null", @description "optional probability weights for each element.")
     ),
-    @output BP_REF_OUTPUT(@description "chosen elements" @type "anything")
+    @output BP_REF_OUTPUT(@description "Chosen elements" @type "anything")
     @tags 'xchoose'
 );
 
@@ -1631,7 +1650,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "a" @default 1 @type "int/float", @description "max. value if `@b` is `null`, else min. value.")
         BP_REF_ARG(@name "b" @default "null" @type "int/float/null", @description "max. value.")
     )
-    @output BP_REF_OUTPUT(@description "random number", @type "float")
+    @output BP_REF_OUTPUT(@description "Random number", @type "float")
     @tags 'setseed' 'xchoose' 'xrandom' 'urn' 'initurn' 'xscramble'
 );
 
@@ -1652,7 +1671,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "a" @default 1 @type "int", @description "max. value if `@b` is `null`, else min. value.")
         BP_REF_ARG(@name "b" @default "null" @type "int/null", @description "max. value.")
     ),
-    @output BP_REF_OUTPUT(@description "random number", @type "integer")
+    @output BP_REF_OUTPUT(@description "Random number", @type "integer")
     @tags 'setseed' 'xchoose' 'urn' 'initurn' 'xscramble'
 );
 
@@ -1671,7 +1690,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "n", @default 1, @type "int", @description "number of random choices.")
         BP_REF_ARG(@name "weights", @default "null" @type "list/null", @description "optional probability weights for each element.")
     ),
-    @output BP_REF_OUTPUT(@description "chosen elements" @type "anything")
+    @output BP_REF_OUTPUT(@description "Chosen elements" @type "anything")
     @tags 'setseed' 'xrandom' 'urn' 'initurn' 'xscramble'
 );
 
@@ -1694,7 +1713,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "llll" @type "list/llll", @description "list to scramble.")
     )
-    @output BP_REF_OUTPUT(@description "scrambled list", @type "list/llll")
+    @output BP_REF_OUTPUT(@description "Scrambled list", @type "list/llll")
     @tags 'setseed' 'xchoose' 'xrandom' 'urn' 'initurn'
 );
 
@@ -1760,7 +1779,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "id" @default 0 @type "int/float/symbol", @description "identifier for URN.")
     )
-    @output BP_REF_OUTPUT(@description "unique random number", @type "int")
+    @output BP_REF_OUTPUT(@description "Unique random number", @type "int")
     @usage BP_REF_CODE_SNIPPET(
         "initurn(@size 3 @id 'myurn'); ## initialize URN",
         "for $i in 1...30 do print(urn(@id 'myurn')) ## call URN"
@@ -1779,7 +1798,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "a" @type "int/float", @description "linear amplitude.")
     )
-    @output BP_REF_OUTPUT(@description "decibels", @type "int/float")
+    @output BP_REF_OUTPUT(@description "Decibels", @type "int/float")
 );
 
 ## ------------------------------------------------------------
@@ -1793,7 +1812,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "db" @type "int/float", @description "decibels.")
     )
-    @output BP_REF_OUTPUT(@description "linear amplitude.", @type "int/float")
+    @output BP_REF_OUTPUT(@description "Linear amplitude.", @type "int/float")
 );
 
 ## ------------------------------------------------------------
@@ -1809,7 +1828,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "cents" @type "list/int/float", @description "cents to convert.")
     ),
-    @output BP_REF_OUTPUT(@description "list of ratios", @type "int/float/list")
+    @output BP_REF_OUTPUT(@description "List of ratios", @type "int/float/list")
 );
 
 ## ------------------------------------------------------------
@@ -1823,7 +1842,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "ratios", @type "list/int/rat/float", @description "ratios to reduce.")
     ),
-    @output BP_REF_OUTPUT(@description "list of pitch classes", @type "list/int/float")
+    @output BP_REF_OUTPUT(@description "List of pitch classes", @type "list/int/float")
     @usage BP_REF_CODE_SNIPPET("octreduce(1 5/4 3/2 2 5/2 3) ## 1 5/4 3/2 1 5/4 3/2")
 );
 
@@ -1845,7 +1864,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "ratios", @type "list/int/float", @description "ratios to convert.")
         BP_REF_ARG(@name "pc", @default 0 @type "int/float", @description "pitch class of fundamental")
     ),
-    @output BP_REF_OUTPUT(@description "list of pitch classes", @type "list/int/float")
+    @output BP_REF_OUTPUT(@description "List of pitch classes", @type "list/int/float")
     @usage BP_REF_CODE_SNIPPET("r2pc(1 5/4 3/2) ## 0 3.86 7.02")
 );
 
@@ -1860,7 +1879,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "mc", @type "list/int/float", @description "midicents to convert.")
     ),
-    @output BP_REF_OUTPUT(@description "list of pitch classes", @type "list/int/float")
+    @output BP_REF_OUTPUT(@description "List of pitch classes", @type "list/int/float")
     @usage BP_REF_CODE_SNIPPET('mc2pc(c5 e5 g5) ## 0 4 7')
 );
 
@@ -1881,7 +1900,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "ratios", @type "list/int/float", @description "ratios to convert.")
         BP_REF_ARG(@name "mc", @default 6000 @type "int/float", @description "fundamental in midicents")
     ),
-    @output BP_REF_OUTPUT(@description "list of midicents", @type "list/int/float")
+    @output BP_REF_OUTPUT(@description "List of midicents", @type "list/int/float")
     @usage BP_REF_CODE_SNIPPET('r2mc(1 5/4 3/2) ## 6000 6386 6702')
 );
 
@@ -1898,7 +1917,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "ratios", @type "list/int/float", @description "ratios to convert.")
     ),
-    @output BP_REF_OUTPUT(@description "list of cents", @type "list/int/float")
+    @output BP_REF_OUTPUT(@description "List of cents", @type "list/int/float")
     @usage BP_REF_CODE_SNIPPET('r2c(1 5/4 3/2) ## 0 386 702')
 );
 
@@ -1918,7 +1937,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "llll" @type "llll" @description "list to sort.")
         BP_REF_ARG(@name "keys" @type "list/symbol" @description "one or more keys to sort list by.")
     )
-    @output BP_REF_OUTPUT(@description "list of sorted items" @type "llll")
+    @output BP_REF_OUTPUT(@description "List of sorted items" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -1934,7 +1953,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "x", @type "int/float/list/llll", @description "input number.")
     ),
-    @output BP_REF_OUTPUT(@description "output number.", @type "int/float/list/llll")
+    @output BP_REF_OUTPUT(@description "Output number.", @type "int/float/list/llll")
 );
 
 ## ------------------------------------------------------------
@@ -1964,7 +1983,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "source" @type "int/float" @description "reference pitch in midicents.")
         BP_REF_ARG(@name "targets" @type "int/float/list" @description "list of midicent or pitch class targets.")
     ),
-    @output BP_REF_OUTPUT(@description "signed difference to closest target, in cents." @type "int/float")
+    @output BP_REF_OUTPUT(@description "Signed difference to closest target, in cents." @type "int/float")
 );
 
 ## ------------------------------------------------------------
@@ -2120,7 +2139,7 @@ BP_REF_NEW(
         )
         BP_REF_ARG(@name "process" @default "null" @type "list/llll/null", @description "optional post-rendering audio processing operations.")
     )
-    @output BP_REF_OUTPUT(@description "rendered buffer" @type "llll")
+    @output BP_REF_OUTPUT(@description "Rendered buffer" @type "llll")
     @usage BP_REF_CODE_SNIPPET(
         'for $x in (0...12) * 100 do (', 
         '    $buf = ezsampler(@pitch 6000);', 
@@ -2249,7 +2268,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value "'-'" @description "invert selection")
         )
     )
-    @output BP_REF_OUTPUT(@description "file content" @type "anything")
+    @output BP_REF_OUTPUT(@description "File content" @type "anything")
 );
 
 ## ------------------------------------------------------------
@@ -2415,7 +2434,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "path", @type "symbol", @description "input audio file path.")
         BP_REF_USE_CACHE_ARG
     ),
-    @output BP_REF_OUTPUT(@description "buffer" @type "llll")
+    @output BP_REF_OUTPUT(@description "Buffer" @type "llll")
     @usage BP_REF_GENERATION_EXAMPLE("importaudio", "'badinerie.wav'")
 );
 
@@ -2449,7 +2468,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "path", @type "symbol", @description "input midi file path.")
     ),
-    @output BP_REF_OUTPUT(@description "midi events" @type "llll")
+    @output BP_REF_OUTPUT(@description "Midi events" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -2463,7 +2482,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "length", @type "int", @default 16, @description "window length.")
     ),
-    @output BP_REF_OUTPUT(@description "hanning window" @type "list")
+    @output BP_REF_OUTPUT(@description "Hanning window" @type "list")
 );
 
 ## ------------------------------------------------------------
@@ -2538,7 +2557,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "bpf" @type "llll" @description "breakpoint function")
         BP_REF_ARG(@name "pts" @type "int/float/list" @description "sampling point/s")
     ),
-    @output BP_REF_OUTPUT(@description "interpolated bpf values" @type "int/float/list")
+    @output BP_REF_OUTPUT(@description "Interpolated bpf values" @type "int/float/list")
 );
 
 ## ------------------------------------------------------------
