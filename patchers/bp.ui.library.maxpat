@@ -755,8 +755,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 423.23944216966629, 452.112681984901428, 72.0, 23.0 ],
-					"text" : "setcheck $1"
+					"patching_rect" : [ 423.23944216966629, 452.112681984901428, 125.0, 23.0 ],
+					"text" : "setcheck $1, getcheck"
 				}
 
 			}
@@ -1404,48 +1404,6 @@
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "check-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "minus-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "open-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "plus-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "reload-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "uncheck-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
 				"implicit" : 1
 			}
  ],
