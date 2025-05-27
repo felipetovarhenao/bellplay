@@ -84,16 +84,18 @@ BP_FN_CONFIG = (
             ) else if $action == 'read' then (
                 $imports = $bpconfig.'imports';
                 if $imports != null then (
+                    $scripts = null;
                     $imports = for $import in $imports collect (
                         $importpath = parsepath($import);
                         $ext = getkey($importpath, 'extension');
                         if $ext == '.bell' && exists($import) == 1 then (
                             BP_FN_DISPATCH('loadscript', $import);
+                            $scripts _= getkey($importpath, 'name') + $ext;
                             $import
                         ) else BP_FN_WARNING(@details 'invalid import file:' $import ||| 'null') 
                     );
                     $bpconfig.'imports' = $imports;
-                    BP_FN_PRINT(BP_REF_MULTILINE('Imported default scripts:', for $imp in $imports collect '    • ' + $imp));
+                    BP_FN_PRINT(BP_REF_MULTILINE('Imported default scripts:', for $script in $scripts collect '• ' + $script));
                     $update($bpconfig) 
                 ) 
             ) else if $action == 'get' then ($bpconfig.$value) 
