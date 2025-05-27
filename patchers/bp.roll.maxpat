@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -15,6 +15,18 @@
 		"gridsize" : [ 15.0, 15.0 ],
 		"style" : "bellplay-gui",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-74",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 280.263155221939087, 52.63157844543457, 95.0, 23.0 ],
+					"text" : "addmarker 3000"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"code" : "BP_TMP_ROLL_OUTPUT = $x1 ",
 					"id" : "obj-62",
@@ -60,7 +72,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 7,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -124,7 +136,6 @@
 
 							}
  ],
-						"originid" : "pat-2299",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -157,7 +168,6 @@
 					"patching_rect" : [ 153.0, 51.0, 56.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
-						"globalpatchername" : "",
 						"style" : "bellplay-gui"
 					}
 ,
@@ -1003,44 +1013,6 @@
 			}
 , 			{
 				"box" : 				{
-					"angle" : 270.0,
-					"grad1" : [ 1.0, 1.0, 1.0, 0.75 ],
-					"grad2" : [ 1.0, 1.0, 1.0, 0.0 ],
-					"hidden" : 1,
-					"id" : "obj-57",
-					"maxclass" : "panel",
-					"mode" : 1,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 1078.75, 1072.0, 98.0, 39.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 2.0, 75.0, 753.0, 47.0 ],
-					"proportion" : 0.5,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"grad1" : [ 1.0, 1.0, 1.0, 0.0 ],
-					"grad2" : [ 1.0, 1.0, 1.0, 0.75 ],
-					"hidden" : 1,
-					"id" : "obj-3",
-					"maxclass" : "panel",
-					"mode" : 1,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 1262.5, 1072.0, 98.0, 39.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 2.0, 32.0, 753.0, 46.0 ],
-					"proportion" : 0.5,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"annotationsfont" : "Lato Light",
 					"bwcompatibility" : 80300,
 					"clefs" : [ "FFGG" ],
@@ -1056,6 +1028,7 @@
 					"linknotesizetoslot" : 4,
 					"loop" : [ 0.0, 1000.0 ],
 					"lyricsfont" : "Lato Light",
+					"markercolor" : [ 0.458823529411765, 0.792156862745098, 0.827450980392157, 0.85 ],
 					"markersfont" : "Lato Light",
 					"maxclass" : "bach.roll",
 					"numinlets" : 6,
@@ -1065,12 +1038,13 @@
 					"outlettype" : [ "", "", "", "", "", "", "", "bang" ],
 					"patching_rect" : [ 109.0, 116.0, 531.166666666666629, 220.0 ],
 					"pitcheditrange" : [ "null" ],
+					"playcolor" : [ 0.458823529411765, 0.792156862745098, 0.827450980392157, 1.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 2.0, 3.0, 753.0, 392.0 ],
+					"presentation_rect" : [ 0.043478261679411, 0.021739130839705, 753.0, 392.0 ],
 					"preventedit" : [ "notes", "slotinfo", "voices", "breakpoints", "markers" ],
 					"ruler" : 1,
 					"rulercolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
-					"selectioncolor" : [ 0.815686274509804, 0.654901960784314, 0.407843137254902, 1.0 ],
+					"selectioncolor" : [ 0.992156862745098, 0.729411764705882, 0.341176470588235, 1.0 ],
 					"showborder" : 0,
 					"showdurations" : 0,
 					"showstems" : 0,
@@ -1084,7 +1058,7 @@
 					"voicenamesfont" : "Lato Light",
 					"voicespacing" : [ 100.0, 17.0 ],
 					"vzoom" : 115.0,
-					"zoom" : 115.0
+					"zoom" : 112.421875
 				}
 
 			}
@@ -1247,20 +1221,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-29", 0 ],
 					"source" : [ "obj-25", 3 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-3", 0 ],
-					"source" : [ "obj-25", 2 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-57", 0 ],
-					"source" : [ "obj-25", 1 ]
 				}
 
 			}
@@ -1602,6 +1562,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-34", 0 ],
+					"source" : [ "obj-74", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-76", 0 ]
 				}
@@ -1657,7 +1624,6 @@
 
 			}
  ],
-		"originid" : "pat-2297",
 		"dependency_cache" : [ 			{
 				"name" : "bach.<=.mxo",
 				"type" : "iLaX"

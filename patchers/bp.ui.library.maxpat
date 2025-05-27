@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 753.0, 351.0, 416.0, 361.0 ],
+		"rect" : [ 753.0, 351.0, 941.0, 615.0 ],
 		"openinpresentation" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
 		"style" : "bellplay-gui",
@@ -36,7 +36,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 350.23944216966629, 22.834923166781664, 145.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 1.297297328710556, 334.378386475145817, 258.333327174186707, 21.0 ],
+					"presentation_rect" : [ 0.555555559694767, 125.888889826834202, 129.761903524398804, 21.0 ],
 					"text" : "Default imports",
 					"textjustification" : 1
 				}
@@ -52,7 +52,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 350.23944216966629, 49.0, 145.0, 21.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 266.378384828567505, 334.378386475145817, 143.775979101657867, 21.0 ],
+					"presentation_rect" : [ 133.727814078330994, 125.91892160102725, 129.585802137851715, 21.0 ],
 					"text" : "Global variables",
 					"textjustification" : 1
 				}
@@ -513,9 +513,9 @@
 					"outlettype" : [ "", "", "", "", "bang" ],
 					"patching_rect" : [ 846.0, 628.0, 216.0, 211.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 266.378384828567505, 153.67567939683795, 144.0, 180.666676089167595 ],
+					"presentation_rect" : [ 133.733340308070183, 0.0, 129.600006759166718, 128.133340016007423 ],
 					"preventedit" : 1,
-					"rounded" : 0.0,
+					"rounded" : 5.0,
 					"rowvpad" : 2.5,
 					"showfocus" : 0,
 					"textcolor" : [ 0.501960784313725, 0.501960784313725, 0.501960784313725, 1.0 ],
@@ -669,9 +669,9 @@
 					"outlettype" : [ "", "", "", "", "bang" ],
 					"patching_rect" : [ 178.0, 527.0, 213.0, 227.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.270270276814699, 0.270270276814699, 259.392868738621473, 335.035729262977839 ],
+					"presentation_rect" : [ 0.0, 0.0, 130.315790444612503, 128.42105358839035 ],
 					"preventedit" : 1,
-					"rounded" : 0.0,
+					"rounded" : 5.0,
 					"rowvpad" : 5.0,
 					"textdecayfactor" : 0.95,
 					"versionnumber" : 80300
