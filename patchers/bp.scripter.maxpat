@@ -8438,7 +8438,7 @@
 					"selectioncolor" : [ 0.964705882352941, 0.964705882352941, 0.964705882352941, 0.0 ],
 					"style" : "bellplay-gui",
 					"vticks" : 0,
-					"waveformcolor" : [ 0.368627450980392, 0.584313725490196, 0.776470588235294, 1.0 ]
+					"waveformcolor" : [ 0.482352941176471, 0.670588235294118, 0.858823529411765, 1.0 ]
 				}
 
 			}
@@ -10590,7 +10590,21 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.ui.bufplayer~.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bp.ui.separator.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.ui.umenu.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",

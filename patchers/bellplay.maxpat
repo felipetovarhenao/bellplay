@@ -1096,7 +1096,7 @@
 					"fontface" : 0,
 					"fontname" : "Lato Light",
 					"fontsize" : 12.0,
-					"hyperlinkcolor" : [ 0.368627450980392, 0.584313725490196, 0.776470588235294, 1.0 ],
+					"hyperlinkcolor" : [ 0.482352941176471, 0.670588235294118, 0.858823529411765, 1.0 ],
 					"id" : "obj-17",
 					"linkend" : [ "null" ],
 					"linkstart" : [ "https://" ],
