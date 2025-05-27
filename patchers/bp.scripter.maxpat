@@ -8425,7 +8425,7 @@
 					"allowdrag" : 0,
 					"buffername" : "",
 					"fontname" : "Lato Light",
-					"gridcolor" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 0.49 ],
+					"gridcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 0.5 ],
 					"id" : "obj-25",
 					"ignoreclick" : 1,
 					"maxclass" : "waveform~",

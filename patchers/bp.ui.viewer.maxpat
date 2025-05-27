@@ -585,6 +585,7 @@
 					"allowdrag" : 0,
 					"buffername" : "",
 					"fontname" : "Lato Light",
+					"gridcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 0.5 ],
 					"id" : "obj-21",
 					"ignoreclick" : 1,
 					"maxclass" : "waveform~",

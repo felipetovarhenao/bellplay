@@ -93,6 +93,7 @@ BP_FN_CONFIG = (
                         ) else BP_FN_WARNING(@details 'invalid import file:' $import ||| 'null') 
                     );
                     $bpconfig.'imports' = $imports;
+                    BP_FN_PRINT(BP_REF_MULTILINE('Imported default scripts:', for $imp in $imports collect '    • ' + $imp));
                     $update($bpconfig) 
                 ) 
             ) else if $action == 'get' then ($bpconfig.$value) 
@@ -142,6 +143,16 @@ BP_FN_ERROR = (
             [ "text" ($origin &&& ($origin "→")) $details ]
         );
         null
+    )
+);
+
+BP_FN_PRINT = (
+    $text -> (
+        BP_FN_DISPATCH("console",
+            [ "code" 1 ]
+            [ "type" 0 ]
+            [ "text" $text ]
+        )
     )
 );
 
