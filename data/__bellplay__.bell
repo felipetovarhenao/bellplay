@@ -152,6 +152,12 @@ BP_FN_WARNING = (
     )
 );
 
+BP_REF_DEPRECATED_WARNING = (
+    $name = null, $suggest = null -> (
+        BP_FN_WARNING("`" + $name "` will be deprecated." (if is($suggest) == 'symbol' then ("Use instead `" + $suggest + "`.") else ""))
+    )
+);
+
 BP_FN_CHECK_ARGS = (
     $origin, <...> -> (
         $missing = null;
@@ -210,7 +216,7 @@ BP_REF_PROCESS_EXAMPLE = (
             "$buffer = " + $buffer + "; ## input buffer",
             "$op = " + $name + "(" + $params + "); ## processing operation",
             "$buffer = $buffer.process($op); ## apply processing",
-            "$buffer.inspect('after " + $name + " process')"
+            "$buffer.view('after " + $name + " process')"
         );
         $text = $break + $break + "`" + $name + "` is meant to be used with the `process` function:" + $break;
         $text + $code
@@ -226,7 +232,7 @@ BP_REF_GENERATION_EXAMPLE = (
         $tab = "    ";
         $code = BP_REF_CODE_SNIPPET(
             "$buffer = " + $name + "(" + $params + ");",
-            "$buffer.inspect('" + $name + " buffer')"
+            "$buffer.view('" + $name + " buffer')"
         );
         $code
     ) 
@@ -242,9 +248,9 @@ BP_REF_ANALYZE_EXAMPLE = (
         $code = BP_REF_CODE_SNIPPET(
             "$buffer = " + $buffer + "; ## input buffer",
             "$descr = " + $name + "(" + $params + "); ## generate " + $name + " audio descriptor",
-            "$buffer.inspect('before analysis');",
+            "$buffer.view('before analysis');",
             "$buffer = $buffer.analyze($descr); ## apply analysis",
-            "$buffer.inspect('after analysis')"
+            "$buffer.view('after analysis')"
         );
         $text = $break + $break + "`" + $name + "` is meant to be used with the `analyze` function:" + $break;
         $text + $code
@@ -284,7 +290,7 @@ BP_REF_NEW = (
         ## check if reference belongs to analysis/descriptor function
         if $category == BP_REF_LABEL_BUFFER_GENERATION then (
             $usage = $usage ||| BP_REF_GENERATION_EXAMPLE($name);
-            $tags _= 'inspect'
+            $tags _= 'view'
         ) else if $category == BP_REF_LABEL_BUFFER_ANALYSIS then (
             ## check if descriptor supports multiple modes
             $mode = $arguments."@mode";
@@ -300,14 +306,14 @@ BP_REF_NEW = (
                     $tab + "pitchmelodia()",
                     $tab + "spectralcentroid()",
                     $close + ";",
-                    "$buffer.inspect('before analysis');",
+                    "$buffer.view('before analysis');",
                     "## apply analysis to buffer",
                     "$buffer = $buffer.analyze($descriptors);",
-                    "$buffer.inspect('after analysis')"
+                    "$buffer.view('after analysis')"
                 );
                 $usage = $code
             ) else if $name != 'buf2ptracks' then (
-                $tags _= 'analyze' 'inspect';
+                $tags _= 'analyze' 'view';
                 $ankeys = $ankeys ||| $name;
                 $description = BP_REF_MULTILINE($description, "", 'The resulting buffer will be updated with the following keys:', "");
                 $description = BP_REF_MULTILINE($description, '', for $ankey in $ankeys collect '- `' + $ankey + '`');
@@ -332,16 +338,16 @@ BP_REF_NEW = (
                     $tab + "freeverb(@tail 1000)",
                     $tab + "reverse()",
                     $close + ";",
-                    "$buffer.inspect('before process');",
+                    "$buffer.view('before process');",
                     "## apply operations to buffer",
                     "$buffer = $buffer.process($operations);",
-                    "$buffer.inspect('after process')"
+                    "$buffer.view('after process')"
                 );
                 $usage = $code
             ) else if $usage == null then (
                 $usage = BP_REF_PROCESS_EXAMPLE($name)
             );
-            $tags _= 'process' 'inspect'
+            $tags _= 'process' 'view'
         );
         ## if function has arguments, split required from optional ones.
         if $arguments != null then (
@@ -591,10 +597,41 @@ BP_MEDIA_FILES = [
 
 ## ------------------------------------------------------------
 
+view = (
+    $llll, 
+    $label = null -> (
+        $self = 'view';
+        BP_FN_CHECK_ARGS($self, 'llll', $llll);
+        BP_BUFFER_INSPECTOR _= [
+            [ "data" $llll ]
+            [ "label" $label ]
+        ];
+        $llll
+    )
+);
+
+BP_REF_NEW(
+    @name "view",
+    @description "Displays _llll_ in the **Viewer** window, which automatically opens after script evaluation is complete. Convenient for inspecting _lllls_, especially buffers. Similar to `print`, it returns the input _llll_ without any modifications.",
+    @category BP_REF_LABEL_DATA_UTILS,
+    @arguments (
+        BP_REF_ARG(@name "llll" @type "llll" @description "_llll_ to view.")
+        BP_REF_ARG(@name "label" @default "null" @type "symbol/null" @description "optional label to use for _llll_ in **Viewer** window.")
+    )
+    @output BP_REF_OUTPUT(@description "Input _llll_" @type "llll")
+    @usage BP_REF_CODE_SNIPPET('for $i in 1...10 do (
+    cycle(@frequency $i * 55 @duration 500).view()
+)'
+    )
+);
+
+## ------------------------------------------------------------
+
 inspect = (
     $buffer, 
     $label = null -> (
         $self = 'inspect';
+        BP_REF_DEPRECATED_WARNING(@name $self @suggest 'view');
         BP_FN_CHECK_ARGS($self, 'buffer', $buffer);
         $source = BP_FN_VALIDATE_BUFFER($self, $buffer);
         BP_BUFFER_INSPECTOR _= [
@@ -605,16 +642,16 @@ inspect = (
     )
 );
 
-BP_REF_NEW(
-    @name "inspect",
-    @description "Adds input buffer to the buffer inspector window, which opens up once the script evaluation is over, displaying relevant buffer information—useful for debugging buffers.",
-    @category BP_REF_LABEL_DATA_UTILS,
-    @arguments (
-        BP_REF_ARG(@name "buffer" @type "llll" @description "media file type.")
-        BP_REF_ARG(@name "label" @default "null" @type "symbol/null" @description "optional buffer inspector label.")
-    )
-    @output BP_REF_OUTPUT(@description "buffer" @type "llll")
-);
+## BP_REF_NEW(
+##     @name "inspect",
+##     @description "Adds input buffer to the buffer inspector window, which opens up once the script evaluation is over, displaying relevant buffer information—useful for debugging buffers.",
+##     @category BP_REF_LABEL_DATA_UTILS,
+##     @arguments (
+##         BP_REF_ARG(@name "buffer" @type "llll" @description "media file type.")
+##         BP_REF_ARG(@name "label" @default "null" @type "symbol/null" @description "optional buffer inspector label.")
+##     )
+##     @output BP_REF_OUTPUT(@description "buffer" @type "llll")
+## );
 
 ## ------------------------------------------------------------
 
@@ -2165,7 +2202,7 @@ BP_REF_NEW(
         '    )', 
         ');', 
         '$buffer = render(@play 1); ## returns the mix of all transcribed buffers', 
-        "$buffer.inspect('rendered buffer')"
+        "$buffer.view('rendered buffer')"
     )
 );
 

@@ -21,8 +21,19 @@
 		"bottomtoolbarpinned" : 2,
 		"toolbars_unpinned_last_save" : 15,
 		"style" : "bellplay-gui-2",
-		"title" : "bellplay~ | algorithmic audio in bell",
+		"title" : "bellplay~ | algorithmic audio in bell (v0.2.8-beta)",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-19",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 12.0, 37.0, 54.0, 23.0 ],
+					"text" : "onecopy"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-15",
 					"maxclass" : "newobj",
@@ -1733,6 +1744,10 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "bach.depth.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "bach.div.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
 				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
@@ -1764,10 +1779,6 @@
 				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
 				"type" : "JSON",
 				"implicit" : 1
-			}
-, 			{
-				"name" : "bach.flat.mxo",
-				"type" : "iLaX"
 			}
 , 			{
 				"name" : "bach.gt.mxo",
@@ -1874,10 +1885,6 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "bach.slice.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "bach.sort.mxo",
 				"type" : "iLaX"
 			}
@@ -1927,13 +1934,6 @@
 				"bootpath" : "~/Documents/bellplay/media",
 				"patcherrelativepath" : "../media",
 				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bp.bufferinspector.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
@@ -2154,6 +2154,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.ui.bufplayer~.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bp.ui.library.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
@@ -2183,6 +2190,20 @@
 			}
 , 			{
 				"name" : "bp.ui.settings.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.ui.umenu.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.ui.viewer.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",

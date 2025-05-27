@@ -10,13 +10,25 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 183.0, 412.0, 853.0, 492.0 ],
+		"rect" : [ 183.0, 412.0, 770.0, 504.0 ],
 		"openinpresentation" : 1,
 		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
 		"toolbarvisible" : 0,
 		"style" : "bellplay-gui-1",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-96",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "signal" ],
+					"patching_rect" : [ 196.0, 1227.0, 72.0, 23.0 ],
+					"text" : "bp.ui.viewer"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-44",
 					"maxclass" : "newobj",
@@ -1947,18 +1959,6 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 135.0, 1186.0, 54.0, 23.0 ],
 					"text" : "pcontrol"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-147",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 196.0, 1230.0, 109.0, 23.0 ],
-					"text" : "bp.bufferinspector"
 				}
 
 			}
@@ -8727,15 +8727,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-147", 0 ],
-					"source" : [ "obj-139", 1 ]
+					"destination" : [ "obj-159", 0 ],
+					"source" : [ "obj-139", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-159", 0 ],
-					"source" : [ "obj-139", 0 ]
+					"destination" : [ "obj-96", 0 ],
+					"source" : [ "obj-139", 1 ]
 				}
 
 			}
@@ -8783,23 +8783,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-141", 0 ],
-					"order" : 0,
-					"source" : [ "obj-147", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-153", 0 ],
-					"order" : 1,
-					"source" : [ "obj-147", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-147", 0 ],
+					"destination" : [ "obj-96", 0 ],
 					"source" : [ "obj-148", 0 ]
 				}
 
@@ -10187,6 +10171,22 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-141", 0 ],
+					"order" : 0,
+					"source" : [ "obj-96", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-153", 0 ],
+					"order" : 1,
+					"source" : [ "obj-96", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-105", 0 ],
 					"source" : [ "obj-97", 0 ]
 				}
@@ -10201,13 +10201,6 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "bach.+.maxpat",
-				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
-				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "bach.-.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
 				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
@@ -10228,6 +10221,10 @@
 			}
 , 			{
 				"name" : "bach.contains.mxo",
+				"type" : "iLaX"
+			}
+, 			{
+				"name" : "bach.depth.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -10264,10 +10261,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "bach.flat.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "bach.gt.mxo",
 				"type" : "iLaX"
 			}
@@ -10285,10 +10278,6 @@
 			}
 , 			{
 				"name" : "bach.keys.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "bach.length.mxo",
 				"type" : "iLaX"
 			}
 , 			{
@@ -10368,10 +10357,6 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "bach.slice.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "bach.stdev.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
 				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
@@ -10407,13 +10392,6 @@
 , 			{
 				"name" : "bach.write.mxo",
 				"type" : "iLaX"
-			}
-, 			{
-				"name" : "bp.bufferinspector.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
 			}
 , 			{
 				"name" : "bp.ears.maxpat",
@@ -10612,6 +10590,20 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.ui.separator.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.ui.viewer.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bp.utils.button.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
@@ -10634,6 +10626,13 @@
 			}
 , 			{
 				"name" : "bp.utils.getbuffer.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.utils.zoomctrl.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",

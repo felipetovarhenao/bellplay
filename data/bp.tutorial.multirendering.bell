@@ -18,7 +18,7 @@ for $n in 0...80 do (
     ) 
 );
 ## render into single buffer and clear transcription
-$buff = render(@reset 1).inspect('first render');
+$buff = render(@reset 1).view('first render');
 ## create a comb-like delay by transcribing closely-spaced copies of the rendered buffer 
 for $n in 0...50 do (
     ## make onsets near-evenly spaced
@@ -32,7 +32,7 @@ for $n in 0...50 do (
 ## render again and normalize to -6 dB, reset transcription afterwards
 $buff = render(
     @reset 1 @process normalize(-6) 
-).inspect('second render');
+).view('second render');
 ## transcribe rendered buffer twice, original and reversed, with soft left-right panning
 $buff.transcribe(@pan 0.1);
 $buff.process(
@@ -44,4 +44,4 @@ render(
     @play 1 @process freeverb(
         @roomsize .85 @wet [0 0 0] [1 .8 .5] 
     ) 
-).inspect('third and final render')
+).view('third and final render')

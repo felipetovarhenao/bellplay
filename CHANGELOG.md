@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - New button styling, with matching SVG icons, via `bp.utils.button`.
   - Preferences include allowing control over console automatically opening.
 - New functions:
+  - `view`: Displays data in separate window. Replaces `inspect`.
   - `createtree`: Instantiates a k-dimensional tree. Replaces `buildtree`.
   - `querytree`: Queries a k-dimensional tree. Replaces `searchtree`.
   - `createdbtable`: Instantiates a SQL table/database. Replaces `buildcorpus`.

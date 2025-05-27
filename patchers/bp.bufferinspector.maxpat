@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -178,7 +178,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 7,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -332,7 +332,6 @@
 
 							}
  ],
-						"originid" : "pat-8078",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -365,7 +364,6 @@
 					"patching_rect" : [ 186.0, 840.0, 54.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
-						"globalpatchername" : "",
 						"style" : "subtlelight"
 					}
 ,
@@ -524,14 +522,16 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 7,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 0.0, 640.0, 480.0 ],
+						"rect" : [ 59.0, 119.0, 640.0, 480.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
+						"style" : "bellplay-gui",
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-55",
@@ -539,7 +539,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 322.0, 495.0, 31.0, 23.0 ],
+									"patching_rect" : [ 292.0, 454.0, 31.0, 23.0 ],
 									"text" : "thru"
 								}
 
@@ -551,7 +551,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 3,
 									"outlettype" : [ "float", "float", "float" ],
-									"patching_rect" : [ 50.0, 308.0, 159.0, 23.0 ],
+									"patching_rect" : [ 20.0, 267.0, 159.0, 23.0 ],
 									"text" : "t f f f"
 								}
 
@@ -563,7 +563,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "float", "float" ],
-									"patching_rect" : [ 107.0, 179.0, 141.0, 23.0 ],
+									"patching_rect" : [ 77.0, 138.0, 42.5, 23.0 ],
 									"text" : "t f f"
 								}
 
@@ -575,7 +575,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "float" ],
-									"patching_rect" : [ 120.0, 393.0, 91.0, 23.0 ],
+									"patching_rect" : [ 90.0, 352.0, 29.5, 23.0 ],
 									"text" : "/ 2."
 								}
 
@@ -587,7 +587,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "float" ],
-									"patching_rect" : [ 120.0, 351.0, 128.0, 23.0 ],
+									"patching_rect" : [ 90.0, 310.0, 29.5, 23.0 ],
 									"text" : "+ 0."
 								}
 
@@ -599,7 +599,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 120.0, 437.0, 63.0, 23.0 ],
+									"patching_rect" : [ 90.0, 396.0, 62.0, 23.0 ],
 									"text" : "voffset $1"
 								}
 
@@ -611,7 +611,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "float" ],
-									"patching_rect" : [ 50.0, 271.0, 29.5, 23.0 ],
+									"patching_rect" : [ 20.0, 230.0, 29.5, 23.0 ],
 									"text" : "/ 2."
 								}
 
@@ -619,12 +619,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-23",
-									"linecount" : 2,
 									"maxclass" : "message",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 50.0, 437.0, 60.0, 23.0 ],
+									"patching_rect" : [ 20.0, 396.0, 60.0, 23.0 ],
 									"text" : "vzoom $1"
 								}
 
@@ -636,7 +635,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 326.0, 140.0, 42.0, 23.0 ],
+									"patching_rect" : [ 296.0, 99.0, 41.0, 23.0 ],
 									"text" : "set $1"
 								}
 
@@ -648,7 +647,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 107.0, 100.0, 238.0, 23.0 ],
+									"patching_rect" : [ 77.0, 59.0, 238.0, 23.0 ],
 									"text" : "t l l"
 								}
 
@@ -660,7 +659,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "float" ],
-									"patching_rect" : [ 50.0, 233.0, 76.5, 23.0 ],
+									"patching_rect" : [ 20.0, 192.0, 29.5, 23.0 ],
 									"text" : "- 0."
 								}
 
@@ -668,12 +667,11 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-7",
-									"linecount" : 2,
 									"maxclass" : "newobj",
 									"numinlets" : 1,
 									"numoutlets" : 2,
 									"outlettype" : [ "", "" ],
-									"patching_rect" : [ 107.0, 144.0, 109.0, 23.0 ],
+									"patching_rect" : [ 77.0, 103.0, 108.0, 23.0 ],
 									"text" : "ears.info~ min max"
 								}
 
@@ -687,7 +685,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 107.0, 40.0, 30.0, 30.0 ]
+									"patching_rect" : [ 77.0, 12.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -699,7 +697,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 322.0, 578.0, 30.0, 30.0 ]
+									"patching_rect" : [ 292.0, 493.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -831,12 +829,43 @@
 
 							}
  ],
-						"originid" : "pat-8080"
+						"styles" : [ 							{
+								"name" : "bellplay-gui",
+								"default" : 								{
+									"accentcolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
+									"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+									"bgfillcolor" : 									{
+										"angle" : 270.0,
+										"autogradient" : 0.0,
+										"color" : [ 0.717647058823529, 0.717647058823529, 0.717647058823529, 1.0 ],
+										"color1" : [ 0.301961, 0.301961, 0.301961, 1.0 ],
+										"color2" : [ 0.2, 0.2, 0.2, 1.0 ],
+										"proportion" : 0.5,
+										"type" : "color"
+									}
+,
+									"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
+									"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"fontname" : [ "Lato" ],
+									"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
+									"syntax_attrargcolor" : [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
+									"syntax_attributecolor" : [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],
+									"syntax_objargcolor" : [ 0.776470588235294, 0.635294117647059, 0.494117647058824, 1.0 ],
+									"syntax_objectcolor" : [ 0.462745098039216, 0.4, 0.294117647058824, 1.0 ],
+									"textcolor" : [ 0.462745098039216, 0.462745098039216, 0.462745098039216, 1.0 ],
+									"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
+ ]
 					}
 ,
 					"patching_rect" : [ 882.0, 1091.0, 119.0, 23.0 ],
 					"saved_object_attributes" : 					{
-						"globalpatchername" : ""
+						"style" : "bellplay-gui"
 					}
 ,
 					"text" : "p autosize-waveform"
@@ -1165,8 +1194,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 83.0, 131.0, 24.0, 24.0 ],
-					"svg" : ""
+					"patching_rect" : [ 83.0, 131.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -1967,7 +1995,6 @@
 
 			}
  ],
-		"originid" : "pat-8076",
 		"dependency_cache" : [ 			{
 				"name" : "bach.+.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
