@@ -21,8 +21,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 556.5, 225.0, 422.0, 23.0 ],
-					"text" : "usebgoncolor 1, bgoncolor 0.561 0.71 0.843 1., textcolor 0.275 0.275 0.275 1."
+					"patching_rect" : [ 556.5, 225.0, 170.0, 23.0 ],
+					"text" : "textcolor 0.275 0.275 0.275 1."
 				}
 
 			}
