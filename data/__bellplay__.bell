@@ -1166,16 +1166,19 @@ browsedbtable = (
         $db = $db ||| 'main';
         BP_FN_CHECK_ARGS($self, 'name', $name);
         if BP_DATABASE_TABLES.$db == null then BP_FN_ERROR($self, "no tables found in database" $db) else (
+            BP_DATABASE_OUTPUT = null;
+            BP_FN_DISPATCH('db', ['getcols']);
+            $cols = (BP_DATABASE_OUTPUT::1).right(1).trans()::1;
             BP_DATABASE_BROWSER _= [
                 [ "database" $db ]
                 [ "table" $name ]
                 [ "fields" 
-                    [ 'xfield' $xfield ]
-                    [ 'yfield' $yfield ]
-                    [ 'sizefield' $sizefield ]
-                    [ 'colorfield' $colorfield ]
-                    [ 'shapefield' $shapefield ]
-                    [ 'lengthfield' $lengthfield ]
+                    [ 'xfield' intersection($cols, $xfield) ]
+                    [ 'yfield' intersection($cols, $yfield) ]
+                    [ 'sizefield' intersection($cols, $sizefield) ]
+                    [ 'colorfield' intersection($cols, $colorfield) ]
+                    [ 'shapefield' intersection($cols, $shapefield) ]
+                    [ 'lengthfield' intersection($cols, $lengthfield) ]
                 ]
             ]
         );
@@ -1184,9 +1187,9 @@ browsedbtable = (
 );
 
 BP_REF_NEW(
-    @name "browsedbtable",
-    @description "Displays [SQLite3](https://www.sqlitetutorial.net/) database table in the **Table Browser** window, which automatically opens after script evaluation is complete. Convenient for exploring database tables, especially those consisting of buffers.",
-    @category BP_REF_LABEL_DATA_UTILS,
+    @name "browsedbtable"
+    @description "Displays [SQLite3](https://www.sqlitetutorial.net/) database table in the **Table Browser** window, which automatically opens after script evaluation is complete. Convenient for exploring database tables, especially those consisting of buffers."
+    @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "name" @default "'data'" @type "symbol"  @description "name of database table to browse, as a symbol.")
         BP_REF_ARG(@name "db" @default "null" @type "symbol/null" @description "Optional database name. If set to `null`, `'main'` is used as the default database name.")
@@ -2713,7 +2716,7 @@ analyze = (
         BP_FN_CHECK_ARGS('analyze', 'buffer', $buffer, 'descriptors', $descriptors);
         $source = BP_FN_VALIDATE_BUFFER($self, $buffer);
         BP_ESSENTIA_OUTPUT = null;
-        $source = $buffer.process(bpthru()).getkey("source");
+        $source = $buffer.process(BP_FN_DUMMY_PROCESS()).getkey("source");
         BP_FN_DISPATCH("essentia",
             [ "buffer" $source ]
             [ "settings"
@@ -2758,7 +2761,7 @@ analyze = (
             if $lastchar == '~' then (
                 $outkeys = $descr.getkey("output");
                 for $k in $outkeys do (
-                    $features.$k = BP_FN_NEWBUFF(@source $features.$k).process(bpthru())
+                    $features.$k = BP_FN_NEWBUFF(@source $features.$k).process(BP_FN_DUMMY_PROCESS())
                 )
             )
         );
@@ -4313,7 +4316,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-bpthru = ( -> [ [ "fx" "thru" ] ]);
+BP_FN_DUMMY_PROCESS = ( -> [ [ "fx" "thru" ] ]);
 
 ## ------------------------------------------------------------
 
@@ -5527,7 +5530,7 @@ mix = (
     $normalize = 0 -> (
         BP_FN_CHECK_ARGS('mix', 'buffers', $buffers);
         $numbuffers = length($buffers) + 1;
-        $buffers = for $buffer in $buffers collect $buffer.process(bpthru()).getkey("source");
+        $buffers = for $buffer in $buffers collect $buffer.process(BP_FN_DUMMY_PROCESS()).getkey("source");
         [
             [ "fx" "mix" ]
             [ "params"
@@ -6032,7 +6035,7 @@ join = (
             if $source == null then (
                 BP_FN_ERROR('join', 'invalid buffer:' $buffer)
             ) else (
-                $buffer.process(bpthru()).getkey("source")
+                $buffer.process(BP_FN_DUMMY_PROCESS()).getkey("source")
             )
         );
         [
@@ -6505,7 +6508,7 @@ buf2ptracks = (
         $self = 'buf2ptracks';
         BP_FN_CHECK_ARGS($self, 'buffer', $buffer);
         BP_FN_VALIDATE_BUFFER($self, $buffer);
-        $source = $buffer.process(bpthru()).getkey("source");
+        $source = $buffer.process(BP_FN_DUMMY_PROCESS()).getkey("source");
         BP_FN_DISPATCH("resynth", 
             [ "analysis" 
                 [ "winstartfromzero" $winstartfromzero ]
@@ -6826,7 +6829,7 @@ render(@play 1)"
 buf2samps = (
     $buffer -> (
         BP_FN_VALIDATE_BUFFER('buf2samps', $buffer);
-        $source = $buffer.process(bpthru()).getkey("source");
+        $source = $buffer.process(BP_FN_DUMMY_PROCESS()).getkey("source");
         BP_FN_DISPATCH('ears', ['tosamps' $source]);
         BP_TMP_EARS_OUTPUT
     )
@@ -6859,7 +6862,7 @@ samps2buf = (
                 ]
             );
             $source = BP_TMP_EARS_OUTPUT;
-            BP_FN_NEWBUFF($source).process(bpthru())
+            BP_FN_NEWBUFF($source).process(BP_FN_DUMMY_PROCESS())
         )
     )
 );

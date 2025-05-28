@@ -461,8 +461,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - New function: `r2mc'.
 - Add `readfolder` function with docs.
 - New processor: `rampsmooth`.
-- Use `bpthru` to fix `join` and `mix` bug, when using corpora-based buffers.
-- Add private `bpthru` process as a short-hand for cropping a buffer.
+- Use `BP_FN_DUMMY_PROCESS` to fix `join` and `mix` bug, when using corpora-based buffers.
+- Add private `BP_FN_DUMMY_PROCESS` process as a short-hand for cropping a buffer.
 
 ### Changed
 

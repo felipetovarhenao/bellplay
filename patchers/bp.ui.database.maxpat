@@ -59,7 +59,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 376.0, 1383.0, 30.0, 30.0 ]
+					"patching_rect" : [ 376.0, 1362.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -70,7 +70,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 376.0, 1336.0, 40.0, 23.0 ],
+					"patching_rect" : [ 376.0, 1315.0, 40.0, 23.0 ],
 					"text" : "*~ 0.5"
 				}
 
@@ -82,7 +82,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 514.0, 1248.0, 59.0, 23.0 ],
+					"patching_rect" : [ 411.0, 1237.0, 59.0, 23.0 ],
 					"style" : "bellplay-gui",
 					"text" : "target $1"
 				}
@@ -95,7 +95,7 @@
 					"numinlets" : 5,
 					"numoutlets" : 4,
 					"outlettype" : [ "int", "", "", "int" ],
-					"patching_rect" : [ 514.0, 1210.0, 76.0, 23.0 ],
+					"patching_rect" : [ 411.0, 1199.0, 76.0, 23.0 ],
 					"style" : "bellplay-gui",
 					"text" : "counter 1 48"
 				}
@@ -108,7 +108,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
-					"patching_rect" : [ 376.0, 1162.0, 157.0, 23.0 ],
+					"patching_rect" : [ 376.0, 1162.0, 54.0, 23.0 ],
 					"style" : "bellplay-gui",
 					"text" : "t l b"
 				}
@@ -134,7 +134,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 376.0, 1295.0, 195.0, 23.0 ],
+					"patching_rect" : [ 376.0, 1276.0, 195.0, 23.0 ],
 					"style" : "bellplay-gui",
 					"text" : "poly~ bp.sampler.poly~ 48 @steal 0"
 				}
@@ -407,6 +407,7 @@
 						"rect" : [ 180.0, 303.0, 1000.0, 780.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"style" : "bellplay-gui",
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-5",
@@ -438,8 +439,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 689.0, 142.0, 283.0, 23.0 ],
-									"text" : "xfield yfield colorfield lengthfield shapefield sizefield"
+									"patching_rect" : [ 689.0, 142.0, 224.0, 23.0 ],
+									"text" : "xfield yfield colorfield shapefield sizefield"
 								}
 
 							}
