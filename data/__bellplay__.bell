@@ -1171,8 +1171,7 @@ browsedbtable = (
     $yfield = null,
     $sizefield = null,
     $colorfield = null,
-    $shapefield = null,
-    $lengthfield = null -> (
+    $shapefield = null -> (
         $self = 'browsedbtable';
         $db = $db ||| 'main';
         BP_FN_CHECK_ARGS($self, 'name', $name);
@@ -1189,7 +1188,6 @@ browsedbtable = (
                     [ 'sizefield' intersection($cols, $sizefield) ]
                     [ 'colorfield' intersection($cols, $colorfield) ]
                     [ 'shapefield' intersection($cols, $shapefield) ]
-                    [ 'lengthfield' intersection($cols, $lengthfield) ]
                 ]
             ]
         );
@@ -1209,7 +1207,6 @@ BP_REF_NEW(
         BP_REF_ARG(@name "size" @default "null" @type "symbol/null" @description "Name of table column to use for _Size_ in **Table Browser**.")
         BP_REF_ARG(@name "color" @default "null" @type "symbol/null" @description "Name of table column to use for _Color_ in **Table Browser**.")
         BP_REF_ARG(@name "shape" @default "null" @type "symbol/null" @description "Name of table column to use for _Shape_ in **Table Browser**.")
-        BP_REF_ARG(@name "length" @default "null" @type "symbol/null" @description "Name of table column to use for _Length_ in **Table Browser**.")
     )
 );
 
