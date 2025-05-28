@@ -1260,18 +1260,6 @@
     "path": "/docs/reference/data-utilities/insert"
   },
   {
-    "title": "`inspect`",
-    "blurb": "Adds input buffer to the buffer inspector window, which opens up once the script evaluation is over, displaying relevant buffer information—useful for debugging buffers.",
-    "keywords": [
-      "buffer",
-      "llll",
-      "label",
-      "inspect",
-      "required"
-    ],
-    "path": "/docs/reference/data-utilities/inspect"
-  },
-  {
     "title": "`int`",
     "blurb": "Casts value of `@x` as an `int`.",
     "keywords": [
@@ -3156,6 +3144,18 @@
     "path": "/docs/reference/randomization/urn"
   },
   {
+    "title": "`view`",
+    "blurb": "Displays _llll_ in the **Viewer** window, which automatically opens after script evaluation is complete.",
+    "keywords": [
+      "llll",
+      "view",
+      "label",
+      "bell",
+      "required"
+    ],
+    "path": "/docs/reference/data-utilities/view"
+  },
+  {
     "title": "`wavesetrepeat`",
     "blurb": "Generates an audio process operation for applying waveset repetition to a buffer.",
     "keywords": [
@@ -3605,9 +3605,9 @@
     "keywords": [
       "envelope",
       "buffer",
-      "inspect",
+      "view",
       "buffers",
-      "label"
+      "window"
     ],
     "path": "/docs/learning/tutorials/bufferinspector"
   },
