@@ -112,7 +112,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.keys inspector browser"
+					"text" : "bach.keys viewer browser"
 				}
 
 			}
@@ -2064,19 +2064,19 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_FN_ON_AFTER(); ['inspector' BP_VIEWER_DATA] ['browser' BP_DATABASE_BROWSER ] ",
+					"code" : "BP_FN_ON_AFTER(); ['viewer' BP_VIEWER_DATA] ['browser' BP_DATABASE_BROWSER ] ",
 					"id" : "obj-135",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 135.0, 1039.0, 584.0, 23.0 ],
+					"patching_rect" : [ 135.0, 1039.0, 536.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 1,
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval BP_FN_ON_AFTER()\\; ['inspector' BP_VIEWER_DATA] ['browser' BP_DATABASE_BROWSER ]"
+					"text" : "bach.eval BP_FN_ON_AFTER()\\; ['viewer' BP_VIEWER_DATA] ['browser' BP_DATABASE_BROWSER ]"
 				}
 
 			}
