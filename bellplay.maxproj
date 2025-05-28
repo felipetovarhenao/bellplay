@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3831231888,
+	"modificationdate" : 3831236462,
 	"viewrect" : [ 25.0, 104.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -221,7 +221,7 @@
 				"local" : 1
 			}
 ,
-			"bp.utils.button.maxpat" : 			{
+			"bp.ui.button.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1
 			}

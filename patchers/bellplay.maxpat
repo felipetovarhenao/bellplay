@@ -2210,7 +2210,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "bp.utils.button.maxpat",
+				"name" : "bp.ui.button.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
