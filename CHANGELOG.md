@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - GUI:
+  - New **Table Browser** window triggered by calling `browsedbtable`. Replaces _Corpus lab_.
   - Audio settings now transfered to settings window (not main).
   - New zoom in and out support via `shift+` and `shift-`.
   - New button styling, with matching SVG icons, via `bp.ui.button`.
@@ -21,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `querydb`: Queries a SQL database. Replaces `query`.
   - `readdb`: Reads SQL database as `.llll` file. Replaces `setcorpus`.
   - `writedb`: Replaces `@outpath` in now deprecated `buildcorpus`.
+  - `browsedbtable`: Replaces _Corpus lab_ window.
   - `seq2markov`: Sequence to Markov matrix.
   - `markov2seq`: Markov matrix to sequence.
 - New built-in media: `joplin.mid` (_The Entertainer_).

@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3831236462,
+	"modificationdate" : 3831289234,
 	"viewrect" : [ 25.0, 104.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -272,6 +272,16 @@
 			}
 ,
 			"bp.ui.umenu.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1
+			}
+,
+			"bp.ui.database.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1
+			}
+,
+			"bp.ui.database.cartesian.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1
 			}

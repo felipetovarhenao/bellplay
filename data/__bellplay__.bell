@@ -115,6 +115,7 @@ BP_FN_ON_BEFORE = (
         scoreconfig();
         BP_URN = null; 
         BP_BUFFER_INSPECTOR = null;
+        BP_DATABASE_BROWSER = null;
         BP_DATABASE_TABLES = null;
         BP_FN_DISPATCH('db', ['erase']);
         BP_BUFFER_CACHE = null;
@@ -1148,6 +1149,54 @@ BP_REF_NEW(
     @output BP_REF_OUTPUT(@description "query results." @type "llll/null")
     @usage BP_REF_DATABASE_IO_SNIPPET
     @tags 'querydb' 'createdbtable' 'writedb'
+);
+
+## ------------------------------------------------------------
+
+browsedbtable = (
+    $name = 'data',
+    $db = null,
+    $xfield = null
+    $yfield = null,
+    $sizefield = null,
+    $colorfield = null,
+    $shapefield = null,
+    $lengthfield = null -> (
+        $self = 'browsedbtable';
+        $db = $db ||| 'main';
+        BP_FN_CHECK_ARGS($self, 'name', $name);
+        if BP_DATABASE_TABLES.$db == null then BP_FN_ERROR($self, "no tables found in database" $db) else (
+            BP_DATABASE_BROWSER _= [
+                [ "database" $db ]
+                [ "table" $name ]
+                [ "fields" 
+                    [ 'xfield' $xfield ]
+                    [ 'yfield' $yfield ]
+                    [ 'sizefield' $sizefield ]
+                    [ 'colorfield' $colorfield ]
+                    [ 'shapefield' $shapefield ]
+                    [ 'lengthfield' $lengthfield ]
+                ]
+            ]
+        );
+        null
+    )
+);
+
+BP_REF_NEW(
+    @name "browsedbtable",
+    @description "Displays [SQLite3](https://www.sqlitetutorial.net/) database table in the **Table Browser** window, which automatically opens after script evaluation is complete. Convenient for exploring database tables, especially those consisting of buffers.",
+    @category BP_REF_LABEL_DATA_UTILS,
+    @arguments (
+        BP_REF_ARG(@name "name" @default "'data'" @type "symbol"  @description "name of database table to browse, as a symbol.")
+        BP_REF_ARG(@name "db" @default "null" @type "symbol/null" @description "Optional database name. If set to `null`, `'main'` is used as the default database name.")
+        BP_REF_ARG(@name "xfield" @default "null" @type "symbol/null" @description "Name of table column to use for _X axis_ in **Table Browser**.")
+        BP_REF_ARG(@name "yfield" @default "null" @type "symbol/null" @description "Name of table column to use for _Y axis_ in **Table Browser**.")
+        BP_REF_ARG(@name "size" @default "null" @type "symbol/null" @description "Name of table column to use for _Size_ in **Table Browser**.")
+        BP_REF_ARG(@name "color" @default "null" @type "symbol/null" @description "Name of table column to use for _Color_ in **Table Browser**.")
+        BP_REF_ARG(@name "shape" @default "null" @type "symbol/null" @description "Name of table column to use for _Shape_ in **Table Browser**.")
+        BP_REF_ARG(@name "length" @default "null" @type "symbol/null" @description "Name of table column to use for _Length_ in **Table Browser**.")
+    )
 );
 
 ## ------------------------------------------------------------

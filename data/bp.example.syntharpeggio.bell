@@ -1,0 +1,80 @@
+#( 
+
+# Synth Arpeggio
+
+This example demonstrates how to use BPFs to continuously change the pitch of different oscillators. 
+It combines fixed pitch-class progressions with probabilistically shaped frequency and amplitude breakpoint functions, achieving evolving polyphonic structures with smooth filtering and stereo spatialization.
+
+The script iterates through different pitch-class sets, applying continuous micro-retuning to arpeggio patterns. 
+Each voice (defined by a waveform type) processes its own frequency and gain BPFs, which are subsequently passed through a lowpass biquad filter and spatialized across the stereo field.
+
+)#
+setseed(96);
+## Define four pitch-class sets to iterate through
+$pcseq = (
+    [0 4 7] [2 5 7 11] [0 5 7 9] [0 4 7 9] 
+);
+## Assign waveform types to separate voices
+$waves = (saw cycle tri rect);
+$numvoices = length($waves);
+## Duration unit for each note event (in ms)
+$unit = 150;
+## Create a random shape for arpeggiation
+$arpshape = dx2x(for $dx in 1...24 collect xrandom(1, 3) * xchoose(-1 1));
+## Map arpeggiation shape to frequency range [4200, 9000] Hz
+$arpeggio = scale(
+    $arpshape, minimum($arpshape), maximum($arpshape), 4200, 9000
+);
+## Iterate through each waveform/voice
+for $wave $voice in $waves do (
+    ## Initialize time and data containers
+    $x = 0;
+    $freqbpf = null;
+    $gainbpf = null;
+    $pitchshift = 0;
+    ## Assign unique panning to each voice
+    $pan = ($voice - 1) / ($numvoices - 1);
+    ## Iterate over repetitions and pitch-class sets
+    for $n in 1...4 do (
+        for $pcs in $pcseq with @unwrap 1 do (
+            for $pitch in $arpeggio do (
+                ## Retune pitch to nearest pitch class plus gradual shift
+                $retuning = pitchdiff($pitch,  ($pcs + $pitchshift) % 12);
+                $pitch += $retuning;
+                ## Assign time-varying frequency and gain BPF entries
+                $slope = xrand(0.8, 0.95);
+                $freqbpf _= [$x mc2f($pitch) $slope];
+                $gainbpf _= [$x xrand(0.125, 0.707) $slope];
+                ## Advance event time and adjust shift
+                $x += 1;
+                $pitchshift += 0.01
+            ) 
+        ) 
+    );
+    ## Determine total duration based on length of BPF
+    $dur = length($freqbpf) * $unit;
+    ## Apply biquad filtering, then spatialize and transcribe the voice
+    $wave(@frequency $freqbpf @duration $dur).process(
+        biquad(
+            ## random bpf for cut-off frequency
+            @frequency for $x in 0...xrandom(1, 5) collect [$x xrand(2000, 6000) 0] 
+            ## low-pass filter
+            @type 0
+            ## low resonance
+            @q 1
+        ) 
+    ).transcribe(
+        @gain $gainbpf @pan $pan
+    );
+    ## Rotate arpeggio to differentiate between voices
+    $arpeggio = $arpeggio.rot(-6) 
+);
+## Apply global processing
+render(
+    @play 1 @process normalize(-3) freeverb(
+        @roomsize 0.8
+        @wet 0.1
+        @damp 0.7
+        @width 0.2
+    ) 
+)
