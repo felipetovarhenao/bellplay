@@ -1167,7 +1167,7 @@ BP_REF_NEW(
 browsedbtable = (
     $name = 'data',
     $db = null,
-    $xfield = null
+    $xfield = null,
     $yfield = null,
     $sizefield = null,
     $colorfield = null,
