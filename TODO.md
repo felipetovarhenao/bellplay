@@ -2,8 +2,6 @@
 
 ## v0.9.0-beta
 
-- Fix uncropped buffer in **Viewer**
-
 ### Add
 
 - [ ] New bellplay examples:

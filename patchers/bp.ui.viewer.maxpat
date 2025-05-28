@@ -22,6 +22,23 @@
 		"title" : "bellplay~ | viewer",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 757.0, 1144.0, 74.5, 23.0 ],
+					"saved_object_attributes" : 					{
+						"embed" : 0,
+						"versionnumber" : 80300
+					}
+,
+					"text" : "bach.reg"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -97,8 +114,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 447.735046207904816, 561.0, 133.0, 23.0 ],
-					"text" : "sprintf symout llll %04d"
+					"patching_rect" : [ 447.735046207904816, 561.0, 135.0, 23.0 ],
+					"text" : "sprintf symout llll_%04d"
 				}
 
 			}
@@ -208,9 +225,9 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 706.0, 1102.0, 29.5, 23.0 ],
-					"text" : "t l l"
+					"outlettype" : [ "", "bang" ],
+					"patching_rect" : [ 706.0, 1102.0, 70.333333333333371, 23.0 ],
+					"text" : "t l b"
 				}
 
 			}
@@ -453,7 +470,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 706.0, 1049.0, 29.5, 23.0 ],
+					"patching_rect" : [ 706.0, 1049.0, 170.0, 23.0 ],
 					"text" : "t l 1"
 				}
 
@@ -641,18 +658,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-12",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 609.401715576648712, 73.504274249076843, 56.0, 23.0 ],
-					"text" : "loadbang"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"fontsize" : 24.0,
 					"id" : "obj-9",
 					"maxclass" : "comment",
@@ -697,18 +702,6 @@
 					"style" : "bellplay-gui",
 					"text" : "Depth",
 					"textcolor" : [ 0.482352941176471, 0.482352941176471, 0.482352941176471, 1.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-1",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 844.444453001022339, 217.094019293785095, 131.0, 23.0 ],
-					"text" : "sprintf symout <llll_%i>"
 				}
 
 			}
@@ -893,86 +886,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-31",
-					"maxclass" : "newobj",
-					"numinlets" : 3,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 609.401715576648712, 289.74359267950058, 265.0, 23.0 ],
-					"saved_object_attributes" : 					{
-						"versionnumber" : 80300
-					}
-,
-					"text" : "bach.collect @inwrap 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-30",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 609.401715576648712, 146.153847634792328, 142.0, 23.0 ],
-					"text" : "t b l"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-26",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 732.478639900684357, 250.427352964878082, 131.0, 23.0 ],
-					"saved_object_attributes" : 					{
-						"versionnumber" : 80300
-					}
-,
-					"text" : "bach.pack data label"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-22",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 732.478639900684357, 182.90598475933075, 243.0, 23.0 ],
-					"saved_object_attributes" : 					{
-						"versionnumber" : 80300
-					}
-,
-					"text" : "bach.iter @maxdepth 1 @unwrap 1 @out nm"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-5",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 609.401715576648712, 105.982907056808472, 112.0, 23.0 ],
-					"reg_data_0000000000" : [ "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 0, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1079574528, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1080623104, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1081262080, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1081671680, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1082081280, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1082310656, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1082515456, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1082720256, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1082925056, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1083129856, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1083256832, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1083359232, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1083461632, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1083564032, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1083666432, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1083768832, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1083871232, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1083973632, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084076032, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084178432, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084254208, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084305408, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084356608, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084407808, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084459008, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084510208, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084561408, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084612608, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084663808, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084715008, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084766208, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084817408, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084868608, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084919808, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1084971008, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085022208, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085073408, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085124608, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085175808, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085227008, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085277184, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085302784, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085328384, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085353984, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085379584, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085405184, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085430784, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085456384, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085481984, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085507584, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085533184, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085558784, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085584384, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085609984, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085635584, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085661184, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085686784, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085712384, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085737984, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085763584, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085789184, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085814784, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085840384, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085865984, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085891584, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198" ],
-					"reg_data_0000000001" : [ "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085917184, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", 100, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085942784, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]", "[", "[", "source", "u297001198", "]", "[", "sr", 48000, "]", "[", "numchannels", 1, "]", "[", "max", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "min", "_x_x_x_x_bach_float64_x_x_x_x_", 1264988128, 3219703126, "]", "[", "maxabs", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1072693248, "]", "[", "rms", "_x_x_x_x_bach_float64_x_x_x_x_", 3265274657, 1069982737, "]", "[", "duration", "_x_x_x_x_bach_float64_x_x_x_x_", 2816399035, 1078205098, "]", "[", "offset", "_x_x_x_x_bach_float64_x_x_x_x_", 0, 1085968384, "]", "[", "pitch", 6000, "]", "[", "source_end", "_x_x_x_x_bach_float64_x_x_x_x_", 1431289261, 1085978677, "]", "[", "file", "singing.wav", "]", "]" ],
-					"reg_data_count" : [ 2 ],
-					"saved_object_attributes" : 					{
-						"embed" : 1,
-						"versionnumber" : 80300
-					}
-,
-					"text" : "bach.reg @embed 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-27",
 					"maxclass" : "message",
 					"numinlets" : 2,
@@ -1040,10 +953,10 @@
 					"id" : "obj-16",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 4,
-					"outlettype" : [ "", "", "", "int" ],
-					"patching_rect" : [ 343.0, 900.0, 269.0, 23.0 ],
-					"text" : "t l l l 0"
+					"numoutlets" : 5,
+					"outlettype" : [ "", "", "", "", "int" ],
+					"patching_rect" : [ 343.0, 900.0, 645.0, 23.0 ],
+					"text" : "t l l l l 0"
 				}
 
 			}
@@ -1118,22 +1031,8 @@
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
-					"destination" : [ "obj-26", 1 ],
-					"source" : [ "obj-1", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-145", 0 ],
 					"source" : [ "obj-119", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-5", 0 ],
-					"source" : [ "obj-12", 0 ]
 				}
 
 			}
@@ -1196,7 +1095,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-19", 0 ],
-					"source" : [ "obj-16", 3 ]
+					"source" : [ "obj-16", 4 ]
 				}
 
 			}
@@ -1204,6 +1103,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-28", 0 ],
 					"source" : [ "obj-16", 2 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 1 ],
+					"source" : [ "obj-16", 3 ]
 				}
 
 			}
@@ -1265,20 +1171,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-22", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-26", 0 ],
-					"source" : [ "obj-22", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-27", 0 ],
 					"source" : [ "obj-24", 2 ]
 				}
@@ -1302,13 +1194,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-74", 0 ],
 					"source" : [ "obj-25", 2 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-31", 1 ],
-					"source" : [ "obj-26", 0 ]
 				}
 
 			}
@@ -1344,20 +1229,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-4", 0 ],
 					"source" : [ "obj-3", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-22", 0 ],
-					"source" : [ "obj-30", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-31", 0 ],
-					"source" : [ "obj-30", 0 ]
 				}
 
 			}
@@ -1531,13 +1402,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-30", 0 ],
-					"source" : [ "obj-5", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-21", 0 ],
 					"source" : [ "obj-50", 0 ]
 				}
@@ -1608,6 +1472,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-19", 1 ],
+					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-25", 0 ],
 					"source" : [ "obj-60", 0 ]
 				}
@@ -1664,15 +1535,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-19", 1 ],
-					"source" : [ "obj-69", 1 ]
+					"destination" : [ "obj-38", 0 ],
+					"source" : [ "obj-69", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-38", 0 ],
-					"source" : [ "obj-69", 0 ]
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-69", 1 ]
 				}
 
 			}
@@ -1736,6 +1607,10 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "bach.eval.mxo",
+				"type" : "iLaX"
+			}
+, 			{
 				"name" : "bach.filternull.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/bach/patchers",
 				"patcherrelativepath" : "../../Max 9/Packages/bach/patchers",
@@ -1759,10 +1634,6 @@
 			}
 , 			{
 				"name" : "bach.nth.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "bach.pack.mxo",
 				"type" : "iLaX"
 			}
 , 			{
