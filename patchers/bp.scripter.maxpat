@@ -2064,7 +2064,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "BP_FN_ON_AFTER(); ['inspector' BP_BUFFER_INSPECTOR] ['browser' BP_DATABASE_BROWSER ] ",
+					"code" : "BP_FN_ON_AFTER(); ['inspector' BP_VIEWER_DATA] ['browser' BP_DATABASE_BROWSER ] ",
 					"id" : "obj-135",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -2076,7 +2076,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.eval BP_FN_ON_AFTER()\\; ['inspector' BP_BUFFER_INSPECTOR] ['browser' BP_DATABASE_BROWSER ]"
+					"text" : "bach.eval BP_FN_ON_AFTER()\\; ['inspector' BP_VIEWER_DATA] ['browser' BP_DATABASE_BROWSER ]"
 				}
 
 			}

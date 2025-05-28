@@ -33,7 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - Major renaming of backend functions to follow consistent nomenclature:
     - global functions: `BP_FN_*`
     - global non-functions: `BP_*`
-  - Add `BP_FN_ERROR`, `BP_FN_WARNING`, `BP_FN_CHECK_ARGS`, and `BP_FN_VALIDATE_BUFFER`.
+  - Add `BP_FN_ON_FAIL`, `BP_FN_ERROR`, `BP_FN_WARNING`, `BP_FN_CHECK_ARGS`, and `BP_FN_VALIDATE_BUFFER`.
 
 ### Changed
 
