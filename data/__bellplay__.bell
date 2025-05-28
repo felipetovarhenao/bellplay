@@ -1208,6 +1208,22 @@ BP_REF_NEW(
         BP_REF_ARG(@name "color" @default "null" @type "symbol/null" @description "Name of table column to use for _Color_ in **Table Browser**.")
         BP_REF_ARG(@name "shape" @default "null" @type "symbol/null" @description "Name of table column to use for _Shape_ in **Table Browser**.")
     )
+    @usage BP_REF_CODE_SNIPPET("## import file
+$buf = importaudio('trumpet.wav');
+## generate audio descriptors
+$descriptors = pitchmelodia() larm() spectralcentroid() effectiveduration();
+## segment buffer and analyze every segment
+$segments = for $b in splitbuf(@buffer $buf @split 50) collect $b.analyze($descriptors);
+## create database table
+createdbtable(@data $segments);
+## display table in browser 
+browsedbtable(
+    @xfield 'pitchmelodia' 
+    @yfield 'larm' 
+    @sizefield 'spectralcentroid' 
+    @colorfield 'effectiveduration' 
+)"
+    )
 );
 
 ## ------------------------------------------------------------
