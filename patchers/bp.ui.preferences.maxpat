@@ -63,7 +63,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 0.847457647323608, 120.723729938268661, 264.320814311504364, 21.0 ],
 					"style" : "bellplay-gui",
-					"text" : "Console Opens Automatically",
+					"text" : "Open console",
 					"textcolor" : [ 0.482352941176471, 0.482352941176471, 0.482352941176471, 1.0 ]
 				}
 
@@ -82,7 +82,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "Off", "texton", "On", "icon", "send-icon.svg", "iconon", "send-icon.svg", "mode", 1 ],
+					"args" : [ "text", "Manual", "texton", "Auto", "icon", "send-icon.svg", "iconon", "send-icon.svg", "mode", 1, "neutral", 1 ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -218,7 +218,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 0.847457647323608, 48.423729419708252, 264.320814311504364, 21.0 ],
 					"style" : "bellplay-gui",
-					"text" : "Tutorials and Examples Folder",
+					"text" : "Tutorials and Examples folder",
 					"textcolor" : [ 0.482352941176471, 0.482352941176471, 0.482352941176471, 1.0 ]
 				}
 
@@ -368,7 +368,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 0.847457647323608, 94.423729419708252, 264.320814311504364, 21.0 ],
 					"style" : "bellplay-gui",
-					"text" : "Error Alert Sound",
+					"text" : "Alert sound",
 					"textcolor" : [ 0.482352941176471, 0.482352941176471, 0.482352941176471, 1.0 ]
 				}
 
@@ -1225,13 +1225,6 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "alert-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
 			}
@@ -1270,27 +1263,6 @@
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "code-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "folder-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "send-icon.svg",
-				"bootpath" : "~/Documents/bellplay/media",
-				"patcherrelativepath" : "../media",
-				"type" : "svg",
 				"implicit" : 1
 			}
  ],
