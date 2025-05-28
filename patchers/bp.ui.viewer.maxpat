@@ -1073,6 +1073,7 @@
 					"presentation_rect" : [ 7.0, 118.0, 410.989031076431274, 297.802212357521057 ],
 					"rounded" : 5.0,
 					"rowvpad" : 5.0,
+					"showfocus" : 0,
 					"versionnumber" : 80300
 				}
 
@@ -1784,6 +1785,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.ui.button.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bp.ui.separator.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
@@ -1792,13 +1800,6 @@
 			}
 , 			{
 				"name" : "bp.ui.umenu.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bp.ui.button.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
