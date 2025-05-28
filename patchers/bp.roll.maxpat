@@ -1040,7 +1040,7 @@
 					"pitcheditrange" : [ "null" ],
 					"playcolor" : [ 0.458823529411765, 0.792156862745098, 0.827450980392157, 1.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.043478261679411, 0.021739130839705, 753.0, 392.0 ],
+					"presentation_rect" : [ 0.0, 1.000000029802322, 753.0, 392.0 ],
 					"preventedit" : [ "notes", "slotinfo", "voices", "breakpoints", "markers" ],
 					"ruler" : 1,
 					"rulercolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
