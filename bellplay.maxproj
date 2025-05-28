@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3831289234,
+	"modificationdate" : 3831315669,
 	"viewrect" : [ 25.0, 104.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -786,6 +786,11 @@
 			}
 ,
 			"bp.tutorial.randomness.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"bp.example.syntharpeggio.bell" : 			{
 				"kind" : "textfile",
 				"local" : 1
 			}

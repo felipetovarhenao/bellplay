@@ -129,6 +129,11 @@ $addscript(
     @example 1
 );
 $addscript(
+    @name 'Synth Arpeggio' 
+    @file 'syntharpeggio' 
+    @example 1
+);
+$addscript(
     @name 'Waveshaping Buffers' 
     @file 'waveshaping' 
     @example 1

@@ -14,6 +14,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - New zoom in and out support via `shift+` and `shift-`.
   - New button styling, with matching SVG icons, via `bp.ui.button`.
   - Preferences include allowing control over console automatically opening.
+- New tutorials:
+  - `bp.example.syntharpeggio.bell`
 - New functions:
   - `view`: Displays data in separate window. Replaces `inspect`.
   - `createtree`: Instantiates a k-dimensional tree. Replaces `buildtree`.
