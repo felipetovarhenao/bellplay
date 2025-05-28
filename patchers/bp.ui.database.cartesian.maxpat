@@ -251,7 +251,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "Table Outline" ],
+					"args" : [ "Outline" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -304,7 +304,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "Mouse selection" ],
+					"args" : [ "Selection" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
@@ -383,7 +383,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "Scatterplot" ],
+					"args" : [ "Browser" ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
