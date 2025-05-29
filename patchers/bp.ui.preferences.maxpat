@@ -82,7 +82,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "Manual", "texton", "Auto", "icon", "send-icon.svg", "iconon", "send-icon.svg", "mode", 1, "neutral", 1 ],
+					"args" : [ "text", "Manual", "texton", "Auto", "icon", "click-icon.svg", "iconon", "auto-icon.svg", "mode", 1, "neutral", 1 ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,

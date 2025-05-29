@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3831315669,
+	"modificationdate" : 3831332883,
 	"viewrect" : [ 25.0, 104.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -304,16 +304,6 @@
 
 			}
 ,
-			"search.png" : 			{
-				"kind" : "imagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
 			"gpl_logo.png" : 			{
 				"kind" : "imagefile",
 				"local" : 1,
@@ -574,7 +564,27 @@
 
 			}
 ,
-			"send-icon.svg" : 			{
+			"stop-icon.svg" : 			{
+				"kind" : "vectorimagefile",
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/Documents/bellplay/media",
+					"projectrelativepath" : "./media"
+				}
+
+			}
+,
+			"auto-icon.svg" : 			{
+				"kind" : "vectorimagefile",
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/Documents/bellplay/media",
+					"projectrelativepath" : "./media"
+				}
+
+			}
+,
+			"click-icon.svg" : 			{
 				"kind" : "vectorimagefile",
 				"local" : 1,
 				"singleton" : 				{
@@ -900,7 +910,7 @@
 
 	}
 ,
-	"detailsvisible" : 0,
+	"detailsvisible" : 1,
 	"amxdtype" : 0,
 	"readonly" : 0,
 	"devpathtype" : 0,

@@ -91,7 +91,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "Play", "icon", "play-icon.svg", "texton", "Stop", "iconon", "play-icon.svg", "active", 0, "mode", 1, "neutral", 1 ],
+					"args" : [ "text", "Play", "icon", "play-icon.svg", "texton", "Stop", "iconon", "stop-icon.svg", "active", 0, "mode", 1, "neutral", 1 ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,
