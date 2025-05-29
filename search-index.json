@@ -288,6 +288,18 @@
     "path": "/docs/reference/data-utilities/bpf"
   },
   {
+    "title": "`browsedbtable`",
+    "blurb": "Displays [SQLite3](https://www.sqlitetutorial.net/) database table in the **Table Browser** window, which automatically opens after script evaluation is complete.",
+    "keywords": [
+      "table",
+      "null",
+      "name",
+      "default",
+      "browser"
+    ],
+    "path": "/docs/reference/data-utilities/browsedbtable"
+  },
+  {
     "title": "`buf2ptracks`",
     "blurb": "Converts a buffer into partial tracks via analysis, consisting of a _llll_ with the keys `frequencies`, `magnitudes`, and `phases`, structured as follows:",
     "keywords": [
@@ -369,7 +381,7 @@
       "choices",
       "required"
     ],
-    "path": "/docs/reference/randomization/choose"
+    "path": "/docs/reference/randomness/choose"
   },
   {
     "title": "`chordsdetection`",
@@ -1233,7 +1245,7 @@
       "size",
       "unique"
     ],
-    "path": "/docs/reference/randomization/initurn"
+    "path": "/docs/reference/randomness/initurn"
   },
   {
     "title": "`inlet`",
@@ -1561,7 +1573,7 @@
   },
   {
     "title": "`mc2pc`",
-    "blurb": "midicent to pitch class conversion.",
+    "blurb": "Midicent to pitch class conversion.",
     "keywords": [
       "bell",
       "mc",
@@ -2181,7 +2193,7 @@
       "rand",
       "floating"
     ],
-    "path": "/docs/reference/randomization/rand"
+    "path": "/docs/reference/randomness/rand"
   },
   {
     "title": "`random`",
@@ -2193,7 +2205,7 @@
       "integer",
       "arguments"
     ],
-    "path": "/docs/reference/randomization/random"
+    "path": "/docs/reference/randomness/random"
   },
   {
     "title": "`randosc`",
@@ -2526,8 +2538,8 @@
       "clef",
       "treble",
       "bass",
-      "default",
-      "voice"
+      "clefs",
+      "default"
     ],
     "path": "/docs/reference/data-utilities/scoreconfig"
   },
@@ -3141,7 +3153,7 @@
       "bell",
       "int"
     ],
-    "path": "/docs/reference/randomization/urn"
+    "path": "/docs/reference/randomness/urn"
   },
   {
     "title": "`view`",
@@ -3261,7 +3273,7 @@
       "setseed",
       "xchoose"
     ],
-    "path": "/docs/reference/randomization/xchoose"
+    "path": "/docs/reference/randomness/xchoose"
   },
   {
     "title": "`xrand`",
@@ -3273,7 +3285,7 @@
       "xrand",
       "float"
     ],
-    "path": "/docs/reference/randomization/xrand"
+    "path": "/docs/reference/randomness/xrand"
   },
   {
     "title": "`xrandom`",
@@ -3285,7 +3297,7 @@
       "setseed",
       "xrandom"
     ],
-    "path": "/docs/reference/randomization/xrandom"
+    "path": "/docs/reference/randomness/xrandom"
   },
   {
     "title": "`xscramble`",
@@ -3297,7 +3309,7 @@
       "required",
       "list"
     ],
-    "path": "/docs/reference/randomization/xscramble"
+    "path": "/docs/reference/randomness/xscramble"
   },
   {
     "title": "`zerocrossingrate`",
@@ -3766,6 +3778,18 @@
       "make"
     ],
     "path": "/docs/about/support"
+  },
+  {
+    "title": "Synth Arpeggio",
+    "blurb": "This example demonstrates how to use BPFs to continuously change the pitch of different oscillators.",
+    "keywords": [
+      "arpeggio",
+      "pitch",
+      "frequency",
+      "voice",
+      "biquad"
+    ],
+    "path": "/docs/learning/examples/syntharpeggio"
   },
   {
     "title": "Temporal Quantization",
