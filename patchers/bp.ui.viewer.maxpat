@@ -19,7 +19,7 @@
 		"bottomtoolbarpinned" : 2,
 		"toolbars_unpinned_last_save" : 15,
 		"style" : "bellplay-gui",
-		"title" : "bellplay~ | viewer",
+		"title" : " ",
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-6",
@@ -249,7 +249,7 @@
 					"outlettype" : [ "signal", "" ],
 					"patching_rect" : [ 886.0, 1233.0, 144.0, 27.128217339515686 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 6.0, 526.0, 141.800002112984657, 23.000000342726707 ],
+					"presentation_rect" : [ 6.0, 526.0, 150.0, 24.0 ],
 					"viewvisibility" : 1
 				}
 
@@ -385,8 +385,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 39.149574398994446, 156.410257995128632, 185.0, 23.0 ],
-					"text" : "loadmess title \"bellplay~ | viewer\""
+					"patching_rect" : [ 39.149574398994446, 156.410257995128632, 96.0, 23.0 ],
+					"text" : "loadmess title \" \""
 				}
 
 			}
@@ -1724,7 +1724,7 @@
 					"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
 					"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 					"fontname" : [ "Lato" ],
-					"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"locked_bgcolor" : [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
 					"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 					"syntax_attrargcolor" : [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
 					"syntax_attributecolor" : [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],

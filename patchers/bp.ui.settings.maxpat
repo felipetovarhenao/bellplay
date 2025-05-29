@@ -22,7 +22,7 @@
 		"enablehscroll" : 0,
 		"enablevscroll" : 0,
 		"style" : "bellplay-gui",
-		"title" : "bellplay~ | settings",
+		"title" : " ",
 		"boxes" : [ 			{
 				"box" : 				{
 					"args" : [ "Audio" ],
@@ -133,8 +133,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 35.263157665729523, 167.0, 191.0, 23.0 ],
-					"text" : "loadmess title \"bellplay~ | settings\""
+					"patching_rect" : [ 35.263157665729523, 167.0, 96.0, 23.0 ],
+					"text" : "loadmess title \" \""
 				}
 
 			}
@@ -450,6 +450,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.ui.button.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bp.ui.library.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
@@ -472,13 +479,6 @@
 			}
 , 			{
 				"name" : "bp.ui.umenu.maxpat",
-				"bootpath" : "~/Documents/bellplay/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bp.ui.button.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -531,7 +531,7 @@
 					"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
 					"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 					"fontname" : [ "Lato" ],
-					"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"locked_bgcolor" : [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
 					"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 					"syntax_attrargcolor" : [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
 					"syntax_attributecolor" : [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],
