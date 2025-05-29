@@ -13,11 +13,14 @@
 		"rect" : [ 252.0, 303.0, 424.0, 554.0 ],
 		"openinpresentation" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
+		"toolbarvisible" : 0,
 		"lefttoolbarpinned" : 2,
 		"toptoolbarpinned" : 2,
 		"righttoolbarpinned" : 2,
 		"bottomtoolbarpinned" : 2,
 		"toolbars_unpinned_last_save" : 15,
+		"enablehscroll" : 0,
+		"enablevscroll" : 0,
 		"style" : "bellplay-gui",
 		"title" : " ",
 		"boxes" : [ 			{
@@ -600,6 +603,7 @@
 , 			{
 				"box" : 				{
 					"allowdrag" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 					"buffername" : "",
 					"fontname" : "Lato Light",
 					"gridcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 0.5 ],
@@ -963,7 +967,7 @@
 , 			{
 				"box" : 				{
 					"alternatecolor" : [ 0.980392156862745, 0.980392156862745, 0.980392156862745, 1.0 ],
-					"bordercolor" : [ 0.0, 0.0, 0.0, 0.0 ],
+					"bordercolor" : [ 0.870588235294118, 0.870588235294118, 0.870588235294118, 1.0 ],
 					"clickedstripcolor" : [ 0.992156862745098, 0.729411764705882, 0.341176470588235, 0.4 ],
 					"clickedtextcolor" : [ 0.482352941176471, 0.670588235294118, 0.858823529411765, 1.0 ],
 					"embed" : 0,
@@ -1025,6 +1029,25 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 293.162396132946014, 279.487182319164276, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"angle" : 270.0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"border" : 1,
+					"bordercolor" : [ 0.870588235294118, 0.870588235294118, 0.870588235294118, 1.0 ],
+					"id" : "obj-227",
+					"maxclass" : "panel",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 555.0, 55.0, 128.0, 128.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 7.0, 447.0, 410.989031076431274, 74.0 ],
+					"proportion" : 0.5,
+					"rounded" : 5
 				}
 
 			}

@@ -923,7 +923,7 @@
 					"outlettype" : [ "", "float", "float", "int", "" ],
 					"patching_rect" : [ 1305.5, 1033.0, 940.0, 181.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.956521756947041, 97.304349638521671, 754.071442617103457, 393.071435892954469 ],
+					"presentation_rect" : [ 1.0, 97.0, 757.0, 398.0 ],
 					"varname" : "rollviewer",
 					"viewvisibility" : 1
 				}
@@ -8511,6 +8511,7 @@
 , 			{
 				"box" : 				{
 					"allowdrag" : 0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 0.0 ],
 					"buffername" : "",
 					"fontname" : "Lato Light",
 					"gridcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 0.5 ],
@@ -8557,6 +8558,25 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 833.0, 602.0, 95.0, 23.0 ],
 					"text" : "gate"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"angle" : 270.0,
+					"bgcolor" : [ 1.0, 1.0, 1.0, 1.0 ],
+					"border" : 1,
+					"bordercolor" : [ 0.870588235294118, 0.870588235294118, 0.870588235294118, 1.0 ],
+					"id" : "obj-227",
+					"maxclass" : "panel",
+					"mode" : 0,
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 1511.0, 217.0, 128.0, 128.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 291.428584456443787, 1.428571492433548, 463.142877846956253, 94.000004202127457 ],
+					"proportion" : 0.5,
+					"rounded" : 5
 				}
 
 			}
