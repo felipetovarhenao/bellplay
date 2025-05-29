@@ -4,6 +4,9 @@ import re
 
 
 class BuiltinReferenceGenerator:
+
+    MAX_ONLY_FUNCTIONS = ['directin', 'directout', 'inlet', 'outlet']
+
     def __init__(self, json_file=Path, reference_dir=Path):
         self.json_file_path = json_file
         self.output_dir = Path(reference_dir.resolve())
@@ -75,8 +78,10 @@ class BuiltinReferenceGenerator:
                 default = ' ## required'
             formatted_args_list.append(f"{argname} {default}")
         formatted_args = '\n    '.join(formatted_args_list)
+        if len(formatted_args_list) > 0:
+            formatted_args = '\n    ' + formatted_args + '\n'
 
-        return f"```bell\n{name}(\n    {formatted_args}\n) -> {outtype}\n```"
+        return f"```bell\n{name}({formatted_args}) -> {outtype}\n```"
 
     def generate(self):
         with open(self.json_file_path, 'r', encoding='utf-8') as f:
@@ -86,6 +91,10 @@ class BuiltinReferenceGenerator:
             name = entry['name']
             if name == 'include':
                 continue
+            max_only_notice = '' if name not in self.MAX_ONLY_FUNCTIONS else f""":::danger
+`{name}` only works as intended in [Max](https://cycling74.com/) and should **not** be used in **bellplay~** to avoid unexpected behavior.
+:::
+"""
             description = entry['description']
             output = entry.get('output', None)
             args = entry.get('args', [])
@@ -99,9 +108,7 @@ hide_title: true
 
 {self.format_signature(entry)}
 
-:::note
-`{name}` is a built-in function in the _bell_ programming language and is not unique or exclusive to **bellplay~**.
-:::
+{max_only_notice}
 
 {description}
 
@@ -111,7 +118,7 @@ hide_title: true
 {self.format_output(output)}
 
 :::warning
-`{name}` will return `null` *without raising an error* if required arguments are not provided.
+`{name}` is a built-in function in the _bell_ programming language and is not unique or exclusive to **bellplay~**. As such, `{name}` will return `null` *without raising an error* if required arguments are not provided.
 :::
 """
 
