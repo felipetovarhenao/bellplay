@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 493.0, 159.0, 618.0, 780.0 ],
+		"rect" : [ 945.0, 189.0, 618.0, 780.0 ],
 		"openinpresentation" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
 		"style" : "bellplay-gui",
@@ -145,7 +145,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 893.333333015441895, 561.789472579956055, 60.0, 23.0 ],
-					"text" : "close 3 -1"
+					"text" : "maxdepth -2"
 				}
 
 			}
