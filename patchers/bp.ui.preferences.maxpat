@@ -375,7 +375,7 @@
 			}
 , 			{
 				"box" : 				{
-					"args" : [ "text", "Off", "texton", "On", "icon", "alert-icon.svg", "iconon", "alert-icon.svg", "mode", 1 ],
+					"args" : [ "text", "Off", "texton", "On", "icon", "alertoff-icon.svg", "iconon", "alert-icon.svg", "mode", 1 ],
 					"bgmode" : 0,
 					"border" : 0,
 					"clickthrough" : 0,

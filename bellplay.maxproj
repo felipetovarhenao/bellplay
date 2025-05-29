@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3831332883,
+	"modificationdate" : 3831372463,
 	"viewrect" : [ 25.0, 104.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -592,6 +592,11 @@
 					"projectrelativepath" : "./media"
 				}
 
+			}
+,
+			"alertoff-icon.svg" : 			{
+				"kind" : "vectorimagefile",
+				"local" : 1
 			}
 
 		}
