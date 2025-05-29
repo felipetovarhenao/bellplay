@@ -639,8 +639,8 @@
     "title": "`directin`",
     "blurb": "Receives data during evaluation from one direct inlet.",
     "keywords": [
-      "inlet",
       "directin",
+      "inlet",
       "required",
       "direct",
       "bell"
@@ -655,7 +655,7 @@
       "required",
       "outlets",
       "output",
-      "function"
+      "data"
     ],
     "path": "/docs/reference/data-utilities/directout"
   },
@@ -1255,7 +1255,7 @@
       "triggered",
       "computation",
       "bell",
-      "function"
+      "returns"
     ],
     "path": "/docs/reference/data-utilities/inlet"
   },
@@ -1326,8 +1326,8 @@
       "llll",
       "required",
       "bell",
-      "function",
-      "data"
+      "data",
+      "type"
     ],
     "path": "/docs/reference/data-utilities/is"
   },
@@ -1841,8 +1841,8 @@
     "keywords": [
       "outlet",
       "required",
-      "function",
       "assigned",
+      "function",
       "outlets"
     ],
     "path": "/docs/reference/data-utilities/outlet"
