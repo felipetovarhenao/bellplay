@@ -4,7 +4,7 @@ BP_DATABASE_OUTPUT = null;
 BP_DATABASE_TABLES = null;
 BP_TREE_NORM = null;
 BP_REF_LABEL_DATA_UTILS = "data utilities";
-BP_REF_LABEL_RANDOM_FUNCTIONS = "randomness";
+BP_REF_LABEL_RANDOMNESS = "randomness";
 BP_REF_LABEL_BUFFER_OPERATIONS = "buffer operations";
 BP_REF_LABEL_BUFFER_GENERATION = "buffer generation";
 BP_REF_LABEL_BUFFER_ANALYSIS = "buffer analysis";
@@ -15,7 +15,7 @@ BP_REF = (for $i in (
     BP_REF_LABEL_BUFFER_OPERATIONS 
     BP_REF_LABEL_BUFFER_GENERATION 
     BP_REF_LABEL_BUFFER_ANALYSIS
-    BP_REF_LABEL_RANDOM_FUNCTIONS
+    BP_REF_LABEL_RANDOMNESS
     BP_REF_LABEL_BUFFER_UTILS
     BP_REF_LABEL_MATH
 ) collect [ $i ]);
@@ -1624,7 +1624,7 @@ rand = (
 BP_REF_NEW(
     @name "rand"
     @description "Random floating point number generator."
-    @category BP_REF_LABEL_RANDOM_FUNCTIONS
+    @category BP_REF_LABEL_RANDOMNESS
     @arguments (
         BP_REF_ARG(@name "a" @default 1 @type "int/float" @description "max. value if `@b` is `null`, else min. value.")
         BP_REF_ARG(@name "b" @default 'null' @type "int/float/null" @description "max. value.")
@@ -1731,7 +1731,7 @@ choose = (
 BP_REF_NEW(
     @name "choose",
     @description "Choose randomly one or more elements from a list, with optional probability weights.",
-    @category BP_REF_LABEL_RANDOM_FUNCTIONS
+    @category BP_REF_LABEL_RANDOMNESS
     @arguments (
         BP_REF_ARG(@name "choices", @type "list", @description "list to choose from.")
         BP_REF_ARG(@name "n" @default 1 @type "int", @description "number of random choices.")
@@ -1780,7 +1780,7 @@ xrand = (
 BP_REF_NEW(
     @name "xrand",
     @description "Seed-based random floating point number generator. See `setseed`."
-    @category BP_REF_LABEL_RANDOM_FUNCTIONS
+    @category BP_REF_LABEL_RANDOMNESS
     @arguments (
         BP_REF_ARG(@name "a" @default 1 @type "int/float", @description "max. value if `@b` is `null`, else min. value.")
         BP_REF_ARG(@name "b" @default "null" @type "int/float/null", @description "max. value.")
@@ -1801,7 +1801,7 @@ xrandom = (
 BP_REF_NEW(
     @name "xrandom",
     @description "Seed-based random integer number generator. See `setseed`.",
-    @category BP_REF_LABEL_RANDOM_FUNCTIONS
+    @category BP_REF_LABEL_RANDOMNESS
     @arguments (
         BP_REF_ARG(@name "a" @default 1 @type "int", @description "max. value if `@b` is `null`, else min. value.")
         BP_REF_ARG(@name "b" @default "null" @type "int/null", @description "max. value.")
@@ -1819,7 +1819,7 @@ xchoose = (
 BP_REF_NEW(
     @name "xchoose",
     @description "Choose randomly one or more elements from a list, with optional probability weights. See `setseed`.",
-    @category BP_REF_LABEL_RANDOM_FUNCTIONS
+    @category BP_REF_LABEL_RANDOMNESS
     @arguments (
         BP_REF_ARG(@name "choices", @type "list", @description "list to choose from.")
         BP_REF_ARG(@name "n", @default 1, @type "int", @description "number of random choices.")
@@ -1844,7 +1844,7 @@ xscramble = (
 BP_REF_NEW(
     @name "xscramble"
     @description "Seed-based random shuffling of elements. See `setseed`."
-    @category BP_REF_LABEL_RANDOM_FUNCTIONS
+    @category BP_REF_LABEL_RANDOMNESS
     @arguments (
         BP_REF_ARG(@name "llll" @type "list/llll", @description "list to scramble.")
     )
@@ -1871,7 +1871,7 @@ initurn = (
 BP_REF_NEW(
     @name "initurn"
     @description "Initializes a new unique random number generator (URN), given a size and a URN identifier. Once initialized, the identifier can be used to generate unique random numbers with the `urn` function. This allows for independent URNs of different sizes to be used within the same script. If a URN associated with the identifier already exists, the URN is reset. The initialized URN can be optionally be seed-based. See `setseed`."
-    @category BP_REF_LABEL_RANDOM_FUNCTIONS
+    @category BP_REF_LABEL_RANDOMNESS
     @arguments (
         BP_REF_ARG(@name "size" @default 10 @type "int", @description "number of unique random numbers.")
         BP_REF_ARG(@name "id" @default 0 @type "int/float/symbol", @description "identifier for unique random number generator.")
@@ -1910,7 +1910,7 @@ urn = (
 BP_REF_NEW(
     @name "urn"
     @description "Returns a unique random number for a given URN identifier. Note that you must call `initurn` first to initialize the URN."
-    @category BP_REF_LABEL_RANDOM_FUNCTIONS
+    @category BP_REF_LABEL_RANDOMNESS
     @arguments (
         BP_REF_ARG(@name "id" @default 0 @type "int/float/symbol", @description "identifier for URN.")
     )
