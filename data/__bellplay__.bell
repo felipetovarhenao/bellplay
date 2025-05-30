@@ -6982,7 +6982,7 @@ hoadecode = (
 
 BP_REF_NEW(
     @name "hoadecode"
-    @description "Generates an audio process operation for decoding higher-order ambisonic buffers for a set of loudspeakers or for binaural listening"
+    @description "Generates an audio process operation for decoding higher-order ambisonic buffers for a set of loudspeakers or for binaural listening. Note that the number of output (i.e., decoded) channels must be greater than the number of encoded channels."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
         BP_REF_ARG(@name "azimuth" @default '0.78 2.35' @type "int/float/llll" @description "Azimuth or X coordinate, for each loudspeaker.")
