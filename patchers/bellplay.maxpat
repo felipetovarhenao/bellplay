@@ -269,7 +269,7 @@
 					"offset" : [ 0.0, 0.0 ],
 					"patching_rect" : [ 420.0, 266.0, 138.0, 35.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 350.0, 3.0, 149.0, 25.0 ],
+					"presentation_rect" : [ 332.333343237638474, 0.333333343267441, 146.000004351139069, 58.666666656732559 ],
 					"viewvisibility" : 1
 				}
 
@@ -2243,6 +2243,13 @@
 , 			{
 				"name" : "dada.cartesian.mxo",
 				"type" : "iLaX"
+			}
+, 			{
+				"name" : "download-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "ears.channel~.mxo",
