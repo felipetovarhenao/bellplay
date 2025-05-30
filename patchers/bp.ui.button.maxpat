@@ -118,7 +118,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "float" ],
 					"patching_rect" : [ 462.0, 520.0, 40.0, 23.0 ],
-					"text" : "* 0.25"
+					"text" : "* 1."
 				}
 
 			}
@@ -130,7 +130,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "float" ],
 					"patching_rect" : [ 413.0, 560.0, 40.0, 23.0 ],
-					"text" : "* 0.25"
+					"text" : "* 1."
 				}
 
 			}
@@ -344,7 +344,7 @@
 			}
 , 			{
 				"box" : 				{
-					"alpha" : 0.25,
+					"alpha" : 1.,
 					"forceaspect" : 1,
 					"id" : "obj-6",
 					"maxclass" : "fpic",
