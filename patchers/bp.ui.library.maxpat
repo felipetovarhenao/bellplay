@@ -16,6 +16,30 @@
 		"style" : "bellplay-gui",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-20",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 96.0, 443.112681329250336, 29.5, 23.0 ],
+					"text" : "null"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 96.0, 402.112681329250336, 58.0, 23.0 ],
+					"text" : "savebang"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-25",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
@@ -648,6 +672,7 @@
 					"alternate" : 0,
 					"alternatecolor" : [ 1.0, 1.0, 1.0, 1.0 ],
 					"bordercolor" : [ 0.870588235294118, 0.870588235294118, 0.870588235294118, 1.0 ],
+					"checkcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
 					"clickedstripcolor" : [ 0.992156862745098, 0.729411764705882, 0.341176470588235, 0.4 ],
 					"clickedtextcolor" : [ 0.482352941176471, 0.670588235294118, 0.858823529411765, 1.0 ],
 					"embed" : 0,
@@ -658,7 +683,9 @@
 					"fontsize" : 12.0,
 					"hinset" : 12.0,
 					"hoverstripcolor" : [ 0.992156862745098, 0.729411764705882, 0.341176470588235, 0.14 ],
+					"hovertextcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
 					"id" : "obj-35",
+					"linecolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
 					"maxclass" : "bach.tree",
 					"mode" : 2,
 					"numinlets" : 1,
@@ -672,6 +699,7 @@
 					"preventedit" : 1,
 					"rounded" : 5.0,
 					"rowvpad" : 5.0,
+					"textcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
 					"textdecayfactor" : 0.95,
 					"versionnumber" : 80300
 				}
@@ -974,6 +1002,20 @@
 				"patchline" : 				{
 					"destination" : [ "obj-21", 0 ],
 					"source" : [ "obj-19", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
+					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-35", 0 ],
+					"source" : [ "obj-20", 0 ]
 				}
 
 			}
@@ -1403,6 +1445,48 @@
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "check-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "minus-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "open-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "plus-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "reload-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "uncheck-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
 				"implicit" : 1
 			}
  ],
