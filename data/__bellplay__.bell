@@ -323,21 +323,7 @@ BP_REF_NEW = (
                 ## if so, filter out unsupported modes
                 $mode.'options' = for $i in $anmodes collect ($mode.'options'):($i + 1)
             );
-            if $name == 'analyze' then (
-                $code = BP_REF_CODE_SNIPPET(
-                    "## generate one or more audio descriptors",
-                    "$descriptors = " + $open, 
-                    $tab +  "larm()",
-                    $tab + "pitchmelodia()",
-                    $tab + "spectralcentroid()",
-                    $close + ";",
-                    "$buffer.view('before analysis');",
-                    "## apply analysis to buffer",
-                    "$buffer = $buffer.analyze($descriptors);",
-                    "$buffer.view('after analysis')"
-                );
-                $usage = $code
-            ) else if $name != 'buf2ptracks' then (
+            if $name != 'buf2ptracks' then (
                 $tags _= 'analyze' 'view';
                 $ankeys = $ankeys ||| $name;
                 $description = BP_REF_MULTILINE($description, "", 'The resulting buffer will be updated with the following keys:', "");
