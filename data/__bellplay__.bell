@@ -3432,10 +3432,18 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 chordsdetection = (
+    $hopsize = 2048, 
+    $samplerate = 44100, 
+    $windowsize = 2, 
     $mode = 0 -> ( 
         BP_FN_ESSENTIA(
             @name "chordsdetection"
             @mode $mode
+            @settings (
+                '@hopsize' $hopsize
+                '@samplerate' $samplerate
+                '@windowsize' $windowsize
+            )
             @modes 0...2
         )
     )
@@ -3447,6 +3455,9 @@ BP_REF_NEW(
     @category BP_REF_LABEL_BUFFER_ANALYSIS
     @anmodes 0...2
     @arguments (
+        BP_REF_ARG(@name 'hopsize' @type 'int' @default 2048 @description "the hop size with which the input PCPs were computed")
+        BP_REF_ARG(@name 'samplerate' @type 'float' @default 44100 @description "the sampling rate of the audio signal [Hz]")
+        BP_REF_ARG(@name 'windowsize' @type 'float' @default 2 @description "the size of the window on which to estimate the chords [s]")
         BP_REF_ARG(@name "mode" @default 0 @type "int", @description "Analysis mode." @options
             BP_REF_ESSENTIA_ANALYSIS_OPTIONS
         )
