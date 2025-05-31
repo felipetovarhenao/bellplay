@@ -7439,7 +7439,7 @@ BP_REF_NEW(
 );
 
 ## ------------------------------------------------------------
-BP_REF_MARKOV_SNIPPET = BP_REF_CODE_SNIPPET("$events = importaudio('bach.wav'); ## import MIDI file
+BP_REF_MARKOV_SNIPPET = BP_REF_CODE_SNIPPET("$events = importmidi('bach.mid'); ## import MIDI file
 ## get pitch from each event
 $pitches = for $e in $events collect $e.getkey('pitch');
 ## build 2nd-order Markov model from pitch sequence
