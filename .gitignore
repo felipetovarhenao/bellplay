@@ -36,6 +36,7 @@ website/npm-debug.log*
 website/yarn-debug.log*
 website/yarn-error.log*
 website/bp.*
+website/gen/testing
 
 # temp
 website/docs/tutorials/*.md
