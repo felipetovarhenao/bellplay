@@ -220,10 +220,10 @@ BP_REF_MULTILINE = (
 ## ------------------------------------------------------------
 
 BP_REF_CODE_SNIPPET = (
-    <...>, $caption = null -> (
+    <...>, $caption = null, $showlines = 1 -> (
         $lines = $args(1...$argcount);
         $code = BP_REF_MULTILINE(
-            $caption '', '```bell showLineNumbers', $lines, '```', '' 
+            $caption '', '```bell' + (if $showlines == 1 then ' showLineNumbers' else ''), $lines, '```', '' 
         ) 
     ) 
 );
@@ -1341,7 +1341,7 @@ BP_REF_KEYFUNC_DESCRIPTION = " It assumes the _llll_ consists of key-value pairs
     [ '<key2>' <value2> ]
     ...
     [ '<keyN>' <valueN> ]
-]");
+]" @showlines 0);
 
 BP_REF_NEW(
     @description "Returns value associated with an _llll_ key." + BP_REF_KEYFUNC_DESCRIPTION
@@ -6652,7 +6652,7 @@ BP_REF_NEW(
         ]
     ]
 ]"
-        ),
+        @showlines 0),
         ":::warning",
         "`buf2ptracks` is computationally expensive and can take a long time.",
         ":::"
