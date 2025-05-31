@@ -357,6 +357,7 @@ BP_REF_NEW = (
         ) else if $category == BP_REF_LABEL_BUFFER_OPERATIONS then (
             if $name == 'process' then (
                 $code = BP_REF_CODE_SNIPPET(
+                    "$buffer = importaudio('drums.wav');",
                     "## generate one or more processing operations",
                     "$operations = " + $open, 
                     $tab +  "reverse()",
