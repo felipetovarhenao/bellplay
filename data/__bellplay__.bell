@@ -580,7 +580,7 @@ BP_REF_NEW(
         '$gate = 0; ## set to non-zero to enable',
         'print($gate);',
         'if $gate == 0 then interrupt("interrupting!");',
-        'print(cycle()); ## null if communication is interrupted'
+        'print(cycle()) ## null if communication is interrupted'
     )
 );
 
