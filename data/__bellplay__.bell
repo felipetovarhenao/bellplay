@@ -5927,7 +5927,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 onepole = (
-    $cutoff,
+    $cutoff = 300,
     $highpass = 0 -> (
         BP_FN_CHECK_ARGS('onepole', 'cutoff', $cutoff);
         [
@@ -5945,7 +5945,7 @@ BP_REF_NEW(
     @description "Generates an audio process operation for applying single-pole lowpass or highpass filtering to a buffer.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "cutoff", @default 1, @type "int/float", @description "Cutoff frequency.")
+        BP_REF_ARG(@name "cutoff", @default 300, @type "int/float", @description "Cutoff frequency.")
         BP_REF_ARG(@name "highpass", @default 0, @type "int", @description "Highpass filter mode." @options
             BP_REF_SWITCH_OPTIONS
         )
