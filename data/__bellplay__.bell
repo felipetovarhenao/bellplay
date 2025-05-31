@@ -5721,7 +5721,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 plus = (
-    $operand,
+    $operand = 0,
     $resamplingfiltersize = 11,
     $resamplingmode = "sinc",
     $resamplingpolicy = 3,
@@ -5742,7 +5742,7 @@ BP_REF_NEW(
     @description "Generates an audio process operation for performing addition on a buffer.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "operand", @type "int/float/llll", @description "Value to add to buffer, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "operand" @default 0 @type "int/float/llll", @description "Value to add to buffer, either as a single number, envelope, or buffer.")
         BP_BUFFER_ARITHMETIC_ARGS
     ),
     @output BP_REF_OUTPUT(@description "Plus operation" @type "llll")
@@ -5772,7 +5772,7 @@ BP_REF_NEW(
     @description "Generates an audio process operation for performing subtraction on a buffer.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "operand" @type "int/float/llll" @default 0 @description "Value to subtract from buffer, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "operand" @default 0 @type "int/float/llll" @default 0 @description "Value to subtract from buffer, either as a single number, envelope, or buffer.")
         BP_BUFFER_ARITHMETIC_ARGS
     ),
     @output BP_REF_OUTPUT(@description "Minus operation" @type "llll")
@@ -5781,7 +5781,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 multiply = (
-    $operand,
+    $operand = 1,
     $resamplingfiltersize = 11,
     $resamplingmode = "sinc",
     $resamplingpolicy = 3,
@@ -5802,7 +5802,7 @@ BP_REF_NEW(
     @description "Generates an audio process operation for performing multiplication on a buffer.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "operand", @type "int/float/llll", @description "Value to multiply buffer by either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "operand" @default 1 @type "int/float/llll", @description "Value to multiply buffer by either as a single number, envelope, or buffer.")
         BP_BUFFER_ARITHMETIC_ARGS
     ),
     @output BP_REF_OUTPUT(@description "Multiply operation" @type "llll")
@@ -5828,13 +5828,13 @@ divide = (
 );
 
 BP_REF_NEW(
-    @name "divide",
-    @description "Generates an audio process operation for performing division on a buffer.",
+    @name "divide"
+    @description "Generates an audio process operation for performing division on a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
         BP_REF_ARG(@name "operand" @default 1 @type "int/float/llll" @description "Value to divide buffer by either as a single number, envelope, or buffer.")
         BP_BUFFER_ARITHMETIC_ARGS
-    ),
+    )
     @output BP_REF_OUTPUT(@description "Divide operation" @type "llll")
     @usage BP_REF_PROCESS_EXAMPLE('divide', '[0 1 0] [1 10 -0.125]')
 );
