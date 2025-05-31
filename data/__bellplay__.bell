@@ -2875,6 +2875,7 @@ BP_REF_NEW(
     ),
     @output BP_REF_OUTPUT(@description "Analyzed buffer" @type "llll")
     @usage BP_REF_CODE_SNIPPET(
+        "$buffer = importaudio('flute.wav');", 
         "## define one or more audio descriptors", 
         "$descriptors = pitchmelodia() larm();", 
         "## apply analysis", 
