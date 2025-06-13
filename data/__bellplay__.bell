@@ -7038,9 +7038,53 @@ ezsampler = (
 );
 
 BP_REF_NEW(
-    @name "ezsampler",
-    @description "Generates a buffer given pitch, duration, and velocity values, and an optional list representing a sampler key map. The key map must be a list of key-value pairs, where the each key is a numeric pitch value, in midicents, that maps to one or more audio file paths corresponding to that pitch, or to a list of key-value pairs with velocity values, between 0 and 127, as keys, and audio file paths as values. When multiple file paths are provided for a given pitch or velocity key, one of them is chosen at random. If no keymap is provided, the function defaults to a basic, built-in key map. The generated buffer will be one that best approximates the specified pitch, duration, and velocity values.",
-    @category BP_REF_LABEL_BUFFER_GENERATION,
+    @name "ezsampler"
+    @description BP_REF_MULTILINE(
+        "Generates a buffer that best matches a target pitch, duration, and velocity value, given an optional _llll_ representing a sampler **keymap**.",
+        "",
+        "A **keymap** is a _llll_ of key-value pairs, where the each key is a numeric pitch value, in midicents, that maps to one or more audio file paths corresponding to that pitch, or to a list of key-value pairs with velocity values, between 0 and 127, as keys, and audio file paths as values.",
+        "",
+        "When multiple file paths are provided for a given pitch or velocity key, one of them is chosen at random. If no keymap is provided, the function defaults to a basic, built-in key map. The generated buffer will be  one that best approximates the specified pitch, duration, and velocity values.",
+        "",
+        'Here are some examples of how flexibily one can structure keymaps to be used by `ezsampler`:
+
+- One-to-one pitch mapping.
+
+    ```bell
+    [ <pitch1> <file1> ]
+    [ <pitch2> <file2> ]
+    ...
+    [ <pitchN> <fileN> ]
+    ```
+
+- One-to-many pitch mapping.
+
+    ```bell
+    [ <pitch1> <file1a> <file1b> ]
+    [ <pitch2> <file2a> ]
+    ...
+    [ <pitchN> <fileNa> ... <fileNz> ]
+    ```
+
+- One-to-many pitch-velocity mapping.
+
+    ```bell
+    [ <pitch1>
+        [ <velocity1> <file1> ]
+        ...
+        [ <velocityN> <fileNa> ... <fileNb> ]
+    ]
+    [ <pitch2> <file2a> ]
+    ...
+    [ <pitchN> 
+        [ <velocity1> <file1a> ... <file1z>] 
+        ...
+        [ <velocityN> <fileN> ]
+    ]
+    ```
+'
+    )
+    @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
         BP_REF_ARG(@name "pitch", @default 6000 @type "int/float", @description "Target pitch in midicents.")
         BP_REF_ARG(@name "duration" @default 2000 @type "int/float", @description "Target duration in milliseconds. Set to `null` to get the sample's max. duration.")
