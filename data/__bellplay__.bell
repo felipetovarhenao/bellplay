@@ -4490,12 +4490,12 @@ noise = (
 );
 
 BP_REF_NEW(
-    @name "noise",
-    @description "Generates white noise as a buffer.",
-    @category BP_REF_LABEL_BUFFER_GENERATION,
+    @name "noise"
+    @description "Generates white noise as a buffer."
+    @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
-        BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "Buffer duration, in milliseconds")
-    ),
+        BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
+    )
     @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
 );
 
@@ -4509,13 +4509,13 @@ randosc = (
 );
 
 BP_REF_NEW(
-    @name "randosc",
-    @description "Generates a random oscillator as a buffer.",
-    @category BP_REF_LABEL_BUFFER_GENERATION,
+    @name "randosc"
+    @description "Generates a random oscillator as a buffer."
+    @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
-        BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "Frequency, either as a single number, envelope, or buffer.")
-        BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "Buffer duration, in milliseconds")
-    ),
+        BP_REF_ARG(@name "frequency" @default 440 @type "int/float/llll" @description "Frequency, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
+    )
     @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
 );
 
@@ -4530,14 +4530,14 @@ cycle = (
 );
 
 BP_REF_NEW(
-    @name "cycle",
-    @description "Generates a sinusoidal oscillator as a buffer.",
-    @category BP_REF_LABEL_BUFFER_GENERATION,
+    @name "cycle"
+    @description "Generates a sinusoidal oscillator as a buffer."
+    @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
-        BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "Frequency, either as a single number, envelope, or buffer.")
-        BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "Buffer duration, in milliseconds")
-        BP_REF_ARG(@name "phase", @default '0.25', @type "int/float", @description "Initial phase, in the 0–1 range.")
-    ),
+        BP_REF_ARG(@name "frequency" @default 440 @type "int/float/llll" @description "Frequency, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
+        BP_REF_ARG(@name "phase" @default '0.25' @type "int/float" @description "Initial phase, in the 0–1 range.")
+    )
     @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
     @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
 );
@@ -4553,14 +4553,14 @@ rect = (
 );
 
 BP_REF_NEW(
-    @name "rect",
-    @description "Generates a bipolar, anti-aliased rectangular (pulse) oscillator as a buffer.",
-    @category BP_REF_LABEL_BUFFER_GENERATION,
+    @name "rect"
+    @description "Generates a bipolar, anti-aliased rectangular (pulse) oscillator as a buffer."
+    @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
-        BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "Frequency, either as a single number, envelope, or buffer.")
-        BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "Buffer duration, in milliseconds")
-        BP_REF_ARG(@name "duty", @default '0.5', @type "int/float/llll", @description "Duty cycle in the range of 0-1, either as a number, envelope, or buffer.")
-    ),
+        BP_REF_ARG(@name "frequency" @default 440 @type "int/float/llll" @description "Frequency, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
+        BP_REF_ARG(@name "duty" @default '0.5' @type "int/float/llll" @description "Duty cycle in the range of 0-1, either as a number, envelope, or buffer.")
+    )
     @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
     @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
 );
@@ -4575,13 +4575,13 @@ saw = (
 );
 
 BP_REF_NEW(
-    @name "saw",
-    @description "Generates a bipolar, anti-aliased sawtooth oscillator as a buffer.",
-    @category BP_REF_LABEL_BUFFER_GENERATION,
+    @name "saw"
+    @description "Generates a bipolar, anti-aliased sawtooth oscillator as a buffer."
+    @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
-        BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "Frequency, either as a single number, envelope, or buffer.")
-        BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "Buffer duration, in milliseconds")
-    ),
+        BP_REF_ARG(@name "frequency" @default 440 @type "int/float/llll" @description "Frequency, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
+    )
     @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
     @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
 );
@@ -4597,13 +4597,13 @@ tri = (
 );
 
 BP_REF_NEW(
-    @name "tri",
-    @description "Generates a bipolar, anti-aliased triangular oscillator as a buffer.",
-    @category BP_REF_LABEL_BUFFER_GENERATION,
+    @name "tri"
+    @description "Generates a bipolar, anti-aliased triangular oscillator as a buffer."
+    @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
-        BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "Frequency, either as a single number, envelope, or buffer.")
-        BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "Buffer duration, in milliseconds")
-        BP_REF_ARG(@name "duty", @default '0.5', @type "int/float/llll", @description "Duty cycle in the range of 0-1, either as a number, envelope, or buffer.")
+        BP_REF_ARG(@name "frequency" @default 440 @type "int/float/llll" @description "Frequency, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
+        BP_REF_ARG(@name "duty" @default '0.5' @type "int/float/llll" @description "Duty cycle in the range of 0-1, either as a number, envelope, or buffer.")
     ),
     @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
     @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
@@ -4625,10 +4625,10 @@ BP_REF_NEW(
     @description "Generates a triangular/ramp oscillator as a buffer."
     @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
-        BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "Frequency, either as a single number, envelope, or buffer.")
-        BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "Buffer duration, in milliseconds")
-        BP_REF_ARG(@name "phase", @default 0, @type "int/float", @description "Initial phase, in the 0-1 range.")
-        BP_REF_ARG(@name "offset", @default '0.5', @type "int/float", @description "Peak position offset, in the 0-1 range.")
+        BP_REF_ARG(@name "frequency" @default 440 @type "int/float/llll" @description "Frequency, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
+        BP_REF_ARG(@name "phase" @default 0 @type "int/float" @description "Initial phase, in the 0-1 range.")
+        BP_REF_ARG(@name "offset" @default '0.5' @type "int/float" @description "Peak position offset, in the 0-1 range.")
     )
     @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
     @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
@@ -4645,13 +4645,13 @@ phasor = (
 );
 
 BP_REF_NEW(
-    @name "phasor",
+    @name "phasor"
     @description "Generates a unipolar ramp oscillator as a buffer."
-    @category BP_REF_LABEL_BUFFER_GENERATION,
+    @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
-        BP_REF_ARG(@name "frequency", @default 440, @type "int/float/llll", @description "Frequency, either as a single number, envelope, or buffer.")
-        BP_REF_ARG(@name "duration", @default 50, @type "int/float", @description "Buffer duration, in milliseconds")
-        BP_REF_ARG(@name "phase", @default 0, @type "int/float", @description "Initial phase, in the 0-1 range.")
+        BP_REF_ARG(@name "frequency" @default 440 @type "int/float/llll" @description "Frequency, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
+        BP_REF_ARG(@name "phase" @default 0 @type "int/float" @description "Initial phase, in the 0-1 range.")
     )
     @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
     @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
@@ -4679,13 +4679,13 @@ envelope = (
 );
 
 BP_REF_NEW(
-    @name "envelope",
-    @description "Generates an audio envelope as a buffer, given a single number or a breakpoint function.",
-    @category BP_REF_LABEL_BUFFER_GENERATION,
+    @name "envelope"
+    @description "Generates an audio envelope as a buffer, given a single number or a breakpoint function."
+    @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
-        BP_REF_ARG(@name "envelope", @default 0, @type "int/float/llll", @description "Envelope, as either a single number or a breakpoint function.")
-        BP_REF_ARG(@name "duration", @default 1000, @type "int", @description "Envelope duration, in milliseconds")
-    ),
+        BP_REF_ARG(@name "envelope" @default 0 @type "int/float/llll" @description "Envelope, as either a single number or a breakpoint function.")
+        BP_REF_ARG(@name "duration" @default 1000 @type "int" @description "Envelope duration, in milliseconds")
+    )
     @output BP_REF_OUTPUT(@description "Envelope" @type "llll")
     @usage BP_REF_GENERATION_EXAMPLE('envelope', '[0 0 0] [1 1 0.5]')
     @tags 'bpf'
@@ -4728,20 +4728,20 @@ clicks = (
 );
 
 BP_REF_NEW(
-    @name "clicks",
-    @description "Generates a buffer containing a set of clicks at specific onsets. Note that if the first onset value is `0`, it might get silenced when the `@fade` argument in `render` is non-zero.",
-    @category BP_REF_LABEL_BUFFER_GENERATION,
+    @name "clicks"
+    @description "Generates a buffer containing a set of clicks at specific onsets. Note that if the first onset value is `0`, it might get silenced when the `@fade` argument in `render` is non-zero."
+    @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
         BP_REF_ARG(@name "onsets" @default 0 @type "int/float/list" @description "Onset positions.")
         BP_REF_ARG(@name "gains" @default 1 @type "int/float/list" @description "Click gains.")
         BP_REF_ARG(@name "impulse" @default 1 @type "int/float/list" @description "Impulse, a list of audio samples.")
-        BP_REF_ARG(@name "timeunit", @default 0, @type "int", @description "Time unit." @options
+        BP_REF_ARG(@name "timeunit" @default 0 @type "int" @description "Time unit." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
-        BP_REF_ARG(@name "ampunit", @default 0, @type "int", @description "Amplitude unit." @options
+        BP_REF_ARG(@name "ampunit" @default 0 @type "int" @description "Amplitude unit." @options
             BP_REF_AMPUNIT_OPTIONS
         )
-    ),
+    )
     @output BP_REF_OUTPUT(@description "Clicks buffer" @type "llll")
     @usage BP_REF_GENERATION_EXAMPLE("clicks", "@onsets 0 200 400 600 800 1000")
 );
@@ -4769,23 +4769,24 @@ paulstretch = (
 );
 
 BP_REF_NEW(
-    @name "paulstretch",
-    @description "Generates an audio process operation for applying time-stretching to a buffer.",
-    @category BP_REF_LABEL_BUFFER_OPERATIONS,
+    @name "paulstretch"
+    @description "Generates an audio process operation for applying time-stretching to a buffer."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
-        BP_REF_ARG(@name "stretching", @default 1, @type "int/float/llll", @description "Stretching amount, as single number or envelope.")
-        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "Time unit for `@stretching`." @options (
-            BP_REF_TIMEUNIT_OPTIONS
-        ))
-        BP_REF_ARG(@name "envtimeunit", @default 2, @type "int", @description "Time unit for `@stretching` envelope." @options 
+        BP_REF_ARG(@name "stretching" @default 1 @type "int/float/llll" @description "Stretching amount, as single number or envelope.")
+        BP_REF_ARG(@name "timeunit" @default 2 @type "int" @description "Time unit for `@stretching`." @options 
             BP_REF_TIMEUNIT_OPTIONS
         )
-        BP_REF_ARG(@name "spectral", @default 1, @type "int", @description "Stretching mode." @options 
+        BP_REF_ARG(@name "envtimeunit" @default 2 @type "int" @description "Time unit for `@stretching` envelope." @options 
+            BP_REF_TIMEUNIT_OPTIONS
+        )
+        BP_REF_ARG(@name "spectral" @default 1 @type "int" @description "Stretching mode." @options 
             BP_REF_AUDIO_DOMAIN_OPTIONS
         )
-        BP_REF_ARG(@name "framesize", @default 8192, @type "int", @description "Analysis frame size, in samples.")
-    ),
+        BP_REF_ARG(@name "framesize" @default 8192 @type "int" @description "Analysis frame size, in samples.")
+    )
     @output BP_REF_OUTPUT(@description "Paulstretch operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('paulstretch', '@stretching 0.5')
     @tags 'paulstretch' 'paulfreeze' 'soundtouch' 'rubberband'
 );
 
@@ -5074,6 +5075,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "Rubberband operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('rubberband', '@stretching 0.5')
     @tags 'paulstretch' 'paulfreeze' 'soundtouch' 'rubberband'
 );
 
@@ -5126,6 +5128,7 @@ BP_REF_NEW(
         )
     ),
     @output BP_REF_OUTPUT(@description "Soundtouch operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('soundtouch', '@stretching 0.5 @pitchshifting 700')
     @tags 'paulstretch' 'paulfreeze' 'soundtouch' 'rubberband'
 );
 
@@ -5534,6 +5537,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "outmax", @default 1, @type "int/float/llll", @description "Output maximum value.")
     ),
     @output BP_REF_OUTPUT(@description "Scaling operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('scaling', '-1, 1, 0, 1', 'cycle(@frequency 5 @duration 1000)')
 );
 
 ## ------------------------------------------------------------
@@ -5933,6 +5937,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "down", @default 1024, @type "int/list/llll", @description "Ramp down, in samples, as either a single number, envelope, or buffer.")
     ),
     @output BP_REF_OUTPUT(@description "Rampsmooth operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('rampsmooth' @buffer 'envelope([0 0 0] [0.5 1 0] [1 0 0])')
 );
 
 ## ------------------------------------------------------------
@@ -6201,57 +6206,59 @@ timesquash = (
 );
 
 BP_REF_NEW(
-    @name "timesquash",
-    @description "Generates an audio process operation for applying timesquash time compression to a buffer. This removes time from a sample by shifting portions of the spectrogram while preserving the relevant content.",
-    @category BP_REF_LABEL_BUFFER_OPERATIONS,
+    @name "timesquash"
+    @description "Generates an audio process operation for applying timesquash time compression to a buffer. This removes time from a sample by shifting portions of the spectrogram while preserving the relevant content."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
-        BP_REF_ARG(@name "duration", @default 1, @type "int/float", @description "Target duration, based on `@timeunit`.")
-        BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "Time unit for `@duration`." @options
+        BP_REF_ARG(@name "duration" @default 1 @type "int/float" @description "Target duration, based on `@timeunit`.")
+        BP_REF_ARG(@name "timeunit" @default 2 @type "int" @description "Time unit for `@duration`." @options
             BP_REF_TIMEUNIT_OPTIONS
         )
-        BP_REF_ARG(@name "timeblock", @default 4096, @type "int", @description "Duration of each time block to be removed.")
-        BP_REF_ARG(@name "mode", @default 1, @type "int", @description "Working mode." @options 
+        BP_REF_ARG(@name "timeblock" @default 4096 @type "int" @description "Duration of each time block to be removed.")
+        BP_REF_ARG(@name "mode" @default 1 @type "int" @description "Working mode." @options 
             BP_REF_AUDIO_DOMAIN_OPTIONS
         )
-        BP_REF_ARG(@name "xfade", @default 4096, @type "int/float", @description "Duration of the crossfade, in samples.")
-        BP_REF_ARG(@name "xfadecurve", @default 0, @type "int/float", @description "Curve parameter for the crossfade.")
-        BP_REF_ARG(@name "xfadetype", @default 1, @type "int", @description "Cross fade type." @options 
+        BP_REF_ARG(@name "xfade" @default 4096 @type "int/float" @description "Duration of the crossfade, in samples.")
+        BP_REF_ARG(@name "xfadecurve" @default 0 @type "int/float" @description "Curve parameter for the crossfade.")
+        BP_REF_ARG(@name "xfadetype" @default 1 @type "int" @description "Cross fade type." @options 
             BP_REF_CURVE_OPTIONS
         )
-        BP_REF_ARG(@name "glbleed", @default 4, @type "int", @description "Number of frames of invalidation for the Griffin-Lim algorithm, when `@phasehandling` is `2`.")
-        BP_REF_ARG(@name "glnumiter", @default 10, @type "int", @description "Number of Griffin-Lim iterations, when `@phasehandling` is `2`.")
-        BP_REF_ARG(@name "glrandomize", @default 0, @type "int", @description "Randomize the phases of the regions subject to the Griffin-Lim algorithm, when `@phasehandling` is `2`." @options
+        BP_REF_ARG(@name "glbleed" @default 4 @type "int" @description "Number of frames of invalidation for the Griffin-Lim algorithm, when `@phasehandling` is `2`.")
+        BP_REF_ARG(@name "glnumiter" @default 10 @type "int" @description "Number of Griffin-Lim iterations, when `@phasehandling` is `2`.")
+        BP_REF_ARG(@name "glrandomize" @default 0 @type "int" @description "Randomize the phases of the regions subject to the Griffin-Lim algorithm, when `@phasehandling` is `2`." @options
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "glrect", @default 1, @type "int", @description "Invalidate whole rectangular regions whose phases are recomputed via the Griffin-Lim algorithm, when `@phasehandling` is `2`." @options 
+        BP_REF_ARG(@name "glrect" @default 1 @type "int" @description "Invalidate whole rectangular regions whose phases are recomputed via the Griffin-Lim algorithm, when `@phasehandling` is `2`." @options 
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "batchsize", @default 1, @type "int", @description "Number of seams processed in batch.")
-        BP_REF_ARG(@name "batchinterrupt", @default 0, @type "int", @description "Interrupt batch when crossing.")
-        BP_REF_ARG(@name "energy", @default 2, @type "int", @description "Energy function used for computing seams." @options
-            BP_REF_OPT(@value 0, @description "Magnitude")
-            BP_REF_OPT(@value 1, @description "Gradient magnitude")
-            BP_REF_OPT(@value 2, @description "Sobel")
+        BP_REF_ARG(@name "batchsize" @default 1 @type "int" @description "Number of seams processed in batch.")
+        BP_REF_ARG(@name "batchinterrupt" @default 0 @type "int" @description "Interrupt batch when crossing.")
+        BP_REF_ARG(@name "energy" @default 2 @type "int" @description "Energy function used for computing seams." @options
+            BP_REF_OPT(@value 0 @description "Magnitude")
+            BP_REF_OPT(@value 1 @description "Gradient magnitude")
+            BP_REF_OPT(@value 2 @description "Sobel")
         )
-        BP_REF_ARG(@name "forwardenergy", @default 1, @type "int/float", @description "Amount of forward energy contribution.")
-        BP_REF_ARG(@name "forwardenergyembed", @default 1, @type "int", @description "Embed forward energy in cumulative matrix." @options
+        BP_REF_ARG(@name "forwardenergy" @default 1 @type "int/float" @description "Amount of forward energy contribution.")
+        BP_REF_ARG(@name "forwardenergyembed" @default 1 @type "int" @description "Embed forward energy in cumulative matrix." @options
             BP_REF_SWITCH_OPTIONS
         )
-        BP_REF_ARG(@name "forwardenergytype", @default 1, @type "int", @description "Forward energy type." @options
-            BP_REF_OPT(@value 0, @description "Gradient L1 norm")
-            BP_REF_OPT(@value 1, @description "Energy L2 norm")
+        BP_REF_ARG(@name "forwardenergytype" @default 1 @type "int" @description "Forward energy type." @options
+            BP_REF_OPT(@value 0 @description "Gradient L1 norm")
+            BP_REF_OPT(@value 1 @description "Energy L2 norm")
         )
-        BP_REF_ARG(@name "framesize", @default 2048, @type "int", @description "Window size, in samples")
-        BP_REF_ARG(@name "hopsize", @default 1024, @type "int", @description "Hop size, in samples")
-        BP_REF_ARG(@name "phasehandling", @default 2, @type "int", @description "Phase handling mode." @options
-            BP_REF_OPT(@value 0, @description "Keep")
-            BP_REF_OPT(@value 1, @description "Compensate")
-            BP_REF_OPT(@value 2, @description "Griffin-Lim")
+        BP_REF_ARG(@name "framesize" @default 2048 @type "int" @description "Window size, in samples")
+        BP_REF_ARG(@name "hopsize" @default 1024 @type "int" @description "Hop size, in samples")
+        BP_REF_ARG(@name "phasehandling" @default 2 @type "int" @description "Phase handling mode." @options
+            BP_REF_OPT(@value 0 @description "Keep")
+            BP_REF_OPT(@value 1 @description "Compensate")
+            BP_REF_OPT(@value 2 @description "Griffin-Lim")
         )
-        BP_REF_ARG(@name "regularization", @default '0.01', @type "int/float", @description "How much energy of a bin smears on the ones above and below, between 0 and 1.")
-        BP_REF_ARG(@name "wintype", @default "'sqrthann'" "'sqrthann'", @type "list/symbol", @description "Window type." @options BP_REF_WINDOW_OPTIONS)
-    ),
+        BP_REF_ARG(@name "regularization" @default '0.01' @type "int/float" @description "How much energy of a bin smears on the ones above and below, between 0 and 1.")
+        BP_REF_ARG(@name "wintype" @default "'sqrthann'" "'sqrthann'" @type "list/symbol" @description "Window type." @options BP_REF_WINDOW_OPTIONS)
+    )
     @output BP_REF_OUTPUT(@description "Timesquash operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE("timesquash", "@duration 0.5")
+    @tags 'paulstretch' 'paulfreeze' 'soundtouch' 'rubberband'
 );
 
 ## ------------------------------------------------------------
