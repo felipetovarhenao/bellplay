@@ -15,9 +15,8 @@ ROOT = os.path.dirname(__file__)
 UNIT_TEST_DIR = os.path.join(ROOT, 'testing')
 COUNTER = 0
 UNIT_TESTS = []
-ERROR = None
 
-for file in sorted(os.listdir(UNIT_TEST_DIR))[:20]:
+for file in sorted(os.listdir(UNIT_TEST_DIR)):
     file_name, file_ext = os.path.splitext(file)
     if file_ext != '.bell':
         continue
@@ -31,8 +30,6 @@ def run_next_test():
     global UNIT_TESTS
     global COUNTER
     global APP
-    if ERROR is not None:
-        logger.error(ERROR)
     if COUNTER >= len(UNIT_TESTS):
         logger.success("DONE!")
         exit()
@@ -56,10 +53,9 @@ def start_listener():
             return
         message_type = int(message_type)
         if message_type == 1:
-            global ERROR
-            ERROR = args
+            logger.error(args[0])
 
-        if message_type == 2 and object == "bellplay~" and payload[0] == 'ok':
+        elif message_type == 2 and object == "bellplay~" and payload[0] == 'ok':
             run_next_test()
 
     dispatcher = Dispatcher()
