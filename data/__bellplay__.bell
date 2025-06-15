@@ -3798,9 +3798,8 @@ BP_REF_NEW(
     @name "temporalflatness"
     @description "Generates an audio descriptor to calculate the temporal flatness of a buffer, defined as the ratio between the buffer envelope's geometric mean and arithmetic mean. Flatness is undefined for empty input and negative values, therefore an exception is thrown in any both cases."
     @category BP_REF_LABEL_BUFFER_ANALYSIS
-    @arguments (
-    )
     @output BP_REF_OUTPUT(@description "Temporalflatness descriptor" @type "llll")
+    @usage BP_REF_ANALYZE_EXAMPLE('temporalflatness' @buffer 'envelope([0 0 0] [1 1 0.25])')
 );
 
 ## ## ------------------------------------------------------------
