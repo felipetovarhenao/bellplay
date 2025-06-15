@@ -4445,11 +4445,10 @@ BP_FN_OSC_GEN = (
     $duration = 50,
     $params = null -> (
         $source = $frequency.getkey("source");
-        $isnoise = $name == "noise";
-        $salience = $isnoise == 0 && $source == null;
+        $isnoise = intersection($name, "noise" "pink") != null;
         ## if generator is noise
         if $isnoise == 1 then (
-            $frequency = rand(40, 1500)
+            $frequency = mc2f(6000)
         ) else if $source == null then (
             ## if @frequency is an envelope
             $source = envelope($frequency, @duration $duration).getkey("source");
@@ -4495,7 +4494,23 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
     )
-    @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
+    @output BP_REF_OUTPUT(@description "White noise buffer" @type "llll")
+);
+
+pink = (
+    $duration = 50 -> (
+        BP_FN_OSC_GEN("pink" @duration $duration)
+    )
+);
+
+BP_REF_NEW(
+    @name "pink"
+    @description "Generates pink noise as a buffer."
+    @category BP_REF_LABEL_BUFFER_GENERATION
+    @arguments (
+        BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
+    )
+    @output BP_REF_OUTPUT(@description "Pink noise buffer" @type "llll")
 );
 
 ## ------------------------------------------------------------
