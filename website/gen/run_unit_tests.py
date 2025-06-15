@@ -10,7 +10,7 @@ from utils import logger
 
 APP = BellPlay()
 
-
+ERROR = 0
 ROOT = os.path.dirname(__file__)
 UNIT_TEST_DIR = os.path.join(ROOT, 'testing')
 COUNTER = 0
@@ -30,6 +30,9 @@ def run_next_test():
     global UNIT_TESTS
     global COUNTER
     global APP
+    global ERROR
+    if ERROR == 1:
+        return
     if COUNTER >= len(UNIT_TESTS):
         logger.success("DONE!")
         exit()
@@ -52,10 +55,12 @@ def start_listener():
         if not message_type.isnumeric():
             return
         message_type = int(message_type)
+        global ERROR
         if message_type == 1:
+            ERROR = 1
             logger.error(args[0])
 
-        elif message_type == 2 and object == "bellplay~" and payload[0] == 'ok':
+        elif ERROR == 0 and message_type == 2 and object == "bellplay~" and payload[0] == 'ok':
             run_next_test()
 
     dispatcher = Dispatcher()
