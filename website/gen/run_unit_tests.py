@@ -36,6 +36,7 @@ def run_next_test():
     if COUNTER >= len(UNIT_TESTS):
         logger.success("DONE!")
         exit()
+    time.sleep(1)
     current = UNIT_TESTS[COUNTER]
     COUNTER += 1
     APP.read(current)
@@ -43,6 +44,9 @@ def run_next_test():
 
 def start_listener():
     def console_handler(address, *args):
+        global ERROR
+        if ERROR == 1:
+            return
         # Expect at least two args: an int ID and the command string
         tokens = str(args[0]).split()
 
@@ -55,12 +59,11 @@ def start_listener():
         if not message_type.isnumeric():
             return
         message_type = int(message_type)
-        global ERROR
-        if message_type == 1:
+        if message_type == 1 or (message_type == 2 and object != 'bellplay~'):
             ERROR = 1
             logger.error(args[0])
 
-        elif ERROR == 0 and message_type == 2 and object == "bellplay~" and payload[0] == 'ok':
+        elif message_type == 2 and object == "bellplay~" and payload[0] == 'ok':
             run_next_test()
 
     dispatcher = Dispatcher()
