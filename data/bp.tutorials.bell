@@ -169,6 +169,11 @@ $addscript(
     @example 1
 );
 $addscript(
+    @name 'Shepard-Risset Glissando' 
+    @file 'shepardtone' 
+    @example 1
+);
+$addscript(
     @name 'Generating Keymaps' 
     @file 'keymaps' 
     @example 1

@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3831459874,
+	"modificationdate" : 3832846407,
 	"viewrect" : [ 25.0, 103.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -601,7 +601,12 @@
 ,
 			"download-icon.svg" : 			{
 				"kind" : "vectorimagefile",
-				"local" : 1
+				"local" : 1,
+				"singleton" : 				{
+					"bootpath" : "~/Documents/bellplay/media",
+					"projectrelativepath" : "./media"
+				}
+
 			}
 
 		}
@@ -811,6 +816,11 @@
 			}
 ,
 			"bp.example.syntharpeggio.bell" : 			{
+				"kind" : "textfile",
+				"local" : 1
+			}
+,
+			"bp.example.shepardtone.bell" : 			{
 				"kind" : "textfile",
 				"local" : 1
 			}
