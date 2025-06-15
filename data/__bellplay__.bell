@@ -4338,6 +4338,37 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+rotate = (
+    $shift = 0,
+    $timeunit = 0 -> (
+        $self = 'rotate';
+        BP_FN_CHECK_ARGS($self, 'shift', $shift);
+        [
+            ["fx" "rotate"]
+            ["params" 
+                [ "timeunit" $timeunit ]
+                [ "shift" $shift ]
+            ]
+        ]
+    )
+);
+
+BP_REF_NEW(
+    @name "rotate"
+    @description "Generates an audio process operation for rotating a buffer."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(@name "shift" @default 0 @type "int/float" @description "Shift time, depending on the `@timeunit` attribute.")
+        BP_REF_ARG(@name "timeunit" @default 0 @type "int" @description "Time unit for `@shift`." @options
+            BP_REF_TIMEUNIT_OPTIONS
+        )
+    )
+    @output BP_REF_OUTPUT(@description "Rotate operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('rotate', '@shift 2000')
+);
+
+## ------------------------------------------------------------
+
 BP_FN_DUMMY_PROCESS = ( -> [ [ "fx" "thru" ] ]);
 
 ## ------------------------------------------------------------
