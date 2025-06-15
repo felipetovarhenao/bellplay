@@ -1,0 +1,52 @@
+#(
+
+# Shepard-Risset Glissando
+
+This example synthesizes a Shepard-Risset glissando using **bellplay~**. 
+The Shepard tone is an auditory illusion where a continuously ascending (or descending) pitch scale appears to rise (or fall) endlessly. 
+This illusion is achieved by overlapping tones separated by octaves and applying amplitude modulation to mask their entry and exit.
+
+)#
+## Define the number of octaves and duration per glissando cycle
+$numocts = 8;
+## ms per cycle
+$period = 10000;
+## how many cycles to repeat
+$reps = 2;
+## total buffer duration
+$totdur = $numocts * $period;
+## base frequency in Hz (A1)
+$fzero = 55.0;
+## Generate glissando frequency envelope
+$gliss = exp2(arithmser(0, $numocts - 1, null, 3000));
+$frequency = $fzero * $gliss;
+## Iterate over multiple frequency ratios to create overlapping partials
+for $r in 1 3/2 5/2 10/3 do (
+    ## Create and transcribe sawtooth wave sweeping in frequency
+    saw(
+        @frequency $frequency * $r @duration $totdur
+    ).transcribe() 
+);
+## Define operations to apply windowing and repetition to resulting buffer
+$op = window() repeat($reps);
+## Render audio, apply processing operations, and reset/clear timeline
+$b = render(@reset 1 @process $op);
+## Calculate onsets for staggered entries (every octave)
+$onsets = arithmser(0, $b.getkey('duration') / $reps, null, $numocts);
+## Retranscribe each repetition with an offset to simulate infinite rise
+for $onset in $onsets do $b.transcribe($onset);
+## Final render with post-processing
+render(
+    @play 1 @process (
+        ## Crop initial partials to preserve illusion
+        crop(
+            @start maximum($onsets) @end -1
+        ) 
+        ## Add fade-in/out to smooth cropping
+        fade(100, 100) 
+        ## Apply subtle reverb for spatial depth
+        freeverb(@roomsize 0.9 @wet 0.1) 
+        ## Normalize output to -3 dB
+        normalize(-3) 
+    ) 
+)
