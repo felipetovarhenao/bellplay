@@ -336,7 +336,7 @@ BP_REF_NEW = (
                     "For more details on the algorithm, please check the [Essentia Algorithms reference](https://essentia.upf.edu/algorithms_reference.html)."
                     ":::"
                 );
-                $usage = BP_REF_ANALYZE_EXAMPLE($name)
+                $usage = $usage ||| BP_REF_ANALYZE_EXAMPLE($name)
             );
             ## re-assign modified arguments
             $arguments."@mode" = $mode
