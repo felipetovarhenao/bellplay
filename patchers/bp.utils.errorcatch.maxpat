@@ -46,7 +46,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 17.0, 317.0, 101.0, 23.0 ],
-					"text" : "prepend console/"
+					"text" : "prepend /console"
 				}
 
 			}

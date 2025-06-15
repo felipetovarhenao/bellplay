@@ -1,6 +1,5 @@
 import os
 import re
-import shutil
 from utils.cleaner import Cleaner
 
 THIS_DIR = os.path.dirname(__file__)
@@ -22,5 +21,6 @@ for root, _, files in os.walk(REF_DIR):
         for match in matches:
             match: str = "\n".join(match.splitlines()[1:-1])
             with open(os.path.join(OUT_DIR, ("000" + str(count))[-3:] + "_" + file_name + ".bell"), 'w') as f:
-                f.write(match)
+
+                f.write(f"{match};\nBP_FN_WARNING(@details 'ok')")
             count += 1
