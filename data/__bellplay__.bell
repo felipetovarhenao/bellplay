@@ -7183,7 +7183,7 @@ render(@play 1)"
 buf2samps = (
     $buffer -> (
         $self = 'buf2samps';
-        $source = BP_FN_DETACH_BUFFER($self, $buffer @origin $self).getkey('source');
+        $source = BP_FN_DETACH_BUFFER($buffer @origin $self).getkey('source');
         BP_FN_DISPATCH('ears', ['tosamps' $source]);
         BP_TMP_EARS_OUTPUT
     )
