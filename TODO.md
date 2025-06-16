@@ -39,6 +39,7 @@
 ### Fix
 
 - FIX `rhythm` extractor.
+- [ ] Fix issues with improperly resetting/clearing `dada.cartesian`.
 
 ### Remove
 
