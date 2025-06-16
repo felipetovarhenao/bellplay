@@ -442,6 +442,63 @@ BP_FN_PATHINFO = (
 
 ## ------------------------------------------------------------
 
+BP_FN_CLEAN_AUDIO_PARAM = (
+    $origin = null, $param = null, $allowbuffer = 0 -> (
+        $source = getkey($param, 'source');
+        $clean = null;
+        if $source == null then (
+            $clean = if length($param) > 1 || depth($param) > 1 then [bpf($param)] else $param
+        ) else if $allowbuffer == 1 then (
+            $clean = getkey(BP_FN_DETACH_BUFFER($param @origin $origin), 'source') 
+        ) else (BP_FN_ERROR($origin @details 'Buffer parameter not supported') );
+        $clean
+    ) 
+);
+
+## ------------------------------------------------------------
+
+BP_FN_DETACH_BUFFER = (
+    $buffer = null, 
+    $keepkeys = null, 
+    $strict = 0,
+    $origin = null -> (
+        BP_FN_VALIDATE_BUFFER($origin, $buffer);
+        if $strict == 0 && getkey($buffer, 'offset') == 0 && getkey($buffer, 'source_end') == getkey($buffer, 'duration') then $buffer else (
+            process(
+                @buffer $buffer
+                @operations BP_FN_DUMMY_PROCESS() 
+                @keepkeys $keepkeys
+            ) 
+        ) 
+    ) 
+);
+
+## ------------------------------------------------------------
+
+detach = (
+    $buffer = null, $keepkeys = null -> (
+        BP_FN_DETACH_BUFFER(
+            @buffer $buffer
+            @keepkeys $keepkeys
+            @strict 1
+            @origin 'detach'
+        )
+    ) 
+);
+
+BP_REF_NEW(
+    @name "detach"
+    @description "Creates a hard copy of the input buffer, detaching it from its original source. Mostly useful for when non-lazy modifications of buffer keys (i.e., `'offset'`, `'duration'`) are preferred. Use with caution to prevent memory overhead."
+    @category BP_REF_LABEL_BUFFER_UTILS
+    @arguments (
+        BP_REF_ARG(@name "buffer" @type "llll" @description "Buffer to detach copy from.")
+        BP_REF_ARG(@name "keepkeys" @type "symbol/list" @default 'null' @description "Optional list of keys, as symbols, to preserve from input buffer.")
+    )
+    @output BP_REF_OUTPUT(@description "Detached copy of buffer" @type "llll")
+);
+
+## ------------------------------------------------------------
+
 parsepath = (
     $path -> (
         $info = BP_FN_PATHINFO($path);
@@ -544,7 +601,7 @@ BP_REF_NEW(
         )
     )
     @output BP_REF_OUTPUT(@description "List of file paths", @type "list")
-    @usage BP_REF_CODE_SNIPPET("$files = readfolder('/path/to/folder')")
+    @usage BP_REF_CODE_SNIPPET("$files = readfolder('./') ## path to some folder")
 );
 
 ## ------------------------------------------------------------
@@ -2725,9 +2782,8 @@ analyze = (
     $bufinterp = 0 -> (
         $self = 'analyze';
         BP_FN_CHECK_ARGS('analyze', 'buffer', $buffer, 'descriptors', $descriptors);
-        $source = BP_FN_VALIDATE_BUFFER($self, $buffer);
         BP_ESSENTIA_OUTPUT = null;
-        $source = $buffer.process(BP_FN_DUMMY_PROCESS()).getkey("source");
+        $source = getkey(BP_FN_DETACH_BUFFER($buffer @origin $self), "source");
         BP_FN_DISPATCH("essentia",
             [ "buffer" $source ]
             [ "settings"
@@ -4435,6 +4491,7 @@ freeverb = (
     $tail = -1,
     $dry = 1., 
     $wet = 1/6. -> (
+        $self = 'freeverb';
         [
             ["fx" "freeverb"]
             [ "params" 
@@ -4442,8 +4499,8 @@ freeverb = (
                 [ "damp" $damp ]
                 [ "width" $width ]
                 [ "tail" $tail ]
-                [ "dry" if depth($dry) > 1 || length($dry) > 1 then [ bpf($dry) ] else $dry ]
-                [ "wet" if depth($wet) > 1 || length($wet) > 1 then [ bpf($wet) ] else $wet ]
+                [ "dry" BP_FN_CLEAN_AUDIO_PARAM($self, $dry) ]
+                [ "wet" BP_FN_CLEAN_AUDIO_PARAM($self, $wet) ]
             ]
         ]
     )
@@ -4475,19 +4532,20 @@ BP_FN_OSC_GEN = (
     $frequency = 440,
     $duration = 50,
     $params = null -> (
-        $source = $frequency.getkey("source");
+        $source = getkey($frequency, "source");
         $isnoise = intersection($name, "noise" "pink") != null;
         ## if generator is noise
         if $isnoise == 1 then (
             $frequency = mc2f(6000)
         ) else if $source == null then (
             ## if @frequency is an envelope
-            $source = envelope($frequency, @duration $duration).getkey("source");
+            $source = envelope($frequency @duration $duration).getkey("source");
             if depth($frequency) > 1 || length($frequency) > 1 then (
                 $frequency = trans(bpf($frequency))::(2 1)
             )
         ) else (
             ## if @frequency is a buffer
+            $source = BP_FN_DETACH_BUFFER($frequency @origin $name).getkey("source");
             $duration = $frequency.getkey("duration");
             $frequency = mc2f(6000)
         );
@@ -4570,7 +4628,9 @@ cycle = (
     $frequency = 440, 
     $duration = 50,
     $phase = 0.25 -> (
-        BP_FN_OSC_GEN("cycle" @frequency $frequency @duration $duration @params [ "phase" float($phase) ])
+        $self = 'cycle';
+        $phase = BP_FN_CLEAN_AUDIO_PARAM($self, $phase, 1);
+        BP_FN_OSC_GEN("cycle" @frequency $frequency @duration $duration @params [ "phase" $phase ])
     )
 );
 
@@ -4581,7 +4641,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "frequency" @default 440 @type "int/float/llll" @description "Frequency, either as a single number, envelope, or buffer.")
         BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
-        BP_REF_ARG(@name "phase" @default '0.25' @type "int/float" @description "Initial phase, in the 0–1 range.")
+        BP_REF_ARG(@name "phase" @default '0.25' @type "int/float" @description "Initial phase, in the 0–1 range, either as a single number, envelope, or buffer.")
     )
     @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
     @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
@@ -4593,6 +4653,8 @@ rect = (
     $frequency = 440, 
     $duration = 50,
     $duty = 0.5 -> (
+        $self = 'rect';
+        $duty = BP_FN_CLEAN_AUDIO_PARAM($self, $duty, 1);
         BP_FN_OSC_GEN("rect", @frequency $frequency, @duration $duration, @params [ "duty" $duty ])
     )
 );
@@ -4614,8 +4676,11 @@ BP_REF_NEW(
 
 saw = (
     $frequency = 440, 
-    $duration = 50 -> (
-        BP_FN_OSC_GEN("saw", @frequency $frequency, @duration $duration)
+    $duration = 50,
+    $synctrig = 0 -> (
+        $self = 'saw';
+        $synctrig = BP_FN_CLEAN_AUDIO_PARAM($self, $synctrig, 1);
+        BP_FN_OSC_GEN("saw" @frequency $frequency @duration $duration @params ['synctrig' $synctrig])
     )
 );
 
@@ -4626,6 +4691,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "frequency" @default 440 @type "int/float/llll" @description "Frequency, either as a single number, envelope, or buffer.")
         BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
+        BP_REF_ARG(@name "synctrig" @default 0 @type "int/float/llll" @description "Sync trigger or value which an input signal crosses at which the oscillator will reset itself, either as a single number, envelope, or buffer.")
     )
     @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
     @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
@@ -4637,7 +4703,9 @@ tri = (
     $frequency = 440, 
     $duration = 50,
     $duty = 0.5 -> (
-        BP_FN_OSC_GEN("tri", @frequency $frequency, @duration $duration, @params [ "duty" $duty ])
+        $self = 'tri';
+        $duty = BP_FN_CLEAN_AUDIO_PARAM($self, $duty, 1);
+        BP_FN_OSC_GEN("tri" @frequency $frequency @duration $duration @params [ "duty" $duty ])
     )
 );
 
@@ -4656,26 +4724,59 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-triangle = (
+simplefm = (
     $frequency = 440, 
     $duration = 50,
-    $phase = 0,
-    $offset = 0.5 -> (
-        BP_FN_OSC_GEN("triangle", @frequency phasor($frequency, @duration $duration @phase $phase), @duration $duration @params [ "phase" float($offset) ])
+    $harmonicity = 1,
+    $modindex = 1 -> (
+        $self = 'simplefm';
+        $harmonicity = BP_FN_CLEAN_AUDIO_PARAM($self, $harmonicity, 1);
+        $modindex = BP_FN_CLEAN_AUDIO_PARAM($self, $modindex, 1);
+        BP_FN_OSC_GEN("simplefm" @frequency $frequency @duration $duration, @params [ "harmonicity" $harmonicity ] [ "modindex" $modindex ])
+    )
+);
+
+BP_REF_NEW(
+    @name "simplefm"
+    @description "Generates a waveform via simple FM synthesis as a buffer."
+    @category BP_REF_LABEL_BUFFER_GENERATION
+    @arguments (
+        BP_REF_ARG(@name "frequency" @default 440 @type "int/float/llll" @description "Frequency, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
+        BP_REF_ARG(@name "harmonicity" @default 1 @type "int/float" @description "Harmonicity ratio, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "modindex" @default 1 @type "int/float" @description "Modulation index, either as a single number, envelope, or buffer.")
+        
+    ),
+    @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
+    @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
+);
+
+## ------------------------------------------------------------
+
+triangle = (
+    $phase = 0, 
+    $duration = 50,
+    $offset = 0,
+    $lo = -1.0,
+    $hi = 1.0 -> (
+        $self = 'triangle';
+        $offset = BP_FN_CLEAN_AUDIO_PARAM($self, $offset, 1);
+        BP_FN_OSC_GEN("triangle" @frequency $phase @duration $duration @params [ "lo" $lo ] [ "hi" $hi ] [ "phase" $offset ])
     )
 );
 
 BP_REF_NEW(
     @name "triangle"
-    @description "Generates a triangular/ramp oscillator as a buffer."
+    @description "Triangle/ramp wavetable to change phase offset of the peak value."
     @category BP_REF_LABEL_BUFFER_GENERATION
     @arguments (
-        BP_REF_ARG(@name "frequency" @default 440 @type "int/float/llll" @description "Frequency, either as a single number, envelope, or buffer.")
-        BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
-        BP_REF_ARG(@name "phase" @default 0 @type "int/float" @description "Initial phase, in the 0-1 range.")
-        BP_REF_ARG(@name "offset" @default '0.5' @type "int/float" @description "Peak position offset, in the 0-1 range.")
+        BP_REF_ARG(@name "phase" @default 440 @type "int/float/llll" @description "A buffer, float, or breakpoint function in the 0 to 1 range to scan the triangle wavetable. The output of `phasor` or some other buffer can be used to control the `triangle` wavetable as an oscillator, treating the contents of the wavetable as a repeating waveform.")
+        BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds. Ignored if `@phase` is a buffer.")
+        BP_REF_ARG(@name "offset" @default 0 @type "int/float/llll" @description "Peak value phase offset, expressed as a fraction of a cycle, from 0 to 1.0., either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "lo" @default -1 @type "int/float" @description "Minimum value of output buffer.")
+        BP_REF_ARG(@name "hi" @default 1 @type "int/float" @description "Maximum value of output buffer.")
     )
-    @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
+    @output BP_REF_OUTPUT(@description "Triangle buffer" @type "llll")
     @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
 );
 
@@ -4685,7 +4786,9 @@ phasor = (
     $frequency = 440, 
     $duration = 50,
     $phase = 0. -> (
-        BP_FN_OSC_GEN("phasor", @frequency $frequency, @duration $duration, @params [ "phase" float($phase) ])
+        $self = 'phasor';
+        $phase = BP_FN_CLEAN_AUDIO_PARAM($self, $phase, 1);
+        BP_FN_OSC_GEN("phasor", @frequency $frequency, @duration $duration, @params [ "phase" $phase ])
     )
 );
 
@@ -4696,7 +4799,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "frequency" @default 440 @type "int/float/llll" @description "Frequency, either as a single number, envelope, or buffer.")
         BP_REF_ARG(@name "duration" @default 50 @type "int/float" @description "Buffer duration, in milliseconds")
-        BP_REF_ARG(@name "phase" @default 0 @type "int/float" @description "Initial phase, in the 0-1 range.")
+        BP_REF_ARG(@name "phase" @default 0 @type "int/float" @description "Initial phase, in the 0-1 range, either as a single number, envelope, or buffer.")
     )
     @output BP_REF_OUTPUT(@description "Synthesized buffer" @type "llll")
     @tags 'cycle' 'saw' 'tri' 'triangle' 'rect' 'noise' 'randosc' 'phasor'
@@ -4799,7 +4902,8 @@ paulstretch = (
     $envtimeunit = 2,
     $spectral = 1,
     $framesize = 8192 -> (
-        $stretching = if depth($stretching) > 1 || length($stretching) > 1 then [ bpf($stretching) ] else $stretching;
+        $self = 'paulstretch';
+        $stretching = BP_FN_CLEAN_AUDIO_PARAM($self, $stretching);
         [
             [ "fx" "paulstretch" ]
             [ "params" 
@@ -4881,7 +4985,8 @@ BP_REF_NEW(
 
 overdrive = (
     $factor = 1 -> (
-        $factor = if depth($factor) > 1 || length($factor) > 1 then [ bpf($factor) ] else $factor;
+        $self = 'overdrive';
+        $factor = BP_FN_CLEAN_AUDIO_PARAM($self, $factor);
         [
             [ "fx" "overdrive" ]
             [ "params" 
@@ -4947,9 +5052,10 @@ biquad = (
     $type = 2,
     $gain = 1,
     $q = 100 -> (
-        $frequency = $frequency.getkey("source") ||| [ bpf($frequency) ];
-        $gain = $gain.getkey("source") ||| [ bpf($gain) ];
-        $q = $q.getkey("source") ||| [ bpf($q) ];
+        $self = 'biquad';
+        $frequency = BP_FN_CLEAN_AUDIO_PARAM($self, $frequency);
+        $gain = BP_FN_CLEAN_AUDIO_PARAM($self, $gain);
+        $q = BP_FN_CLEAN_AUDIO_PARAM($self, $q);
         if contains($type) == 16 then (
             $type = (
                 [ "lowpass" 0 ]
@@ -4981,7 +5087,7 @@ BP_REF_NEW(
     @description "Generates an audio process operation for applying biquad filtering to a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
-        BP_REF_ARG(@name "frequency" @default 2000 @type "int/float" @description "Cutoff/center frequency.")
+        BP_REF_ARG(@name "frequency" @default 2000 @type "int/float" @description "Cutoff/center frequency, either as a single number, or envelope.")
         BP_REF_ARG(@name "type" @type "int/symbol" @default 2 @description "Filter type, as a symbol or integer." @options
             BP_REF_OPT(@value 0 @description "Lowpass")
             BP_REF_OPT(@value 1 @description "Highpass")
@@ -4993,8 +5099,8 @@ BP_REF_NEW(
             BP_REF_OPT(@value 7 @description "Resonant")
             BP_REF_OPT(@value 8 @description "Allpass")
         )
-        BP_REF_ARG(@name "gain" @default 1 @type "int/float" @description "Linear gain.")
-        BP_REF_ARG(@name "q" @default 80 @type "int/float" @description "Resonance or slope, depending on `@type`.")
+        BP_REF_ARG(@name "gain" @default 1 @type "int/float" @description "Linear gain, either as a single number, or envelope.")
+        BP_REF_ARG(@name "q" @default 80 @type "int/float" @description "Resonance or slope, depending on `@type`, either as a single number, or envelope.")
     )
     @output BP_REF_OUTPUT(@description "Biquad operation" @type "llll")
     @tags 'onepole'
@@ -5004,7 +5110,8 @@ BP_REF_NEW(
 
 clip = (
     $threshold = 1 -> (
-        $threshold = if depth($threshold) > 1 || length($threshold) > 1 then [ bpf($threshold) ] else $threshold;
+        $self = 'clip';
+        $threshold = BP_FN_CLEAN_AUDIO_PARAM($self, $threshold);
         [
             [ "fx" "clip" ]
             [ "params" 
@@ -5043,8 +5150,9 @@ rubberband = (
     $stretchmode = 0,
     $detector = 0,
     $transients = 2 -> (
-        $stretching = if depth($stretching) > 1 || length($stretching) > 1 then [ bpf($stretching) ] else $stretching;
-        $pitchshift = if depth($pitchshift) > 1 || length($pitchshift) > 1 then [ bpf($pitchshift) ] else $pitchshift;
+        $self = 'rubberband';
+        $stretching = BP_FN_CLEAN_AUDIO_PARAM($self, $stretching);
+        $pitchshift = BP_FN_CLEAN_AUDIO_PARAM($self, $pitchshift);
         [
             [ "fx" "rubberband" ]
             [ "params" 
@@ -5231,13 +5339,9 @@ BP_REF_NEW(
 freqshift = (
     $shift = 0,
     $negative = 0 -> (
-        BP_FN_CHECK_ARGS('freqshift', 'shift', $shift);
-        $source = $shift.getkey("source");
-        if $source != null then (
-            $shift = $source
-        ) else (
-            $shift = [ bpf($shift) ]
-        );
+        $self = 'freqshift';
+        BP_FN_CHECK_ARGS($self, 'shift', $shift);
+        $shift = BP_FN_CLEAN_AUDIO_PARAM($self, $shift, 1);
         [
             [ "fx" "freqshift" ]
             [ "params"
@@ -5267,8 +5371,9 @@ BP_REF_NEW(
 degrade = (
     $ratio = .5,
     $bits = 4 -> (
-        $bits = $bits.getkey("source") ||| [ bpf($bits) ];
-        $ratio = $ratio.getkey("source") ||| [ bpf($ratio) ];
+        $self = 'degrade';
+        $bits = BP_FN_CLEAN_AUDIO_PARAM($self, $bits, 1);
+        $ratio = BP_FN_CLEAN_AUDIO_PARAM($self, $ratio, 1);
         [
             [ "fx" "degrade" ]
             [ "params"
@@ -5284,8 +5389,8 @@ BP_REF_NEW(
     @description "Generates an audio process operation for reducing sampling rate and bit-depth of a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
-        BP_REF_ARG(@name "ratio" @default '0.5' @type "int/float/llll" @description "Sampling rate ratio.")
-        BP_REF_ARG(@name "bits" @default 4 @type "int/float/llll" @description "Bit depth.")
+        BP_REF_ARG(@name "ratio" @default '0.5' @type "int/float/llll" @description "Sampling rate ratio, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "bits" @default 4 @type "int/float/llll" @description "Bit depth, either as a single number, envelope, or buffer.")
     )
     @output BP_REF_OUTPUT(@description "Degrade operation" @type "llll")
 );
@@ -5295,7 +5400,8 @@ BP_REF_NEW(
 rounding = (
     $value = 1,
     $nearest = 1 -> (
-        $value = $value.getkey("source") ||| [ bpf($value) ];
+        $self = 'rounding';
+        $value = BP_FN_CLEAN_AUDIO_PARAM($self, $value, 1);
         [
             [ "fx" "round" ]
             [ "params"
@@ -5331,11 +5437,12 @@ teeth = (
     $gain = 0.5,
     $feedforwardgain = 0.5,
     $feedbackgain = -0.5 -> (
-        $feedforward = $feedforward.getkey("source") ||| [ bpf($feedforward) ];
-        $feedback = $feedback.getkey("source") ||| [ bpf($feedback) ];
-        $gain = $gain.getkey("source") ||| [ bpf($gain) ];
-        $feedforwardgain = $feedforwardgain.getkey("source") ||| [ bpf($feedforwardgain) ];
-        $feedbackgain = $feedbackgain.getkey("source") ||| [ bpf($feedbackgain) ];
+        $self = 'teeth';
+        $feedforward = BP_FN_CLEAN_AUDIO_PARAM($self, $feedforward, 1);
+        $feedback = BP_FN_CLEAN_AUDIO_PARAM($self, $feedback, 1);
+        $gain = BP_FN_CLEAN_AUDIO_PARAM($self, $gain, 1);
+        $feedforwardgain = BP_FN_CLEAN_AUDIO_PARAM($self, $feedforwardgain, 1);
+        $feedbackgain = BP_FN_CLEAN_AUDIO_PARAM($self, $feedbackgain, 1);
         [
             [ "fx" "teeth" ]
             [ "params"
@@ -5369,8 +5476,9 @@ pong = (
     $low = -1,
     $high = 1,
     $mode = 0 -> (
-        $low = $low.getkey("source") ||| [ bpf($low) ];
-        $high = $high.getkey("source") ||| [ bpf($high) ];
+        $self = 'pong';
+        $low = BP_FN_CLEAN_AUDIO_PARAM($self, $low, 1);
+        $high = BP_FN_CLEAN_AUDIO_PARAM($self, $high, 1);
         [
             [ "fx" "pong" ]
             [ "params"
@@ -5464,14 +5572,15 @@ BP_REF_NEW(
 waveshape = (
     $phase = -1 1,
     $duration = 1000 -> (
-        $source = $phase.getkey("source");
-        if $source == null then (
-            $source = envelope($phase, @duration $duration).getkey("source")
+        $self = 'waveshape';
+        $phase = BP_FN_CLEAN_AUDIO_PARAM($self, $phase, 1);
+        if is($phase) != 'symbol' then (
+            $phase = envelope($phase, $duration).getkey("source")
         );
         [
             [ "fx" "waveshape" ]
             [ "params"
-                [ "phase" $source ]
+                [ "phase" $phase ]
             ]
         ]
     )
@@ -5482,7 +5591,7 @@ BP_REF_NEW(
     @description "Generates an audio process operation for waveshaping a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
-        BP_REF_ARG(@name "phase" @default -1 1 @type "int/float" @description "Buffer phase envelope between -1 and 1, either as an envelope or a buffer.")
+        BP_REF_ARG(@name "phase" @default -1 1 @type "int/float" @description "Buffer phase envelope between -1 and 1, either as a single number, envelope, or buffer.")
         BP_REF_ARG(@name "duration" @default 1000 @type "int" @description "Envelope duration in milliseconds. Ignored if `@phase` is a buffer.")
     )
     @output BP_REF_OUTPUT(@description "Waveshape operation" @type "llll")
@@ -5494,14 +5603,15 @@ BP_REF_NEW(
 scrub = (
     $phase = 0 1,
     $duration = 1000 -> (
-        $source = $phase.getkey("source");
-        if $source == null then (
-            $source = envelope($phase, @duration $duration).getkey("source")
+        $self = 'scrub';
+        $phase = BP_FN_CLEAN_AUDIO_PARAM($self, $phase, 1);
+        if is($phase) != 'symbol' then (
+            $phase = envelope($phase, $duration).getkey("source")
         );
         [
             [ "fx" "scrub" ]
             [ "params"
-                [ "phase" $source ]
+                [ "phase" $phase ]
             ]
         ]
     )
@@ -5512,7 +5622,7 @@ BP_REF_NEW(
     @description "Generates an audio process operation for scrubbing through a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
-        BP_REF_ARG(@name "phase" @default 0 1 @type "int/float" @description "Buffer phase envelope between 0 and 1, either as an envelope or a buffer.")
+        BP_REF_ARG(@name "phase" @default 0 1 @type "int/float" @description "Buffer phase envelope between 0 and 1, either as a single number, envelope, or buffer.")
         BP_REF_ARG(@name "duration" @default 1000 @type "int" @description "Envelope duration in milliseconds. Ignored if `@phase` is a buffer.")
     )
     @output BP_REF_OUTPUT(@description "Scrub operation" @type "llll")
@@ -5600,9 +5710,10 @@ mix = (
     $envtimeunit = 2,
     $interp = 0,
     $normalize = 0 -> (
-        BP_FN_CHECK_ARGS('mix', 'buffers', $buffers);
+        $self = 'mix';
+        BP_FN_CHECK_ARGS($self, 'buffers', $buffers);
         $numbuffers = length($buffers) + 1;
-        $buffers = for $buffer in $buffers collect $buffer.process(BP_FN_DUMMY_PROCESS()).getkey("source");
+        $buffers = for $buffer in $buffers collect BP_FN_DETACH_BUFFER($buffer @origin $self).getkey("source");
         [
             [ "fx" "mix" ]
             [ "params"
@@ -5670,21 +5781,9 @@ BP_FN_BUFFER_ARITHMETIC = (
     $resamplingmode = "sinc",
     $resamplingpolicy = 3,
     $envtimeunit = 2 -> (
-        BP_FN_CHECK_ARGS($name, 'operand', $operand);
-
-        ## check if @operand is buffer, envelope or scalar.
-        $depth = depth($operand);
-        $length = length($operand);
-        if $depth > 1 || $length > 1 then (
-            $source = $operand.getkey("source");
-            ## if buffer, assign file to @operand
-            if $source != null then (
-                $operand = $source
-            ) else (
-                ## if envelope, clean format and wrap if envelope
-                $operand = [ bpf($operand) ]
-            )
-        );
+        $self = $name;
+        BP_FN_CHECK_ARGS($self, 'operand', $operand);
+        $operand = BP_FN_CLEAN_AUDIO_PARAM($self, $operand, 1);
         [
             [ "fx" "arithmetic" ]
             [ "params"
@@ -5961,8 +6060,9 @@ BP_REF_NEW(
 rampsmooth = (
     $up = 1024,
     $down = 1024 -> (
-        $up = $up.getkey("source") ||| [ bpf($up) ];
-        $down = $down.getkey("source") ||| [ bpf($down) ];
+        $self = 'rampsmooth';
+        $up = BP_FN_CLEAN_AUDIO_PARAM($self, $up, 1);
+        $down = BP_FN_CLEAN_AUDIO_PARAM($self, $down, 1);
         [
             [ "fx" "rampsmooth" ]
             [ "params"
@@ -6102,14 +6202,10 @@ join = (
     $resamplingfiltersize = 11,
     $resamplingmode = 'sinc',
     $resamplingpolicy = 3 -> (
-        BP_FN_CHECK_ARGS('join', 'buffers', $buffers);
+        $self = 'join';
+        BP_FN_CHECK_ARGS($self, 'buffers', $buffers);
         $buffers = for $buffer in $buffers collect (
-            $source = $buffer.getkey("source");
-            if $source == null then (
-                BP_FN_ERROR('join', 'invalid buffer:' $buffer)
-            ) else (
-                $buffer.process(BP_FN_DUMMY_PROCESS()).getkey("source")
-            )
+            BP_FN_DETACH_BUFFER($buffer @origin $self).getkey("source")
         );
         [
             [ "fx" "join" ]
@@ -6366,12 +6462,8 @@ panning = (
     $compensate = 1,
     $spread = 1,    
     $envtimeunit = 2 -> (
-        $source = $position.getkey("source");
-        if $source != null then (
-            $position = $source
-        ) else if length($position) > 1 || depth($position) > 1 then (
-            $position = [ bpf($position) ]
-        );
+        $self = 'panning';
+        $position = BP_FN_CLEAN_AUDIO_PARAM($self, $position, 1);
         [
             [ "fx" "panning" ]
             [ "params"
@@ -6468,8 +6560,9 @@ gain = (
     $ampunit = 0,
     $envampunit = 0,
     $envtimeunit = 2 -> (
-        BP_FN_CHECK_ARGS('gain', 'gain', $gain);
-        $gain = $gain.getkey("source") ||| [ bpf($gain) ];
+        $self = 'gain';
+        BP_FN_CHECK_ARGS($self, 'gain', $gain);
+        $gain = BP_FN_CLEAN_AUDIO_PARAM($self, $gain, 1);
         [
             [ "fx" "gain" ]
             [ "params"
@@ -6582,8 +6675,7 @@ buf2ptracks = (
     $downmix = 1 -> (
         $self = 'buf2ptracks';
         BP_FN_CHECK_ARGS($self, 'buffer', $buffer);
-        BP_FN_VALIDATE_BUFFER($self, $buffer);
-        $source = $buffer.process(BP_FN_DUMMY_PROCESS()).getkey("source");
+        $source = BP_FN_DETACH_BUFFER($buffer @origin $self).getkey("source");
         BP_FN_DISPATCH("resynth", 
             [ "analysis" 
                 [ "winstartfromzero" $winstartfromzero ]
@@ -6903,8 +6995,8 @@ render(@play 1)"
 
 buf2samps = (
     $buffer -> (
-        BP_FN_VALIDATE_BUFFER('buf2samps', $buffer);
-        $source = $buffer.process(BP_FN_DUMMY_PROCESS()).getkey("source");
+        $self = 'buf2samps';
+        $source = BP_FN_DETACH_BUFFER($self, $buffer @origin $self).getkey('source');
         BP_FN_DISPATCH('ears', ['tosamps' $source]);
         BP_TMP_EARS_OUTPUT
     )
@@ -6964,12 +7056,13 @@ hoaencode = (
     $dimension = '3D',
     $angleunit = 0,
     $envtimeunit = 2 -> (
+        $self = 'hoaencode';
         [
             [ "fx" "hoaencode" ]
             [ "params"
-                [ 'azimuth' if depth($azimuth) > 1 || length($azimuth) > 1 then [ bpf($azimuth) ] else $azimuth ]
-                [ 'elevation' if depth($elevation) > 1 || length($elevation) > 1 then [ bpf($elevation) ] else $elevation ]
-                [ 'distance' if depth($distance) > 1 || length($distance) > 1 then [ bpf($distance) ] else $distance ]
+                [ 'azimuth' BP_FN_CLEAN_AUDIO_PARAM($self, $azimuth) ]
+                [ 'elevation' BP_FN_CLEAN_AUDIO_PARAM($self, $elevation) ]
+                [ 'distance' BP_FN_CLEAN_AUDIO_PARAM($self, $distance) ]
                 [ 'order' $order ]
                 [ 'angleunit' $angleunit ]
                 [ 'envtimeunit' $envtimeunit ]
@@ -6985,9 +7078,9 @@ BP_REF_NEW(
     @description "Generates an audio process operation for panning the input buffer and encode it as a higher-order ambisonic buffer",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "azimuth" @default 0 @type "int/float/llll" @description "Azimuth or X coordinate.")
-        BP_REF_ARG(@name "elevation" @default 0 @type "int/float/llll" @description "Elevation or y coordinate.")
-        BP_REF_ARG(@name "distance" @default 1 @type "int/float/llll" @description "Distance or Z coordinate.")
+        BP_REF_ARG(@name "azimuth" @default 0 @type "int/float/llll" @description "Azimuth or X coordinate, either as a single number, or envelope.")
+        BP_REF_ARG(@name "elevation" @default 0 @type "int/float/llll" @description "Elevation or y coordinate, either as a single number, or envelope.")
+        BP_REF_ARG(@name "distance" @default 1 @type "int/float/llll" @description "Distance or Z coordinate, either as a single number, or envelope.")
         BP_REF_ARG(@name "order" @default 1 @type "int" @description "Ambisonics order.")
         BP_REF_ARG(@name "coordtype" @default "'aed'" @type "symbol" @description "Input coordinate type" @options
             BP_REF_OPT(@value "'aed'" @description "Azimuth, elevation, and distance; or spherical coordinates.")

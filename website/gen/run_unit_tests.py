@@ -36,7 +36,7 @@ def run_next_test():
     if COUNTER >= len(UNIT_TESTS):
         logger.success("DONE!")
         exit()
-    time.sleep(1)
+    time.sleep(0.05)
     current = UNIT_TESTS[COUNTER]
     COUNTER += 1
     APP.read(current)
@@ -61,7 +61,10 @@ def start_listener():
         message_type = int(message_type)
         if message_type == 1 or (message_type == 2 and object != 'bellplay~'):
             ERROR = 1
-            logger.error(args[0])
+            global UNIT_TESTS
+            global COUNTER
+            current = UNIT_TESTS[COUNTER - 1]
+            logger.error(args[0] + f"\n{current}")
 
         elif message_type == 2 and object == "bellplay~" and payload[0] == 'ok':
             run_next_test()

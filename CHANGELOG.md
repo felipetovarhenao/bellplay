@@ -17,6 +17,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - New tutorials:
   - `bp.example.syntharpeggio.bell`
 - New functions:
+  - `detach`: Returns a hard-copy of the input buffer, detaching it from its previous source.
+  - `simplefm`: Generates pink noise buffer.
   - `pink`: Generates pink noise buffer.
   - `rotate`: Audio processing operation for rotating a buffer.
   - `view`: Displays data in separate window. Replaces `inspect`.
@@ -41,6 +43,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- Buffer-based parameters are properly handled based on their `offset` and `duration` values.
 - Tutorials and examples now available in top menu, not GUI.
 - New `bellplay~` logo!
 - Improved error handling.

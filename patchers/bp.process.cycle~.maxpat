@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 59.0, 106.0, 176.0, 111.0 ],
+		"rect" : [ 59.0, 106.0, 339.0, 124.0 ],
 		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
 		"style" : "bellplay-gui-1",
@@ -20,9 +20,9 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 74.0, 8.0, 89.0, 23.0 ],
-					"text" : "ears.in @out m"
+					"outlettype" : [ "signal" ],
+					"patching_rect" : [ 74.0, 8.0, 60.0, 23.0 ],
+					"text" : "ears.in~ 2"
 				}
 
 			}
@@ -84,12 +84,7 @@
 
 			}
  ],
-		"originid" : "pat-8478",
 		"dependency_cache" : [ 			{
-				"name" : "ears.in.mxo",
-				"type" : "iLaX"
-			}
-, 			{
 				"name" : "ears.in~.mxo",
 				"type" : "iLaX"
 			}
