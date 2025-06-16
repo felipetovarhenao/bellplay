@@ -6137,6 +6137,36 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+slide = (
+    $up = 1024,
+    $down = 1024 -> (
+        $self = 'slide';
+        $up = BP_FN_CLEAN_AUDIO_PARAM($self, $up, 1);
+        $down = BP_FN_CLEAN_AUDIO_PARAM($self, $down, 1);
+        [
+            [ "fx" "slide" ]
+            [ "params"
+                [ "up" $up ]
+                [ "down" $down ]
+            ]
+        ]
+    )
+);
+
+BP_REF_NEW(
+    @name "slide"
+    @description "Generates an audio process operation to logarithmically filter a buffer."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(@name "up", @default 1024, @type "int/list/llll", @description "Ramp up, in samples, as either a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "down", @default 1024, @type "int/list/llll", @description "Ramp down, in samples, as either a single number, envelope, or buffer.")
+    )
+    @output BP_REF_OUTPUT(@description "Slide operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('slide' @buffer 'envelope([0 0 0] [0.5 1 0] [1 0 0])')
+);
+
+## ------------------------------------------------------------
+
 onepole = (
     $cutoff = 300,
     $highpass = 0 -> (
