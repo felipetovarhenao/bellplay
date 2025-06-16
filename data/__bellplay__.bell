@@ -5552,6 +5552,99 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+BP_FN_BUFFER_COMPARISON = (
+    $origin,
+    $operand,
+    $type -> (
+        $operand = BP_FN_CLEAN_AUDIO_PARAM($origin, $operand, 1);
+        [
+            [ "fx" "compare" ]
+            [ "params"
+                [ "operand" $operand ]
+                [ "type" $type ]
+            ]
+        ]
+    )
+);
+
+## ------------------------------------------------------------
+
+compgt = (
+    $operand = 0 -> (
+        $self = 'compgt';
+        BP_FN_BUFFER_COMPARISON($self, $operand, 'gt')
+    )
+);
+
+BP_REF_NEW(
+    @name "compgt"
+    @description "Generates an audio process operation for performing a sample-wise _greater than_ comparison on a buffer."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(@name "operand" @default 0 @type "int/float/llll" @description "Comparison operand, either as a single number, envelope, or buffer.")
+    )
+    @output BP_REF_OUTPUT(@description "_Greater than_ comparison operation" @type "llll")
+);
+
+## ------------------------------------------------------------
+
+compgte = (
+    $operand = 0 -> (
+        $self = 'compgte';
+        BP_FN_BUFFER_COMPARISON($self, $operand, 'gte')
+    )
+);
+
+BP_REF_NEW(
+    @name "compgte"
+    @description "Generates an audio process operation for performing a sample-wise _greater than or equal to_ comparison on a buffer."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(@name "operand" @default 0 @type "int/float/llll" @description "Comparison operand, either as a single number, envelope, or buffer.")
+    )
+    @output BP_REF_OUTPUT(@description "_Greater than or equal to_ comparison operation" @type "llll")
+);
+
+## ------------------------------------------------------------
+
+complt = (
+    $operand = 0 -> (
+        $self = 'complt';
+        BP_FN_BUFFER_COMPARISON($self, $operand, 'lt')
+    )
+);
+
+BP_REF_NEW(
+    @name "complt"
+    @description "Generates an audio process operation for performing a sample-wise _less than_ comparison on a buffer."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(@name "operand" @default 0 @type "int/float/llll" @description "Comparison operand, either as a single number, envelope, or buffer.")
+    )
+    @output BP_REF_OUTPUT(@description "_Less than_ comparison operation" @type "llll")
+);
+
+## ------------------------------------------------------------
+
+complte = (
+    $operand = 0 -> (
+        $self = 'complte';
+        BP_FN_BUFFER_COMPARISON($self, $operand, 'lte')
+    )
+);
+
+BP_REF_NEW(
+    @name "complte"
+    @description "Generates an audio process operation for performing a sample-wise _less than or equal to_ comparison on a buffer."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(@name "operand" @default 0 @type "int/float/llll" @description "Comparison operand, either as a single number, envelope, or buffer.")
+    )
+    @output BP_REF_OUTPUT(@description "_Less than or equal to_ comparison operation" @type "llll")
+);
+
+## ------------------------------------------------------------
+
 rounding = (
     $value = 1,
     $nearest = 1 -> (
