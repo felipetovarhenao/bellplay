@@ -5138,6 +5138,28 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+hypertan = ( -> [ [ "fx" "tanh" ] ]);
+
+BP_REF_NEW(
+    @name "hypertan",
+    @description "Generates an audio process operation for applying a hyperbolic tangent function to a buffer.",
+    @category BP_REF_LABEL_BUFFER_OPERATIONS,
+    @output BP_REF_OUTPUT(@description "Hyperbolic tangent operation" @type "llll")
+);
+
+## ------------------------------------------------------------
+
+arctan = ( -> [ [ "fx" "atan" ] ]);
+
+BP_REF_NEW(
+    @name "arctan",
+    @description "Generates an audio process operation for applying an arc-tangent function to a buffer.",
+    @category BP_REF_LABEL_BUFFER_OPERATIONS,
+    @output BP_REF_OUTPUT(@description "Arc tangent operation" @type "llll")
+);
+
+## ------------------------------------------------------------
+
 rubberband = (
     $stretching = 1,
     $pitchshift = 0,
