@@ -495,6 +495,12 @@ BP_REF_NEW(
         BP_REF_ARG(@name "keepkeys" @type "symbol/list" @default 'null' @description "Optional list of keys, as symbols, to preserve from input buffer.")
     )
     @output BP_REF_OUTPUT(@description "Detached copy of buffer" @type "llll")
+    @usage BP_REF_CODE_SNIPPET("$buffer = importaudio('poem.wav');
+$buffer = $buffer.setkey('offset', 2500).setkey('duration', 1000);
+$buffer.view('before detaching');
+$buffercopy = $buffer.detach();
+$buffercopy.view('after detaching')"
+    )
 );
 
 ## ------------------------------------------------------------
@@ -4473,17 +4479,23 @@ getchannels = (
 );
 
 BP_REF_NEW(
-    @name "getchannels",
-    @description "Extracts one or more buffer channels as individual buffers.",
-    @category BP_REF_LABEL_BUFFER_UTILS,
+    @name "getchannels"
+    @description "Extracts one or more buffer channels as individual buffers."
+    @category BP_REF_LABEL_BUFFER_UTILS
     @arguments (
         BP_REF_ARG(@name "buffer", @type "llll", @description "Buffer to extract channels from.")
         BP_REF_ARG(@name "channels" @default "null" @type "int/list/llll/null", @description "Number to channels to extract—ignored when `@all` is `1`.")
         BP_REF_ARG(@name "all" @default 1 @type "int", @description "Extract all channels." @options 
             BP_REF_SWITCH_OPTIONS
         )
-    ),
+    )
     @output BP_REF_OUTPUT(@description "Channels as buffers", @type "llll")
+    @usage BP_REF_CODE_SNIPPET("$buf = cycle([0 100 0] [1 500 0.125] @duration 1000);
+$op = panning([0 0 0] [1 1 0] @numchannels 8); 
+$buf = $buf.process($op);
+$buf.view('original');
+$chans = $buf.getchannels();
+for $chan $id in $chans do $chan.view($id)")
 );
 
 ## ------------------------------------------------------------
@@ -7185,6 +7197,10 @@ BP_REF_NEW(
         BP_REF_ARG(@name "buffer", @type "llll", @description "Buffer to convert to audio samples.")
     )
     @output BP_REF_OUTPUT(@description "Buffer samples as a _llll_" @type "llll")
+    @usage BP_REF_CODE_SNIPPET("$buf = envelope([0 0 0] [1 1 0.125] @duration 5);
+$samps = $buf.buf2samps();
+$buf.view('buffer');
+$samps.view('samps')")
 );
 
 ## ------------------------------------------------------------
