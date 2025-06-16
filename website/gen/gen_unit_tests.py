@@ -12,7 +12,7 @@ ignored = ['interrupt', 'rhythm', 'chordsdetection',
            'wavesetrepeat', 'wavesetshuffle']
 for directory in [REF_DIR, LEARN_DIR]:
     for root, _, files in os.walk(directory):
-        for file in files:
+        for file in sorted(files):
             file_name, ext = os.path.splitext(file)
             if ext != '.md':
                 continue
