@@ -5479,6 +5479,7 @@ BP_REF_NEW(
         )
     )
     @output BP_REF_OUTPUT(@description "Sample-and-hold operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('sah', 'phasor(8 @duration 1000)' @buffer 'phasor(11 @duration 1000)')
 );
 
 ## ------------------------------------------------------------
