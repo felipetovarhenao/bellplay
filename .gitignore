@@ -36,7 +36,7 @@ website/npm-debug.log*
 website/yarn-debug.log*
 website/yarn-error.log*
 website/bp.*
-website/gen/testing
+website/gen/tests/*
 
 # temp
 website/docs/tutorials/*.md
@@ -46,3 +46,4 @@ website/docs/learning/*/*
 website/gen/*.txt
 website/**/*.llll
 website/static/search-index.json
+!.placeholder
