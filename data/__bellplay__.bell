@@ -4810,9 +4810,8 @@ BP_REF_NEW(
 envelope = (
     $envelope = 0, 
     $duration = 1000 -> (
-        $depth = depth($envelope);
-        $length = length($envelope);
-        if $depth > 1 || $length > 1 then ($envelope = [ bpf($envelope) ]);
+        $self = 'envelope';
+        $envelope = BP_FN_CLEAN_AUDIO_PARAM($self, $envelope);
         BP_FN_DISPATCH("generate", 
             [
                 [ "fx" "envelope"]
@@ -6412,7 +6411,8 @@ resample = (
     $antimeunit = 1,
     $resamplingmode = "sinc",
     $resamplingfiltersize = 11 -> (
-        if length($duration) > 1 || depth($duration) > 1 then ($duration = [ bpf($duration) ]);
+        $self = 'resample';
+        $duration = BP_FN_CLEAN_AUDIO_PARAM($self, $duration);
         [
             [ "fx" "resample" ]
             [ "params"
@@ -6432,7 +6432,7 @@ BP_REF_NEW(
     @description "Generates an audio process operation for applying stretching/pitch shifting a buffer via resampling.",
     @category BP_REF_LABEL_BUFFER_OPERATIONS,
     @arguments (
-        BP_REF_ARG(@name "duration", @default 1, @type "int/float", @description "Target duration, based on `@timeunit`.")
+        BP_REF_ARG(@name "duration", @default 1, @type "int/float", @description "Target duration, based on `@timeunit`, as either a single number or envelope.")
         BP_REF_ARG(@name "timeunit", @default 2, @type "int", @description "Time unit for `@duration`." @options 
             BP_REF_TIMEUNIT_OPTIONS
         )
