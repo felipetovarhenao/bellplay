@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `bp.example.syntharpeggio.bell`
   - `bp.example.shepardtone.bell`
 - New functions:
+  - `logarithm`: Generates operation to apply a logarithmic function to a buffer.
   - `sah`: Generates operation to apply sample-and-hold to a buffer.
   - `hypertan`: Generates operation to apply hyperbolic tangent to a buffer.
   - `arctan`: Generates operation to apply arc-tangent to a buffer.

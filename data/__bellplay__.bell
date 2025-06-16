@@ -5393,6 +5393,33 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+logarithm = (
+    $base = 2.718281828459 -> (
+        $self = 'logarithm';
+        BP_FN_CHECK_ARGS($self, 'base', $base);
+        $base = BP_FN_CLEAN_AUDIO_PARAM($self, $base, 1);
+        [
+            [ "fx" "log" ]
+            [ "params"
+                [ "base" $base ]
+            ]
+        ]
+    )
+);
+
+BP_REF_NEW(
+    @name "logarithm"
+    @description "Generates an audio process operation for applying a logarithmic function to a buffer, based on `@base`."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(@name "base" @default '2.718' @type "int/float/list/llll" @description "Logarithmic base, as either a single number, an envelope or buffer.")
+    )
+    @output BP_REF_OUTPUT(@description "Logarithmic operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('logarithm', '2' @buffer 'envelope([0 1 0] [1 16 0])')
+);
+
+## ------------------------------------------------------------
+
 pitchshift = (
     $shift = 1,
     $constantlatency = 0,
