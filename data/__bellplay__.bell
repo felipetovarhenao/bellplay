@@ -2828,7 +2828,11 @@ analyze = (
             if $lastchar == '~' then (
                 $outkeys = $descr.getkey("output");
                 for $k in $outkeys do (
-                    $features.$k = BP_FN_NEWBUFF(@source $features.$k).process(BP_FN_DUMMY_PROCESS())
+                    $features.$k = BP_FN_DETACH_BUFFER(
+                        @buffer BP_FN_NEWBUFF(@source $features.$k) 
+                        @strict 1 
+                        @origin $self
+                    )
                 )
             )
         );
@@ -7030,7 +7034,7 @@ samps2buf = (
                 ]
             );
             $source = BP_TMP_EARS_OUTPUT;
-            BP_FN_NEWBUFF($source).process(BP_FN_DUMMY_PROCESS())
+            BP_FN_DETACH_BUFFER(BP_FN_NEWBUFF($source) @strict 1 @origin $self)
         )
     )
 );
@@ -7044,6 +7048,47 @@ BP_REF_NEW(
         BP_REF_ARG(@name "sr" @type "int" @default 0 @description "Sampling rate. use `0` for default sampling rate.")
     )
     @output BP_REF_OUTPUT(@description "Buffer" @type "llll")
+);
+
+## ------------------------------------------------------------
+
+pack = (
+    $buffers,
+    $resamplingfiltersize = 11,
+    $resamplingmode = 'sinc',
+    $resamplingpolicy = 3 -> (
+        $self = 'pack';
+        BP_FN_CHECK_ARGS($self, 'buffers', $buffers);
+        $buffers = for $b in $buffers collect BP_FN_DETACH_BUFFER($b @origin $self).getkey("source");
+        BP_FN_DISPATCH('ears', 
+            ['pack' 
+                [ 'resamplingfiltersize' $resamplingfiltersize ]
+                [ 'resamplingmode' $resamplingmode ]
+                [ 'resamplingpolicy' $resamplingpolicy ]
+                [ 'buffers' $buffers ]
+            ]
+        );
+        $source = BP_TMP_EARS_OUTPUT;
+        BP_FN_DETACH_BUFFER(BP_FN_NEWBUFF($source) @strict 1 @origin $self)
+        
+    )
+);
+
+BP_REF_NEW(
+    @name "pack"
+    @description "Combines multiple buffers as channels into a single buffer."
+    @category BP_REF_LABEL_BUFFER_UTILS
+    @arguments (
+        BP_REF_ARG(@name "buffers" @type "llll" @description "Audio samples to convert to a buffer.")
+        BP_REF_ARG(@name "resamplingfiltersize" @default 11 @type "int" @description "Resampling filter size.")
+        BP_REF_ARG(@name "resamplingmode" @default "'sinc'" @type "symbol" @description "Resampling mode." @options
+            BP_REF_RESAMPLINGMODE_OPTIONS
+        )
+        BP_REF_ARG(@name "resamplingpolicy" @default 3 @type "int" @description "Resampling policy." @options
+            BP_REF_RESAMPLINGPOLICY_OPTIONS
+        )
+    )
+    @output BP_REF_OUTPUT(@description "New buffer" @type "llll")
 );
 
 ## ------------------------------------------------------------
