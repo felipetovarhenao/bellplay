@@ -5439,6 +5439,50 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+sah = (
+    $trigger = 0.,
+    $duration = 0,
+    $thresh = 0.5,
+    $triggermode = 0 -> (
+        $self = 'sah';
+        $trigger = BP_FN_CLEAN_AUDIO_PARAM($self, $trigger, 1);
+        [
+            [ "fx" "sah" ]
+            [ "params"
+                [ 'params'
+                    [ 'duration' $duration ]
+                    [ 'thresh' $thresh ]
+                    [ 'triggermode' $triggermode ]
+                ]
+                [ "trigger" $trigger ]
+            ]
+        ]
+    )
+);
+
+BP_REF_NEW(
+    @name "sah"
+    @description "Generates an audio process operation for applying sample-and-hold to a buffer. Use `sah` to capture (i.e., _sample_) and output (i.e., _hold_) a value from an input signal whenever a trigger signal satisfies a threshold value according to one of several trigger conditions. The default trigger mode (_Ascending_) requires the signal to go from being at or below the threshold value to above it. At the moment the trigger condition is satisfied, the input signal is sampled and _held_ until the trigger condition is satisfied again, at which point the input is sampled again. Generally this allows one signal to be synchronized to the behavior of another."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(@name "trigger" @default 0 @type "int/float/llll" @description "Sample-and-hold trigger, either as a single number, envelope, or buffer.")
+        BP_REF_ARG(@name "duration" @default 0 @type "int" @description "Duration in samples. Normally the signal output of `sah` remains constant. With a non-zero value for duration any new non-zero value will remain constant for a specified number samples, after which it will be 0.")
+        BP_REF_ARG(@name "thresh" @default '0.5' @type "int/float" @description "Value of the trigger signal used to cause the input signal to be sampled and output.")
+        BP_REF_ARG(@name "triggermode" @default 0 @type "int/float" @description "" @options
+            BP_REF_OPT(@value 0 @description "_Ascending_. Detects the trigger signal passing from below to above the threshold value. Useful with increasing ramps (such as `phasor` with a positive frequency).")
+            BP_REF_OPT(@value 1 @description "_Descending_. Detects trigger signal passing from above to below the threshold value. Useful with decreating ramps (such as `phasor` with a negative frequency).")
+            BP_REF_OPT(@value 2 @description "_Ascending or descending_. Detects trigger signal passing from below to above the threshold value or passing from above to below the threshold value. This mode may produce unexpected results with a phasor but might be more appropriate for a continuous trigger input such as a sine wave.")
+            BP_REF_OPT(@value 3 @description "_Equals_. Detects an exact value in the trigger signal value. This mode is not recommended for continuous functions that may never reach a specific value, but could be useful to detect impulses or other signals where a specific value is expected.")
+            BP_REF_OPT(@value 4 @description "_Zero to non-zero_. Detects a trigger signal that goes from a zero value to a non-zero value. This could be useful to detect the start of a ramp or incoming audio. The value of `@thresh` is ignored in this mode.")
+            BP_REF_OPT(@value 5 @description "_Non-zero to zero_. Detects a trigger signal that goes from a non-zero value to a zero value. This could be useful to detect a signal turning off. The value of `@thresh` is ignored in this mode.")
+            BP_REF_OPT(@value 6 @description "_Phase_. Phase mode treats the threshold value as a phase value using a phase detection algorithm. In _Phase_ mode, `sah` detects resets in the output of the `phasor` function and defines those as triggers for a threshold value of `0`. _Phase_ mode works with both positive and negative `phasor` frequencies.")
+        )
+    )
+    @output BP_REF_OUTPUT(@description "Sample-and-hold operation" @type "llll")
+);
+
+## ------------------------------------------------------------
+
 degrade = (
     $ratio = .5,
     $bits = 4 -> (

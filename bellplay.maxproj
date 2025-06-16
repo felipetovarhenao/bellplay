@@ -2,7 +2,7 @@
 	"name" : "bellplay",
 	"version" : 1,
 	"creationdate" : 3792408071,
-	"modificationdate" : 3832937039,
+	"modificationdate" : 3832940971,
 	"viewrect" : [ 25.0, 103.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -312,6 +312,11 @@
 			}
 ,
 			"bp.process.atan~.maxpat" : 			{
+				"kind" : "patcher",
+				"local" : 1
+			}
+,
+			"bp.process.sah~.maxpat" : 			{
 				"kind" : "patcher",
 				"local" : 1
 			}
