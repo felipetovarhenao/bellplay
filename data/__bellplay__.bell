@@ -5371,6 +5371,52 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+pitchshift = (
+    $shift = 1,
+    $constantlatency = 0,
+    $quality = 'basic',
+    $usecents = 0 -> (
+        $self = 'pitchshift';
+        $shift = BP_FN_CLEAN_AUDIO_PARAM($self, $shift, 1);
+        [
+            [ "fx" "pitchshift" ]
+            [ "params"
+                [ 'params'
+                    [ "constantlatency" $constantlatency ]
+                    [ "quality" $quality ]
+                    [ "usecents" $usecents ]
+                ]
+                [ "shift" $shift ]
+            ]
+        ]
+    )
+);
+
+BP_REF_NEW(
+    @name "pitchshift"
+    @description "Generates an audio process operation for applying [Ztx-based](https://www.zynaptiq.com/ztx/) pitch shifting to a buffer."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(@name "shift" @default 1 @type "int/float/list/llll" @description "Pitch shift as a factor of the original pitch (i.e. 2.0 = doubling of pitch, .5 = halving of the original pitch, etc.), or in cents if `@usecents` is set to `1`. Either as a single value, envelope, or buffer.")
+        BP_REF_ARG(@name "constantlatency" @default 0 @type "int" @description "Constant latency." @options
+            BP_REF_SWITCH_OPTIONS
+        )
+        BP_REF_ARG(@name "quality" @default "'basic'" @type "symbol" @description "Pitch shifting output quality." @options
+            BP_REF_OPT(@value "'basic'")
+            BP_REF_OPT(@value "'good'")
+            BP_REF_OPT(@value "'better'")
+            BP_REF_OPT(@value "'best'")
+        )
+        BP_REF_ARG(@name "usecents" @default 0 @type "int" @description "Use cents for `@shift`." @options
+            BP_REF_SWITCH_OPTIONS
+        )
+    )
+    @output BP_REF_OUTPUT(@description "Pitch shift operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('pitchshift', '2')
+);
+
+## ------------------------------------------------------------
+
 degrade = (
     $ratio = .5,
     $bits = 4 -> (
@@ -5552,7 +5598,7 @@ retune = (
 
 BP_REF_NEW(
     @name "retune"
-    @description "Generates an audio process operation for applying autotune-like pitch retuning to a buffer."
+    @description "Generates an audio process operation for applying [Ztx-based](https://www.zynaptiq.com/ztx/) autotune to a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
         BP_REF_ARG(@name "pitchgrid" @default 0 @type "int/float/list" @description "Pitch grid to retune to, as a list of pitch classes.")
