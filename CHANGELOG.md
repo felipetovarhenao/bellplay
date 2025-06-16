@@ -14,8 +14,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - New zoom in and out support via `shift+` and `shift-`.
   - New button styling, with matching SVG icons, via `bp.ui.button`.
   - Preferences include allowing control over console automatically opening.
-- New tutorials:
+- New tutorials/examples:
   - `bp.example.syntharpeggio.bell`
+  - `bp.example.shepardtone.bell`
 - New functions:
   - `pack`: Combines buffers as channels of a single buffer.
   - `detach`: Returns a hard-copy of the input buffer, detaching it from its previous source.
