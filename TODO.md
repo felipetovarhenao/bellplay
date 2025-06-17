@@ -47,18 +47,15 @@
 
 - Add support for pitch syntax in `ezsampler` and `transcribe`.
 - Adapt code base to new bell language version.
-- Migrate reference documentation to versioned web repo.
 - Improve control over score appearance via `setscore` (replacing `scoreconfig`).
 - Improve naming of i/o functions: `export`, `read`, `write`, `loadcorpus`, `setcorpus`, `importaudio`, `importmidi`.
 - `getkey`: Add support for multiple keys and `@wrap` argument for weather values should be wrapped individually or not.
 - Improve existing process ops:
   - `groove`.
 - Add new processing functions:
-  - `pink`, `modulo`, `buffir`, `zerox`, `thresh`, `svf`, `log`.
+  - `modulo`, `buffir`, `zerox`, `thresh`, `svf`.
 - Add util functions:
   - `float2rat`
-- GUI:
-  - Add nav arrows in inspector window.
 - Explore integration of flucoma — datasets are doable via `bach.llll2dict` and `bach.dict2llll`.
 - `ears` (_some of these could still be done through the bp.process patch_):
   - `stft`
