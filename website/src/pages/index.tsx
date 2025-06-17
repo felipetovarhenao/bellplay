@@ -33,6 +33,7 @@ function HomepageHeader() {
 
 const BellplayDownloadLink: React.FC = () => {
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+  const [version, setVersion] = useState<string | null>(null);
 
   useEffect(() => {
     const owner = "felipetovarhenao";
@@ -44,6 +45,7 @@ const BellplayDownloadLink: React.FC = () => {
         if (!tagRes.ok) return;
         const release = await tagRes.json();
         const tag = release.tag_name;
+        setVersion(tag);
 
         const url = `https://github.com/${owner}/${repo}/releases/download/${tag}/bellplay_${tag}_macOS.zip`;
 
@@ -56,9 +58,9 @@ const BellplayDownloadLink: React.FC = () => {
     fetchLatestTag();
   }, []);
 
-  return downloadUrl ? (
+  return downloadUrl && version ? (
     <Link className="button button--secondary button--lg" href={downloadUrl} download>
-      Free Download
+      {`Download ${version}`}
     </Link>
   ) : null;
 };
