@@ -65,4 +65,4 @@ No. There’s no hard limit. Since audio is rendered offline, you're only constr
 
 ### Is _bellplay~_ free to use?
 
-Yes. It’s distributed under the [GPL-3.0 license](https://www.gnu.org/licenses/gpl-3.0.en.html), and the standalone app does not require a Max license.
+Yes. It’s distributed under the [GPL-3.0 license](https://www.gnu.org/licenses/gpl-3.0.en.html), and the standalone app does not require a Max license. However, [donations](https://www.paypal.com/donate/?hosted_button_id=9A265VMJBYANE) as well appreciated and welcomed, as it helps support the continuous development and improvement of _bellplay~_.
