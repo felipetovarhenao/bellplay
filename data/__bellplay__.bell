@@ -4450,28 +4450,6 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-mtof = ( -> [ [ "fx" "mtof" ] ]);
-
-BP_REF_NEW(
-    @name "mtof",
-    @description "Generates an audio process operation for MIDI-to-frequency conversion in a buffer.",
-    @category BP_REF_LABEL_BUFFER_OPERATIONS,
-    @output BP_REF_OUTPUT(@description "Midi-to-frequency operation" @type "llll")
-);
-
-## ------------------------------------------------------------
-
-mtof = ( -> [ [ "fx" "ftom" ] ]);
-
-BP_REF_NEW(
-    @name "ftom",
-    @description "Generates an audio process operation for frequency-to-MIDI conversion in a buffer.",
-    @category BP_REF_LABEL_BUFFER_OPERATIONS,
-    @output BP_REF_OUTPUT(@description "Frequency-to-MIDI operation" @type "llll")
-);
-
-## ------------------------------------------------------------
-
 dcfilter = ( -> [ [ "fx" "dcfilter" ] ]);
 
 BP_REF_NEW(
