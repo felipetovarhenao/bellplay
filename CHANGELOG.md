@@ -18,7 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `bp.example.syntharpeggio.bell`
   - `bp.example.shepardtone.bell`
 - New functions:
-  - _comparison functions_: (`compgt`, `compgte`, `complt`, `complte`) Generates operation to apply a sample-wise comparison to a buffer.
+  - _comparison functions_: (`greaterthan`, `greaterthaneq`, `lessthan`, `lessthaneq`) Generates operation to apply a sample-wise comparison to a buffer.
   - `miditofreq` and `freqtomidi`: MIDI to/from frequency processing operations.
   - `logarithm`: Generates operation to apply a logarithmic function to a buffer.
   - `sah`: Generates operation to apply sample-and-hold to a buffer.

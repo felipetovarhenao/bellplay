@@ -5591,15 +5591,15 @@ BP_FN_BUFFER_COMPARISON = (
 
 ## ------------------------------------------------------------
 
-compgt = (
+greaterthan = (
     $operand = 0 -> (
-        $self = 'compgt';
+        $self = 'greaterthan';
         BP_FN_BUFFER_COMPARISON($self, $operand, 'gt')
     )
 );
 
 BP_REF_NEW(
-    @name "compgt"
+    @name "greaterthan"
     @description "Generates an audio process operation for performing a sample-wise _greater than_ comparison on a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
@@ -5610,15 +5610,15 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-compgte = (
+greaterthaneq = (
     $operand = 0 -> (
-        $self = 'compgte';
+        $self = 'greaterthaneq';
         BP_FN_BUFFER_COMPARISON($self, $operand, 'gte')
     )
 );
 
 BP_REF_NEW(
-    @name "compgte"
+    @name "greaterthaneq"
     @description "Generates an audio process operation for performing a sample-wise _greater than or equal to_ comparison on a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
@@ -5629,15 +5629,15 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-complt = (
+lessthan = (
     $operand = 0 -> (
-        $self = 'complt';
+        $self = 'lessthan';
         BP_FN_BUFFER_COMPARISON($self, $operand, 'lt')
     )
 );
 
 BP_REF_NEW(
-    @name "complt"
+    @name "lessthan"
     @description "Generates an audio process operation for performing a sample-wise _less than_ comparison on a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
@@ -5648,15 +5648,15 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-complte = (
+lessthaneq = (
     $operand = 0 -> (
-        $self = 'complte';
+        $self = 'lessthaneq';
         BP_FN_BUFFER_COMPARISON($self, $operand, 'lte')
     )
 );
 
 BP_REF_NEW(
-    @name "complte"
+    @name "lessthaneq"
     @description "Generates an audio process operation for performing a sample-wise _less than or equal to_ comparison on a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
