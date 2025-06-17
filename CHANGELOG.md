@@ -73,6 +73,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- Minor optimization by undesired buffer allocation during processing.
 - `chordsdetection`: Add missing docs.
 - Functions with fixed logic bugs:
   - `autoscale`
