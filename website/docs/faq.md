@@ -53,7 +53,7 @@ Yes. Audio files can be imported using `importaudio`, and processed and analyzed
 
 ### Do I need to know Max to use _bellplay~_?
 
-No. While _bellplay~_ is built on Max, you don’t need to use patching or understand Max internals. The entire user interaction is script-based, via the `bell` language. A standalone app is available for macOS. On Windows, Max is required, but only as a runtime environment.
+No. While _bellplay~_ is built on Max, you don’t need to use patching or understand Max to use _bellplay~_. The entire user interaction is script-based, via the `bell` language. A standalone app is available for macOS. On Windows, Max is required, but only as a runtime environment.
 
 ---
 
