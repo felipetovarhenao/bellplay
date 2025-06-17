@@ -4461,6 +4461,28 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+miditofreq = ( -> [ [ "fx" "mtof" ] ]);
+
+BP_REF_NEW(
+    @name "miditofreq"
+    @description "Generates an audio process operation for MIDI-to-frequency conversion."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @output BP_REF_OUTPUT(@description "MIDI-to-frequency operation" @type "llll")
+);
+
+## ------------------------------------------------------------
+
+freqtomidi = ( -> [ [ "fx" "ftom" ] ]);
+
+BP_REF_NEW(
+    @name "freqtomidi"
+    @description "Generates an audio process operation for frequency-to-MIDI conversion."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @output BP_REF_OUTPUT(@description "Frequency-to-MIDI operation" @type "llll")
+);
+
+## ------------------------------------------------------------
+
 getchannels = (
     $buffer, 
     $channels = null,

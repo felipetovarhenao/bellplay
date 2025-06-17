@@ -13,7 +13,7 @@ APP = BellPlay()
 ERROR = 0
 ROOT = os.path.dirname(__file__)
 UNIT_TEST_DIR = os.path.join(ROOT, 'tests')
-COUNTER = 0
+COUNTER = 160
 UNIT_TESTS = []
 
 for file in sorted(os.listdir(UNIT_TEST_DIR)):
