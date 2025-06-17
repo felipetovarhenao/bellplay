@@ -73,20 +73,21 @@ function Overview() {
               What's <strong>bellplay~</strong>?
             </Heading>
             <p className="text--center">
-              <strong>bellplay~</strong> is a tool built for working with audio through code—not just to produce sound, but to shape how it's
-              structured, analyzed, and transformed across time. Scripts describe how sounds behave: how they're generated, segmented, measured, or
-              reassembled.
+              <b>bellplay~</b> is a symbolic framework and standalone application for offline algorithmic audio, music composition, and sound
+              art/design. It provides an out-of-the-box and easy to use toolkit for automating audio tasks, such as sound generation, analysis and
+              processing.
             </p>
             <p className="text--center">•••</p>
             <p className="text--center">
-              The environment is offline and deterministic. This allows for workflows that are iterative and layered: render once, reuse; extract
-              features, inform the next step; combine symbolic and signal-level operations without jumping across tools or GUIs.
+              It relies on a functional programming language called <code>bell</code>, originally designed for computer-assisted algorithmic
+              composition. <b>bellplay~</b> provides a wide variety of <code>bell</code> functions for data and audio manipulation, making it easy to
+              prototype and design offline audio algorithms of varying degrees of complexity.
             </p>
             <p className="text--center">•••</p>
             <p className="text--center">
-              Whether you’re exploring process-based sound, corpus-based composition, or encoding formal control into how audio unfolds,{" "}
-              <strong>bellplay~</strong>
-              lets you approach sound as data—with precision, structure, and repeatability.
+              <b>bellplay~</b> also offers complementary graphical interfaces for data visualization and debugging, including a symbolic or
+              notation-based timeline for audio sequencing, a SQL table browser, scatterplots, and more. Whether you're a composer, sound
+              artist/designer, or creative coder, <b>bellplay~</b> lets you approach sound as data—with precision, structure, and reproducibility.
             </p>
           </div>
         </div>

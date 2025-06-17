@@ -25,7 +25,7 @@ const FeatureList: FeatureItem[] = [
     description: <>Combine music notation and audio in a unified working environment.</>,
   },
   {
-    title: "Analysis-Aware Processing",
+    title: "Content-Aware Audio Processing",
     Svg: require("@site/static/img/undraw_dark-analytics.svg").default,
     description: <>Extract audio features to guide processing and synthesis tasks.</>,
   },
