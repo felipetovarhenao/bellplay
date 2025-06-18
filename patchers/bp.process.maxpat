@@ -383,7 +383,6 @@
 					}
 ,
 					"patching_rect" : [ 11.0, 1731.0, 50.0, 23.0 ],
-					"presentation_linecount" : 2,
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
 						"style" : "bellplay-gui-1"
@@ -4613,8 +4612,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
-									"patching_rect" : [ 159.0, 266.0, 35.0, 23.0 ],
-									"text" : "> 50."
+									"patching_rect" : [ 159.0, 266.0, 32.0, 23.0 ],
+									"text" : "> 32"
 								}
 
 							}
@@ -4625,8 +4624,8 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 159.0, 229.0, 110.0, 23.0 ],
-									"text" : "ears.info~ duration"
+									"patching_rect" : [ 159.0, 229.0, 129.0, 23.0 ],
+									"text" : "ears.info~ numsamples"
 								}
 
 							}
