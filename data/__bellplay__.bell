@@ -5845,7 +5845,7 @@ waveshape = (
         $self = 'waveshape';
         $phase = BP_FN_CLEAN_AUDIO_PARAM($self, $phase, 1);
         if is($phase) != 'symbol' then (
-            $phase = envelope($phase, $duration).getkey("source")
+            $phase = envelope($phase::1, $duration).getkey("source")
         );
         [
             [ "fx" "waveshape" ]
@@ -5876,7 +5876,7 @@ scrub = (
         $self = 'scrub';
         $phase = BP_FN_CLEAN_AUDIO_PARAM($self, $phase, 1);
         if is($phase) != 'symbol' then (
-            $phase = envelope($phase, $duration).getkey("source")
+            $phase = envelope($phase::1, $duration).getkey("source")
         );
         [
             [ "fx" "scrub" ]
