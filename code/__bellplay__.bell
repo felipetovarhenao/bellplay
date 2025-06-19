@@ -744,7 +744,6 @@ BP_REF_NEW(
             BP_REF_OPT(@value "null" @description "All files")
             BP_REF_OPT(@value "'audio'" @description "Audio files")
             BP_REF_OPT(@value "'midi'" @description "MIDI files")
-            BP_REF_OPT(@value "'llll'" @description "_llll_ files")
         )
     )
     @output BP_REF_OUTPUT(@description "List of media files" @type "list")
