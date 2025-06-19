@@ -4,9 +4,8 @@
 !.gitignore
 !.github
 _*.bell
-!__sandbox__.bell
-data/*
-!data/*.bell
+code/*
+!code/*.bell
 # **/*.wav
 !tutorials/*
 mycorpus.llll

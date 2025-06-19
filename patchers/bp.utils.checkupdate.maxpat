@@ -427,7 +427,7 @@
 				"box" : 				{
 					"data" : 					{
 						"http_method" : "get",
-						"url" : "https://raw.githubusercontent.com/felipetovarhenao/bellplay/refs/heads/main/data/__bellplay__.bell"
+						"url" : "https://raw.githubusercontent.com/felipetovarhenao/bellplay/refs/heads/main/code/__bellplay__.bell"
 					}
 ,
 					"id" : "obj-10",
