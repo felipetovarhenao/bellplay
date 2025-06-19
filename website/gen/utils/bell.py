@@ -41,7 +41,7 @@ class BuiltinReferenceGenerator:
         if folder_name is None:
             raise ValueError('hi')
         args = entry.get("args")
-        if 'rand' in entry['name']:
+        if 'rand' in entry['name'] or 'scramble' in entry['name']:
             for fname in self.subdirs:
                 if 'rand' in fname:
                     return fname
