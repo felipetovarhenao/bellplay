@@ -665,9 +665,6 @@ BP_MEDIA_FILES = [
         "satie.mid"
         "joplin.mid"
     ]
-    [ "llll"
-        "corpus_demo.llll"
-    ]
 ];
 
 ## ------------------------------------------------------------

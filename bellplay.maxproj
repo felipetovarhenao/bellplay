@@ -953,16 +953,6 @@
 				"local" : 1
 			}
 ,
-			"corpus_demo.llll" : 			{
-				"kind" : "llllfile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
 			"dev_logo.ico" : 			{
 				"kind" : "file",
 				"local" : 1,
