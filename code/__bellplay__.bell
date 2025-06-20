@@ -612,7 +612,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-BP_GET_BUFFER_INFO = (
+BP_FN_GET_BUFFER_INFO = (
     $buffer -> (
         BP_FN_DISPATCH("bufferinfo", $buffer);
         BP_TMP_BUFFINFO
@@ -770,7 +770,7 @@ BP_FN_NEWBUFF = (
             [ "offset" $offset ]
             [ "pitch" $pitch ]
         );
-        $info = if $info == 1 then BP_GET_BUFFER_INFO($source);
+        $info = if $info == 1 then BP_FN_GET_BUFFER_INFO($source);
         $info _= [ "source_end" if $info then $info."duration" else $buffer."duration" ];
         $buffer = [$buffer];
         for $x in $info $extras do (
@@ -5166,6 +5166,51 @@ BP_REF_NEW(
     @usage BP_REF_PROCESS_EXAMPLE('clip', '0.05')
     @tags 'overdrive'
 );
+
+## ------------------------------------------------------------
+
+wave2d = (
+    $xphase = 0,
+    $yphase = 0,
+    $rows = 2,
+    $duration = 2000 -> (
+        $self = 'wave2d';
+        BP_FN_CHECK_ARGS($self, 'xphase', $xphase, 'yphase', $yphase);
+        $duration = $xphase.getkey("duration") ||| $yphase.getkey("duration") ||| $duration;
+        BP_FN_CHECK_ARGS($self, 'duration', $duration);
+        $xphase = BP_FN_CLEAN_AUDIO_PARAM($self, $xphase, 1);
+        $yphase = BP_FN_CLEAN_AUDIO_PARAM($self, $yphase, 1);
+        if is($xphase) != 'symbol' then (
+            $xphase = envelope($xphase::1, $duration).getkey("source")
+        );
+        if is($yphase) != 'symbol' then (
+            $yphase = envelope($yphase::1, $duration).getkey("source")
+        );
+        [
+            [ "fx" "wave2d" ]
+            [ "params" 
+                [ "xphase" $xphase ]
+                [ "yphase" $yphase ]
+                [ "rows" int(max(2, $rows)) ]
+            ]
+        ]
+    )
+);
+
+BP_REF_NEW(
+    @name "wave2d"
+    @description "Generates an audio process operation for 2-dimensional wavetable synthesis. `wave2d` is similar to `wave` but with an additional axis. The input buffer will be divided into _n_ rows. `@yphase` interpolates cross rows, while `@xphase` controls the wavetable's phase."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(@name "xphase" @default 0 @type "int/float/llll" @description "X phase.")
+        BP_REF_ARG(@name "yphase" @default 0 @type "int/float/llll" @description "Y phase.")
+        BP_REF_ARG(@name "rows" @default 2 @type "int" @description "Row divisions for wavetable.")
+        BP_REF_ARG(@name "duration" @default 2000 @type "int/float" @description "Duration. Ignored if either `@xphase` or `@yphase` is a buffer.")
+    )
+    @output BP_REF_OUTPUT(@description "2-dimensional wavetable operation" @type "llll")
+    @usage BP_REF_PROCESS_EXAMPLE('wave2d', '@xphase [0 0 0] [1 1 1] @yphase [0 0 0] [1 1 1] @rows 2')
+);
+
 
 ## ------------------------------------------------------------
 
