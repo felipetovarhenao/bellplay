@@ -4305,13 +4305,13 @@ process = (
 
 BP_REF_NEW(
     @name "process"
-    @description "Applies a sequence of DSP operations to the input buffer, prior to rendering, via audio processing operations. These operations are generated through functions (e.g., see `reverse`, `paulstretch`, `freeverb`, `rubberband`), which contain the parameters for that specific DSP operation. This results in a newly created buffer, with updated keys. To keep keys from the input buffer, such as keys associated with previous feature analyses, use the `@keepkeys` argument by passing an optional list of keys. See `@process` argument in `render`."
+    @description "Applies a sequence of DSP operations to the input buffer, via audio processing operations. These operations are _llll_s generated through functions (e.g., see `reverse`, `paulstretch`, `freeverb`, `rubberband`), which contain the parameters for that specific DSP operation. This results in a new buffer, with potentially different keys. To keep specific keys from the original buffer, such as keys associated with previous feature analyses, use the `@keepkeys` argument by passing an optional list of keys, as symbols. See also the `@process` argument in `render`."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
         BP_REF_ARG(@name "buffer" @type "llll" @description "Buffer to process.")
-        BP_REF_ARG(@name "operations" @type "llll" @description "List of audio process operations.")
-        BP_REF_ARG(@name "prefade" @default 0 @type "llll/null", @description "Optional pre-fade amount, in milliseconds.")
-        BP_REF_ARG(@name "keepkeys" @default "null" @type "symbol/list/null", @description "Optional list of keys to keep from input buffer.")
+        BP_REF_ARG(@name "operations" @type "llll" @description "List of one or more audio process operations.")
+        BP_REF_ARG(@name "prefade" @default 0 @type "llll/null", @description "Optional pre-fade-in/out amount, in milliseconds, to be applied before processing.")
+        BP_REF_ARG(@name "keepkeys" @default "null" @type "symbol/list/null", @description "Optional list of keys to keep from original input buffer.")
     )
     @output BP_REF_OUTPUT(@description "Processed buffer" @type "llll")
 );
@@ -4344,7 +4344,7 @@ fade = (
 
 BP_REF_NEW(
     @name "fade"
-    @description "Generates an audio process operation for applying fadein/fadeout to a buffer."
+    @description "Generates an audio process operation for applying fade-in/out to a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
         BP_REF_ARG(@name "fadein" @default 5 @type "int/float", @description "Fade-in duration.")
