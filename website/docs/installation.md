@@ -80,8 +80,8 @@ Only source-based usage is supported on Windows. Some features may not behave id
 In **bellplay~**:
 
 1. Open the app.
-2. Click on **settings**.
-3. Under the **SETTINGS** tab, set your preferred code editor.
+2. Click on **Settings**.
+3. In the **Settings** window, click on **Browse** to open the dialog window and set _Visual Studio Code_ as the _Default text editor_.
 
 #### Common editor paths:
 
