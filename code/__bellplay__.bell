@@ -4526,7 +4526,7 @@ freeverb = (
     $width = .5,
     $tail = -1,
     $dry = 1., 
-    $wet = 1/6. -> (
+    $wet = 0.05 -> (
         $self = 'freeverb';
         [
             ["fx" "freeverb"]
@@ -4556,7 +4556,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value ">0" @description "Duration in ms.")
         )
         BP_REF_ARG(@name "dry" @default 1 @type "int/float/llll" @description "Amount of dry output, as either a single number or envelope.")
-        BP_REF_ARG(@name "wet" @default '0.16' @type "int/float/llll" @description "Amount of wet output, as either a single number or envelope.")
+        BP_REF_ARG(@name "wet" @default '0.05' @type "int/float/llll" @description "Amount of wet output, as either a single number or envelope.")
     )
     @output BP_REF_OUTPUT(@description "Freeverb operation" @type "llll")
 );
