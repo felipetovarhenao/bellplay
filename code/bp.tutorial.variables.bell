@@ -24,7 +24,7 @@ $saw.transcribe(@gain .15);
 ## render transcribed buffers
 render() 
 #( 
-:::tip
+:::tip Naming global variables
 By convention, global variables in _bell_ should be capitalized to distinguish them from local variables:
 
 ```bell {1}

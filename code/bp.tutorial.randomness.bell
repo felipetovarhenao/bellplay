@@ -31,7 +31,7 @@ setseed(@seed 42);
 print(xrand(0, 1))
 ```
 
-:::info
+:::info Default seed
 If `setseed` is not called, the default seed for all seeded functions is `1`.
 :::
 

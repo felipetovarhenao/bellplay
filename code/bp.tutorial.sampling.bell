@@ -20,7 +20,7 @@ $keymap = [6000 'guitar.wav']
 
 This instructs `ezsampler` to use `'guitar.wav'` for **all** input pitches.
 
-:::info
+:::info Default keymap
 Incidentally, the keymap above is what `ezsampler` uses by default, when no keymap is provided.
 :::
 
@@ -40,8 +40,8 @@ $keymap = (
 
 Here, if the input pitch is closer to `6900`, `'flute.wav'` is used; otherwise `'guitar.wav'`.
 
-:::tip
-To ensure `ezsampler` correctly adjust the pitch of the original sample, always make sure the pitch mapping is as accurate as possible.
+:::tip Pitch accuracy
+To ensure `ezsampler` correctly adjusts the pitch of the original sample, always make sure the pitch mapping is as accurate as possible.
 :::
 
 ---
@@ -107,8 +107,8 @@ $buf = ezsampler(
 )
 ```
 
-:::info
-Currently, `ezsampler` adjust the pitch of a buffer via basic [resampling]. This means the duration of the resulting buffer is constrained by the duration of the actual sample.
+:::info Pitch shifting
+Currently, `ezsampler` adjusts the pitch of a buffer via basic [resampling](https://en.wikipedia.org/wiki/Audio_time_stretching_and_pitch_scaling). This means the duration of the resulting buffer is constrained by the duration of the actual sample.
 :::
 
 ---

@@ -5,7 +5,7 @@
 In **bellplay~** we can also generate buffers by importing our own audio files into our scripts.
 For this, we use the `importaudio` function, which takes a file path as a symbol and returns a buffer.
 
-:::info
+:::info Path specification
 In **bellplay~**, file paths can be either relative or absolute. Here are some examples:
 
 - A **relative path** refers to a location relative to the current script's directory. For instance, `'./samples/kick.wav'` refers to a file in a `samples` subdirectory located next to your script.
