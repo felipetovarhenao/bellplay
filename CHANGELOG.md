@@ -18,7 +18,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `bp.example.syntharpeggio.bell`
   - `bp.example.shepardtone.bell`
 - New functions:
-  - `wave2d`: Generates an audio process operation for 2-dimensional wavetable synthesis.
   - _comparison functions_: (`greaterthan`, `greaterthaneq`, `lessthan`, `lessthaneq`) Generates operation to apply a sample-wise comparison to a buffer.
   - `miditofreq` and `freqtomidi`: MIDI to/from frequency processing operations.
   - `logarithm`: Generates operation to apply a logarithmic function to a buffer.
