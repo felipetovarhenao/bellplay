@@ -5343,25 +5343,6 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-expand = (
-    $buffer -> (
-        BP_FN_CHECK_ARGS('expand', 'buffer', $buffer);
-        $buffer.setkey("offset", 0).setkey("duration", $buffer.getkey("source_end"))
-    )
-);
-
-BP_REF_NEW(
-    @name "expand"
-    @description "Modifies offset and duration of a buffer, such that it uses the full length of its reference buffer."
-    @category BP_REF_LABEL_BUFFER_UTILS
-    @arguments (
-        BP_REF_ARG(@name "buffer" @type "llll" @description "Buffer to expand.")
-    )
-    @output BP_REF_OUTPUT(@description "Buffer" @type "llll")
-);
-
-## ------------------------------------------------------------
-
 groove = (
     $rate = 1,
     $duration = 1000 -> (
