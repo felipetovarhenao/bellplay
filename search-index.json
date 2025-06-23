@@ -913,7 +913,7 @@
   },
   {
     "title": "`fade`",
-    "blurb": "Generates an audio process operation for applying fadein/fadeout to a buffer.",
+    "blurb": "Generates an audio process operation for applying fade-in/out to a buffer.",
     "keywords": [
       "default",
       "fade",
@@ -2221,7 +2221,7 @@
   },
   {
     "title": "`process`",
-    "blurb": "Applies a sequence of DSP operations to the input buffer, prior to rendering, via audio processing operations.",
+    "blurb": "Applies a sequence of DSP operations to the input buffer, via audio processing operations.",
     "keywords": [
       "buffer",
       "operations",
@@ -3835,7 +3835,7 @@
       "max",
       "macos",
       "windows",
-      "editor"
+      "text"
     ],
     "path": "/docs/installation"
   },
@@ -3940,8 +3940,8 @@
     "blurb": "Randomness is frequently used in algorithmic music to introduce variation and unpredictability.",
     "keywords": [
       "setseed",
-      "xrand",
       "seed",
+      "xrand",
       "random",
       "seeded"
     ],
@@ -4036,8 +4036,8 @@
     "blurb": "When writing code, it's good practice to use descriptive variable names.",
     "keywords": [
       "saw",
-      "variable",
       "global",
+      "variable",
       "render",
       "bell"
     ],
