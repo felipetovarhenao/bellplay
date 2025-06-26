@@ -8147,4 +8147,52 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+maxabs = (
+    $x, $y -> (
+        $sgn = sgn($x);
+        $sgn += 1 - abs($sgn);
+        $x = abs($x);
+        $y = abs($y);
+        max($x, $y) * $sgn
+    ) 
+);
+
+BP_REF_NEW(
+    @name "maxabs"
+    @description "Signed maximum value between the absolute values of `@x` and `@y`."
+    @category BP_REF_LABEL_MATH
+    @arguments (
+        BP_REF_ARG(@name "x" @type "int/float/llll" @description "Numeric value.")
+        BP_REF_ARG(@name "y" @type "int/float/llll" @description "Numeric value.")
+    )
+    @output BP_REF_OUTPUT(@description "Signed maximum value" @type "llll")
+    @usage BP_REF_CODE_SNIPPET("maxabs(-2...2, 1) ## -2 -1 1 1 2")
+);
+
+## ------------------------------------------------------------
+
+minabs = (
+    $x, $y -> (
+        $sgn = sgn($x);
+        $sgn += 1 - abs($sgn);
+        $x = abs($x);
+        $y = abs($y);
+        min($x, $y) * $sgn
+    ) 
+);
+
+BP_REF_NEW(
+    @name "minabs"
+    @description "Signed minimum value between the absolute values of `@x` and `@y`."
+    @category BP_REF_LABEL_MATH
+    @arguments (
+        BP_REF_ARG(@name "x" @type "int/float/llll" @description "Numeric value.")
+        BP_REF_ARG(@name "y" @type "int/float/llll" @description "Numeric value.")
+    )
+    @output BP_REF_OUTPUT(@description "Signed maximum value" @type "llll")
+    @usage BP_REF_CODE_SNIPPET("minabs(-2...2, 1) ## -1 -1 0 1 1")
+);
+
+## ------------------------------------------------------------
+
 null
