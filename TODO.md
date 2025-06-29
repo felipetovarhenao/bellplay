@@ -16,7 +16,7 @@
 
 ### Change
 
-- [ ] Update/improve inspector UI
+- [x] Update/improve inspector UI
 - [x] Provide new API for sql corpora.
 - [x] Rewrite tutorials and examples involving:
   - [x] `splitbuf`.
