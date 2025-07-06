@@ -16,6 +16,7 @@
 
 ### Change
 
+- [ ] Make random functions _arg-compatible_ with native `random` function.
 - [x] Update/improve inspector UI
 - [x] Provide new API for sql corpora.
 - [x] Rewrite tutorials and examples involving:
