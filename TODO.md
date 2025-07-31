@@ -48,6 +48,26 @@
 
 - Add support for pitch syntax in `ezsampler` and `transcribe`.
 - Adapt code base to new bell language version.
+  - Argless functions:
+    - `reverse`
+    - `dcfilter`
+    - `miditofreq`
+    - `freqtomidi`
+    - `hypertan`
+    - `arctan`
+    - `absolute`
+    - `squareroot`
+    - `fromdiffs`
+    - `todiffs`
+    - `envmaxtime`
+    - `envmintime`
+    - `temporalkurtosis`
+    - `temporalskewness`
+    - `temporalspread`
+    - `temporalvariance`
+    - `logattack`
+    - `temporalcentroid`
+    - `temporalflatness`
 - Improve control over score appearance via `setscore` (replacing `scoreconfig`).
 - Improve naming of i/o functions: `export`, `read`, `write`, `loadcorpus`, `setcorpus`, `importaudio`, `importmidi`.
 - `getkey`: Add support for multiple keys and `@wrap` argument for weather values should be wrapped individually or not.
