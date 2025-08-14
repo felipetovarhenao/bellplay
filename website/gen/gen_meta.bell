@@ -1,6 +1,6 @@
 $replacespaces = (
     $x -> (
-        $regex = {regexp \\\\s @substitute - @tosymbol 1};
+        $regex = <<<regexp \\\\s @substitute - @tosymbol 1>>>;
         $regex(
             $x @out 'm' @fetch 1
         ) ||| $x
