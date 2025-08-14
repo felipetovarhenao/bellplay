@@ -3,37 +3,37 @@
 ## v0.3.0-beta
 
 ## Changes needed for new bell version
-
-- Adapt argless function syntax. Argless functions:
-  - `reverse`
-  - `dcfilter`
-  - `miditofreq`
-  - `freqtomidi`
-  - `hypertan`
-  - `arctan`
-  - `absolute`
-  - `squareroot`
-  - `fromdiffs`
-  - `todiffs`
-  - `envmaxtime`
-  - `envmintime`
-  - `temporalkurtosis`
-  - `temporalskewness`
-  - `temporalspread`
-  - `temporalvariance`
-  - `logattack`
-  - `temporalcentroid`
-  - `temporalflatness`
-- Change `reset` to `recycle`message where needed. Found in:
-  - `bp.essentia~`
-  - `bp.generate~`
-  - `bp.process~`
-  - `bp.scripter~`
-- `ears.window` deprecated the following arguments:
-  - `@zeropadding`
-  - `@zerophase`
-- Fix notehead codes resulting from _Bravura_ font.
-- `bp.utils.loadscript`: Fix `read` bug in `text` obj by adding a `deferlow` before message.
+- _bach_:
+  - Adapt argless function syntax. Argless functions:
+    - `reverse`
+    - `dcfilter`
+    - `miditofreq`
+    - `freqtomidi`
+    - `hypertan`
+    - `arctan`
+    - `absolute`
+    - `squareroot`
+    - `fromdiffs`
+    - `todiffs`
+    - `envmaxtime`
+    - `envmintime`
+    - `temporalkurtosis`
+    - `temporalskewness`
+    - `temporalspread`
+    - `temporalvariance`
+    - `logattack`
+    - `temporalcentroid`
+    - `temporalflatness`
+  - Change `reset` to `recycle`message where needed. Found in:
+    - `bp.essentia~`
+    - `bp.generate~`
+    - `bp.process~`
+    - `bp.scripter~`
+  - `ears.window` deprecated the following arguments:
+    - `@zeropadding`
+    - `@zerophase`
+  - Fix notehead codes resulting from _Bravura_ font.
+  - `bp.utils.loadscript`: Fix `read` bug in `text` obj by adding a `deferlow` before message.
 
 ### Add
 
