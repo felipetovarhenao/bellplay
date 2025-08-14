@@ -2,6 +2,38 @@
 
 ## v0.3.0-beta
 
+## Changes needed for new bell version
+
+- Adapt argless function syntax. Argless functions:
+  - `reverse`
+  - `dcfilter`
+  - `miditofreq`
+  - `freqtomidi`
+  - `hypertan`
+  - `arctan`
+  - `absolute`
+  - `squareroot`
+  - `fromdiffs`
+  - `todiffs`
+  - `envmaxtime`
+  - `envmintime`
+  - `temporalkurtosis`
+  - `temporalskewness`
+  - `temporalspread`
+  - `temporalvariance`
+  - `logattack`
+  - `temporalcentroid`
+  - `temporalflatness`
+- Change `reset` to `recycle`message where needed. Found in:
+  - `bp.essentia~`
+  - `bp.generate~`
+  - `bp.process~`
+  - `bp.scripter~`
+- `ears.window` deprecated the following arguments:
+  - `@zeropadding`
+  - `@zerophase`
+- Fix notehead codes resulting from _Bravura_ font.
+
 ### Add
 
 - [ ] New bellplay examples:
@@ -47,27 +79,6 @@
 ## Upcoming releases
 
 - Add support for pitch syntax in `ezsampler` and `transcribe`.
-- Adapt code base to new bell language version.
-  - Argless functions:
-    - `reverse`
-    - `dcfilter`
-    - `miditofreq`
-    - `freqtomidi`
-    - `hypertan`
-    - `arctan`
-    - `absolute`
-    - `squareroot`
-    - `fromdiffs`
-    - `todiffs`
-    - `envmaxtime`
-    - `envmintime`
-    - `temporalkurtosis`
-    - `temporalskewness`
-    - `temporalspread`
-    - `temporalvariance`
-    - `logattack`
-    - `temporalcentroid`
-    - `temporalflatness`
 - Improve control over score appearance via `setscore` (replacing `scoreconfig`).
 - Improve naming of i/o functions: `export`, `read`, `write`, `loadcorpus`, `setcorpus`, `importaudio`, `importmidi`.
 - `getkey`: Add support for multiple keys and `@wrap` argument for weather values should be wrapped individually or not.
