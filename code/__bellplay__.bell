@@ -33,11 +33,11 @@ BP_BUFFER_CACHE = null;
 BP_PLAY_TOGGLE = 0;
 BP_SCORE_CONFIG = null;
 BP_CONFIG = null;
-BP_MAXOBJ_RANDOM = {max.random 2147483648 @seed 1};
-BP_MAXOBJ_ATOI = {max.atoi};
-BP_MAXOBJ_ITOA = {max.itoa};
-BP_MAXOBJ_BACHINTEGRATE = {bach.integrate};
-BP_MAXOBJ_BACHDERIVE = {bach.derive};
+BP_MAXOBJ_RANDOM = <<<max.random 2147483648 @seed 1>>>;
+BP_MAXOBJ_ATOI = <<<max.atoi>>>;
+BP_MAXOBJ_ITOA = <<<max.itoa>>>;
+BP_MAXOBJ_BACHINTEGRATE = <<<bach.integrate>>>;
+BP_MAXOBJ_BACHDERIVE = <<<bach.derive>>>;
 BP_FN_CONFIG = (
     $action, $value -> (
         $bpconfigpath = '~/bellplay.config.txt';
@@ -103,13 +103,13 @@ BP_FN_CONFIG = (
     ) 
 );
 BP_FN_ON_LAUNCH = (
-    -> (
+    $ -> (
         ## load imports
         BP_FN_CONFIG('init')
     ) 
 );
 BP_FN_ON_BEFORE = (
-    -> (
+    $ -> (
         BP_FN_SANDBOX_CLEAR();
         setseed(1); 
         scoreconfig();
@@ -123,7 +123,7 @@ BP_FN_ON_BEFORE = (
     )
 );
 BP_FN_ON_AFTER = (
-    -> (
+    $ -> (
         if BP_SCORE_CONFIG."showdynamics" == 1 then (
             BP_FN_DISPATCH("roll", 
                  "velocities2dynamics" "@unnecessary" 1 "@thresh" 1. "@maxchars" 3
@@ -137,7 +137,7 @@ BP_FN_ON_AFTER = (
 );
 
 BP_FN_ON_FAIL = (
-    -> (
+    $ -> (
         BP_VIEWER_DATA = null;
         BP_DATABASE_BROWSER = null;
         BP_PLAY_TOGGLE = 0
@@ -2992,7 +2992,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-envmaxtime = ( -> BP_FN_ESSENTIA(@name "envmaxtime"));
+envmaxtime = ($ -> BP_FN_ESSENTIA(@name "envmaxtime"));
 
 BP_REF_NEW(
     @name "envmaxtime"
@@ -3003,7 +3003,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-envmintime = ( -> BP_FN_ESSENTIA(@name "envmintime"));
+envmintime = ($ -> BP_FN_ESSENTIA(@name "envmintime"));
 
 BP_REF_NEW(
     @name "envmintime"
@@ -3132,7 +3132,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-temporalkurtosis = ( -> BP_FN_ESSENTIA(@name "temporalkurtosis"));
+temporalkurtosis = ($ -> BP_FN_ESSENTIA(@name "temporalkurtosis"));
 
 BP_REF_NEW(
     @name "temporalkurtosis"
@@ -3166,7 +3166,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-temporalskewness = ( -> BP_FN_ESSENTIA(@name "temporalskewness"));
+temporalskewness = ($ -> BP_FN_ESSENTIA(@name "temporalskewness"));
 
 BP_REF_NEW(
     @name "temporalskewness"
@@ -3200,7 +3200,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-temporalspread = ( -> BP_FN_ESSENTIA(@name "temporalspread"));
+temporalspread = ($ -> BP_FN_ESSENTIA(@name "temporalspread"));
 
 BP_REF_NEW(
     @name "temporalspread"
@@ -3234,7 +3234,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-temporalvariance = ( -> BP_FN_ESSENTIA(@name "temporalvariance"));
+temporalvariance = ($ -> BP_FN_ESSENTIA(@name "temporalvariance"));
 
 BP_REF_NEW(
     @name "temporalvariance"
@@ -3378,7 +3378,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-strongdecay = ( -> BP_FN_ESSENTIA(@name "strongdecay"));
+strongdecay = ($ -> BP_FN_ESSENTIA(@name "strongdecay"));
 
 BP_REF_NEW(
     @name "strongdecay"
@@ -3477,7 +3477,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-logattack = ( -> BP_FN_ESSENTIA(
+logattack = ($ -> BP_FN_ESSENTIA(
         @name "logattacktime"
         @output (
             "logattack"
@@ -3811,7 +3811,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 temporalcentroid = ( 
-    -> ( 
+    $ -> ( 
         BP_FN_ESSENTIA(
             @name "temporalcentroid"
         )
@@ -3851,7 +3851,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 temporalflatness = ( 
-    -> ( 
+    $ -> ( 
         BP_FN_ESSENTIA(
             @name "temporalflatness"
         )
@@ -4433,11 +4433,11 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-BP_FN_DUMMY_PROCESS = ( -> [ [ "fx" "thru" ] ]);
+BP_FN_DUMMY_PROCESS = ($ -> [ [ "fx" "thru" ] ]);
 
 ## ------------------------------------------------------------
 
-reverse = ( -> [ [ "fx" "reverse" ] ]);
+reverse = ($ -> [ [ "fx" "reverse" ] ]);
 
 BP_REF_NEW(
     @name "reverse"
@@ -4448,7 +4448,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-dcfilter = ( -> [ [ "fx" "dcfilter" ] ]);
+dcfilter = ($ -> [ [ "fx" "dcfilter" ] ]);
 
 BP_REF_NEW(
     @name "dcfilter"
@@ -4459,7 +4459,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-miditofreq = ( -> [ [ "fx" "mtof" ] ]);
+miditofreq = ($ -> [ [ "fx" "mtof" ] ]);
 
 BP_REF_NEW(
     @name "miditofreq"
@@ -4470,7 +4470,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-freqtomidi = ( -> [ [ "fx" "ftom" ] ]);
+freqtomidi = ($ -> [ [ "fx" "ftom" ] ]);
 
 BP_REF_NEW(
     @name "freqtomidi"
@@ -5169,7 +5169,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-hypertan = ( -> [ [ "fx" "tanh" ] ]);
+hypertan = ($ -> [ [ "fx" "tanh" ] ]);
 
 BP_REF_NEW(
     @name "hypertan"
@@ -5180,7 +5180,7 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-arctan = ( -> [ [ "fx" "atan" ] ]);
+arctan = ($ -> [ [ "fx" "atan" ] ]);
 
 BP_REF_NEW(
     @name "arctan"
@@ -6063,7 +6063,7 @@ BP_BUFFER_ARITHMETIC_ARGS = (
 ## ------------------------------------------------------------
 
 absolute = (
-    -> (
+    $ -> (
         BP_FN_BUFFER_ARITHMETIC(
             @name "abs"
             @operand 0
@@ -6081,7 +6081,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 squareroot = (
-    -> (
+    $ -> (
         BP_FN_BUFFER_ARITHMETIC(
             @name "sqrt"
             @operand 0
@@ -6434,7 +6434,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 fromdiffs = (
-    -> (
+    $ -> (
         [
             [ "fx" "fromdiffs" ]
             [ "params" ]
@@ -6453,7 +6453,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 todiffs = (
-    -> (
+    $ -> (
         [
             [ "fx" "todiffs" ]
             [ "params" ]
