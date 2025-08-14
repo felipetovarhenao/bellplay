@@ -33,6 +33,7 @@
   - `@zeropadding`
   - `@zerophase`
 - Fix notehead codes resulting from _Bravura_ font.
+- `bp.utils.loadscript`: Fix `read` bug in `text` obj by adding a `deferlow` before message.
 
 ### Add
 
