@@ -3,7 +3,9 @@
 ## v0.3.0-beta
 
 ## Changes needed for new bell version
+
 - _bach_:
+  - Change max object syntax from `{...}` to `<<<...>>>`.
   - Adapt argless function syntax. Argless functions:
     - `reverse`
     - `dcfilter`
@@ -24,6 +26,9 @@
     - `logattack`
     - `temporalcentroid`
     - `temporalflatness`
+  - Fix notehead codes resulting from _Bravura_ font.
+  - `bp.utils.loadscript`: Fix `read` bug in `text` obj by adding a `deferlow` before message.
+- _ears_ (new release):
   - Change `reset` to `recycle`message where needed. Found in:
     - `bp.essentia~`
     - `bp.generate~`
@@ -32,8 +37,8 @@
   - `ears.window` deprecated the following arguments:
     - `@zeropadding`
     - `@zerophase`
-  - Fix notehead codes resulting from _Bravura_ font.
-  - `bp.utils.loadscript`: Fix `read` bug in `text` obj by adding a `deferlow` before message.
+- code base:
+  - `gen_meta.bell`: - Change max object syntax from `{...}` to `<<<...>>>`.
 
 ### Add
 

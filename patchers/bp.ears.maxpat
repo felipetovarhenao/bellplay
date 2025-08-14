@@ -210,7 +210,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 420.0, 21.5, 61.0, 21.0 ],
-					"text" : "reset inlet"
+					"text" : "recycle inlet"
 				}
 
 			}

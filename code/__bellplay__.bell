@@ -5053,8 +5053,8 @@ window = (
             [ "params" 
                 [ "wintype" $wintype ]
                 [ "winnormalized" $winnormalized ]
-                [ "zeropadding" $zeropadding ]
-                [ "zerophase" $zerophase ]
+                ## [ "zeropadding" $zeropadding ]
+                ## [ "zerophase" $zerophase ]
             ]
         ]
     )

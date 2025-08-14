@@ -2905,7 +2905,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 102.0, 94.0, 36.0, 23.0 ],
-					"text" : "reset"
+					"text" : "recycle"
 				}
 
 			}
@@ -2932,7 +2932,7 @@
 						"versionnumber" : 80300
 					}
 ,
-					"text" : "bach.keys null reset @maxdepth 1"
+					"text" : "bach.keys null recycle @maxdepth 1"
 				}
 
 			}

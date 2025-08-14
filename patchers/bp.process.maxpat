@@ -14535,7 +14535,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 301.0, 104.0, 92.0, 23.0 ],
-					"text" : "routepass reset"
+					"text" : "routepass recycle"
 				}
 
 			}

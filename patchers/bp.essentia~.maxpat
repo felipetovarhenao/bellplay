@@ -479,7 +479,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 18.0, 249.0, 367.0, 23.0 ],
-					"text" : "script send analyzer reset, script delete analyzer, script delete packer"
+					"text" : "script send analyzer recycle, script delete analyzer, script delete packer"
 				}
 
 			}

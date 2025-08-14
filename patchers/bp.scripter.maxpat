@@ -7428,7 +7428,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 752.0, 310.0, 36.0, 23.0 ],
-					"text" : "reset"
+					"text" : "recycle"
 				}
 
 			}
