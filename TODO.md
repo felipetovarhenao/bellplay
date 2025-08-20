@@ -37,6 +37,18 @@
   - `ears.window` deprecated the following arguments:
     - `@zeropadding`
     - `@zerophase`
+  - Add the following, previously buggy _essentia_ descriptors:
+    - `ears.essentia~`:
+    - `envelope`
+    - `pitchsaliencefunction`
+    - `energybandratio`
+    - `gfcc`
+    - `triangularbarkbands`
+    - `powerspectrum`
+    - `lpc`
+    - `spectralcontrast`
+    - `dynamiccomplexity`
+    - `hpcp`
 - code base:
   - `gen_meta.bell`: - Change max object syntax from `{...}` to `<<<...>>>`.
 
