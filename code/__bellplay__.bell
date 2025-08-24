@@ -1682,39 +1682,36 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 nearest = (
-    $list = null, 
-    $target = null, 
-    $mode = 0 -> (
-        BP_FN_CHECK_ARGS('nearest', 'list', $list, 'target', $target);
-        $list = sort($list);
+    $list = null, $target = null, $mode = 0 -> (
+        BP_FN_CHECK_ARGS(
+            'nearest', 'list', $list, 'target', $target
+        );
+        $argsort = argsort($list);
+        $list = $list:[$argsort];
         $left = 1;
         $right = length($list);
-        $nearest = null;  
-        
+        $nearest = null;
+        $nearestid = null;
         while $left <= $right do (
             $mid = ($left + $right) // 2;
             $midval = $list:$mid;
-            
             ## update the nearest value
             if $nearest == null || (abs($midval - $target) < abs($nearest - $target)) then (
-                $nearest = $midval
+                $nearest = $midval;
+                $nearestid = $argsort:$mid
             );
-            
             ## decision to move the search boundaries
-            if $midval == $target then (
-                ## exit loop as the exact match is the nearest
-                $left = $right + 1
-            ) else if $midval < $target then (
-                ## Target might be in the right half
-                $left = $mid + 1
-            ) else (
-                ## Target might be in the left half
-                $right = $mid - 1
-            )
+            if $midval == $target then ( 
+            ## exit loop as the exact match is the nearest
+            $left = $right + 1) else if $midval < $target then ( 
+            ## Target might be in the right half
+            $left = $mid + 1) else ( 
+            ## Target might be in the left half
+            $right = $mid - 1) 
         );
         ## The nearest value is returned as the last expression
-        $nearest
-    )
+        if $mode == 0 then $nearest else $nearestid
+    ) 
 );
 
 BP_REF_NEW(
