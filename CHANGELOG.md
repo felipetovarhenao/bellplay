@@ -79,7 +79,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `nearest`: Fixed missing logic for `@mode 1` (_address_ mode).
 - Minor optimization by undesired buffer allocation during processing.
 - `chordsdetection`: Add missing docs.
-- `splitbuf`: Fix incorrect segmentation bug in `@mode 0`.
+- `splitbuf`: Fix incorrect segmentation bug in `@mode 0` [x2].
 - Functions with fixed logic bugs:
   - `autoscale`
   - `fold`

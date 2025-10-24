@@ -7816,7 +7816,7 @@ splitbuf = (
             if $mode == 0 then (
                 $segdur = $split;
                 $hopsize = $segdur / $overlap;
-                $numsegs = floor(($duration - $segdur) / $hopsize)
+                $numsegs = max(1, floor(($duration - $segdur) / $hopsize))
             ) else (
                 $numsegs = $split;
                 $hopsize = $duration / $numsegs;
