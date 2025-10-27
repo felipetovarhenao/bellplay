@@ -2744,7 +2744,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "bpf" @type "llll" @description "Breakpoint function")
-        BP_REF_ARG(@name "pts" @type "int/float/list" @description "Sampling point/s")
+        BP_REF_ARG(@name "x" @type "int/float/list" @description "Sampling point/s")
     )
     @output BP_REF_OUTPUT(@description "Interpolated bpf values" @type "int/float/list")
 );
