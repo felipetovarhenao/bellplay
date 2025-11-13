@@ -28,12 +28,14 @@ BP_FN_CLEAN_FLUID_PATH = (
     ) 
 );
 BP_FN_FLUID_NEWOBJ = (
-    $class, $name = null -> (
+    $class, $name = null, $arguments = null, $attributes = null -> (
         $name = $name ||| getkey(
             samps2buf([0]), 'source' 
         );
         $ref = BP_FN_SANDBOX_NEWOBJ(
-            @name 'fluid.' + $class + '~' @arguments $name
+            @name 'fluid.' + $class + '~' 
+            @arguments $name $arguments
+            @attributes $attributes
         );
         BP_FN_SANDBOX_CONNECT(
             @from $ref
@@ -46,9 +48,29 @@ BP_FN_FLUID_NEWOBJ = (
         ] 
     ) 
 );
-createdataset = (
+kdtree = (
+    $numneighbours = 1, $radius = 0 -> (
+        $self = 'kdtree';
+        BP_FN_CHECK_ARGS(
+            $self, 'numneighbours', $numneighbours, 'radius', $radius
+        );
+        BP_FN_FLUID_NEWOBJ(
+            @class 'kdtree' @attributes ['numneighbours' $numneighbours] ['radius' $radius] 
+        ) 
+    ) 
+);
+mlp = (
+    $activation = 2, $batchsize = 50, $hiddenlayers = 3 3, $learnrate = 0.01, $maxiter = 1000, $momentum = 0.9, $outputactivation = 0, $tapin = 0, $tapout = -1, $validation = 0.2 -> (
+        BP_FN_FLUID_NEWOBJ(
+            @class 'mlpregressor' @attributes (
+                [ 'activation' $activation] [ 'batchsize' $batchsize] [ 'hiddenlayers' $hiddenlayers] [ 'learnrate' $learnrate] [ 'maxiter' $maxiter] [ 'momentum' $momentum] [ 'outputactivation' $outputactivation] [ 'tapin' $tapin] [ 'tapout' $tapout] [ 'validation' $validation] 
+            ) 
+        ) 
+    ) 
+);
+dataset = (
     $data = null -> (
-        $self = 'createdataset';
+        $self = 'dataset';
         BP_FN_CHECK_ARGS($self, 'data', $data);
         $cols = length($data::1);
         $rows = length($data);
@@ -66,35 +88,48 @@ createdataset = (
         ) 
     ) 
 );
-createtransform = (
-    $type = 0, $min = 0, $max = 1 -> (
-        $self = 'createtransform';
-        if $type == 0 then (
-            $class = 'normalize';
-            $params = ['min' $min] ['max' $max] 
-        ) else if $type == 1 then (
-            $class = 'standardize';
-            $params = null
-        ) else if $type == 2 then (
-            $class = 'robustscale';
-            $params = ['low' $min] ['high' $max] 
-        ) else BP_FN_ERROR($self, 'invalid type:' $type ||| 'null');
-        $obj = BP_FN_FLUID_NEWOBJ(@class $class);
-        $ref = getkey($obj, 'ref');
-        for $param in $params with @unwrap 1 do BP_FN_SANDBOX_MSG(@to $ref @message $param);
-        $obj
+printdataset = (
+    $dataset -> (
+        BP_FN_SANDBOX_MSG(
+            @to getkey($dataset, 'ref') @message 'print' 
+        ) 
     ) 
 );
-fit = (
-    $dataset, $transform -> (
-        $self = 'fit';
+scaler = (
+    $type = 0, $min = 0, $max = 1 -> (
+        $self = 'scaler';
+        if $type == 0 then (
+            $class = 'normalize';
+            $attrs = ['min' $min] ['max' $max] 
+        ) else if $type == 1 then (
+            $class = 'standardize';
+            $attrs = null
+        ) else if $type == 2 then (
+            $class = 'robustscale';
+            $attrs = ['low' $min] ['high' $max] 
+        ) else BP_FN_ERROR($self, 'invalid type:' $type ||| 'null');
+        BP_FN_FLUID_NEWOBJ(@class $class @attributes $attrs) 
+    ) 
+);
+pca = (
+    $numdimensions = 2, $whiten = 0 -> (
+        $self = 'pca';
         BP_FN_CHECK_ARGS(
-            $self, 'dataset', $dataset, 'transform', $transform
+            $self, 'numdimensions', $numdimensions, 'whiten', $whiten
         );
-        $dsname = getkey($dataset, 'name');
-        $to = getkey($transform, 'ref');
-        BP_FN_SANDBOX_MSG(
-            @to $to @message 'fittransform' $dsname $dsname
+        BP_FN_FLUID_NEWOBJ(
+            @class 'pca' @attributes (
+                [ 'numdimensions' $numdimensions] [ 'whiten' $whiten] 
+            ) 
+        ) 
+    ) 
+);
+kmeans = (
+    $maxiter = 100, $numclusters = 4, $encodingthreshold = null -> (
+        BP_FN_FLUID_NEWOBJ(
+            @class ($encodingthreshold &&& 'skmeans') ||| 'kmeans' @attributes (
+                ['maxiter' $maxiter] ['numclusters' $numclusters] ($encodingthreshold &&& ['encodingthreshold' $encodingthreshold]) 
+            ) 
         ) 
     ) 
 );
@@ -149,5 +184,19 @@ readobj = (
             @to $ref @message 'load' $result
         );
         $obj
+    ) 
+);
+fit = (
+    $dataset, $transform -> (
+        $self = 'fit';
+        BP_FN_CHECK_ARGS(
+            $self, 'dataset', $dataset, 'transform', $transform
+        );
+        $dsname = getkey($dataset, 'name');
+        $ref = getkey($transform, 'ref');
+        $method = if intersection(getkey($transform, 'class'), 'kdtree') == null then 'fittransform' else 'fit';
+        BP_FN_SANDBOX_MSG(
+            @to $ref @message $method $dsname $dsname
+        ) 
     ) 
 )
