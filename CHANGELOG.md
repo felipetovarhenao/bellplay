@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+#### `fluid` branch log
+
+- Start drafting backend API for integration of FluCoMa package. This includes creating a `__fluid__.bell` file with some sandbox-based logic/approach to FluCoMa object instantiation and management.
+
 ### Added
 
 - GUI:

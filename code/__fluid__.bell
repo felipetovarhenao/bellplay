@@ -1,0 +1,153 @@
+BP_MAXOBJ_DICT = {dict};
+BP_FN_CLEAN_FLUID_PATH = (
+    $path, $locate = 0, $match = null, $self = null -> (
+        $pathinfo = BP_FN_PATHINFO($path @locate $locate);
+        $path = $pathinfo.'path';
+        $ext = $pathinfo.'extension';
+        if $ext != '.json' then BP_FN_ERROR(
+            @details 'invalid extension:' $ext
+        ) else (
+            $classes = 'dataset' 'kdtree' 'umap' 'normalize' 'robustscale' 'standardize';
+            $class = null;
+            for $opt in $classes as $class == null do (
+                $label = '.' + $opt;
+                $symlen = symlen($label);
+                $tail = getchar(
+                    @symbol $path @i -rev(1...$symlen) 
+                );
+                if $tail == $label then ($class = $opt) 
+            );
+            $class ||| BP_FN_ERROR(
+                @origin $self @details 'invalid file tag in name: it should follow the pattern <name>.<tag>.json, where <tag> should be' $match
+            );
+            $match &&& ($match == $class || BP_FN_ERROR(
+                @origin $self @details 'invalid file naming—must end with the following: .' + $match + '.json' 
+            ));
+            ['path' $path + $ext] ['class' $class] 
+        ) 
+    ) 
+);
+BP_FN_FLUID_NEWOBJ = (
+    $class, $name = null -> (
+        $name = $name ||| getkey(
+            samps2buf([0]), 'source' 
+        );
+        $ref = BP_FN_SANDBOX_NEWOBJ(
+            @name 'fluid.' + $class + '~' @arguments $name
+        );
+        BP_FN_SANDBOX_CONNECT(
+            @from $ref
+            @to 'bpsandboxout' 
+            @outlet 1
+        );
+        BP_FN_SANDBOX_GEN();
+        [
+            ['class' $class] ['name' $name] ['ref' $ref] 
+        ] 
+    ) 
+);
+createdataset = (
+    $data = null -> (
+        $self = 'createdataset';
+        BP_FN_CHECK_ARGS($self, 'data', $data);
+        $cols = length($data::1);
+        $rows = length($data);
+        if depth($data) != 2 || $cols * $rows != length(flat($data)) then BP_FN_ERROR($self, '@data must be a 2-dimensional matrix') else (
+            $buf = samps2buf(@llll trans($data));
+            $source = getkey($buf, 'source');
+            $dataset = BP_FN_FLUID_NEWOBJ(
+                @class 'dataset' @name $source
+            );
+            $ref = getkey($dataset, 'ref');
+            BP_FN_SANDBOX_GEN();
+            $msgs = ['clear'] ['frombuffer' $source];
+            for $msg in $msgs with @unwrap 1 do (BP_FN_SANDBOX_MSG(@to $ref @message $msg));
+            $dataset
+        ) 
+    ) 
+);
+createtransform = (
+    $type = 0, $min = 0, $max = 1 -> (
+        $self = 'createtransform';
+        if $type == 0 then (
+            $class = 'normalize';
+            $params = ['min' $min] ['max' $max] 
+        ) else if $type == 1 then (
+            $class = 'standardize';
+            $params = null
+        ) else if $type == 2 then (
+            $class = 'robustscale';
+            $params = ['low' $min] ['high' $max] 
+        ) else BP_FN_ERROR($self, 'invalid type:' $type ||| 'null');
+        $obj = BP_FN_FLUID_NEWOBJ(@class $class);
+        $ref = getkey($obj, 'ref');
+        for $param in $params with @unwrap 1 do BP_FN_SANDBOX_MSG(@to $ref @message $param);
+        $obj
+    ) 
+);
+fit = (
+    $dataset, $transform -> (
+        $self = 'fit';
+        BP_FN_CHECK_ARGS(
+            $self, 'dataset', $dataset, 'transform', $transform
+        );
+        $dsname = getkey($dataset, 'name');
+        $to = getkey($transform, 'ref');
+        BP_FN_SANDBOX_MSG(
+            @to $to @message 'fittransform' $dsname $dsname
+        ) 
+    ) 
+);
+writeobj = (
+    $obj, $path -> (
+        BP_SANDBOX_OUT = null;
+        $self = 'writeobj';
+        BP_FN_CHECK_ARGS(
+            $self, 'obj', $obj, 'path', $path
+        );
+        $class = getkey($obj, 'class');
+        $name = getkey($obj, 'name');
+        $pathinfo = BP_FN_CLEAN_FLUID_PATH(
+            @path $path
+            @self $self
+            @match $class
+        );
+        $ref = getkey($obj, 'ref');
+        $path = $pathinfo.'path';
+        BP_FN_SANDBOX_MSG(
+            @to $ref @message 'dump' 
+        );
+        $dict = right(BP_SANDBOX_OUT, 1);
+        BP_MAXOBJ_DICT(
+            $dict @out 'm' 
+        );
+        BP_MAXOBJ_DICT(
+            'write' $path @out 'm' 
+        ) 
+    ) 
+);
+readobj = (
+    $path -> (
+        $self = 'readobj';
+        BP_FN_CHECK_ARGS($self, 'path', $path);
+        $pathinfo = BP_FN_CLEAN_FLUID_PATH(
+            @path $path
+            @self $self
+            @locate 1
+        );
+        $path = $pathinfo.'path';
+        $class = $pathinfo.'class';
+        BP_MAXOBJ_DICT(
+            'read' $path @out 'm' 
+        );
+        $result = BP_MAXOBJ_DICT(
+            'bang' @out 'm' @fetch 1
+        );
+        $obj = BP_FN_FLUID_NEWOBJ(@class $class);
+        $ref = getkey($obj, 'ref');
+        BP_FN_SANDBOX_MSG(
+            @to $ref @message 'load' $result
+        );
+        $obj
+    ) 
+)

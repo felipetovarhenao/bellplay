@@ -1,1012 +1,811 @@
 {
-	"name" : "bellplay",
-	"version" : 1,
-	"creationdate" : 3792408071,
-	"modificationdate" : 3833228147,
-	"viewrect" : [ 25.0, 103.0, 300.0, 500.0 ],
-	"autoorganize" : 0,
-	"hideprojectwindow" : 1,
-	"showdependencies" : 0,
-	"autolocalize" : 1,
-	"contents" : 	{
-		"patchers" : 		{
-			"bellplay.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1,
-				"toplevel" : 1
-			}
-,
-			"bp.corpus.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.sampler.poly~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.utils.debugmode.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.scripter.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.utils.errorcatch.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.utils.getbuffer.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.utils.searchbar.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.generate~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.noise~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.phasor~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.groove~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.wave~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.freqshift~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.getcontroller~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.retune~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.saw~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.tri~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.lookup~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.triangle~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.rand~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.rect~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.pong~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.cycle~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.scale~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.biquad~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.degrade~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.round~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.rampsmooth~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.teeth~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.essentia~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.roll.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.scrubplayer~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.scrubplayer.poly~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.utils.compareversions.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.utils.checkupdate.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.utils.truncatetext.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ears.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.sandbox.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.utils.zoomctrl.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ui.button.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ui.library.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ui.settings.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ui.separator.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ui.preferences.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ui.menubar.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.utils.loadscript.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ui.audio.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ui.viewer.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ui.bufplayer~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ui.umenu.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ui.database.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.ui.database.cartesian.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.pink.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.pink~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.simplefm~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.pitchshift~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.slide~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.tanh~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.atan~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.sah~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.log~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.>~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.>=~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.<~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.<=~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.mtof~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.ftom~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-,
-			"bp.process.wave2d~.maxpat" : 			{
-				"kind" : "patcher",
-				"local" : 1
-			}
-
-		}
-,
-		"media" : 		{
-			"logo.png" : 			{
-				"kind" : "imagefile",
-				"local" : 1
-			}
-,
-			"alert.wav" : 			{
-				"kind" : "audiofile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"gpl_logo.png" : 			{
-				"kind" : "imagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"ccm_logo.png" : 			{
-				"kind" : "imagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"badinerie.wav" : 			{
-				"kind" : "audiofile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"poem.wav" : 			{
-				"kind" : "audiofile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"drums.wav" : 			{
-				"kind" : "audiofile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"singing.wav" : 			{
-				"kind" : "audiofile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"trumpet.wav" : 			{
-				"kind" : "audiofile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"guitar.wav" : 			{
-				"kind" : "audiofile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"flute.wav" : 			{
-				"kind" : "audiofile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"viola.wav" : 			{
-				"kind" : "audiofile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"uncheck-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"save-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"reload-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"play-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"open-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"new-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"minus-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"load-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"check-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"code-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"plus-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"alert-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"book-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"settings-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"console-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"folder-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"stop-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"auto-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"click-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"alertoff-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"download-icon.svg" : 			{
-				"kind" : "vectorimagefile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-
-		}
-,
-		"code" : 		{
-			"zoom.js" : 			{
-				"kind" : "javascript",
-				"local" : 1
-			}
-
-		}
-,
-		"data" : 		{
-			"__bellplay__.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorials.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.scoreconfig.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.features.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.rendering.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.variables.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.transcription.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.markers.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.export.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.automation.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.audiocontrol.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.basicworkflow.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.bufferprocessing.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.bufferkeys.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.multirendering.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.importingaudio.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.importingmidi.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.bufferinspector.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.postprocessing.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.kdtree.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.analysismodes.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.analysis.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.buildcorpus.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.test.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.sampling.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.audiomosaic.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.basicgranulation.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.feedbacksynth.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.gliss.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.midiretuning.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.resynthesis.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.temporalquantization.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.temporalalignment.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.caching.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.keymaps.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.waveshaping.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"__sandbox__.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.markov.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.tutorial.randomness.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.syntharpeggio.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-,
-			"bp.example.shepardtone.bell" : 			{
-				"kind" : "textfile",
-				"local" : 1
-			}
-
-		}
-,
-		"other" : 		{
-			"logo.icns" : 			{
-				"kind" : "file",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"logo.ico" : 			{
-				"kind" : "file",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"satie.mid" : 			{
-				"kind" : "midifile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"bach.mid" : 			{
-				"kind" : "midifile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"Lato-Light.ttf" : 			{
-				"kind" : "file",
-				"local" : 1
-			}
-,
-			"Lato-Regular.ttf" : 			{
-				"kind" : "file",
-				"local" : 1
-			}
-,
-			"dev_logo.ico" : 			{
-				"kind" : "file",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"dev_logo.icns" : 			{
-				"kind" : "file",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-,
-			"joplin.mid" : 			{
-				"kind" : "midifile",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/bellplay/media",
-					"projectrelativepath" : "./media"
-				}
-
-			}
-
-		}
-
-	}
-,
-	"layout" : 	{
-
-	}
-,
-	"searchpath" : 	{
-
-	}
-,
-	"detailsvisible" : 0,
-	"amxdtype" : 0,
-	"readonly" : 0,
-	"devpathtype" : 0,
-	"devpath" : ".",
-	"sortmode" : 1,
-	"viewmode" : 0,
-	"includepackages" : 0,
-	"openactions_internal" : "max objectfile bach.<= bach.leq bach.leq;\n"
+    "name": "bellplay",
+    "version": 1,
+    "creationdate": 3792408071,
+    "modificationdate": 3845854576,
+    "viewrect": [ 25.0, 103.0, 300.0, 500.0 ],
+    "autoorganize": 0,
+    "hideprojectwindow": 1,
+    "showdependencies": 0,
+    "autolocalize": 1,
+    "contents": {
+        "patchers": {
+            "bellplay.maxpat": {
+                "kind": "patcher",
+                "local": 1,
+                "toplevel": 1
+            },
+            "bp.corpus.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.sampler.poly~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.utils.debugmode.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.scripter.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.utils.errorcatch.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.utils.getbuffer.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.utils.searchbar.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.generate~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.noise~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.phasor~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.groove~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.wave~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.freqshift~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.getcontroller~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.retune~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.saw~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.tri~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.lookup~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.triangle~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.rand~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.rect~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.pong~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.cycle~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.scale~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.biquad~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.degrade~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.round~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.rampsmooth~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.teeth~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.essentia~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.roll.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.scrubplayer~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.scrubplayer.poly~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.utils.compareversions.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.utils.checkupdate.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.utils.truncatetext.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ears.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.sandbox.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.utils.zoomctrl.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ui.button.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ui.library.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ui.settings.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ui.separator.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ui.preferences.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ui.menubar.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.utils.loadscript.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ui.audio.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ui.viewer.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ui.bufplayer~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ui.umenu.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ui.database.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.ui.database.cartesian.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.pink.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.pink~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.simplefm~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.pitchshift~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.slide~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.tanh~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.atan~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.sah~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.log~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.>~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.>=~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.<~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.<=~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.mtof~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.ftom~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            },
+            "bp.process.wave2d~.maxpat": {
+                "kind": "patcher",
+                "local": 1
+            }
+        },
+        "media": {
+            "logo.png": {
+                "kind": "imagefile",
+                "local": 1
+            },
+            "alert.wav": {
+                "kind": "audiofile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "gpl_logo.png": {
+                "kind": "imagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "ccm_logo.png": {
+                "kind": "imagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "badinerie.wav": {
+                "kind": "audiofile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "poem.wav": {
+                "kind": "audiofile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "drums.wav": {
+                "kind": "audiofile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "singing.wav": {
+                "kind": "audiofile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "trumpet.wav": {
+                "kind": "audiofile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "guitar.wav": {
+                "kind": "audiofile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "flute.wav": {
+                "kind": "audiofile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "viola.wav": {
+                "kind": "audiofile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "uncheck-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "save-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "reload-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "play-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "open-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "new-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "minus-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "load-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "check-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "code-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "plus-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "alert-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "book-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "settings-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "console-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "folder-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "stop-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "auto-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "click-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "alertoff-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "download-icon.svg": {
+                "kind": "vectorimagefile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            }
+        },
+        "code": {
+            "zoom.js": {
+                "kind": "javascript",
+                "local": 1
+            }
+        },
+        "data": {
+            "__bellplay__.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorials.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.scoreconfig.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.features.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.rendering.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.variables.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.transcription.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.markers.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.export.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.automation.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.audiocontrol.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.basicworkflow.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.bufferprocessing.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.bufferkeys.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.multirendering.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.importingaudio.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.importingmidi.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.bufferinspector.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.postprocessing.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.kdtree.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.analysismodes.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.analysis.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.buildcorpus.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.test.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.sampling.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.audiomosaic.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.basicgranulation.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.feedbacksynth.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.gliss.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.midiretuning.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.resynthesis.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.temporalquantization.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.temporalalignment.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.caching.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.keymaps.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.waveshaping.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "__sandbox__.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.markov.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.randomness.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.syntharpeggio.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.example.shepardtone.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "__fluid__.bell": {
+                "kind": "textfile",
+                "local": 1
+            }
+        },
+        "other": {
+            "logo.icns": {
+                "kind": "file",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "logo.ico": {
+                "kind": "file",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "satie.mid": {
+                "kind": "midifile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "bach.mid": {
+                "kind": "midifile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "Lato-Light.ttf": {
+                "kind": "file",
+                "local": 1
+            },
+            "Lato-Regular.ttf": {
+                "kind": "file",
+                "local": 1
+            },
+            "dev_logo.ico": {
+                "kind": "file",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "dev_logo.icns": {
+                "kind": "file",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            },
+            "joplin.mid": {
+                "kind": "midifile",
+                "local": 1,
+                "singleton": {
+                    "bootpath": "~/Documents/bellplay/media",
+                    "projectrelativepath": "./media"
+                }
+            }
+        }
+    },
+    "layout": {    },
+    "searchpath": {    },
+    "detailsvisible": 0,
+    "amxdtype": 0,
+    "readonly": 0,
+    "devpathtype": 0,
+    "devpath": ".",
+    "sortmode": 1,
+    "viewmode": 0,
+    "includepackages": 0,
+    "openactions_internal": "max objectfile bach.<= bach.leq bach.leq;\n"
 }
