@@ -9,9 +9,50 @@
             "modernui": 1
         },
         "classnamespace": "box",
-        "rect": [ 59.0, 119.0, 672.0, 364.0 ],
+        "rect": [ 59.0, 115.0, 546.0, 276.0 ],
         "style": "bellplay-gui",
         "boxes": [
+            {
+                "box": {
+                    "id": "obj-7",
+                    "maxclass": "newobj",
+                    "numinlets": 1,
+                    "numoutlets": 1,
+                    "outlettype": [ "" ],
+                    "patching_rect": [ 138.0, 141.0, 292.0, 23.0 ],
+                    "saved_object_attributes": {
+                        "embed": 0,
+                        "versionnumber": 80300
+                    },
+                    "text": "bach.eval BP_FLUID_FROMBUFFER = $x1 @embed 0"
+                }
+            },
+            {
+                "box": {
+                    "id": "obj-6",
+                    "maxclass": "newobj",
+                    "numinlets": 1,
+                    "numoutlets": 1,
+                    "outlettype": [ "" ],
+                    "patching_rect": [ 10.0, 185.0, 274.0, 23.0 ],
+                    "saved_object_attributes": {
+                        "embed": 0,
+                        "versionnumber": 80300
+                    },
+                    "text": "bach.eval BP_FLUID_TOBUFFER = $x1 @embed 0"
+                }
+            },
+            {
+                "box": {
+                    "id": "obj-4",
+                    "maxclass": "newobj",
+                    "numinlets": 1,
+                    "numoutlets": 1,
+                    "outlettype": [ "" ],
+                    "patching_rect": [ 138.0, 101.0, 84.0, 23.0 ],
+                    "text": "ears.tosamps~"
+                }
+            },
             {
                 "box": {
                     "id": "obj-3",
@@ -19,50 +60,8 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 31.0, 103.5, 36.0, 23.0 ],
-                    "text": "defer"
-                }
-            },
-            {
-                "box": {
-                    "id": "obj-1",
-                    "maxclass": "newobj",
-                    "numinlets": 1,
-                    "numoutlets": 1,
-                    "outlettype": [ "" ],
-                    "patching_rect": [ 395.0, 22.666667342185974, 261.0, 23.0 ],
-                    "saved_object_attributes": {
-                        "embed": 0,
-                        "versionnumber": 80300
-                    },
-                    "text": "bach.eval BP_SANDBOX_OUT = $x1 @embed 0",
-                    "varname": "bpsandboxout"
-                }
-            },
-            {
-                "box": {
-                    "id": "obj-56",
-                    "maxclass": "newobj",
-                    "numinlets": 2,
-                    "numoutlets": 3,
-                    "outlettype": [ "", "", "" ],
-                    "patching_rect": [ 31.0, 62.0, 237.0, 23.0 ],
-                    "saved_object_attributes": {
-                        "versionnumber": 80300
-                    },
-                    "text": "bach.iter @maxdepth 1 @unwrap 1 @out m"
-                }
-            },
-            {
-                "box": {
-                    "id": "obj-55",
-                    "maxclass": "newobj",
-                    "numinlets": 1,
-                    "numoutlets": 2,
-                    "outlettype": [ "", "" ],
-                    "patching_rect": [ 31.0, 145.0, 68.0, 23.0 ],
-                    "save": [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
-                    "text": "thispatcher"
+                    "patching_rect": [ 10.0, 141.0, 98.0, 23.0 ],
+                    "text": "ears.fromsamps~"
                 }
             },
             {
@@ -70,34 +69,57 @@
                     "id": "obj-2",
                     "maxclass": "newobj",
                     "numinlets": 1,
-                    "numoutlets": 1,
-                    "outlettype": [ "" ],
-                    "patching_rect": [ 31.333334267139435, 22.666667342185974, 338.0, 23.0 ],
+                    "numoutlets": 3,
+                    "outlettype": [ "", "", "bang" ],
+                    "patching_rect": [ 10.0, 58.0, 275.0, 23.0 ],
                     "saved_object_attributes": {
-                        "embed": 0,
                         "versionnumber": 80300
                     },
-                    "text": "bach.eval @file __sandbox__.bell @auto 1 @watch 1 @embed 0"
+                    "text": "bach.keys tobuffer frombuffer"
+                }
+            },
+            {
+                "box": {
+                    "comment": "",
+                    "id": "obj-1",
+                    "index": 0,
+                    "maxclass": "inlet",
+                    "numinlets": 0,
+                    "numoutlets": 1,
+                    "outlettype": [ "" ],
+                    "patching_rect": [ 10.0, 9.0, 30.0, 30.0 ]
                 }
             }
         ],
         "lines": [
             {
                 "patchline": {
-                    "destination": [ "obj-56", 0 ],
-                    "source": [ "obj-2", 0 ]
-                }
-            },
-            {
-                "patchline": {
-                    "destination": [ "obj-55", 0 ],
-                    "source": [ "obj-3", 0 ]
+                    "destination": [ "obj-2", 0 ],
+                    "source": [ "obj-1", 0 ]
                 }
             },
             {
                 "patchline": {
                     "destination": [ "obj-3", 0 ],
-                    "source": [ "obj-56", 0 ]
+                    "source": [ "obj-2", 0 ]
+                }
+            },
+            {
+                "patchline": {
+                    "destination": [ "obj-4", 0 ],
+                    "source": [ "obj-2", 1 ]
+                }
+            },
+            {
+                "patchline": {
+                    "destination": [ "obj-6", 0 ],
+                    "source": [ "obj-3", 0 ]
+                }
+            },
+            {
+                "patchline": {
+                    "destination": [ "obj-7", 0 ],
+                    "source": [ "obj-4", 0 ]
                 }
             }
         ],
@@ -120,7 +142,7 @@
                     "color": [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
                     "editing_bgcolor": [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
                     "fontname": [ "Lato" ],
-                    "locked_bgcolor": [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
+                    "locked_bgcolor": [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
                     "selectioncolor": [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
                     "syntax_attrargcolor": [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
                     "syntax_attributecolor": [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],

@@ -1,32 +1,5 @@
 BP_MAXOBJ_DICT = {dict};
-BP_FN_CLEAN_FLUID_PATH = (
-    $path, $locate = 0, $match = null, $self = null -> (
-        $pathinfo = BP_FN_PATHINFO($path @locate $locate);
-        $path = $pathinfo.'path';
-        $ext = $pathinfo.'extension';
-        if $ext != '.json' then BP_FN_ERROR(
-            @details 'invalid extension:' $ext
-        ) else (
-            $classes = 'dataset' 'kdtree' 'umap' 'normalize' 'robustscale' 'standardize';
-            $class = null;
-            for $opt in $classes as $class == null do (
-                $label = '.' + $opt;
-                $symlen = symlen($label);
-                $tail = getchar(
-                    @symbol $path @i -rev(1...$symlen) 
-                );
-                if $tail == $label then ($class = $opt) 
-            );
-            $class ||| BP_FN_ERROR(
-                @origin $self @details 'invalid file tag in name: it should follow the pattern <name>.<tag>.json, where <tag> should be' $match
-            );
-            $match &&& ($match == $class || BP_FN_ERROR(
-                @origin $self @details 'invalid file naming—must end with the following: .' + $match + '.json' 
-            ));
-            ['path' $path + $ext] ['class' $class] 
-        ) 
-    ) 
-);
+## ------------------------------------------------------------
 BP_FN_FLUID_NEWOBJ = (
     $class, $name = null, $arguments = null, $attributes = null -> (
         $name = $name ||| getkey(
@@ -37,37 +10,82 @@ BP_FN_FLUID_NEWOBJ = (
             @arguments $name $arguments
             @attributes $attributes
         );
-        BP_FN_SANDBOX_CONNECT(
+        for $i in 0 1 do BP_FN_SANDBOX_CONNECT(
             @from $ref
             @to 'bpsandboxout' 
-            @outlet 1
+            @outlet $i
         );
         BP_FN_SANDBOX_GEN();
+        BP_FN_SANDBOX_MSG(
+            @to $ref @message 'clear' 
+        );
         [
             ['class' $class] ['name' $name] ['ref' $ref] 
         ] 
     ) 
 );
-kdtree = (
-    $numneighbours = 1, $radius = 0 -> (
-        $self = 'kdtree';
-        BP_FN_CHECK_ARGS(
-            $self, 'numneighbours', $numneighbours, 'radius', $radius
+## ------------------------------------------------------------
+BP_FN_FLUID_VALIDATE_OBJ = (
+    $self, $obj, $argument, $class -> (
+        $ref = getkey($obj, 'ref');
+        $objclass = getkey($obj, 'class');
+        ($ref &&& $objclass) ||| BP_FN_ERROR(
+            $self, 'invalid value for @' + $argument + '—expected a' $class 'but got:' $obj ||| 'null' 
         );
-        BP_FN_FLUID_NEWOBJ(
-            @class 'kdtree' @attributes ['numneighbours' $numneighbours] ['radius' $radius] 
+        if intersection($objclass, $class) == null then BP_FN_ERROR(
+            $self, 'invalid value for @' + $argument + '—expected a' $class 'but got:' $objclass ||| 'null' 
+        ) else 1
+    ) 
+);
+## ------------------------------------------------------------
+BP_FN_FLUID_TOBUFFER = (
+    $x -> (
+        BP_FLUID_TOBUFFER = null;
+        BP_FN_DISPATCH(
+            'fluid', 'tobuffer' [flat($x)] 
+        );
+        BP_FLUID_TOBUFFER
+    ) 
+);
+## ------------------------------------------------------------
+BP_FN_FLUID_FROMBUFFER = (
+    $x -> (
+        BP_FN_DISPATCH(
+            'fluid', 'frombuffer' $x
+        );
+        BP_FLUID_FROMBUFFER::1
+    ) 
+);
+## ------------------------------------------------------------
+printdataset = (
+    $dataset -> (
+        BP_FN_SANDBOX_MSG(
+            @to getkey($dataset, 'ref') @message 'print' 
         ) 
     ) 
 );
-mlp = (
-    $activation = 2, $batchsize = 50, $hiddenlayers = 3 3, $learnrate = 0.01, $maxiter = 1000, $momentum = 0.9, $outputactivation = 0, $tapin = 0, $tapout = -1, $validation = 0.2 -> (
-        BP_FN_FLUID_NEWOBJ(
-            @class 'mlpregressor' @attributes (
-                [ 'activation' $activation] [ 'batchsize' $batchsize] [ 'hiddenlayers' $hiddenlayers] [ 'learnrate' $learnrate] [ 'maxiter' $maxiter] [ 'momentum' $momentum] [ 'outputactivation' $outputactivation] [ 'tapin' $tapin] [ 'tapout' $tapout] [ 'validation' $validation] 
+## ------------------------------------------------------------
+getentry = (
+    $dataset, $ids -> (
+        $ref = getkey($dataset, 'ref');
+        $method = if getkey($dataset, 'class') == 'dataset' then 'getpoint' else 'getlabel';
+        $getter = (
+            $id -^ $ref, $method -> (
+                BP_SANDBOX_OUT = null;
+                $id = if contains($id) == 16 then $id else tosymbol($id);
+                BP_FN_SANDBOX_MSG(
+                    @to $ref @message $method $id
+                );
+                $result = right(BP_SANDBOX_OUT, 1);
+                if $method == 'getpoint' then (
+                    [BP_FN_FLUID_FROMBUFFER($result) ] 
+                ) else ($result) 
             ) 
-        ) 
+        );
+        $ids.map(@modfunction $getter @maxdepth -1) 
     ) 
 );
+## ------------------------------------------------------------
 dataset = (
     $data = null -> (
         $self = 'dataset';
@@ -77,40 +95,73 @@ dataset = (
         if depth($data) != 2 || $cols * $rows != length(flat($data)) then BP_FN_ERROR($self, '@data must be a 2-dimensional matrix') else (
             $buf = samps2buf(@llll trans($data));
             $source = getkey($buf, 'source');
-            $dataset = BP_FN_FLUID_NEWOBJ(
+            $obj = BP_FN_FLUID_NEWOBJ(
                 @class 'dataset' @name $source
             );
-            $ref = getkey($dataset, 'ref');
+            $ref = getkey($obj, 'ref');
             BP_FN_SANDBOX_GEN();
             $msgs = ['clear'] ['frombuffer' $source];
             for $msg in $msgs with @unwrap 1 do (BP_FN_SANDBOX_MSG(@to $ref @message $msg));
-            $dataset
+            $obj
         ) 
     ) 
 );
-printdataset = (
-    $dataset -> (
-        BP_FN_SANDBOX_MSG(
-            @to getkey($dataset, 'ref') @message 'print' 
+## ------------------------------------------------------------
+labelset = (
+    $labels = null -> (
+        $self = 'labelset';
+        $argcheck = BP_FN_CHECK_ARGS($self, 'labels', $labels);
+        $datacheck = depth($labels) == 1 && contains($labels) == 16;
+        if $argcheck == 1 && $datacheck == 1 then (
+            $obj = BP_FN_FLUID_NEWOBJ(@class 'labelset');
+            $ref = getkey($obj, 'ref');
+            for $label $addr in $labels do (
+                BP_FN_SANDBOX_MSG(
+                    @to $ref @message 'addlabel' tosymbol($addr - 1) $label
+                ) 
+            );
+            $obj
         ) 
     ) 
 );
+## ------------------------------------------------------------
 scaler = (
-    $type = 0, $min = 0, $max = 1 -> (
+    $mode = 0, $min = 0, $max = 1 -> (
         $self = 'scaler';
-        if $type == 0 then (
+        if $mode == 0 then (
             $class = 'normalize';
             $attrs = ['min' $min] ['max' $max] 
-        ) else if $type == 1 then (
+        ) else if $mode == 1 then (
             $class = 'standardize';
             $attrs = null
-        ) else if $type == 2 then (
+        ) else if $mode == 2 then (
             $class = 'robustscale';
             $attrs = ['low' $min] ['high' $max] 
-        ) else BP_FN_ERROR($self, 'invalid type:' $type ||| 'null');
+        ) else BP_FN_ERROR($self, 'invalid type:' $mode ||| 'null');
         BP_FN_FLUID_NEWOBJ(@class $class @attributes $attrs) 
     ) 
 );
+## ------------------------------------------------------------
+umap = (
+    $iterations = 200, $learnrate = 0.1, $mindist = 0.1, $numdimensions = 2, $numneighbors = 15 -> (
+        BP_FN_FLUID_NEWOBJ(
+            @class 'umap' @attributes (
+                [ 'iterations' $iterations] [ 'learnrate' $learnrate] [ 'mindist' $mindist] [ 'numdimensions' max(1, $numdimensions)] [ 'numneighbours' max(1, $numneighbors)] 
+            ) 
+        ) 
+    ) 
+);
+## ------------------------------------------------------------
+mds = (
+    $distancemetric = 1, $numdimensions = 2 -> (
+        BP_FN_FLUID_NEWOBJ(
+            @class 'mds' @attributes (
+                ['distancemetric' $distancemetric] ['numdimensions' $numdimensions] 
+            ) 
+        ) 
+    ) 
+);
+## ------------------------------------------------------------
 pca = (
     $numdimensions = 2, $whiten = 0 -> (
         $self = 'pca';
@@ -124,15 +175,81 @@ pca = (
         ) 
     ) 
 );
-kmeans = (
-    $maxiter = 100, $numclusters = 4, $encodingthreshold = null -> (
+## ------------------------------------------------------------
+kdtree = (
+    $numneighbors = 1, $radius = 0 -> (
+        $self = 'kdtree';
+        BP_FN_CHECK_ARGS(
+            $self, 'numneighbors', $numneighbors, 'radius', $radius
+        );
         BP_FN_FLUID_NEWOBJ(
-            @class ($encodingthreshold &&& 'skmeans') ||| 'kmeans' @attributes (
-                ['maxiter' $maxiter] ['numclusters' $numclusters] ($encodingthreshold &&& ['encodingthreshold' $encodingthreshold]) 
+            @class 'kdtree' @attributes ['numneighbours' $numneighbors] ['radius' $radius] 
+        ) 
+    ) 
+);
+## ------------------------------------------------------------
+knn = (
+    $mode = 0, $numneighbors = 3, $weight = 1 -> (
+        $self = 'knn';
+        $class = if $mode == 0 then 'knnregressor' else 'knnclassifier';
+        $check = BP_FN_CHECK_ARGS(
+            $self, 'mode', $mode, 'numneighbors', $numneighbors, 'weight', $weight
+        );
+        $check &&& BP_FN_FLUID_NEWOBJ(
+            @class $class @attributes (
+                [ 'numneighbours' $numneighbors] [ 'weight' $weight] 
             ) 
         ) 
     ) 
 );
+## ------------------------------------------------------------
+mlp = (
+    $mode = 0, $activation = 2, $batchsize = 50, $hiddenlayers = 3 3, $learnrate = 0.01, $maxiter = 1000, $momentum = 0.9, $outputactivation = 0, $tapin = 0, $tapout = -1, $validation = 0.2 -> (
+        $self = 'mlp';
+        $mlpclass = if $mode == 0 then 'mlpregressor' else 'mlpclassifier';
+        BP_FN_CHECK_ARGS($self, 'mode', $mode);
+        $obj = BP_FN_FLUID_NEWOBJ(
+            @class $mlpclass @attributes (
+                [ 'activation' $activation] 
+                ## ---
+                [ 'batchsize' $batchsize] 
+                ## ---
+                [ 'hiddenlayers' $hiddenlayers] 
+                ## ---
+                [ 'learnrate' $learnrate] 
+                ## ---
+                [ 'maxiter' $maxiter] 
+                ## ---
+                [ 'momentum' min($momentum, 0.99)] 
+                ## ---
+                [ 'validation' $validation] 
+                ## ---
+                (
+                    if $mlpclass == 'mlpregressor' then (
+                        [ 'outputactivation' $outputactivation] 
+                        ## ---
+                        [ 'tapin' $tapin] 
+                        ## ---
+                        [ 'tapout' $tapout] 
+                    ) 
+                ) 
+            ) 
+        );
+        $obj
+    ) 
+);
+## ------------------------------------------------------------
+kmeans = (
+    $mode = 0, $maxiter = 100, $numclusters = 4, $encodingthreshold = 0.25 -> (
+        $class = if $mode == 1 then 'skmeans' else 'kmeans';
+        BP_FN_FLUID_NEWOBJ(
+            @class $class @attributes (
+                ['maxiter' $maxiter] ['numclusters' $numclusters] (if $class == 'skmeans' then ['encodingthreshold' $encodingthreshold]) 
+            ) 
+        ) 
+    ) 
+);
+## ------------------------------------------------------------
 writeobj = (
     $obj, $path -> (
         BP_SANDBOX_OUT = null;
@@ -141,62 +258,153 @@ writeobj = (
             $self, 'obj', $obj, 'path', $path
         );
         $class = getkey($obj, 'class');
-        $name = getkey($obj, 'name');
-        $pathinfo = BP_FN_CLEAN_FLUID_PATH(
-            @path $path
-            @self $self
-            @match $class
-        );
-        $ref = getkey($obj, 'ref');
-        $path = $pathinfo.'path';
-        BP_FN_SANDBOX_MSG(
-            @to $ref @message 'dump' 
-        );
-        $dict = right(BP_SANDBOX_OUT, 1);
-        BP_MAXOBJ_DICT(
-            $dict @out 'm' 
-        );
-        BP_MAXOBJ_DICT(
-            'write' $path @out 'm' 
+        $pathinfo = BP_FN_PATHINFO($path);
+        $ext = $pathinfo.'extension';
+        if $ext == '.json' then (
+            $path = $pathinfo.'path' + $ext;
+            $ref = getkey($obj, 'ref');
+            $path = $pathinfo.'path' + $ext;
+            BP_FN_SANDBOX_MSG(
+                @to $ref @message 'dump' 
+            );
+            $dict = right(BP_SANDBOX_OUT, 1);
+            $msgs = [$dict] ['set' 'class' $class] ['write' $path];
+            for $msg in $msgs with @unwrap 1 do BP_MAXOBJ_DICT(
+                $msg @out 'm' 
+            );
+            null
         ) 
     ) 
 );
+## ------------------------------------------------------------
 readobj = (
-    $path -> (
+    $path, $print = 0 -> (
         $self = 'readobj';
         BP_FN_CHECK_ARGS($self, 'path', $path);
-        $pathinfo = BP_FN_CLEAN_FLUID_PATH(
-            @path $path
-            @self $self
-            @locate 1
-        );
-        $path = $pathinfo.'path';
-        $class = $pathinfo.'class';
-        BP_MAXOBJ_DICT(
-            'read' $path @out 'm' 
-        );
-        $result = BP_MAXOBJ_DICT(
-            'bang' @out 'm' @fetch 1
-        );
-        $obj = BP_FN_FLUID_NEWOBJ(@class $class);
-        $ref = getkey($obj, 'ref');
-        BP_FN_SANDBOX_MSG(
-            @to $ref @message 'load' $result
-        );
-        $obj
+        $pathinfo = BP_FN_PATHINFO($path @locate 1);
+        $ext = $pathinfo.'extension';
+        if $ext == '.json' then (
+            $path = $pathinfo.'path' + $ext;
+            BP_MAXOBJ_DICT(
+                'read' $path @out 'm' 
+            );
+            $query = BP_MAXOBJ_DICT(
+                'get' 'class' @out 'm' @fetch 2
+            );
+            if $query:1 == 'class' && $query:2 != null then (
+                $class = $query:2;
+                $result = BP_MAXOBJ_DICT(
+                    'bang' @out 'm' @fetch 1
+                );
+                $obj = BP_FN_FLUID_NEWOBJ(@class $class);
+                $ref = getkey($obj, 'ref');
+                $msgs = ['load' $result] (if $print == 1 then ['print']);
+                for $msg in $msgs with @unwrap 1 do BP_FN_SANDBOX_MSG(
+                    @to $ref @message $msg
+                );
+                $obj
+            ) 
+        ) 
     ) 
 );
-fit = (
-    $dataset, $transform -> (
-        $self = 'fit';
+transform = (
+    $obj = null, $dataset = null -> (
+        $self = 'transform';
         BP_FN_CHECK_ARGS(
-            $self, 'dataset', $dataset, 'transform', $transform
+            $self, 'obj', $obj, 'dataset', $dataset
         );
-        $dsname = getkey($dataset, 'name');
-        $ref = getkey($transform, 'ref');
-        $method = if intersection(getkey($transform, 'class'), 'kdtree') == null then 'fittransform' else 'fit';
-        BP_FN_SANDBOX_MSG(
-            @to $ref @message $method $dsname $dsname
+        $objcheck = BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @obj $obj
+            @argument 'obj' 
+            @class 'pca' 'umap' 'normalize' 'standardize' 'robustscale' 
+        );
+        $datasetcheck = BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @obj $dataset
+            @argument 'dataset' 
+            @class 'dataset' 
+        );
+        if $objcheck == 1 && $datasetcheck == 1 then (
+            $datasetname = getkey($dataset, 'name');
+            $objclass = getkey($obj, 'class');
+            $ref = getkey($obj, 'ref');
+            BP_FN_SANDBOX_MSG(
+                @to $ref @message 'fittransform' $datasetname :* 2
+            ) 
+        ) 
+    ) 
+);
+## ------------------------------------------------------------
+fit = (
+    $obj = null, $xset = null, $yset = null -> (
+        $self = 'fit';
+        $objcheck = BP_FN_CHECK_ARGS($self, 'obj', $obj) &&& BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @obj $obj
+            @argument 'obj' 
+            @class 'kdtree' 'skmeans' 'kmeans' 'mlpregressor' 'mlpclassifier' 'knnregressor' 'knnclassifier' 
+        );
+        if $objcheck then (
+            $objclass = getkey($obj, 'class');
+            $objref = getkey($obj, 'ref');
+            $numargs = if intersection(
+                $objclass, 'kdtree' 'kmeans' 'skmeans' 
+            ) then 2 else 3;
+            $xsetcheck = BP_FN_CHECK_ARGS($self, 'xset', $xset) &&& BP_FN_FLUID_VALIDATE_OBJ(
+                @self $self
+                @obj $xset
+                @argument 'xset' 
+                @class 'dataset' 
+            );
+            if $xsetcheck then (
+                $xsetname = getkey($xset, 'name');
+                if $numargs == 2 then BP_FN_SANDBOX_MSG(
+                    @to $objref @message 'fit' $xsetname
+                ) else (
+                    $ysetcheck = BP_FN_CHECK_ARGS($self, 'yset', $yset) &&& BP_FN_FLUID_VALIDATE_OBJ(
+                        @self $self
+                        @obj $yset
+                        @argument 'yset' 
+                        @class 'dataset' 'labelset' 
+                    );
+                    if $ysetcheck then (
+                        BP_SANDBOX_OUT = null;
+                        $method = 'fit';
+                        $ysetname = getkey($yset, 'name');
+                        BP_FN_SANDBOX_MSG(
+                            @to $objref @message $method $xsetname $ysetname
+                        );
+                        right(BP_SANDBOX_OUT, 1) 
+                    ) 
+                ) 
+            ) 
+        ) 
+    ) 
+);
+## ------------------------------------------------------------
+predict = (
+    $obj = null, $x = null -> (
+        $ref = getkey($obj, 'ref');
+        $class = getkey($obj, 'class');
+        $pt = BP_FN_FLUID_TOBUFFER($x);
+        if $class == 'kdtree' then (
+            for $method in 'knearest' 'knearestdist' collect (
+                BP_SANDBOX_OUT = null;
+                BP_FN_SANDBOX_MSG(
+                    @to $ref @message $method $pt
+                );
+                [$method right(BP_SANDBOX_OUT, 1)] 
+            ) 
+        ) else (
+            BP_SANDBOX_OUT = null;
+            BP_FN_SANDBOX_MSG(
+                @to $ref @message 'predictpoint' $pt
+            );
+            $prediction = right(BP_SANDBOX_OUT, 1);
+            if intersection(
+                $class, 'mlpclassifier' 'knnclassifier' 'kmeans' 
+            ) then $prediction else if $class == 'skmeans' then right($prediction, 1) else BP_FN_FLUID_FROMBUFFER($prediction) 
         ) 
     ) 
 )
