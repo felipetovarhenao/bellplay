@@ -50,6 +50,7 @@ BP_FN_FLUID_TOBUFFER = (
 ## ------------------------------------------------------------
 BP_FN_FLUID_FROMBUFFER = (
     $x -> (
+        BP_FLUID_FROMBUFFER = null;
         BP_FN_DISPATCH(
             'fluid', 'frombuffer' $x
         );
