@@ -18,7 +18,7 @@
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 124.0, 13.5, 300.0, 21.0 ],
+                    "patching_rect": [ 134.0, 13.5, 300.0, 21.0 ],
                     "text": "keep this object to force import during standalone build"
                 }
             },
@@ -27,10 +27,10 @@
                     "id": "obj-5",
                     "maxclass": "newobj",
                     "numinlets": 1,
-                    "numoutlets": 1,
-                    "outlettype": [ "buffer" ],
-                    "patching_rect": [ 48.0, 12.5, 74.0, 23.0 ],
-                    "text": "fluid.list2buf"
+                    "numoutlets": 2,
+                    "outlettype": [ "", "" ],
+                    "patching_rect": [ 48.0, 12.5, 80.0, 23.0 ],
+                    "text": "fluid.dataset~"
                 }
             },
             {

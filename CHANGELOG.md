@@ -10,7 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Start drafting backend API for integration of FluCoMa package. This includes creating a `__fluid__.bell` file with some sandbox-based logic/approach to FluCoMa object instantiation and management.
 - Closer to getting a smoother and streamlined API for flucoma objects. Currently separating tasks into `tranform` for scalers/reducers, `fit` for models, and `predict` for predictors/inference.
-- Added `fluid.list2buf` to force import during standalone build.
+- Added `fluid.list2buf` to force import during standalone build. (EDIT: this didn't work).
+- Add `openactions.txt` to ensure FluCoMa objects are properly identified in standalone.
 
 ### Added
 
