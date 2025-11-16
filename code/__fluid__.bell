@@ -279,7 +279,7 @@ writeobj = (
 );
 ## ------------------------------------------------------------
 readobj = (
-    $path, $print = 0 -> (
+    $path -> (
         $self = 'readobj';
         BP_FN_CHECK_ARGS($self, 'path', $path);
         $pathinfo = BP_FN_PATHINFO($path @locate 1);
@@ -299,9 +299,8 @@ readobj = (
                 );
                 $obj = BP_FN_FLUID_NEWOBJ(@class $class);
                 $ref = getkey($obj, 'ref');
-                $msgs = ['load' $result] (if $print == 1 then ['print']);
-                for $msg in $msgs with @unwrap 1 do BP_FN_SANDBOX_MSG(
-                    @to $ref @message $msg
+                BP_FN_SANDBOX_MSG(
+                    @to $ref @message 'load' $result
                 );
                 $obj
             ) 
