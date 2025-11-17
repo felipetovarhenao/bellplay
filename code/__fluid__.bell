@@ -148,7 +148,7 @@ standardizer = (
             $self, 'low', $low, 'high', $high
         );
         BP_FN_FLUID_NEWOBJ(
-            @class 'normalize' @attributes ['low' $low] ['high' $high] 
+            @class 'standardize' @attributes ['low' $low] ['high' $high] 
         ) 
     ) 
 );
