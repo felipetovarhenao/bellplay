@@ -137,18 +137,18 @@ normalizer = (
     ) 
 );
 ## ------------------------------------------------------------
-robustscaler = (
-    -> (BP_FN_FLUID_NEWOBJ(@class 'robustscale') ) 
+standardizer = (
+    -> (BP_FN_FLUID_NEWOBJ(@class 'standardize') ) 
 );
 ## ------------------------------------------------------------
-standardizer = (
+robustscaler = (
     $low = 25, $high = 75 -> (
-        $self = 'standardize';
+        $self = 'robustscaler';
         BP_FN_CHECK_ARGS(
             $self, 'low', $low, 'high', $high
         );
         BP_FN_FLUID_NEWOBJ(
-            @class 'standardize' @attributes ['low' $low] ['high' $high] 
+            @class 'robustscale' @attributes ['low' $low] ['high' $high] 
         ) 
     ) 
 );
