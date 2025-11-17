@@ -129,7 +129,7 @@ labelset = (
 normalizer = (
     $min = 0, $max = 1 -> (
         BP_FN_CHECK_ARGS(
-            $self, 'low', $low, 'high', $high
+            $self, 'min', $min, 'max', $max
         );
         BP_FN_FLUID_NEWOBJ(
             @class 'normalize' @attributes ['min' $min] ['max' $max] 
