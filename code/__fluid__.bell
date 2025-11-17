@@ -424,4 +424,26 @@ predict = (
             ) then $prediction else if $class == 'skmeans' then right($prediction, 1) else BP_FN_FLUID_FROMBUFFER($prediction) 
         ) 
     ) 
+);
+## ------------------------------------------------------------
+scalepoint = (
+    $obj, $x, $invert = 0 -> (
+        $self = 'scalepoint';
+        $method = if $invert == 0 then 'transformpoint' else 'inversetransformpoint';
+        $check = BP_FN_CHECK_ARGS(
+            $self, 'obj', $obj, 'x', $x, 'invert', $invert
+        ) &&& BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @obj $obj
+            @argument 'obj' 
+            @class 'robustscale' 'normalize' 'standardize' 
+        );
+        if $check then (
+            $pt = BP_FN_FLUID_TOBUFFER($x);
+            BP_FN_SANDBOX_MSG(
+                @to getkey($obj, 'ref') @message $method $pt
+            );
+            BP_FN_FLUID_FROMBUFFER(right(BP_SANDBOX_OUT, 1)) 
+        ) 
+    ) 
 )

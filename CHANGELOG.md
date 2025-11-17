@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Added `fluid.list2buf` to force import during standalone build. (EDIT: this didn't work).
 - Add `openactions.txt` to ensure FluCoMa objects are properly identified in standalone.
 - Replace `scaler` with separate functions: `normalizer`, `robustscaler`, `standardizer`.
+- Add `scalepoint` function. Function name may change.
 
 ### Added
 
