@@ -14,12 +14,24 @@
         "boxes": [
             {
                 "box": {
+                    "comment": "",
+                    "id": "obj-4",
+                    "index": 1,
+                    "maxclass": "inlet",
+                    "numinlets": 0,
+                    "numoutlets": 1,
+                    "outlettype": [ "" ],
+                    "patching_rect": [ 13.0, 12.0, 30.0, 30.0 ]
+                }
+            },
+            {
+                "box": {
                     "id": "obj-3",
                     "maxclass": "newobj",
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 31.0, 103.5, 36.0, 23.0 ],
+                    "patching_rect": [ 13.0, 140.0, 36.0, 23.0 ],
                     "text": "defer"
                 }
             },
@@ -30,7 +42,7 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 395.0, 22.666667342185974, 261.0, 23.0 ],
+                    "patching_rect": [ 389.0, 59.0, 261.0, 23.0 ],
                     "saved_object_attributes": {
                         "embed": 0,
                         "versionnumber": 80300
@@ -46,7 +58,7 @@
                     "numinlets": 2,
                     "numoutlets": 3,
                     "outlettype": [ "", "", "" ],
-                    "patching_rect": [ 31.0, 62.0, 237.0, 23.0 ],
+                    "patching_rect": [ 13.0, 99.0, 237.0, 23.0 ],
                     "saved_object_attributes": {
                         "versionnumber": 80300
                     },
@@ -60,7 +72,7 @@
                     "numinlets": 1,
                     "numoutlets": 2,
                     "outlettype": [ "", "" ],
-                    "patching_rect": [ 31.0, 145.0, 68.0, 23.0 ],
+                    "patching_rect": [ 13.0, 182.0, 68.0, 23.0 ],
                     "save": [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
                     "text": "thispatcher"
                 }
@@ -72,12 +84,12 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 31.333334267139435, 22.666667342185974, 338.0, 23.0 ],
+                    "patching_rect": [ 13.0, 59.0, 338.0, 23.0 ],
                     "saved_object_attributes": {
                         "embed": 0,
                         "versionnumber": 80300
                     },
-                    "text": "bach.eval @file __sandbox__.bell @auto 1 @watch 1 @embed 0"
+                    "text": "bach.eval @file __sandbox__.bell @auto 0 @watch 1 @embed 0"
                 }
             }
         ],
@@ -96,12 +108,17 @@
             },
             {
                 "patchline": {
+                    "destination": [ "obj-2", 0 ],
+                    "source": [ "obj-4", 0 ]
+                }
+            },
+            {
+                "patchline": {
                     "destination": [ "obj-3", 0 ],
                     "source": [ "obj-56", 0 ]
                 }
             }
         ],
-        "autosave": 0,
         "styles": [
             {
                 "name": "bellplay-gui",

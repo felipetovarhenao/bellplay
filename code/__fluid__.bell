@@ -58,14 +58,6 @@ BP_FN_FLUID_FROMBUFFER = (
     ) 
 );
 ## ------------------------------------------------------------
-printdataset = (
-    $dataset -> (
-        BP_FN_SANDBOX_MSG(
-            @to getkey($dataset, 'ref') @message 'print' 
-        ) 
-    ) 
-);
-## ------------------------------------------------------------
 getentry = (
     $dataset, $ids -> (
         $ref = getkey($dataset, 'ref');
@@ -85,6 +77,26 @@ getentry = (
         );
         $ids.map(@modfunction $getter @maxdepth -1) 
     ) 
+);
+BP_REF_NEW(
+    @name 'getentry' 
+    @description 'Maps one or more indices to the corresponding entries in a given dataset or labelset.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Dataset or labelset.' 
+        ) BP_REF_ARG(
+            @name 'ids' 
+            @type 'int/llll' 
+            @description 'Entry indices.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Dataset entries' @type 'llll' 
+    ) 
+    @tags 'labelset' 'dataset' 
 );
 ## ------------------------------------------------------------
 dataset = (
@@ -448,4 +460,5 @@ scalepoint = (
             BP_FN_FLUID_FROMBUFFER(right(BP_SANDBOX_OUT, 1)) 
         ) 
     ) 
-)
+);
+null

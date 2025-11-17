@@ -10,6 +10,7 @@ BP_REF_LABEL_BUFFER_GENERATION = "buffer generation";
 BP_REF_LABEL_BUFFER_ANALYSIS = "buffer analysis";
 BP_REF_LABEL_BUFFER_UTILS = "buffer utilities";
 BP_REF_LABEL_MATH = "math";
+BP_REF_LABEL_ML = "machine learning";
 BP_REF = (for $i in (
     BP_REF_LABEL_DATA_UTILS 
     BP_REF_LABEL_BUFFER_OPERATIONS 
@@ -18,6 +19,7 @@ BP_REF = (for $i in (
     BP_REF_LABEL_RANDOMNESS
     BP_REF_LABEL_BUFFER_UTILS
     BP_REF_LABEL_MATH
+    BP_REF_LABEL_ML
 ) collect [ $i ]);
 BP_REF_TIMEUNIT_OPTIONS = null;
 BP_REF_AUDIO_DOMAIN_OPTIONS = null;
