@@ -126,20 +126,30 @@ labelset = (
     ) 
 );
 ## ------------------------------------------------------------
-scaler = (
-    $mode = 0, $min = 0, $max = 1 -> (
-        $self = 'scaler';
-        if $mode == 0 then (
-            $class = 'normalize';
-            $attrs = ['min' $min] ['max' $max] 
-        ) else if $mode == 1 then (
-            $class = 'standardize';
-            $attrs = null
-        ) else if $mode == 2 then (
-            $class = 'robustscale';
-            $attrs = ['low' $min] ['high' $max] 
-        ) else BP_FN_ERROR($self, 'invalid type:' $mode ||| 'null');
-        BP_FN_FLUID_NEWOBJ(@class $class @attributes $attrs) 
+normalizer = (
+    $min = 0, $max = 1 -> (
+        BP_FN_CHECK_ARGS(
+            $self, 'low', $low, 'high', $high
+        );
+        BP_FN_FLUID_NEWOBJ(
+            @class 'normalize' @attributes ['min' $min] ['max' $max] 
+        ) 
+    ) 
+);
+## ------------------------------------------------------------
+robustscaler = (
+    -> (BP_FN_FLUID_NEWOBJ(@class 'robustscale') ) 
+);
+## ------------------------------------------------------------
+standardizer = (
+    $low = 25, $high = 75 -> (
+        $self = 'standardize';
+        BP_FN_CHECK_ARGS(
+            $self, 'low', $low, 'high', $high
+        );
+        BP_FN_FLUID_NEWOBJ(
+            @class 'normalize' @attributes ['low' $low] ['high' $high] 
+        ) 
     ) 
 );
 ## ------------------------------------------------------------
@@ -315,10 +325,10 @@ readobj = (
     ) 
 );
 transform = (
-    $obj = null, $dataset = null -> (
+    $dataset = null, $obj = null -> (
         $self = 'transform';
         BP_FN_CHECK_ARGS(
-            $self, 'obj', $obj, 'dataset', $dataset
+            $self, 'dataset', $dataset, 'obj', $obj
         );
         $objcheck = BP_FN_FLUID_VALIDATE_OBJ(
             @self $self

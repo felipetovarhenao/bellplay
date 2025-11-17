@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Closer to getting a smoother and streamlined API for flucoma objects. Currently separating tasks into `tranform` for scalers/reducers, `fit` for models, and `predict` for predictors/inference.
 - Added `fluid.list2buf` to force import during standalone build. (EDIT: this didn't work).
 - Add `openactions.txt` to ensure FluCoMa objects are properly identified in standalone.
+- Replace `scaler` with separate functions: `normalizer`, `robustscaler`, `standardizer`.
 
 ### Added
 
