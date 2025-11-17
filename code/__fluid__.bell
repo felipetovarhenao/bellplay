@@ -241,13 +241,20 @@ mlp = (
 );
 ## ------------------------------------------------------------
 kmeans = (
-    $mode = 0, $maxiter = 100, $numclusters = 4, $encodingthreshold = 0.25 -> (
+    $mode = 0, $maxiter = 100, $numclusters = 4, $encodingthreshold = 0.25, $means = null -> (
         $class = if $mode == 1 then 'skmeans' else 'kmeans';
-        BP_FN_FLUID_NEWOBJ(
+        $obj = BP_FN_FLUID_NEWOBJ(
             @class $class @attributes (
                 ['maxiter' $maxiter] ['numclusters' $numclusters] (if $class == 'skmeans' then ['encodingthreshold' $encodingthreshold]) 
             ) 
-        ) 
+        );
+        if depth($means) == 2 && length($means) == $numclusters then (
+            $ds = dataset($means);
+            BP_FN_SANDBOX_MSG(
+                @to getkey($obj, 'ref') @message 'setmeans' getkey($ds, 'name') 
+            ) 
+        );
+        $obj
     ) 
 );
 ## ------------------------------------------------------------
