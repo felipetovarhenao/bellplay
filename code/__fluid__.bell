@@ -406,13 +406,15 @@ predict = (
         $class = getkey($obj, 'class');
         $pt = BP_FN_FLUID_TOBUFFER($x);
         if $class == 'kdtree' then (
-            for $method in 'knearest' 'knearestdist' collect (
-                BP_SANDBOX_OUT = null;
-                BP_FN_SANDBOX_MSG(
-                    @to $ref @message $method $pt
-                );
-                [$method right(BP_SANDBOX_OUT, 1)] 
-            ) 
+            [
+                for $method in 'knearest' 'knearestdist', $key in 'neighbors' 'distances' collect (
+                    BP_SANDBOX_OUT = null;
+                    BP_FN_SANDBOX_MSG(
+                        @to $ref @message $method $pt
+                    );
+                    [$key right(BP_SANDBOX_OUT, 1)] 
+                ) 
+            ] 
         ) else (
             BP_SANDBOX_OUT = null;
             BP_FN_SANDBOX_MSG(
