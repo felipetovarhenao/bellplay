@@ -16,6 +16,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Add `scalepoint` function. Function name may change.
 - **MAJOR CHANGE**: Use trigger object in root patch, `bellplay.maxpat`, to control and ensure proper order of loading at launch. This seems to solve the issue of loading the core scripts multiple times and allows adding to the reference docs in `__fluid__.bell`.
 - Add draft of documentation for most ML object functions. Pending extensive revision and refinement.
+- `dataset` and `labelset` are now 1-based.
+- Add temp docs for `scalepoint`.
 
 ### Added
 

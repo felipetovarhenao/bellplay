@@ -77,17 +77,20 @@ getentry = (
         $getter = (
             $id -^ $ref, $method -> (
                 BP_SANDBOX_OUT = null;
-                $id = if contains($id) == 16 then $id else tosymbol($id);
                 BP_FN_SANDBOX_MSG(
                     @to $ref @message $method $id
                 );
                 $result = right(BP_SANDBOX_OUT, 1);
                 if $method == 'getpoint' then (
-                    [BP_FN_FLUID_FROMBUFFER($result) ] 
-                ) else ($result) 
+                    [BP_FN_FLUID_FROMBUFFER($result)] 
+                ) else $result
             ) 
         );
-        $ids.map(@modfunction $getter @maxdepth -1) 
+        map(
+            @llll $ids
+            @modfunction $getter
+            @maxdepth -1
+        ) 
     ) 
 );
 BP_REF_NEW(
@@ -118,14 +121,14 @@ dataset = (
         $cols = length($data::1);
         $rows = length($data);
         if depth($data) != 2 || $cols * $rows != length(flat($data)) then BP_FN_ERROR($self, '@data must be a 2-dimensional matrix') else (
-            $buf = samps2buf(@llll trans($data));
+            $buf = samps2buf(@llll trans($data:1 $data));
             $source = getkey($buf, 'source');
             $obj = BP_FN_FLUID_NEWOBJ(
                 @class 'dataset' @name $source
             );
             $ref = getkey($obj, 'ref');
             BP_FN_SANDBOX_GEN();
-            $msgs = ['clear'] ['frombuffer' $source];
+            $msgs = ['clear'] ['frombuffer' $source] ['deletepoint' 0];
             for $msg in $msgs with @unwrap 1 do (BP_FN_SANDBOX_MSG(@to $ref @message $msg));
             $obj
         ) 
@@ -154,11 +157,9 @@ labelset = (
         if $argcheck == 1 && $datacheck == 1 then (
             $obj = BP_FN_FLUID_NEWOBJ(@class 'labelset');
             $ref = getkey($obj, 'ref');
-            for $label $addr in $labels do (
-                BP_FN_SANDBOX_MSG(
-                    @to $ref @message 'addlabel' tosymbol($addr - 1) $label
-                ) 
-            );
+            for $label $addr in $labels do (BP_FN_SANDBOX_MSG(
+                @to $ref @message 'addlabel' $addr $label
+            ) );
             $obj
         ) 
     ) 
@@ -753,11 +754,11 @@ predict = (
 );
 ## ------------------------------------------------------------
 scalepoint = (
-    $obj, $x, $invert = 0 -> (
+    $obj, $x, $inverse = 0 -> (
         $self = 'scalepoint';
-        $method = if $invert == 0 then 'transformpoint' else 'inversetransformpoint';
+        $method = if $inverse == 0 then 'transformpoint' else 'inversetransformpoint';
         $check = BP_FN_CHECK_ARGS(
-            $self, 'obj', $obj, 'x', $x, 'invert', $invert
+            $self, 'obj', $obj, 'x', $x, 'inverse', $inverse
         ) &&& BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
             @obj $obj
@@ -773,4 +774,29 @@ scalepoint = (
         ) 
     ) 
 );
+BP_REF_NEW(
+    @name 'scalepoint' 
+    @description 'Scales a point given some ML object such as a scaler or dimensionality reducer.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'obj' 
+            @type 'llll' 
+            @description 'Model object' 
+        ) BP_REF_ARG(
+            @name 'x' 
+            @type 'llll' 
+            @description 'Numeric point to scale' 
+        ) BP_REF_ARG(
+            @name 'inverse' 
+            @type 'int' 
+            @description 'Inverse scaling mode' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Scaled point' @type 'llll' 
+    ) 
+);
+## ------------------------------------------------------------
 null
