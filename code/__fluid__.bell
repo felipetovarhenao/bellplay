@@ -58,6 +58,18 @@ BP_FN_FLUID_FROMBUFFER = (
     ) 
 );
 ## ------------------------------------------------------------
+BP_REF_FLUID_ACTIVATION_OPTIONS = (
+    BP_REF_OPT(
+        @value 0 @description 'Identity (-∞ to ∞ — i.e., no activation).' 
+    ) BP_REF_OPT(
+        @value 1 @description 'Sigmoid (0 to 1).' 
+    ) BP_REF_OPT(
+        @value 2 @description 'ReLU. (0 to ∞).' 
+    ) BP_REF_OPT(
+        @value 3 @description 'Tanh (-1 to 1).' 
+    ) 
+);
+## ------------------------------------------------------------
 getentry = (
     $dataset, $ids -> (
         $ref = getkey($dataset, 'ref');
@@ -119,6 +131,20 @@ dataset = (
         ) 
     ) 
 );
+BP_REF_NEW(
+    @name 'dataset' 
+    @description 'Generates a _llll_ representation of a dataset object, given a list of numeric data points. `@data` must be a _llll_ of depth 2, where each sublist has the same number of elements (i.e., dimensions)' 
+    @category BP_REF_LABEL_ML
+    @arguments BP_REF_ARG(
+        @name 'data' 
+        @type 'llll' 
+        @description 'Data points as a rectangular matrix.' 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Dataset object' @type 'llll' 
+    ) 
+    @tags 'labelset' 'getentry' 
+);
 ## ------------------------------------------------------------
 labelset = (
     $labels = null -> (
@@ -137,6 +163,20 @@ labelset = (
         ) 
     ) 
 );
+BP_REF_NEW(
+    @name 'labelset' 
+    @description 'Generates a _llll_ representation of a label object, given a list of labels. `@labels` must be a flat list of symbols, each of which is meant to be a label for a point in some other dataset, based on their position.' 
+    @category BP_REF_LABEL_ML
+    @arguments BP_REF_ARG(
+        @name 'labels' 
+        @type 'list/symbol' 
+        @description 'List of data labels, as symbols.' 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Labelset object' @type 'llll' 
+    ) 
+    @tags 'dataset' 'getentry' 
+);
 ## ------------------------------------------------------------
 normalizer = (
     $min = 0, $max = 1 -> (
@@ -148,9 +188,40 @@ normalizer = (
         ) 
     ) 
 );
+BP_REF_NEW(
+    @name 'normalizer' 
+    @description 'Generates a normalizer object which can be used for [_minmax_ normalization](https://en.wikipedia.org/wiki/Feature_scaling#Rescaling_(min-max_normalization)) of a dataset, via the `transform` function.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'min' 
+            @type 'int/float' 
+            @default 0
+            @description 'Minimum output value.' 
+        ) BP_REF_ARG(
+            @name 'max' 
+            @type 'int/float' 
+            @default 1
+            @description 'Maximum output value.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Normalizer object' @type 'llll' 
+    ) 
+    @tags 'dataset' 'labelset' 
+);
 ## ------------------------------------------------------------
 standardizer = (
     -> (BP_FN_FLUID_NEWOBJ(@class 'standardize') ) 
+);
+BP_REF_NEW(
+    @name 'standardizer' 
+    @description 'Generates a standardizer object which can be used for [standardization](https://en.wikipedia.org/wiki/Feature_scaling#Standardization_(Z-score_Normalization)) of a dataset, via the `transform` function.' 
+    @category BP_REF_LABEL_ML
+    @output BP_REF_OUTPUT(
+        @description 'Standardizer object' @type 'llll' 
+    ) 
+    @tags 'transform' 'normalizer' 'robustscaler' 
 );
 ## ------------------------------------------------------------
 robustscaler = (
@@ -164,6 +235,28 @@ robustscaler = (
         ) 
     ) 
 );
+BP_REF_NEW(
+    @name 'robustscaler' 
+    @description 'Generates a robust scaler object which can be used for [robust scaling](https://en.wikipedia.org/wiki/Feature_scaling#Robust_Scaling) of a dataset, via the `transform` function.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'low' 
+            @type 'int/float' 
+            @default 25
+            @description 'Low quantile value.' 
+        ) BP_REF_ARG(
+            @name 'high' 
+            @type 'int/float' 
+            @default 75
+            @description 'High quantile value.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Robust scaler object' @type 'llll' 
+    ) 
+    @tags 'normalizer' 'standardizer' 
+);
 ## ------------------------------------------------------------
 umap = (
     $iterations = 200, $learnrate = 0.1, $mindist = 0.1, $numdimensions = 2, $numneighbors = 15 -> (
@@ -173,6 +266,43 @@ umap = (
             ) 
         ) 
     ) 
+);
+BP_REF_NEW(
+    @name 'umap' 
+    @description 'Generates a [Uniform Manifold Approximation and Projection (UMAP)](https://learn.flucoma.org/reference/umap/) object which can be used for [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) of a dataset, via the `transform` function.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'iterations' 
+            @type 'int' 
+            @default 200
+            @description 'The number of iterations that the algorithm will go through to optimise the new representation.' 
+        ) BP_REF_ARG(
+            @name 'learnrate' 
+            @type 'float' 
+            @default '0.1' 
+            @description 'The learning rate of the algorithm, aka how much of the error it uses to estimate the next iteration.' 
+        ) BP_REF_ARG(
+            @name 'mindist' 
+            @type 'float' 
+            @default '0.1' 
+            @description 'The minimum distance each point is allowed to be from the others in the low dimension space. Low values will make tighter clumps, and higher will spread the points more.' 
+        ) BP_REF_ARG(
+            @name 'numdimensions' 
+            @type 'int' 
+            @default 2
+            @description 'The number of dimensions to reduce to.' 
+        ) BP_REF_ARG(
+            @name 'numneighbors' 
+            @type 'int' 
+            @default 15
+            @description 'The number of neighbours considered by the algorithm to balance local vs global structures to conserve. Low values will prioritise preservation of the local structure while high values will prioritise preservation of the global structure.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'UMAP object' @type 'llll' 
+    ) 
+    @tags 'transform' 'pca' 
 );
 ## ------------------------------------------------------------
 mds = (
@@ -198,6 +328,29 @@ pca = (
         ) 
     ) 
 );
+BP_REF_NEW(
+    @name 'pca' 
+    @description 'Generates a [Principal Component Analysis](https://learn.flucoma.org/reference/pca/) object which can be used for [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) of a dataset, via the `transform` function.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'numdimensions' 
+            @type 'int' 
+            @default 2
+            @description 'The number of dimensions (principal components) to keep after a `transform`, using PCA for dimensionality reduction.' 
+        ) BP_REF_ARG(
+            @name 'whiten' 
+            @default 0
+            @type 'int' 
+            @description 'Perform [_whitening_](https://learn.flucoma.org/reference/pca) on the output of PCA.' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'PCA object' @type 'llll' 
+    ) 
+    @tags 'transform' 'umap' 
+);
 ## ------------------------------------------------------------
 kdtree = (
     $numneighbors = 1, $radius = 0 -> (
@@ -209,6 +362,28 @@ kdtree = (
             @class 'kdtree' @attributes ['numneighbours' $numneighbors] ['radius' $radius] 
         ) 
     ) 
+);
+BP_REF_NEW(
+    @name 'kdtree' 
+    @description 'Generates a [K-dimensional Tree](https://learn.flucoma.org/reference/kdtree/) object for efficient neighborhood searches of multi-dimensional data. KDTrees are most useful for repeated querying of a dataset, because there is a cost associated with building them.  Whilst KDTrees can offer very good performance relative to naïve search algorithms, they suffer from something called “the curse of dimensionality” (like many algorithms for multi-dimensional data). In practice, this means that as the number of dimensions of your data goes up, the relative performance gains of a KDTree go down.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'numdimensions' 
+            @type 'int' 
+            @default 1
+            @description 'The number of neighbours to return.' 
+        ) BP_REF_ARG(
+            @name 'radius' 
+            @default 0
+            @type 'int/float' 
+            @description "The maximum distance (in high dimensional space) that a returned point can be. Any points beyond radius will not be returned (even if they're within the nearest numneighbours points). When radius is 0 (default), it is no longer a constraint and the distance of a nearest neighbour is not taken into account." 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'KDTree object' @type 'llll' 
+    ) 
+    @tags 'fit' 'dataset' 
 );
 ## ------------------------------------------------------------
 knn = (
@@ -224,6 +399,35 @@ knn = (
             ) 
         ) 
     ) 
+);
+BP_REF_NEW(
+    @name 'knn' 
+    @description "Generates a [K-Nearest Neighbor Search](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) object for either [regression](https://learn.flucoma.org/reference/knnregressor/) or [classification](https://learn.flucoma.org/reference/knnclassifier/) tasks. It uses an internal [KDTree](https://learn.flucoma.org/reference/kdtree/) to find an input point's numneighbors nearest neighbors in an input dataset. The output returned is a weighted average of those neighbors' values from the output dataset." 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'mode' 
+            @type 'int' 
+            @default 0
+            @description 'Prediction mode.' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'Regression.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'Classification.' 
+                ) 
+            ) 
+        ) BP_REF_ARG(
+            @name 'numneighbors' 
+            @default 3
+            @type 'int' 
+            @description 'Number of neighbours to consider.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'KNN object' @type 'llll' 
+    ) 
+    @tags 'fit' 'dataset' 'labelset' 
 );
 ## ------------------------------------------------------------
 mlp = (
@@ -260,6 +464,82 @@ mlp = (
         );
         $obj
     ) 
+);
+BP_REF_NEW(
+    @name 'mlp' 
+    @description 'Generates a [Multilayer Perceptron Neural Network](https://en.wikipedia.org/wiki/Multilayer_perceptron) object for either [regression](https://learn.flucoma.org/reference/mlpregressor/) or [classification](https://learn.flucoma.org/reference/mlpclassifier/) tasks.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'mode' 
+            @type 'int' 
+            @default 0
+            @description 'Prediction mode.' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'Regression.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'Classification.' 
+                ) 
+            ) 
+        ) BP_REF_ARG(
+            @name 'activation' 
+            @type 'int' 
+            @default 2
+            @description 'Activation function for hidden layers.' 
+            @options BP_REF_FLUID_ACTIVATION_OPTIONS
+        ) BP_REF_ARG(
+            @name 'batchsize' 
+            @type 'int' 
+            @default 50
+            @description 'Batch size.' 
+        ) BP_REF_ARG(
+            @name 'hiddenlayers' 
+            @type 'list/int' 
+            @default 3 3
+            @description 'A list of integers, each specifying the desired size of every fully connected, hidden layer.' 
+        ) BP_REF_ARG(
+            @name 'learnrate' 
+            @type 'float' 
+            @default '0.01' 
+            @description 'Learning rate.' 
+        ) BP_REF_ARG(
+            @name 'maxiter' 
+            @type 'int' 
+            @default 1000
+            @description 'Maximum number of iterations during training.' 
+        ) BP_REF_ARG(
+            @name 'momentum' 
+            @type 'float' 
+            @default '0.9' 
+            @description 'Momentum.' 
+        ) BP_REF_ARG(
+            @name 'tapin' 
+            @type 'int' 
+            @default 0
+            @description 'Tap in.' 
+        ) BP_REF_ARG(
+            @name 'tapout' 
+            @type 'int' 
+            @default -1
+            @description 'Tap out.' 
+        ) BP_REF_ARG(
+            @name 'outputactivation' 
+            @type 'int' 
+            @default 0
+            @description 'Activation function for output layers. Ignored when `@mode` is 1.' 
+            @options BP_REF_FLUID_ACTIVATION_OPTIONS
+        ) BP_REF_ARG(
+            @name 'validation' 
+            @type 'float' 
+            @default '0.2' 
+            @description 'Factor of the dataset to use for validation during training.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Multilayer perceptron object' @type 'llll' 
+    ) 
+    @tags 'fit' 'dataset' 'labelset' 
 );
 ## ------------------------------------------------------------
 kmeans = (
@@ -306,6 +586,23 @@ writeobj = (
         ) 
     ) 
 );
+BP_REF_NEW(
+    @name 'writeobj' 
+    @description 'Writes a machine learning (e.g., datasets, labelsets, MLPs, UMAPs, KDTrees, etc.) object as a JSON file given a path.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'obj' 
+            @type 'llll' 
+            @description 'machine learning object.' 
+        ) BP_REF_ARG(
+            @name 'path' 
+            @type 'symbol' 
+            @description 'path to write JSON file.' 
+        ) 
+    ) 
+    @tags 'readobj' 
+);
 ## ------------------------------------------------------------
 readobj = (
     $path -> (
@@ -336,6 +633,21 @@ readobj = (
         ) 
     ) 
 );
+BP_REF_NEW(
+    @name 'readobj' 
+    @description 'Reads a JSON file to generates a machine learning object.' 
+    @category BP_REF_LABEL_ML
+    @arguments BP_REF_ARG(
+        @name 'path' 
+        @type 'symbol' 
+        @description 'Path to JSON file.' 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Machine learning object' @type 'llll' 
+    ) 
+    @tags 'writeobj' 
+);
+## ------------------------------------------------------------
 transform = (
     $dataset = null, $obj = null -> (
         $self = 'transform';
