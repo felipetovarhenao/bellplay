@@ -730,40 +730,64 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 transform = (
-    $dataset = null, $obj = null -> (
+    $x = null, $obj = null, $inverse = 0 -> (
         $self = 'transform';
-        BP_FN_CHECK_ARGS(
-            $self, 'dataset', $dataset, 'obj', $obj
-        );
-        $objcheck = BP_FN_FLUID_VALIDATE_OBJ(
+        if BP_FN_CHECK_ARGS(
+            $self, 'x', $x, 'obj', $obj
+        ) &&& BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
             @obj $obj
             @argument 'obj' 
             @class 'pca' 'umap' 'normalize' 'standardize' 'robustscale' 
-        );
-        $datasetcheck = BP_FN_FLUID_VALIDATE_OBJ(
-            @self $self
-            @obj $dataset
-            @argument 'dataset' 
-            @class 'dataset' 
-        );
-        if $objcheck == 1 && $datasetcheck == 1 then (
-            $newdataset = BP_FN_FLUID_NEWOBJ(@class 'dataset');
-            $datasetname = getkey($dataset, 'name');
+        ) then (
             $objclass = getkey($obj, 'class');
-            $ref = getkey($obj, 'ref');
-            BP_FN_SANDBOX_MSG(
-                @to $ref @message 'fittransform' $datasetname getkey($newdataset, 'name') 
-            );
-            for $msg in 'size' 'cols' do (
+            $xtype = if (getkey($x, 'class') &&& getkey($x, 'ref')) != null then 1 else 0;
+            if $xtype == 1 && BP_FN_FLUID_VALIDATE_OBJ(
+                @self $self
+                @obj $x
+                @argument 'x' 
+                @class 'dataset' 
+            ) == 1 then (
+                $yset = BP_FN_FLUID_NEWOBJ(@class 'dataset');
+                $xname = getkey($x, 'name');
+                $ref = getkey($obj, 'ref');
                 BP_FN_SANDBOX_MSG(
-                    @to getkey($newdataset, 'ref') @message $msg
+                    @to $ref @message 'transform' $xname getkey($yset, 'name') 
                 );
-                $val = right(BP_SANDBOX_OUT, 1);
-                $newdataset = setkey($newdataset, $msg, $val @mode 1) 
-            );
-            $newdataset
+                $yset
+            ) else (
+                $method = if $inverse == 0 || $objclass == 'umap' then 'transformpoint' else 'inversetransformpoint';
+                $pt = BP_FN_FLUID_TOBUFFER($x);
+                BP_FN_SANDBOX_MSG(
+                    @to getkey($obj, 'ref') @message $method $pt
+                );
+                BP_FN_FLUID_FROMBUFFER(right(BP_SANDBOX_OUT, 1)) 
+            ) 
         ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'transform' 
+    @description 'Transforms a dataset or point given some ML object such as a scaler (e.g., `normalizer`, `standardizer`, `robustscaler`) or dimensionality reducer (e.g., `umap`, `pca`).' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'x' 
+            @type 'llll/list' 
+            @description 'Dataset or point to transform.' 
+        ) BP_REF_ARG(
+            @name 'obj' 
+            @type 'llll' 
+            @description 'Model object' 
+        ) BP_REF_ARG(
+            @name 'inverse' 
+            @type 'int' 
+            @description 'Inverse transform mode. Ignored with @obj is a UMAP' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Transformed dataset or point' @type 'llll' 
     ) 
 );
 ## ------------------------------------------------------------
@@ -839,53 +863,6 @@ predict = (
                 $class, 'mlpclassifier' 'knnclassifier' 'kmeans' 
             ) then $prediction else if $class == 'skmeans' then right($prediction, 1) else BP_FN_FLUID_FROMBUFFER($prediction) 
         ) 
-    ) 
-);
-## ------------------------------------------------------------
-transformpoint = (
-    $point, $obj, $inverse = 0 -> (
-        $self = 'transformpoint';
-        $check = BP_FN_CHECK_ARGS(
-            $self, 'point', $point, 'obj', $obj, 'inverse', $inverse
-        ) &&& BP_FN_FLUID_VALIDATE_OBJ(
-            @self $self
-            @obj $obj
-            @argument 'obj' 
-            @class 'robustscale' 'normalize' 'standardize' 'umap' 'pca' 
-        );
-        if $check then (
-            $class = getkey($obj, 'class');
-            $method = if $inverse == 0 || $class == 'umap' then 'transformpoint' else 'inversetransformpoint';
-            $pt = BP_FN_FLUID_TOBUFFER($point);
-            BP_FN_SANDBOX_MSG(
-                @to getkey($obj, 'ref') @message $method $pt
-            );
-            BP_FN_FLUID_FROMBUFFER(right(BP_SANDBOX_OUT, 1)) 
-        ) 
-    ) 
-);
-BP_REF_NEW(
-    @name 'transformpoint' 
-    @description 'Transforms a point given some ML object such as a scaler (e.g., `normalizer`, `standardizer`, `robustscaler`) or dimensionality reducer (e.g., `umap`, `pca`).' 
-    @category BP_REF_LABEL_ML
-    @arguments (
-        BP_REF_ARG(
-            @name 'point' 
-            @type 'llll' 
-            @description 'Numeric point to scale' 
-        ) BP_REF_ARG(
-            @name 'obj' 
-            @type 'llll' 
-            @description 'Model object' 
-        ) BP_REF_ARG(
-            @name 'inverse' 
-            @type 'int' 
-            @description 'Inverse scaling mode' 
-            @options BP_REF_SWITCH_OPTIONS
-        ) 
-    ) 
-    @output BP_REF_OUTPUT(
-        @description 'Scaled point' @type 'llll' 
     ) 
 );
 ## ------------------------------------------------------------
