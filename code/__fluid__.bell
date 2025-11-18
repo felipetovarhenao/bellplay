@@ -127,9 +127,14 @@ dataset = (
                 @class 'dataset' @name $source
             );
             $ref = getkey($obj, 'ref');
-            BP_FN_SANDBOX_GEN();
             $msgs = ['clear'] ['frombuffer' $source] ['deletepoint' 0];
             for $msg in $msgs with @unwrap 1 do (BP_FN_SANDBOX_MSG(@to $ref @message $msg));
+            $obj = setkey(
+                $obj, 'size', $rows @mode 1
+            );
+            $obj = setkey(
+                $obj, 'cols', $cols @mode 1
+            );
             $obj
         ) 
     ) 
@@ -157,9 +162,13 @@ labelset = (
         if $argcheck == 1 && $datacheck == 1 then (
             $obj = BP_FN_FLUID_NEWOBJ(@class 'labelset');
             $ref = getkey($obj, 'ref');
-            for $label $addr in $labels do (BP_FN_SANDBOX_MSG(
+            for $label $addr in $labels do BP_FN_SANDBOX_MSG(
                 @to $ref @message 'addlabel' $addr $label
-            ) );
+            );
+            $size = length($labels);
+            $obj = setkey(
+                $obj, 'size', $size @mode 1
+            );
             $obj
         ) 
     ) 
@@ -668,12 +677,21 @@ transform = (
             @class 'dataset' 
         );
         if $objcheck == 1 && $datasetcheck == 1 then (
+            $out = BP_FN_FLUID_NEWOBJ(@class 'dataset');
             $datasetname = getkey($dataset, 'name');
             $objclass = getkey($obj, 'class');
             $ref = getkey($obj, 'ref');
             BP_FN_SANDBOX_MSG(
-                @to $ref @message 'fittransform' $datasetname :* 2
-            ) 
+                @to $ref @message 'fittransform' $datasetname getkey($out, 'name') 
+            );
+            for $msg in 'size' 'cols' do (
+                BP_FN_SANDBOX_MSG(
+                    @to getkey($out, 'ref') @message $msg
+                );
+                $val = right(BP_SANDBOX_OUT, 1);
+                $out = setkey($out, $msg, $val @mode 1) 
+            );
+            $out
         ) 
     ) 
 );
