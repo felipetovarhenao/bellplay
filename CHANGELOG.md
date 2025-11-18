@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `dataset` and `labelset` now include `size` and `cols` (dataset only) keys.
 - reducers (`umap`, `pca`) and scalers (`normalizer`, `standardizer`, `robustscaler`) now require `@dataset` argument for instantiation.
 - Rename `scalepoint` to `transformpoint`. Might decide to keep `transform` for both dataset and points.
+- Rename `getentry` to `lookup`.
 
 ### Added
 

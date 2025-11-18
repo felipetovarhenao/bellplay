@@ -92,31 +92,36 @@ BP_REF_FLUID_ACTIVATION_OPTIONS = (
     ) 
 );
 ## ------------------------------------------------------------
-getentry = (
-    $dataset, $ids -> (
-        $ref = getkey($dataset, 'ref');
-        $method = if getkey($dataset, 'class') == 'dataset' then 'getpoint' else 'getlabel';
-        $getter = (
-            $id -^ $ref, $method -> (
-                BP_SANDBOX_OUT = null;
-                BP_FN_SANDBOX_MSG(
-                    @to $ref @message $method $id
-                );
-                $result = right(BP_SANDBOX_OUT, 1);
-                if $method == 'getpoint' then (
-                    [BP_FN_FLUID_FROMBUFFER($result)] 
-                ) else $result
+lookup = (
+    $dataset = null, $ids = null -> (
+        $self = 'lookup';
+        if BP_FN_CHECK_ARGS(
+            $self, 'dataset', $dataset, 'ids', $ids
+        ) then (
+            $ref = getkey($dataset, 'ref');
+            $method = if getkey($dataset, 'class') == 'dataset' then 'getpoint' else 'getlabel';
+            $getter = (
+                $id -^ $ref, $method -> (
+                    BP_SANDBOX_OUT = null;
+                    BP_FN_SANDBOX_MSG(
+                        @to $ref @message $method $id
+                    );
+                    $result = right(BP_SANDBOX_OUT, 1);
+                    if $method == 'getpoint' then (
+                        [BP_FN_FLUID_FROMBUFFER($result)] 
+                    ) else $result
+                ) 
+            );
+            map(
+                @llll $ids
+                @modfunction $getter
+                @maxdepth -1
             ) 
-        );
-        map(
-            @llll $ids
-            @modfunction $getter
-            @maxdepth -1
         ) 
     ) 
 );
 BP_REF_NEW(
-    @name 'getentry' 
+    @name 'lookup' 
     @description 'Maps one or more indices to the corresponding entries in a given dataset or labelset.' 
     @category BP_REF_LABEL_ML
     @arguments (
@@ -139,25 +144,26 @@ BP_REF_NEW(
 dataset = (
     $data = null -> (
         $self = 'dataset';
-        BP_FN_CHECK_ARGS($self, 'data', $data);
-        $cols = length($data::1);
-        $rows = length($data);
-        if depth($data) != 2 || $cols * $rows != length(flat($data)) then BP_FN_ERROR($self, '@data must be a 2-dimensional matrix') else (
-            $buf = samps2buf(@llll trans($data:1 $data));
-            $source = getkey($buf, 'source');
-            $obj = BP_FN_FLUID_NEWOBJ(
-                @class 'dataset' @name $source
-            );
-            $ref = getkey($obj, 'ref');
-            $msgs = ['clear'] ['frombuffer' $source] ['deletepoint' 0];
-            for $msg in $msgs with @unwrap 1 do (BP_FN_SANDBOX_MSG(@to $ref @message $msg));
-            $obj = setkey(
-                $obj, 'size', $rows @mode 1
-            );
-            $obj = setkey(
-                $obj, 'cols', $cols @mode 1
-            );
-            $obj
+        if BP_FN_CHECK_ARGS($self, 'data', $data) then (
+            $cols = length($data::1);
+            $rows = length($data);
+            if depth($data) != 2 || $cols * $rows != length(flat($data)) then BP_FN_ERROR($self, '@data must be a 2-dimensional matrix') else (
+                $buf = samps2buf(@llll trans($data:1 $data));
+                $source = getkey($buf, 'source');
+                $obj = BP_FN_FLUID_NEWOBJ(
+                    @class 'dataset' @name $source
+                );
+                $ref = getkey($obj, 'ref');
+                $msgs = ['clear'] ['frombuffer' $source] ['deletepoint' 0];
+                for $msg in $msgs with @unwrap 1 do BP_FN_SANDBOX_MSG(@to $ref @message $msg);
+                $obj = setkey(
+                    $obj, 'size', $rows @mode 1
+                );
+                $obj = setkey(
+                    $obj, 'cols', $cols @mode 1
+                );
+                $obj
+            ) 
         ) 
     ) 
 );
@@ -173,7 +179,7 @@ BP_REF_NEW(
     @output BP_REF_OUTPUT(
         @description 'Dataset object' @type 'llll' 
     ) 
-    @tags 'labelset' 'getentry' 
+    @tags 'labelset' 'lookup' 
 );
 ## ------------------------------------------------------------
 labelset = (
@@ -191,6 +197,9 @@ labelset = (
             $obj = setkey(
                 $obj, 'size', $size @mode 1
             );
+            $obj = setkey(
+                $obj, 'cols', 1 @mode 1
+            );
             $obj
         ) 
     ) 
@@ -207,7 +216,7 @@ BP_REF_NEW(
     @output BP_REF_OUTPUT(
         @description 'Labelset object' @type 'llll' 
     ) 
-    @tags 'dataset' 'getentry' 
+    @tags 'dataset' 'lookup' 
 );
 ## ------------------------------------------------------------
 normalizer = (
