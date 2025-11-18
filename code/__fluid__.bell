@@ -58,6 +58,28 @@ BP_FN_FLUID_FROMBUFFER = (
     ) 
 );
 ## ------------------------------------------------------------
+BP_FN_FLUID_NEWOBJ_FITTED = (
+    $dataset, $class, $arguments = null, $attributes = null -> (
+        $obj = BP_FN_FLUID_NEWOBJ(
+            @class $class
+            @arguments $arguments
+            @attributes $attributes
+        );
+        $ref = getkey($obj, 'ref');
+        $dsname = getkey($dataset, 'name');
+        BP_FN_SANDBOX_MSG(
+            @to $ref @message 'fit' $dsname
+        );
+        for $k in 'size' 'cols' do (
+            BP_SANDBOX_OUT = null;
+            BP_FN_SANDBOX_MSG(@to $ref @message $k);
+            $v = right(BP_SANDBOX_OUT, 1);
+            $obj = setkey($obj, $k, $v @mode 1) 
+        );
+        $obj
+    ) 
+);
+## ------------------------------------------------------------
 BP_REF_FLUID_ACTIVATION_OPTIONS = (
     BP_REF_OPT(
         @value 0 @description 'Identity (-∞ to ∞ — i.e., no activation).' 
@@ -189,12 +211,16 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 normalizer = (
-    $min = 0, $max = 1 -> (
-        BP_FN_CHECK_ARGS(
-            $self, 'min', $min, 'max', $max
-        );
-        BP_FN_FLUID_NEWOBJ(
-            @class 'normalize' @attributes ['min' $min] ['max' $max] 
+    $dataset = null, $min = 0, $max = 1 -> (
+        $self = 'normalizer';
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then (
+            BP_FN_FLUID_NEWOBJ_FITTED(
+                @class 'normalize' 
+                @dataset $dataset
+                @attributes (
+                    ['min' $min] ['max' $max] 
+                ) 
+            ) 
         ) 
     ) 
 );
@@ -222,7 +248,15 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 standardizer = (
-    -> (BP_FN_FLUID_NEWOBJ(@class 'standardize') ) 
+    $dataset = null -> (
+        $self = 'standardizer';
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then (
+            $obj = BP_FN_FLUID_NEWOBJ_FITTED(
+                @class 'standardize' @dataset $dataset
+            );
+            $obj
+        ) 
+    ) 
 );
 BP_REF_NEW(
     @name 'standardizer' 
@@ -235,13 +269,16 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 robustscaler = (
-    $low = 25, $high = 75 -> (
+    $dataset = null, $low = 25, $high = 75 -> (
         $self = 'robustscaler';
-        BP_FN_CHECK_ARGS(
-            $self, 'low', $low, 'high', $high
-        );
-        BP_FN_FLUID_NEWOBJ(
-            @class 'robustscale' @attributes ['low' $low] ['high' $high] 
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then (
+            BP_FN_FLUID_NEWOBJ_FITTED(
+                @class 'robustscale' 
+                @dataset $dataset
+                @attributes (
+                    ['low' $low] ['high' $high] 
+                ) 
+            ) 
         ) 
     ) 
 );
@@ -269,9 +306,12 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 umap = (
-    $iterations = 200, $learnrate = 0.1, $mindist = 0.1, $numdimensions = 2, $numneighbors = 15 -> (
-        BP_FN_FLUID_NEWOBJ(
-            @class 'umap' @attributes (
+    $dataset = null, $iterations = 200, $learnrate = 0.1, $mindist = 0.1, $numdimensions = 2, $numneighbors = 15 -> (
+        $self = 'umap';
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then BP_FN_FLUID_NEWOBJ_FITTED(
+            @class 'umap' 
+            @dataset $dataset
+            @attributes (
                 [ 'iterations' $iterations] [ 'learnrate' $learnrate] [ 'mindist' $mindist] [ 'numdimensions' max(1, $numdimensions)] [ 'numneighbours' max(1, $numneighbors)] 
             ) 
         ) 
@@ -315,25 +355,14 @@ BP_REF_NEW(
     @tags 'transform' 'pca' 
 );
 ## ------------------------------------------------------------
-mds = (
-    $distancemetric = 1, $numdimensions = 2 -> (
-        BP_FN_FLUID_NEWOBJ(
-            @class 'mds' @attributes (
-                ['distancemetric' $distancemetric] ['numdimensions' $numdimensions] 
-            ) 
-        ) 
-    ) 
-);
-## ------------------------------------------------------------
 pca = (
-    $numdimensions = 2, $whiten = 0 -> (
+    $dataset = null, $numdimensions = 2, $whiten = 0 -> (
         $self = 'pca';
-        BP_FN_CHECK_ARGS(
-            $self, 'numdimensions', $numdimensions, 'whiten', $whiten
-        );
-        BP_FN_FLUID_NEWOBJ(
-            @class 'pca' @attributes (
-                [ 'numdimensions' $numdimensions] [ 'whiten' $whiten] 
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then BP_FN_FLUID_NEWOBJ_FITTED(
+            @class 'pca' 
+            @dataset $dataset
+            @attributes (
+                ['numdimensions' $numdimensions] ['whiten' $whiten] 
             ) 
         ) 
     ) 
@@ -677,21 +706,21 @@ transform = (
             @class 'dataset' 
         );
         if $objcheck == 1 && $datasetcheck == 1 then (
-            $out = BP_FN_FLUID_NEWOBJ(@class 'dataset');
+            $newdataset = BP_FN_FLUID_NEWOBJ(@class 'dataset');
             $datasetname = getkey($dataset, 'name');
             $objclass = getkey($obj, 'class');
             $ref = getkey($obj, 'ref');
             BP_FN_SANDBOX_MSG(
-                @to $ref @message 'fittransform' $datasetname getkey($out, 'name') 
+                @to $ref @message 'fittransform' $datasetname getkey($newdataset, 'name') 
             );
             for $msg in 'size' 'cols' do (
                 BP_FN_SANDBOX_MSG(
-                    @to getkey($out, 'ref') @message $msg
+                    @to getkey($newdataset, 'ref') @message $msg
                 );
                 $val = right(BP_SANDBOX_OUT, 1);
-                $out = setkey($out, $msg, $val @mode 1) 
+                $newdataset = setkey($newdataset, $msg, $val @mode 1) 
             );
-            $out
+            $newdataset
         ) 
     ) 
 );
@@ -771,20 +800,21 @@ predict = (
     ) 
 );
 ## ------------------------------------------------------------
-scalepoint = (
-    $obj, $x, $inverse = 0 -> (
-        $self = 'scalepoint';
-        $method = if $inverse == 0 then 'transformpoint' else 'inversetransformpoint';
+transformpoint = (
+    $point, $obj, $inverse = 0 -> (
+        $self = 'transformpoint';
         $check = BP_FN_CHECK_ARGS(
-            $self, 'obj', $obj, 'x', $x, 'inverse', $inverse
+            $self, 'point', $point, 'obj', $obj, 'inverse', $inverse
         ) &&& BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
             @obj $obj
             @argument 'obj' 
-            @class 'robustscale' 'normalize' 'standardize' 
+            @class 'robustscale' 'normalize' 'standardize' 'umap' 'pca' 
         );
         if $check then (
-            $pt = BP_FN_FLUID_TOBUFFER($x);
+            $class = getkey($obj, 'class');
+            $method = if $inverse == 0 || $class == 'umap' then 'transformpoint' else 'inversetransformpoint';
+            $pt = BP_FN_FLUID_TOBUFFER($point);
             BP_FN_SANDBOX_MSG(
                 @to getkey($obj, 'ref') @message $method $pt
             );
@@ -793,18 +823,18 @@ scalepoint = (
     ) 
 );
 BP_REF_NEW(
-    @name 'scalepoint' 
-    @description 'Scales a point given some ML object such as a scaler or dimensionality reducer.' 
+    @name 'transformpoint' 
+    @description 'Transforms a point given some ML object such as a scaler (e.g., `normalizer`, `standardizer`, `robustscaler`) or dimensionality reducer (e.g., `umap`, `pca`).' 
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
+            @name 'point' 
+            @type 'llll' 
+            @description 'Numeric point to scale' 
+        ) BP_REF_ARG(
             @name 'obj' 
             @type 'llll' 
             @description 'Model object' 
-        ) BP_REF_ARG(
-            @name 'x' 
-            @type 'llll' 
-            @description 'Numeric point to scale' 
         ) BP_REF_ARG(
             @name 'inverse' 
             @type 'int' 
