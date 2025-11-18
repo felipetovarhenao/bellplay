@@ -216,10 +216,14 @@ normalizer = (
 );
 BP_REF_NEW(
     @name 'normalizer' 
-    @description 'Generates a normalizer object which can be used for [_minmax_ normalization](https://en.wikipedia.org/wiki/Feature_scaling#Rescaling_(min-max_normalization)) of a dataset, via the `transform` function.' 
+    @description 'Given a reference dataset, generates a normalizer object which can be used for [_minmax_ normalization](https://en.wikipedia.org/wiki/Feature_scaling#Rescaling_(min-max_normalization)), via the `transform` function.' 
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Reference dataset' 
+        ) BP_REF_ARG(
             @name 'min' 
             @type 'int/float' 
             @default 0
@@ -250,8 +254,13 @@ standardizer = (
 );
 BP_REF_NEW(
     @name 'standardizer' 
-    @description 'Generates a standardizer object which can be used for [standardization](https://en.wikipedia.org/wiki/Feature_scaling#Standardization_(Z-score_Normalization)) of a dataset, via the `transform` function.' 
+    @description 'Given a reference dataset, generates a standardizer object which can be used for  [standardization](https://en.wikipedia.org/wiki/Feature_scaling#Standardization_(Z-score_Normalization)), via the `transform` function.' 
     @category BP_REF_LABEL_ML
+    @arguments BP_REF_ARG(
+        @name 'dataset' 
+        @type 'llll' 
+        @description 'Reference dataset' 
+    ) 
     @output BP_REF_OUTPUT(
         @description 'Standardizer object' @type 'llll' 
     ) 
@@ -274,10 +283,14 @@ robustscaler = (
 );
 BP_REF_NEW(
     @name 'robustscaler' 
-    @description 'Generates a robust scaler object which can be used for [robust scaling](https://en.wikipedia.org/wiki/Feature_scaling#Robust_Scaling) of a dataset, via the `transform` function.' 
+    @description 'Given a reference dataset, generates a robust scaler object which can be used for [robust scaling](https://en.wikipedia.org/wiki/Feature_scaling#Robust_Scaling), via the `transform` function.' 
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Reference dataset' 
+        ) BP_REF_ARG(
             @name 'low' 
             @type 'int/float' 
             @default 25
@@ -309,10 +322,14 @@ umap = (
 );
 BP_REF_NEW(
     @name 'umap' 
-    @description 'Generates a [Uniform Manifold Approximation and Projection (UMAP)](https://learn.flucoma.org/reference/umap/) object which can be used for [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) of a dataset, via the `transform` function.' 
+    @description 'Given a dataset, generates a [Uniform Manifold Approximation and Projection (UMAP)](https://learn.flucoma.org/reference/umap/) object which can be used for [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) of a dataset, via the `transform` function.' 
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Reference dataset' 
+        ) BP_REF_ARG(
             @name 'iterations' 
             @type 'int' 
             @default 200
@@ -359,10 +376,14 @@ pca = (
 );
 BP_REF_NEW(
     @name 'pca' 
-    @description 'Generates a [Principal Component Analysis](https://learn.flucoma.org/reference/pca/) object which can be used for [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) of a dataset, via the `transform` function.' 
+    @description 'Given a dataset, generates a [Principal Component Analysis](https://learn.flucoma.org/reference/pca/) object which can be used for [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) of a dataset, via the `transform` function.' 
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Reference dataset' 
+        ) BP_REF_ARG(
             @name 'numdimensions' 
             @type 'int' 
             @default 2
@@ -382,22 +403,31 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 kdtree = (
-    $numneighbors = 1, $radius = 0 -> (
+    $dataset = null, $numneighbors = 1, $radius = 0 -> (
         $self = 'kdtree';
-        BP_FN_CHECK_ARGS(
+        if BP_FN_CHECK_ARGS(
             $self, 'numneighbors', $numneighbors, 'radius', $radius
-        );
-        BP_FN_FLUID_NEWOBJ(
-            @class 'kdtree' @attributes ['numneighbours' $numneighbors] ['radius' $radius] 
+        ) then (
+            BP_FN_FLUID_NEWOBJ_FITTED(
+                @class 'kdtree' 
+                @dataset $dataset
+                @attributes (
+                    ['numneighbours' $numneighbors] ['radius' $radius] 
+                ) 
+            ) 
         ) 
     ) 
 );
 BP_REF_NEW(
     @name 'kdtree' 
-    @description 'Generates a [K-dimensional Tree](https://learn.flucoma.org/reference/kdtree/) object for efficient neighborhood searches of multi-dimensional data. KDTrees are most useful for repeated querying of a dataset, because there is a cost associated with building them.  Whilst KDTrees can offer very good performance relative to naïve search algorithms, they suffer from something called “the curse of dimensionality” (like many algorithms for multi-dimensional data). In practice, this means that as the number of dimensions of your data goes up, the relative performance gains of a KDTree go down.' 
+    @description 'Given a dataset, generates a [K-dimensional Tree](https://learn.flucoma.org/reference/kdtree/) object for efficient neighborhood searches of multi-dimensional data. KDTrees are most useful for repeated querying of a dataset, because there is a cost associated with building them.  Whilst KDTrees can offer very good performance relative to naïve search algorithms, they suffer from something called “the curse of dimensionality” (like many algorithms for multi-dimensional data). In practice, this means that as the number of dimensions of your data goes up, the relative performance gains of a KDTree go down.' 
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Reference dataset' 
+        ) BP_REF_ARG(
             @name 'numdimensions' 
             @type 'int' 
             @default 1

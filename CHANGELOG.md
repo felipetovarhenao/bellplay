@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Rename `scalepoint` to `transformpoint`. Might decide to keep `transform` for both dataset and points.
 - Rename `getentry` to `lookup`.
 - `writeobj` and `readobj` now handle object attributes to ensure consistent behavior for pre-trained models.
+- Update docs for objects that are fitted with dataset on creation.
 
 ### Added
 
