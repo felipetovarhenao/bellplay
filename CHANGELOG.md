@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - reducers (`umap`, `pca`) and scalers (`normalizer`, `standardizer`, `robustscaler`) now require `@dataset` argument for instantiation.
 - Rename `scalepoint` to `transformpoint`. Might decide to keep `transform` for both dataset and points.
 - Rename `getentry` to `lookup`.
+- `writeobj` and `readobj` now handle object attributes to ensure consistent behavior for pre-trained models.
 
 ### Added
 

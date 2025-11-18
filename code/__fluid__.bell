@@ -20,7 +20,7 @@ BP_FN_FLUID_NEWOBJ = (
             @to $ref @message 'clear' 
         );
         [
-            ['class' $class] ['name' $name] ['ref' $ref] 
+            ['class' $class] ['name' $name] ['ref' $ref] ($attributes &&& ['attributes' $attributes]) 
         ] 
     ) 
 );
@@ -69,12 +69,6 @@ BP_FN_FLUID_NEWOBJ_FITTED = (
         $dsname = getkey($dataset, 'name');
         BP_FN_SANDBOX_MSG(
             @to $ref @message 'fit' $dsname
-        );
-        for $k in 'size' 'cols' do (
-            BP_SANDBOX_OUT = null;
-            BP_FN_SANDBOX_MSG(@to $ref @message $k);
-            $v = right(BP_SANDBOX_OUT, 1);
-            $obj = setkey($obj, $k, $v @mode 1) 
         );
         $obj
     ) 
@@ -156,12 +150,6 @@ dataset = (
                 $ref = getkey($obj, 'ref');
                 $msgs = ['clear'] ['frombuffer' $source] ['deletepoint' 0];
                 for $msg in $msgs with @unwrap 1 do BP_FN_SANDBOX_MSG(@to $ref @message $msg);
-                $obj = setkey(
-                    $obj, 'size', $rows @mode 1
-                );
-                $obj = setkey(
-                    $obj, 'cols', $cols @mode 1
-                );
                 $obj
             ) 
         ) 
@@ -192,13 +180,6 @@ labelset = (
             $ref = getkey($obj, 'ref');
             for $label $addr in $labels do BP_FN_SANDBOX_MSG(
                 @to $ref @message 'addlabel' $addr $label
-            );
-            $size = length($labels);
-            $obj = setkey(
-                $obj, 'size', $size @mode 1
-            );
-            $obj = setkey(
-                $obj, 'cols', 1 @mode 1
             );
             $obj
         ) 
@@ -321,7 +302,7 @@ umap = (
             @class 'umap' 
             @dataset $dataset
             @attributes (
-                [ 'iterations' $iterations] [ 'learnrate' $learnrate] [ 'mindist' $mindist] [ 'numdimensions' max(1, $numdimensions)] [ 'numneighbours' max(1, $numneighbors)] 
+                [ 'iterations' $iterations] [ 'learnrate' $learnrate] [ 'mindist' $mindist] ['numdimensions' max(1, $numdimensions)] [ 'numneighbours' max(1, $numneighbors)] 
             ) 
         ) 
     ) 
@@ -367,11 +348,11 @@ BP_REF_NEW(
 pca = (
     $dataset = null, $numdimensions = 2, $whiten = 0 -> (
         $self = 'pca';
-        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then BP_FN_FLUID_NEWOBJ_FITTED(
-            @class 'pca' 
-            @dataset $dataset
-            @attributes (
-                ['numdimensions' $numdimensions] ['whiten' $whiten] 
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then (
+            BP_FN_FLUID_NEWOBJ_FITTED(
+                @class 'pca' 
+                @dataset $dataset
+                @attributes ['numdimensions' $numdimensions] ['whiten' $whiten] 
             ) 
         ) 
     ) 
@@ -626,7 +607,20 @@ writeobj = (
                 @to $ref @message 'dump' 
             );
             $dict = right(BP_SANDBOX_OUT, 1);
-            $msgs = [$dict] ['set' 'class' $class] ['write' $path];
+            $attrs = getkey($obj, 'attributes');
+            $msgs = [$dict] ['set' '_class' $class];
+            if $attrs != null then (
+                $keys = trans($attrs)::1;
+                $msgs _= [
+                    'set' '_attributes' $keys
+                ];
+                for $attr in $attrs with @unwrap 1 do (
+                    $msgs _= [
+                        'set' '_' + $attr:1 right($attr, 1) 
+                    ] 
+                ) 
+            ) else ($msgs _= ['set' '_attributes']);
+            $msgs _= ['write' $path];
             for $msg in $msgs with @unwrap 1 do BP_MAXOBJ_DICT(
                 $msg @out 'm' 
             );
@@ -664,14 +658,23 @@ readobj = (
                 'read' $path @out 'm' 
             );
             $query = BP_MAXOBJ_DICT(
-                'get' 'class' @out 'm' @fetch 2
+                'get' '_class' @out 'm' @fetch 2
             );
-            if $query:1 == 'class' && $query:2 != null then (
+            if $query:1 == '_class' && $query:2 != null then (
+                $attrkeys = right(BP_MAXOBJ_DICT(
+                    'get' '_attributes' @out 'm' @fetch 2
+                ), 1);
+                $attrs = for $key in $attrkeys collect (
+                    $value = BP_MAXOBJ_DICT(
+                        'get' '_' + $key @out 'm' @fetch 2
+                    );
+                    [$key right($value, 1)] 
+                );
                 $class = $query:2;
                 $result = BP_MAXOBJ_DICT(
                     'bang' @out 'm' @fetch 1
                 );
-                $obj = BP_FN_FLUID_NEWOBJ(@class $class);
+                $obj = BP_FN_FLUID_NEWOBJ(@class $class @attributes $attrs);
                 $ref = getkey($obj, 'ref');
                 BP_FN_SANDBOX_MSG(
                     @to $ref @message 'load' $result
