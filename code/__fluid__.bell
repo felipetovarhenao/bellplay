@@ -770,52 +770,46 @@ BP_REF_NEW(
         ) 
     ) 
     @output BP_REF_OUTPUT(
-        @description 'Transformed dataset or point' @type 'llll' 
+        @description 'Transformed dataset or data point' @type 'llll' 
     ) 
 );
 ## ------------------------------------------------------------
 fit = (
     $obj = null, $xset = null, $yset = null -> (
         $self = 'fit';
-        $objcheck = BP_FN_CHECK_ARGS($self, 'obj', $obj) &&& BP_FN_FLUID_VALIDATE_OBJ(
+        if BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
             @obj $obj
             @argname 'obj' 
-            @allow 'kdtree' 'skmeans' 'kmeans' 'mlpregressor' 'mlpclassifier' 'knnregressor' 'knnclassifier' 
-        );
-        if $objcheck then (
+            @allow 'skmeans' 'kmeans' 'mlpregressor' 'mlpclassifier' 'knnregressor' 'knnclassifier' 
+        ) &&& BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @obj $xset
+            @argname 'xset' 
+            @allow 'dataset' 
+        ) then (
             $objclass = getkey($obj, 'class');
             $objref = getkey($obj, 'ref');
-            $numargs = if intersection(
-                $objclass, 'kdtree' 'kmeans' 'skmeans' 
-            ) then 2 else 3;
-            $xsetcheck = BP_FN_CHECK_ARGS($self, 'xset', $xset) &&& BP_FN_FLUID_VALIDATE_OBJ(
-                @self $self
-                @obj $xset
-                @argname 'xset' 
-                @allow 'dataset' 
-            );
-            if $xsetcheck then (
+            $numargs = if intersection($objclass, 'skmeans' 'kmeans') then 2 else 3;
+            $ysetclass = if intersection($objclass, 'mlpregressor' 'knnregressor') then 'dataset' else 'labelset';
+            if $numargs == 2 then (
                 $xsetname = getkey($xset, 'name');
-                if $numargs == 2 then BP_FN_SANDBOX_MSG(
+                BP_FN_SANDBOX_MSG(
                     @to $objref @message 'fit' $xsetname
-                ) else (
-                    $ysetcheck = BP_FN_CHECK_ARGS($self, 'yset', $yset) &&& BP_FN_FLUID_VALIDATE_OBJ(
-                        @self $self
-                        @obj $yset
-                        @argname 'yset' 
-                        @allow 'dataset' 'labelset' 
-                    );
-                    if $ysetcheck then (
-                        BP_SANDBOX_OUT = null;
-                        $method = 'fit';
-                        $ysetname = getkey($yset, 'name');
-                        BP_FN_SANDBOX_MSG(
-                            @to $objref @message $method $xsetname $ysetname
-                        );
-                        right(BP_SANDBOX_OUT, 1) 
-                    ) 
                 ) 
+            ) else if BP_FN_FLUID_VALIDATE_OBJ(
+                @self $self
+                @obj $yset
+                @argname 'yset' 
+                @allow $ysetclass
+            ) then (
+                BP_SANDBOX_OUT = null;
+                $xsetname = getkey($xset, 'name');
+                $ysetname = getkey($yset, 'name');
+                BP_FN_SANDBOX_MSG(
+                    @to $objref @message 'fit' $xsetname $ysetname
+                );
+                right(BP_SANDBOX_OUT, 1) 
             ) 
         ) 
     ) 
@@ -823,29 +817,78 @@ fit = (
 ## ------------------------------------------------------------
 predict = (
     $obj = null, $x = null -> (
-        $ref = getkey($obj, 'ref');
-        $class = getkey($obj, 'class');
-        $pt = BP_FN_FLUID_TOBUFFER($x);
-        if $class == 'kdtree' then (
-            [
-                for $method in 'knearest' 'knearestdist', $key in 'neighbors' 'distances' collect (
+        $self = 'predict';
+        if BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @obj $obj
+            @argname 'obj' 
+            @allow 'mlpregressor' 'mlpclassifier' 'kdtree' 'knnregressor' 'knnclassifier' 'kmeans' 'skmeans' 
+        ) then (
+            $objref = getkey($obj, 'ref');
+            $objclass = getkey($obj, 'class');
+            $isregressor = intersection(
+                $objclass, 'knnclassifier' 'mlpclassifier' 'kmeans' 'skmeans' 
+            ) == null;
+            $xref = getkey($x, 'ref');
+            $xclass = getkey($x, 'class');
+            if $xref != null && $xclass != null && BP_FN_FLUID_VALIDATE_OBJ(
+                @self $self
+                @obj $x
+                @argname 'x' 
+                @allow 'dataset' 
+            ) == 1 then (
+                if $objclass == 'kdtree' then BP_FN_ERROR($self, 'KDTree does not support prediction on datasets, only on data points.') else (
+                    $method = 'predict';
+                    $ysetclass = if $isregressor == 0 then 'labelset' else 'dataset';
+                    $yset = BP_FN_FLUID_NEWOBJ(@class $ysetclass);
+                    $yname = getkey($yset, 'name');
+                    $xname = getkey($x, 'name');
+                    BP_FN_SANDBOX_MSG(
+                        @to $objref @message $method $xname $yname
+                    );
+                    $yset
+                ) 
+            ) else if $x != null && contains(flat($x)) < 16 then (
+                $pt = BP_FN_FLUID_TOBUFFER($x);
+                if $objclass == 'kdtree' then (
+                    [
+                        for $method in 'knearest' 'knearestdist', $key in 'neighbors' 'distances' collect (
+                            BP_SANDBOX_OUT = null;
+                            BP_FN_SANDBOX_MSG(
+                                @to $objref @message $method $pt
+                            );
+                            [$key right(BP_SANDBOX_OUT, 1)] 
+                        ) 
+                    ] 
+                ) else (
                     BP_SANDBOX_OUT = null;
                     BP_FN_SANDBOX_MSG(
-                        @to $ref @message $method $pt
+                        @to $objref @message 'predictpoint' $pt
                     );
-                    [$key right(BP_SANDBOX_OUT, 1)] 
+                    $pred = right(BP_SANDBOX_OUT, 1):-1;
+                    if $isregressor == 1 then BP_FN_FLUID_FROMBUFFER($pred) else $pred
                 ) 
-            ] 
-        ) else (
-            BP_SANDBOX_OUT = null;
-            BP_FN_SANDBOX_MSG(
-                @to $ref @message 'predictpoint' $pt
-            );
-            $prediction = right(BP_SANDBOX_OUT, 1);
-            if intersection(
-                $class, 'mlpclassifier' 'knnclassifier' 'kmeans' 
-            ) then $prediction else if $class == 'skmeans' then right($prediction, 1) else BP_FN_FLUID_FROMBUFFER($prediction) 
+            ) else BP_FN_ERROR($self, 'invalid value for @x:' $x ||| 'null') 
         ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'predict' 
+    @description 'Given a fitted ML object and dataset or data point, performs a prediction. If `@x` is a dataset it returns either a `labelset` or `dataset`, based on whether `@obj` performs regression or classification. If `@x` is a data point, it returns a data point if `@obj` preforms regression, otherwise it returns an integer for the predicted class.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'obj' 
+            @type 'llll' 
+            @description 'Fitted ML object.' 
+        ) BP_REF_ARG(
+            @name 'x' 
+            @type 'llll/float' 
+            @description 'Dataset or data point to predict.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Predicted dataset/labelset or data point' @type 'llll' 
     ) 
 );
 ## ------------------------------------------------------------
