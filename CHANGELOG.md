@@ -29,6 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Clean up variable names in `__fluid__.bell` and include argcheck inside validation function to avoid redundancies and ensure null checks.
 - Add missing inverse methods in `transform`
 - Validate extensions in `writeobj` and `readobj`.
+- Add validation for `lookup` function.
 
 ### Added
 

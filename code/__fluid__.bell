@@ -105,9 +105,12 @@ BP_REF_FLUID_ACTIVATION_OPTIONS = (
 lookup = (
     $dataset = null, $ids = null -> (
         $self = 'lookup';
-        if BP_FN_CHECK_ARGS(
-            $self, 'dataset', $dataset, 'ids', $ids
-        ) then (
+        if BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @obj $dataset
+            @argname 'dataset' 
+            @allow 'dataset' 'labelset' 
+        ) &&& BP_FN_CHECK_ARGS($self, 'ids', $ids) then (
             $ref = getkey($dataset, 'ref');
             $method = if getkey($dataset, 'class') == 'dataset' then 'getpoint' else 'getlabel';
             $getter = (
