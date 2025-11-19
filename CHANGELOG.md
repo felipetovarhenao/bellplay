@@ -34,6 +34,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - **MAJOR BUG FIX**: `BP_FN_PATHINFO` nows clears backend variable prior to read.
 - Rename `lookup` to `getitems`.
 - Revamped `fit` and `predict` functions. Pending testing on `knn` and `kmeans`.
+- `kdtree`: Fix docs typo
 
 ### Added
 

@@ -372,9 +372,7 @@ BP_REF_NEW(
 kdtree = (
     $dataset = null, $numneighbors = 1, $radius = 0 -> (
         $self = 'kdtree';
-        if BP_FN_CHECK_ARGS(
-            $self, 'numneighbors', $numneighbors, 'radius', $radius
-        ) then (
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then (
             BP_FN_FLUID_NEWOBJ_FITTED(
                 @class 'kdtree' 
                 @dataset $dataset
@@ -395,7 +393,7 @@ BP_REF_NEW(
             @type 'llll' 
             @description 'Dataset to fit KDTree to' 
         ) BP_REF_ARG(
-            @name 'numdimensions' 
+            @name 'numneighbors' 
             @type 'int' 
             @default 1
             @description 'The number of neighbours to return.' 
