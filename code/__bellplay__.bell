@@ -1253,9 +1253,9 @@ BP_REF_NEW(
         BP_REF_ARG(@name "db" @default "null" @type "symbol/null" @description "Optional database name. If set to `null`, `'main'` is used as the default database name.")
         BP_REF_ARG(@name "xfield" @default "null" @type "symbol/null" @description "Name of table column to use for _X axis_ in **Table Browser**.")
         BP_REF_ARG(@name "yfield" @default "null" @type "symbol/null" @description "Name of table column to use for _Y axis_ in **Table Browser**.")
-        BP_REF_ARG(@name "size" @default "null" @type "symbol/null" @description "Name of table column to use for _Size_ in **Table Browser**.")
-        BP_REF_ARG(@name "color" @default "null" @type "symbol/null" @description "Name of table column to use for _Color_ in **Table Browser**.")
-        BP_REF_ARG(@name "shape" @default "null" @type "symbol/null" @description "Name of table column to use for _Shape_ in **Table Browser**.")
+        BP_REF_ARG(@name "sizefield" @default "null" @type "symbol/null" @description "Name of table column to use for _Size_ in **Table Browser**.")
+        BP_REF_ARG(@name "colorfield" @default "null" @type "symbol/null" @description "Name of table column to use for _Color_ in **Table Browser**.")
+        BP_REF_ARG(@name "shapefield" @default "null" @type "symbol/null" @description "Name of table column to use for _Shape_ in **Table Browser**.")
     )
     @usage BP_REF_CODE_SNIPPET("## import file
 $buf = importaudio('trumpet.wav');

@@ -943,7 +943,7 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 dataset2dbtable = (
-    $dataset = null, $labelset = null, $name = 'data', $db = null -> (
+    $dataset = null, $labelset = null, $name = 'data', $db = null, $datafield = null, $labelfield = null -> (
         $self = 'dataset2dbtable';
         if BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
@@ -978,8 +978,8 @@ dataset2dbtable = (
                     $self, '@labelset must have the same size as @dataset:' $size '!=' $numlabels
                 ) else ($addlabels = 1) 
             );
-            $keys = for $j in 1...$cols collect 'x' + tosymbol($j);
-            if $addlabels == 1 then ($keys _= 'label' );
+            $keys = for $j in 1...$cols collect ($datafield ||| 'x') + tosymbol($j);
+            if $addlabels == 1 then ($keys _= $labelfield ||| 'label');
             $keys = [$keys];
             $data = for $i in 1...$size collect (
                 $values = getitems($dataset, $i)::1;
