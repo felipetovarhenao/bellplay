@@ -432,6 +432,7 @@ BP_FN_DISPATCH = (
 BP_FN_PATHINFO = (
     $x,
     $locate = 0 -> (
+        BP_PATH_INFO = null;
         BP_FN_DISPATCH("pathinfo", $x);
         if BP_PATH_INFO == null then (
             BP_FN_ERROR(@details "invalid path:" $x) 
