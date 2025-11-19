@@ -102,58 +102,6 @@ BP_REF_FLUID_ACTIVATION_OPTIONS = (
     ) 
 );
 ## ------------------------------------------------------------
-lookup = (
-    $dataset = null, $ids = null -> (
-        $self = 'lookup';
-        if BP_FN_FLUID_VALIDATE_OBJ(
-            @self $self
-            @obj $dataset
-            @argname 'dataset' 
-            @allow 'dataset' 'labelset' 
-        ) &&& BP_FN_CHECK_ARGS($self, 'ids', $ids) then (
-            $ref = getkey($dataset, 'ref');
-            $method = if getkey($dataset, 'class') == 'dataset' then 'getpoint' else 'getlabel';
-            $getter = (
-                $id -^ $ref, $method -> (
-                    BP_SANDBOX_OUT = null;
-                    BP_FN_SANDBOX_MSG(
-                        @to $ref @message $method $id
-                    );
-                    $result = right(BP_SANDBOX_OUT, 1);
-                    if $method == 'getpoint' then (
-                        [BP_FN_FLUID_FROMBUFFER($result)] 
-                    ) else $result
-                ) 
-            );
-            map(
-                @llll $ids
-                @modfunction $getter
-                @maxdepth -1
-            ) 
-        ) 
-    ) 
-);
-BP_REF_NEW(
-    @name 'lookup' 
-    @description 'Maps one or more indices to the corresponding entries in a given dataset or labelset.' 
-    @category BP_REF_LABEL_ML
-    @arguments (
-        BP_REF_ARG(
-            @name 'dataset' 
-            @type 'llll' 
-            @description 'Dataset or labelset.' 
-        ) BP_REF_ARG(
-            @name 'ids' 
-            @type 'int/llll' 
-            @description 'Entry indices.' 
-        ) 
-    ) 
-    @output BP_REF_OUTPUT(
-        @description 'Dataset entries' @type 'llll' 
-    ) 
-    @tags 'labelset' 'dataset' 
-);
-## ------------------------------------------------------------
 dataset = (
     $data = null -> (
         $self = 'dataset';
@@ -186,7 +134,7 @@ BP_REF_NEW(
     @output BP_REF_OUTPUT(
         @description 'Dataset object' @type 'llll' 
     ) 
-    @tags 'labelset' 'lookup' 
+    @tags 'labelset' 'getitems' 
 );
 ## ------------------------------------------------------------
 labelset = (
@@ -216,7 +164,7 @@ BP_REF_NEW(
     @output BP_REF_OUTPUT(
         @description 'Labelset object' @type 'llll' 
     ) 
-    @tags 'dataset' 'lookup' 
+    @tags 'dataset' 'getitems' 
 );
 ## ------------------------------------------------------------
 normalizer = (
@@ -899,6 +847,58 @@ predict = (
             ) then $prediction else if $class == 'skmeans' then right($prediction, 1) else BP_FN_FLUID_FROMBUFFER($prediction) 
         ) 
     ) 
+);
+## ------------------------------------------------------------
+getitems = (
+    $set = null, $ids = null -> (
+        $self = 'getitems';
+        if BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @obj $set
+            @argname 'set' 
+            @allow 'dataset' 'labelset' 
+        ) &&& BP_FN_CHECK_ARGS($self, 'ids', $ids) then (
+            $ref = getkey($set, 'ref');
+            $method = if getkey($set, 'class') == 'dataset' then 'getpoint' else 'getlabel';
+            $getter = (
+                $id -^ $ref, $method -> (
+                    BP_SANDBOX_OUT = null;
+                    BP_FN_SANDBOX_MSG(
+                        @to $ref @message $method $id
+                    );
+                    $result = right(BP_SANDBOX_OUT, 1);
+                    if $method == 'getpoint' then (
+                        [BP_FN_FLUID_FROMBUFFER($result)] 
+                    ) else $result
+                ) 
+            );
+            map(
+                @llll $ids
+                @modfunction $getter
+                @maxdepth -1
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'getitems' 
+    @description 'Returns the data points or labels associated with one of more indices (1-based) in a given dataset or labelset, respectively.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'set' 
+            @type 'llll' 
+            @description 'Dataset or labelset to access.' 
+        ) BP_REF_ARG(
+            @name 'ids' 
+            @type 'int/llll' 
+            @description 'Item indices (1-based).' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Dataset or labelset items' @type 'llll' 
+    ) 
+    @tags 'labelset' 'dataset' 
 );
 ## ------------------------------------------------------------
 null

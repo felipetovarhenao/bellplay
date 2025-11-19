@@ -32,6 +32,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Add validation for `lookup` function.
 - Add validation to dictionary on `readobj` and `writeobj`.
 - **MAJOR BUG FIX**: `BP_FN_PATHINFO` nows clears backend variable prior to read.
+- Rename `lookup` to `getitems`.
 
 ### Added
 
