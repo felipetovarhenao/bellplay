@@ -942,4 +942,59 @@ BP_REF_NEW(
     @tags 'labelset' 'dataset' 
 );
 ## ------------------------------------------------------------
+dataset2dbtable = (
+    $dataset = null, $labelset = null, $name = 'data', $db = null -> (
+        $self = 'dataset2dbtable';
+        if BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @obj $dataset
+            @argname 'dataset' 
+            @allow 'dataset' 
+        ) then (
+            $dsref = getkey($dataset, 'ref');
+            BP_SANDBOX_OUT = null;
+            BP_FN_SANDBOX_MSG(
+                @to $dsref @message 'size' 
+            );
+            $size = right(BP_SANDBOX_OUT, 1);
+            BP_SANDBOX_OUT = null;
+            BP_FN_SANDBOX_MSG(
+                @to $dsref @message 'cols' 
+            );
+            $cols = right(BP_SANDBOX_OUT, 1);
+            $addlabels = 0;
+            if $labelset != null && BP_FN_FLUID_VALIDATE_OBJ(
+                @self $self
+                @obj $labelset
+                @argname 'labelset' 
+                @allow 'labelset' 
+            ) == 1 then (
+                BP_SANDBOX_OUT = null;
+                BP_FN_SANDBOX_MSG(
+                    @to getkey($labelset, 'ref' ) @message 'size' 
+                );
+                $numlabels = right(BP_SANDBOX_OUT, 1);
+                if $numlabels != $size then BP_FN_ERROR(
+                    $self, '@labelset must have the same size as @dataset:' $size '!=' $numlabels
+                ) else ($addlabels = 1) 
+            );
+            $keys = for $j in 1...$cols collect 'x' + tosymbol($j);
+            if $addlabels == 1 then ($keys _= 'label' );
+            $keys = [$keys];
+            $data = for $i in 1...$size collect (
+                $values = getitems($dataset, $i)::1;
+                if $addlabels then $values _= getitems($labelset, $i);
+                [
+                    trans($keys [$values]) 
+                ] 
+            );
+            createdbtable(
+                @data $data
+                @name $name
+                @db $db
+            ) 
+        ) 
+    ) 
+);
+## ------------------------------------------------------------
 null
