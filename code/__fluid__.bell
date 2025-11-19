@@ -189,7 +189,7 @@ BP_REF_NEW(
         BP_REF_ARG(
             @name 'dataset' 
             @type 'llll' 
-            @description 'Reference dataset' 
+            @description 'Dataset to fit normalizer to' 
         ) BP_REF_ARG(
             @name 'min' 
             @type 'int/float' 
@@ -226,7 +226,7 @@ BP_REF_NEW(
     @arguments BP_REF_ARG(
         @name 'dataset' 
         @type 'llll' 
-        @description 'Reference dataset' 
+        @description 'Dataset to fit standardizer to' 
     ) 
     @output BP_REF_OUTPUT(
         @description 'Standardizer object' @type 'llll' 
@@ -256,7 +256,7 @@ BP_REF_NEW(
         BP_REF_ARG(
             @name 'dataset' 
             @type 'llll' 
-            @description 'Reference dataset' 
+            @description 'Dataset to fit robust scaler to' 
         ) BP_REF_ARG(
             @name 'low' 
             @type 'int/float' 
@@ -295,7 +295,7 @@ BP_REF_NEW(
         BP_REF_ARG(
             @name 'dataset' 
             @type 'llll' 
-            @description 'Reference dataset' 
+            @description 'Dataset to fit UMAP to' 
         ) BP_REF_ARG(
             @name 'iterations' 
             @type 'int' 
@@ -349,7 +349,7 @@ BP_REF_NEW(
         BP_REF_ARG(
             @name 'dataset' 
             @type 'llll' 
-            @description 'Reference dataset' 
+            @description 'Dataset to fit PCA to' 
         ) BP_REF_ARG(
             @name 'numdimensions' 
             @type 'int' 
@@ -393,7 +393,7 @@ BP_REF_NEW(
         BP_REF_ARG(
             @name 'dataset' 
             @type 'llll' 
-            @description 'Reference dataset' 
+            @description 'Dataset to fit KDTree to' 
         ) BP_REF_ARG(
             @name 'numdimensions' 
             @type 'int' 
