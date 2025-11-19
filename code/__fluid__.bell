@@ -764,11 +764,12 @@ transform = (
                 @argname 'x' 
                 @allow 'dataset' 
             ) == 1 then (
+                $method = if $inverse == 0 || $objclass == 'umap' then 'transform' else 'inversetransform';
                 $yset = BP_FN_FLUID_NEWOBJ(@class 'dataset');
                 $xname = getkey($x, 'name');
                 $ref = getkey($obj, 'ref');
                 BP_FN_SANDBOX_MSG(
-                    @to $ref @message 'transform' $xname getkey($yset, 'name') 
+                    @to $ref @message $method $xname getkey($yset, 'name') 
                 );
                 $yset
             ) else (
