@@ -654,28 +654,37 @@ writeobj = (
             $path = $pathinfo.'path' + $ext;
             $ref = getkey($obj, 'ref');
             $path = $pathinfo.'path' + $ext;
+            BP_SANDBOX_OUT = null;
             BP_FN_SANDBOX_MSG(
                 @to $ref @message 'dump' 
             );
             $dict = right(BP_SANDBOX_OUT, 1);
-            $attrs = getkey($obj, 'attributes');
-            $msgs = [$dict] ['set' '_class' $class];
-            if $attrs != null then (
-                $keys = trans($attrs)::1;
-                $msgs _= [
-                    'set' '_attributes' $keys
-                ];
-                for $attr in $attrs with @unwrap 1 do (
-                    $msgs _= [
-                        'set' '_' + $attr:1 right($attr, 1) 
-                    ] 
-                ) 
-            ) else ($msgs _= ['set' '_attributes']);
-            $msgs _= ['write' $path];
-            for $msg in $msgs with @unwrap 1 do BP_MAXOBJ_DICT(
-                $msg @out 'm' 
+            BP_MAXOBJ_DICT(
+                $dict @out 'm' 
             );
-            null
+            $isvalid = BP_MAXOBJ_DICT(
+                'contains' 'cols' @out 'm' @fetch 3
+            );
+            if $isvalid == 0 then BP_FN_ERROR($self, '@obj is currently empty and should be populated before writing.') else (
+                $attrs = getkey($obj, 'attributes');
+                $msgs = ['set' '_class' $class];
+                if $attrs != null then (
+                    $keys = trans($attrs)::1;
+                    $msgs _= [
+                        'set' '_attributes' $keys
+                    ];
+                    for $attr in $attrs with @unwrap 1 do (
+                        $msgs _= [
+                            'set' '_' + $attr:1 right($attr, 1) 
+                        ] 
+                    ) 
+                ) else ($msgs _= ['set' '_attributes']);
+                $msgs _= ['write' $path];
+                for $msg in $msgs with @unwrap 1 do BP_MAXOBJ_DICT(
+                    $msg @out 'm' 
+                );
+                null
+            ) 
         ) else BP_FN_ERROR($self, 'invalid extension:' $ext) 
     ) 
 );
@@ -708,29 +717,34 @@ readobj = (
             BP_MAXOBJ_DICT(
                 'read' $path @out 'm' 
             );
-            $query = BP_MAXOBJ_DICT(
-                'get' '_class' @out 'm' @fetch 2
+            $isvalid = BP_MAXOBJ_DICT(
+                'contains' 'cols' @out 'm' @fetch 3
             );
-            if $query:1 == '_class' && $query:2 != null then (
-                $attrkeys = right(BP_MAXOBJ_DICT(
-                    'get' '_attributes' @out 'm' @fetch 2
-                ), 1);
-                $attrs = for $key in $attrkeys collect (
-                    $value = BP_MAXOBJ_DICT(
-                        'get' '_' + $key @out 'm' @fetch 2
+            if $isvalid == 0 then BP_FN_ERROR($self, '@obj is currently empty and should be populated before writing.') else (
+                $query = BP_MAXOBJ_DICT(
+                    'get' '_class' @out 'm' @fetch 2
+                );
+                if $query:1 == '_class' && $query:2 != null then (
+                    $attrkeys = right(BP_MAXOBJ_DICT(
+                        'get' '_attributes' @out 'm' @fetch 2
+                    ), 1);
+                    $attrs = for $key in $attrkeys collect (
+                        $value = BP_MAXOBJ_DICT(
+                            'get' '_' + $key @out 'm' @fetch 2
+                        );
+                        [$key right($value, 1)] 
                     );
-                    [$key right($value, 1)] 
-                );
-                $class = $query:2;
-                $result = BP_MAXOBJ_DICT(
-                    'bang' @out 'm' @fetch 1
-                );
-                $obj = BP_FN_FLUID_NEWOBJ(@class $class @attributes $attrs);
-                $ref = getkey($obj, 'ref');
-                BP_FN_SANDBOX_MSG(
-                    @to $ref @message 'load' $result
-                );
-                $obj
+                    $class = $query:2;
+                    $result = BP_MAXOBJ_DICT(
+                        'bang' @out 'm' @fetch 1
+                    );
+                    $obj = BP_FN_FLUID_NEWOBJ(@class $class @attributes $attrs);
+                    $ref = getkey($obj, 'ref');
+                    BP_FN_SANDBOX_MSG(
+                        @to $ref @message 'load' $result
+                    );
+                    $obj
+                ) 
             ) 
         ) 
     ) 
