@@ -779,7 +779,7 @@ transform = (
                 BP_FN_SANDBOX_MSG(
                     @to getkey($obj, 'ref') @message $method $pt
                 );
-                BP_FN_FLUID_FROMBUFFER(right(BP_SANDBOX_OUT, 1)) 
+                BP_FN_FLUID_FROMBUFFER(right(BP_SANDBOX_OUT, 1):-1) 
             ) 
         ) 
     ) 
