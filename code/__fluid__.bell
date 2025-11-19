@@ -775,6 +775,7 @@ transform = (
             ) else (
                 $method = if $inverse == 0 || $objclass == 'umap' then 'transformpoint' else 'inversetransformpoint';
                 $pt = BP_FN_FLUID_TOBUFFER($x);
+                BP_SANDBOX_OUT = null;
                 BP_FN_SANDBOX_MSG(
                     @to getkey($obj, 'ref') @message $method $pt
                 );
