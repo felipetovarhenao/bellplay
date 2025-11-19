@@ -1,4 +1,18 @@
 BP_MAXOBJ_DICT = {dict};
+BP_FN_FLUID_ALL_DATA_OBJECTS = (
+    ## containers
+    'dataset' 'labelset' 
+    ## scalers
+    'normalize' 'standardize' 'robustscale' 
+    ## reducers
+    'umap' 'pca' 
+    ## clustering
+    'kmeans' 'skmeans' 
+    ## search
+    'kdtree' 
+    ## neutral
+    'knnregressor' 'knnclassifier' 'mlpregressor' 'mlpclassifier' 
+);
 ## ------------------------------------------------------------
 BP_FN_FLUID_NEWOBJ = (
     $class, $name = null, $arguments = null, $attributes = null -> (
@@ -26,15 +40,17 @@ BP_FN_FLUID_NEWOBJ = (
 );
 ## ------------------------------------------------------------
 BP_FN_FLUID_VALIDATE_OBJ = (
-    $self, $obj, $argument, $class -> (
-        $ref = getkey($obj, 'ref');
-        $objclass = getkey($obj, 'class');
-        ($ref &&& $objclass) ||| BP_FN_ERROR(
-            $self, 'invalid value for @' + $argument + '—expected a' $class 'but got:' $obj ||| 'null' 
-        );
-        if intersection($objclass, $class) == null then BP_FN_ERROR(
-            $self, 'invalid value for @' + $argument + '—expected a' $class 'but got:' $objclass ||| 'null' 
-        ) else 1
+    $self, $obj, $argname, $allow = BP_FN_FLUID_ALL_DATA_OBJECTS -> (
+        if BP_FN_CHECK_ARGS($self, $argname, $obj) then (
+            $ref = getkey($obj, 'ref');
+            $objclass = getkey($obj, 'class');
+            ($ref &&& $objclass) ||| BP_FN_ERROR(
+                $self, 'invalid value for @' + $argname + '. expected a' $allow 'but got:' $obj ||| 'null' 
+            );
+            if intersection($objclass, $allow) == null then BP_FN_ERROR(
+                $self, 'invalid value for @' + $argname + '. expected a' $allow 'but got:' $objclass ||| 'null' 
+            ) else 1
+        ) 
     ) 
 );
 ## ------------------------------------------------------------
@@ -623,13 +639,15 @@ writeobj = (
     $obj, $path -> (
         BP_SANDBOX_OUT = null;
         $self = 'writeobj';
-        BP_FN_CHECK_ARGS(
-            $self, 'obj', $obj, 'path', $path
-        );
-        $class = getkey($obj, 'class');
+        BP_FN_CHECK_ARGS($self, 'path', $path);
         $pathinfo = BP_FN_PATHINFO($path);
         $ext = $pathinfo.'extension';
-        if $ext == '.json' then (
+        if $ext == '.json' && BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @obj $obj
+            @argname 'obj' 
+        ) == 1 then (
+            $class = getkey($obj, 'class');
             $path = $pathinfo.'path' + $ext;
             $ref = getkey($obj, 'ref');
             $path = $pathinfo.'path' + $ext;
@@ -732,21 +750,19 @@ BP_REF_NEW(
 transform = (
     $x = null, $obj = null, $inverse = 0 -> (
         $self = 'transform';
-        if BP_FN_CHECK_ARGS(
-            $self, 'x', $x, 'obj', $obj
-        ) &&& BP_FN_FLUID_VALIDATE_OBJ(
+        if BP_FN_CHECK_ARGS($self, 'x', $x) &&& BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
             @obj $obj
-            @argument 'obj' 
-            @class 'pca' 'umap' 'normalize' 'standardize' 'robustscale' 
+            @argname 'obj' 
+            @allow 'pca' 'umap' 'normalize' 'standardize' 'robustscale' 
         ) then (
             $objclass = getkey($obj, 'class');
             $xtype = if (getkey($x, 'class') &&& getkey($x, 'ref')) != null then 1 else 0;
             if $xtype == 1 && BP_FN_FLUID_VALIDATE_OBJ(
                 @self $self
                 @obj $x
-                @argument 'x' 
-                @class 'dataset' 
+                @argname 'x' 
+                @allow 'dataset' 
             ) == 1 then (
                 $yset = BP_FN_FLUID_NEWOBJ(@class 'dataset');
                 $xname = getkey($x, 'name');
@@ -797,8 +813,8 @@ fit = (
         $objcheck = BP_FN_CHECK_ARGS($self, 'obj', $obj) &&& BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
             @obj $obj
-            @argument 'obj' 
-            @class 'kdtree' 'skmeans' 'kmeans' 'mlpregressor' 'mlpclassifier' 'knnregressor' 'knnclassifier' 
+            @argname 'obj' 
+            @allow 'kdtree' 'skmeans' 'kmeans' 'mlpregressor' 'mlpclassifier' 'knnregressor' 'knnclassifier' 
         );
         if $objcheck then (
             $objclass = getkey($obj, 'class');
@@ -809,8 +825,8 @@ fit = (
             $xsetcheck = BP_FN_CHECK_ARGS($self, 'xset', $xset) &&& BP_FN_FLUID_VALIDATE_OBJ(
                 @self $self
                 @obj $xset
-                @argument 'xset' 
-                @class 'dataset' 
+                @argname 'xset' 
+                @allow 'dataset' 
             );
             if $xsetcheck then (
                 $xsetname = getkey($xset, 'name');
@@ -820,8 +836,8 @@ fit = (
                     $ysetcheck = BP_FN_CHECK_ARGS($self, 'yset', $yset) &&& BP_FN_FLUID_VALIDATE_OBJ(
                         @self $self
                         @obj $yset
-                        @argument 'yset' 
-                        @class 'dataset' 'labelset' 
+                        @argname 'yset' 
+                        @allow 'dataset' 'labelset' 
                     );
                     if $ysetcheck then (
                         BP_SANDBOX_OUT = null;

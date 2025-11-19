@@ -26,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `writeobj` and `readobj` now handle object attributes to ensure consistent behavior for pre-trained models.
 - Update docs for objects that are fitted with dataset on creation.
 - `transformpoint` removed and `transform` now supports both points and datasets.
+- Clean up variable names in `__fluid__.bell` and include argcheck inside validation function to avoid redundancies and ensure null checks.
 
 ### Added
 
