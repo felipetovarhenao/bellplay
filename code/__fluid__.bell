@@ -429,7 +429,7 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 knn = (
-    $mode = 0, $numneighbors = 3, $weight = 1 -> (
+    $numneighbors = 3, $weight = 1, $mode = 0 -> (
         $self = 'knn';
         $class = if $mode == 0 then 'knnregressor' else 'knnclassifier';
         $check = BP_FN_CHECK_ARGS(
@@ -448,6 +448,17 @@ BP_REF_NEW(
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
+            @name 'numneighbors' 
+            @default 3
+            @type 'int' 
+            @description 'Number of neighbours to consider.' 
+        ) BP_REF_ARG(
+            @name 'weight' 
+            @default 1
+            @type 'int' 
+            @description 'Weight neighbours by distance when predicting new points.' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) BP_REF_ARG(
             @name 'mode' 
             @type 'int' 
             @default 0
@@ -459,11 +470,6 @@ BP_REF_NEW(
                     @value 1 @description 'Classification.' 
                 ) 
             ) 
-        ) BP_REF_ARG(
-            @name 'numneighbors' 
-            @default 3
-            @type 'int' 
-            @description 'Number of neighbours to consider.' 
         ) 
     ) 
     @output BP_REF_OUTPUT(
@@ -473,7 +479,7 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 mlp = (
-    $mode = 0, $activation = 2, $batchsize = 50, $hiddenlayers = 3 3, $learnrate = 0.01, $maxiter = 1000, $momentum = 0.9, $outputactivation = 0, $tapin = 0, $tapout = -1, $validation = 0.2 -> (
+    $activation = 2, $batchsize = 50, $hiddenlayers = 3 3, $learnrate = 0.01, $maxiter = 1000, $momentum = 0.9, $outputactivation = 0, $tapin = 0, $tapout = -1, $validation = 0.2 , $mode = 0-> (
         $self = 'mlp';
         $mlpclass = if $mode == 0 then 'mlpregressor' else 'mlpclassifier';
         BP_FN_CHECK_ARGS($self, 'mode', $mode);
@@ -513,18 +519,6 @@ BP_REF_NEW(
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
-            @name 'mode' 
-            @type 'int' 
-            @default 0
-            @description 'Prediction mode.' 
-            @options (
-                BP_REF_OPT(
-                    @value 0 @description 'Regression.' 
-                ) BP_REF_OPT(
-                    @value 1 @description 'Classification.' 
-                ) 
-            ) 
-        ) BP_REF_ARG(
             @name 'activation' 
             @type 'int' 
             @default 2
@@ -576,6 +570,18 @@ BP_REF_NEW(
             @type 'float' 
             @default '0.2' 
             @description 'Factor of the dataset to use for validation during training.' 
+        ) BP_REF_ARG(
+            @name 'mode' 
+            @type 'int' 
+            @default 0
+            @description 'Prediction mode.' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'Regression.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'Classification.' 
+                ) 
+            ) 
         ) 
     ) 
     @output BP_REF_OUTPUT(
@@ -585,7 +591,7 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 kmeans = (
-    $mode = 0, $maxiter = 100, $numclusters = 4, $encodingthreshold = 0.25, $means = null -> (
+    $maxiter = 100, $numclusters = 4, $encodingthreshold = 0.25, $means = null, $mode = 0 -> (
         $class = if $mode == 1 then 'skmeans' else 'kmeans';
         $obj = BP_FN_FLUID_NEWOBJ(
             @class $class @attributes (
@@ -607,18 +613,6 @@ BP_REF_NEW(
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
-            @name 'mode' 
-            @type 'int' 
-            @default 0
-            @description 'Clustering algorithm.' 
-            @options (
-                BP_REF_OPT(
-                    @value 0 @description 'KMeans.' 
-                ) BP_REF_OPT(
-                    @value 1 @description 'SKMeans.' 
-                ) 
-            ) 
-        ) BP_REF_ARG(
             @name 'maxiter' 
             @default 100
             @type 'int' 
@@ -638,6 +632,18 @@ BP_REF_NEW(
             @default 'null' 
             @type 'null/llll' 
             @description 'A list of means to seed the algorithm, as a _N_ x _M_ matrix, where _N_ is the number of clusters, and _M_ is the data dimensions.' 
+        ) BP_REF_ARG(
+            @name 'mode' 
+            @type 'int' 
+            @default 0
+            @description 'Clustering algorithm.' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'KMeans.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'SKMeans.' 
+                ) 
+            ) 
         ) 
     ) 
     @output BP_REF_OUTPUT(
@@ -773,7 +779,7 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 transform = (
-    $x = null, $obj = null, $inverse = 0 -> (
+    $obj = null, $x = null, $inverse = 0 -> (
         $self = 'transform';
         if BP_FN_CHECK_ARGS($self, 'x', $x) &&& BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
@@ -815,13 +821,13 @@ BP_REF_NEW(
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
-            @name 'x' 
-            @type 'llll/list' 
-            @description 'Dataset or point to transform.' 
-        ) BP_REF_ARG(
             @name 'obj' 
             @type 'llll' 
             @description 'Model object' 
+        ) BP_REF_ARG(
+            @name 'x' 
+            @type 'llll/list' 
+            @description 'Dataset or point to transform.' 
         ) BP_REF_ARG(
             @name 'inverse' 
             @type 'int' 
@@ -1070,22 +1076,27 @@ BP_REF_NEW(
         ) BP_REF_ARG(
             @name 'labelset' 
             @type 'llll' 
+            @default 'null' 
             @description 'Optional labelset to match with each entry.' 
         ) BP_REF_ARG(
             @name 'name' 
             @type 'symbol' 
+            @default 'name' 
             @description 'SQL table name' 
         ) BP_REF_ARG(
             @name 'db' 
             @type 'symbol/null' 
+            @default 'null' 
             @description 'Optional SQL database name' 
         ) BP_REF_ARG(
             @name 'datafield' 
             @type 'symbol/null' 
+            @default 'null' 
             @description 'Field to be used for the data key, as a symbol.' 
         ) BP_REF_ARG(
             @name 'labelfield' 
             @type 'symbol/null' 
+            @default 'null' 
             @description 'Field to be used for the label key, as a symbol.' 
         ) 
     ) 
