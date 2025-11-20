@@ -462,7 +462,7 @@ BP_REF_NEW(
             @name 'mode' 
             @type 'int' 
             @default 0
-            @description 'Prediction mode.' 
+            @description 'KNN prediction mode.' 
             @options (
                 BP_REF_OPT(
                     @value 0 @description 'Regression.' 
@@ -574,7 +574,7 @@ BP_REF_NEW(
             @name 'mode' 
             @type 'int' 
             @default 0
-            @description 'Prediction mode.' 
+            @description 'MLP prediction mode.' 
             @options (
                 BP_REF_OPT(
                     @value 0 @description 'Regression.' 
@@ -636,12 +636,12 @@ BP_REF_NEW(
             @name 'mode' 
             @type 'int' 
             @default 0
-            @description 'Clustering algorithm.' 
+            @description 'KMeans clustering mode.' 
             @options (
                 BP_REF_OPT(
-                    @value 0 @description 'KMeans.' 
+                    @value 0 @description 'Euclidean (standard) KMeans, minimizing squared distance between points and cluster centers.' 
                 ) BP_REF_OPT(
-                    @value 1 @description 'SKMeans.' 
+                    @value 1 @description 'Spherical, clustering by cosine similarity after normalizing all vectors to unit length.' 
                 ) 
             ) 
         ) 
