@@ -14,6 +14,24 @@ BP_FN_FLUID_ALL_DATA_OBJECTS = (
     'knnregressor' 'knnclassifier' 'mlpregressor' 'mlpclassifier' 
 );
 ## ------------------------------------------------------------
+BP_FN_FLUID_UPDATE_SET = (
+    $set -> (
+        $ref = getkey($set, 'ref');
+        for $k in 'size' 'cols' do (
+            BP_SANDBOX_OUT = null;
+            BP_FN_SANDBOX_MSG(@to $ref @message $k);
+            $v = right(BP_SANDBOX_OUT, 1);
+            $set = setkey(
+                @llll $set
+                @key $k
+                @val $v
+                @mode 1
+            ) 
+        );
+        $set
+    ) 
+);
+## ------------------------------------------------------------
 BP_FN_FLUID_NEWOBJ = (
     $class, $name = null, $arguments = null, $attributes = null -> (
         $name = $name ||| getkey(
@@ -733,7 +751,7 @@ readobj = (
                     BP_FN_SANDBOX_MSG(
                         @to $ref @message 'load' $result
                     );
-                    $obj
+                    if intersection($class, 'dataset' 'labelset') != null then BP_FN_FLUID_UPDATE_SET($obj) else $obj
                 ) 
             ) 
         ) 
@@ -778,7 +796,7 @@ transform = (
                 BP_FN_SANDBOX_MSG(
                     @to $ref @message $method $xname getkey($yset, 'name') 
                 );
-                $yset
+                BP_FN_FLUID_UPDATE_SET($yset) 
             ) else (
                 $method = if $inverse == 0 || $objclass == 'umap' then 'transformpoint' else 'inversetransformpoint';
                 $pt = BP_FN_FLUID_TOBUFFER($x);
@@ -888,7 +906,7 @@ predict = (
                     BP_FN_SANDBOX_MSG(
                         @to $objref @message $method $xname $yname
                     );
-                    $yset
+                    BP_FN_FLUID_UPDATE_SET($yset) 
                 ) 
             ) else if $x != null && contains(flat($x)) < 16 then (
                 $pt = BP_FN_FLUID_TOBUFFER($x);
