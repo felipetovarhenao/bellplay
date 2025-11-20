@@ -880,6 +880,27 @@ fit = (
         ) 
     ) 
 );
+BP_REF_NEW(
+    @name 'fit' 
+    @description 'Fits (i.e., trains) a Machine Learning model, such as those generated via the `mlp`, `knn`, or `kmeans` functions, to a given dataset or pair of input and output sets. If `@obj` is either a KNN or MLP model, an additional dataset or labelset must be passed to `@yset` indicating the expected prediction.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'obj' 
+            @type 'llll' 
+            @description 'Object to fit' 
+        ) BP_REF_ARG(
+            @name 'xset' 
+            @type 'llll/float' 
+            @description 'Input dataset to train model on.' 
+        ) BP_REF_ARG(
+            @name 'yset' 
+            @type 'llll/float' 
+            @default 'llll/null' 
+            @description 'Output dataset or labelset to train model on. Only required when `@obj` is generated via the `mlp` and `knn` functions.' 
+        ) 
+    ) 
+);
 ## ------------------------------------------------------------
 predict = (
     $obj = null, $x = null -> (
