@@ -37,6 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `kdtree`: Fix docs typo
 - Add draft of `dataset2dbtable`.
 - Add draft of docs for `kmeans`.
+- Add basic docs for `dataset2dbtable` function.
 
 ### Added
 

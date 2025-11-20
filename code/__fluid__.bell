@@ -1040,5 +1040,41 @@ dataset2dbtable = (
         ) 
     ) 
 );
+BP_REF_NEW(
+    @name 'dataset2dbtable' 
+    @description 'Utility function for quickly converting a dataset into a SQL database table.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Dataset to convert.' 
+        ) BP_REF_ARG(
+            @name 'labelset' 
+            @type 'llll' 
+            @description 'Optional labelset to match with each entry.' 
+        ) BP_REF_ARG(
+            @name 'name' 
+            @type 'symbol' 
+            @description 'SQL table name' 
+        ) BP_REF_ARG(
+            @name 'db' 
+            @type 'symbol/null' 
+            @description 'Optional SQL database name' 
+        ) BP_REF_ARG(
+            @name 'datafield' 
+            @type 'symbol/null' 
+            @description 'Field to be used for the data key, as a symbol.' 
+        ) BP_REF_ARG(
+            @name 'labelfield' 
+            @type 'symbol/null' 
+            @description 'Field to be used for the label key, as a symbol.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Dataset or labelset items' @type 'llll' 
+    ) 
+    @tags 'labelset' 'dataset' 'createdbtable' 'querydbtable' 'writedb' 'readdb' 
+);
 ## ------------------------------------------------------------
 null
