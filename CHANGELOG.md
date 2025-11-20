@@ -39,6 +39,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Add draft of docs for `kmeans`.
 - Add basic docs for `dataset2dbtable` function.
 - Datasets and labelset now include `cols` and `size` keys.
+- Change `dev_logo.icns` to grayscale version, to work better with MacOS Tahoe.
 
 ### Added
 
