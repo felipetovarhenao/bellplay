@@ -1081,7 +1081,7 @@ BP_REF_NEW(
         ) BP_REF_ARG(
             @name 'name' 
             @type 'symbol' 
-            @default 'name' 
+            @default "'name'" 
             @description 'SQL table name' 
         ) BP_REF_ARG(
             @name 'db' 
