@@ -36,6 +36,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Revamped `fit` and `predict` functions. Pending testing on `knn` and `kmeans`.
 - `kdtree`: Fix docs typo
 - Add draft of `dataset2dbtable`.
+- Add draft of docs for `kmeans`.
 
 ### Added
 

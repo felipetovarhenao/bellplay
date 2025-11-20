@@ -583,6 +583,50 @@ kmeans = (
         $obj
     ) 
 );
+BP_REF_NEW(
+    @name 'kmeans' 
+    @description 'Generates a [K-Means Clustering](https://learn.flucoma.org/reference/kmeans/) object for clustering/classification tasks. `kmeans` facilitates learning of clusters from a `dataset`. This allows you to assign each point in the data a discrete membership to a group or cluster. The algorithm works by partitioning points into discrete clumps that ideally have equal variance . For a more technical explanation, visit [https://scikit-learn.org/stable/modules/clustering.html#k-means](https://scikit-learn.org/stable/modules/clustering.html#k-means).' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'mode' 
+            @type 'int' 
+            @default 0
+            @description 'Clustering algorithm.' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'KMeans.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'SKMeans.' 
+                ) 
+            ) 
+        ) BP_REF_ARG(
+            @name 'maxiter' 
+            @default 100
+            @type 'int' 
+            @description 'The maximum number of iterations the algorithm will use whilst fitting.' 
+        ) BP_REF_ARG(
+            @name 'numclusters' 
+            @default 4
+            @type 'int' 
+            @description 'The number of clusters to classify data into.' 
+        ) BP_REF_ARG(
+            @name 'encoding' 
+            @default '0.25' 
+            @type 'float' 
+            @description 'The encoding threshold (i.e., the _alpha_ parameter). When used for feature learning, this can be used to produce sparser output features by setting the least active output dimensions to 0. Ignored if `@mode` is 0.' 
+        ) BP_REF_ARG(
+            @name 'means' 
+            @default 'null' 
+            @type 'null/llll' 
+            @description 'A list of means to seed the algorithm, as a _N_ x _M_ matrix, where _N_ is the number of clusters, and _M_ is the data dimensions.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'KNN object' @type 'llll' 
+    ) 
+    @tags 'fit' 'dataset' 'labelset' 
+);
 ## ------------------------------------------------------------
 writeobj = (
     $obj, $path -> (
