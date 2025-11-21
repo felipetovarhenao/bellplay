@@ -135,7 +135,7 @@ dataset = (
                 $ref = getkey($obj, 'ref');
                 $msgs = ['clear'] ['frombuffer' $source] ['deletepoint' 0];
                 for $msg in $msgs with @unwrap 1 do BP_FN_SANDBOX_MSG(@to $ref @message $msg);
-                $obj
+                BP_FN_FLUID_UPDATE_SET($obj) 
             ) 
         ) 
     ) 
@@ -166,7 +166,7 @@ labelset = (
             for $label $addr in $labels do BP_FN_SANDBOX_MSG(
                 @to $ref @message 'addlabel' $addr $label
             );
-            $obj
+            BP_FN_FLUID_UPDATE_SET($obj) 
         ) 
     ) 
 );
@@ -831,6 +831,7 @@ BP_REF_NEW(
         ) BP_REF_ARG(
             @name 'inverse' 
             @type 'int' 
+            @default 0
             @description 'Inverse transform mode. Ignored with @obj is a UMAP' 
             @options BP_REF_SWITCH_OPTIONS
         ) 
