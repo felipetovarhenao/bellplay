@@ -462,12 +462,12 @@ BP_REF_NEW(
             @name 'mode' 
             @type 'int' 
             @default 0
-            @description 'KNN prediction mode.' 
+            @description 'KNN prediction mode, determining the type of set required during the fit process, as well as the type of set returned during prediction.' 
             @options (
                 BP_REF_OPT(
-                    @value 0 @description 'Regression.' 
+                    @value 0 @description 'Regression—meant to be fitted with a `dataset` as an output, via the `fit` function.' 
                 ) BP_REF_OPT(
-                    @value 1 @description 'Classification.' 
+                    @value 1 @description 'Classification—meant to be fitted with a `labelset` as an output, via the `fit` function.' 
                 ) 
             ) 
         ) 
@@ -574,12 +574,12 @@ BP_REF_NEW(
             @name 'mode' 
             @type 'int' 
             @default 0
-            @description 'MLP prediction mode.' 
+            @description 'MLP prediction mode, determining the type of set required during the fit process, as well as the type of set returned during prediction.' 
             @options (
                 BP_REF_OPT(
-                    @value 0 @description 'Regression.' 
+                    @value 0 @description 'Regression—meant to be fitted with a `dataset` as an output, via the `fit` function.' 
                 ) BP_REF_OPT(
-                    @value 1 @description 'Classification.' 
+                    @value 1 @description 'Classification—meant to be fitted with a `labelset` as an output, via the `fit` function.' 
                 ) 
             ) 
         ) 
