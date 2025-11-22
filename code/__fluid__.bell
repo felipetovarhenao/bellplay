@@ -503,9 +503,9 @@ mlp = (
                     if $mlpclass == 'mlpregressor' then (
                         [ 'outputactivation' $outputactivation] 
                         ## ---
-                        [ 'tapin' $tapin ] 
+                        [ 'tapin' $tapin] 
                         ## ---
-                        [ 'tapout' $tapout ] 
+                        [ 'tapout' $tapout] 
                     ) 
                 ) 
             ) 
