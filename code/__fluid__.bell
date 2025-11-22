@@ -897,7 +897,7 @@ BP_REF_NEW(
         ) BP_REF_ARG(
             @name 'yset' 
             @type 'llll/float' 
-            @default 'llll/null' 
+            @default 'null' 
             @description 'Output dataset or labelset to train model on. Only required when `@obj` is generated via the `mlp` and `knn` functions.' 
         ) 
     ) 
