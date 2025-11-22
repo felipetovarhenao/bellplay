@@ -43,6 +43,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Move `@mode` to be last arg.
 - Add draft of docs for `fit`.
 - Add missing `cols` and `size` keys in `dataset` and `labelset`.
+- Fix bug in `writeobj` and `readobj` that doesn't support `mlp` and `knn` objects.
 
 ### Added
 
