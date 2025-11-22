@@ -479,7 +479,7 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 mlp = (
-    $activation = 2, $batchsize = 50, $hiddenlayers = 3 3, $learnrate = 0.01, $maxiter = 1000, $momentum = 0.9, $outputactivation = 0, $tapin = 1, $tapout = -1, $validation = 0.2 , $mode = 0-> (
+    $activation = 2, $batchsize = 50, $hiddenlayers = 3 3, $learnrate = 0.01, $maxiter = 1000, $momentum = 0.9, $outputactivation = 0, $tapin = 0, $tapout = -1, $validation = 0.2 , $mode = 0 -> (
         $self = 'mlp';
         $mlpclass = if $mode == 0 then 'mlpregressor' else 'mlpclassifier';
         BP_FN_CHECK_ARGS($self, 'mode', $mode);
@@ -503,9 +503,9 @@ mlp = (
                     if $mlpclass == 'mlpregressor' then (
                         [ 'outputactivation' $outputactivation] 
                         ## ---
-                        [ 'tapin' $tapin + if $tapin < 0 then 0 else 1] 
+                        [ 'tapin' $tapin ] 
                         ## ---
-                        [ 'tapout' $tapout + if $tapout < 0 then 0 else 1] 
+                        [ 'tapout' $tapout ] 
                     ) 
                 ) 
             ) 
@@ -552,18 +552,18 @@ BP_REF_NEW(
         ) BP_REF_ARG(
             @name 'tapin' 
             @type 'int' 
-            @default 1
-            @description 'The index of the layer to use as input to the neural network for `predict` (1-based). The default of `1` is the first layer (the original input layer), `2` is the first hidden layer, etc. This can be used to access different parts of a trained neural network such as the encoder or decoder of an [autoencoder](https://towardsdatascience.com/auto-encoder-what-is-it-and-what-is-it-used-for-part-1-3e5c6f017726).' 
+            @default 0
+            @description 'The index of the layer to use as input to the neural network for `predict` (0-based). The default of `0` is the first layer (the original input layer), `1` is the first hidden layer, etc. This can be used to access different parts of a trained neural network such as the encoder or decoder of an [autoencoder](https://towardsdatascience.com/auto-encoder-what-is-it-and-what-is-it-used-for-part-1-3e5c6f017726).' 
         ) BP_REF_ARG(
             @name 'tapout' 
             @type 'int' 
             @default -1
-            @description 'The index of the layer to use as output to the neural network for `predict` (1-based). The default of `-1` is the last layer (the original output layer). This can be used to access different parts of a trained neural network such as the encoder or decoder of an [autoencoder](https://towardsdatascience.com/auto-encoder-what-is-it-and-what-is-it-used-for-part-1-3e5c6f017726).' 
+            @description 'The index of the layer to use as output to the neural network for `predict` (0-based). The default of `-1` is the last layer (the original output layer). This can be used to access different parts of a trained neural network such as the encoder or decoder of an [autoencoder](https://towardsdatascience.com/auto-encoder-what-is-it-and-what-is-it-used-for-part-1-3e5c6f017726).' 
         ) BP_REF_ARG(
             @name 'outputactivation' 
             @type 'int' 
             @default 0
-            @description 'Activation function for output layers. Ignored when `@mode` is 1.' 
+            @description 'Activation function for output layers. Ignored when `@mode` is `1`.' 
             @options BP_REF_FLUID_ACTIVATION_OPTIONS
         ) BP_REF_ARG(
             @name 'validation' 
