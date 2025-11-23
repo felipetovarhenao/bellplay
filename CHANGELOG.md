@@ -45,6 +45,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Add missing `cols` and `size` keys in `dataset` and `labelset`.
 - Fix bug in `writeobj` and `readobj` that doesn't support `mlp` and `knn` objects.
 
+
 ### Added
 
 - GUI:
@@ -57,6 +58,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `bp.example.syntharpeggio.bell`
   - `bp.example.shepardtone.bell`
 - New functions:
+  - `fir`: Impulse response operation.
   - `maxabs` and `minabs`: Signed min/max values based on abs value of `@x` and `@y`.
   - _comparison functions_: (`greaterthan`, `greaterthaneq`, `lessthan`, `lessthaneq`) Generates operation to apply a sample-wise comparison to a buffer.
   - `miditofreq` and `freqtomidi`: MIDI to/from frequency processing operations.

@@ -4448,13 +4448,50 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+fir = (
+    $impulse = null -> (
+        $self = 'fir';
+        BP_FN_CHECK_ARGS($self, 'impulse', $impulse);
+        $source = getkey($impulse, 'source');
+        if $source == null then (
+            $impulse = getkey(
+                samps2buf(
+                    [flat($impulse)] 
+                ), 'source' 
+            ) 
+        ) else (
+            $impulse = BP_FN_DETACH_BUFFER($impulse @origin $self);
+            $impulse = getkey($impulse, 'source') 
+        );
+        [
+            [
+                'fx' 'fir' 
+            ] [
+                'params' ['impulse' $impulse] 
+            ] 
+        ] 
+    ) 
+);
+
+BP_REF_NEW(
+    @name "fir"
+    @description "Generates an audio process operation for convolving a buffer with a finite impulse response (FIR)."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(@name "impulse" @type "llll" @description "Impulse response, either as a buffer or a flat numeric list.")
+    )
+    @output BP_REF_OUTPUT(@description "FIR operation" @type "llll")
+);
+
+## ------------------------------------------------------------
+
 dcfilter = ( -> [ [ "fx" "dcfilter" ] ]);
 
 BP_REF_NEW(
     @name "dcfilter"
     @description "Generates an audio process operation for removing DC offset from a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
-    @output BP_REF_OUTPUT(@description "Dcfilter operation" @type "llll")
+    @output BP_REF_OUTPUT(@description "DC filter operation" @type "llll")
 );
 
 ## ------------------------------------------------------------
@@ -4503,8 +4540,8 @@ BP_REF_NEW(
     @description "Extracts one or more buffer channels as individual buffers."
     @category BP_REF_LABEL_BUFFER_UTILS
     @arguments (
-        BP_REF_ARG(@name "buffer", @type "llll", @description "Buffer to extract channels from.")
-        BP_REF_ARG(@name "channels" @default "null" @type "int/list/llll/null", @description "Number to channels to extract—ignored when `@all` is `1`.")
+        BP_REF_ARG(@name "buffer" @type "llll" @description "Buffer to extract channels from.")
+        BP_REF_ARG(@name "channels" @default "null" @type "int/list/llll/null" @description "Number to channels to extract—ignored when `@all` is `1`.")
         BP_REF_ARG(@name "all" @default 1 @type "int", @description "Extract all channels." @options 
             BP_REF_SWITCH_OPTIONS
         )
