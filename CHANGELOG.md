@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Closer to getting a smoother and streamlined API for flucoma objects. Currently separating tasks into `tranform` for scalers/reducers, `fit` for models, and `predict` for predictors/inference.
 - Added `fluid.list2buf` to force import during standalone build. (EDIT: this didn't work).
 - Add `openactions.txt` to ensure FluCoMa objects are properly identified in standalone.
-- Replace `scaler` with separate functions: `normalizer`, `robustscaler`, `standardizer`.
+- Replace `scaler` with separate functions: `normscaler`, `robustscaler`, `stdscaler`.
 - Add `scalepoint` function. Function name may change.
 - **MAJOR CHANGE**: Use trigger object in root patch, `bellplay.maxpat`, to control and ensure proper order of loading at launch. This seems to solve the issue of loading the core scripts multiple times and allows adding to the reference docs in `__fluid__.bell`.
 - Add draft of documentation for most ML object functions. Pending extensive revision and refinement.
@@ -20,7 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Add temp docs for `scalepoint`.
 - `transform` no longer does in-place changes and return new instance of a transformed dataset.
 - `dataset` and `labelset` now include `size` and `cols` (dataset only) keys.
-- reducers (`umap`, `pca`) and scalers (`normalizer`, `standardizer`, `robustscaler`) now require `@dataset` argument for instantiation.
+- reducers (`umap`, `pca`) and scalers (`normscaler`, `stdscaler`, `robustscaler`) now require `@dataset` argument for instantiation.
 - Rename `scalepoint` to `transformpoint`. Might decide to keep `transform` for both dataset and points.
 - Rename `getentry` to `lookup`.
 - `writeobj` and `readobj` now handle object attributes to ensure consistent behavior for pre-trained models.
@@ -44,6 +44,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Add draft of docs for `fit`.
 - Add missing `cols` and `size` keys in `dataset` and `labelset`.
 - Fix bug in `writeobj` and `readobj` that doesn't support `mlp` and `knn` objects.
+- Rename functions: `standardizer` -> `stdscaler`, `normalizer` -> `normscaler`. Replace `@class` with `@alias` in ML object representations.
 
 
 ### Added
