@@ -9,29 +9,9 @@
             "modernui": 1
         },
         "classnamespace": "box",
-        "rect": [ 557.0, 297.0, 424.0, 211.0 ],
+        "rect": [ 557.0, 297.0, 330.0, 215.0 ],
         "style": "bellplay-gui",
         "boxes": [
-            {
-                "box": {
-                    "id": "obj-9",
-                    "maxclass": "newobj",
-                    "numinlets": 1,
-                    "numoutlets": 0,
-                    "patching_rect": [ 127.0, 155.0, 57.0, 23.0 ],
-                    "text": "print first"
-                }
-            },
-            {
-                "box": {
-                    "id": "obj-8",
-                    "maxclass": "newobj",
-                    "numinlets": 1,
-                    "numoutlets": 0,
-                    "patching_rect": [ 219.0, 150.0, 69.0, 23.0 ],
-                    "text": "print samps"
-                }
-            },
             {
                 "box": {
                     "id": "obj-7",
@@ -39,7 +19,7 @@
                     "numinlets": 1,
                     "numoutlets": 2,
                     "outlettype": [ "", "" ],
-                    "patching_rect": [ 93.0, 40.0, 103.0, 23.0 ],
+                    "patching_rect": [ 39.0, 44.0, 74.0, 23.0 ],
                     "text": "t l l"
                 }
             },
@@ -50,7 +30,7 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 177.0, 89.0, 129.0, 23.0 ],
+                    "patching_rect": [ 175.0, 93.0, 129.0, 23.0 ],
                     "text": "ears.info~ numsamples"
                 }
             },
@@ -61,7 +41,7 @@
                     "numinlets": 2,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 93.0, 89.0, 72.0, 23.0 ],
+                    "patching_rect": [ 94.0, 93.0, 72.0, 23.0 ],
                     "text": "clear, set $1"
                 }
             },
@@ -72,7 +52,7 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 93.0, 8.0, 213.0, 23.0 ],
+                    "patching_rect": [ 39.0, 11.0, 213.0, 23.0 ],
                     "text": "ears.in 1 @direct 1 @unwrap 1 @out m"
                 }
             },
@@ -82,7 +62,7 @@
                     "maxclass": "newobj",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 10.0, 169.0, 76.0, 23.0 ],
+                    "patching_rect": [ 8.0, 175.0, 76.0, 23.0 ],
                     "text": "ears.mc.out~"
                 }
             },
@@ -93,7 +73,7 @@
                     "numinlets": 3,
                     "numoutlets": 1,
                     "outlettype": [ "multichannelsignal" ],
-                    "patching_rect": [ 10.0, 130.0, 186.0, 23.0 ],
+                    "patching_rect": [ 8.0, 136.0, 186.0, 23.0 ],
                     "text": "mc.buffir~"
                 }
             },
@@ -104,7 +84,7 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "multichannelsignal" ],
-                    "patching_rect": [ 10.0, 8.0, 68.0, 23.0 ],
+                    "patching_rect": [ 8.0, 93.0, 68.0, 23.0 ],
                     "text": "ears.mc.in~"
                 }
             }
@@ -131,28 +111,12 @@
             {
                 "patchline": {
                     "destination": [ "obj-2", 2 ],
-                    "order": 1,
-                    "source": [ "obj-5", 0 ]
-                }
-            },
-            {
-                "patchline": {
-                    "destination": [ "obj-8", 0 ],
-                    "order": 0,
                     "source": [ "obj-5", 0 ]
                 }
             },
             {
                 "patchline": {
                     "destination": [ "obj-2", 0 ],
-                    "order": 1,
-                    "source": [ "obj-6", 0 ]
-                }
-            },
-            {
-                "patchline": {
-                    "destination": [ "obj-9", 0 ],
-                    "order": 0,
                     "source": [ "obj-6", 0 ]
                 }
             },
