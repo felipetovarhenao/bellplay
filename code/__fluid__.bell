@@ -1204,12 +1204,21 @@ Some additional options and flexibility can be found through combinations of the
 
 If supplying pre-formed data, it's up to the user to make sure that the supplied buffers are the right size:
 
-- bases must be `(fft size / 2) + 1` samples in length and `components * input channels` channels
-- activations must be `(input frames / hopsize) + 1` frames and (`components * input channels`) channels
+- bases must be `(@fftsize / 2) + 1` samples in length and `components * numchannels` channels
+- activations must be `(numsamples / hopsize) + 1` frames and (`components * numchannels`) channels
 
 In this implementation, the components are reconstructed by masking the original spectrum, such that they will sum to yield the original sound.
 
-The whole process can be related to a channel vocoder where, instead of fixed bandpass filters, we get more complex filter shapes that are learned from the data, and the activations correspond to channel envelopes." 
+The whole process can be related to a channel vocoder where, instead of fixed bandpass filters, we get more complex filter shapes that are learned from the data, and the activations correspond to channel envelopes. The resulting _llll_ has the following structure:
+
+```bell
+[
+    [ 'components' <buffer> ] ## only present if @resynth is 1
+    [ 'bases' <buffers> ] ## NMF bases buffers
+    [ 'activations' <buffers> ] ## NMF activations buffers
+]
+```
+" 
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
@@ -1345,7 +1354,7 @@ BP_REF_NEW(
     @name 'nmfseed' 
     @description 'Finds initial bases and activations to be used with the `nmf` function.
 
-`nmfseed` uses Nonnegative Double Singular Value Decomposition which can help decide how to initialise bases and activations in the `nmf` function, by suggesting how many components to request (and what _bases_ and _activations_ to seed) in order to account for a certain percentage of the variance in a buffer. In general, using this process to seed a NMF decomposition should substantially increase the speed with which `nmf` converges and avoid especially poor local minima.
+`nmfseed` uses [Nonnegative Double Singular Value Decomposition](https://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) which can help decide how to initialise bases and activations in the `nmf` function, by suggesting how many components to request (and what _bases_ and _activations_ to seed) in order to account for a certain percentage of the variance in a buffer. In general, using this process to seed a NMF decomposition should substantially increase the speed with which `nmf` converges and avoid especially poor local minima.
 
 Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here](https://www.sciencedirect.com/science/article/abs/pii/S0031320307004359) for more info.' 
     @category BP_REF_LABEL_ML
