@@ -899,7 +899,14 @@ BP_REF_AMPUNIT_OPTIONS = (
     BP_REF_OPT(@value 0 @description "Linear")
     BP_REF_OPT(@value 1 @description "Decibels")
 );
-
+BP_REF_CHANNELMODE_OPTIONS = (
+    BP_REF_OPT(@value 0 @description "Delete all samples")
+    BP_REF_OPT(@value 1 @description "Only keep existing channels")
+    BP_REF_OPT(@value 2 @description "Pad last channel")
+    BP_REF_OPT(@value 3 @description "Cyclic repetition of channels while upmixing.")
+    BP_REF_OPT(@value 4 @description "Palindrome cycling of channels while upmixing.")
+    BP_REF_OPT(@value 5 @description "Pan channels to new configuration")
+);
 BP_REF_CURVE_OPTIONS = (
     BP_REF_OPT(@value 0 @description "Linear")
     BP_REF_OPT(@value 1 @description "Sine")
@@ -4600,6 +4607,89 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+format = (
+    $sr = -1,
+    $duration = -1,
+    $timeunit = 0,
+    $numchannels = -1,
+    $resample = 1,
+    $resamplingfiltersize = 11,
+    $resamplingmode = 'sinc',
+    $channelmodedown = 3,
+    $channelmodeup = 3
+    ## $framesize = 2048,
+    ## $hopsize = 0,
+    ## $overlap = 2
+    ## $audiosr = -1,
+    ## $binoffset = -1,
+    ## $bins = 'keep',
+    ## $binsize = -1,
+    ## $binunit = 0,
+    ## $antimeunit = 1 
+    -> (
+        [
+            ["fx" "format"]
+            [ "params" 
+                ['sr' $sr]
+                ['duration' $duration]
+                ['timeunit' $timeunit]
+                ['numchannels' $numchannels]
+                ['resample' $resample]
+                ['resamplingfiltersize' $resamplingfiltersize]
+                ['resamplingmode' $resamplingmode]
+                ['channelmodedown' $channelmodedown]
+                ['channelmodeup' $channelmodeup]
+                ## ['framesize' $framesize]
+                ## ['hopsize' $hopsize]
+                ## ['overlap' $overlap]
+                ## ['antimeunit' $antimeunit]
+                ## ['audiosr' $audiosr]
+                ## ['binoffset' $binoffset]
+                ## ['bins' $bins]
+                ## ['binsize' $binsize]
+                ## ['binunit' $binunit]
+            ]
+        ]
+    )
+);
+
+BP_REF_NEW(
+    @name "format"
+    @description "Generates an audio process operation for basic buffer formatting, such as changing the number of channels, duration and sample rate."
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(@name "sr" @type "int" @default -1 @description "Sample rate for the buffer. Use `-1` to keep sample rate or `0` to use _bellplay~_'s global sample rate.")
+        BP_REF_ARG(@name "duration" @default -1 @type "int/float" @description "Target duration, based on `@timeunit`. Use `-1` to keep buffer duration.")
+        BP_REF_ARG(@name "timeunit" @default 0 @type "int" @description "Time unit for `@duration`." @options 
+            BP_REF_TIMEUNIT_OPTIONS
+        )
+        BP_REF_ARG(@name "numchannels" @default -1 @type "int/float" @description "Target duration, based on `@timeunit`. Use `-1` to keep buffer duration.")
+        BP_REF_ARG(@name "resample" @default 1 @type "int" @description "Resample buffer when `@sr` is different." @options
+            BP_REF_SWITCH_OPTIONS
+        )
+        BP_REF_ARG(@name "resamplingfiltersize" @default 11 @type "int" @description "Resampling filter size.")
+        BP_REF_ARG(@name "resamplingmode" @default "'sinc'" @type "symbol" @description "Resampling mode." @options
+            BP_REF_RESAMPLINGMODE_OPTIONS
+        )
+        BP_REF_ARG(@name "channelmodedown" @default 3 @type "int" @description "Channel conversion mode while downmixing" @options 
+            BP_REF_CHANNELMODE_OPTIONS
+        )
+        BP_REF_ARG(@name "channelmodeup" @default 3 @type "int" @description "Channel conversion mode while upmixing" @options 
+            BP_REF_CHANNELMODE_OPTIONS
+        )
+        ## BP_REF_ARG(@name "framesize" @default 2048 @type "int/float" @description "Frame size or window size, based on `@antimeunit`.")
+        ## BP_REF_ARG(@name "hopsize" @default 0 @type "int/float" @description "Hop size, based on `@antimeunit`. If `0`, hop size is inferred from `@overlap`.")
+        ## BP_REF_ARG(@name "overlap" @default 2. @type "int/float" @description "Overlap factor between the analysis window size and the hop size.")
+        ## BP_REF_ARG(@name "antimeunit" @default 1 @type "int" @description "Time unit for analysis." @options 
+        ##     BP_REF_TIMEUNIT_OPTIONS
+        ## )
+    )
+    @output BP_REF_OUTPUT(@description "Format operation" @type "llll")
+);
+
+
+## ------------------------------------------------------------
+
 BP_FN_OSC_GEN = (
     $name,
     $frequency = 440,
@@ -4990,7 +5080,7 @@ paulstretch = (
 
 BP_REF_NEW(
     @name "paulstretch"
-    @description "Generates an audio process operation for applying time-stretching to a buffer."
+    @description "Generates an audio process operation for applying [PaulStretch](https://www.paulnasca.com/algorithms-created-by-me) time-stretching to a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
         BP_REF_ARG(@name "stretching" @default 1 @type "int/float/llll" @description "Stretching amount, as single number or envelope.")
@@ -5270,7 +5360,7 @@ rubberband = (
 
 BP_REF_NEW(
     @name "rubberband"
-    @description "Generates an audio process operation for applying rubberband pitch-shifting/time-stretching to a buffer."
+    @description "Generates an audio process operation for applying [rubberband](https://breakfastquay.com/rubberband/) pitch-shifting/time-stretching to a buffer."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
         BP_REF_ARG(@name "stretching" @default 1 @type "int/float/llll" @description "Stretching amount, as single number or envelope.")

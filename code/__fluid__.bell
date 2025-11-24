@@ -1134,15 +1134,19 @@ nmf = (
     $buffer = null, $activations = null, $bases = null, $numcomponents = 2, $iterations = 100, $maxfftsize = -1, $resynth = 1, $winsize = 1024, $hopsize = -1, $fftsize = -1 -> (
         $self = 'nmf';
         BP_FN_CHECK_ARGS($self, 'buffer', $buffer) &&& (
-            $source = BP_FN_VALIDATE_BUFFER($self, $buffer);
+            $cleanbufarg = (
+                $bufarg -^ $self -> (
+                    if $bufarg == null then '' else BP_FN_VALIDATE_BUFFER($self, $bufarg) 
+                ) 
+            );
             $msgs = (
                 ## ---
                 [
-                    'activations' ($activations &&& BP_FN_VALIDATE_BUFFER($self, $activations)) ||| '' 
+                    'activations' $cleanbufarg($activations) 
                 ] 
                 ## ---
                 [
-                    'bases' ($bases &&& BP_FN_VALIDATE_BUFFER($self, $bases)) ||| '' 
+                    'bases' $cleanbufarg($bases) 
                 ] 
                 ## ---
                 ['actmode' if $activations != null then 1 else 0] 
@@ -1161,7 +1165,7 @@ nmf = (
                 ## ---
                 ['resynthmode' $resynth] 
                 ## ---
-                ['buffer' $source] 
+                ['buffer' BP_FN_VALIDATE_BUFFER($self, $buffer)] 
             );
             BP_FLUID_TMP_OUT = null;
             for $msg in $msgs with @unwrap 1 do BP_FN_DISPATCH(

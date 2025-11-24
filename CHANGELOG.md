@@ -46,6 +46,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Fix bug in `writeobj` and `readobj` that doesn't support `mlp` and `knn` objects.
 - Rename functions: `standardizer` -> `stdscaler`, `normalizer` -> `normscaler`. Replace `@class` with `@alias` in ML object representations.
 - Add draft of `nmf` function.
+- Add draft of `format` op. generator.
 
 
 ### Added
