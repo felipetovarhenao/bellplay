@@ -1131,7 +1131,7 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 nmf = (
-    $buffer = null, $activations = null, $bases = null, $numcomponents = 2, $iterations = 100, $maxfftsize = -1, $resynth = 1, $winsize = 1024, $hopsize = -1, $fftsize = -1 -> (
+    $buffer = null, $bases = null, $activations = null, $numcomponents = 2, $iterations = 100, $basesmode = 0, $actmode = 0, $resynth = 1, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1 -> (
         $self = 'nmf';
         BP_FN_CHECK_ARGS($self, 'buffer', $buffer) &&& (
             $cleanbufarg = (
@@ -1149,9 +1149,9 @@ nmf = (
                     'bases' $cleanbufarg($bases) 
                 ] 
                 ## ---
-                ['actmode' if $activations != null then 1 else 0] 
+                ['actmode' $actmode] 
                 ## ---
-                ['basesmode' if $bases != null then 1 else 0] 
+                ['basesmode' $basesmode] 
                 ## ---
                 ['components' $numcomponents] 
                 ## ---
@@ -1179,12 +1179,238 @@ nmf = (
                     $resynth &&& ['components' getchannels($resynth)] 
                 ) 
                 ## ---
-                ['activations' getchannels($activations)] 
+                ['activations' $activations] 
                 ## ---
-                ['bases' getchannels($bases)] 
+                ['bases' $bases] 
             ] 
         ) 
     ) 
+);
+BP_REF_NEW(
+    @name 'nmf' 
+    @description "Applies spectral decomposition of a buffer into a number of components using [Non-Negative Matrix Factorisation](https://learn.flucoma.org/learn/bufnmf/).
+
+The algorithm takes a buffer in and divides it into a number of components, determined by the `@numcomponents` argument. It works iteratively, by trying to find a combination of spectral templates (i.e., _bases_) and envelopes (i.e., _activations_) that yield the original magnitude spectrogram when added together. By and large, there is no unique answer to this question (i.e. there are different ways of accounting for an evolving spectrum in terms of some set of templates and envelopes). In its basic form, NMF is a form of unsupervised learning: it starts with some random data and then converges towards something that minimises the distance between its generated data and the original: it tends to converge very quickly at first and then level out. Fewer iterations mean less processing, but also less predictable results.
+
+The object can return either or all of the following:
+
+- a spectral contour of each component in the form of a magnitude spectrogram (called a _basis_ in NMF lingo);
+- an amplitude envelope of each component in the form of gains for each consecutive frame of the underlying spectrogram (called an _activation_ in NMF lingo);
+- an audio reconstruction (i.e., _resynthesis_) of each component in the time domain.
+
+The bases and activations can be used to make a kind of vocoder based on what NMF has 'learned' from the original data. Alternatively, taking the matrix product of a basis and an activation will yield a synthetic magnitude spectrogram of a component (which could be reconstructed, given some phase information from somewhere).
+
+Some additional options and flexibility can be found through combinations of the `@bases` and `@activations` arguments. These can be passed buffers containing pre-formed spectra (or envelopes) that will be used as seeds for the decomposition, providing more guided results. When set to `2`, the supplied buffers won't be updated, so become templates to match against instead. Note that having both bases and activations set to `2` doesn't make sense, so an error is raised.
+
+If supplying pre-formed data, it's up to the user to make sure that the supplied buffers are the right size:
+
+- bases must be `(fft size / 2) + 1` samples in length and `components * input channels` channels
+- activations must be `(input frames / hopsize) + 1` frames and (`components * input channels`) channels
+
+In this implementation, the components are reconstructed by masking the original spectrum, such that they will sum to yield the original sound.
+
+The whole process can be related to a channel vocoder where, instead of fixed bandpass filters, we get more complex filter shapes that are learned from the data, and the activations correspond to channel envelopes." 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'buffer' 
+            @type 'llll' 
+            @description 'Buffer to decompose' 
+        ) BP_REF_ARG(
+            @name 'bases' 
+            @type 'llll/null' 
+            @default 'null' 
+            @description 'Optional decomposition bases' 
+        ) BP_REF_ARG(
+            @name 'activations' 
+            @type 'llll/null' 
+            @default 'null' 
+            @description 'Optional decomposition activations' 
+        ) BP_REF_ARG(
+            @name 'numcomponents' 
+            @type 'int' 
+            @default 2
+            @description 'Number of elements the NMF algorithm will try to divide the spectrogram of the source in.' 
+        ) BP_REF_ARG(
+            @name 'iterations' 
+            @type 'int' 
+            @default 100
+            @description 'Number of iterations in factorisation to converge to the smallest error, and adjust final bases and activations. Higher numbers will be more CPU expensive, lower numbers will be more unpredictable in quality.' 
+        ) BP_REF_ARG(
+            @name 'basesmode' 
+            @type 'int' 
+            @default 0
+            @description 'Bases mode' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'The bases are seeded randomly. The resulting buffer is will have `components * numchannelsprocessed` channels and be `(sourceduration / hopsize + 1)` samples long.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'If `@bases` is a buffer, it is considered as seed for the activations. Its dimensions should match the values above. The resulting activations will replace the seed ones.' 
+                ) BP_REF_OPT(
+                    @value 2 @description 'If `@bases` is a buffer, it is considered as a template for the activations, and will not be changed. Its dimensions should match the values above.' 
+                ) 
+            ) 
+        ) BP_REF_ARG(
+            @name 'actmode' 
+            @type 'int' 
+            @default 0
+            @description 'Activations mode' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'The activations are seeded randomly. The resulting buffer is will have `components * numchannelsprocessed` channels and be `(sourceduration / hopsize + 1)` samples long.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'If `@activations` is a buffer, it is considered as seed for the activations. Its dimensions should match the values above. The resulting activations will replace the seed ones.' 
+                ) BP_REF_OPT(
+                    @value 2 @description 'If `@activations` is a buffer, it is considered as a template for the activations, and will not be changed. Its dimensions should match the values above.' 
+                ) 
+            ) 
+        ) BP_REF_ARG(
+            @name 'resynth' 
+            @type 'int' 
+            @default 1
+            @description 'Resynth mode' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) BP_REF_ARG(
+            @name 'winsize' 
+            @type 'int' 
+            @default 1024
+            @description 'Window size' 
+        ) BP_REF_ARG(
+            @name 'hopsize' 
+            @type 'int' 
+            @default -1
+            @description 'Hop size. `-1` is equivalent to `@winsize / 2`' 
+        ) BP_REF_ARG(
+            @name 'fftsize' 
+            @type 'int' 
+            @default -1
+            @description 'FFT size. `-1` is equivalent to `@winsize` snapped to the nearest equal or greater power of 2. (e.g. `@winsize 1024` => `@fftsize 1024` but `@winsize 1000` also => `@fftsize 1024`)' 
+        ) BP_REF_ARG(
+            @name 'maxfftsize' 
+            @type 'int' 
+            @default -1
+            @description 'Max. FFT size' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Decomposed buffer' @type 'llll' 
+    ) 
+    @tags 'nmfseed' 
+);
+## ------------------------------------------------------------
+nmfseed = (
+    $buffer = null, $coverage = 0.5, $mincomponents = 1, $maxcomponents = 100, $method = 0, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1 -> (
+        $self = 'nmfseed';
+        BP_FN_CHECK_ARGS($self, 'buffer', $buffer);
+        $source = BP_FN_VALIDATE_BUFFER($self, $buffer);
+        $msgs = (
+            ## ---
+            ['buffer' $source] 
+            ## ---
+            ['coverage' $coverage] 
+            ## ---
+            ['mincomponents' $mincomponents] 
+            ## ---
+            ['maxcomponents' $maxcomponents] 
+            ## ---
+            ['method' $method] 
+            ## ---
+            ['fftsettings' $winsize $hopsize $fftsize] 
+            ## ---
+            ['maxfftsize' $maxfftsize] 
+        );
+        BP_FLUID_TMP_OUT = null;
+        for $msg in $msgs with @unwrap 1 do BP_FN_DISPATCH(
+            'fluid', 'nmfseed' $msg
+        );
+        $result = BP_FLUID_TMP_OUT;
+        $bases = BP_FN_DETACH_BUFFER(
+            @buffer BP_FN_NEWBUFF(right($result.'bases', 1)) 
+            @origin $self
+            @strict 1
+        );
+        $activ = BP_FN_DETACH_BUFFER(
+            @buffer BP_FN_NEWBUFF(right($result.'activations', 1) ) 
+            @origin $self
+            @strict 1
+        );
+        [
+            ['bases' $bases] 
+            ## ---
+            ['activations' $activ] 
+        ] 
+    ) 
+);
+BP_REF_NEW(
+    @name 'nmfseed' 
+    @description 'Finds initial bases and activations to be used with the `nmf` function.
+
+`nmfseed` uses Nonnegative Double Singular Value Decomposition which can help decide how to initialise bases and activations in the `nmf` function, by suggesting how many components to request (and what _bases_ and _activations_ to seed) in order to account for a certain percentage of the variance in a buffer. In general, using this process to seed a NMF decomposition should substantially increase the speed with which `nmf` converges and avoid especially poor local minima.
+
+Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here](https://www.sciencedirect.com/science/article/abs/pii/S0031320307004359) for more info.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'buffer' 
+            @type 'llll' 
+            @description 'Buffer to analyse and suggest a number of components for.' 
+        ) BP_REF_ARG(
+            @name 'converge' 
+            @type 'int/float' 
+            @default '0.5' 
+            @description 'Fraction (`0` to `1`) of information preserved in the decomposition.' 
+        ) BP_REF_ARG(
+            @name 'mincomponents' 
+            @type 'int' 
+            @default 1
+            @description 'Minimum number of estimated components to return.' 
+        ) BP_REF_ARG(
+            @name 'maxcomponents' 
+            @type 'int' 
+            @default 100
+            @description 'Maximum number of estimated components to return.' 
+        ) BP_REF_ARG(
+            @name 'method' 
+            @type 'int' 
+            @default 0
+            @description 'The method used to account for certain values before processing. Zeros in the matrix will remain zero when "updated" because the updates are being multiplied by a scalar, therefore it may be useful to change any zeros to something else before the process.' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'NMF-SVD Nonnegative Double Singular Value Decomposition where any negative values are first converted to their absolute value. This is likely to be quicker than the other options, but less rigorous.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'NNDSVDar Nonnegative Double Singular Value Decomposition where any elements that are zero are first filled with a random value between 0 and the `average * 0.01` (essentially small random values). This may be slightly faster but slightly less accurate than other options.' 
+                ) BP_REF_OPT(
+                    @value 2 @description 'NNDSVDa Nonnegative Double Singular Value Decomposition where any elements that are zero are first filled with the average value.' 
+                ) BP_REF_OPT(
+                    @value 3 @description "NNDSVD Nonnegative Double Singular Value Decomposition where values are not changed according to any criteria. This promotes sparse results from the subsequent NMF (because, with multiplicative updates, zeros remain zeros). This may or may not be desirable (not least because sparsity implies the need for more components, but also the specific domain might imply that reasonable decomposition just isn't going to be sparse)." 
+                ) 
+            ) 
+        ) BP_REF_ARG(
+            @name 'winsize' 
+            @type 'int' 
+            @default 1024
+            @description 'Window size' 
+        ) BP_REF_ARG(
+            @name 'hopsize' 
+            @type 'int' 
+            @default -1
+            @description 'Hop size. `-1` is equivalent to `@winsize / 2`' 
+        ) BP_REF_ARG(
+            @name 'fftsize' 
+            @type 'int' 
+            @default -1
+            @description 'FFT size. `-1` is equivalent to `@winsize` snapped to the nearest equal or greater power of 2. (e.g. `@winsize 1024` => `@fftsize 1024` but `@winsize 1000` also => `@fftsize 1024`)' 
+        ) BP_REF_ARG(
+            @name 'maxfftsize' 
+            @type 'int' 
+            @default -1
+            @description 'Max. FFT size' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Seed bases and activations for NMF' @type 'llll' 
+    ) 
+    @tags 'nmf' 
 );
 ## ------------------------------------------------------------
 null
