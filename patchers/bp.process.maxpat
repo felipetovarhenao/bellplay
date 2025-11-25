@@ -35,6 +35,17 @@
                         "boxes": [
                             {
                                 "box": {
+                                    "id": "obj-3",
+                                    "maxclass": "newobj",
+                                    "numinlets": 0,
+                                    "numoutlets": 1,
+                                    "outlettype": [ "" ],
+                                    "patching_rect": [ 169.0, 85.0, 72.0, 23.0 ],
+                                    "text": "r #0reset"
+                                }
+                            },
+                            {
+                                "box": {
                                     "id": "obj-1",
                                     "maxclass": "newobj",
                                     "numinlets": 1,
@@ -79,8 +90,8 @@
                                     "numinlets": 1,
                                     "numoutlets": 1,
                                     "outlettype": [ "" ],
-                                    "patching_rect": [ 6.0, 126.0, 75.0, 23.0 ],
-                                    "text": "ears.format~"
+                                    "patching_rect": [ 6.0, 126.0, 174.0, 23.0 ],
+                                    "text": "ears.format~ @naming dynamic"
                                 }
                             },
                             {
@@ -112,6 +123,12 @@
                                 "patchline": {
                                     "destination": [ "obj-103", 0 ],
                                     "source": [ "obj-12", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-103", 0 ],
+                                    "source": [ "obj-3", 0 ]
                                 }
                             },
                             {

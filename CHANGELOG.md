@@ -49,6 +49,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Add draft of `format` op. generator.
 - Add draft of `nmfseed` and draft docs for `nmf` and `nmfseed`.
 - Improve `nmf` docs.
+- Fix missing `@naming dynamic` in `ears.format`.
 
 
 ### Added
