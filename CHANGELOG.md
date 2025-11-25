@@ -53,7 +53,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Add draft for utility functions to automatically format buffer size for bases and activations. Pending more work.
 - Fix bug in `nmf`.
 - Add draft of `nmfcross`.
-- Improve docs for `nmfcross`.
+- Improve docs for `nmfcross`, with working usage code snippet.
 
 
 ### Added

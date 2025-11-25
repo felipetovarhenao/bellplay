@@ -1562,6 +1562,7 @@ See Driedger, J., Prätzlich, T., & Müller, M. (2015). _Let it Bee-Towards NMF-
     @output BP_REF_OUTPUT(
         @description 'NMF Cross operation' @type 'llll' 
     ) 
+    @usage BP_REF_PROCESS_EXAMPLE('nmfcross', 'importaudio("drums.wav")') 
     @tags 'nmfseed' 'nmf' 
 );
 ## ------------------------------------------------------------
