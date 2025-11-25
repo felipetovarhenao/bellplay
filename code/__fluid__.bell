@@ -1130,9 +1130,57 @@ BP_REF_NEW(
     @tags 'labelset' 'dataset' 'createdbtable' 'querydbtable' 'writedb' 'readdb' 
 );
 ## ------------------------------------------------------------
+BP_FN_FLUID_FORMAT_BASES = (
+    $self = null, $bases = null, $winsize = 1024, $fftsize = -1, $numchannels = 1 -> (
+        $fftsize = if $fftsize > 8 then $fftsize else $winsize;
+        $baseslength = int(
+            exp2(
+                round(log2($fftsize)) - 1
+            ) + 1
+        );
+        $format = format(
+            @sr $baseslength
+            @duration $baseslength
+            @timeunit 1
+        );
+        $b = pack(
+            for $basis in $bases collect (
+                BP_FN_VALIDATE_BUFFER($self, $basis);
+                process($basis, $format) :* $numchannels
+            ) 
+        );
+        getkey($b, 'source') 
+    ) 
+);
+BP_FN_FLUID_FORMAT_ACTIVATIONS = (
+    $self = null, $activations = null, $buffer = null, $winsize = 1024, $hopsize = -1 -> (
+        $hopsize = if $hopsize <= 0 then $winsize / 2 else $hopsize;
+        $ms = getkey($buffer, 'duration');
+        $sr = getkey($buffer, 'sr');
+        $samps = ($ms * 0.001) * $sr;
+        $numsamps = int(round($samps / $hopsize) + 1);
+        $format = format(
+            @sr $numsamps
+            @duration $numsamps
+            @timeunit 1
+        );
+        $b = pack(
+            for $act in $activations collect (
+                BP_FN_VALIDATE_BUFFER($self, $act);
+                process($act, $format) 
+            ) 
+        );
+        getkey($b, 'source') 
+    ) 
+);
 nmf = (
     $buffer = null, $bases = null, $activations = null, $numcomponents = 2, $iterations = 100, $basesmode = 0, $actmode = 0, $resynth = 1, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1 -> (
         $self = 'nmf';
+        if $bases != null || $activations != null then (
+            $numbases = ($bases &&& length($bases)) ||| 1000000;
+            $numactivations = ($activations &&& length($activations)) ||| 1000000;
+            $numcomponents = min($numbases, $numactivations) 
+        );
         BP_FN_CHECK_ARGS($self, 'buffer', $buffer) &&& (
             $cleanbufarg = (
                 $bufarg -^ $self -> (
@@ -1142,11 +1190,23 @@ nmf = (
             $msgs = (
                 ## ---
                 [
-                    'activations' $cleanbufarg($activations) 
+                    'activations' $activations &&& BP_FN_FLUID_FORMAT_ACTIVATIONS(
+                        @self $self
+                        @activations $activations
+                        @buffer $buffer
+                        @winsize $winsize
+                        @hopsize $hopsize
+                    ) 
                 ] 
                 ## ---
                 [
-                    'bases' $cleanbufarg($bases) 
+                    'bases' $bases &&& BP_FN_FLUID_FORMAT_BASES(
+                        @self $self
+                        @bases $bases
+                        @winsize $winsize
+                        @fftsize $fftsize
+                        @numchannels getkey($buffer, 'numchannels') 
+                    ) 
                 ] 
                 ## ---
                 ['actmode' $actmode] 
