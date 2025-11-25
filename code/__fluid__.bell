@@ -1176,19 +1176,16 @@ BP_FN_FLUID_FORMAT_ACTIVATIONS = (
 nmf = (
     $buffer = null, $bases = null, $activations = null, $numcomponents = 2, $iterations = 100, $basesmode = 0, $actmode = 0, $resynth = 1, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1 -> (
         $self = 'nmf';
+        $basesmode = if $bases != null then $bases + 1 else 0;
+        $actmode = if $activations != null then $activations + 1 else 0;
         if $bases != null || $activations != null then (
             $numbases = ($bases &&& length($bases)) ||| 1000000;
             $numactivations = ($activations &&& length($activations)) ||| 1000000;
             $numcomponents = min($numbases, $numactivations) 
         );
         BP_FN_CHECK_ARGS($self, 'buffer', $buffer) &&& (
-            $cleanbufarg = (
-                $bufarg -^ $self -> (
-                    if $bufarg == null then '' else BP_FN_VALIDATE_BUFFER($self, $bufarg) 
-                ) 
-            );
             $msgs = (
-                ## ---
+                ## TODO: detach if @actmode 1 
                 [
                     'activations' $activations &&& BP_FN_FLUID_FORMAT_ACTIVATIONS(
                         @self $self
@@ -1198,7 +1195,7 @@ nmf = (
                         @hopsize $hopsize
                     ) 
                 ] 
-                ## ---
+                ## TODO: detach if @basesmode 1
                 [
                     'bases' $bases &&& BP_FN_FLUID_FORMAT_BASES(
                         @self $self
@@ -1239,9 +1236,9 @@ nmf = (
                     $resynth &&& ['components' getchannels($resynth)] 
                 ) 
                 ## ---
-                ['activations' $activations] 
+                ['activations' getchannels($activations)] 
                 ## ---
-                ['bases' $bases] 
+                ['bases' getchannels($bases)] 
             ] 
         ) 
     ) 
@@ -1250,34 +1247,33 @@ BP_REF_NEW(
     @name 'nmf' 
     @description "Applies spectral decomposition of a buffer into a number of components using [Non-Negative Matrix Factorisation](https://learn.flucoma.org/learn/bufnmf/).
 
-The algorithm takes a buffer in and divides it into a number of components, determined by the `@numcomponents` argument. It works iteratively, by trying to find a combination of spectral templates (i.e., _bases_) and envelopes (i.e., _activations_) that yield the original magnitude spectrogram when added together. By and large, there is no unique answer to this question (i.e. there are different ways of accounting for an evolving spectrum in terms of some set of templates and envelopes). In its basic form, NMF is a form of unsupervised learning: it starts with some random data and then converges towards something that minimises the distance between its generated data and the original: it tends to converge very quickly at first and then level out. Fewer iterations mean less processing, but also less predictable results.
+The algorithm takes a buffer in and divides it into a number of components, determined by the `@numcomponents` argument. 
+It works iteratively, by trying to find a combination of spectral templates (i.e., _bases_) and envelopes (i.e., _activations_) that yield the original magnitude spectrogram when added together. 
+By and large, there is no unique answer to this question (i.e. there are different ways of accounting for an evolving spectrum in terms of some set of templates and envelopes). 
+In its basic form, NMF is a form of unsupervised learning: it starts with some random data and then converges towards something that minimises the distance between its generated data and the original: 
+it tends to converge very quickly at first and then level out. Fewer iterations mean less processing, but also less predictable results.
 
-The object can return either or all of the following:
+The function returns the following _llll_:
 
-- a spectral contour of each component in the form of a magnitude spectrogram (called a _basis_ in NMF lingo);
-- an amplitude envelope of each component in the form of gains for each consecutive frame of the underlying spectrogram (called an _activation_ in NMF lingo);
-- an audio reconstruction (i.e., _resynthesis_) of each component in the time domain.
+```bell
+[
+    [ 'components' <buffers> ] ## only present if @resynth is 1
+    [ 'bases' <buffers> ] ## NMF bases buffers
+    [ 'activations' <buffers> ] ## NMF activations buffers
+]
+```
+
+- `'components'`: a buffer reconstruction (i.e., resynthesis) for each component.
+- `'bases'`: buffers representing the spectral contour of each component in the form of a magnitude spectrogram (called a _basis_ in NMF lingo). Each basis will have `(@fftsize / 2) + 1` samples in length and `@numcomponents * numchannels` channels.
+- `'activations'`: buffers representing the amplitude envelope of each component in the form of gains for each consecutive frame of the underlying spectrogram (called an _activation_ in NMF lingo). Each activation will have `(numsamples / hopsize) + 1` samples and (`components * numchannels`) channels.
 
 The bases and activations can be used to make a kind of vocoder based on what NMF has 'learned' from the original data. Alternatively, taking the matrix product of a basis and an activation will yield a synthetic magnitude spectrogram of a component (which could be reconstructed, given some phase information from somewhere).
 
 Some additional options and flexibility can be found through combinations of the `@bases` and `@activations` arguments. These can be passed buffers containing pre-formed spectra (or envelopes) that will be used as seeds for the decomposition, providing more guided results. When set to `2`, the supplied buffers won't be updated, so become templates to match against instead. Note that having both bases and activations set to `2` doesn't make sense, so an error is raised.
 
-If supplying pre-formed data, it's up to the user to make sure that the supplied buffers are the right size:
-
-- bases must be `(@fftsize / 2) + 1` samples in length and `components * numchannels` channels
-- activations must be `(numsamples / hopsize) + 1` frames and (`components * numchannels`) channels
-
 In this implementation, the components are reconstructed by masking the original spectrum, such that they will sum to yield the original sound.
 
-The whole process can be related to a channel vocoder where, instead of fixed bandpass filters, we get more complex filter shapes that are learned from the data, and the activations correspond to channel envelopes. The resulting _llll_ has the following structure:
-
-```bell
-[
-    [ 'components' <buffer> ] ## only present if @resynth is 1
-    [ 'bases' <buffers> ] ## NMF bases buffers
-    [ 'activations' <buffers> ] ## NMF activations buffers
-]
-```
+The whole process can be related to a channel vocoder where, instead of fixed bandpass filters, we get more complex filter shapes that are learned from the data, and the activations correspond to channel envelopes.
 " 
     @category BP_REF_LABEL_ML
     @arguments (
@@ -1309,28 +1305,24 @@ The whole process can be related to a channel vocoder where, instead of fixed ba
             @name 'basesmode' 
             @type 'int' 
             @default 0
-            @description 'Bases mode' 
+            @description 'Bases mode. Ignored if `@bases` is `null`.' 
             @options (
                 BP_REF_OPT(
-                    @value 0 @description 'The bases are seeded randomly. The resulting buffer is will have `components * numchannelsprocessed` channels and be `(sourceduration / hopsize + 1)` samples long.' 
+                    @value 0 @description 'If buffers are provided as `@bases`, they are considered as initial seed for the activations. The resulting activations will be based on the the seed ones.' 
                 ) BP_REF_OPT(
-                    @value 1 @description 'If `@bases` is a buffer, it is considered as seed for the activations. Its dimensions should match the values above. The resulting activations will replace the seed ones.' 
-                ) BP_REF_OPT(
-                    @value 2 @description 'If `@bases` is a buffer, it is considered as a template for the activations, and will not be changed. Its dimensions should match the values above.' 
+                    @value 1 @description 'If buffers are provided as `@bases`, they are considered as a template for the activations, and will be returned unchanged.' 
                 ) 
             ) 
         ) BP_REF_ARG(
             @name 'actmode' 
             @type 'int' 
             @default 0
-            @description 'Activations mode' 
+            @description 'Activations mode. Ignored if `@activations` is `null`.' 
             @options (
                 BP_REF_OPT(
-                    @value 0 @description 'The activations are seeded randomly. The resulting buffer is will have `components * numchannelsprocessed` channels and be `(sourceduration / hopsize + 1)` samples long.' 
+                    @value 0 @description 'If `@activations` is a buffer, it is considered as seed for the activations. Its dimensions should match the values above. The resulting activations will replace the seed ones.' 
                 ) BP_REF_OPT(
-                    @value 1 @description 'If `@activations` is a buffer, it is considered as seed for the activations. Its dimensions should match the values above. The resulting activations will replace the seed ones.' 
-                ) BP_REF_OPT(
-                    @value 2 @description 'If `@activations` is a buffer, it is considered as a template for the activations, and will not be changed. Its dimensions should match the values above.' 
+                    @value 1 @description 'If `@activations` is a buffer, it is considered as a template for the activations, and will not be changed. Its dimensions should match the values above.' 
                 ) 
             ) 
         ) BP_REF_ARG(
@@ -1398,15 +1390,15 @@ nmfseed = (
             @origin $self
             @strict 1
         );
-        $activ = BP_FN_DETACH_BUFFER(
+        $activations = BP_FN_DETACH_BUFFER(
             @buffer BP_FN_NEWBUFF(right($result.'activations', 1) ) 
             @origin $self
             @strict 1
         );
         [
-            ['bases' $bases] 
+            ['bases' getchannels($bases)] 
             ## ---
-            ['activations' $activ] 
+            ['activations' getchannels($activations)] 
         ] 
     ) 
 );
