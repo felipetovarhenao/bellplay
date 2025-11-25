@@ -4456,7 +4456,7 @@ BP_REF_NEW(
 ## ------------------------------------------------------------
 
 fir = (
-    $impulse = null -> (
+    $impulse = 0 1 0 -> (
         $self = 'fir';
         BP_FN_CHECK_ARGS($self, 'impulse', $impulse);
         $source = getkey($impulse, 'source');
@@ -4485,7 +4485,7 @@ BP_REF_NEW(
     @description "Generates an audio process operation for convolving a buffer with a finite impulse response (FIR)."
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
-        BP_REF_ARG(@name "impulse" @type "llll" @description "Impulse response, either as a buffer or a flat numeric list.")
+        BP_REF_ARG(@name "impulse" @default 0 1 0 @type "llll" @description "Impulse response, either as a buffer or a flat numeric list.")
     )
     @output BP_REF_OUTPUT(@description "FIR operation" @type "llll")
 );
@@ -4525,11 +4525,11 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-getchannels = (
+buf2chans = (
     $buffer, 
     $channels = null,
     $all = 1 -> (
-        BP_FN_CHECK_ARGS('getchannels', 'buffer', $buffer);
+        BP_FN_CHECK_ARGS('buf2chans', 'buffer', $buffer);
         $buffer.process(
             [
                 [ "fx" "channel" ]
@@ -4543,7 +4543,7 @@ getchannels = (
 );
 
 BP_REF_NEW(
-    @name "getchannels"
+    @name "buf2chans"
     @description "Extracts one or more buffer channels as individual buffers."
     @category BP_REF_LABEL_BUFFER_UTILS
     @arguments (
@@ -4558,7 +4558,7 @@ BP_REF_NEW(
 $op = panning([0 0 0] [1 1 0] @numchannels 8); 
 $buf = $buf.process($op);
 $buf.view('original');
-$chans = $buf.getchannels();
+$chans = $buf.buf2chans();
 for $chan $id in $chans do $chan.view($id)")
 );
 
@@ -7461,12 +7461,12 @@ samps2buf($samps).view()"
 
 ## ------------------------------------------------------------
 
-pack = (
+chans2buf = (
     $buffers,
     $resamplingfiltersize = 11,
     $resamplingmode = 'sinc',
     $resamplingpolicy = 3 -> (
-        $self = 'pack';
+        $self = 'chans2buf';
         BP_FN_CHECK_ARGS($self, 'buffers', $buffers);
         $buffers = for $b in $buffers collect BP_FN_DETACH_BUFFER($b @origin $self).getkey("source");
         BP_FN_DISPATCH('ears', 
@@ -7484,8 +7484,8 @@ pack = (
 );
 
 BP_REF_NEW(
-    @name "pack"
-    @description "Combines multiple buffers as channels into a single buffer."
+    @name "chans2buf"
+    @description "Combines multiple buffers into a single buffer, each as a separate channel. Channels in non-mono buffers are still kept separate."
     @category BP_REF_LABEL_BUFFER_UTILS
     @arguments (
         BP_REF_ARG(@name "buffers" @type "llll" @description "Audio samples to convert to a buffer.")
@@ -7502,12 +7502,13 @@ BP_REF_NEW(
 $chan1 = cycle(440, $dur).process(
     gain([0 0.1 0] [1 0 0.125])
 );
-$chan2 = noise($dur).process(
+$chan23 = noise($dur).process(
     gain([0 0 0] [1 0.1 0.125])
+    panning(@position [0 0 0] [1 1 0]) ## becomes stereo
 );
 $chan1.view('first channel');
-$chan2.view('second channel');
-$packed = pack($chan1 $chan2);
+$chan23.view('second and third channel');
+$packed = chans2buf($chan1 $chan23);
 $packed.view('packed channels')"
     )
 );

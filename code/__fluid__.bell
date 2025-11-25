@@ -1143,7 +1143,7 @@ BP_FN_FLUID_FORMAT_BASES = (
             @duration $baseslength
             @timeunit 1
         );
-        $b = pack(
+        $b = chans2buf(
             for $basis in $bases collect (
                 BP_FN_VALIDATE_BUFFER($self, $basis);
                 process($basis, $format) :* $numchannels
@@ -1164,7 +1164,7 @@ BP_FN_FLUID_FORMAT_ACTIVATIONS = (
             @duration $numsamps
             @timeunit 1
         );
-        $b = pack(
+        $b = chans2buf(
             for $act in $activations collect (
                 BP_FN_VALIDATE_BUFFER($self, $act);
                 process($act, $format) 
@@ -1233,12 +1233,12 @@ nmf = (
             $bases = BP_FN_NEWBUFF(right(BP_FLUID_TMP_OUT.'bases', 1));
             [
                 (
-                    $resynth &&& ['components' getchannels($resynth)] 
+                    $resynth &&& ['components' buf2chans($resynth)] 
                 ) 
                 ## ---
-                ['activations' getchannels($activations)] 
+                ['activations' buf2chans($activations)] 
                 ## ---
-                ['bases' getchannels($bases)] 
+                ['bases' buf2chans($bases)] 
             ] 
         ) 
     ) 
@@ -1396,9 +1396,9 @@ nmfseed = (
             @strict 1
         );
         [
-            ['bases' getchannels($bases)] 
+            ['bases' buf2chans($bases)] 
             ## ---
-            ['activations' getchannels($activations)] 
+            ['activations' buf2chans($activations)] 
         ] 
     ) 
 );
