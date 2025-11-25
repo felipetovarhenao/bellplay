@@ -1350,7 +1350,7 @@ The whole process can be related to a channel vocoder where, instead of fixed ba
             @name 'maxfftsize' 
             @type 'int' 
             @default -1
-            @description 'Max. FFT size' 
+            @description 'Max. FFT size. `@maxfftsize -1` is equivalent to whatever the initial FFT size is.' 
         ) 
     ) 
     @output BP_REF_OUTPUT(
@@ -1465,7 +1465,7 @@ Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here
             @name 'maxfftsize' 
             @type 'int' 
             @default -1
-            @description 'Max. FFT size' 
+            @description 'Max. FFT size. `@maxfftsize -1` is equivalent to whatever the initial FFT size is.' 
         ) 
     ) 
     @output BP_REF_OUTPUT(
@@ -1506,7 +1506,11 @@ nmfcross = (
 );
 BP_REF_NEW(
     @name 'nmfcross' 
-    @description 'NMF Cross Synthesis' 
+    @description "Generates an audio process operation for NMF-based cross-synthesis. The process works by attempting to reconstruct components of the target sound using the timbre (i.e., spectra) of the source sound, learned through a Non-negative Matrix Factorization. The result is a hybrid whose character depends on how well the target can be represented by the source's spectral frames.
+
+In contrast to `nmf`, each spectral frame of source is a spectral template. Be aware that NMF is `O(N^2)` in the number of templates, so longer source buffers will take dramatically longer to process.
+
+See Driedger, J., Prätzlich, T., & Müller, M. (2015). _Let it Bee-Towards NMF-Inspired Audio Mosaicing_. ISMIR, 350-356. [http://ismir2015.uma.es/articles/13_Paper.pdf](http://ismir2015.uma.es/articles/13_Paper.pdf)" 
     @category BP_REF_LABEL_BUFFER_OPERATIONS
     @arguments (
         BP_REF_ARG(
@@ -1517,22 +1521,22 @@ BP_REF_NEW(
             @name 'continuity' 
             @type 'int' 
             @default 7
-            @description 'Continuity.' 
+            @description 'Promote the use of _N_ successive source frames, giving greater continuity in the result. This can not be bigger than the size of the source buffer, but useful values tend to be much lower (in the tens). Spans to odd numbers.' 
         ) BP_REF_ARG(
             @name 'iterations' 
             @type 'int' 
             @default 50
-            @description 'Iterations.' 
+            @description 'Iterations of NMF to run.' 
         ) BP_REF_ARG(
             @name 'timesparsity' 
             @type 'int' 
             @default 7
-            @description 'Time sparsity.' 
+            @description 'Repetition of source templates in the reconstruction by specifying a number of frames within which a template should not be re-used. Units are spectral frames.' 
         ) BP_REF_ARG(
             @name 'polyphony' 
             @type 'int' 
-            @default 11
-            @description 'Polyphony.' 
+            @default 10
+            @description 'Spectral density of the output sound by specifying the maximum number of simultaneous spectral templates from source that can be used.' 
         ) BP_REF_ARG(
             @name 'winsize' 
             @type 'int' 
@@ -1552,11 +1556,11 @@ BP_REF_NEW(
             @name 'maxfftsize' 
             @type 'int' 
             @default -1
-            @description 'Max. FFT size' 
+            @description 'Max. FFT size. `@maxfftsize -1` is equivalent to whatever the initial FFT size is.' 
         ) 
     ) 
     @output BP_REF_OUTPUT(
-        @description 'Seed bases and activations for NMF' @type 'llll' 
+        @description 'NMF Cross operation' @type 'llll' 
     ) 
     @tags 'nmfseed' 'nmf' 
 );
