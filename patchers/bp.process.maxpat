@@ -15,6 +15,312 @@
         "boxes": [
             {
                 "box": {
+                    "id": "obj-73",
+                    "maxclass": "newobj",
+                    "numinlets": 0,
+                    "numoutlets": 0,
+                    "patcher": {
+                        "fileversion": 1,
+                        "appversion": {
+                            "major": 9,
+                            "minor": 1,
+                            "revision": 1,
+                            "architecture": "x64",
+                            "modernui": 1
+                        },
+                        "classnamespace": "box",
+                        "rect": [ 59.0, 106.0, 729.0, 749.0 ],
+                        "default_fontname": "Lato",
+                        "style": "bellplay-gui-1",
+                        "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-12",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 2,
+                                    "outlettype": [ "", "" ],
+                                    "patching_rect": [ 141.0, 422.0, 72.0, 23.0 ],
+                                    "text": "route buffer"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-9",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [ "int" ],
+                                    "patching_rect": [ 216.0, 220.0, 29.5, 23.0 ],
+                                    "text": "+ 1"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-8",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [ "int" ],
+                                    "patching_rect": [ 216.0, 181.0, 29.5, 23.0 ],
+                                    "text": "> 1"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-7",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 2,
+                                    "outlettype": [ "", "bang" ],
+                                    "patching_rect": [ 141.0, 75.0, 111.0, 23.0 ],
+                                    "saved_object_attributes": {
+                                        "versionnumber": 80300
+                                    },
+                                    "text": "bach.portal @out m"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-6",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 2,
+                                    "outlettype": [ "", "" ],
+                                    "patching_rect": [ 14.0, 298.0, 146.0, 23.0 ],
+                                    "text": "gate 2 0"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-4",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 2,
+                                    "outlettype": [ "", "" ],
+                                    "patching_rect": [ 141.0, 110.0, 94.0, 23.0 ],
+                                    "text": "t l l"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-3",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [ "int" ],
+                                    "patching_rect": [ 216.0, 144.0, 70.0, 23.0 ],
+                                    "saved_object_attributes": {
+                                        "versionnumber": 80300
+                                    },
+                                    "text": "bach.length"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-5",
+                                    "maxclass": "message",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [ "" ],
+                                    "patching_rect": [ 14.0, 334.0, 58.0, 23.0 ],
+                                    "text": "buffer $1"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-2",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 2,
+                                    "outlettype": [ "", "" ],
+                                    "patching_rect": [ 141.0, 384.0, 107.0, 23.0 ],
+                                    "text": "fluid.bufnmfcross~"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-1",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 3,
+                                    "outlettype": [ "", "", "bang" ],
+                                    "patching_rect": [ 141.0, 40.0, 117.0, 23.0 ],
+                                    "saved_object_attributes": {
+                                        "embed": 0,
+                                        "versionnumber": 80300
+                                    },
+                                    "text": "bach.shelf #0params"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-131",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [ 141.0, 462.0, 62.0, 23.0 ],
+                                    "text": "s #0global"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-56",
+                                    "maxclass": "newobj",
+                                    "numinlets": 0,
+                                    "numoutlets": 1,
+                                    "outlettype": [ "" ],
+                                    "patching_rect": [ 141.0, 6.0, 77.0, 23.0 ],
+                                    "text": "r #0nmfcross"
+                                }
+                            }
+                        ],
+                        "lines": [
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-7", 0 ],
+                                    "source": [ "obj-1", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-131", 0 ],
+                                    "source": [ "obj-12", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-12", 0 ],
+                                    "source": [ "obj-2", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-8", 0 ],
+                                    "source": [ "obj-3", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-3", 0 ],
+                                    "source": [ "obj-4", 1 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-6", 1 ],
+                                    "source": [ "obj-4", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-2", 0 ],
+                                    "source": [ "obj-5", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-1", 0 ],
+                                    "source": [ "obj-56", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-2", 0 ],
+                                    "source": [ "obj-6", 1 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-5", 0 ],
+                                    "source": [ "obj-6", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-4", 0 ],
+                                    "source": [ "obj-7", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-9", 0 ],
+                                    "source": [ "obj-8", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-6", 0 ],
+                                    "source": [ "obj-9", 0 ]
+                                }
+                            }
+                        ],
+                        "styles": [
+                            {
+                                "name": "bellplay-gui",
+                                "default": {
+                                    "accentcolor": [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
+                                    "bgcolor": [ 1.0, 1.0, 1.0, 1.0 ],
+                                    "bgfillcolor": {
+                                        "angle": 270.0,
+                                        "autogradient": 0.0,
+                                        "color": [ 0.717647058823529, 0.717647058823529, 0.717647058823529, 1.0 ],
+                                        "color1": [ 0.301961, 0.301961, 0.301961, 1.0 ],
+                                        "color2": [ 0.2, 0.2, 0.2, 1.0 ],
+                                        "proportion": 0.5,
+                                        "type": "color"
+                                    },
+                                    "color": [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
+                                    "editing_bgcolor": [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+                                    "fontname": [ "Lato" ],
+                                    "locked_bgcolor": [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
+                                    "selectioncolor": [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
+                                    "textcolor_inverse": [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            },
+                            {
+                                "name": "bellplay-gui-1",
+                                "default": {
+                                    "accentcolor": [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
+                                    "bgcolor": [ 1.0, 1.0, 1.0, 1.0 ],
+                                    "bgfillcolor": {
+                                        "angle": 270.0,
+                                        "autogradient": 0.0,
+                                        "color": [ 0.717647058823529, 0.717647058823529, 0.717647058823529, 1.0 ],
+                                        "color1": [ 0.301961, 0.301961, 0.301961, 1.0 ],
+                                        "color2": [ 0.2, 0.2, 0.2, 1.0 ],
+                                        "proportion": 0.5,
+                                        "type": "color"
+                                    },
+                                    "color": [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
+                                    "editing_bgcolor": [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+                                    "fontname": [ "Lato" ],
+                                    "locked_bgcolor": [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
+                                    "selectioncolor": [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
+                                    "syntax_attrargcolor": [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
+                                    "syntax_attributecolor": [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],
+                                    "syntax_objargcolor": [ 0.776470588235294, 0.635294117647059, 0.494117647058824, 1.0 ],
+                                    "syntax_objectcolor": [ 0.462745098039216, 0.4, 0.294117647058824, 1.0 ],
+                                    "textcolor": [ 0.462745098039216, 0.462745098039216, 0.462745098039216, 1.0 ],
+                                    "textcolor_inverse": [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
+                                },
+                                "parentstyle": "",
+                                "multi": 0
+                            }
+                        ]
+                    },
+                    "patching_rect": [ 11.0, 1840.0, 73.0, 23.0 ],
+                    "saved_object_attributes": {
+                        "fontname": "Lato",
+                        "style": "bellplay-gui-1"
+                    },
+                    "text": "p nmfcross~"
+                }
+            },
+            {
+                "box": {
                     "id": "obj-74",
                     "maxclass": "newobj",
                     "numinlets": 0,

@@ -1474,4 +1474,91 @@ Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here
     @tags 'nmf' 
 );
 ## ------------------------------------------------------------
+nmfcross = (
+    $target = null, $continuity = 7, $iterations = 50, $timesparsity = 7, $polyphony = 11, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1 -> (
+        $self = 'nmfcross';
+        [
+            ['fx' 'nmfcross'] [
+                'params' 
+                ## ---
+                ['continuity' $continuity] 
+                ## ---
+                ['iterations' $iterations] 
+                ## ---
+                ['timesparsity' $timesparsity] 
+                ## ---
+                ['polyphony' $polyphony] 
+                ## ---
+                ['fftsettings' $winsize $hopsize $fftsize] 
+                ## ---
+                ['maxfftsize' $maxfftsize] 
+                ## ---
+                ['target' BP_FN_VALIDATE_BUFFER($self, $target)] 
+                ## ---
+                [
+                    'output' getkey(
+                        samps2buf([0]), 'source' 
+                    ) 
+                ] 
+            ] 
+        ] 
+    ) 
+);
+BP_REF_NEW(
+    @name 'nmfcross' 
+    @description 'NMF Cross Synthesis' 
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(
+            @name 'target' 
+            @type 'llll' 
+            @description 'Target buffer.' 
+        ) BP_REF_ARG(
+            @name 'continuity' 
+            @type 'int' 
+            @default 7
+            @description 'Continuity.' 
+        ) BP_REF_ARG(
+            @name 'iterations' 
+            @type 'int' 
+            @default 50
+            @description 'Iterations.' 
+        ) BP_REF_ARG(
+            @name 'timesparsity' 
+            @type 'int' 
+            @default 7
+            @description 'Time sparsity.' 
+        ) BP_REF_ARG(
+            @name 'polyphony' 
+            @type 'int' 
+            @default 11
+            @description 'Polyphony.' 
+        ) BP_REF_ARG(
+            @name 'winsize' 
+            @type 'int' 
+            @default 1024
+            @description 'Window size' 
+        ) BP_REF_ARG(
+            @name 'hopsize' 
+            @type 'int' 
+            @default -1
+            @description 'Hop size. `-1` is equivalent to `@winsize / 2`' 
+        ) BP_REF_ARG(
+            @name 'fftsize' 
+            @type 'int' 
+            @default -1
+            @description 'FFT size. `-1` is equivalent to `@winsize` snapped to the nearest equal or greater power of 2. (e.g. `@winsize 1024` => `@fftsize 1024` but `@winsize 1000` also => `@fftsize 1024`)' 
+        ) BP_REF_ARG(
+            @name 'maxfftsize' 
+            @type 'int' 
+            @default -1
+            @description 'Max. FFT size' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Seed bases and activations for NMF' @type 'llll' 
+    ) 
+    @tags 'nmfseed' 'nmf' 
+);
+## ------------------------------------------------------------
 null
