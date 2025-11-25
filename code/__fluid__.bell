@@ -1176,8 +1176,8 @@ BP_FN_FLUID_FORMAT_ACTIVATIONS = (
 nmf = (
     $buffer = null, $bases = null, $activations = null, $numcomponents = 2, $iterations = 100, $basesmode = 0, $actmode = 0, $resynth = 1, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1 -> (
         $self = 'nmf';
-        $basesmode = if $bases != null then $bases + 1 else 0;
-        $actmode = if $activations != null then $activations + 1 else 0;
+        $basesmode = if $bases != null then $basesmode + 1 else 0;
+        $actmode = if $activations != null then $actmode + 1 else 0;
         if $bases != null || $activations != null then (
             $numbases = ($bases &&& length($bases)) ||| 1000000;
             $numactivations = ($activations &&& length($activations)) ||| 1000000;

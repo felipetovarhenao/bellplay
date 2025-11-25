@@ -51,6 +51,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Improve `nmf` docs.
 - Fix missing `@naming dynamic` in `ears.format`.
 - Add draft for utility functions to automatically format buffer size for bases and activations. Pending more work.
+- Fix bug in `nmf`.
 
 
 ### Added
