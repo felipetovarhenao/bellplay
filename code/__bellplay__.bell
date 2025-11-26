@@ -463,15 +463,17 @@ BP_FN_DETACH_BUFFER = (
     $buffer = null, 
     $keepkeys = null, 
     $strict = 0,
-    $origin = null -> (
+    $origin = null,
+    $strip = 0 -> (
         BP_FN_VALIDATE_BUFFER($origin, $buffer);
-        if $strict == 0 && getkey($buffer, 'offset') == 0 && getkey($buffer, 'source_end') == getkey($buffer, 'duration') then $buffer else (
-            process(
+        if $strict == 1 || getkey($buffer, 'offset') != 0 || getkey($buffer, 'source_end') != getkey($buffer, 'duration') then (
+            $buffer = process(
                 @buffer $buffer
                 @operations BP_FN_DUMMY_PROCESS() 
                 @keepkeys $keepkeys
             ) 
-        ) 
+        );
+        if $strip == 1 then getkey($buffer, 'source') else $buffer
     ) 
 );
 
@@ -7940,7 +7942,8 @@ splitbuf = (
         BP_FN_CHECK_ARGS($self, 'buffer', $buffer, 'split', $split, 'mode', $mode);
         BP_FN_VALIDATE_BUFFER($self, $buffer);
         $overlap = max($overlap, 1);
-        $duration = $buffer.getkey('duration');
+        $baseoffset = getkey($buffer, 'offset');
+        $duration = getkey($buffer, 'duration');
         $segs = null;
         if $mode == 0 || $mode == 1 then (
             if $mode == 0 then (
@@ -7955,12 +7958,12 @@ splitbuf = (
             $buffer = $buffer.setkey('duration', $segdur);
             for $i in 0...($numsegs - 1) do (
                 $offset = $i * $hopsize;
-                $segs _= $buffer.setkey('offset', $offset) 
+                $segs _= setkey($buffer, 'offset', $offset + $baseoffset) 
             );
             $offset += $hopsize;
             if $partials == 1 && $offset < $duration then (
                 $taildur = $duration - $offset;
-                $segs _= $buffer.setkey('offset', $offset).setkey('duration', $taildur) 
+                $segs _= setkey($buffer, 'offset', $offset + $baseoffset).setkey('duration', $taildur) 
             ) 
         ) else if $mode == 2 then (
             $offsets = sort($split);

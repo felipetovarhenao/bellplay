@@ -1224,7 +1224,12 @@ nmf = (
                 ## ---
                 ['resynthmode' $resynth] 
                 ## ---
-                ['buffer' BP_FN_VALIDATE_BUFFER($self, $buffer)] 
+                ['buffer' BP_FN_DETACH_BUFFER(
+                    @origin $self
+                    @buffer $buffer
+                    @strip 1
+                    @strict 0
+                )] 
             );
             BP_FLUID_TMP_OUT = null;
             for $msg in $msgs with @unwrap 1 do BP_FN_DISPATCH(
@@ -1365,7 +1370,12 @@ nmfseed = (
     $buffer = null, $coverage = 0.5, $mincomponents = 1, $maxcomponents = 100, $method = 0, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1 -> (
         $self = 'nmfseed';
         BP_FN_CHECK_ARGS($self, 'buffer', $buffer);
-        $source = BP_FN_VALIDATE_BUFFER($self, $buffer);
+        $source = BP_FN_DETACH_BUFFER(
+            @origin $self
+            @buffer $buffer
+            @strip 1
+            @strict 0
+        );
         $msgs = (
             ## ---
             ['coverage' $coverage] 
