@@ -1144,6 +1144,7 @@ BP_FN_FLUID_FORMAT_BASES = (
             @timeunit 1
         );
         $b = chans2buf(
+            ## TODO: do not assume bases are always mono.
             for $basis in $bases collect (
                 BP_FN_VALIDATE_BUFFER($self, $basis);
                 process($basis, $format) :* $numchannels
@@ -1165,6 +1166,7 @@ BP_FN_FLUID_FORMAT_ACTIVATIONS = (
             @timeunit 1
         );
         $b = chans2buf(
+            ## TODO: do not assume activations are always mono.
             for $act in $activations collect (
                 BP_FN_VALIDATE_BUFFER($self, $act);
                 process($act, $format) 

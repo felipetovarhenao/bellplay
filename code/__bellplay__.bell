@@ -201,8 +201,7 @@ BP_FN_CHECK_ARGS = (
 BP_FN_VALIDATE_BUFFER = (
     $origin,
     $buffer -> (
-        $source = getkey($buffer, "source");
-        $source ||| BP_FN_ERROR($origin, 'invalid buffer:' $buffer)
+        getkey($buffer, "source") ||| BP_FN_ERROR($origin, 'invalid buffer:' $buffer)
     )
 );
 
