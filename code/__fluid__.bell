@@ -1366,8 +1366,6 @@ nmfseed = (
         $source = BP_FN_VALIDATE_BUFFER($self, $buffer);
         $msgs = (
             ## ---
-            ['buffer' $source] 
-            ## ---
             ['coverage' $coverage] 
             ## ---
             ['mincomponents' $mincomponents] 
@@ -1379,6 +1377,8 @@ nmfseed = (
             ['fftsettings' $winsize $hopsize $fftsize] 
             ## ---
             ['maxfftsize' $maxfftsize] 
+            ## ---
+            ['buffer' $source] 
         );
         BP_FLUID_TMP_OUT = null;
         for $msg in $msgs with @unwrap 1 do BP_FN_DISPATCH(
