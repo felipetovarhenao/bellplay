@@ -1175,9 +1175,9 @@ BP_FN_FLUID_FORMAT_ACTIVATIONS = (
         getkey($b, 'source') 
     ) 
 );
-nmf = (
+buf2nmf = (
     $buffer = null, $bases = null, $activations = null, $numcomponents = 2, $iterations = 100, $basesmode = 0, $actmode = 0, $resynth = 1, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1 -> (
-        $self = 'nmf';
+        $self = 'buf2nmf';
         $basesmode = if $bases != null then $basesmode + 1 else 0;
         $actmode = if $activations != null then $actmode + 1 else 0;
         if $bases != null || $activations != null then (
@@ -1251,7 +1251,7 @@ nmf = (
     ) 
 );
 BP_REF_NEW(
-    @name 'nmf' 
+    @name 'buf2nmf' 
     @description "Applies spectral decomposition of a buffer into a number of components using [Non-Negative Matrix Factorisation](https://learn.flucoma.org/learn/bufnmf/).
 
 The algorithm takes a buffer in and divides it into a number of components, determined by the `@numcomponents` argument. 
@@ -1363,12 +1363,12 @@ The whole process can be related to a channel vocoder where, instead of fixed ba
     @output BP_REF_OUTPUT(
         @description 'Decomposed buffer' @type 'llll' 
     ) 
-    @tags 'nmfseed' 
+    @tags 'buf2nmfseed' 
 );
 ## ------------------------------------------------------------
-nmfseed = (
+buf2nmfseed = (
     $buffer = null, $coverage = 0.5, $mincomponents = 1, $maxcomponents = 100, $method = 0, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1 -> (
-        $self = 'nmfseed';
+        $self = 'buf2nmfseed';
         BP_FN_CHECK_ARGS($self, 'buffer', $buffer);
         $source = BP_FN_DETACH_BUFFER(
             @origin $self
@@ -1415,10 +1415,10 @@ nmfseed = (
     ) 
 );
 BP_REF_NEW(
-    @name 'nmfseed' 
-    @description 'Finds initial bases and activations to be used with the `nmf` function.
+    @name 'buf2nmfseed' 
+    @description 'Finds initial bases and activations to be used with the `buf2nmf` function.
 
-`nmfseed` uses [Nonnegative Double Singular Value Decomposition](https://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) which can help decide how to initialise bases and activations in the `nmf` function, by suggesting how many components to request (and what _bases_ and _activations_ to seed) in order to account for a certain percentage of the variance in a buffer. In general, using this process to seed a NMF decomposition should substantially increase the speed with which `nmf` converges and avoid especially poor local minima.
+`buf2nmfseed` uses [Nonnegative Double Singular Value Decomposition](https://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) which can help decide how to initialise bases and activations in the `buf2nmf` function, by suggesting how many components to request (and what _bases_ and _activations_ to seed) in order to account for a certain percentage of the variance in a buffer. In general, using this process to seed a NMF decomposition should substantially increase the speed with which `buf2nmf` converges and avoid especially poor local minima.
 
 Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here](https://www.sciencedirect.com/science/article/abs/pii/S0031320307004359) for more info.' 
     @category BP_REF_LABEL_ML
@@ -1483,7 +1483,7 @@ Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here
     @output BP_REF_OUTPUT(
         @description 'Seed bases and activations for NMF' @type 'llll' 
     ) 
-    @tags 'nmf' 
+    @tags 'buf2nmf' 
 );
 ## ------------------------------------------------------------
 nmfcross = (
@@ -1520,7 +1520,7 @@ BP_REF_NEW(
     @name 'nmfcross' 
     @description "Generates an audio process operation for NMF-based cross-synthesis. The process works by attempting to reconstruct components of the target sound using the timbre (i.e., spectra) of the source sound, learned through a Non-negative Matrix Factorization. The result is a hybrid whose character depends on how well the target can be represented by the source's spectral frames.
 
-In contrast to `nmf`, each spectral frame of source is a spectral template. Be aware that NMF is `O(N^2)` in the number of templates, so longer source buffers will take dramatically longer to process.
+In contrast to `buf2nmf`, each spectral frame of source is a spectral template. Be aware that NMF is `O(N^2)` in the number of templates, so longer source buffers will take dramatically longer to process.
 
 See Driedger, J., Prätzlich, T., & Müller, M. (2015). _Let it Bee-Towards NMF-Inspired Audio Mosaicing_. ISMIR, 350-356. [http://ismir2015.uma.es/articles/13_Paper.pdf](http://ismir2015.uma.es/articles/13_Paper.pdf)" 
     @category BP_REF_LABEL_BUFFER_OPERATIONS
@@ -1575,7 +1575,7 @@ See Driedger, J., Prätzlich, T., & Müller, M. (2015). _Let it Bee-Towards NMF-
         @description 'NMF Cross operation' @type 'llll' 
     ) 
     @usage BP_REF_PROCESS_EXAMPLE('nmfcross', 'importaudio("drums.wav")') 
-    @tags 'nmfseed' 'nmf' 
+    @tags 'buf2nmfseed' 'buf2nmf' 
 );
 ## ------------------------------------------------------------
 null

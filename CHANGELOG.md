@@ -55,6 +55,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Add draft of `nmfcross`.
 - Improve docs for `nmfcross`, with working usage code snippet.
 - Fix detach bug in `splitbuf` and `nmf`. Add `@strip` argument in private detach function.
+- Rename `nmf` and `nmfseed` to `buf2nmf` and `buf2nmfseed`.
 
 ### Added
 
