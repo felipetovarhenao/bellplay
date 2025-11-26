@@ -731,13 +731,13 @@
         "description": "Returns the Bessel function of the first kind of given `@order` at point `@x`.",
         "args": [
             {
+                "name": "order",
+                "type": "llll"
+            },
+            {
                 "name": "x",
                 "type": "int/float/llll",
                 "description": "Numeric _llll_."
-            },
-            {
-                "name": "order",
-                "type": "llll"
             }
         ],
         "output": {
