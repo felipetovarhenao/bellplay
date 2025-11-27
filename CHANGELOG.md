@@ -107,6 +107,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- **BREAKING CHANGE**: `initurn` supports `@offset` argument, with default `1`, for ease of use in address/indexing.
 - **BREAKING CHANGE**: Rename `getchannels` and `pack` to `buf2chans` and `chans2buf` for consistency.
 - Buffer-based parameters are properly handled based on their `offset` and `duration` values.
 - Tutorials and examples now available in top menu, not GUI.
