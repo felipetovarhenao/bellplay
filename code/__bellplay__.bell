@@ -1665,6 +1665,49 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+BP_FN_NORMAL_RANDOM = (
+    $mean = 0, $stdev = 1, $useseed = 0 -> (
+        $rand = if $useseed == 1 then xrand else rand;
+        $u1 = -1;
+        while $u1 <= 0 do $u1 = $rand(0, 1);
+        $u2 = $rand(0, 1);
+        $y = sqrt(-2 * log($u1)) * cos(2 * pi * $u2);
+        $y * $stdev + $mean
+    )
+);
+
+randn = ($mean = 0, $stdev = 1 -> BP_FN_NORMAL_RANDOM($mean, $stdev, 0));
+
+BP_REF_NEW(
+    @name "randn"
+    @description "Generates a [normally distributed](https://en.wikipedia.org/wiki/Normal_distribution) random floating point number, using the [_Box-Muller_ transform](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform)."
+    @category BP_REF_LABEL_RANDOMNESS
+    @arguments (
+        BP_REF_ARG(@name "mean" @default 0 @type "int/float" @description "Mean.")
+        BP_REF_ARG(@name "stdev" @default 1 @type "int/float/null" @description "Standard deviation.")
+    )
+    @output BP_REF_OUTPUT(@description "Normally distributed, random floating point number", @type "int/float")
+    @tags 'xrandn' 'random' 'rand' 
+);
+
+xrandn = ($mean = 0, $stdev = 1 -> BP_FN_NORMAL_RANDOM($mean, $stdev, 1));
+
+## ------------------------------------------------------------
+
+BP_REF_NEW(
+    @name "xrandn"
+    @description "Generates a seeded, [normally distributed](https://en.wikipedia.org/wiki/Normal_distribution), random floating point number, using the [_Box-Muller_ transform](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform). The seed is set globally, via the `setseed` function."
+    @category BP_REF_LABEL_RANDOMNESS
+    @arguments (
+        BP_REF_ARG(@name "mean" @default 0 @type "int/float" @description "Mean.")
+        BP_REF_ARG(@name "stdev" @default 1 @type "int/float/null" @description "Standard deviation.")
+    )
+    @output BP_REF_OUTPUT(@description "Normally distributed, random floating point number", @type "int/float")
+    @tags 'randn' 'xrandom' 'xrand' 
+);
+
+## ------------------------------------------------------------
+
 rand = (
     $a = 1, $b = null -> (
         if $b == null then (
