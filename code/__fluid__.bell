@@ -133,6 +133,30 @@ print(getitems($outdataset, 1...5), 'Output dataset:');
 print($outpoint, 'Output point:')" 
 ));
 ## ------------------------------------------------------------
+BP_REF_NEURAL_EXAMPLE = (
+    $alias, $loop = 0, $arguments = '' -> BP_REF_CODE_SNIPPET(
+        '$indata = null;
+$outdata = null;
+## generate basic dataset based on "less-than" function
+for $i in 1...100 do (
+    $a = rand(0, 1);
+    $b = rand(0, 1);
+    $indata _= [$a $b]; ## input point
+    $outdata _= [$a < $b] ## expected output (0 or 1)
+);
+$indataset = dataset($indata); ## input points
+$outdataset = dataset($outdata); ## expected outputs
+$model = ' + $alias + '(' + $arguments + '); ## create ' + $alias + ' model
+## fit (i.e., train) model to learn input/output mappping from dataset
+' + (if $loop == 1 then ( "for $i in 1...10 do ( ## repeat training to minimize loss
+    print(fit($model, $indataset, $outdataset), 'Loss:') 
+);" ) else 'fit($model, $indataset, $outdataset);') + '
+$xpoint = 0.25 0.75; ## sample point
+$pred = predict($model, $xpoint); ## generate prediction
+print($pred, "prediction:") ## should be (almost) 1.0, as 0.25 < 0.75 is true' 
+    ) 
+);
+## ------------------------------------------------------------
 dataset = (
     $data = null -> (
         $self = 'dataset';
@@ -519,6 +543,9 @@ BP_REF_NEW(
         @description 'KNN object' @type 'llll' 
     ) 
     @tags 'fit' 'dataset' 'labelset' 
+    @usage BP_REF_NEURAL_EXAMPLE(
+        @alias 'knn' @loop 0
+    ) 
 );
 ## ------------------------------------------------------------
 mlp = (
@@ -631,6 +658,11 @@ BP_REF_NEW(
         @description 'Multilayer perceptron object' @type 'llll' 
     ) 
     @tags 'fit' 'dataset' 'labelset' 
+    @usage BP_REF_NEURAL_EXAMPLE(
+        @alias 'mlp' 
+        @arguments '@outputactivation 1' 
+        @loop 1
+    ) 
 );
 ## ------------------------------------------------------------
 kmeans = (
@@ -949,6 +981,11 @@ BP_REF_NEW(
             @default 'null' 
             @description 'Output dataset or labelset to train model on. Only required when `@obj` is generated via the `mlp` and `knn` functions.' 
         ) 
+    ) 
+    @usage BP_REF_NEURAL_EXAMPLE(
+        @alias 'mlp' 
+        @arguments '@outputactivation 1' 
+        @loop 1
     ) 
 );
 ## ------------------------------------------------------------
