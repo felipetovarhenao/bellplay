@@ -120,6 +120,19 @@ BP_REF_FLUID_ACTIVATION_OPTIONS = (
     ) 
 );
 ## ------------------------------------------------------------
+BP_REF_TRANSFORM_EXAMPLE = ($alias = null, $class = 'scaler' -> BP_REF_CODE_SNIPPET(
+    '$indataset = dataset(
+    for $i in 1...5 collect [$i * 10 ** (0...2)] ## dummy input dataset
+);
+$inpoint = 6 60 600; ## dummy input point
+$' + $class + ' = ' + $alias + '($indataset); ## create ' + $class + ' based on dummy dataset
+$outdataset = transform($' + $class + ', $indataset); ## transform dataset based on learned parameters
+$outpoint = transform($' + $class + ", $inpoint); ## transform new point based on learned parameters
+print(getitems($indataset, 1...5), 'Input dataset:');
+print(getitems($outdataset, 1...5), 'Output dataset:');
+print($outpoint, 'Output point:')" 
+));
+## ------------------------------------------------------------
 dataset = (
     $data = null -> (
         $self = 'dataset';
@@ -153,6 +166,15 @@ BP_REF_NEW(
         @description 'Dataset object' @type 'llll' 
     ) 
     @tags 'labelset' 'getitems' 
+    @usage BP_REF_CODE_SNIPPET('$size = 100; ## number of data points
+$cols = 3;
+## generate random dummy data
+$data = for $i in 1...$size collect [ 
+    for $j in $cols collect randn() 
+];
+$dataset = dataset($data); ## create dataset from data
+$points = getitems($dataset, 1...4); ## get first 4 points
+print($points)') 
 );
 ## ------------------------------------------------------------
 labelset = (
@@ -183,6 +205,12 @@ BP_REF_NEW(
         @description 'Labelset object' @type 'llll' 
     ) 
     @tags 'dataset' 'getitems' 
+    @usage BP_REF_CODE_SNIPPET("$size = 100; ## labelset size
+## generate random dummy labels
+$labels = for $i in 1...$size collect choose('foo' 'bar' 'baz');
+$labelset = labelset($labels); ## create dataset from data
+$samplabels = getitems($labelset, 1...4); ## get first 4 labels
+print($samplabels)") 
 );
 ## ------------------------------------------------------------
 normscaler = (
@@ -224,6 +252,9 @@ BP_REF_NEW(
         @description 'Normalizer object' @type 'llll' 
     ) 
     @tags 'dataset' 'labelset' 
+    @usage BP_REF_TRANSFORM_EXAMPLE(
+        @alias 'normscaler' @class 'scaler' 
+    ) 
 );
 ## ------------------------------------------------------------
 stdscaler = (
@@ -250,6 +281,9 @@ BP_REF_NEW(
         @description 'Standardizer object' @type 'llll' 
     ) 
     @tags 'transform' 'normscaler' 'robustscaler' 
+    @usage BP_REF_TRANSFORM_EXAMPLE(
+        @alias 'stdscaler' @class 'scaler' 
+    ) 
 );
 ## ------------------------------------------------------------
 robustscaler = (
@@ -291,6 +325,9 @@ BP_REF_NEW(
         @description 'Robust scaler object' @type 'llll' 
     ) 
     @tags 'normscaler' 'stdscaler' 
+    @usage BP_REF_TRANSFORM_EXAMPLE(
+        @alias 'robustscaler' @class 'scaler' 
+    ) 
 );
 ## ------------------------------------------------------------
 umap = (
@@ -345,6 +382,9 @@ BP_REF_NEW(
         @description 'UMAP object' @type 'llll' 
     ) 
     @tags 'transform' 'pca' 
+    @usage BP_REF_TRANSFORM_EXAMPLE(
+        @alias 'umap' @class 'reducer' 
+    ) 
 );
 ## ------------------------------------------------------------
 pca = (
@@ -385,6 +425,9 @@ BP_REF_NEW(
         @description 'PCA object' @type 'llll' 
     ) 
     @tags 'transform' 'umap' 
+    @usage BP_REF_TRANSFORM_EXAMPLE(
+        @alias 'pca' @class 'reducer' 
+    ) 
 );
 ## ------------------------------------------------------------
 kdtree = (
@@ -841,6 +884,10 @@ BP_REF_NEW(
     @output BP_REF_OUTPUT(
         @description 'Transformed dataset or data point' @type 'llll' 
     ) 
+    @usage BP_REF_TRANSFORM_EXAMPLE(
+        @alias 'normscaler' @class 'scaler' 
+    ) 
+    @tags 'normscaler' 'stdscaler' 'robustscaler' 'umap' 'pca' 
 );
 ## ------------------------------------------------------------
 fit = (
