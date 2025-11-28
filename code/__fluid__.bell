@@ -725,6 +725,33 @@ BP_REF_NEW(
         @description 'KNN object' @type 'llll' 
     ) 
     @tags 'fit' 'dataset' 'labelset' 
+    @usage BP_REF_CODE_SNIPPET("$numcentroids = 4; ## number of clusters
+## dummy 2D centroids
+$centroids = for $i in 1...4 collect [randn() randn()];
+$dataset = dataset(
+    ## data points near fake centroids
+    for $i in 1...300 collect (
+        $c = choose($centroids)::1;
+        $point = $c + (randn() randn()) * 0.25;
+        [$point] 
+    ) 
+);
+## create kmeans instance
+$model = kmeans(@numclusters $numcentroids);
+## training loop
+for $i in 1...10 do fit($model, $dataset);
+## get predicted centroids for each point in dataset
+$labelset = predict($model, $dataset);
+## convert dataset and labelset into SQL table for visualization
+dataset2dbtable(
+    @dataset $dataset
+    @labelset $labelset
+    @labelfield 'cluster' 
+);
+## trigger visualization
+browsedbtable(
+    @colorfield 'cluster' @shapefield 'cluster' 
+)")
 );
 ## ------------------------------------------------------------
 writeobj = (
