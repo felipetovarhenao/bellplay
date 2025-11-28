@@ -127,7 +127,9 @@ BP_REF_TRANSFORM_EXAMPLE = ($alias = null, $class = 'scaler' -> BP_REF_CODE_SNIP
 $inpoint = 6 60 600; ## dummy input point
 $' + $class + ' = ' + $alias + '($indataset); ## create ' + $class + ' based on dummy dataset
 $outdataset = transform($' + $class + ', $indataset); ## transform dataset based on learned parameters
-$outpoint = transform($' + $class + ", $inpoint); ## transform new point based on learned parameters
+$outpoint = transform($' + $class + ', $inpoint); ## transform new point based on learned parameters
+writeobj($' + $class + ", './" + $alias + ".json'); ## write to JSON (optional)
+$" + $class + " = readobj('./" + $alias + ".json'); ## read from JSON (optional)
 print(getitems($indataset, 1...5), 'Input dataset:');
 print(getitems($outdataset, 1...5), 'Output dataset:');
 print($outpoint, 'Output point:')" 
@@ -151,6 +153,8 @@ $model = ' + $alias + '(' + $arguments + '); ## create ' + $alias + ' model
 ' + (if $loop == 1 then ( "for $i in 1...10 do ( ## repeat training to minimize loss
     print(fit($model, $indataset, $outdataset), 'Loss:') 
 );" ) else 'fit($model, $indataset, $outdataset);') + '
+writeobj($model, "./' + $alias + '.json"); ## write as JSON for future use (optional)
+$model = readobj("./' + $alias + '.json"); ## read pre-trained model from JSON (optional)
 $xpoint = 0.25 0.75; ## sample point
 $pred = predict($model, $xpoint); ## generate prediction
 print($pred, "prediction:") ## should be (almost) 1.0, as 0.25 < 0.75 is true' 
@@ -751,7 +755,7 @@ dataset2dbtable(
 ## trigger visualization
 browsedbtable(
     @colorfield 'cluster' @shapefield 'cluster' 
-)")
+)") 
 );
 ## ------------------------------------------------------------
 writeobj = (
