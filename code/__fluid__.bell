@@ -694,7 +694,7 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 kmeans = (
-    $maxiter = 100, $numclusters = 4, $encodingthreshold = 0.25, $means = null, $mode = 0 -> (
+    $numclusters = 4, $means = null, $encodingthreshold = 0.25, $maxiter = 100, $mode = 0 -> (
         $alias = if $mode == 1 then 'skmeans' else 'kmeans';
         $obj = BP_FN_FLUID_NEWOBJ(
             @alias $alias @attributes (
@@ -716,25 +716,25 @@ BP_REF_NEW(
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
-            @name 'maxiter' 
-            @default 100
-            @type 'int' 
-            @description 'The maximum number of iterations the algorithm will use whilst fitting.' 
-        ) BP_REF_ARG(
             @name 'numclusters' 
             @default 4
             @type 'int' 
             @description 'The number of clusters to classify data into.' 
+        ) BP_REF_ARG(
+            @name 'means' 
+            @default 'null' 
+            @type 'null/llll' 
+            @description 'A list of means to seed the algorithm, as a _N_ x _M_ matrix, where _N_ is the number of clusters, and _M_ is the data dimensions.' 
         ) BP_REF_ARG(
             @name 'encoding' 
             @default '0.25' 
             @type 'float' 
             @description 'The encoding threshold (i.e., the _alpha_ parameter). When used for feature learning, this can be used to produce sparser output features by setting the least active output dimensions to 0. Ignored if `@mode` is 0.' 
         ) BP_REF_ARG(
-            @name 'means' 
-            @default 'null' 
-            @type 'null/llll' 
-            @description 'A list of means to seed the algorithm, as a _N_ x _M_ matrix, where _N_ is the number of clusters, and _M_ is the data dimensions.' 
+            @name 'maxiter' 
+            @default 100
+            @type 'int' 
+            @description 'The maximum number of iterations the algorithm will use whilst fitting.' 
         ) BP_REF_ARG(
             @name 'mode' 
             @type 'int' 
