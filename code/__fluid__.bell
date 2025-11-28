@@ -1064,6 +1064,9 @@ BP_REF_NEW(
     @output BP_REF_OUTPUT(
         @description 'Predicted dataset/labelset or data point' @type 'llll' 
     ) 
+    @usage BP_REF_NEURAL_EXAMPLE(
+        @alias 'knn' @loop 0
+    ) 
 );
 ## ------------------------------------------------------------
 getitems = (
