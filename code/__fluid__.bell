@@ -161,6 +161,27 @@ print($pred, "prediction:") ## should be (almost) 1.0, as 0.25 < 0.75 is true'
     ) 
 );
 ## ------------------------------------------------------------
+BP_REF_FLUID_IO_EXAMPLE = BP_REF_CODE_SNIPPET("$dataset = dataset(
+    ## dummy dataset
+    for $i in 1...100 collect [for $j in 1...4 collect randn()]
+);
+$scaler = stdscaler($dataset); ## dataset scaler
+$datasetscaled = transform($scaler, $dataset); ## scale dataset
+$reducer = umap($dataset); ## dimensionality reducer
+$datasetreduced = transform($reducer, $datasetscaled); ## reduce scaled dataset
+$model = kmeans(); ## clustering model
+fit($model, $datasetreduced); ## fit model to dataset
+## write to disk as JSON
+writeobj($dataset, './dataset.json');
+writeobj($scaler, './scaler.json');
+writeobj($reducer, './reducer.json');
+writeobj($model, './model.json');
+## read from disk as JSON
+$dataset = readobj('./dataset.json');
+$scaler = readobj('./scaler.json');
+$reducer = readobj('./reducer.json');
+$model = readobj('./model.json')");
+## ------------------------------------------------------------
 dataset = (
     $data = null -> (
         $self = 'dataset';
@@ -825,6 +846,7 @@ BP_REF_NEW(
         ) 
     ) 
     @tags 'readobj' 
+    @usage BP_REF_FLUID_IO_EXAMPLE
 );
 ## ------------------------------------------------------------
 readobj = (
@@ -884,6 +906,7 @@ BP_REF_NEW(
         @description 'Machine learning object' @type 'llll' 
     ) 
     @tags 'writeobj' 
+    @usage BP_REF_FLUID_IO_EXAMPLE
 );
 ## ------------------------------------------------------------
 transform = (
