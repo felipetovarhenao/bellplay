@@ -171,13 +171,16 @@ $reducer = umap($dataset); ## dimensionality reducer
 $datasetreduced = transform($reducer, $datasetscaled); ## reduce scaled dataset
 $model = kmeans(); ## clustering model
 fit($model, $datasetreduced); ## fit model to dataset
+$labelset = predict($model, $datasetreduced); ## predict clusters
 ## write to disk as JSON
 writeobj($dataset, './dataset.json');
+writeobj($labelset, './labelset.json');
 writeobj($scaler, './scaler.json');
 writeobj($reducer, './reducer.json');
 writeobj($model, './model.json');
 ## read from disk as JSON
 $dataset = readobj('./dataset.json');
+$labelset = readobj('./labelset.json');
 $scaler = readobj('./scaler.json');
 $reducer = readobj('./reducer.json');
 $model = readobj('./model.json')");
@@ -1018,7 +1021,7 @@ fit = (
 );
 BP_REF_NEW(
     @name 'fit' 
-    @description 'Fits (i.e., trains) a Machine Learning model, such as those generated via the `mlp`, `knn`, or `kmeans` functions, to a given dataset or pair of input and output sets. If `@obj` is either a KNN or MLP model, an additional dataset or labelset must be passed to `@yset` indicating the expected prediction.' 
+    @description 'Fits (i.e., trains) a Machine Learning model _in-place_, such as those generated via the `mlp`, `knn`, or `kmeans` functions, to a given dataset or pair of input and output sets. If `@obj` is either a KNN or MLP model, an additional dataset or labelset must be passed to `@yset` indicating the expected prediction.' 
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
