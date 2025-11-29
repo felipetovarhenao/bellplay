@@ -8204,7 +8204,7 @@ seq2markov = (
 BP_REF_NEW(
     @name "seq2markov"
     @description "Constructs a [Markov chain](https://en.wikipedia.org/wiki/Markov_model) from a given sequence of data. See `markov2seq`."
-    @category BP_REF_LABEL_DATA_UTILS
+    @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(@name "sequence" @type "llll" @description "Input sequence from which the Markov model will be built.")
         BP_REF_ARG(@name "order" @default 1 @type "int" @description "Order of the Markov chain, determining the length of history considered for state transitions.")
@@ -8300,7 +8300,7 @@ markov2seq = (
 BP_REF_NEW(
     @name "markov2seq"
     @description "Generates a sequence using a given [Markov transition matrix](https://en.wikipedia.org/wiki/Markov_model). If a starting state is specified, the function attempts to find transitions from it. Otherwise, it selects a random state from the transition matrix. The function supports both 0th-order Markov chains (where each state is chosen independently with a probability distribution) and higher-order Markov chains (where state transitions depend on previous elements). If the sequence reaches the maximum length or no valid transitions are available, generation stops. See `seq2markov`."
-    @category BP_REF_LABEL_DATA_UTILS
+    @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(@name "matrix" @type "llll" @description "Transition probability matrix.")
         BP_REF_ARG(@name "maxlength" @default 25 @type "int" @description "Maximum length of the generated sequence.")
