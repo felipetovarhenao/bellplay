@@ -960,13 +960,13 @@
             {
                 "box": {
                     "id": "obj-21",
-                    "linecount": 2,
+                    "linecount": 3,
                     "maxclass": "message",
                     "numinlets": 2,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 1482.5, 435.0, 98.0, 37.0 ],
-                    "text": ";\rbach clearglobals"
+                    "patching_rect": [ 1482.5, 435.0, 122.0, 52.0 ],
+                    "text": ";\rbach clearglobals;\rmax clearmaxwindow"
                 }
             },
             {
