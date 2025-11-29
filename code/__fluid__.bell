@@ -258,7 +258,6 @@ BP_REF_NEW(
         @description 'Labelset object' @type 'llll' 
     ) 
     @tags 'dataset' 'getitems' 
-    @usage 
     @usage BP_REF_FLUIDSET_EXAMPLE('labelset') 
 );
 ## ------------------------------------------------------------

@@ -4,7 +4,7 @@
         "appversion": {
             "major": 9,
             "minor": 1,
-            "revision": 0,
+            "revision": 1,
             "architecture": "x64",
             "modernui": 1
         },
@@ -434,7 +434,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -960,13 +960,13 @@
             {
                 "box": {
                     "id": "obj-21",
-                    "linecount": 3,
+                    "linecount": 2,
                     "maxclass": "message",
                     "numinlets": 2,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 1482.5, 435.0, 122.0, 52.0 ],
-                    "text": ";\rbach clearglobals;\rmax clearmaxwindow"
+                    "patching_rect": [ 1482.5, 435.0, 98.0, 37.0 ],
+                    "text": ";\rbach clearglobals"
                 }
             },
             {
@@ -1504,6 +1504,14 @@
         ],
         "parameters": {
             "obj-115": [ "live.gain~", "GAIN", 0 ],
+            "parameterbanks": {
+                "0": {
+                    "index": 0,
+                    "name": "",
+                    "parameters": [ "-", "-", "-", "-", "-", "-", "-", "-" ],
+                    "buttons": [ "-", "-", "-", "-", "-", "-", "-", "-" ]
+                }
+            },
             "inherited_shortname": 1
         },
         "autosave": 0,
