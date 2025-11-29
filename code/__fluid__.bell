@@ -518,6 +518,24 @@ BP_REF_NEW(
         @description 'KDTree object' @type 'llll' 
     ) 
     @tags 'fit' 'dataset' 
+    @usage BP_REF_CODE_SNIPPET("$dims = 10; ## data dimensionality
+$dataset = dataset(
+    ## dummy dataset
+    for $i in 1...100 collect [for $j in 1...$dims collect randn()] 
+);
+## generate KDTree based on dataset
+$kdtree = kdtree($dataset @numneighbors 3);
+## random point
+$xpoint = for $j in 1...$dims collect randn();
+## search nearest neighbors
+$match = predict($kdtree, $xpoint);
+## get id and distances of nearest neighbors
+$neighborids = getkey($match, 'neighbors');
+$distances = getkey($match, 'distances');
+## print results
+print($neighborids, 'Indices of 3 Nearest neighbors:');
+print($distances, 'Distance from 3 Nearest neighbors:');
+print(getitems($dataset, $neighborids), '3 Nearest neighbors:')") 
 );
 ## ------------------------------------------------------------
 knn = (
@@ -1270,6 +1288,30 @@ BP_REF_NEW(
         @description 'Dataset or labelset items' @type 'llll' 
     ) 
     @tags 'labelset' 'dataset' 'createdbtable' 'querydbtable' 'writedb' 'readdb' 
+    @usage BP_REF_CODE_SNIPPET("$data = null;
+$labels = null;
+for $i in 0...100 do (
+    $x = ($i / 100) * pi * 10;
+    $point = [
+        $x * (cos($x) sin($x)) ## fun stuff
+    ];
+    $label = tosymbol(round($i / 25)); ## dummy label
+    $data _= $point;
+    $labels _= $label
+);
+$dataset = dataset($data);
+$labelset = labelset($labels);
+## quick way to convert a dataset/labelset into a SQL table
+dataset2dbtable(
+    @dataset $dataset
+    @labelset $labelset
+    @datafield 'val' ## prefix to use for columns in dataset entries 
+    @labelfield 'ring' ## table field to use for labelset entries
+);
+## open SQL table browser
+browsedbtable(
+    @colorfield 'ring' @sizefield 'ring' 
+)") 
 );
 ## ------------------------------------------------------------
 BP_FN_FLUID_FORMAT_BASES = (
