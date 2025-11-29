@@ -120,6 +120,15 @@ BP_REF_FLUID_ACTIVATION_OPTIONS = (
     ) 
 );
 ## ------------------------------------------------------------
+BP_REF_FLUIDSET_EXAMPLE = ($alias = null -> (
+    $point = if $alias == 'dataset' then '[for $j in 1...5 collect randn()]' else "choose('foo' 'bar' 'baz')";
+    '$' + $alias + ' = ' + $alias + '(
+    for $i in 1...100 collect ' + $point + ' ## dummy data
+);
+$samps = getitems($' + $alias + ', 1...3); ## get the first 3 items in ' + $alias '
+print($samps, "Items:")' 
+));
+## ------------------------------------------------------------
 BP_REF_TRANSFORM_EXAMPLE = ($alias = null, $class = 'scaler' -> BP_REF_CODE_SNIPPET(
     '$indataset = dataset(
     for $i in 1...5 collect [$i * 10 ** (0...2)] ## dummy input dataset
@@ -218,15 +227,7 @@ BP_REF_NEW(
         @description 'Dataset object' @type 'llll' 
     ) 
     @tags 'labelset' 'getitems' 
-    @usage BP_REF_CODE_SNIPPET('$size = 100; ## number of data points
-$cols = 3;
-## generate random dummy data
-$data = for $i in 1...$size collect [ 
-    for $j in $cols collect randn() 
-];
-$dataset = dataset($data); ## create dataset from data
-$points = getitems($dataset, 1...4); ## get first 4 points
-print($points)') 
+    @usage BP_REF_FLUIDSET_EXAMPLE('dataset') 
 );
 ## ------------------------------------------------------------
 labelset = (
@@ -257,12 +258,8 @@ BP_REF_NEW(
         @description 'Labelset object' @type 'llll' 
     ) 
     @tags 'dataset' 'getitems' 
-    @usage BP_REF_CODE_SNIPPET("$size = 100; ## labelset size
-## generate random dummy labels
-$labels = for $i in 1...$size collect choose('foo' 'bar' 'baz');
-$labelset = labelset($labels); ## create dataset from data
-$samplabels = getitems($labelset, 1...4); ## get first 4 labels
-print($samplabels)") 
+    @usage 
+    @usage BP_REF_FLUIDSET_EXAMPLE('labelset') 
 );
 ## ------------------------------------------------------------
 normscaler = (
@@ -1176,6 +1173,7 @@ BP_REF_NEW(
         @description 'Dataset or labelset items' @type 'llll' 
     ) 
     @tags 'labelset' 'dataset' 
+    @usage BP_REF_FLUIDSET_EXAMPLE('dataset') 
 );
 ## ------------------------------------------------------------
 dataset2dbtable = (
