@@ -4,7 +4,7 @@
         "appversion": {
             "major": 9,
             "minor": 1,
-            "revision": 0,
+            "revision": 1,
             "architecture": "x64",
             "modernui": 1
         },
@@ -29,7 +29,7 @@
                     "numinlets": 2,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 73.0, 443.5, 74.0, 23.0 ],
+                    "patching_rect": [ 304.0, 443.0, 74.0, 23.0 ],
                     "text": "auto 1, bang"
                 }
             },
@@ -38,10 +38,10 @@
                     "id": "obj-9",
                     "maxclass": "newobj",
                     "numinlets": 1,
-                    "numoutlets": 2,
-                    "outlettype": [ "bang", "bang" ],
-                    "patching_rect": [ 10.0, 406.0, 82.0, 23.0 ],
-                    "text": "t b b"
+                    "numoutlets": 3,
+                    "outlettype": [ "bang", "bang", "bang" ],
+                    "patching_rect": [ 10.0, 406.0, 313.0, 23.0 ],
+                    "text": "t b b b"
                 }
             },
             {
@@ -60,7 +60,7 @@
                     "numinlets": 0,
                     "numoutlets": 0,
                     "offset": [ 0.0, 0.0 ],
-                    "patching_rect": [ 10.263157665729523, 983.0, 410.566347066313, 24.33326345682144 ],
+                    "patching_rect": [ 10.140392361208797, 1142.0, 410.566347066313, 24.33326345682144 ],
                     "presentation": 1,
                     "presentation_rect": [ 7.0, 41.0, 410.566347066313, 24.33326345682144 ],
                     "viewvisibility": 1
@@ -94,7 +94,7 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 73.0, 481.0, 277.0, 23.0 ],
+                    "patching_rect": [ 304.0, 480.0, 277.0, 23.0 ],
                     "saved_object_attributes": {
                         "embed": 0,
                         "versionnumber": 80300
@@ -230,10 +230,10 @@
                     "lockedsize": 0,
                     "maxclass": "bpatcher",
                     "name": "bp.ui.preferences.maxpat",
-                    "numinlets": 0,
+                    "numinlets": 1,
                     "numoutlets": 0,
                     "offset": [ 0.0, 0.0 ],
-                    "patching_rect": [ 10.263157665729523, 859.0, 410.3208164572716, 68.8288142979145 ],
+                    "patching_rect": [ 10.0, 684.0, 412.0, 147.0 ],
                     "presentation": 1,
                     "presentation_rect": [ 7.0, 173.58428025245667, 410.0, 146.0 ],
                     "viewvisibility": 1
@@ -255,7 +255,7 @@
                     "numinlets": 0,
                     "numoutlets": 0,
                     "offset": [ 0.0, 0.0 ],
-                    "patching_rect": [ 10.263157665729523, 956.0, 410.566347066313, 24.33326345682144 ],
+                    "patching_rect": [ 10.140392361208797, 1115.0, 410.566347066313, 24.33326345682144 ],
                     "presentation": 1,
                     "presentation_rect": [ 7.0, 147.7415815591812, 410.566347066313, 24.33326345682144 ],
                     "viewvisibility": 1
@@ -277,7 +277,7 @@
                     "numinlets": 0,
                     "numoutlets": 0,
                     "offset": [ 0.0, 0.0 ],
-                    "patching_rect": [ 10.263157665729523, 930.0, 410.566347066313, 24.33326345682144 ],
+                    "patching_rect": [ 10.140392361208797, 1089.0, 410.566347066313, 24.33326345682144 ],
                     "presentation": 1,
                     "presentation_rect": [ 7.0, 321.89889883995056, 410.566347066313, 24.33326345682144 ],
                     "viewvisibility": 1
@@ -312,7 +312,7 @@
                     "numinlets": 1,
                     "numoutlets": 0,
                     "offset": [ 0.0, 0.0 ],
-                    "patching_rect": [ 10.0, 525.0, 410.5357475914061, 355.43244053050876 ],
+                    "patching_rect": [ 157.0, 516.0, 417.0, 155.0 ],
                     "presentation": 1,
                     "presentation_rect": [ 7.0, 347.741597533226, 411.0, 147.0 ],
                     "viewvisibility": 1
@@ -370,14 +370,20 @@
             },
             {
                 "patchline": {
+                    "destination": [ "obj-1", 0 ],
+                    "source": [ "obj-9", 0 ]
+                }
+            },
+            {
+                "patchline": {
                     "destination": [ "obj-11", 0 ],
-                    "source": [ "obj-9", 1 ]
+                    "source": [ "obj-9", 2 ]
                 }
             },
             {
                 "patchline": {
                     "destination": [ "obj-7", 0 ],
-                    "source": [ "obj-9", 0 ]
+                    "source": [ "obj-9", 1 ]
                 }
             }
         ],

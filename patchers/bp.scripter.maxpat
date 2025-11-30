@@ -4,7 +4,7 @@
         "appversion": {
             "major": 9,
             "minor": 1,
-            "revision": 0,
+            "revision": 1,
             "architecture": "x64",
             "modernui": 1
         },
@@ -443,76 +443,6 @@
             },
             {
                 "box": {
-                    "code": "BP_FN_ON_LAUNCH() ",
-                    "id": "obj-213",
-                    "maxclass": "newobj",
-                    "numinlets": 1,
-                    "numoutlets": 1,
-                    "outlettype": [ "" ],
-                    "patching_rect": [ 1370.0, 2729.0, 199.0, 23.0 ],
-                    "saved_object_attributes": {
-                        "embed": 1,
-                        "versionnumber": 80300
-                    },
-                    "text": "bach.eval BP_FN_ON_LAUNCH()"
-                }
-            },
-            {
-                "box": {
-                    "id": "obj-208",
-                    "maxclass": "newobj",
-                    "numinlets": 1,
-                    "numoutlets": 2,
-                    "outlettype": [ "bang", "bang" ],
-                    "patching_rect": [ 1306.0, 2690.0, 83.0, 23.0 ],
-                    "text": "t b b"
-                }
-            },
-            {
-                "box": {
-                    "id": "obj-209",
-                    "maxclass": "message",
-                    "numinlets": 2,
-                    "numoutlets": 1,
-                    "outlettype": [ "" ],
-                    "patching_rect": [ 1306.0, 2729.0, 43.0, 23.0 ],
-                    "text": "/ready"
-                }
-            },
-            {
-                "box": {
-                    "id": "obj-204",
-                    "maxclass": "newobj",
-                    "numinlets": 1,
-                    "numoutlets": 1,
-                    "outlettype": [ "" ],
-                    "patching_rect": [ 1306.0, 2653.0, 55.0, 23.0 ],
-                    "text": "deferlow"
-                }
-            },
-            {
-                "box": {
-                    "id": "obj-203",
-                    "maxclass": "newobj",
-                    "numinlets": 1,
-                    "numoutlets": 1,
-                    "outlettype": [ "bang" ],
-                    "patching_rect": [ 1306.0, 2618.0, 56.0, 23.0 ],
-                    "text": "loadbang"
-                }
-            },
-            {
-                "box": {
-                    "id": "obj-201",
-                    "maxclass": "newobj",
-                    "numinlets": 1,
-                    "numoutlets": 0,
-                    "patching_rect": [ 1306.0, 2766.0, 145.0, 23.0 ],
-                    "text": "udpsend 127.0.0.1 12346"
-                }
-            },
-            {
-                "box": {
                     "id": "obj-195",
                     "maxclass": "newobj",
                     "numinlets": 1,
@@ -895,7 +825,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1121,7 +1051,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1570,7 +1500,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -1984,7 +1914,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -2194,7 +2124,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -2427,7 +2357,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -2665,7 +2595,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -2888,7 +2818,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -3330,7 +3260,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -4560,7 +4490,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -4713,7 +4643,7 @@
                                         "appversion": {
                                             "major": 9,
                                             "minor": 1,
-                                            "revision": 0,
+                                            "revision": 1,
                                             "architecture": "x64",
                                             "modernui": 1
                                         },
@@ -5147,7 +5077,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -5635,7 +5565,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -5799,7 +5729,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 0,
+                            "revision": 1,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -5852,7 +5782,7 @@
                                         "appversion": {
                                             "major": 9,
                                             "minor": 1,
-                                            "revision": 0,
+                                            "revision": 1,
                                             "architecture": "x64",
                                             "modernui": 1
                                         },
@@ -6018,7 +5948,7 @@
                                         "appversion": {
                                             "major": 9,
                                             "minor": 1,
-                                            "revision": 0,
+                                            "revision": 1,
                                             "architecture": "x64",
                                             "modernui": 1
                                         },
@@ -8576,18 +8506,6 @@
             },
             {
                 "patchline": {
-                    "destination": [ "obj-204", 0 ],
-                    "source": [ "obj-203", 0 ]
-                }
-            },
-            {
-                "patchline": {
-                    "destination": [ "obj-208", 0 ],
-                    "source": [ "obj-204", 0 ]
-                }
-            },
-            {
-                "patchline": {
                     "destination": [ "obj-30", 0 ],
                     "source": [ "obj-206", 0 ]
                 }
@@ -8602,24 +8520,6 @@
                 "patchline": {
                     "destination": [ "obj-205", 0 ],
                     "source": [ "obj-207", 1 ]
-                }
-            },
-            {
-                "patchline": {
-                    "destination": [ "obj-209", 0 ],
-                    "source": [ "obj-208", 0 ]
-                }
-            },
-            {
-                "patchline": {
-                    "destination": [ "obj-213", 0 ],
-                    "source": [ "obj-208", 1 ]
-                }
-            },
-            {
-                "patchline": {
-                    "destination": [ "obj-201", 0 ],
-                    "source": [ "obj-209", 0 ]
                 }
             },
             {
