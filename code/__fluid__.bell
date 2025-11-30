@@ -88,7 +88,7 @@ BP_FN_FLUID_FROMBUFFER = (
         BP_FN_DISPATCH(
             'fluid', 'frombuffer' $x
         );
-        BP_FLUID_FROMBUFFER::1
+        BP_FLUID_FROMBUFFER
     ) 
 );
 ## ------------------------------------------------------------
@@ -708,15 +708,15 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 kmeans = (
-    $numclusters = 4, $means = null, $encodingthreshold = 0.25, $maxiter = 100, $mode = 0 -> (
+    $numclusters = 4, $centroids = null, $encodingthreshold = 0.25, $maxiter = 100, $mode = 0 -> (
         $alias = if $mode == 1 then 'skmeans' else 'kmeans';
         $obj = BP_FN_FLUID_NEWOBJ(
             @alias $alias @attributes (
                 ['maxiter' $maxiter] ['numclusters' $numclusters] (if $alias == 'skmeans' then ['encodingthreshold' $encodingthreshold]) 
             ) 
         );
-        if depth($means) == 2 && length($means) == $numclusters then (
-            $ds = dataset($means);
+        if depth($centroids) == 2 && length($centroids) == $numclusters then (
+            $ds = dataset($centroids);
             BP_FN_SANDBOX_MSG(
                 @to getkey($obj, 'ref') @message 'setmeans' getkey($ds, 'name') 
             ) 
@@ -735,10 +735,10 @@ BP_REF_NEW(
             @type 'int' 
             @description 'The number of clusters to classify data into.' 
         ) BP_REF_ARG(
-            @name 'means' 
+            @name 'centroids' 
             @default 'null' 
             @type 'null/llll' 
-            @description 'A list of means to seed the algorithm, as a _N_ x _M_ matrix, where _N_ is the number of clusters, and _M_ is the data dimensions.' 
+            @description 'A list of cluster centroids to initialize or _seed_ the algorithm, as a _N_ x _M_ matrix, where _N_ is the number of clusters, and _M_ is the data dimensions.' 
         ) BP_REF_ARG(
             @name 'encoding' 
             @default '0.25' 
@@ -958,7 +958,7 @@ transform = (
                 BP_FN_SANDBOX_MSG(
                     @to getkey($obj, 'ref') @message $method $pt
                 );
-                BP_FN_FLUID_FROMBUFFER(right(BP_SANDBOX_OUT, 1):-1) 
+                BP_FN_FLUID_FROMBUFFER(right(BP_SANDBOX_OUT, 1):-1)::1
             ) 
         ) 
     ) 
@@ -1013,9 +1013,32 @@ fit = (
             $ysetalias = if intersection($objalias, 'mlpregressor' 'knnregressor') then 'dataset' else 'labelset';
             if $numargs == 2 then (
                 $xsetname = getkey($xset, 'name');
+                $xsetref = getkey($xset, 'ref');
+                ## fit model and get centroids
+                for $msg in ['fit' $xsetname] ['getmeans'] with @unwrap 1 do (
+                    BP_SANDBOX_OUT = null;
+                    BP_FN_SANDBOX_MSG(
+                        @to $objref @message $msg
+                    ) 
+                );
+                ## get dataset name
+                $meansdataset = right(BP_SANDBOX_OUT, 1);
+                ## temporarily replace reference and point to centroid dataset
                 BP_FN_SANDBOX_MSG(
-                    @to $objref @message 'fit' $xsetname
-                ) 
+                    @to $xsetref @message 'refer' $meansdataset
+                );
+                ## convert dataset to buffer
+                BP_SANDBOX_OUT = null;
+                BP_FN_SANDBOX_MSG(
+                    @to $xsetref @message 'tobuffer' 
+                );
+                $meansbuf = BP_SANDBOX_OUT:2;
+                ## restore reference to input set
+                BP_FN_SANDBOX_MSG(
+                    @to $xsetref @message 'refer' $xsetname
+                );
+                ## transpose to keep centroids separate
+                trans(BP_FN_FLUID_FROMBUFFER($meansbuf)) 
             ) else if BP_FN_FLUID_VALIDATE_OBJ(
                 @self $self
                 @obj $yset
@@ -1111,7 +1134,7 @@ predict = (
                         @to $objref @message 'predictpoint' $pt
                     );
                     $pred = right(BP_SANDBOX_OUT, 1):-1;
-                    if $isregressor == 1 then BP_FN_FLUID_FROMBUFFER($pred) else $pred
+                    if $isregressor == 1 then BP_FN_FLUID_FROMBUFFER($pred)::1 else $pred
                 ) 
             ) else BP_FN_ERROR($self, 'invalid value for @x:' $x ||| 'null') 
         ) 
@@ -1158,9 +1181,7 @@ getitems = (
                         @to $ref @message $method $id
                     );
                     $result = right(BP_SANDBOX_OUT, 1);
-                    if $method == 'getpoint' then (
-                        [BP_FN_FLUID_FROMBUFFER($result)] 
-                    ) else $result
+                    if $method == 'getpoint' then BP_FN_FLUID_FROMBUFFER($result) else $result
                 ) 
             );
             map(

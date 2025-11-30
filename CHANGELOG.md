@@ -57,6 +57,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Fix detach bug in `splitbuf` and `nmf`. Add `@strip` argument in private detach function.
 - Rename `nmf` and `nmfseed` to `buf2nmf` and `buf2nmfseed`.
 - Add labelset/dataset usage.
+- `kmeans`: Change `@means` to `@centroids` argument. `fit` now returns centroids for _KMeans_.
 
 ### Added
 
