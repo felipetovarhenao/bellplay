@@ -60,6 +60,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `kmeans`: Change `@means` to `@centroids` argument. `fit` now returns centroids for _KMeans_.
 - **MAJOR**: Fix messy, out-of-order logic in configuration loading. Bug resulted from using `trigger` in loading scripts in _flucoma_ branch, but now everything is more predictable and easy to follow.
 
+
 ### Added
 
 - GUI:
@@ -110,6 +111,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- Nicer/less irritating error alert sound.
 - **BREAKING CHANGE**: `initurn` supports `@offset` argument, with default `1`, for ease of use in address/indexing.
 - **BREAKING CHANGE**: Rename `getchannels` and `pack` to `buf2chans` and `chans2buf` for consistency.
 - Buffer-based parameters are properly handled based on their `offset` and `duration` values.
