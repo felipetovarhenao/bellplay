@@ -52,7 +52,7 @@ macOS may block the app since it’s not signed by an identified developer.
 - Install [Max 9](https://cycling74.com/downloads) or higher.
 - In _Max_, install the following packages through the _Max Package Manager_:
   - `bach`, `dada`, and `ears` by Andrea Agostini and Daniele Ghisi.
-  - `ml.star` by Benjamin D. Smith.
+  - `FluidCorpusManipulation`, by _FluCoMa_.
 
 ### Steps
 

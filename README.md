@@ -115,13 +115,13 @@ To run **bellplay~** in [Max](https://cycling74.com/downloads) from its source c
 - [Max 9](https://cycling74.com/downloads) or higher.
 - Install the following packages through the Max Package Manager:
   - `bach`, `dada`, and `ears` by Andrea Agostini and Daniele Ghisi.
-  - `ml.star` by Benjamin D. Smith.
+  - `FluidCorpusManipulation` (_1.0.9_) by _FluCoMa_.
 
 > `bellplay~` is currently being developed and tested in MacOS (Intel and Apple silicon) — as such, some features may or may not work in Windows machines.
 
 ### Acknowledgments
 
-This project relies primarily on the [bach](https://bachproject.net) ecosystem — a family of packages for computer-assisted composition in Max, developed by Andrea Agostini and Daniele Ghisi. It also relies, to a lesser degree, on the [ml.star](<[https://](https://www.benjamindaysmith.com/ml-machine-learning-toolkit-in-max)>) library, developed by Benjamin D. Smith.
+This project relies primarily on the [bach](https://bachproject.net) ecosystem — a family of packages for computer-assisted composition in Max, developed by Andrea Agostini and Daniele Ghisi. It also relies, to a lesser degree, on the [FluCoMa](https://flucoma.org/) package, developed at the University of Huddersfield.
 
 ### Credits
 

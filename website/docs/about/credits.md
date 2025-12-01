@@ -10,4 +10,4 @@ The source code can be found at [here](https://github.com/felipetovarhenao/bellp
 **Special thanks to**:
 
 - **Andrea Agostini** and **Daniele Ghisi**, authors of the [bach ecosystem](https://www.bachproject.net), which forms the technical foundation for symbolic processing in **bellplay~**.
-- **Benjamin D. Smith**, developer of [ml.star](https://www.benjamindaysmith.com/), used for some machine learning features.
+- The [_Fluid Corpus Manipulation Toolkit_](https://flucoma.org/) Project, whose work serves as the basis for most machine learning features in **bellplay~**.

@@ -59,7 +59,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Add labelset/dataset usage.
 - `kmeans`: Change `@means` to `@centroids` argument. `fit` now returns centroids for _KMeans_.
 - **MAJOR**: Fix messy, out-of-order logic in configuration loading. Bug resulted from using `trigger` in loading scripts in _flucoma_ branch, but now everything is more predictable and easy to follow.
-- **BREAKING CHANGE**: Removed `createtree` and `querytree`. This also includes removal of `ml*` package as a dependency.
+- **BREAKING CHANGE**: Removed `createtree` and `querytree`. This also includes removal of `ml*` package as a dependency. Replace mentions of `ml*` with mentions of `FluCoMa`.
 
 ### Added
 
