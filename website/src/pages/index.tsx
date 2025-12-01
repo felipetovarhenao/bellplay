@@ -68,7 +68,7 @@ const BellplayDownloadLink: React.FC = () => {
 function Overview() {
   return (
     <section className="margin-vert--lg">
-      <div className="container">
+      <div className="container" style={{ fontSize: "120%" }}>
         <div className="row">
           <div className="col col--10 col--offset-1">
             <Heading as="h1" className="text--center">
