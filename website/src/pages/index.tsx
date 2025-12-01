@@ -104,17 +104,17 @@ function Overview() {
             </p>
             <CodeBlock language="bell" showLineNumbers={true}>
               {`## create short buffer with sawtooth wave
-$grain = saw(@frequency 440 @duration 100);
+$grain = tri(@frequency 440 @duration 100);
 ## scatter 100 grains randomly
 for $n in 0...99 do transcribe(
-    @buffer $grain                       ## grain to transcribe
+    @buffer $grain                       ## buffer to transcribe
     @onset $n * 60                       ## every 60ms
-    @gain rand(0.1, 0.25)                ## random volume
+    @gain rand(0.1, 0.25)                ## random gain
     @detune choose(0 2 4 5 7 9 11) * 100 ## random detuning in cents
     @pan rand()                          ## random position
 );
-## render final output
-render(@play 1)`}
+## render final output and apply reverb
+render(@play 1 @process freeverb())`}
             </CodeBlock>
           </div>
         </div>
