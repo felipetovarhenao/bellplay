@@ -120,14 +120,18 @@ BP_REF_FLUID_ACTIVATION_OPTIONS = (
     ) 
 );
 ## ------------------------------------------------------------
-BP_REF_FLUIDSET_EXAMPLE = ($alias = null -> (
-    $point = if $alias == 'dataset' then '[for $j in 1...5 collect randn()]' else "choose('foo' 'bar' 'baz')";
-    '$' + $alias + ' = ' + $alias + '(
+BP_REF_FLUIDSET_EXAMPLE = (
+    $alias = null -> (
+        $point = if $alias == 'dataset' then '[for $j in 1...5 collect randn()]' else "choose('foo' 'bar' 'baz')";
+        BP_REF_CODE_SNIPPET(
+            '$' + $alias + ' = ' + $alias + '(
     for $i in 1...100 collect ' + $point + ' ## dummy data
 );
 $samps = getitems($' + $alias + ', 1...3); ## get the first 3 items in ' + $alias '
 print($samps, "Items:")' 
-));
+        ) 
+    ) 
+);
 ## ------------------------------------------------------------
 BP_REF_TRANSFORM_EXAMPLE = ($alias = null, $class = 'scaler' -> BP_REF_CODE_SNIPPET(
     '$indataset = dataset(
@@ -216,7 +220,14 @@ dataset = (
 );
 BP_REF_NEW(
     @name 'dataset' 
-    @description 'Generates a _llll_ representation of a dataset object, given a list of numeric data points. `@data` must be a _llll_ of depth 2, where each sublist has the same number of elements (i.e., dimensions)' 
+    @description 'Generates a _llll_ representation of a dataset, given a list of numeric data points. In **bellplay~**, datasets serve as numeric data containers for a variety of machine learning tasks, including:
+    - **Dimensionality reduction**: See `umap`, `pca`, and `transform` functions.
+    - **Data scaling**: See `normscaler`, `stdscaler`, `robustscaler`, and `transform` functions.
+    - **Regression**:  See `mlp`, `knn`, `fit`, and `predict` functions.
+    - **Classification**: See `mlp`, `knn`, `kmeans`, `fit`, `predict`, and `labelset` functions.
+    - **Efficient search**: See `kdtree` function.
+    
+Note that `@data` must be a _llll_ of depth 2, where each sublist has the same number of elements (i.e., dimensions)' 
     @category BP_REF_LABEL_ML
     @arguments BP_REF_ARG(
         @name 'data' 
@@ -247,7 +258,9 @@ labelset = (
 );
 BP_REF_NEW(
     @name 'labelset' 
-    @description 'Generates a _llll_ representation of a label object, given a list of labels. `@labels` must be a flat list of symbols, each of which is meant to be a label for a point in some other dataset, based on their position.' 
+    @description 'Generates a _llll_ representation of a label object, given a list of labels. In **bellplay~**, labelsets serve as categorical data containers for a variety of classification tasks. See for instance the `dataset`, `mlp`, `knn`, `kmeans`, `fit`, `predict` functions.
+
+Note that `@labels` must be a flat list of symbols, each of which is meant to be a label for a point in some other dataset (see `dataset` function), based on their index position.' 
     @category BP_REF_LABEL_ML
     @arguments BP_REF_ARG(
         @name 'labels' 
@@ -1291,17 +1304,17 @@ BP_REF_NEW(
             @name 'db' 
             @type 'symbol/null' 
             @default 'null' 
-            @description 'Optional SQL database name' 
+            @description 'Optional SQL database name. If `null` the default `"main"` name is used.' 
         ) BP_REF_ARG(
             @name 'datafield' 
             @type 'symbol/null' 
             @default 'null' 
-            @description 'Field to be used for the data key, as a symbol.' 
+            @description 'Field prefix to be used for the data key, as a symbol. If `null`, the default `"x"` prefix is used.' 
         ) BP_REF_ARG(
             @name 'labelfield' 
             @type 'symbol/null' 
             @default 'null' 
-            @description 'Field to be used for the label key, as a symbol.' 
+            @description 'Field to be used for the label key, as a symbol. If `null`, the default `"label"` is used.' 
         ) 
     ) 
     @output BP_REF_OUTPUT(
@@ -1456,31 +1469,17 @@ buf2nmf = (
 );
 BP_REF_NEW(
     @name 'buf2nmf' 
-    @description "Applies spectral decomposition of a buffer into a number of components using [Non-Negative Matrix Factorisation](https://learn.flucoma.org/learn/bufnmf/).
+    @description "Applies spectral decomposition of a buffer into a number of components using [Non-Negative Matrix Factorization](https://learn.flucoma.org/learn/bufnmf/).
 
 The algorithm takes a buffer in and divides it into a number of components, determined by the `@numcomponents` argument. 
 It works iteratively, by trying to find a combination of spectral templates (i.e., _bases_) and envelopes (i.e., _activations_) that yield the original magnitude spectrogram when added together. 
 By and large, there is no unique answer to this question (i.e. there are different ways of accounting for an evolving spectrum in terms of some set of templates and envelopes). 
-In its basic form, NMF is a form of unsupervised learning: it starts with some random data and then converges towards something that minimises the distance between its generated data and the original: 
+In its basic form, NMF is a form of [unsupervised learning](https://en.wikipedia.org/wiki/Unsupervised_learning): it starts with some random data and then converges towards something that minimises the distance between its generated data and the original: 
 it tends to converge very quickly at first and then level out. Fewer iterations mean less processing, but also less predictable results.
-
-The function returns the following _llll_:
-
-```bell
-[
-    [ 'components' <buffers> ] ## only present if @resynth is 1
-    [ 'bases' <buffers> ] ## NMF bases buffers
-    [ 'activations' <buffers> ] ## NMF activations buffers
-]
-```
-
-- `'components'`: a buffer reconstruction (i.e., resynthesis) for each component.
-- `'bases'`: buffers representing the spectral contour of each component in the form of a magnitude spectrogram (called a _basis_ in NMF lingo). Each basis will have `(@fftsize / 2) + 1` samples in length and `@numcomponents * numchannels` channels.
-- `'activations'`: buffers representing the amplitude envelope of each component in the form of gains for each consecutive frame of the underlying spectrogram (called an _activation_ in NMF lingo). Each activation will have `(numsamples / hopsize) + 1` samples and (`components * numchannels`) channels.
 
 The bases and activations can be used to make a kind of vocoder based on what NMF has 'learned' from the original data. Alternatively, taking the matrix product of a basis and an activation will yield a synthetic magnitude spectrogram of a component (which could be reconstructed, given some phase information from somewhere).
 
-Some additional options and flexibility can be found through combinations of the `@bases` and `@activations` arguments. These can be passed buffers containing pre-formed spectra (or envelopes) that will be used as seeds for the decomposition, providing more guided results. When set to `2`, the supplied buffers won't be updated, so become templates to match against instead. Note that having both bases and activations set to `2` doesn't make sense, so an error is raised.
+Some additional options and flexibility can be found through combinations of the `@bases` and `@activations` arguments. These can be passed buffers containing pre-formed spectra (or envelopes) that will be used as seeds for the decomposition, providing more guided results. When set to `1`, the supplied buffers won't be updated, so they become templates to match against instead. Note that having both `@basesmode` and `@actmode` set to `1` doesn't make sense, so an error is raised.
 
 In this implementation, the components are reconstructed by masking the original spectrum, such that they will sum to yield the original sound.
 
@@ -1496,12 +1495,12 @@ The whole process can be related to a channel vocoder where, instead of fixed ba
             @name 'bases' 
             @type 'llll/null' 
             @default 'null' 
-            @description 'Optional decomposition bases' 
+            @description 'Optional decomposition bases (i.e., spectral envelopes), as buffers.' 
         ) BP_REF_ARG(
             @name 'activations' 
             @type 'llll/null' 
             @default 'null' 
-            @description 'Optional decomposition activations' 
+            @description 'Optional decomposition activations (i.e., temporal envelopes), as buffers.' 
         ) BP_REF_ARG(
             @name 'numcomponents' 
             @type 'int' 
@@ -1511,7 +1510,7 @@ The whole process can be related to a channel vocoder where, instead of fixed ba
             @name 'iterations' 
             @type 'int' 
             @default 100
-            @description 'Number of iterations in factorisation to converge to the smallest error, and adjust final bases and activations. Higher numbers will be more CPU expensive, lower numbers will be more unpredictable in quality.' 
+            @description 'Number of iterations in factorization to converge to the smallest error, and adjust final bases and activations. Higher numbers will be more CPU expensive, lower numbers will be more unpredictable in quality.' 
         ) BP_REF_ARG(
             @name 'basesmode' 
             @type 'int' 
@@ -1565,7 +1564,19 @@ The whole process can be related to a channel vocoder where, instead of fixed ba
         ) 
     ) 
     @output BP_REF_OUTPUT(
-        @description 'Decomposed buffer' @type 'llll' 
+        @description "NMF in the form of the following _llll_:
+
+```bell
+[
+    [ 'components' <buffers> ] ## NMF components as buffers (only present when @resynth is 1)
+    [ 'bases' <buffers> ] ## NMF bases as buffers
+    [ 'activations' <buffers> ] ## NMF activations as buffers
+]
+```
+
+- `'components'`: a list of buffers, one for each component.
+- `'bases'`: a list of buffers representing the spectral contour of each component in the form of a magnitude spectrogram (called a _basis_ in NMF lingo). Each basis will have `(@fftsize / 2) + 1` samples in length and `@numcomponents * numchannels` channels.
+- `'activations'`: a list of buffers representing the amplitude envelope of each component in the form of gains for each consecutive frame of the underlying spectrogram (called an _activation_ in NMF lingo). Each activation will have `(numsamples / hopsize) + 1` samples and (`components * numchannels`) channels." @type 'llll' 
     ) 
     @tags 'buf2nmfseed' 
 );
@@ -1622,7 +1633,7 @@ BP_REF_NEW(
     @name 'buf2nmfseed' 
     @description 'Finds initial bases and activations to be used with the `buf2nmf` function.
 
-`buf2nmfseed` uses [Nonnegative Double Singular Value Decomposition](https://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) which can help decide how to initialise bases and activations in the `buf2nmf` function, by suggesting how many components to request (and what _bases_ and _activations_ to seed) in order to account for a certain percentage of the variance in a buffer. In general, using this process to seed a NMF decomposition should substantially increase the speed with which `buf2nmf` converges and avoid especially poor local minima.
+`buf2nmfseed` uses [Nonnegative Double Singular Value Decomposition](https://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) which can help decide how to initialize bases and activations in the `buf2nmf` function, by suggesting how many components to request (and what _bases_ and _activations_ to seed) in order to account for a certain percentage of the variance in a buffer. In general, using this process to seed a NMF decomposition should substantially increase the speed with which `buf2nmf` converges and avoid especially poor local minima.
 
 Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here](https://www.sciencedirect.com/science/article/abs/pii/S0031320307004359) for more info.' 
     @category BP_REF_LABEL_ML
@@ -1630,7 +1641,7 @@ Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here
         BP_REF_ARG(
             @name 'buffer' 
             @type 'llll' 
-            @description 'Buffer to analyse and suggest a number of components for.' 
+            @description 'Buffer to analyze and suggest a number of components for.' 
         ) BP_REF_ARG(
             @name 'converge' 
             @type 'int/float' 
@@ -1653,13 +1664,13 @@ Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here
             @description 'The method used to account for certain values before processing. Zeros in the matrix will remain zero when "updated" because the updates are being multiplied by a scalar, therefore it may be useful to change any zeros to something else before the process.' 
             @options (
                 BP_REF_OPT(
-                    @value 0 @description 'NMF-SVD Nonnegative Double Singular Value Decomposition where any negative values are first converted to their absolute value. This is likely to be quicker than the other options, but less rigorous.' 
+                    @value 0 @description '**NMF-SVD** (Nonnegative Double Singular Value Decomposition): any negative values are first converted to their absolute value. This is likely to be quicker than the other options, but less rigorous.' 
                 ) BP_REF_OPT(
-                    @value 1 @description 'NNDSVDar Nonnegative Double Singular Value Decomposition where any elements that are zero are first filled with a random value between 0 and the `average * 0.01` (essentially small random values). This may be slightly faster but slightly less accurate than other options.' 
+                    @value 1 @description '**NNDSVDar** (Nonnegative Double Singular Value Decomposition): any elements that are zero are first filled with a random value between 0 and the `average * 0.01` (essentially small random values). This may be slightly faster but slightly less accurate than other options.' 
                 ) BP_REF_OPT(
-                    @value 2 @description 'NNDSVDa Nonnegative Double Singular Value Decomposition where any elements that are zero are first filled with the average value.' 
+                    @value 2 @description '**NNDSVDa** (Nonnegative Double Singular Value Decomposition): any elements that are zero are first filled with the average value.' 
                 ) BP_REF_OPT(
-                    @value 3 @description "NNDSVD Nonnegative Double Singular Value Decomposition where values are not changed according to any criteria. This promotes sparse results from the subsequent NMF (because, with multiplicative updates, zeros remain zeros). This may or may not be desirable (not least because sparsity implies the need for more components, but also the specific domain might imply that reasonable decomposition just isn't going to be sparse)." 
+                    @value 3 @description "**NNDSVD** (Nonnegative Double Singular Value Decomposition): values are not changed according to any criteria. This promotes sparse results from the subsequent NMF (because, with multiplicative updates, zeros remain zeros). This may or may not be desirable (not least because sparsity implies the need for more components, but also the specific domain might imply that reasonable decomposition just isn't going to be sparse)." 
                 ) 
             ) 
         ) BP_REF_ARG(
@@ -1685,7 +1696,14 @@ Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here
         ) 
     ) 
     @output BP_REF_OUTPUT(
-        @description 'Seed bases and activations for NMF' @type 'llll' 
+        @description "Seed bases and activations for NMF:
+```bell
+[
+    [ 'bases' <buffers> ] ## learned NMF bases, as buffers
+    [ 'activations' <buffers> ] ## learned NMF activations, as buffers
+]
+```
+" @type 'llll' 
     ) 
     @tags 'buf2nmf' 
 );

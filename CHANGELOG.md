@@ -61,6 +61,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - **MAJOR**: Fix messy, out-of-order logic in configuration loading. Bug resulted from using `trigger` in loading scripts in _flucoma_ branch, but now everything is more predictable and easy to follow.
 - **BREAKING CHANGE**: Removed `createtree` and `querytree`. This also includes removal of `ml*` package as a dependency. Replace mentions of `ml*` with mentions of `FluCoMa`.
 - Rename `createdbtable` to `dbtable`.
+- Improve docs and fix `dataset`/`labelset` snippets.
 
 ### Added
 
