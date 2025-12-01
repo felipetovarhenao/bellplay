@@ -36,6 +36,8 @@
 
 .logo {
   animation: slide-down 1.5s ease-in-out 0s 1 normal forwards, fade-in 1.5s ease-in-out 0s 1 normal forwards;
+  border-radius: 21.5%;
+  box-shadow: 3px 3px 15px 15px rgba(0, 0, 0, 0.25);
 }
 
 .title {
