@@ -103,7 +103,7 @@ function Overview() {
               Here's how you can create a granular texture with just a few lines of <code>bell</code> code:
             </p>
             <CodeBlock language="bell" showLineNumbers={true}>
-              {`## create short buffer with sawtooth wave
+              {`## create short buffer with triangle wave
 $grain = tri(@frequency 440 @duration 100);
 ## scatter 100 grains randomly
 for $n in 0...99 do transcribe(
