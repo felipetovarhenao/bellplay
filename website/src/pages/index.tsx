@@ -110,7 +110,7 @@ for $n in 0...99 do transcribe(
     @buffer $grain                       ## grain to transcribe
     @onset $n * 60                       ## every 60ms
     @gain rand(0.1, 0.25)                ## random volume
-    @detune choose(0 2 4 5 7 9 11) * 100 ## random pitch
+    @detune choose(0 2 4 5 7 9 11) * 100 ## random detuning in cents
     @pan rand()                          ## random position
 );
 ## render final output
