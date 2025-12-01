@@ -21,7 +21,7 @@
                     "maxclass": "newobj",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 4035.999999999999, 571.0, 55.0, 23.0 ],
+                    "patching_rect": [ 3904.333333333334, 571.2000085115433, 55.0, 23.0 ],
                     "text": "bp.fluid~"
                 }
             },
@@ -405,7 +405,7 @@
                     "numinlets": 0,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 3932.0, 612.3333345651627, 118.0, 23.0 ],
+                    "patching_rect": [ 3802.083333333334, 612.2000085115433, 118.0, 23.0 ],
                     "text": "r #0resetnaming"
                 }
             },
@@ -415,7 +415,7 @@
                     "maxclass": "newobj",
                     "numinlets": 2,
                     "numoutlets": 0,
-                    "patching_rect": [ 3904.0, 653.3333345651627, 47.0, 23.0 ],
+                    "patching_rect": [ 3774.083333333334, 653.2000085115433, 47.0, 23.0 ],
                     "text": "bp.ears"
                 }
             },
@@ -1032,7 +1032,7 @@
                             }
                         ]
                     },
-                    "patching_rect": [ 3775.5, 571.0, 39.0, 23.0 ],
+                    "patching_rect": [ 3645.083333333334, 571.2000085115433, 39.0, 23.0 ],
                     "saved_object_attributes": {
                         "fontname": "Lato",
                         "style": "bellplay-gui"
@@ -1376,7 +1376,7 @@
                             }
                         ]
                     },
-                    "patching_rect": [ 3645.500000000001, 571.0, 58.0, 23.0 ],
+                    "patching_rect": [ 3515.083333333334, 571.2000085115433, 58.0, 23.0 ],
                     "saved_object_attributes": {
                         "fontname": "Lato",
                         "style": "bellplay-gui"
@@ -1458,7 +1458,7 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 3515.5000000000005, 612.3333345651627, 222.0, 23.0 ],
+                    "patching_rect": [ 3385.083333333334, 612.2000085115433, 222.0, 23.0 ],
                     "saved_object_attributes": {
                         "embed": 1,
                         "versionnumber": 80300
@@ -1473,7 +1473,7 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 3515.5000000000005, 571.0, 75.0, 23.0 ],
+                    "patching_rect": [ 3385.083333333334, 571.2000085115433, 75.0, 23.0 ],
                     "text": "bp.essentia~"
                 }
             },
@@ -1716,7 +1716,7 @@
                             }
                         ]
                     },
-                    "patching_rect": [ 3385.5000000000005, 571.0, 50.0, 23.0 ],
+                    "patching_rect": [ 3255.083333333334, 571.2000085115433, 50.0, 23.0 ],
                     "saved_object_attributes": {
                         "fontname": "Lato",
                         "style": "subtlelight"
@@ -2085,7 +2085,7 @@
                     "numinlets": 1,
                     "numoutlets": 2,
                     "outlettype": [ "", "bang" ],
-                    "patching_rect": [ 3255.5000000000005, 571.0, 115.0, 23.0 ],
+                    "patching_rect": [ 3125.083333333334, 571.2000085115433, 115.0, 23.0 ],
                     "saved_object_attributes": {
                         "versionnumber": 80300
                     },
@@ -2098,7 +2098,7 @@
                     "maxclass": "newobj",
                     "numinlets": 1,
                     "numoutlets": 0,
-                    "patching_rect": [ 3255.5000000000005, 612.3333345651627, 106.0, 23.0 ],
+                    "patching_rect": [ 3125.083333333334, 612.2000085115433, 106.0, 23.0 ],
                     "text": "s #0loadscript"
                 }
             },
@@ -2326,7 +2326,7 @@
                             }
                         ]
                     },
-                    "patching_rect": [ 3125.5000000000005, 571.0, 95.0, 23.0 ],
+                    "patching_rect": [ 2995.083333333334, 571.2000085115433, 95.0, 23.0 ],
                     "saved_object_attributes": {
                         "fontname": "Lato",
                         "style": "subtlelight"
@@ -2775,7 +2775,7 @@
                             }
                         ]
                     },
-                    "patching_rect": [ 2995.5000000000005, 571.0, 72.0, 23.0 ],
+                    "patching_rect": [ 2865.083333333334, 571.2000085115433, 72.0, 23.0 ],
                     "saved_object_attributes": {
                         "fontname": "Lato",
                         "style": "bellplay-gui"
@@ -4445,7 +4445,7 @@
                             }
                         ]
                     },
-                    "patching_rect": [ 2865.5000000000005, 571.0, 63.0, 23.0 ],
+                    "patching_rect": [ 2735.083333333334, 571.2000085115433, 63.0, 23.0 ],
                     "saved_object_attributes": {
                         "fontname": "Lato",
                         "style": "bellplay-gui"
@@ -5509,7 +5509,7 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 2735.5, 608.0, 57.0, 23.0 ],
+                    "patching_rect": [ 2605.166666666667, 645.0, 57.0, 23.0 ],
                     "text": "tosymbol"
                 }
             },
@@ -5520,7 +5520,7 @@
                     "numinlets": 2,
                     "numoutlets": 2,
                     "outlettype": [ "", "" ],
-                    "patching_rect": [ 2614.5, 649.6000096797943, 140.0, 23.0 ],
+                    "patching_rect": [ 2484.166666666667, 687.0, 140.0, 23.0 ],
                     "text": "combine ` in @triggers 1"
                 }
             },
@@ -5532,7 +5532,7 @@
                     "numinlets": 1,
                     "numoutlets": 1,
                     "outlettype": [ "" ],
-                    "patching_rect": [ 2614.5, 685.6000102162361, 163.0, 23.0 ],
+                    "patching_rect": [ 2484.166666666667, 723.0, 163.0, 23.0 ],
                     "saved_object_attributes": {
                         "embed": 1,
                         "versionnumber": 80300
@@ -5547,7 +5547,7 @@
                     "numinlets": 1,
                     "numoutlets": 2,
                     "outlettype": [ "", "bang" ],
-                    "patching_rect": [ 2735.5, 571.0, 115.0, 23.0 ],
+                    "patching_rect": [ 2605.166666666667, 608.0, 115.0, 23.0 ],
                     "saved_object_attributes": {
                         "versionnumber": 80300
                     },
@@ -5716,878 +5716,6 @@
                         "style": "bellplay-gui"
                     },
                     "text": "p db"
-                }
-            },
-            {
-                "box": {
-                    "id": "obj-124",
-                    "maxclass": "newobj",
-                    "numinlets": 1,
-                    "numoutlets": 0,
-                    "patcher": {
-                        "fileversion": 1,
-                        "appversion": {
-                            "major": 9,
-                            "minor": 1,
-                            "revision": 1,
-                            "architecture": "x64",
-                            "modernui": 1
-                        },
-                        "classnamespace": "box",
-                        "rect": [ 59.0, 106.0, 1014.0, 614.0 ],
-                        "default_fontname": "Lato",
-                        "style": "bellplay-gui",
-                        "boxes": [
-                            {
-                                "box": {
-                                    "code": "$x2 left($x1 0, max(2, length($x1))) ",
-                                    "id": "obj-6",
-                                    "maxclass": "newobj",
-                                    "numinlets": 2,
-                                    "numoutlets": 1,
-                                    "outlettype": [ "" ],
-                                    "patching_rect": [ 361.0, 394.0, 302.0, 23.0 ],
-                                    "saved_object_attributes": {
-                                        "embed": 1,
-                                        "versionnumber": 80300
-                                    },
-                                    "text": "bach.eval $x2 left($x1 0\\, max(2\\, length($x1))) @out m"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "code": "left($x1 0, max(2, length($x1))) ",
-                                    "id": "obj-1",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [ "" ],
-                                    "patching_rect": [ 15.0, 335.0, 279.0, 23.0 ],
-                                    "saved_object_attributes": {
-                                        "embed": 1,
-                                        "versionnumber": 80300
-                                    },
-                                    "text": "bach.eval left($x1 0\\, max(2\\, length($x1))) @out m"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-202",
-                                    "maxclass": "newobj",
-                                    "numinlets": 2,
-                                    "numoutlets": 1,
-                                    "outlettype": [ "" ],
-                                    "patcher": {
-                                        "fileversion": 1,
-                                        "appversion": {
-                                            "major": 9,
-                                            "minor": 1,
-                                            "revision": 1,
-                                            "architecture": "x64",
-                                            "modernui": 1
-                                        },
-                                        "classnamespace": "box",
-                                        "rect": [ 84.0, 131.0, 794.0, 143.0 ],
-                                        "default_fontname": "Lato",
-                                        "style": "bellplay-gui",
-                                        "boxes": [
-                                            {
-                                                "box": {
-                                                    "code": "((if depth($x1) > 1 then (for $key in $x2 collect $x1.getkey($key)) else $x1) - BP_TREE_NORM::1) / BP_TREE_NORM::2 ",
-                                                    "id": "obj-190",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 2,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 6.0, 60.0, 754.0, 23.0 ],
-                                                    "saved_object_attributes": {
-                                                        "embed": 1,
-                                                        "versionnumber": 80300
-                                                    },
-                                                    "text": "bach.eval ((if depth($x1) > 1 then (for $key in $x2 collect $x1.getkey($key)) else $x1) - BP_TREE_NORM::1) / BP_TREE_NORM::2 @out m"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "comment": "",
-                                                    "id": "obj-194",
-                                                    "index": 1,
-                                                    "maxclass": "inlet",
-                                                    "numinlets": 0,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 6.0, 11.0, 30.0, 30.0 ]
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "comment": "",
-                                                    "id": "obj-195",
-                                                    "index": 2,
-                                                    "maxclass": "inlet",
-                                                    "numinlets": 0,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 741.0, 11.0, 30.0, 30.0 ]
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "comment": "",
-                                                    "id": "obj-201",
-                                                    "index": 1,
-                                                    "maxclass": "outlet",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 0,
-                                                    "patching_rect": [ 6.0, 99.0, 30.0, 30.0 ]
-                                                }
-                                            }
-                                        ],
-                                        "lines": [
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-201", 0 ],
-                                                    "source": [ "obj-190", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-190", 0 ],
-                                                    "source": [ "obj-194", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-190", 1 ],
-                                                    "source": [ "obj-195", 0 ]
-                                                }
-                                            }
-                                        ],
-                                        "styles": [
-                                            {
-                                                "name": "bellplay-gui",
-                                                "default": {
-                                                    "accentcolor": [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
-                                                    "bgcolor": [ 1.0, 1.0, 1.0, 1.0 ],
-                                                    "bgfillcolor": {
-                                                        "angle": 270.0,
-                                                        "autogradient": 0.0,
-                                                        "color": [ 0.717647058823529, 0.717647058823529, 0.717647058823529, 1.0 ],
-                                                        "color1": [ 0.301961, 0.301961, 0.301961, 1.0 ],
-                                                        "color2": [ 0.2, 0.2, 0.2, 1.0 ],
-                                                        "proportion": 0.5,
-                                                        "type": "color"
-                                                    },
-                                                    "color": [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
-                                                    "editing_bgcolor": [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
-                                                    "fontname": [ "Lato" ],
-                                                    "locked_bgcolor": [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
-                                                    "selectioncolor": [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
-                                                    "textcolor_inverse": [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
-                                                },
-                                                "parentstyle": "",
-                                                "multi": 0
-                                            }
-                                        ]
-                                    },
-                                    "patching_rect": [ 15.0, 193.0, 187.66666666666652, 23.0 ],
-                                    "saved_object_attributes": {
-                                        "fontname": "Lato",
-                                        "style": "bellplay-gui"
-                                    },
-                                    "text": "p buffer2feature+normalization"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-184",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 2,
-                                    "outlettype": [ "", "" ],
-                                    "patching_rect": [ 184.0, 128.0, 122.99999999999955, 23.0 ],
-                                    "text": "t l l"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "code": "BP_TREE_RESULT = $x1 ",
-                                    "id": "obj-180",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [ "" ],
-                                    "patching_rect": [ 309.0, 570.0, 205.0, 23.0 ],
-                                    "saved_object_attributes": {
-                                        "embed": 1,
-                                        "versionnumber": 80300
-                                    },
-                                    "text": "bach.eval BP_TREE_RESULT = $x1"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-179",
-                                    "maxclass": "newobj",
-                                    "numinlets": 2,
-                                    "numoutlets": 1,
-                                    "outlettype": [ "" ],
-                                    "patching_rect": [ 309.0, 526.0, 327.66666666666606, 23.0 ],
-                                    "text": "bach.lookup"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-178",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [ "" ],
-                                    "patcher": {
-                                        "fileversion": 1,
-                                        "appversion": {
-                                            "major": 9,
-                                            "minor": 1,
-                                            "revision": 1,
-                                            "architecture": "x64",
-                                            "modernui": 1
-                                        },
-                                        "classnamespace": "box",
-                                        "rect": [ 84.0, 131.0, 1187.0, 639.0 ],
-                                        "default_fontname": "Lato",
-                                        "style": "bellplay-gui",
-                                        "boxes": [
-                                            {
-                                                "box": {
-                                                    "id": "obj-5",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 2,
-                                                    "outlettype": [ "", "bang" ],
-                                                    "patching_rect": [ 16.0, 271.0, 81.0, 23.0 ],
-                                                    "text": "t l b"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "code": "BP_TREE_NORM= trans(BP_TREE_NORM) ",
-                                                    "id": "obj-4",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 78.0, 328.0, 296.0, 23.0 ],
-                                                    "saved_object_attributes": {
-                                                        "embed": 1,
-                                                        "versionnumber": 80300
-                                                    },
-                                                    "text": "bach.eval BP_TREE_NORM= trans(BP_TREE_NORM)"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "code": "BP_TREE_NORM= null ",
-                                                    "id": "obj-3",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 100.0, 118.0, 184.0, 23.0 ],
-                                                    "saved_object_attributes": {
-                                                        "embed": 1,
-                                                        "versionnumber": 80300
-                                                    },
-                                                    "text": "bach.eval BP_TREE_NORM= null"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-2",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 2,
-                                                    "outlettype": [ "", "bang" ],
-                                                    "patching_rect": [ 16.0, 69.0, 103.0, 23.0 ],
-                                                    "text": "t l b"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-150",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 16.0, 221.0, 68.0, 23.0 ],
-                                                    "saved_object_attributes": {
-                                                        "versionnumber": 80300
-                                                    },
-                                                    "style": "bellplay-gui",
-                                                    "text": "bach.trans"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-149",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 2,
-                                                    "outlettype": [ "", "" ],
-                                                    "patching_rect": [ 777.0, 235.0, 82.0, 23.0 ],
-                                                    "saved_object_attributes": {
-                                                        "versionnumber": 80300
-                                                    },
-                                                    "style": "bellplay-gui",
-                                                    "text": "bach.pick 1 2"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "code": "$norm = $x1 $x2; BP_TREE_NORM _= [ $norm ]; $norm ",
-                                                    "id": "obj-145",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 2,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 777.0, 197.0, 403.0, 23.0 ],
-                                                    "saved_object_attributes": {
-                                                        "embed": 1,
-                                                        "versionnumber": 80300
-                                                    },
-                                                    "style": "bellplay-gui",
-                                                    "text": "bach.eval $norm = $x1 $x2\\; BP_TREE_NORM _= [ $norm ]\\; $norm"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-135",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 2,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 393.0, 328.0, 466.0, 23.0 ],
-                                                    "style": "bellplay-gui",
-                                                    "text": "bach./"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-132",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 2,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 393.0, 284.0, 403.0, 23.0 ],
-                                                    "style": "bellplay-gui",
-                                                    "text": "bach.-"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-131",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 777.0, 156.0, 67.0, 23.0 ],
-                                                    "style": "bellplay-gui",
-                                                    "text": "bach.mean"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-130",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 3,
-                                                    "outlettype": [ "", "", "" ],
-                                                    "patching_rect": [ 393.0, 111.0, 787.0, 23.0 ],
-                                                    "style": "bellplay-gui",
-                                                    "text": "t l l l"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-128",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 1161.0, 156.0, 67.0, 23.0 ],
-                                                    "style": "bellplay-gui",
-                                                    "text": "bach.stdev"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-120",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 2,
-                                                    "numoutlets": 2,
-                                                    "outlettype": [ "", "" ],
-                                                    "patching_rect": [ 16.0, 180.0, 227.0, 23.0 ],
-                                                    "saved_object_attributes": {
-                                                        "versionnumber": 80300
-                                                    },
-                                                    "style": "bellplay-gui",
-                                                    "text": "bach.mapelem @maxdepth 1 @unwrap 1"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "id": "obj-119",
-                                                    "maxclass": "newobj",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 16.0, 118.0, 68.0, 23.0 ],
-                                                    "saved_object_attributes": {
-                                                        "versionnumber": 80300
-                                                    },
-                                                    "style": "bellplay-gui",
-                                                    "text": "bach.trans"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "comment": "",
-                                                    "id": "obj-176",
-                                                    "index": 1,
-                                                    "maxclass": "inlet",
-                                                    "numinlets": 0,
-                                                    "numoutlets": 1,
-                                                    "outlettype": [ "" ],
-                                                    "patching_rect": [ 16.0, 14.0, 30.0, 30.0 ],
-                                                    "style": "bellplay-gui"
-                                                }
-                                            },
-                                            {
-                                                "box": {
-                                                    "comment": "",
-                                                    "id": "obj-177",
-                                                    "index": 1,
-                                                    "maxclass": "outlet",
-                                                    "numinlets": 1,
-                                                    "numoutlets": 0,
-                                                    "patching_rect": [ 16.0, 321.0, 30.0, 30.0 ],
-                                                    "style": "bellplay-gui"
-                                                }
-                                            }
-                                        ],
-                                        "lines": [
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-120", 0 ],
-                                                    "source": [ "obj-119", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-130", 0 ],
-                                                    "source": [ "obj-120", 1 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-150", 0 ],
-                                                    "source": [ "obj-120", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-145", 1 ],
-                                                    "source": [ "obj-128", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-128", 0 ],
-                                                    "source": [ "obj-130", 2 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-131", 0 ],
-                                                    "source": [ "obj-130", 1 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-132", 0 ],
-                                                    "source": [ "obj-130", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-145", 0 ],
-                                                    "source": [ "obj-131", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-135", 0 ],
-                                                    "source": [ "obj-132", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-120", 1 ],
-                                                    "source": [ "obj-135", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-149", 0 ],
-                                                    "source": [ "obj-145", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-132", 1 ],
-                                                    "source": [ "obj-149", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-135", 1 ],
-                                                    "source": [ "obj-149", 1 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-5", 0 ],
-                                                    "source": [ "obj-150", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-2", 0 ],
-                                                    "source": [ "obj-176", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-119", 0 ],
-                                                    "source": [ "obj-2", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-3", 0 ],
-                                                    "source": [ "obj-2", 1 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-177", 0 ],
-                                                    "source": [ "obj-5", 0 ]
-                                                }
-                                            },
-                                            {
-                                                "patchline": {
-                                                    "destination": [ "obj-4", 0 ],
-                                                    "source": [ "obj-5", 1 ]
-                                                }
-                                            }
-                                        ],
-                                        "styles": [
-                                            {
-                                                "name": "bellplay-gui",
-                                                "default": {
-                                                    "accentcolor": [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
-                                                    "bgcolor": [ 1.0, 1.0, 1.0, 1.0 ],
-                                                    "bgfillcolor": {
-                                                        "angle": 270.0,
-                                                        "autogradient": 0.0,
-                                                        "color": [ 0.717647058823529, 0.717647058823529, 0.717647058823529, 1.0 ],
-                                                        "color1": [ 0.301961, 0.301961, 0.301961, 1.0 ],
-                                                        "color2": [ 0.2, 0.2, 0.2, 1.0 ],
-                                                        "proportion": 0.5,
-                                                        "type": "color"
-                                                    },
-                                                    "color": [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
-                                                    "editing_bgcolor": [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
-                                                    "fontname": [ "Lato" ],
-                                                    "locked_bgcolor": [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
-                                                    "selectioncolor": [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
-                                                    "textcolor_inverse": [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
-                                                },
-                                                "parentstyle": "",
-                                                "multi": 0
-                                            }
-                                        ]
-                                    },
-                                    "patching_rect": [ 288.0, 243.0, 110.0, 23.0 ],
-                                    "saved_object_attributes": {
-                                        "fontname": "Lato",
-                                        "style": "bellplay-gui"
-                                    },
-                                    "text": "p standardize-data"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-172",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 2,
-                                    "outlettype": [ "sort", "" ],
-                                    "patching_rect": [ 288.0, 285.0, 92.0, 23.0 ],
-                                    "text": "t sort l"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-171",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 3,
-                                    "outlettype": [ "", "", "" ],
-                                    "patching_rect": [ 288.0, 485.0, 60.0, 23.0 ],
-                                    "text": "ml.kdtree"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-163",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [ "" ],
-                                    "patching_rect": [ 361.0, 438.0, 84.0, 23.0 ],
-                                    "text": "prepend store"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-154",
-                                    "maxclass": "newobj",
-                                    "numinlets": 2,
-                                    "numoutlets": 3,
-                                    "outlettype": [ "", "", "" ],
-                                    "patching_rect": [ 361.0, 335.0, 585.0, 23.0 ],
-                                    "saved_object_attributes": {
-                                        "versionnumber": 80300
-                                    },
-                                    "text": "bach.iter @maxdepth 1 @unwrap 1 @out m"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "code": "$buffers = $x2; $keys = $x1; for $buffer in $buffers collect [ for $key in $keys collect $buffer.getkey($key) ] ",
-                                    "id": "obj-118",
-                                    "linecount": 2,
-                                    "maxclass": "newobj",
-                                    "numinlets": 2,
-                                    "numoutlets": 1,
-                                    "outlettype": [ "" ],
-                                    "patching_rect": [ 288.0, 193.0, 614.0, 23.0 ],
-                                    "saved_object_attributes": {
-                                        "embed": 1,
-                                        "versionnumber": 80300
-                                    },
-                                    "text": "bach.eval $buffers = $x2\\; $keys = $x1\\; for $buffer in $buffers collect [ for $key in $keys collect $buffer.getkey($key) ]"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-115",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 3,
-                                    "outlettype": [ "clear", "", "" ],
-                                    "patching_rect": [ 352.0, 128.0, 550.0, 23.0 ],
-                                    "text": "t clear l l"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-84",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 4,
-                                    "outlettype": [ "", "", "", "bang" ],
-                                    "patching_rect": [ 15.0, 73.0, 525.0, 23.0 ],
-                                    "saved_object_attributes": {
-                                        "versionnumber": 80300
-                                    },
-                                    "text": "bach.keys query features buffers"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "comment": "",
-                                    "id": "obj-123",
-                                    "index": 1,
-                                    "maxclass": "inlet",
-                                    "numinlets": 0,
-                                    "numoutlets": 1,
-                                    "outlettype": [ "" ],
-                                    "patching_rect": [ 15.0, 13.0, 30.0, 30.0 ]
-                                }
-                            }
-                        ],
-                        "lines": [
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-171", 0 ],
-                                    "source": [ "obj-1", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-118", 1 ],
-                                    "source": [ "obj-115", 2 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-171", 0 ],
-                                    "source": [ "obj-115", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-179", 1 ],
-                                    "source": [ "obj-115", 1 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-178", 0 ],
-                                    "source": [ "obj-118", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-84", 0 ],
-                                    "source": [ "obj-123", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-6", 1 ],
-                                    "source": [ "obj-154", 1 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-6", 0 ],
-                                    "source": [ "obj-154", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-171", 0 ],
-                                    "source": [ "obj-163", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-179", 0 ],
-                                    "source": [ "obj-171", 1 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-154", 0 ],
-                                    "source": [ "obj-172", 1 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-171", 0 ],
-                                    "source": [ "obj-172", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-172", 0 ],
-                                    "source": [ "obj-178", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-180", 0 ],
-                                    "source": [ "obj-179", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-118", 0 ],
-                                    "source": [ "obj-184", 1 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-202", 1 ],
-                                    "source": [ "obj-184", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-1", 0 ],
-                                    "source": [ "obj-202", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-163", 0 ],
-                                    "source": [ "obj-6", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-115", 0 ],
-                                    "source": [ "obj-84", 2 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-184", 0 ],
-                                    "source": [ "obj-84", 1 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-202", 0 ],
-                                    "source": [ "obj-84", 0 ]
-                                }
-                            }
-                        ],
-                        "styles": [
-                            {
-                                "name": "bellplay-gui",
-                                "default": {
-                                    "accentcolor": [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
-                                    "bgcolor": [ 1.0, 1.0, 1.0, 1.0 ],
-                                    "bgfillcolor": {
-                                        "angle": 270.0,
-                                        "autogradient": 0.0,
-                                        "color": [ 0.717647058823529, 0.717647058823529, 0.717647058823529, 1.0 ],
-                                        "color1": [ 0.301961, 0.301961, 0.301961, 1.0 ],
-                                        "color2": [ 0.2, 0.2, 0.2, 1.0 ],
-                                        "proportion": 0.5,
-                                        "type": "color"
-                                    },
-                                    "color": [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
-                                    "editing_bgcolor": [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
-                                    "fontname": [ "Lato" ],
-                                    "locked_bgcolor": [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
-                                    "selectioncolor": [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
-                                    "textcolor_inverse": [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
-                                },
-                                "parentstyle": "",
-                                "multi": 0
-                            }
-                        ]
-                    },
-                    "patching_rect": [ 2605.5, 608.0, 53.0, 23.0 ],
-                    "saved_object_attributes": {
-                        "fontname": "Lato",
-                        "style": "bellplay-gui"
-                    },
-                    "text": "p kdtree"
                 }
             },
             {
@@ -7592,14 +6720,14 @@
                     "id": "obj-158",
                     "maxclass": "newobj",
                     "numinlets": 1,
-                    "numoutlets": 23,
-                    "outlettype": [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "bang" ],
-                    "patching_rect": [ 1306.0, 526.0, 2878.999999999999, 23.0 ],
+                    "numoutlets": 22,
+                    "outlettype": [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "bang" ],
+                    "patching_rect": [ 1306.0, 526.0, 2747.250000000001, 23.0 ],
                     "saved_object_attributes": {
                         "versionnumber": 80300
                     },
                     "style": "bellplay-gui",
-                    "text": "bach.keys roll console db sampler playtoggle buffer audioexport import process generate kdtree sym pathinfo bufferinfo localpath loadscript folder essentia resynth llllio ears fluid @maxdepth 2"
+                    "text": "bach.keys roll console db sampler playtoggle buffer audioexport import process generate sym pathinfo bufferinfo localpath loadscript folder essentia resynth llllio ears fluid @maxdepth 2"
                 }
             },
             {
@@ -8087,7 +7215,7 @@
             {
                 "patchline": {
                     "destination": [ "obj-115", 0 ],
-                    "source": [ "obj-158", 13 ]
+                    "source": [ "obj-158", 12 ]
                 }
             },
             {
@@ -8098,14 +7226,8 @@
             },
             {
                 "patchline": {
-                    "destination": [ "obj-124", 0 ],
-                    "source": [ "obj-158", 10 ]
-                }
-            },
-            {
-                "patchline": {
                     "destination": [ "obj-127", 0 ],
-                    "source": [ "obj-158", 15 ]
+                    "source": [ "obj-158", 14 ]
                 }
             },
             {
@@ -8123,31 +7245,31 @@
             {
                 "patchline": {
                     "destination": [ "obj-149", 0 ],
-                    "source": [ "obj-158", 14 ]
+                    "source": [ "obj-158", 13 ]
                 }
             },
             {
                 "patchline": {
                     "destination": [ "obj-164", 0 ],
-                    "source": [ "obj-158", 12 ]
+                    "source": [ "obj-158", 11 ]
                 }
             },
             {
                 "patchline": {
                     "destination": [ "obj-168", 0 ],
-                    "source": [ "obj-158", 17 ]
-                }
-            },
-            {
-                "patchline": {
-                    "destination": [ "obj-177", 0 ],
                     "source": [ "obj-158", 16 ]
                 }
             },
             {
                 "patchline": {
+                    "destination": [ "obj-177", 0 ],
+                    "source": [ "obj-158", 15 ]
+                }
+            },
+            {
+                "patchline": {
                     "destination": [ "obj-186", 0 ],
-                    "source": [ "obj-158", 19 ]
+                    "source": [ "obj-158", 18 ]
                 }
             },
             {
@@ -8165,19 +7287,19 @@
             {
                 "patchline": {
                     "destination": [ "obj-219", 0 ],
-                    "source": [ "obj-158", 20 ]
+                    "source": [ "obj-158", 19 ]
                 }
             },
             {
                 "patchline": {
                     "destination": [ "obj-234", 0 ],
-                    "source": [ "obj-158", 21 ]
+                    "source": [ "obj-158", 20 ]
                 }
             },
             {
                 "patchline": {
                     "destination": [ "obj-36", 0 ],
-                    "source": [ "obj-158", 11 ]
+                    "source": [ "obj-158", 10 ]
                 }
             },
             {
@@ -8201,7 +7323,7 @@
             {
                 "patchline": {
                     "destination": [ "obj-95", 0 ],
-                    "source": [ "obj-158", 18 ]
+                    "source": [ "obj-158", 17 ]
                 }
             },
             {

@@ -58,7 +58,8 @@ for $file in $files do (
     ) 
 );
 ## Create feature tree (e.g., KD-tree) for nearest neighbor search
-$tree = createtree($data);
+$dataset = dataset($data);
+$tree = kdtree($dataset);
 ## Load and analyze target audio for matching
 $target = importaudio('drums.wav');
 $target = $target.analyze($onsetdescriptor);
@@ -70,7 +71,8 @@ for $marker in $markers, $dur in $markerdurs do (
     $segment = $target.setkey('duration', $dur).setkey('offset', $marker);
     $segment = $segment.analyze($features);
     $point = $buf2features($segment);
-    $id = querytree($tree, $point);
+    $result = predict($tree, $point);
+    $id = getkey($result, 'neighbors');
     $match = $corpus:$id;
     ## Transcribe matched segment to aligned position in mix
     $match.transcribe(

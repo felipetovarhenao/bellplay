@@ -40,7 +40,8 @@ $segments = for $seg in $segments collect (
     ) 
 );
 ## create a k-dimensional tree on segments' pitch values.
-$tree = createtree($data);
+$dataset = dataset($data);
+$tree = kdtree($dataset);
 ## import MIDI file
 $events = importmidi('bach.mid');
 ## MIDI output speed
@@ -56,7 +57,8 @@ for $event in $events do (
     $onset = $event.getkey('onset');
     $duration = $event.getkey('duration');
     ## query tree for index of nearest pitch in tree.
-    $matchindex = querytree($tree, $pitch + rand(-$tolerance/2, $tolerance/2));
+    $result = predict($tree, $pitch + rand(-$tolerance/2, $tolerance/2));
+    $matchindex = getkey($result, 'neighbors');
     ## extract segment based on match's index
     $match = $segments:$matchindex;
     ## get cents deviation between target pitch and buffer match
