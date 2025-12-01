@@ -6,6 +6,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Heading from "@theme/Heading";
+import CodeBlock from "@theme/CodeBlock";
 
 import styles from "./index.module.css";
 import VideoGallery from "../components/VideoGallery";
@@ -64,33 +65,57 @@ const BellplayDownloadLink: React.FC = () => {
     </Link>
   ) : null;
 };
-
 function Overview() {
   return (
     <section className="margin-vert--lg">
       <div className="container">
         <div className="row">
           <div className="col col--10 col--offset-1">
-            <Heading as="h2" className="text--center">
+            <Heading as="h1" className="text--center">
               What's <strong>bellplay~</strong>?
             </Heading>
             <p className="text--center">
-              <b>bellplay~</b> is a symbolic framework and standalone application for offline algorithmic audio, music composition, and sound
-              art/design. It provides an out-of-the-box and easy to use toolkit for automating audio tasks, such as sound generation, analysis and
-              processing.
+              <b>bellplay~</b> is a standalone application for algorithmic audio composition and sound design. It's designed to enable fast
+              prototyping of sounds through code, combining a wide range tools for synthesis, sampling, analysis, processing and more, in a unified
+              workflow.
             </p>
-            <p className="text--center">•••</p>
-            <p className="text--center">
-              It relies on a functional programming language called <code>bell</code>, originally designed for computer-assisted algorithmic
-              composition. <b>bellplay~</b> provides a wide variety of <code>bell</code> functions for data and audio manipulation, making it easy to
-              prototype and design offline audio algorithms of varying degrees of complexity.
+            <p className="text--center margin-top--md">
+              At its core, <b>bellplay~</b> works with <strong>buffers</strong>—structured containers of audio data and metadata. The workflow is
+              straightforward:
             </p>
-            <p className="text--center">•••</p>
-            <p className="text--center">
-              <b>bellplay~</b> also offers complementary graphical interfaces for data visualization and debugging, including a symbolic or
-              notation-based timeline for audio sequencing, a SQL table browser, scatterplots, and more. Whether you're a composer, sound
-              artist/designer, or creative coder, <b>bellplay~</b> lets you approach sound as data—with precision, structure, and reproducibility.
+            <div className="margin-left--xl">
+              <ol className="text--left">
+                <li>
+                  <strong>Generate</strong> sounds through synthesis or sampling.
+                </li>
+                <li>
+                  <strong>Transcribe</strong> buffers to arrange them in time with precise control over timing, gain, panning, and more.
+                </li>
+                <li>
+                  <strong>Render</strong> the buffers into a final audio output.
+                </li>
+              </ol>
+            </div>
+            <Heading as="h3" className="margin-top--lg">
+              A simple example
+            </Heading>
+            <p>
+              Here's how you can create a granular texture with just a few lines of <code>bell</code> code:
             </p>
+            <CodeBlock language="bell" showLineNumbers={true}>
+              {`## create short buffer with sawtooth wave
+$grain = saw(@frequency 440 @duration 100);
+## scatter 100 grains randomly
+for $n in 0...99 do transcribe(
+    @buffer $grain                       ## grain to transcribe
+    @onset $n * 60                       ## every 60ms
+    @gain rand(0.1, 0.25)                ## random volume
+    @detune choose(0 2 4 5 7 9 11) * 100 ## random pitch
+    @pan rand()                          ## random position
+);
+## render final output
+render(@play 1)`}
+            </CodeBlock>
           </div>
         </div>
       </div>
@@ -108,23 +133,22 @@ export default function Home(): ReactNode {
         <HomepageFeatures />
         <VideoGallery
           videoIds={[
-            "-cW-v4uSHuY",
-            // "hO467ibThX8",
-            // "m2X_8dU9Hlg",
-            // "vNV0tf9F_b4",
-            // "Ft8I3PVoUWM",
-            // "xB_QgI0mQUQ",
-            // "eycbSXPnAR4",
-            // "0XU5m2j8JKM",
-            // "0IDsvH09Rww",
-            // "6l3rrKYAkLs",
-            // "6l3rrKYAkLs",
-            // "WKr4Y1twDnQ",
-            // "eAK4iMOHRhw",
-            // "6JkJEIIFtQ4",
-            // "OD9ulufEsKs",
-            // "OD9ulufEsKs",
-            // "zQ2IwpBcrhE",
+            "hO467ibThX8",
+            "m2X_8dU9Hlg",
+            "vNV0tf9F_b4",
+            "Ft8I3PVoUWM",
+            "xB_QgI0mQUQ",
+            "eycbSXPnAR4",
+            "0XU5m2j8JKM",
+            "0IDsvH09Rww",
+            "6l3rrKYAkLs",
+            "6l3rrKYAkLs",
+            "WKr4Y1twDnQ",
+            "eAK4iMOHRhw",
+            "6JkJEIIFtQ4",
+            "OD9ulufEsKs",
+            "OD9ulufEsKs",
+            "zQ2IwpBcrhE",
           ]}
         />
       </main>
