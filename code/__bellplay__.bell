@@ -287,7 +287,7 @@ BP_REF_DATABASE_SNIPPET = BP_REF_CODE_SNIPPET(
     "## import MIDI events to use as data
 $events = importmidi('bach.mid');
 ## create `notes` table based on MIDI events
-createdbtable(@data $events @name 'notes');
+dbtable(@data $events @name 'notes');
 ## Use SQL query to retrieve all events with pitch class 0
 $results = querydb('SELECT * FROM notes WHERE pitch % 1200 == 0');
 print($results) ## print results");
@@ -296,7 +296,7 @@ BP_REF_DATABASE_IO_SNIPPET = BP_REF_CODE_SNIPPET("$events = importmidi('bach.mid
 $db1 = 'first'; ## database name 1
 $db2 = 'second'; ## database name 2
 $path = './mydb.llll'; ## output path
-createdbtable(
+dbtable(
     @data $events ## table data
     @name 'events' ## table name
     @db $db1 ## database name 1
@@ -1020,9 +1020,9 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
-createdbtable = (
+dbtable = (
     $data = null, $name = 'data', $db = null -> (
-        $self = 'createdbtable';
+        $self = 'dbtable';
         BP_FN_CHECK_ARGS(
             $self, 'data', $data, 'name', $name
         );
@@ -1085,7 +1085,7 @@ createdbtable = (
 );
 
 BP_REF_NEW(
-    @name "createdbtable"
+    @name "dbtable"
     @description BP_REF_MULTILINE("Creates and populates a [SQLite3](https://www.sqlitetutorial.net/) table with data entries.",
     'Each element or entry in `@data` should be structured as a _llll_ of key-value pairs, where each key corresponds to a column name in the resulting table and each value is the corresponding data entry. 
 For example:
@@ -1139,7 +1139,7 @@ querydb = (
 
 BP_REF_NEW(
     @name "querydb"
-    @description "Performs a [SQLite3](https://www.sqlitetutorial.net/) query on previously created tables. See `createdbtable`."
+    @description "Performs a [SQLite3](https://www.sqlitetutorial.net/) query on previously created tables. See `dbtable`."
     @category BP_REF_LABEL_DATA_UTILS
     @arguments (
         BP_REF_ARG(@name "sql" @type "symbol" @description "SQL table query.")
@@ -1147,7 +1147,7 @@ BP_REF_NEW(
     )
     @output BP_REF_OUTPUT(@description "Query results." @type "llll/null")
     @usage BP_REF_DATABASE_SNIPPET
-    @tags 'createdbtable' 'readdb' 'writedb'
+    @tags 'dbtable' 'readdb' 'writedb'
 );
 
 ## ------------------------------------------------------------
@@ -1181,7 +1181,7 @@ BP_REF_NEW(
     )
     @output BP_REF_OUTPUT(@description "Query results." @type "llll/null")
     @usage BP_REF_DATABASE_IO_SNIPPET
-    @tags 'querydb' 'createdbtable' 'readdb'
+    @tags 'querydb' 'dbtable' 'readdb'
 );
 
 ## ------------------------------------------------------------
@@ -1216,7 +1216,7 @@ BP_REF_NEW(
     )
     @output BP_REF_OUTPUT(@description "Query results." @type "llll/null")
     @usage BP_REF_DATABASE_IO_SNIPPET
-    @tags 'querydb' 'createdbtable' 'writedb'
+    @tags 'querydb' 'dbtable' 'writedb'
 );
 
 ## ------------------------------------------------------------
@@ -1272,7 +1272,7 @@ $descriptors = pitchmelodia() larm() spectralcentroid() effectiveduration();
 ## segment buffer and analyze every segment
 $segments = for $b in splitbuf(@buffer $buf @split 50) collect $b.analyze($descriptors);
 ## create database table
-createdbtable(@data $segments);
+dbtable(@data $segments);
 ## display table in browser 
 browsedbtable(
     @xfield 'pitchmelodia' 

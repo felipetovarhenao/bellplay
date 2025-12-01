@@ -1260,7 +1260,7 @@ dataset2dbtable = (
                     trans($keys [$values]) 
                 ] 
             );
-            createdbtable(
+            dbtable(
                 @data $data
                 @name $name
                 @db $db
@@ -1307,7 +1307,7 @@ BP_REF_NEW(
     @output BP_REF_OUTPUT(
         @description 'Dataset or labelset items' @type 'llll' 
     ) 
-    @tags 'labelset' 'dataset' 'createdbtable' 'querydbtable' 'writedb' 'readdb' 
+    @tags 'labelset' 'dataset' 'dbtable' 'querydbtable' 'writedb' 'readdb' 
     @usage BP_REF_CODE_SNIPPET("$data = null;
 $labels = null;
 for $i in 0...100 do (
