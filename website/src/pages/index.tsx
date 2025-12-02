@@ -102,8 +102,10 @@ function Overview() {
             <p>
               Here's how you can create a granular texture with just a few lines of <code>bell</code> code:
             </p>
-            <CodeBlock language="bell" showLineNumbers={true}>
-              {`## create short buffer with triangle wave
+            <div className="row">
+              <div className="col col--6">
+                <CodeBlock title="grains.bell" className={styles.codesnippet} language="bell" showLineNumbers={true}>
+                  {`## create short buffer with triangle wave
 $grain = tri(@frequency 440 @duration 100);
 ## scatter 100 grains randomly
 for $n in 0...99 do transcribe(
@@ -115,7 +117,12 @@ for $n in 0...99 do transcribe(
 );
 ## render final output and apply reverb
 render(@play 1 @process freeverb())`}
-            </CodeBlock>
+                </CodeBlock>
+              </div>
+              <div className="col col--6">
+                <img src="https://d2cq0goacowtde.cloudfront.net/bellplay/bellplay.png" alt="" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
