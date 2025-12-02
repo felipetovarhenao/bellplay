@@ -7,7 +7,7 @@ from utils.utils import get_lines
 
 # Input and output directories relative to script location
 SOURCE_DIR = os.path.abspath(os.path.join(BASE_DIR, "../../code/"))
-DEST_DIR = os.path.abspath(os.path.join(BASE_DIR, "../docs/learning/"))
+DEST_DIR = os.path.abspath(os.path.join(BASE_DIR, "../docs/learn/"))
 
 
 LEARNING_FILES = get_lines(METADATA_PATHS["learning_files"])

@@ -41,7 +41,7 @@ website/gen/tests/*
 website/docs/tutorials/*.md
 website/docs/reference/*/
 website/docs/reference/**/*.md
-website/docs/learning/*/*
+website/docs/learn/*/*
 website/gen/*.txt
 website/**/*.llll
 website/static/search-index.json

@@ -135,6 +135,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - Put all `.bell` files in `/code/` folder, removing `/data/` folder.
   - Change doc functions to also use `BP_REF*` prefix.
   - Don't use colon in reference entry keys.
+- DOCS: Rename `Learning` to `Learn`.
 
 ### Fixed
 

@@ -84,7 +84,7 @@ const config: Config = {
       },
       items: [
         { to: "/docs/reference/buffer-analysis/analyze", label: "Reference", position: "left" },
-        { to: "/docs/learning/tutorials/basicworkflow", label: "Learning", position: "left" },
+        { to: "/docs/learn/tutorials/basicworkflow", label: "Learn", position: "left" },
         { to: "/docs/faq", label: "FAQ", position: "left" },
         { to: "/docs/about/support", label: "Support", position: "left" },
         { to: "/docs/about/credits", label: "About", position: "right" },
@@ -114,8 +114,8 @@ const config: Config = {
               to: "/docs/reference/buffer-analysis/analyze",
             },
             {
-              label: "Learning",
-              to: "/docs/learning/tutorials/basicworkflow",
+              label: "Learn",
+              to: "/docs/learn/tutorials/basicworkflow",
             },
             {
               label: "Tags",

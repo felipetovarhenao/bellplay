@@ -4,7 +4,7 @@ from utils.cleaner import Cleaner
 
 THIS_DIR = os.path.dirname(__file__)
 REF_DIR = os.path.abspath(os.path.join(THIS_DIR, '../docs/reference/'))
-LEARN_DIR = os.path.abspath(os.path.join(THIS_DIR, '../docs/learning/'))
+LEARN_DIR = os.path.abspath(os.path.join(THIS_DIR, '../docs/learn/'))
 OUT_DIR = os.path.abspath(os.path.join(THIS_DIR, 'tests'))
 Cleaner(OUT_DIR, exception_filter=lambda p: p.name == '.placeholder').delete()
 count = 0
