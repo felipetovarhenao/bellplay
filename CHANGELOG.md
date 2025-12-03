@@ -62,6 +62,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - **BREAKING CHANGE**: Removed `createtree` and `querytree`. This also includes removal of `ml*` package as a dependency. Replace mentions of `ml*` with mentions of `FluCoMa`.
 - Rename `createdbtable` to `dbtable`.
 - Improve docs and fix `dataset`/`labelset` snippets.
+- Use `object` instead `obj`: `writeobj` -> `writeobject`. `fit(@obj ...)` -> `fit(@object ...)`, etc.
 
 ### Added
 

@@ -58,12 +58,12 @@ BP_FN_FLUID_NEWOBJ = (
 );
 ## ------------------------------------------------------------
 BP_FN_FLUID_VALIDATE_OBJ = (
-    $self, $obj, $argname, $allow = BP_FN_FLUID_ALL_DATA_OBJECTS -> (
-        if BP_FN_CHECK_ARGS($self, $argname, $obj) then (
-            $ref = getkey($obj, 'ref');
-            $objalias = getkey($obj, 'alias');
+    $self, $object, $argname, $allow = BP_FN_FLUID_ALL_DATA_OBJECTS -> (
+        if BP_FN_CHECK_ARGS($self, $argname, $object) then (
+            $ref = getkey($object, 'ref');
+            $objalias = getkey($object, 'alias');
             ($ref &&& $objalias) ||| BP_FN_ERROR(
-                $self, 'invalid value for @' + $argname + '. expected a' $allow 'but got:' $obj ||| 'null' 
+                $self, 'invalid value for @' + $argname + '. expected a' $allow 'but got:' $object ||| 'null' 
             );
             if intersection($objalias, $allow) == null then BP_FN_ERROR(
                 $self, 'invalid value for @' + $argname + '. expected a' $allow 'but got:' $objalias ||| 'null' 
@@ -94,17 +94,17 @@ BP_FN_FLUID_FROMBUFFER = (
 ## ------------------------------------------------------------
 BP_FN_FLUID_NEWOBJ_FITTED = (
     $dataset, $alias, $arguments = null, $attributes = null -> (
-        $obj = BP_FN_FLUID_NEWOBJ(
+        $object = BP_FN_FLUID_NEWOBJ(
             @alias $alias
             @arguments $arguments
             @attributes $attributes
         );
-        $ref = getkey($obj, 'ref');
+        $ref = getkey($object, 'ref');
         $dsname = getkey($dataset, 'name');
         BP_FN_SANDBOX_MSG(
             @to $ref @message 'fit' $dsname
         );
-        $obj
+        $object
     ) 
 );
 ## ------------------------------------------------------------
@@ -141,8 +141,8 @@ $inpoint = 0.65 6.5 65; ## dummy input point
 $' + $class + ' = ' + $alias + '($indataset); ## create ' + $class + ' based on dummy dataset
 $outdataset = transform($' + $class + ', $indataset); ## transform dataset based on learned parameters
 $outpoint = transform($' + $class + ', $inpoint); ## transform new point based on learned parameters
-writeobj($' + $class + ", './" + $alias + ".json'); ## write to JSON (optional)
-$" + $class + " = readobj('./" + $alias + ".json'); ## read from JSON (optional)
+writeobject($' + $class + ", './" + $alias + ".json'); ## write to JSON (optional)
+$" + $class + " = readobject('./" + $alias + ".json'); ## read from JSON (optional)
 print(getitems($indataset, 1...5), 'Input dataset:');
 print(getitems($outdataset, 1...5), 'Output dataset:');
 print($outpoint, 'Output point:')" 
@@ -166,8 +166,8 @@ $model = ' + $alias + '(' + $arguments + '); ## create ' + $alias + ' model
 ' + (if $loop == 1 then ( "for $i in 1...10 do ( ## repeat training to minimize loss
     print(fit($model, $indataset, $outdataset), 'Loss:') 
 );" ) else 'fit($model, $indataset, $outdataset);') + '
-writeobj($model, "./' + $alias + '.json"); ## write as JSON for future use (optional)
-$model = readobj("./' + $alias + '.json"); ## read pre-trained model from JSON (optional)
+writeobject($model, "./' + $alias + '.json"); ## write as JSON for future use (optional)
+$model = readobject("./' + $alias + '.json"); ## read pre-trained model from JSON (optional)
 $xpoint = 0.25 0.75; ## sample point
 $pred = predict($model, $xpoint); ## generate prediction
 print($pred, "prediction:") ## should be (almost) 1.0, as 0.25 < 0.75 is true' 
@@ -186,17 +186,17 @@ $model = kmeans(); ## clustering model
 fit($model, $datasetreduced); ## fit model to dataset
 $labelset = predict($model, $datasetreduced); ## predict clusters
 ## write to disk as JSON
-writeobj($dataset, './dataset.json');
-writeobj($labelset, './labelset.json');
-writeobj($scaler, './scaler.json');
-writeobj($reducer, './reducer.json');
-writeobj($model, './model.json');
+writeobject($dataset, './dataset.json');
+writeobject($labelset, './labelset.json');
+writeobject($scaler, './scaler.json');
+writeobject($reducer, './reducer.json');
+writeobject($model, './model.json');
 ## read from disk as JSON
-$dataset = readobj('./dataset.json');
-$labelset = readobj('./labelset.json');
-$scaler = readobj('./scaler.json');
-$reducer = readobj('./reducer.json');
-$model = readobj('./model.json')");
+$dataset = readobject('./dataset.json');
+$labelset = readobject('./labelset.json');
+$scaler = readobject('./scaler.json');
+$reducer = readobject('./reducer.json');
+$model = readobject('./model.json')");
 ## ------------------------------------------------------------
 dataset = (
     $data = null -> (
@@ -207,13 +207,13 @@ dataset = (
             if depth($data) != 2 || $cols * $rows != length(flat($data)) then BP_FN_ERROR($self, '@data must be a 2-dimensional matrix') else (
                 $buf = samps2buf(@llll trans($data:1 $data));
                 $source = getkey($buf, 'source');
-                $obj = BP_FN_FLUID_NEWOBJ(
+                $object = BP_FN_FLUID_NEWOBJ(
                     @alias 'dataset' @name $source
                 );
-                $ref = getkey($obj, 'ref');
+                $ref = getkey($object, 'ref');
                 $msgs = ['clear'] ['frombuffer' $source] ['deletepoint' 0];
                 for $msg in $msgs with @unwrap 1 do BP_FN_SANDBOX_MSG(@to $ref @message $msg);
-                BP_FN_FLUID_UPDATE_SET($obj) 
+                BP_FN_FLUID_UPDATE_SET($object) 
             ) 
         ) 
     ) 
@@ -247,12 +247,12 @@ labelset = (
         $argcheck = BP_FN_CHECK_ARGS($self, 'labels', $labels);
         $datacheck = depth($labels) == 1 && contains($labels) == 16;
         if $argcheck == 1 && $datacheck == 1 then (
-            $obj = BP_FN_FLUID_NEWOBJ(@alias 'labelset');
-            $ref = getkey($obj, 'ref');
+            $object = BP_FN_FLUID_NEWOBJ(@alias 'labelset');
+            $ref = getkey($object, 'ref');
             for $label $addr in $labels do BP_FN_SANDBOX_MSG(
                 @to $ref @message 'addlabel' $addr $label
             );
-            BP_FN_FLUID_UPDATE_SET($obj) 
+            BP_FN_FLUID_UPDATE_SET($object) 
         ) 
     ) 
 );
@@ -322,10 +322,10 @@ stdscaler = (
     $dataset = null -> (
         $self = 'stdscaler';
         if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then (
-            $obj = BP_FN_FLUID_NEWOBJ_FITTED(
+            $object = BP_FN_FLUID_NEWOBJ_FITTED(
                 @alias 'standardize' @dataset $dataset
             );
-            $obj
+            $object
         ) 
     ) 
 );
@@ -608,7 +608,7 @@ mlp = (
         $self = 'mlp';
         $mlpalias = if $mode == 0 then 'mlpregressor' else 'mlpclassifier';
         BP_FN_CHECK_ARGS($self, 'mode', $mode);
-        $obj = BP_FN_FLUID_NEWOBJ(
+        $object = BP_FN_FLUID_NEWOBJ(
             @alias $mlpalias @attributes (
                 [ 'activation' $activation] 
                 ## ---
@@ -635,7 +635,7 @@ mlp = (
                 ) 
             ) 
         );
-        $obj
+        $object
     ) 
 );
 BP_REF_NEW(
@@ -723,7 +723,7 @@ BP_REF_NEW(
 kmeans = (
     $numclusters = 4, $centroids = null, $encodingthreshold = 0.25, $maxiter = 100, $mode = 0 -> (
         $alias = if $mode == 1 then 'skmeans' else 'kmeans';
-        $obj = BP_FN_FLUID_NEWOBJ(
+        $object = BP_FN_FLUID_NEWOBJ(
             @alias $alias @attributes (
                 ['maxiter' $maxiter] ['numclusters' $numclusters] (if $alias == 'skmeans' then ['encodingthreshold' $encodingthreshold]) 
             ) 
@@ -731,10 +731,10 @@ kmeans = (
         if depth($centroids) == 2 && length($centroids) == $numclusters then (
             $ds = dataset($centroids);
             BP_FN_SANDBOX_MSG(
-                @to getkey($obj, 'ref') @message 'setmeans' getkey($ds, 'name') 
+                @to getkey($object, 'ref') @message 'setmeans' getkey($ds, 'name') 
             ) 
         );
-        $obj
+        $object
     ) 
 );
 BP_REF_NEW(
@@ -809,21 +809,21 @@ browsedbtable(
 )") 
 );
 ## ------------------------------------------------------------
-writeobj = (
-    $obj, $path -> (
+writeobject = (
+    $object, $path -> (
         BP_SANDBOX_OUT = null;
-        $self = 'writeobj';
+        $self = 'writeobject';
         BP_FN_CHECK_ARGS($self, 'path', $path);
         $pathinfo = BP_FN_PATHINFO($path);
         $ext = $pathinfo.'extension';
         if $ext == '.json' && BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
-            @obj $obj
-            @argname 'obj' 
+            @object $object
+            @argname 'object' 
         ) == 1 then (
-            $alias = getkey($obj, 'alias');
+            $alias = getkey($object, 'alias');
             $path = $pathinfo.'path' + $ext;
-            $ref = getkey($obj, 'ref');
+            $ref = getkey($object, 'ref');
             $path = $pathinfo.'path' + $ext;
             BP_SANDBOX_OUT = null;
             BP_FN_SANDBOX_MSG(
@@ -837,8 +837,8 @@ writeobj = (
             for $prop in 'cols' 'layers' 'target' as $isvalid == 0 do $isvalid = BP_MAXOBJ_DICT(
                 'contains' $prop @out 'm' @fetch 3
             );
-            if $isvalid == 0 then BP_FN_ERROR($self, '@obj is currently empty and should be populated before writing.') else (
-                $attrs = getkey($obj, 'attributes');
+            if $isvalid == 0 then BP_FN_ERROR($self, '@object is currently empty and should be populated before writing.') else (
+                $attrs = getkey($object, 'attributes');
                 $msgs = ['set' '_alias' $alias];
                 if $attrs != null then (
                     $keys = trans($attrs)::1;
@@ -861,12 +861,12 @@ writeobj = (
     ) 
 );
 BP_REF_NEW(
-    @name 'writeobj' 
+    @name 'writeobject' 
     @description 'Writes a machine learning (e.g., datasets, labelsets, MLPs, UMAPs, KDTrees, etc.) object as a JSON file given a path.' 
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
-            @name 'obj' 
+            @name 'object' 
             @type 'llll' 
             @description 'machine learning object.' 
         ) BP_REF_ARG(
@@ -875,13 +875,13 @@ BP_REF_NEW(
             @description 'path to write JSON file.' 
         ) 
     ) 
-    @tags 'readobj' 
+    @tags 'readobject' 
     @usage BP_REF_FLUID_IO_EXAMPLE
 );
 ## ------------------------------------------------------------
-readobj = (
+readobject = (
     $path -> (
-        $self = 'readobj';
+        $self = 'readobject';
         BP_FN_CHECK_ARGS($self, 'path', $path);
         $pathinfo = BP_FN_PATHINFO($path @locate 1);
         $ext = $pathinfo.'extension';
@@ -894,7 +894,7 @@ readobj = (
             for $prop in 'cols' 'layers' 'target' as $isvalid == 0 do $isvalid = BP_MAXOBJ_DICT(
                 'contains' $prop @out 'm' @fetch 3
             );
-            if $isvalid == 0 then BP_FN_ERROR($self, '@obj is currently empty and should be populated before writing.') else (
+            if $isvalid == 0 then BP_FN_ERROR($self, '@object is currently empty and should be populated before writing.') else (
                 $query = BP_MAXOBJ_DICT(
                     'get' '_alias' @out 'm' @fetch 2
                 );
@@ -912,19 +912,19 @@ readobj = (
                     $result = BP_MAXOBJ_DICT(
                         'bang' @out 'm' @fetch 1
                     );
-                    $obj = BP_FN_FLUID_NEWOBJ(@alias $alias @attributes $attrs);
-                    $ref = getkey($obj, 'ref');
+                    $object = BP_FN_FLUID_NEWOBJ(@alias $alias @attributes $attrs);
+                    $ref = getkey($object, 'ref');
                     BP_FN_SANDBOX_MSG(
                         @to $ref @message 'load' $result
                     );
-                    if intersection($alias, 'dataset' 'labelset') != null then BP_FN_FLUID_UPDATE_SET($obj) else $obj
+                    if intersection($alias, 'dataset' 'labelset') != null then BP_FN_FLUID_UPDATE_SET($object) else $object
                 ) 
             ) 
         ) 
     ) 
 );
 BP_REF_NEW(
-    @name 'readobj' 
+    @name 'readobject' 
     @description 'Reads a JSON file to generates a machine learning object.' 
     @category BP_REF_LABEL_ML
     @arguments BP_REF_ARG(
@@ -935,31 +935,31 @@ BP_REF_NEW(
     @output BP_REF_OUTPUT(
         @description 'Machine learning object' @type 'llll' 
     ) 
-    @tags 'writeobj' 
+    @tags 'writeobject' 
     @usage BP_REF_FLUID_IO_EXAMPLE
 );
 ## ------------------------------------------------------------
 transform = (
-    $obj = null, $x = null, $inverse = 0 -> (
+    $object = null, $x = null, $inverse = 0 -> (
         $self = 'transform';
         if BP_FN_CHECK_ARGS($self, 'x', $x) &&& BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
-            @obj $obj
-            @argname 'obj' 
+            @object $object
+            @argname 'object' 
             @allow 'pca' 'umap' 'normalize' 'standardize' 'robustscale' 
         ) then (
-            $objalias = getkey($obj, 'alias');
+            $objalias = getkey($object, 'alias');
             $xtype = if (getkey($x, 'alias') &&& getkey($x, 'ref')) != null then 1 else 0;
             if $xtype == 1 && BP_FN_FLUID_VALIDATE_OBJ(
                 @self $self
-                @obj $x
+                @object $x
                 @argname 'x' 
                 @allow 'dataset' 
             ) == 1 then (
                 $method = if $inverse == 0 || $objalias == 'umap' then 'transform' else 'inversetransform';
                 $yset = BP_FN_FLUID_NEWOBJ(@alias 'dataset');
                 $xname = getkey($x, 'name');
-                $ref = getkey($obj, 'ref');
+                $ref = getkey($object, 'ref');
                 BP_FN_SANDBOX_MSG(
                     @to $ref @message $method $xname getkey($yset, 'name') 
                 );
@@ -969,7 +969,7 @@ transform = (
                 $pt = BP_FN_FLUID_TOBUFFER($x);
                 BP_SANDBOX_OUT = null;
                 BP_FN_SANDBOX_MSG(
-                    @to getkey($obj, 'ref') @message $method $pt
+                    @to getkey($object, 'ref') @message $method $pt
                 );
                 BP_FN_FLUID_FROMBUFFER(right(BP_SANDBOX_OUT, 1):-1)::1
             ) 
@@ -982,7 +982,7 @@ BP_REF_NEW(
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
-            @name 'obj' 
+            @name 'object' 
             @type 'llll' 
             @description 'Model object' 
         ) BP_REF_ARG(
@@ -993,7 +993,7 @@ BP_REF_NEW(
             @name 'inverse' 
             @type 'int' 
             @default 0
-            @description 'Inverse transform mode. Ignored with @obj is a UMAP' 
+            @description 'Inverse transform mode. Ignored with @object is a UMAP' 
             @options BP_REF_SWITCH_OPTIONS
         ) 
     ) 
@@ -1007,21 +1007,21 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 fit = (
-    $obj = null, $xset = null, $yset = null -> (
+    $object = null, $xset = null, $yset = null -> (
         $self = 'fit';
         if BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
-            @obj $obj
-            @argname 'obj' 
+            @object $object
+            @argname 'object' 
             @allow 'skmeans' 'kmeans' 'mlpregressor' 'mlpclassifier' 'knnregressor' 'knnclassifier' 
         ) &&& BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
-            @obj $xset
+            @object $xset
             @argname 'xset' 
             @allow 'dataset' 
         ) then (
-            $objalias = getkey($obj, 'alias');
-            $objref = getkey($obj, 'ref');
+            $objalias = getkey($object, 'alias');
+            $objref = getkey($object, 'ref');
             $numargs = if intersection($objalias, 'skmeans' 'kmeans') then 2 else 3;
             $ysetalias = if intersection($objalias, 'mlpregressor' 'knnregressor') then 'dataset' else 'labelset';
             if $numargs == 2 then (
@@ -1054,7 +1054,7 @@ fit = (
                 trans(BP_FN_FLUID_FROMBUFFER($meansbuf)) 
             ) else if BP_FN_FLUID_VALIDATE_OBJ(
                 @self $self
-                @obj $yset
+                @object $yset
                 @argname 'yset' 
                 @allow $ysetalias
             ) then (
@@ -1071,11 +1071,11 @@ fit = (
 );
 BP_REF_NEW(
     @name 'fit' 
-    @description 'Fits (i.e., trains) a Machine Learning model _in-place_, such as those generated via the `mlp`, `knn`, or `kmeans` functions, to a given dataset or pair of input and output sets. If `@obj` is either a KNN or MLP model, an additional dataset or labelset must be passed to `@yset` indicating the expected prediction.' 
+    @description 'Fits (i.e., trains) a Machine Learning model _in-place_, such as those generated via the `mlp`, `knn`, or `kmeans` functions, to a given dataset or pair of input and output sets. If `@object` is either a KNN or MLP model, an additional dataset or labelset must be passed to `@yset` indicating the expected prediction.' 
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
-            @name 'obj' 
+            @name 'object' 
             @type 'llll' 
             @description 'Object to fit' 
         ) BP_REF_ARG(
@@ -1086,7 +1086,7 @@ BP_REF_NEW(
             @name 'yset' 
             @type 'llll/float' 
             @default 'null' 
-            @description 'Output dataset or labelset to train model on. Only required when `@obj` is generated via the `mlp` and `knn` functions.' 
+            @description 'Output dataset or labelset to train model on. Only required when `@object` is generated via the `mlp` and `knn` functions.' 
         ) 
     ) 
     @usage BP_REF_NEURAL_EXAMPLE(
@@ -1097,16 +1097,16 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 predict = (
-    $obj = null, $x = null -> (
+    $object = null, $x = null -> (
         $self = 'predict';
         if BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
-            @obj $obj
-            @argname 'obj' 
+            @object $object
+            @argname 'object' 
             @allow 'mlpregressor' 'mlpclassifier' 'kdtree' 'knnregressor' 'knnclassifier' 'kmeans' 'skmeans' 
         ) then (
-            $objref = getkey($obj, 'ref');
-            $objalias = getkey($obj, 'alias');
+            $objref = getkey($object, 'ref');
+            $objalias = getkey($object, 'alias');
             $isregressor = intersection(
                 $objalias, 'knnclassifier' 'mlpclassifier' 'kmeans' 'skmeans' 
             ) == null;
@@ -1114,7 +1114,7 @@ predict = (
             $xalias = getkey($x, 'alias');
             if $xref != null && $xalias != null && BP_FN_FLUID_VALIDATE_OBJ(
                 @self $self
-                @obj $x
+                @object $x
                 @argname 'x' 
                 @allow 'dataset' 
             ) == 1 then (
@@ -1155,11 +1155,11 @@ predict = (
 );
 BP_REF_NEW(
     @name 'predict' 
-    @description 'Given a fitted ML object and dataset or data point, performs a prediction. If `@x` is a dataset it returns either a `labelset` or `dataset`, based on whether `@obj` performs regression or classification. If `@x` is a data point, it returns a data point if `@obj` preforms regression, otherwise it returns an integer for the predicted alias.' 
+    @description 'Given a fitted ML object and dataset or data point, performs a prediction. If `@x` is a dataset it returns either a `labelset` or `dataset`, based on whether `@object` performs regression or classification. If `@x` is a data point, it returns a data point if `@object` preforms regression, otherwise it returns an integer for the predicted alias.' 
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
-            @name 'obj' 
+            @name 'object' 
             @type 'llll' 
             @description 'Fitted ML object.' 
         ) BP_REF_ARG(
@@ -1181,7 +1181,7 @@ getitems = (
         $self = 'getitems';
         if BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
-            @obj $set
+            @object $set
             @argname 'set' 
             @allow 'dataset' 'labelset' 
         ) &&& BP_FN_CHECK_ARGS($self, 'ids', $ids) then (
@@ -1232,7 +1232,7 @@ dataset2dbtable = (
         $self = 'dataset2dbtable';
         if BP_FN_FLUID_VALIDATE_OBJ(
             @self $self
-            @obj $dataset
+            @object $dataset
             @argname 'dataset' 
             @allow 'dataset' 
         ) then (
@@ -1250,7 +1250,7 @@ dataset2dbtable = (
             $addlabels = 0;
             if $labelset != null && BP_FN_FLUID_VALIDATE_OBJ(
                 @self $self
-                @obj $labelset
+                @object $labelset
                 @argname 'labelset' 
                 @allow 'labelset' 
             ) == 1 then (
