@@ -27,7 +27,7 @@
   font-family: monospace;
 }
 
-[data-them="light"] {
+[data-theme="light"] {
   --ifm-font-color-base: #262626;
 }
 
