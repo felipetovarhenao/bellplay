@@ -436,7 +436,7 @@ BP_REF_NEW(
             @name 'numneighbors' 
             @type 'int' 
             @default 15
-            @description 'The number of neighbours considered by the algorithm to balance local vs global structures to conserve. Low values will prioritise preservation of the local structure while high values will prioritise preservation of the global structure.' 
+            @description 'The number of neighbors considered by the algorithm to balance local vs global structures to conserve. Low values will prioritise preservation of the local structure while high values will prioritise preservation of the global structure.' 
         ) 
     ) 
     @output BP_REF_OUTPUT(
@@ -518,12 +518,12 @@ BP_REF_NEW(
             @name 'numneighbors' 
             @type 'int' 
             @default 1
-            @description 'The number of neighbours to return.' 
+            @description 'The number of neighbors to return.' 
         ) BP_REF_ARG(
             @name 'radius' 
             @default 0
             @type 'int/float' 
-            @description "The maximum distance (in high dimensional space) that a returned point can be. Any points beyond radius will not be returned (even if they're within the nearest numneighbours points). When radius is 0 (default), it is no longer a constraint and the distance of a nearest neighbour is not taken into account." 
+            @description "The maximum distance (in high dimensional space) that a returned point can be. Any points beyond radius will not be returned (even if they're within the nearest numneighbors points). When radius is 0 (default), it is no longer a constraint and the distance of a nearest neighbor is not taken into account." 
         ) 
     ) 
     @output BP_REF_OUTPUT(
@@ -573,12 +573,12 @@ BP_REF_NEW(
             @name 'numneighbors' 
             @default 3
             @type 'int' 
-            @description 'Number of neighbours to consider.' 
+            @description 'Number of neighbors to consider.' 
         ) BP_REF_ARG(
             @name 'weight' 
             @default 1
             @type 'int' 
-            @description 'Weight neighbours by distance when predicting new points.' 
+            @description 'Weight neighbors by distance when predicting new points.' 
             @options BP_REF_SWITCH_OPTIONS
         ) BP_REF_ARG(
             @name 'mode' 
