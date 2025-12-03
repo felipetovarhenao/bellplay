@@ -1317,9 +1317,6 @@ BP_REF_NEW(
             @description 'Field to be used for the label key, as a symbol. If `null`, the default `"label"` is used.' 
         ) 
     ) 
-    @output BP_REF_OUTPUT(
-        @description 'Dataset or labelset items' @type 'llll' 
-    ) 
     @tags 'labelset' 'dataset' 'dbtable' 'querydbtable' 'writedb' 'readdb' 
     @usage BP_REF_CODE_SNIPPET("$data = null;
 $labels = null;
