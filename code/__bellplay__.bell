@@ -1977,7 +1977,9 @@ BP_REF_NEW(
         BP_REF_ARG(@name "size" @default 10 @type "int", @description "Number of unique random numbers.")
         BP_REF_ARG(@name "id" @default 0 @type "int/float/symbol", @description "Identifier for unique random number generator.")
         BP_REF_ARG(@name "offset" @default 1 @type "int/float" @description "Value by which to offset generated numbers.")
-        BP_REF_ARG(@name "useseed" @default 0 @type "list/llll", @description "Use random seed for URN associated with `@id`.")
+        BP_REF_ARG(@name "useseed" @default 0 @type "list/llll" @description "Use random seed for URN associated with `@id`." @options 
+            BP_REF_SWITCH_OPTIONS
+        )
     )
     @usage BP_REF_CODE_SNIPPET(
         "initurn(@size 3 @id 'myurn'); ## initialize URN",
