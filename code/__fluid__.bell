@@ -33,14 +33,14 @@ BP_FN_FLUID_UPDATE_SET = (
 );
 ## ------------------------------------------------------------
 BP_FN_FLUID_NEWOBJ = (
-    $alias, $name = null, $arguments = null, $attributes = null -> (
+    $alias, $name = null, $arguments = null, $attributes = null, $useseed = 0 -> (
         $name = $name ||| getkey(
             samps2buf([0]), 'source' 
         );
         $ref = BP_FN_SANDBOX_NEWOBJ(
             @name 'fluid.' + $alias + '~' 
             @arguments $name $arguments
-            @attributes $attributes
+            @attributes $attributes (if $useseed == 1 then ['seed' BP_GLOBAL_SEED]) 
         );
         for $i in 0 1 do BP_FN_SANDBOX_CONNECT(
             @from $ref
@@ -93,11 +93,12 @@ BP_FN_FLUID_FROMBUFFER = (
 );
 ## ------------------------------------------------------------
 BP_FN_FLUID_NEWOBJ_FITTED = (
-    $dataset, $alias, $arguments = null, $attributes = null -> (
+    $dataset, $alias, $arguments = null, $attributes = null, $useseed = 0 -> (
         $object = BP_FN_FLUID_NEWOBJ(
             @alias $alias
             @arguments $arguments
             @attributes $attributes
+            @useseed $useseed
         );
         $ref = getkey($object, 'ref');
         $dsname = getkey($dataset, 'name');
@@ -392,11 +393,12 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 umap = (
-    $dataset = null, $iterations = 200, $learnrate = 0.1, $mindist = 0.1, $numdimensions = 2, $numneighbors = 15 -> (
+    $dataset = null, $iterations = 200, $learnrate = 0.1, $mindist = 0.1, $numdimensions = 2, $numneighbors = 15, $useseed = 0 -> (
         $self = 'umap';
         if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then BP_FN_FLUID_NEWOBJ_FITTED(
             @alias 'umap' 
             @dataset $dataset
+            @useseed $useseed
             @attributes (
                 [ 'iterations' $iterations] [ 'learnrate' $learnrate] [ 'mindist' $mindist] ['numdimensions' max(1, $numdimensions)] [ 'numneighbours' max(1, $numneighbors)] 
             ) 
@@ -604,12 +606,14 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 mlp = (
-    $activation = 2, $batchsize = 50, $hiddenlayers = 3 3, $learnrate = 0.01, $maxiter = 1000, $momentum = 0.9, $outputactivation = 0, $tapin = 0, $tapout = -1, $validation = 0.2 , $mode = 0 -> (
+    $activation = 2, $batchsize = 50, $hiddenlayers = 3 3, $learnrate = 0.01, $maxiter = 1000, $momentum = 0.9, $outputactivation = 0, $tapin = 0, $tapout = -1, $validation = 0.2 , $mode = 0, $useseed = 0 -> (
         $self = 'mlp';
         $mlpalias = if $mode == 0 then 'mlpregressor' else 'mlpclassifier';
         BP_FN_CHECK_ARGS($self, 'mode', $mode);
         $object = BP_FN_FLUID_NEWOBJ(
-            @alias $mlpalias @attributes (
+            @alias $mlpalias
+            @useseed $useseed
+            @attributes (
                 [ 'activation' $activation] 
                 ## ---
                 [ 'batchsize' $batchsize] 
@@ -834,7 +838,7 @@ writeobject = (
                 $dict @out 'm' 
             );
             $isvalid = 0;
-            for $prop in 'cols' 'layers' 'target' as $isvalid == 0 do $isvalid = BP_MAXOBJ_DICT(
+            for $prop in 'cols' 'layers' 'mlp' 'tree' as $isvalid == 0 do $isvalid = BP_MAXOBJ_DICT(
                 'contains' $prop @out 'm' @fetch 3
             );
             if $isvalid == 0 then BP_FN_ERROR($self, '@object is currently empty and should be populated before writing.') else (
