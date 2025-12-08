@@ -1,0 +1,60 @@
+#(
+# Audio Source Separation
+
+This tutorial demonstrates how to perform rudimentary source separation 
+in **bellplay~** using Non-Negative Matrix Factorization (NMF).
+
+NMF is a technique that can decompose a mixed audio signal into its component sources 
+by learning the spectral characteristics (or "fingerprints") of each source. 
+
+In this tutorial, we:
+1. Import two built-in audio files (`trumpet.wav` and `drums.wav`)
+2. Analyze their spectral content to create "basis" representations
+3. Mix the buffers together
+4. Use NMF to separate the mixed signal back into individual components
+5. Visualize the results: the separated components, learned bases, and activation patterns
+
+)#
+setseed(1);
+## import our source audio files
+$files = 'trumpet.wav' 'drums.wav';
+## load each file as a buffer
+$bufs = for $f in $files collect importaudio($f);
+## create spectral basis representations for each source
+$bases = for $b $i in $bufs collect (
+    ## normalize each buffer to -18 dB RMS for consistent levels
+    $b = process($b, normalize(@level -18 @rms 1));
+    ## update buffer with spectral analysis
+    $b = analyze($b, spectrum());
+    ## extract the computed spectrum
+    $spectrum = getkey($b, 'spectrum');
+    ## convert the spectrum data into a buffer format for NMF
+    $basis = samps2buf([$spectrum]);
+    $basis
+);
+## create a mixed version of both sources
+$mixed = process(
+    ## take the first buffer (trumpet) and mix in the second (drums)
+    @buffer $bufs:1 @operations mix($bufs:2) 
+);
+## perform Non-Negative Matrix Factorization on the mixed signal
+## using the spectral bases we computed earlier as initialization
+$nmf = buf2nmf(
+    @buffer $mixed
+    @bases $bases
+    @iterations 100
+);
+## extract the three key results from NMF:
+## components: the separated audio sources
+$components = getkey($nmf, 'components');
+## bases: the learned spectral patterns for each source
+$bases = getkey($nmf, 'bases');
+## activations: when and how strongly each source is present over time
+$activations = getkey($nmf, 'activations');
+## visualize all three types of results
+for $buffers in [$components] [$bases] [$activations], $label in 'component' 'basis' 'activation' with @unwrap 1 do (
+    ## iterate through each buffer and display it with an appropriate label
+    for $buffer $i in $buffers do view(
+        $buffer @label $label + ' ' + tosymbol($i) 
+    ) 
+)

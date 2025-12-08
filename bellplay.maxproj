@@ -2,7 +2,7 @@
     "name": "bellplay",
     "version": 1,
     "creationdate": 3792408071,
-    "modificationdate": 3848058666,
+    "modificationdate": 3848060433,
     "viewrect": [ 25.0, 102.0, 300.0, 500.0 ],
     "autoorganize": 0,
     "hideprojectwindow": 1,
@@ -738,6 +738,10 @@
                 "local": 1
             },
             "bp.example.neuralsynth.bell": {
+                "kind": "textfile",
+                "local": 1
+            },
+            "bp.tutorial.sourceseparation.bell": {
                 "kind": "textfile",
                 "local": 1
             }

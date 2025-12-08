@@ -74,6 +74,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - New button styling, with matching SVG icons, via `bp.ui.button`.
   - Preferences include allowing control over console automatically opening.
 - New tutorials/examples:
+  - `bp.tutorial.sourceseparation.bell`
   - `bp.example.neuralsynth.bell`
   - `bp.example.syntharpeggio.bell`
   - `bp.example.shepardtone.bell`

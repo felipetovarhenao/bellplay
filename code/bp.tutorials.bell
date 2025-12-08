@@ -105,12 +105,16 @@ $addscript(
     @file 'importingmidi' 
 );
 $addscript(
+    @name 'Score Formatting and Appearance' 
+    @file 'scoreconfig' 
+);
+$addscript(
     @name 'Feature-based Sampling' 
     @file 'kdtree' 
 );
 $addscript(
-    @name 'Score Formatting and Appearance' 
-    @file 'scoreconfig' 
+    @name 'Audio Source Separation' 
+    @file 'sourceseparation' 
 );
 ## ———————————————————————— EXAMPLES ————————————————————————
 $addscript(
