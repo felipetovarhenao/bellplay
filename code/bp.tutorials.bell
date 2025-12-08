@@ -178,4 +178,9 @@ $addscript(
     @file 'keymaps' 
     @example 1
 );
+$addscript(
+    @name 'Neural Synthesis' 
+    @file 'neuralsynth' 
+    @example 1
+);
 BP_DOCS_TUTORIALS

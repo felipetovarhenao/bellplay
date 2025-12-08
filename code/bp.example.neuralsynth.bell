@@ -1,0 +1,134 @@
+#(
+
+# Neural Synthesizer
+
+This tutorial demonstrates how to use a multi-layer perceptron (MLP) neural network
+to learn the relationship between audio features and FM synthesis parameters.
+
+The workflow:
+1. Generate a training dataset by creating FM synthesis tones with random parameters
+2. Extract audio features (loudness, zero crossing rate, spectral peak, strong peak) from each tone
+3. Train an MLP to predict synthesis parameters from audio features
+4. Apply the trained model to segments of a target audio file
+5. Resynthesize each segment using the predicted FM parameters
+
+The result is a neural network-driven granular resynthesis that approximates the target audio
+using learned FM synthesis parameters.
+
+)#
+## set random seed for reproducibility
+setseed(100);
+## initialize training data arrays
+$xdata = null;
+$ydata = null;
+## function to extract audio features from a buffer
+$getfeatures = (
+    $buf -> (
+        $features = larm() zerocrossingrate() maxmagfreq() strongpeak();
+        $buf = analyze($buf, $features);
+        $point = for $ft in $features collect (
+            $key = getkey($ft, 'output');
+            getkey($buf, $key) 
+        );
+        $point
+    ) 
+);
+## function to create FM synthesis tone with specified parameters
+$synth = (
+    $frequency, $harmonicity, $modindex, $gain, $duration = 50 -> (
+        simplefm(
+            @frequency $frequency
+            @duration $duration
+            @harmonicity $harmonicity
+            @modindex $modindex
+        ).process(
+            gain($gain) window() 
+        ) 
+    ) 
+);
+## generate training dataset: 350 FM tones with random parameters
+for $i in 1...350 do (
+    $fq = mc2f(xrand(36, 84) * 100);
+    $gain = if xrand() > 0.25 then xrand(0.1, 1) ** 2 else 0;
+    $harmonicity = exp2(xrand(-5, 5));
+    $modindex = exp2(xrand(-2, 2));
+    ## synthesize tone with random parameters
+    $b = $synth(
+        @frequency $fq
+        @harmonicity $harmonicity
+        @modindex $modindex
+        @gain $gain
+    );
+    ## extract features as input data
+    $xpoint = [$getfeatures($b)];
+    ## store synthesis parameters as target output data
+    $ypoint = [$fq $harmonicity $modindex $gain];
+    $xdata _= $xpoint;
+    $ydata _= $ypoint
+);
+## create datasets from collected data
+$xdataset = dataset($xdata);
+$ydataset = dataset($ydata);
+## create scalers: standardization for features, min-max normalization for parameters
+$xscaler = stdscaler($xdataset);
+$yscaler = normscaler($ydataset);
+## apply scaling transformations
+$xdataset = transform($xscaler, $xdataset);
+$ydataset = transform($yscaler, $ydataset);
+## create multi-layer perceptron with 3 hidden layers of 12 neurons each
+$mlp = mlp(
+    @batchsize 64
+    @hiddenlayers 12 12 12
+    @learnrate 0.1
+    @momentum 0.8
+    @useseed 1
+);
+## train network for 10 epochs, printing loss after each
+for $i in 1...10 do fit($mlp, $xdataset, $ydataset).print('Loss:');
+## load target audio for resynthesis
+$input = importaudio('poem.wav').process(normalize(@level -24 @rms 1));
+## segment parameters: 100ms segments with 4x overlap
+$overlap = 4;
+$split = 100;
+$segs = splitbuf(
+    $input @split $split @overlap $overlap
+);
+## process each segment: predict parameters and resynthesize
+$t = 0;
+for $seg in $segs do (
+    ## extract features from segment
+    $xpoint = $getfeatures($seg);
+    ## normalize features using training scaler
+    $xpoint = transform($xscaler, $xpoint);
+    ## predict synthesis parameters using trained network
+    $ypred = predict($mlp, $xpoint);
+    ## denormalize predicted parameters to original scale
+    $params = transform($yscaler, $ypred @inverse 1);
+    $fq = $params:1;
+    $harmonicity = $params:2;
+    $modindex = $params:3;
+    $gain = $params:4;
+    ## synthesize segment using predicted parameters
+    $b = $synth(
+        @frequency $fq
+        @harmonicity $harmonicity
+        @modindex $modindex
+        @duration $split
+        @gain $gain
+    );
+    ## transcribe to timeline with random panning around center
+    transcribe(
+        @buffer $b
+        @onset $t
+        @gain 0.5
+        @pan xrand() * 0.25 + 0.5 
+    );
+    ## advance time by overlap amount
+    $t += $split / $overlap
+);
+## also transcribe original input for comparison
+$input.transcribe(@pan 0.6);
+## render final output
+render(
+    @play 1 @process normalize(-6) 
+)
