@@ -7769,8 +7769,8 @@ $keymap = [6900 'viola.wav'];
 for $pitch in $chord do (
     ezsampler(
         @pitch $pitch 
-        @keymap $keymap
         @duration 6500
+        @keymap $keymap
     ).transcribe()
 );
 render(@play 1)"

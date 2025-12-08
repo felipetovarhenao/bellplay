@@ -515,7 +515,21 @@ kdtree = (
 );
 BP_REF_NEW(
     @name 'kdtree' 
-    @description 'Given a dataset, generates a [K-dimensional Tree](https://learn.flucoma.org/reference/kdtree/) object for efficient neighborhood searches of multi-dimensional data. KDTrees are most useful for repeated querying of a dataset, because there is a cost associated with building them.  Whilst KDTrees can offer very good performance relative to naïve search algorithms, they suffer from something called “the curse of dimensionality” (like many algorithms for multi-dimensional data). In practice, this means that as the number of dimensions of your data goes up, the relative performance gains of a KDTree go down.' 
+    @description "Given a dataset, generates a [K-dimensional Tree](https://learn.flucoma.org/reference/kdtree/) object for efficient neighborhood searches of multi-dimensional data. KDTrees are most useful for repeated querying of a dataset, because there is a cost associated with building them.  Whilst KDTrees can offer very good performance relative to naïve search algorithms, they suffer from something called “the curse of dimensionality” (like many algorithms for multi-dimensional data). In practice, this means that as the number of dimensions of your data goes up, the relative performance gains of a KDTree go down.
+    
+During prediction, via the `predict` function, it returns the following _llll_:
+
+```bell
+[
+    [ 'neighbors' <indices> ] 
+    [ 'distances' <distances> ] 
+]
+```
+
+Where:
+    - `'neighbors'` is a list of integers representing the index position of the nearest neighbors in the `@dataset`.
+    - `'distances'` is a list of floats representing the distances between the target point and its nearest neighbors.
+" 
     @category BP_REF_LABEL_ML
     @arguments (
         BP_REF_ARG(
@@ -1104,6 +1118,15 @@ BP_REF_NEW(
             @default 'null' 
             @description 'Output dataset or labelset to train model on. Only required when `@object` is generated via the `mlp` and `knn` functions.' 
         ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'The kind of returned value will vary based on what `@object` is:
+   
+    - MLP: returns the training loss/error, as a float.
+    - KMeans: returns the cluster centroids.
+
+Otherwise, it returns `null`.
+' @type 'llll/float/null' 
     ) 
     @usage BP_REF_NEURAL_EXAMPLE(
         @alias 'mlp' 
