@@ -2,88 +2,83 @@
 
 # Audio Mosaicing
 
-An example of basic [audio mosaicking](https://www.francoispachet.fr/musaicing/) in **bellplay\~**, where a target audio file is reconstructed using segments drawn from a small audio corpus.
+An example of basic [audio mosaicking](https://www.francoispachet.fr/musaicing/) in **bellplay~**, where a target audio file is reconstructed using segments drawn from a small audio corpus.
 
-The script below demonstrates how to use onset-based segmentation and multi-dimensional audio features (MFCCs and loudness) to match fragments of a target to acoustically similar units in a pre-analyzed corpus. 
+The script below demonstrates how to use onset-based segmentation and multi-dimensional audio features (zero crossing rate and spectral peak) to match fragments of a target to acoustically similar units in a pre-analyzed corpus. 
 The target is not reconstructed literally, but instead approximated by audio segments from the corpus.
 
 A key aspect of the process is the use of a feature tree, built from the corpus, which allows fast approximate nearest-neighbor retrieval based on the extracted descriptors. 
-Each target segment is mapped to its closest match in the corpus and reinserted into the timeline at the corresponding onset, optionally applying a gain envelope and stereo panning.
+Each target segment is mapped to its closest match in the corpus and reinserted into the timeline at the corresponding onset, optionally applying stereo panning.
 
 The approach is general and can be adapted to different sources, targets, and features. 
 
 )#
-## Define features to extract using MFCC and loudness
-$features = mfcc() larm();
-## Collect feature keys for later retrieval
-$featurekeys = for $f in $features collect $f.getkey('output'):-1;
-## Define input files for analysis
-$files = 'badinerie.wav' 'trumpet.wav' 'singing.wav';
-## Onset detection parameters
-$thresh = 0.01;
-$alpha = 0.05;
-$delay = 5;
-## Create onset descriptor with specified parameters
-$onsetdescriptor = onsets(
-    @alpha $alpha
-    @delay $delay
-    @silencethreshold $thresh
+## load target audio to reconstruct
+$targetbuf = importaudio('drums.wav');
+## define corpus files to use as building blocks
+$corpusfiles = 'singing.wav' 'poem.wav' 'badinerie.wav';
+$corpusdata = null;
+## setup onset detection to find segment boundaries
+$onsetanalysis = onsets(@silencethreshold 0.01);
+## function to extract audio features (zero crossing rate, spectral peak, and long-term loudness)
+$getfeature = (
+    $buffer -> (
+        $features = zerocrossingrate() maxmagfreq() larm();
+        $buffer = analyze($buffer, $features);
+        for $ft in $features collect (
+            $key = getkey($ft, 'output'):-1;
+            getkey($buffer, $key) 
+        ) 
+    ) 
 );
-## Function to extract feature values from a buffer
-$buf2features = (
-    $buf -^ $featurekeys -> [for $k in $featurekeys collect $buf.getkey($k) ] 
-);
-## List to store features
-$data = null;
-## List to store corresponding audio segments
-$corpus = null;
-## Analyze each file and build corpus
-for $file in $files do (
-    $buf = importaudio($file);
-    $buf = $buf.analyze($onsetdescriptor);
-    $markers = $buf.getkey('onsets');
-    $segments = $buf.splitbuf(
-        ## split points
-        @split $markers
-        ## mode 2: segments based on pre-computed onsets/markers
+## process corpus files: rms-based normalization, segment at onsets, extract features
+$corpusbufs = for $f in $corpusfiles collect (
+    $buf = importaudio($f);
+    $buf = process($buf, normalize(@level -14 @rms 1));
+    $buf = analyze($buf, $onsetanalysis);
+    $split = getkey($buf, 'onsets');
+    ## split buffer into segments, based on detected onsets
+    $segs = splitbuf(
+        @buffer $buf
+        @split $split
         @mode 2
     );
-    for $seg in $segments do (
-        ## Extract features for each segment
-        $seg = $seg.analyze($features);
-        ## Append feature vector
-        $data _= $buf2features($seg);
-        ## Append corresponding audio segment
-        $corpus _= $seg
+    for $seg in $segs collect (
+        $point = $getfeature($seg);
+        $corpusdata _= [$point];
+        ## collect feature vector for current segment
+        $seg
     ) 
 );
-## Create feature tree (e.g., KD-tree) for nearest neighbor search
-$dataset = dataset($data);
-$tree = kdtree($dataset);
-## Load and analyze target audio for matching
-$target = importaudio('drums.wav');
-$target = $target.analyze($onsetdescriptor);
-$markers = $target.getkey('onsets');
-## Compute durations between markers
-$markerdurs = x2dx($markers $target.getkey('duration'));
-## Match each segment in the target to corpus using features
-for $marker in $markers, $dur in $markerdurs do (
-    $segment = $target.setkey('duration', $dur).setkey('offset', $marker);
-    $segment = $segment.analyze($features);
-    $point = $buf2features($segment);
-    $result = predict($tree, $point);
-    $id = getkey($result, 'neighbors');
-    $match = $corpus:$id;
-    ## Transcribe matched segment to aligned position in mix
-    $match.transcribe(
-        @onset $marker
-        @pan 0
-        @gain [0 1 0] [1 0 -0.25] 
-    ) 
+## create dataset from corpus feature vectors
+$corpusset = dataset($corpusdata);
+## create standardization scaler fitted to corpus (z-score normalization)
+## this ensures features are on comparable scales for distance calculations
+$scaler = stdscaler($corpusset);
+## transform corpus dataset using fitted scaler
+$corpusset = transform($scaler, $corpusset);
+## build kdtree for efficient nearest-neighbor search
+$kdtree = kdtree($corpusset);
+## segment target audio at onsets
+$targetbuf = analyze($targetbuf, $onsetanalysis);
+$split = getkey($targetbuf, 'onsets');
+$targetsegs = splitbuf($targetbuf, $split, 2);
+## for each target segment, find best matching corpus segment
+for $seg in $targetsegs do (
+    $point = $getfeature($seg);
+    ## transform using same scaler to match corpus space
+    $point = transform($scaler, $point);
+    ## find nearest neighbor in kdtree
+    $pred = predict($kdtree, $point);
+    $matchid = getkey($pred, 'neighbors');
+    $matchbuf = $corpusbufs:$matchid;
+    ## place matched segment at target's time position
+    $onset = getkey($seg, 'offset');
+    transcribe($matchbuf, $onset @pan 0.7) 
 );
-## Optionally layer original target audio on the right stereo channel
-$target.transcribe(@pan 1);
-## Render and normalize final audio output
+## also transcribe original target for aural comparison
+transcribe($targetbuf @pan 0.3);
+## render final output
 render(
-    @play 1 @process normalize(-3) 
+    @play 1 @process normalize(-6) 
 )
