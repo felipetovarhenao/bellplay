@@ -15,6 +15,7 @@ In this tutorial, we:
 5. Visualize the results: the separated components, learned bases, and activation patterns
 
 )#
+## set seed for reproducibility
 setseed(1);
 ## import our source audio files
 $files = 'trumpet.wav' 'drums.wav';
@@ -43,6 +44,7 @@ $nmf = buf2nmf(
     @buffer $mixed
     @bases $bases
     @iterations 100
+    @useseed 1
 );
 ## extract the three key results from NMF:
 ## components: the separated audio sources
