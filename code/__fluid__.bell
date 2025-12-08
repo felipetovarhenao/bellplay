@@ -716,13 +716,13 @@ BP_REF_NEW(
                 ) BP_REF_OPT(
                     @value 1 @description 'Classification—meant to be fitted with a `labelset` as an output, via the `fit` function.' 
                 ) 
-            ) BP_REF_ARG(
-                @name 'useseed' 
-                @default 0
-                @type 'int' 
-                @description 'Use random seed for parameter initialization.' 
-                @options BP_REF_SWITCH_OPTIONS
             ) 
+        ) BP_REF_ARG(
+            @name 'useseed' 
+            @default 0
+            @type 'int' 
+            @description 'Use random seed for parameter initialization.' 
+            @options BP_REF_SWITCH_OPTIONS
         ) 
     ) 
     @output BP_REF_OUTPUT(

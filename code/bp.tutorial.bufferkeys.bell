@@ -31,7 +31,7 @@ In **bellplay~** this is done through primarily through 3 functions:
 
 - `getkey`: returns the value of a given key (access):
 
-```bell
+```bell showLineNumbers
 $buffer = cycle();
 $value = getkey($buffer, 'duration');
 print($value, 'Buffer duration:')
@@ -39,7 +39,7 @@ print($value, 'Buffer duration:')
 
 - `setkey`: overrides the value of a given key (modification).
 
-```bell
+```bell showLineNumbers
 $buffer = importaudio('drums.wav');
 $buffer = setkey($buffer, 'duration', 250);
 $value = getkey($buffer, 'duration');
@@ -48,9 +48,9 @@ print($value, 'Buffer duration:')
 
 - `mapkey`: overrides the value of a given key, based on the current value, via [lambda functions](https://en.wikipedia.org/wiki/Anonymous_function) (modification).
 
-```bell
+```bell showLineNumbers
 $buffer = tri(@duration 1000);
-$divbytwo = ($x -> $x / 2);
+$divbytwo = ($x -> $x / 2); ## divide-by-two function
 $buffer = mapkey($buffer, 'duration', $divbytwo);
 $value = getkey($buffer, 'duration');
 print($value, 'Buffer duration:')
