@@ -63,7 +63,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Rename `createdbtable` to `dbtable`.
 - Improve docs and fix `dataset`/`labelset` snippets.
 - Use `object` instead `obj`: `writeobj` -> `writeobject`. `fit(@obj ...)` -> `fit(@object ...)`, etc.
-- Add `@useseed` argument for `umap`, and `mlp`, pending support for `kmeans`.
+- Add `@useseed` argument for `umap`, and `mlp`, pending support for `kmeans`. Also add in NMF-based functions.
 
 ### Added
 

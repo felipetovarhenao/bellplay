@@ -1406,7 +1406,7 @@ BP_FN_FLUID_FORMAT_ACTIVATIONS = (
     ) 
 );
 buf2nmf = (
-    $buffer = null, $bases = null, $activations = null, $numcomponents = 2, $iterations = 100, $basesmode = 0, $actmode = 0, $resynth = 1, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1 -> (
+    $buffer = null, $bases = null, $activations = null, $numcomponents = 2, $iterations = 100, $basesmode = 0, $actmode = 0, $resynth = 1, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1, $useseed = 0 -> (
         $self = 'buf2nmf';
         $basesmode = if $bases != null then $basesmode + 1 else 0;
         $actmode = if $activations != null then $actmode + 1 else 0;
@@ -1437,6 +1437,8 @@ buf2nmf = (
                         @numchannels getkey($buffer, 'numchannels') 
                     ) 
                 ] 
+                ## ---
+                ['seed' if $useseed == 1 then BP_GLOBAL_SEED else -1] 
                 ## ---
                 ['actmode' $actmode] 
                 ## ---
@@ -1574,6 +1576,12 @@ The whole process can be related to a channel vocoder where, instead of fixed ba
             @type 'int' 
             @default -1
             @description 'Max. FFT size. `@maxfftsize -1` is equivalent to whatever the initial FFT size is.' 
+        ) BP_REF_ARG(
+            @name 'useseed' 
+            @default 0
+            @type 'int' 
+            @description 'Use random seed for parameter initialization.' 
+            @options BP_REF_SWITCH_OPTIONS
         ) 
     ) 
     @output BP_REF_OUTPUT(
@@ -1595,7 +1603,7 @@ The whole process can be related to a channel vocoder where, instead of fixed ba
 );
 ## ------------------------------------------------------------
 buf2nmfseed = (
-    $buffer = null, $coverage = 0.5, $mincomponents = 1, $maxcomponents = 100, $method = 0, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1 -> (
+    $buffer = null, $coverage = 0.5, $mincomponents = 1, $maxcomponents = 100, $method = 0, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1, $useseed = 0 -> (
         $self = 'buf2nmfseed';
         BP_FN_CHECK_ARGS($self, 'buffer', $buffer);
         $source = BP_FN_DETACH_BUFFER(
@@ -1605,6 +1613,7 @@ buf2nmfseed = (
             @strict 0
         );
         $msgs = (
+            ['seed' if $useseed == 1 then BP_GLOBAL_SEED else -1] 
             ## ---
             ['coverage' $coverage] 
             ## ---
@@ -1706,6 +1715,12 @@ Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here
             @type 'int' 
             @default -1
             @description 'Max. FFT size. `@maxfftsize -1` is equivalent to whatever the initial FFT size is.' 
+        ) BP_REF_ARG(
+            @name 'useseed' 
+            @default 0
+            @type 'int' 
+            @description 'Use random seed for parameter initialization.' 
+            @options BP_REF_SWITCH_OPTIONS
         ) 
     ) 
     @output BP_REF_OUTPUT(
@@ -1722,11 +1737,13 @@ Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here
 );
 ## ------------------------------------------------------------
 nmfcross = (
-    $target = null, $continuity = 7, $iterations = 50, $timesparsity = 7, $polyphony = 11, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1 -> (
+    $target = null, $continuity = 7, $iterations = 50, $timesparsity = 7, $polyphony = 11, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1, $useseed = 0 -> (
         $self = 'nmfcross';
         [
             ['fx' 'nmfcross'] [
                 'params' 
+                ## ---
+                ['seed' if $useseed == 1 then BP_GLOBAL_SEED else -1] 
                 ## ---
                 ['continuity' $continuity] 
                 ## ---
@@ -1804,6 +1821,12 @@ See Driedger, J., Prätzlich, T., & Müller, M. (2015). _Let it Bee-Towards NMF-
             @type 'int' 
             @default -1
             @description 'Max. FFT size. `@maxfftsize -1` is equivalent to whatever the initial FFT size is.' 
+        ) BP_REF_ARG(
+            @name 'useseed' 
+            @default 0
+            @type 'int' 
+            @description 'Use random seed for parameter initialization.' 
+            @options BP_REF_SWITCH_OPTIONS
         ) 
     ) 
     @output BP_REF_OUTPUT(
