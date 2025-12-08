@@ -2,15 +2,15 @@
 
 # Transcription
     
-When transcribing buffers, we get to specify essential information about how each buffer fits within the final output.
-For instance, specifying the time onset position (i.e., start time), gain, panning, and even resampling-based detuning amount in cents.
+When transcribing buffers, we get to specify essential information about how each buffer fits within the final output or timeline.
+For instance, specifying the time _onset_ position (i.e., start time), gain, panning, and even resampling-based detuning amount in cents.
 
 The code below shows how a single buffer is transcribed multiple times, each time with different settings, to generate a simple melodic gesture.
 
 )#
 ## generate a triangle wave oscillator as a buffer
 $buff = tri();
-## number of notes (buffers)
+## number of notes (i.e., buffers)
 $numnotes = 25;
 $N = $numnotes - 1;
 ## total output duration

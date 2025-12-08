@@ -7759,8 +7759,7 @@ BP_REF_NEW(
             BP_REF_OPT(@value 1 @description "On")
         )
         BP_REF_ARG(@name "useseed" @default 0 @type "int" @description "Use seed-based random selection function." @options
-            BP_REF_OPT(@value 0 @description "Off")
-            BP_REF_OPT(@value 1 @description "On")
+            BP_REF_SWITCH_OPTIONS
         )
         BP_REF_USE_CACHE_ARG
     )

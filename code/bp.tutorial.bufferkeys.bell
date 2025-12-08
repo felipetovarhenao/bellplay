@@ -2,7 +2,7 @@
 
 # Buffer Keys
 
-As mentioned in earlier tutorials, buffers in **bellplay~** are simply nested lists of [key-value pairs](https://en.wikipedia.org/wiki/Name–value_pair). 
+Buffers in **bellplay~** are simply structured lists of [key-value pairs](https://en.wikipedia.org/wiki/Name–value_pair). 
 Here's what a typically buffer looks like:
 
 ```bell title="my buffer"
@@ -22,23 +22,46 @@ Here's what a typically buffer looks like:
 ```
 
 These keys contain relevant information about the underlying audio data. 
-For instance, the buffer's channel count, sampling rate, duration, source (i.e., where to find the audio data), and more.
+For instance, the buffer's channel count, sampling rate, duration, source (i.e., a hash **bellplay~** uses to find the audio data), and more.
 This may also include more interesting information, such as estimated pitch, pitch salience, zero crossing rate, etc., which will be discussed in later tutorials.
 
 Relevant to this tutorial is our ability to access and/or modify this buffer properties or keys. 
 
 In **bellplay~** this is done through primarily through 3 functions:
 
-- `getkey`: returns the value of a given key (access).
+- `getkey`: returns the value of a given key (access):
+
+```bell
+$buffer = cycle();
+$value = getkey($buffer, 'duration');
+print($value, 'Buffer duration:')
+```
+
 - `setkey`: overrides the value of a given key (modification).
+
+```bell
+$buffer = importaudio('drums.wav');
+$buffer = setkey($buffer, 'duration', 250);
+$value = getkey($buffer, 'duration');
+print($value, 'Buffer duration:')
+```
+
 - `mapkey`: overrides the value of a given key, based on the current value, via [lambda functions](https://en.wikipedia.org/wiki/Anonymous_function) (modification).
+
+```bell
+$buffer = tri(@duration 1000);
+$divbytwo = ($x -> $x / 2);
+$buffer = mapkey($buffer, 'duration', $divbytwo);
+$value = getkey($buffer, 'duration');
+print($value, 'Buffer duration:')
+```
 
 Crucially, modifications to buffer keys via `setkey` and `mapkey` do not actually modify the underlaying audio data - at least not directly.
 Instead, the information contained in each of these key-value pairs is used by functions like `transcribe`, `process`, or `analyze` use to determine how to treat the buffer.
 
-For instance, in the case of the `transcribe` function, the `'pitch'` key simply defines how the buffer is notated in staff notation, but has no impact in the audio data.
+For instance, in the case of the `transcribe` function, the `'pitch'` key simply defines how the buffer is notated in staff notation, but has no impact on the audio data.
 
-Other keys, however, like `duration` or `offset`, tell functions like `transcribe`, `process` or `analyze` how much of the audio data should be used.
+Other keys, however, like `'duration'` or `'offset'`, tell functions like `transcribe`, `process` or `analyze` how much of the audio data should be used.
 In other words, they are ["lazy"](https://en.wikipedia.org/wiki/Lazy_evaluation) modifications, because it delays real modifications until it's actually needed.
 In `transcribe`, this is specifically the case with the `'duration'` and `'offset'` keys.
 As such, these setter-based modifications are not destructive or irreversible, and only take effect once the buffer goes through transcription, processing, or analysis.
@@ -53,14 +76,13 @@ $path = 'badinerie.wav';
 ## import audio file as buffer
 $buff = importaudio($path);
 ## we can print buffer variables and see what they look like
-print('This is what a typical buffer looks like 👇');
-print($buff);
+print($buff, 'This is what a typical buffer looks like:');
 ## get and print buffer duration
 $buffdur = $buff.getkey('duration');
-print('buffer duration:' $buffdur);
+print($buffdur, 'buffer duration:');
 ## get and print buffer channel count
 $buffchans = $buff.getkey('numchannels');
-print('buffer channel count:' $buffchans);
+print($buffchans, 'buffer channel count:');
 ## change buffer duration and transcribe
 $buff = $buff.setkey('duration', 1000);
 $buff.transcribe();

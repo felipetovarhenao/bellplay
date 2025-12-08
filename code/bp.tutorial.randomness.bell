@@ -2,12 +2,15 @@
 
 # Randomness
 
-Randomness is frequently used in algorithmic music to introduce variation and unpredictability. However, in many compositional workflows, **reproducibility** is just as important. In **bellplay\~**, there are two types of random functions:
+Randomness is frequently used in algorithmic music to introduce variation and unpredictability. However, in many compositional workflows, **reproducibility** is just as important. In **bellplay~**, there are two types of random functions:
 
 * **Unseeded**: always produce different results.
-  Examples: `rand`, `choose`, `urn`.
+
+  Examples: `rand`, `randn`, `random`, `scramble`, `choose`, `urn`.
+
 * **Seeded** (prefixed with `x`): produce the same result each time when a non-zero seed is set.
-  Examples: `xrand`, `xchoose`, `xrandom`, `xscramble`, `urn` (when seeded via `setseed`).
+
+  Examples: `xrand`, `xrandn`, `xchoose`, `xrandom`, `xscramble`, `urn` (when seeded via `setseed`).
 
 The seeded variants allow you to control randomness and make your scripts deterministic and repeatable.
 
@@ -26,7 +29,7 @@ In contrast, `xrand` is a seeded version:
 
 ```bell 
 ## set the random seed
-setseed(@seed 42);
+setseed(42);
 ## will return the same value every time the script is run
 print(xrand(0, 1))
 ```
@@ -49,7 +52,7 @@ print(choose(@choices $files))
 With `xchoose`, the result becomes reproducible if a seed is set:
 
 ```bell
-setseed(@seed 99);
+setseed(99);
 $files = 'flute.wav' 'viola.wav' 'guitar.wav';
 print(xchoose(@choices $files))
 ```
