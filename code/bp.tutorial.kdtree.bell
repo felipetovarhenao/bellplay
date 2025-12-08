@@ -45,7 +45,7 @@ $segments = for $seg in $segments collect (
 $dataset = dataset($data);
 ## create standard scaler based on dataset
 $scaler = stdscaler($dataset);
-## sclae features for better search accuracy
+## scale features for better search accuracy
 $dataset = transform($scaler, $dataset);
 $tree = kdtree($dataset, 3); ## 3-nearest-neighbors search tree
 ## import MIDI file
