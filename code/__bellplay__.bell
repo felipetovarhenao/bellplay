@@ -2073,6 +2073,10 @@ BP_REF_NEW(
         BP_REF_ARG(@name "a" @type "int/float" @description "Linear amplitude.")
     )
     @output BP_REF_OUTPUT(@description "Decibels" @type "int/float")
+    @usage BP_REF_CODE_SNIPPET("$db = -20;
+$amp = dbtoa($db);
+$db = atodb($amp);
+print($db) ## -20.")
 );
 
 ## ------------------------------------------------------------
@@ -2087,6 +2091,10 @@ BP_REF_NEW(
         BP_REF_ARG(@name "db" @type "int/float", @description "Decibels.")
     )
     @output BP_REF_OUTPUT(@description "Linear amplitude.", @type "int/float")
+    @usage BP_REF_CODE_SNIPPET("$db = -20;
+$amp = dbtoa($db);
+$db = atodb($amp);
+print($db) ## -20.")
 );
 
 ## ------------------------------------------------------------
@@ -7842,6 +7850,10 @@ BP_REF_NEW(
         BP_REF_ARG(@name "function" @default "null" @type "function" @description "Optional lambda sorting function.")
     )
     @output BP_REF_OUTPUT(@description "Sorted indices" @type "llll")
+    @usage BP_REF_CODE_SNIPPET("$nums = 44 11 33 22;
+$order = argsort($nums);
+print($order); ## 2 4 3 1
+print($nums:[$order]) ## 11 22 33 44")
 );
 
 ## ------------------------------------------------------------
