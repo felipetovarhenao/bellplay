@@ -146,6 +146,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- DOCS: 
+  - Fix `tosymbol` dependency in docs function by moving definition to top of file.
 - Fix docs for native `bessel` function.
 - `samplebpf`: Fix docs for `@x` (previously `@pts`) arg.
 - `nearest`: Fixed missing logic for `@mode 1` (_address_ mode).

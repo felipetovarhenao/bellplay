@@ -480,6 +480,30 @@ BP_FN_DETACH_BUFFER = (
 
 ## ------------------------------------------------------------
 
+tosymbol = (
+    $x -> (
+        if is($x) == 'symbol' then $x else (
+            BP_FN_DISPATCH('sym', $x);
+            BP_SYMBOL
+        ) 
+    ) 
+);
+
+BP_REF_NEW(
+    @name "tosymbol"
+    @description "Casts input value as a symbol."
+    @category BP_REF_LABEL_DATA_UTILS
+    @arguments (
+        BP_REF_ARG(@name "x" @type "anything" @description "Value to cast")
+    )
+    @output BP_REF_OUTPUT(@description "Symbol" @type "symbol")
+    @usage BP_REF_CODE_SNIPPET("$nums = 1 2 3;
+$digits = tosymbol($nums); ## '1 2 3'
+print(is($digits)) ## symbol")
+);
+
+## ------------------------------------------------------------
+
 detach = (
     $buffer = null, $keepkeys = null -> (
         BP_FN_DETACH_BUFFER(
@@ -802,30 +826,6 @@ BP_FN_NEWBUFF = (
         );
         $buffer
     )
-);
-
-## ------------------------------------------------------------
-
-tosymbol = (
-    $x -> (
-        if is($x) == 'symbol' then $x else (
-            BP_FN_DISPATCH('sym', $x);
-            BP_SYMBOL
-        ) 
-    ) 
-);
-
-BP_REF_NEW(
-    @name "tosymbol"
-    @description "Casts input value as a symbol."
-    @category BP_REF_LABEL_DATA_UTILS
-    @arguments (
-        BP_REF_ARG(@name "x" @type "anything" @description "Value to cast")
-    )
-    @output BP_REF_OUTPUT(@description "Symbol" @type "symbol")
-    @usage BP_REF_CODE_SNIPPET("$nums = 1 2 3;
-$digits = tosymbol($nums); ## '1 2 3'
-print(is($digits)) ## symbol")
 );
 
 ## ------------------------------------------------------------
