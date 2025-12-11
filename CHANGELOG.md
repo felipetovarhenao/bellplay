@@ -67,6 +67,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- DOCS:
+  - Add `@usage` snippets to more functions.
 - GUI:
   - New **Table Browser** window triggered by calling `browsedbtable`. Replaces _Corpus lab_.
   - Audio settings now transfered to settings window (not main).

@@ -530,6 +530,11 @@ BP_REF_NEW(
     )
     @output BP_REF_OUTPUT(@description "Parsed path" @type "llll")
     @tags 'getkey'
+    @usage BP_REF_CODE_SNIPPET("$parsed = parsepath('./');
+$name = getkey($parsed, 'name');
+$parent = getkey($parsed, 'parent');
+print($name, 'Path name:');
+print($parent, 'Path parent:')")
 );
 
 ## ------------------------------------------------------------
@@ -549,6 +554,11 @@ BP_REF_NEW(
         )
     )
     @output BP_REF_OUTPUT(@description "Path to current script" @type "llll")
+    @usage BP_REF_CODE_SNIPPET("$parsed = thispath(@parse 1);
+$filename = getkey($parsed, 'name');
+$parent = getkey($parsed, 'parent');
+print($filename, 'File name:');
+print($parent, 'Parent directory:')")
 );
 
 ## ------------------------------------------------------------
@@ -568,6 +578,11 @@ BP_REF_NEW(
         BP_REF_ARG(@name "path" @type "symbol" @description "File or folder path.")
     )
     @output BP_REF_OUTPUT(@description "`1` if true, `0` if false." @type "int")
+    @usage BP_REF_CODE_SNIPPET("$path = '~/Documents/';
+$result = exists($path);
+print(
+    if $result then 'Yes' else 'No', 'Does ' + $path + ' exist?'
+)")
 );
 
 ## ------------------------------------------------------------
@@ -752,6 +767,9 @@ BP_REF_NEW(
         )
     )
     @output BP_REF_OUTPUT(@description "List of media files" @type "list")
+    @usage BP_REF_CODE_SNIPPET("$all = getmediafiles();
+$audiofiles = getmediafiles('audio');
+$midifiles = getmediafiles('midi')")
 );
 
 ## ------------------------------------------------------------
@@ -805,6 +823,9 @@ BP_REF_NEW(
         BP_REF_ARG(@name "x" @type "anything" @description "Value to cast")
     )
     @output BP_REF_OUTPUT(@description "Symbol" @type "symbol")
+    @usage BP_REF_CODE_SNIPPET("$nums = 1 2 3;
+$digits = tosymbol($nums); ## '1 2 3'
+print(is($digits)) ## symbol")
 );
 
 ## ------------------------------------------------------------
@@ -819,6 +840,11 @@ BP_REF_NEW(
         BP_REF_ARG(@name "x"  @type "anything" @description "Value to check")
     )
     @output BP_REF_OUTPUT(@description "`0` if false, `1` if true." @type "int")
+    @usage BP_REF_CODE_SNIPPET("$nan = log(-1);
+print($nan);
+print(
+    if isnan($nan) then 'yes' else 'no', 'is not a number?'
+)")
 );
 
 ## ------------------------------------------------------------
@@ -1017,6 +1043,11 @@ BP_REF_NEW(
         BP_REF_ARG(@name "mod" @default 12 @type "int/float/list" @description "Modulo.")
     )
     @output BP_REF_OUTPUT(@description "Signed difference" @type "int/float/list")
+    @usage BP_REF_CODE_SNIPPET("$c = 0;
+$g = 7;
+$f = 5;
+pcdiff($c, $g); ## -5
+pcdiff($c, $f) ## +5")
 );
 
 ## ------------------------------------------------------------
