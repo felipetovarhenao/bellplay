@@ -1361,6 +1361,10 @@ BP_REF_NEW(
         BP_REF_ARG(@name "i" @type "list" @description "Normalized sampling index.")
     )
     @output BP_REF_OUTPUT(@description "Interpolated sample", @type "int/float/list")
+    @usage BP_REF_CODE_SNIPPET("$list = 1 2;
+$x = arithmser(0, 1, null, 5);
+$y = samplelist($list, $x);
+print($y) ## 1. 1.25 1.5 1.75 2.")
     @tags 'samplebpf'
 );
 
@@ -2546,6 +2550,11 @@ BP_REF_NEW(
         )
     )
     @output BP_REF_OUTPUT(@description "File content" @type "anything")
+    @usage BP_REF_CODE_SNIPPET("$x = [[1 2] [3 4]];
+$path = './file.txt';
+write($x, $path);
+$y = read($path);
+print($x == $y)")
 );
 
 ## ------------------------------------------------------------
@@ -2613,6 +2622,11 @@ BP_REF_NEW(
             BP_REF_SWITCH_OPTIONS
         )
     )
+    @usage BP_REF_CODE_SNIPPET("$x = [[1 2] [3 4]];
+$path = './file.txt';
+write($x, $path);
+$y = read($path);
+print($x == $y)")
 );
 
 ## ------------------------------------------------------------
