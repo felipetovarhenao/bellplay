@@ -284,6 +284,13 @@ BP_REF_ANALYZE_EXAMPLE = (
     ) 
 );
 
+BP_REF_RANDOM_EXAMPLE = (
+    $name, $params = null, $useseed = 0 -> BP_REF_CODE_SNIPPET(
+        (if $seed == 0 then '' else 'setseed(13);
+') + 'for $i in 1...10 collect print(' + $name + '(' + ($params ||| '') + '))' 
+    ) 
+);
+
 BP_REF_DATABASE_SNIPPET = BP_REF_CODE_SNIPPET(
     "## import MIDI events to use as data
 $events = importmidi('bach.mid');
@@ -1723,6 +1730,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "stdev" @default 1 @type "int/float/null" @description "Standard deviation.")
     )
     @output BP_REF_OUTPUT(@description "Normally distributed, random floating point number", @type "int/float")
+    @usage BP_REF_RANDOM_EXAMPLE('randn', '0, 1')
     @tags 'xrandn' 'random' 'rand' 
 );
 
@@ -1739,6 +1747,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "stdev" @default 1 @type "int/float/null" @description "Standard deviation.")
     )
     @output BP_REF_OUTPUT(@description "Normally distributed, random floating point number", @type "int/float")
+    @usage BP_REF_RANDOM_EXAMPLE('xrandn', '0, 1', 1)
     @tags 'randn' 'xrandom' 'xrand' 
 );
 
@@ -1766,6 +1775,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "b" @default 'null' @type "int/float/null" @description "Max. value.")
     )
     @output BP_REF_OUTPUT(@description "Random floating point number", @type "int/float")
+    @usage BP_REF_RANDOM_EXAMPLE('rand', '0, 1')
     @tags 'random' 'xrand'
 );
 
@@ -1871,6 +1881,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "weights" @default "null" @type "list/null" @description "Optional probability weights for each element.")
     )
     @output BP_REF_OUTPUT(@description "Chosen elements" @type "anything")
+    @usage BP_REF_RANDOM_EXAMPLE('choose', '"foo" 1 1/2')
     @tags 'xchoose'
 );
 
@@ -1895,6 +1906,7 @@ BP_REF_NEW(
     @arguments (
         BP_REF_ARG(@name "seed" @type "int" @description "Random seed")
     )
+    @usage BP_REF_RANDOM_EXAMPLE('xrandom', '1, 10' @useseed 1)
     @tags 'xchoose' 'xrandom' 'xrand' 'urn' 'initurn' 'xscramble'
 );
 
@@ -1922,6 +1934,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "b" @default "null" @type "int/float/null" @description "Max. value.")
     )
     @output BP_REF_OUTPUT(@description "Random number" @type "float")
+    @usage BP_REF_RANDOM_EXAMPLE('xrand', '0, 1' @useseed 1)
     @tags 'setseed' 'xchoose' 'xrandom' 'urn' 'initurn' 'xscramble'
 );
 
@@ -1943,6 +1956,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "b" @default "null" @type "int/null" @description "Max. value.")
     )
     @output BP_REF_OUTPUT(@description "Random number", @type "integer")
+    @usage BP_REF_RANDOM_EXAMPLE('xrandom', '1, 10' @useseed 1)
     @tags 'setseed' 'xchoose' 'urn' 'initurn' 'xscramble'
 );
 
@@ -1962,6 +1976,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "weights" @default "null" @type "list/null" @description "Optional probability weights for each element.")
     )
     @output BP_REF_OUTPUT(@description "Chosen elements" @type "anything")
+    @usage BP_REF_RANDOM_EXAMPLE('xchoose', '"foo" 1 1/2', 1)
     @tags 'setseed' 'xrandom' 'urn' 'initurn' 'xscramble'
 );
 
@@ -1985,6 +2000,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "llll" @type "list/llll" @description "List to scramble.")
     )
     @output BP_REF_OUTPUT(@description "Scrambled list" @type "list/llll")
+    @usage BP_REF_RANDOM_EXAMPLE('xscramble', '1...5', 1)
     @tags 'setseed' 'xchoose' 'xrandom' 'urn' 'initurn'
 );
 
@@ -2860,6 +2876,10 @@ BP_REF_NEW(
         BP_REF_ARG(@name "bpf" @type "llll" @description "Breakpoint function")
         BP_REF_ARG(@name "x" @type "int/float/list" @description "Sampling point/s")
     )
+    @usage BP_REF_CODE_SNIPPET("$bpf = [0 1 0] [1 0 -0.25];
+$x = arithmser(0, 1, null, 5); ## sampling points
+$y = samplebpf($bpf, $x);
+print($y)")
     @output BP_REF_OUTPUT(@description "Interpolated bpf values" @type "int/float/list")
 );
 
