@@ -1,7 +1,7 @@
 # Learn
 
 :::tip Requirements
-These materials assume basic familiarity with programming concepts such as variables, function calls, and loops. If you're new to the `bell` language, work through the [bell tutorials](https://felipetovarhenao.github.io/bell-tutorials/) first before proceeding with **bellplay~**-specific materials.
+Basic familiarity with programming concepts in _bell_, such as variables, function calls, and loops, is assumed. If you're new to the _bell_ language or programming in general, work through the [bell tutorials](https://felipetovarhenao.github.io/bell-tutorials/) first before proceeding.
 :::
 
 The following **bellplay~** tutorials and examples are designed to be _plug-and-play_ learning and demonstration materials. To get the most out of them, you should:
