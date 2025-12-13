@@ -9,7 +9,7 @@ OUT_DIR = os.path.abspath(os.path.join(THIS_DIR, 'tests'))
 Cleaner(OUT_DIR, exception_filter=lambda p: p.name == '.placeholder').delete()
 count = 0
 ignored = ['interrupt', 'rhythm', 'chordsdetection',
-           'wavesetrepeat', 'wavesetshuffle', 'knn']
+           'wavesetrepeat', 'wavesetshuffle',]
 for directory in [REF_DIR, LEARN_DIR]:
     for root, _, files in os.walk(directory):
         for file in sorted(files):
