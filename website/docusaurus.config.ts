@@ -87,7 +87,7 @@ const config: Config = {
         src: "img/bellplay-logo.png",
       },
       items: [
-        { to: "/docs/learn/tutorials/basicworkflow", label: "Learn", position: "left" },
+        { to: "/docs/learn/", label: "Learn", position: "left" },
         { to: "/docs/reference/buffer-generation/cycle", label: "Reference", position: "left" },
         { to: "/docs/faq", label: "FAQ", position: "left" },
         { to: "/docs/about/support", label: "Support", position: "left" },
@@ -119,7 +119,7 @@ const config: Config = {
             },
             {
               label: "Learn",
-              to: "/docs/learn/tutorials/basicworkflow",
+              to: "/docs/learn/",
             },
             {
               label: "Tags",

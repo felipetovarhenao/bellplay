@@ -751,11 +751,11 @@ BP_REF_NEW(
 );
 ## ------------------------------------------------------------
 kmeans = (
-    $numclusters = 4, $centroids = null, $encodingthreshold = 0.25, $maxiter = 100, $mode = 0 -> (
+    $numclusters = 4, $centroids = null, $encodingthreshold = 0.25, $maxiter = 100, $mode = 0, $useseed = 0 -> (
         $alias = if $mode == 1 then 'skmeans' else 'kmeans';
         $object = BP_FN_FLUID_NEWOBJ(
             @alias $alias @attributes (
-                ['maxiter' $maxiter] ['numclusters' $numclusters] (if $alias == 'skmeans' then ['encodingthreshold' $encodingthreshold]) 
+                ['maxiter' $maxiter] ['numclusters' $numclusters] (if $alias == 'skmeans' then ['encodingthreshold' $encodingthreshold]) ['seed' if $useseed == 1 then BP_GLOBAL_SEED else -1] 
             ) 
         );
         if depth($centroids) == 2 && length($centroids) == $numclusters then (
@@ -804,6 +804,12 @@ BP_REF_NEW(
                     @value 1 @description 'Spherical, clustering by cosine similarity after normalizing all vectors to unit length.' 
                 ) 
             ) 
+        ) BP_REF_ARG(
+            @name 'useseed' 
+            @default 0
+            @type 'int' 
+            @description 'Use random seed for parameter initialization.' 
+            @options BP_REF_SWITCH_OPTIONS
         ) 
     ) 
     @output BP_REF_OUTPUT(

@@ -63,12 +63,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Rename `createdbtable` to `dbtable`.
 - Improve docs and fix `dataset`/`labelset` snippets.
 - Use `object` instead `obj`: `writeobj` -> `writeobject`. `fit(@obj ...)` -> `fit(@object ...)`, etc.
-- Add `@useseed` argument for `umap`, and `mlp`, pending support for `kmeans`. Also add in NMF-based functions.
+- Add `@useseed` argument for `kmeans`, `umap`, and `mlp`. Also add in NMF-based functions.
 
 ### Added
 
 - DOCS:
   - Add `@usage` snippets to more functions.
+  - Add preliminary info on learn section.
 - GUI:
   - New **Table Browser** window triggered by calling `browsedbtable`. Replaces _Corpus lab_.
   - Audio settings now transfered to settings window (not main).
@@ -146,7 +147,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- DOCS: 
+- DOCS:
   - Fix `tosymbol` dependency in docs function by moving definition to top of file.
 - Fix docs for native `bessel` function.
 - `samplebpf`: Fix docs for `@x` (previously `@pts`) arg.
