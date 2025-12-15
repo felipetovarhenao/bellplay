@@ -1,13 +1,17 @@
+from pathlib import Path
+import subprocess
 import os
 import re
 import shutil
-from meta import BASE_DIR, METADATA_PATHS
+from meta import BASE_DIR, METADATA_PATHS, BELLPLAY
 from utils.utils import get_lines
 
 
 # Input and output directories relative to script location
 SOURCE_DIR = os.path.abspath(os.path.join(BASE_DIR, "../../code/"))
 DEST_DIR = os.path.abspath(os.path.join(BASE_DIR, "../docs/learn/"))
+TMP_DIR = os.path.abspath(os.path.join(BASE_DIR, 'tmp'))
+AUDIO_DIR = os.path.abspath(os.path.join(BASE_DIR, '../static/audio/'))
 
 
 LEARNING_FILES = get_lines(METADATA_PATHS["learning_files"])
@@ -38,6 +42,53 @@ def extract_title(comment_block, fallback_name):
             return line.lstrip("#").strip()
     return fallback_name
 
+
+def wav_to_mp3(wav_path: str | Path, mp3_path: str | Path, quality: int = 2) -> None:
+    wav_path = str(wav_path)
+    mp3_path = str(mp3_path)
+    cmd = [
+        "ffmpeg",
+        "-y",                    # overwrite output
+        "-hide_banner",
+        "-loglevel", "error",
+        "-i", wav_path,
+        "-vn",
+        "-map_metadata", "-1",
+        "-acodec", "libmp3lame",
+        "-q:a", str(quality),
+        "-ar", "44100",
+        "-ac", "2",
+        mp3_path,
+    ]
+
+    subprocess.run(cmd, check=True)
+
+
+def gen_audio_output(content: str, name: str) -> bool:
+    if not re.findall(r'\brender\(', content, flags=re.DOTALL):
+        return False
+
+    tmp_script = os.path.join(TMP_DIR, name + ".bell")
+    tmp_file = os.path.join(TMP_DIR, name + '.wav')
+    content += f"""
+;
+export("{tmp_file}")"""
+    with open(tmp_script, 'w') as f:
+        f.write(content)
+    BELLPLAY.read(tmp_script)
+    while True:
+        if os.path.exists(tmp_file):
+            break
+    mp3_file = os.path.abspath(os.path.join(
+        BASE_DIR, '../static/audio/', name + ".mp3"))
+    wav_to_mp3(tmp_file, mp3_file)
+    return True
+
+
+for dir_path in [TMP_DIR, AUDIO_DIR]:
+    if os.path.exists(TMP_DIR):
+        shutil.rmtree(dir_path)
+    os.mkdir(dir_path)
 
 for fname in LEARNING_FILES:
     # Extract title
@@ -98,6 +149,10 @@ for fname in LEARNING_FILES:
     yaml_header = ['---', *yaml_header, '---', ""]
     # Write to file
     out_file = os.path.join(DEST_DIR, kind, base_name + ".md")
+    has_audio = gen_audio_output(content=content, name=base_name)
+    if has_audio:
+        md_lines.append(
+            f'## Audio output\n\n<audio controls src="/audio/{base_name}.mp3"></audio>')
     with open(out_file, "w", encoding="utf-8") as f:
         md = "\n".join(yaml_header + md_lines)
         f.write(md)

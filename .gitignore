@@ -23,6 +23,8 @@ website/build
 # Generated files
 website/.docusaurus
 website/.cache-loader
+website/static/audio/
+website/gen/tmp/
 
 # Misc
 website/.DS_Store

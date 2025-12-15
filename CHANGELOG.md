@@ -70,6 +70,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - DOCS:
   - Add `@usage` snippets to more functions.
   - Add preliminary info on learn section.
+  - Each tutorial/example now includes generated audio output.
 - GUI:
   - New **Table Browser** window triggered by calling `browsedbtable`. Replaces _Corpus lab_.
   - Audio settings now transfered to settings window (not main).
