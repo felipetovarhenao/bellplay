@@ -10,7 +10,7 @@ from utils.utils import get_lines
 # Input and output directories relative to script location
 SOURCE_DIR = os.path.abspath(os.path.join(BASE_DIR, "../../code/"))
 DEST_DIR = os.path.abspath(os.path.join(BASE_DIR, "../docs/learn/"))
-TMP_DIR = os.path.abspath(os.path.join(BASE_DIR, 'tmp'))
+TMP_DIR = os.path.abspath(os.path.join(BASE_DIR, '.tmp'))
 AUDIO_DIR = os.path.abspath(os.path.join(BASE_DIR, '../static/audio/'))
 
 
