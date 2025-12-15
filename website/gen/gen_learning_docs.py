@@ -157,3 +157,5 @@ for fname in LEARNING_FILES:
         md = "\n".join(yaml_header + md_lines)
         f.write(md)
     FILE_COUNT_MAP[kind] += 1
+
+shutil.rmtree(TMP_DIR)
