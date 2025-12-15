@@ -2,8 +2,29 @@
 
 # Transcription
     
-When transcribing buffers, we get to specify essential information about how each buffer fits within the final output or timeline.
+For the buffers we create to show up on the timeline, we need to _transcribe_ them via the `transcribe` function. 
+This tells **bellplay~** that we want the current version of the buffer to be assembled together with other transcribed buffers once we call the `render` function. 
+At this stage, we get to specify essential information about how each buffer fits within the final output or timeline.
 For instance, specifying the time _onset_ position (i.e., start time), gain, panning, and even resampling-based detuning amount in cents.
+
+```bell showLineNumbers
+## generate buffers
+$sound1 = importaudio('guitar.wav');
+$sound2 = importaudio('flute.wav');
+## transcribe buffers
+transcribe($sound1, 1000); ## start 1000 ms later
+transcribe($sound2, 2000); ## start 2000 ms later
+transcribe($sound2);
+render()
+```
+
+:::tip
+The order in which buffers are transcribed in the script does **not** determine the order (i.e., _onset_ position) in which they appear on the timeline.
+This is solely determined by the `@onset` argument in the `transcribe` function.
+:::
+
+Crucially, transcribing the buffer means taking a snapshot of the **current version** of the buffer and, therefore, further modifications done to the buffer will **not** affect the transcribed version. 
+Think of this in the same way you think about sending an email—once an email is been sent, it cannot be unsent not modify its content. 
 
 The code below shows how a single buffer is transcribed multiple times, each time with different settings, to generate a simple melodic gesture.
 
@@ -41,6 +62,5 @@ render()
 
 :::danger
 Calling `render` before transcribing any buffers will raise an error.
-
 :::
 )#
