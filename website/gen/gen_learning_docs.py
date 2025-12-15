@@ -13,7 +13,6 @@ DEST_DIR = os.path.abspath(os.path.join(BASE_DIR, "../docs/learn/"))
 TMP_DIR = os.path.abspath(os.path.join(BASE_DIR, '.tmp'))
 AUDIO_DIR = os.path.abspath(os.path.join(BASE_DIR, '../static/audio/'))
 
-
 LEARNING_FILES = get_lines(METADATA_PATHS["learning_files"])
 FOLDER_NAMES = sorted(list(set(re.match(r"^\w+(?=\.)", file)
                                [0] + "s" for file in LEARNING_FILES)), reverse=True)
@@ -65,23 +64,27 @@ def wav_to_mp3(wav_path: str | Path, mp3_path: str | Path, quality: int = 2) -> 
 
 
 def gen_audio_output(content: str, name: str) -> bool:
+    # check for render calls
     if not re.findall(r'\brender\(', content, flags=re.DOTALL):
         return False
 
-    tmp_script = os.path.join(TMP_DIR, name + ".bell")
-    tmp_file = os.path.join(TMP_DIR, name + '.wav')
-    content += f"""
-;
-export("{tmp_file}")"""
-    with open(tmp_script, 'w') as f:
+    tmp_bell_file = os.path.join(TMP_DIR, name + ".bell")
+    tmp_wav_file = os.path.join(TMP_DIR, name + '.wav')
+    content += f'\n;\nexport("{tmp_wav_file}")'
+    # write edited script
+    with open(tmp_bell_file, 'w') as f:
         f.write(content)
-    BELLPLAY.read(tmp_script)
+    # run script
+    BELLPLAY.read(tmp_bell_file)
+    # wait for wav file to be written
     while True:
-        if os.path.exists(tmp_file):
+        if os.path.exists(tmp_wav_file):
             break
+    # format path for .mp3
     mp3_file = os.path.abspath(os.path.join(
         BASE_DIR, '../static/audio/', name + ".mp3"))
-    wav_to_mp3(tmp_file, mp3_file)
+    # write mp3 to assets folder
+    wav_to_mp3(tmp_wav_file, mp3_file)
     return True
 
 
