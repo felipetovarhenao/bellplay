@@ -755,7 +755,15 @@ kmeans = (
         $alias = if $mode == 1 then 'skmeans' else 'kmeans';
         $object = BP_FN_FLUID_NEWOBJ(
             @alias $alias @attributes (
-                ['maxiter' $maxiter] ['numclusters' $numclusters] (if $alias == 'skmeans' then ['encodingthreshold' $encodingthreshold]) ['seed' if $useseed == 1 then BP_GLOBAL_SEED else -1] 
+                ['maxiter' $maxiter] 
+                ## ---
+                ['numclusters' $numclusters] 
+                ## ---
+                (if $alias == 'skmeans' then ['encodingthreshold' $encodingthreshold]) 
+                ## ---
+                ['seed' if $useseed == 1 then BP_GLOBAL_SEED else -1] 
+                ## ---
+                ['warnings' 0] 
             ) 
         );
         if depth($centroids) == 2 && length($centroids) == $numclusters then (
