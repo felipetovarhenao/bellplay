@@ -54,3 +54,7 @@
     background-color: #5e232a;
   }
 }
+
+audio {
+  width: 100%;
+}
