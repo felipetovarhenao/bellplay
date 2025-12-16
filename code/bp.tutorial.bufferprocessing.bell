@@ -12,7 +12,7 @@ $path = 'drums.wav';
 ## $path = "/path/to/my/file.wav";
 ## use file path to import audio file as a buffer
 $buff = importaudio($path);
-## apply processing to buffer. Notice that we need re-assign the variable — operations in bell are not destructive/do not happen in-place.
+## apply processing to buffer. Notice that we need re-assign the variable—operations in bell are not destructive/do not happen in-place.
 $buff = $buff.process(
     ## reverse buffer
     reverse() 

@@ -3,7 +3,7 @@
 # Automation
 
 In many cases, we will want to have some kind of DAW-style automation of certain parameters when generating or processing audio in our scripts. 
-One way of doing this is through breakpoint functions — numeric lists that describe a certain shape or trajectory. 
+One way of doing this is through breakpoint functions—numeric lists that describe a certain shape or trajectory. 
 This tutorial shows the different syntaxes available in **bellplay~** for specifying breakpoint functions.
 
 )#
@@ -47,6 +47,6 @@ saw(
     @frequency $fq @duration $dur
 ).transcribe(@onset $dur * 3 @gain .125);
 ## last marker matching start of sawtooth wave oscillator
-addmarker($dur * 3, 'sawtooth — has curved envelope');
+addmarker($dur * 3, 'sawtooth—has curved envelope');
 ## render everything
 render(@play 1)

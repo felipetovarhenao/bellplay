@@ -15,7 +15,7 @@ scoreconfig(
     @voicenames 'sine' 'triangle' 'sawtooth' 
     ## set clefs for each voice
     @clefs 'G' 'Alto' 'F' 
-    ## pitch tone division — in this case, quarter tone (only visual, does not affect audio)
+    ## pitch tone division—in this case, quarter tone (only visual, does not affect audio)
     @tonedivision 4
     ## show durations as horizontal lines
     @showdurations 1

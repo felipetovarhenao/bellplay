@@ -14,7 +14,7 @@ $path = 'singing.wav';
 $buffer = importaudio($path);
 ## grain duration
 $dur = 100;
-## modify buffer duration — REMEMBER: this is a lazy modification. It only takes effect until the buffer is transcribed and/or processed.
+## modify buffer duration—REMEMBER: this is a lazy modification. It only takes effect until the buffer is transcribed and/or processed.
 $buffer = $buffer.setkey('duration', $dur);
 ## initialize offset variable
 $offset = 0;

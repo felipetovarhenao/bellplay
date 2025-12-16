@@ -56,7 +56,7 @@ $value = getkey($buffer, 'duration');
 print($value, 'Buffer duration:')
 ```
 
-Crucially, modifications to buffer keys via `setkey` and `mapkey` do not actually modify the underlaying audio data - at least not directly.
+Crucially, modifications to buffer keys via `setkey` and `mapkey` do not actually modify the underlaying audio data—at least not directly.
 Instead, the information contained in each of these key-value pairs is used by functions like `transcribe`, `process`, or `analyze` use to determine how to treat the buffer.
 
 For instance, in the case of the `transcribe` function, the `'pitch'` key simply defines how the buffer is notated in staff notation, but has no impact on the audio data.
@@ -87,9 +87,9 @@ print($buffchans, 'buffer channel count:');
 $buff = $buff.setkey('duration', 1000);
 $buff.transcribe();
 ## define a lambda function that takes an input value, and adds 1000 to it.
-$myfunc = ($x -> $x + 1000);
+$delayoffset = ($x -> $x + 1000);
 ## change buffer offset (i.e., where to start reading the buffer from) via a lambda function and transcribe
-$buff = $buff.mapkey('offset', $myfunc);
+$buff = $buff.mapkey('offset', $delayoffset);
 $buff.transcribe(@onset 1500);
 ## change buffer pitch in midicents and transcribe
 ## ---- NOTE -----

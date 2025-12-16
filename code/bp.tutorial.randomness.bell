@@ -8,7 +8,7 @@ Randomness is frequently used in algorithmic music to introduce variation and un
 
     * **Examples**: `rand`, `randn`, `random`, `scramble`, `choose`, `urn`.
 
-* **Seeded** (prefixed with `x`): produce the same result each time when a non-zero seed is set.
+* **Seeded**: produce the same result each time when a non-zero seed is set. The name of most seeded functions are prefixed with an `x`.
 
     * **Examples**: `xrand`, `xrandn`, `xchoose`, `xrandom`, `xscramble`, `urn` (when seeded via `setseed`).
 
@@ -25,7 +25,7 @@ The `rand` function produces a random float and is **not** seedable.
 print(rand(0, 1))
 ```
 
-In contrast, `xrand` is a seeded version:
+In contrast, `xrand` is a seeded version. The result will be the same every time you run the code:
 
 ```bell 
 ## set the random seed
@@ -59,7 +59,7 @@ print(xchoose(@choices $files))
 
 ---
 
-## `xscramble`: Seeded Shuffling
+## `xscramble`: seeded shuffling
 
 The `xscramble` function randomly reorders a list, but deterministically with a seed.
 
@@ -71,7 +71,7 @@ print(xscramble(@llll $items))
 
 ---
 
-## `urn`: Controlled Non-Repetition
+## `urn` (unique random number)
 
 The `urn` function generates unique numbers without repetition. It can be seeded using `setseed`, enabling deterministic but non-repeating behavior.
 
@@ -126,15 +126,8 @@ while $t < $totdur do (
     $incr = xrand(25, 300);
     $t += $incr
 );
-## render and apply subtle reverb
-render(
-    @play 1 @process freeverb(
-        @roomsize 0.7
-        @damp 0.8
-        @width 0.25
-        @wet 0.1
-    ) 
-) 
+## trigger rendering
+render( @play 1) 
 #(
 
 ## Summary
@@ -146,8 +139,8 @@ render(
 | `choose`    | ❌                 | any     | random choice               |
 | `xchoose`   | ✅                 | any     | repeatable random choice    |
 | `xscramble` | ✅                 | list    | deterministic shuffling     |
-| `urn`       | ✅ (via `setseed`) | int     | deterministic non-repeating |
+| `urn`       | ✅ (_optional_)    | int     | deterministic non-repeating |
 
-Using `setseed` lets you design stochastic processes that behave consistently, which is particularly useful in collaborative work, score rendering, or iterative design.
+Using `setseed` lets you design stochastic processes that behave consistently, which can be useful in certain contexts.
 
 )#

@@ -11,7 +11,7 @@ As such, analyze outputs the analyze buffer with new keys, each associated with 
 This tutorial shows a simple use-case of audio analysis in bell:
 
 1. First, we analyze a buffer to extract onset positions (i.e., transient times).
-2. We use that information to compute the inter-onset durations — i.e., difference between consecutive onsets.
+2. We use that information to compute the inter-onset durations—i.e., difference between consecutive onsets.
 3. Then we iterate through the onsets and durations to segment the original buffer, and analyze the loudness and spectral centroid of each segment.
 4. With this information, we generate sinusoidal oscillators that temporally coincide with transients in the initial buffer.
 

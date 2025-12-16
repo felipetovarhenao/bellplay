@@ -3,7 +3,7 @@
 # Inspecting Buffers
 
 An essential part of writing code is being able to debug unwanted or unexpected behaviors.
-This is particularly necessary when dealing with audio data — i.e., buffers.
+This is particularly necessary when dealing with audio data—i.e., buffers.
 In **bellplay~**, we can use the `view` function to check the contents of any buffer we create.
 This function opens a pop-up window displaying useful information about the inspected buffers, once the code finished evaluation.
 

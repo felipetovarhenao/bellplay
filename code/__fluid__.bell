@@ -111,7 +111,7 @@ BP_FN_FLUID_NEWOBJ_FITTED = (
 ## ------------------------------------------------------------
 BP_REF_FLUID_ACTIVATION_OPTIONS = (
     BP_REF_OPT(
-        @value 0 @description 'Identity (-∞ to ∞ — i.e., no activation).' 
+        @value 0 @description 'Identity (-∞ to ∞—i.e., no activation).' 
     ) BP_REF_OPT(
         @value 1 @description 'Sigmoid (0 to 1).' 
     ) BP_REF_OPT(
