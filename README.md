@@ -38,6 +38,7 @@ To build the web documentation, run:
 
 ```bash
 cd website
+npm install ## only needed once
 python3 gen/main.py
 npm run start
 ```
