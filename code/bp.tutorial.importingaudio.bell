@@ -1,6 +1,6 @@
 #( 
 
-# Importing Audio
+# Importing audio
 
 In **bellplay~** we can also generate buffers by importing our own audio files into our scripts.
 For this, we use the `importaudio` function, which takes a file path as a symbol and returns a buffer.

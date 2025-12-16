@@ -1,6 +1,6 @@
 #( 
 
-# Buffer Processing
+# Buffer processing
 
 One of the core features of **bellplay~** is the ability to dynamically and flexibly apply chains of DSP algorithms to our buffers. 
 This tutorial shows a very basic example of this by applying reverse delay to an audio file.

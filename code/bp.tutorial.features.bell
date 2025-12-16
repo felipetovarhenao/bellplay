@@ -1,6 +1,6 @@
 #( 
 
-# More Audio Features
+# More audio features
 
 This tutorial provides an additional example for using buffer analysis features for audio processing. 
 Particularly, it shows how to perform targeted transposition on an audio buffer, such that it fits a specific pitch class collection.

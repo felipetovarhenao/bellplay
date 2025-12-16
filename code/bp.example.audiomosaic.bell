@@ -1,6 +1,6 @@
 #(
 
-# Audio Mosaicing
+# Audio mosaicing
 
 An example of basic [audio mosaicking](https://www.francoispachet.fr/musaicing/) in **bellplay~**, where a target audio file is reconstructed using segments drawn from a small audio corpus.
 

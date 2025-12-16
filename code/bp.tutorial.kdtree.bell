@@ -1,6 +1,6 @@
 #( 
 
-# Feature-driven Sampling
+# Feature-driven sampling
 
 This tutorial shows how to build [k-dimensional trees](https://en.wikipedia.org/wiki/K-d_tree) to efficiently perform feature-based search on buffers.
 In this case, we use it to find the best buffer match for each pitch and velocity value in a MIDI file. 

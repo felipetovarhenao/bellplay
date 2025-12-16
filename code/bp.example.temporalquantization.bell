@@ -1,6 +1,6 @@
 #(    
 
-# Temporal Quantization
+# Temporal quantization
     
 A basic example of temporal quantization, where transient-based segments are temporally shifted to align with a rhythmic grid.
 

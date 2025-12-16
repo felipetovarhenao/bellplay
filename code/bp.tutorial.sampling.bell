@@ -1,6 +1,6 @@
 #( 
 
-# Basic Sampling
+# Basic sampling
 
 In **bellplay~**, the `ezsampler` function provides a minimal but flexible interface for mapping symbolic pitch and velocity information to audio buffers. 
 It expects a data structure called a **keymap**, which describes how input events should be translated into audio samples.

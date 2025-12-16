@@ -1,6 +1,6 @@
 #( 
 
-# Variable Declarations
+# Variable declarations
 
 When writing code, it's good practice to use descriptive variable names. For instance, using the variable name `noise` to represent a noise signal, or `saw` for a sawtooth wave.
 Most programming languages prevent the use of reserved keywords (e.g., `for`, `while`, `null`) as variable names. The _bell_ language does this as well—using a reserved word like `print` as a variable name will raise a parser error.

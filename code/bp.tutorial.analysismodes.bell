@@ -1,6 +1,6 @@
 #( 
 
-# Audio Descriptor Modes
+# Audio descriptor modes
 
 When analyzing buffers, we can specify the output format for many of the available audio descriptors.
 In particular, there are 4 modes, which can be specified via the `@mode` argument:

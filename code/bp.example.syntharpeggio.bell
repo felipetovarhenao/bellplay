@@ -1,6 +1,6 @@
 #( 
 
-# Synth Arpeggio
+# Synth arpeggio
 
 This example demonstrates how to use BPFs to continuously change the pitch of different oscillators. 
 It combines fixed pitch-class progressions with probabilistically shaped frequency and amplitude breakpoint functions, achieving evolving polyphonic structures with smooth filtering and stereo spatialization.

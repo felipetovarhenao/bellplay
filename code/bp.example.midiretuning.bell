@@ -1,6 +1,6 @@
 #(
 
-# MIDI Retuning
+# MIDI retuning
 
 An example of JI-based retuning of MIDI events. 
 It's a basic demonstration of how MIDI files can be algorithmically manipulated in non-conventional ways.

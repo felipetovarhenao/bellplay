@@ -1,6 +1,6 @@
 #( 
 
-# Buffer Keys
+# Buffer keys
 
 Buffers in **bellplay~** are simply structured lists of [key-value pairs](https://en.wikipedia.org/wiki/Name–value_pair). 
 Here's what a typically buffer looks like:

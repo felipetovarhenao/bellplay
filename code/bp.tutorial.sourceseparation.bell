@@ -1,5 +1,5 @@
 #(
-# Audio Source Separation
+# Audio source separation
 
 This tutorial demonstrates how to perform rudimentary source separation 
 in **bellplay~** using Non-Negative Matrix Factorization (NMF).

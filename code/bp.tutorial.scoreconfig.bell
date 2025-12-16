@@ -1,6 +1,6 @@
 #( 
 
-# Score Formatting and Appearance
+# Score formatting and appearance
 
 Depending on what you're doing, you might want to have more control over what the score transcription looks like. 
 For instance, when exporting MIDI files, you might want to have different voices, with different midichannels, with different names, etc. 

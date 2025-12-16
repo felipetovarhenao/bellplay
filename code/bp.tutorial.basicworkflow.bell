@@ -1,6 +1,6 @@
 #( 
 
-# Basic Workflow
+# Basic workflow
 
 In **bellplay~**, the basic building block of our scripts is the _buffer_. 
 Conceptually, a **bellplay~** buffer is a structured representation of audio data—this includes not just the raw audio waveform, but information such as duration, sample rate, number of channels, and more. 

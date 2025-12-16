@@ -1,6 +1,6 @@
 #(
 
-# Generating Keymaps
+# Generating keymaps
 
 This example automatically generates a custom keymap given a list of audio file paths:
 - We import the audio files, detect onsets, and slice them into segments.

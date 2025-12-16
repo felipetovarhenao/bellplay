@@ -1,6 +1,6 @@
 #( 
 
-# Inspecting Buffers
+# Inspecting buffers
 
 An essential part of writing code is being able to debug unwanted or unexpected behaviors.
 This is particularly necessary when dealing with audio data—i.e., buffers.

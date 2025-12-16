@@ -1,6 +1,6 @@
 #( 
 
-# Post-rendering Processing
+# Post-rendering processing
 
 Sometimes it can be more useful or desirable to apply processing to the entire output, instead of processing each buffer individually. 
 This tutorial provides a basic example of how to apply processing after the transcribed buffers have been rendered.

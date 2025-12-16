@@ -1,6 +1,6 @@
 #(
 
-# Feedback Synthesis
+# Feedback synthesis
 
 This code demonstrates a feedback-based synthesis technique, where buffers are routed back into their own processing chain to create a rich, evolving drone. 
 It showcases the use of buffers as processing parameters, illustrating how feedback loops can be used creatively for sound design.

@@ -1,6 +1,6 @@
 #(    
 
-# Basic Granulation
+# Basic granulation
 
 An example of basic audio granulation, where short audio.
 Grains are extracted and reassembled to create a texture. 

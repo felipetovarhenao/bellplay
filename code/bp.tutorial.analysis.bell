@@ -1,6 +1,6 @@
 #(
 
-# Audio Descriptors
+# Audio descriptors
 
 One of the core features in **bellplay~** is our ability to analyze buffers to extract relevant information.
 This is done via the `analyze` function which, similar to 'process', allows us to perform multiple operations.

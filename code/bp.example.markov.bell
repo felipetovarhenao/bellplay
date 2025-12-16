@@ -1,6 +1,6 @@
 #(
 
-# Markov Music Generation 
+# Markov music generation 
 
 This script illustrates how to construct and use an nth-order [Markov model](https://en.wikipedia.org/wiki/Markov_model) from MIDI data in **bellplay~** for generative music. 
 

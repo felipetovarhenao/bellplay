@@ -1,6 +1,6 @@
 #(
 
-# Caching Data
+# Caching data
 
 In **bellplay~**, computation-heavy operations such as building large corpora, analyzing lots of audio data, and more, can be take a very long time, thus making it more tedious to experiment with our scripts every time we run them.
 In computing, one common solution to this problem is [caching](https://en.wikipedia.org/wiki/Cache_(computing)): storing data such that it can be served more quickly next time it's needed.

@@ -1,6 +1,6 @@
 #(
 
-# Shepard-Risset Glissando
+# Shepard-Risset glissando
 
 This example synthesizes a Shepard-Risset glissando using **bellplay~**. 
 The Shepard tone is an auditory illusion where a continuously ascending (or descending) pitch scale appears to rise (or fall) endlessly. 

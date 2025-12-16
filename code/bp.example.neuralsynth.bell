@@ -1,6 +1,6 @@
 #(
 
-# Neural Synthesizer
+# Neural synthesizer
 
 This tutorial demonstrates how to use a multi-layer perceptron (MLP) neural network
 to learn the relationship between audio features and FM synthesis parameters.
