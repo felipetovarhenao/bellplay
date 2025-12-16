@@ -5,10 +5,10 @@
 When analyzing buffers, we can specify the output format for many of the available audio descriptors.
 In particular, there are 4 modes, which can be specified via the `@mode` argument:
 
-- `0`: global summary—i.e., one value for the entire buffer
-- `1`: time series—i.e., a series of values, one for each frame.
-- `2`: time-tagged time series—same as with time series, but each frame tagged with its time position.
-- `3`: buffer—i.e., same as with time-series, but instead of a list, the result of the analysis is a buffer.
+- `0`: **global summary**—i.e., one value for the entire buffer
+- `1`: **time series**—i.e., a series of values, one for each frame.
+- `2`: **time-tagged time series**—same as with time series, but each frame tagged with its time position.
+- `3`: **buffer**—i.e., same as with time-series, but instead of a list, the result of the analysis is a buffer.
 
 Note that not all descriptors support every mode, so make sure to check the documentation to learn more about each.
 
