@@ -9,7 +9,7 @@ A **keymap** is a list that maps a pitch (and optionally a velocity) to one or m
 Each item in the list represents a possible match for a given pitch and may take several different forms, depending on the level of specificity or variation desired. 
 Here are some examples:
 
-### Basic Format: One Pitch → One Sample
+### Basic format
 
 The simplest form of a keymap maps a single pitch value to a corresponding sample. 
 If only one mapping is provided, the sample will be used regardless of pitch.
@@ -26,7 +26,7 @@ Incidentally, the keymap above is what `ezsampler` uses by default, when no keym
 
 ---
 
-### Multiple Pitches
+### Multiple pitches
 
 We can provide several pitch-sample pairs. 
 The one with the closest pitch will be chosen.
@@ -46,7 +46,7 @@ To ensure `ezsampler` correctly adjusts the pitch of the original sample, always
 
 ---
 
-### Velocity Layers
+### Velocity layers
 
 Each pitch can be associated with multiple velocity-dependent mappings. 
 These are expressed as nested lists.
@@ -64,7 +64,7 @@ With this, `ezsampler` chooses `'soft.wav'` or `'loud.wav'` based on how close t
 
 ---
 
-### Sample Variation (Randomized Selection)
+### Sample variation (randomized selection)
 
 To add variability, we can associate pitch or velocity entries with multiple samples. The sampler will randomly pick one.
 
@@ -76,7 +76,7 @@ $keymap = (
 
 ---
 
-### Combined Structure: Mixed Formats
+### Combined structure: mixed formats
 
 We can also define heterogeneous mappings in a single keymap. For instance:
 
