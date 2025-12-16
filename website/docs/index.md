@@ -6,9 +6,13 @@ sidebar_position: 1
 
 ## What is **bellplay~**?
 
-**bellplay~** is a framework and software for offline algorithmic audio in the `bell` programming language. It is designed to support symbolic and audio workflows within an out-of-the-box, integrated environment.
+**bellplay~** is a framework and software for offline algorithmic audio in the `bell` programming language. It is designed to support symbolic and audio workflows within an out-of-the-box, integrated environment. This includes, but isn't limited to, sound design, music composition and analysis, data sonification, batch data processing, audio editing, and more.
 
-At the core of **bellplay~** is the concept of the **buffer** — a structured representation of an audio object, containing both technical metadata (e.g., sampling rate, duration) and optionally, analysis-derived features such as pitch, loudness, or spectral descriptors. These buffers can be generated, processed, and analyzed using `bell`.
+In contrast to popular real-time systems like [MaxMSP](https://cycling74.com/), [SuperCollider](https://supercollider.github.io/), or [TidalCycles](https://tidalcycles.org/), **bellplay~** is asynchronous by design. This removes real-time concerns from the creative loop, which simplifies resource allocation (e.g., unlimited polyphony, automatic voice management), enables non-causal processing (e.g., reverse delay), and allows automating complex batch operations on audio data.
+
+## How does it work?
+
+At the core of **bellplay~** is the concept of the **buffer**—a structured representation of an audio object, containing both technical metadata (e.g., sampling rate, duration) and optionally, analysis-derived features such as pitch, loudness, or spectral descriptors. These buffers can be generated, processed, and analyzed using `bell`.
 
 The typical workflow in **bellplay~** consists of three steps:
 

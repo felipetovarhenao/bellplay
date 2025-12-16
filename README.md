@@ -4,7 +4,7 @@
 
 ### Description
 
-**bellplay~** is a flexible application and framework for offline algorithmic audio in the bell programming language. Central to **bellplay~** is the concept of the _buffer_ — a structured data representation of an audio file. Buffers can be dynamically generated, processed, and manipulated using `bell` scripts. Each buffer encapsulates relevant audio information such as channel count, sampling rate, and duration, and can be extended to include additional, analysis-derived features like pitch, loudness, spectral centroid, and more.
+**bellplay~** is a flexible application and framework for offline algorithmic audio in the bell programming language. Central to **bellplay~** is the concept of the _buffer_—a structured data representation of an audio file. Buffers can be dynamically generated, processed, and manipulated using `bell` scripts. Each buffer encapsulates relevant audio information such as channel count, sampling rate, and duration, and can be extended to include additional, analysis-derived features like pitch, loudness, spectral centroid, and more.
 
 Here are some the core features of **bellplay~**:
 
@@ -117,11 +117,11 @@ To run **bellplay~** in [Max](https://cycling74.com/downloads) from its source c
   - `bach`, `dada`, and `ears` by Andrea Agostini and Daniele Ghisi.
   - `FluidCorpusManipulation` (_1.0.9_) by _FluCoMa_.
 
-> `bellplay~` is currently being developed and tested in MacOS (Intel and Apple silicon) — as such, some features may or may not work in Windows machines.
+> `bellplay~` is currently being developed and tested in MacOS (Intel and Apple silicon)—as such, some features may or may not work in Windows machines.
 
 ### Acknowledgments
 
-This project relies primarily on the [bach](https://bachproject.net) ecosystem — a family of packages for computer-assisted composition in Max, developed by Andrea Agostini and Daniele Ghisi. It also relies, to a lesser degree, on the [FluCoMa](https://flucoma.org/) package, developed at the University of Huddersfield.
+This project relies primarily on the [bach](https://bachproject.net) ecosystem—a family of packages for computer-assisted composition in Max, developed by Andrea Agostini and Daniele Ghisi. It also relies, to a lesser degree, on the [FluCoMa](https://flucoma.org/) package, developed at the University of Huddersfield.
 
 ### Credits
 
