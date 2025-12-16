@@ -15,7 +15,7 @@ You’ll also need a text editor (preferably [Visual Studio Code](https://code.v
 
 ---
 
-## Option 1: standalone application (macOS)
+## Option 1: Standalone application (macOS)
 
 Download the latest release from the [**bellplay~** releases page](https://github.com/felipetovarhenao/bellplay/releases/latest). Choose the `.zip` file, uncompress it, and move the `.app` into your `/Applications` folder.
 
