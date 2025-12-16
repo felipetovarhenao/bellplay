@@ -155,7 +155,7 @@ for fname in LEARNING_FILES:
     has_audio = gen_audio_output(content=content, name=base_name)
     if has_audio:
         md_lines.append(
-            f'## Audio output\n\n<audio controls src="/audio/{base_name}.mp3"></audio>')
+            f'## Result\n\n<audio controls src="/audio/{base_name}.mp3"></audio>')
     with open(out_file, "w", encoding="utf-8") as f:
         md = "\n".join(yaml_header + md_lines)
         f.write(md)
