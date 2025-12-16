@@ -17,15 +17,15 @@ $addscript = (
 );
 ## ———————————————————————— TUTORIALS ————————————————————————
 $addscript(
-    @name 'Basic Workflow' 
+    @name 'Basic workflow' 
     @file 'basicworkflow' 
 );
 $addscript(
-    @name 'Variable Declarations' 
+    @name 'Variable declarations' 
     @file 'variables' 
 );
 $addscript(
-    @name 'Importing Audio' 
+    @name 'Importing audio' 
     @file 'importingaudio' 
 );
 $addscript(
@@ -37,7 +37,7 @@ $addscript(
     @file 'rendering' 
 );
 $addscript(
-    @name 'Buffer Keys' 
+    @name 'Buffer keys' 
     @file 'bufferkeys' 
 );
 $addscript(
@@ -53,11 +53,11 @@ $addscript(
     @file 'automation' 
 );
 $addscript(
-    @name 'Buffer Processing' 
+    @name 'Buffer processing' 
     @file 'bufferprocessing' 
 );
 $addscript(
-    @name 'Post-rendering Processing' 
+    @name 'Post-rendering processing' 
     @file 'postprocessing' 
 );
 $addscript(
@@ -65,39 +65,39 @@ $addscript(
     @file 'export' 
 );
 $addscript(
-    @name 'Buffer-based Parameters' 
+    @name 'Buffer-based parameters' 
     @file 'audiocontrol' 
 );
 $addscript(
-    @name 'Inspecting Buffers' 
+    @name 'Inspecting buffers' 
     @file 'bufferinspector' 
 );
 $addscript(
-    @name 'Audio Descriptors' 
+    @name 'Audio descriptors' 
     @file 'analysis' 
 );
 $addscript(
-    @name 'Audio Descriptor Modes' 
+    @name 'Audio descriptor modes' 
     @file 'analysismodes' 
 );
 $addscript(
-    @name 'More Audio Features' 
+    @name 'More audio features' 
     @file 'features' 
 );
 $addscript(
-    @name 'Audio Corpora with SQL Tables' 
+    @name 'Audio corpora with SQL tables' 
     @file 'buildcorpus' 
 );
 $addscript(
-    @name 'Caching Data' 
+    @name 'Caching data' 
     @file 'caching' 
 );
 $addscript(
-    @name 'Multi-Rendering' 
+    @name 'Multi-rendering' 
     @file 'multirendering' 
 );
 $addscript(
-    @name 'Basic Sampling' 
+    @name 'Basic sampling' 
     @file 'sampling' 
 );
 $addscript(
@@ -105,85 +105,85 @@ $addscript(
     @file 'importingmidi' 
 );
 $addscript(
-    @name 'Score Formatting and Appearance' 
+    @name 'Score formatting and appearance' 
     @file 'scoreconfig' 
 );
 $addscript(
-    @name 'Feature-based Sampling' 
+    @name 'Feature-driven sampling' 
     @file 'kdtree' 
 );
 $addscript(
-    @name 'Audio Source Separation' 
+    @name 'Audio source separation' 
     @file 'sourceseparation' 
 );
 ## ———————————————————————— EXAMPLES ————————————————————————
 $addscript(
-    @name 'Audio Resynthesis' 
+    @name 'Audio resynthesis' 
     @file 'resynthesis' 
     @example 1
 );
 $addscript(
-    @name 'Basic Granulation' 
+    @name 'Basic granulation' 
     @file 'basicgranulation' 
     @example 1
 );
 $addscript(
-    @name 'Feedback Synthesis' 
+    @name 'Feedback synthesis' 
     @file 'feedbacksynth' 
     @example 1
 );
 $addscript(
-    @name 'Synth Arpeggio' 
+    @name 'Synth arpeggio' 
     @file 'syntharpeggio' 
     @example 1
 );
 $addscript(
-    @name 'Waveshaping Buffers' 
+    @name 'Waveshaping buffers' 
     @file 'waveshaping' 
     @example 1
 );
 $addscript(
-    @name 'Glissando Texture' 
+    @name 'Glissando texture' 
     @file 'gliss' 
     @example 1
 );
 $addscript(
-    @name 'Markov Music Generation' 
+    @name 'Markov music generation' 
     @file 'markov' 
     @example 1
 );
 $addscript(
-    @name 'MIDI Retuning' 
+    @name 'MIDI retuning' 
     @file 'midiretuning' 
     @example 1
 );
 $addscript(
-    @name 'Temporal Quantization' 
+    @name 'Temporal quantization' 
     @file 'temporalquantization' 
     @example 1
 );
 $addscript(
-    @name 'Audio Mosaicing' 
+    @name 'Audio mosaicing' 
     @file 'audiomosaic' 
     @example 1
 );
 $addscript(
-    @name 'Envelope-aware Temporal Alignment' 
+    @name 'Envelope-aware temporal alignment' 
     @file 'temporalalignment' 
     @example 1
 );
 $addscript(
-    @name 'Shepard-Risset Glissando' 
+    @name 'Shepard-Risset glissando' 
     @file 'shepardtone' 
     @example 1
 );
 $addscript(
-    @name 'Generating Keymaps' 
+    @name 'Generating keymaps' 
     @file 'keymaps' 
     @example 1
 );
 $addscript(
-    @name 'Neural Synthesis' 
+    @name 'Neural synthesis' 
     @file 'neuralsynth' 
     @example 1
 );
