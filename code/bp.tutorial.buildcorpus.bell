@@ -2,7 +2,7 @@
 
 # Audio corpora with SQL tables
 
-:::warning
+:::warning SQL
 Some basic familiarity with [SQLite3](https://www.sqlitetutorial.net/) is expected to fully understand this tutorial.
 :::
 
