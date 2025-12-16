@@ -13,6 +13,7 @@ In this tutorial, we:
 3. Mix the buffers together
 4. Use NMF to separate the mixed signal back into individual components
 5. Visualize the results: the separated components, learned bases, and activation patterns
+6. Use NMF results for auto-panning, transcribing each NMF component with a unique panning position value.
 
 )#
 ## set seed for reproducibility
@@ -59,4 +60,11 @@ for $buffers in [$components] [$bases] [$activations], $label in 'component' 'ba
     for $buffer $i in $buffers do view(
         $buffer @label $label + ' ' + tosymbol($i) 
     ) 
-)
+);
+## transcribe components, each with a unique panning position
+$panvals = arithmser(0, 1, null, length($components));
+for $buffer in $components, $pan in $panvals do (
+    transcribe(@buffer $buffer @pan $pan)
+);
+## trigger rendering
+render(@play 1)
