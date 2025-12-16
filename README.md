@@ -15,15 +15,15 @@ To run **bellplay~** in [Max](https://cycling74.com/downloads) from its source c
 
 > `bellplay~` is currently being developed and tested in MacOS (Intel and Apple silicon)—as such, some features may or may not work in Windows machines.
 
-### Optional
+Additionally, you will need a dedicated text editor. The recommended option is [Visual Studio Code](https://code.visualstudio.com/), along with the [**bellplay~ plugin** extension](https://marketplace.visualstudio.com/items?itemName=tovarhenao.bellplay-plugin).
 
-If you are also interested in building the web documentation, as well as other features such as unit tests, you will need to install:
+### Other requirements
 
-- [Python]
-- [NPM]
-- [ffmpeg]
+If you are interested in also building the web documentation, as well as exploring other features such as unit tests, you will need to install:
 
-## Setup
+- [**Python**](https://www.python.org/)
+- [**JS Node Package Manager**](https://www.npmjs.com/)
+- [**FFmpeg**](https://www.ffmpeg.org/)
 
 ## Build
 
