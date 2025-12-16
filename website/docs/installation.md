@@ -15,7 +15,7 @@ You’ll also need a text editor (preferably [Visual Studio Code](https://code.v
 
 ---
 
-## Option 1: Standalone Application (macOS)
+## Option 1: standalone application (macOS)
 
 Download the latest release from the [**bellplay~** releases page](https://github.com/felipetovarhenao/bellplay/releases/latest). Choose the `.zip` file, uncompress it, and move the `.app` into your `/Applications` folder.
 
@@ -43,7 +43,7 @@ macOS may block the app since it’s not signed by an identified developer.
 
 ---
 
-## Option 2: Run from Source (Windows or macOS)
+## Option 2: Run from source (Windows or macOS)
 
 **bellplay~** can be run inside **Max**, the visual programming environment from Cycling '74.
 
@@ -66,7 +66,7 @@ Only source-based usage is supported on Windows. Some features may not behave id
 
 ---
 
-## Text Editor Setup (Recommended)
+## Text editor setup (recommended)
 
 `bell` scripts are written in plain text. **Visual Studio Code** is the recommended text editor for writing and editing.
 
@@ -90,7 +90,7 @@ In **bellplay~**:
 
 ---
 
-## Next Steps
+## Next steps
 
 Once installed, explore the tutorials page to run your first bell script.
 If you're new to the language, visit the [bell tutorials](https://felipetovarhenao.github.io/bell-tutorials) for a musician-friendly introduction to the language.

@@ -3,7 +3,7 @@ sidebar_position: 6
 title: FAQ
 ---
 
-# Frequently Asked Questions
+# Frequently asked questions
 
 ### Do I need programming experience to use _bellplay~_?
 
