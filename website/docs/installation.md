@@ -4,8 +4,6 @@ sidebar_position: 2
 
 # Installation
 
-## Overview
-
 To run **bellplay~**, you can either:
 
 - Download a **standalone application** (macOS only), or
