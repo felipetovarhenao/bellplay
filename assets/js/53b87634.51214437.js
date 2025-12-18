@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbellplay_docs=self.webpackChunkbellplay_docs||[]).push([[91219],{94589:e=>{e.exports=JSON.parse('{"tag":{"label":"xrandn","permalink":"/docs/tags/xrandn","allTagsPath":"/docs/tags","count":1,"items":[{"id":"reference/randomness/randn","title":"randn","description":"randn","permalink":"/docs/reference/randomness/randn"}],"unlisted":false}}')}}]);

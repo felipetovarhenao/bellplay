@@ -137,9 +137,9 @@
     "keywords": [
       "llll",
       "function",
-      "sorted",
+      "order",
       "argsort",
-      "required"
+      "sorted"
     ],
     "path": "/docs/reference/data-utilities/argsort"
   },
@@ -219,11 +219,11 @@
     "title": "`atodb`",
     "blurb": "Linear amplitude to decibels conversion.",
     "keywords": [
+      "db",
       "atodb",
+      "bell",
       "required",
-      "linear",
-      "amplitude",
-      "decibels"
+      "linear"
     ],
     "path": "/docs/reference/data-utilities/atodb"
   },
@@ -312,6 +312,42 @@
     "path": "/docs/reference/data-utilities/browsedbtable"
   },
   {
+    "title": "`buf2chans`",
+    "blurb": "Extracts one or more buffer channels as individual buffers.",
+    "keywords": [
+      "channels",
+      "buffer",
+      "llll",
+      "bell",
+      "required"
+    ],
+    "path": "/docs/reference/buffer-utilities/buf2chans"
+  },
+  {
+    "title": "`buf2nmf`",
+    "blurb": "Applies spectral decomposition of a buffer into a number of components using [Non-Negative Matrix Factorization](https://learn.flucoma.org/learn/bufnmf/).",
+    "keywords": [
+      "activations",
+      "buffers",
+      "bases",
+      "default",
+      "int"
+    ],
+    "path": "/docs/reference/machine-learning/buf2nmf"
+  },
+  {
+    "title": "`buf2nmfseed`",
+    "blurb": "Finds initial bases and activations to be used with the `buf2nmf` function.",
+    "keywords": [
+      "default",
+      "value",
+      "decomposition",
+      "int",
+      "winsize"
+    ],
+    "path": "/docs/reference/machine-learning/buf2nmfseed"
+  },
+  {
     "title": "`buf2ptracks`",
     "blurb": "Converts a buffer into partial tracks via analysis, consisting of a _llll_ with the keys `frequencies`, `magnitudes`, and `phases`, structured as follows:",
     "keywords": [
@@ -384,6 +420,18 @@
     "path": "/docs/reference/math/cents"
   },
   {
+    "title": "`chans2buf`",
+    "blurb": "Combines multiple buffers into a single buffer, each as a separate channel.",
+    "keywords": [
+      "buffers",
+      "llll",
+      "buffer",
+      "channel",
+      "resampling"
+    ],
+    "path": "/docs/reference/buffer-utilities/chans2buf"
+  },
+  {
     "title": "`choose`",
     "blurb": "Choose randomly one or more elements from a list, with optional probability weights.",
     "keywords": [
@@ -391,7 +439,7 @@
       "list",
       "weights",
       "choices",
-      "required"
+      "bell"
     ],
     "path": "/docs/reference/randomness/choose"
   },
@@ -492,30 +540,6 @@
     "path": "/docs/reference/math/cosh"
   },
   {
-    "title": "`createdbtable`",
-    "blurb": "Creates and populates a [SQLite3](https://www.sqlitetutorial.net/) table with data entries.",
-    "keywords": [
-      "data",
-      "table",
-      "name",
-      "events",
-      "null"
-    ],
-    "path": "/docs/reference/data-utilities/createdbtable"
-  },
-  {
-    "title": "`createtree`",
-    "blurb": "Creates a [k-dimensional tree](https://en.wikipedia.org/wiki/K-d_tree) for optimized nearest-neighbor search of multidimensional data.",
-    "keywords": [
-      "data",
-      "llll",
-      "mode",
-      "createtree",
-      "required"
-    ],
-    "path": "/docs/reference/data-utilities/createtree"
-  },
-  {
     "title": "`crop`",
     "blurb": "Generates an audio process operation for cropping a buffer.",
     "keywords": [
@@ -540,14 +564,50 @@
     "path": "/docs/reference/buffer-generation/cycle"
   },
   {
+    "title": "`dataset2dbtable`",
+    "blurb": "Utility function for quickly converting a dataset into a SQL database table.",
+    "keywords": [
+      "null",
+      "dataset",
+      "labelset",
+      "default",
+      "name"
+    ],
+    "path": "/docs/reference/machine-learning/dataset2dbtable"
+  },
+  {
+    "title": "`dataset`",
+    "blurb": "Generates a _llll_ representation of a dataset, given a list of numeric data points.",
+    "keywords": [
+      "dataset",
+      "data",
+      "llll",
+      "see",
+      "functions"
+    ],
+    "path": "/docs/reference/machine-learning/dataset"
+  },
+  {
+    "title": "`dbtable`",
+    "blurb": "Creates and populates a [SQLite3](https://www.sqlitetutorial.net/) table with data entries.",
+    "keywords": [
+      "data",
+      "table",
+      "name",
+      "events",
+      "null"
+    ],
+    "path": "/docs/reference/data-utilities/dbtable"
+  },
+  {
     "title": "`dbtoa`",
     "blurb": "Decibels to linear amplitude conversion.",
     "keywords": [
-      "dbtoa",
       "db",
+      "dbtoa",
+      "bell",
       "required",
-      "decibels",
-      "linear"
+      "decibels"
     ],
     "path": "/docs/reference/data-utilities/dbtoa"
   },
@@ -831,11 +891,11 @@
     "title": "`exists`",
     "blurb": "Checks if a file or folder exists.",
     "keywords": [
-      "true",
-      "exists",
       "path",
-      "symbol",
-      "required"
+      "exists",
+      "true",
+      "bell",
+      "symbol"
     ],
     "path": "/docs/reference/data-utilities/exists"
   },
@@ -862,18 +922,6 @@
       "true"
     ],
     "path": "/docs/reference/math/exp"
-  },
-  {
-    "title": "`expand`",
-    "blurb": "Modifies offset and duration of a buffer, such that it uses the full length of its reference buffer.",
-    "keywords": [
-      "buffer",
-      "llll",
-      "expand",
-      "required",
-      "true"
-    ],
-    "path": "/docs/reference/buffer-utilities/expand"
   },
   {
     "title": "`export`",
@@ -960,6 +1008,30 @@
     "path": "/docs/reference/data-utilities/finditems"
   },
   {
+    "title": "`fir`",
+    "blurb": "Generates an audio process operation for convolving a buffer with a finite impulse response (FIR).",
+    "keywords": [
+      "fir",
+      "buffer",
+      "process",
+      "impulse",
+      "llll"
+    ],
+    "path": "/docs/reference/buffer-operations/fir"
+  },
+  {
+    "title": "`fit`",
+    "blurb": "Fits (i.e., trains) a Machine Learning model _in-place_, such as those generated via the `mlp`, `knn`, or `kmeans` functions, to a given dataset or pair of input and output sets.",
+    "keywords": [
+      "model",
+      "dataset",
+      "object",
+      "mlp",
+      "fit"
+    ],
+    "path": "/docs/reference/machine-learning/fit"
+  },
+  {
     "title": "`flat`",
     "blurb": "Flattens depth levels of an _llll_.",
     "keywords": [
@@ -1030,6 +1102,18 @@
       "output"
     ],
     "path": "/docs/reference/data-utilities/fold"
+  },
+  {
+    "title": "`format`",
+    "blurb": "Generates an audio process operation for basic buffer formatting, such as changing the number of channels, duration and sample rate.",
+    "keywords": [
+      "duration",
+      "channels",
+      "default",
+      "buffer",
+      "format"
+    ],
+    "path": "/docs/reference/buffer-operations/format"
   },
   {
     "title": "`freeverb`",
@@ -1116,18 +1200,6 @@
     "path": "/docs/reference/data-utilities/geomser"
   },
   {
-    "title": "`getchannels`",
-    "blurb": "Extracts one or more buffer channels as individual buffers.",
-    "keywords": [
-      "channels",
-      "buffer",
-      "llll",
-      "getchannels",
-      "bell"
-    ],
-    "path": "/docs/reference/buffer-utilities/getchannels"
-  },
-  {
     "title": "`getchar`",
     "blurb": "Given a symbol and one or more indices, it returns the characters corresponding to each index.",
     "keywords": [
@@ -1138,6 +1210,18 @@
       "characters"
     ],
     "path": "/docs/reference/data-utilities/getchar"
+  },
+  {
+    "title": "`getitems`",
+    "blurb": "Returns the data points or labels associated with one of more indices (1-based) in a given dataset or labelset, respectively.",
+    "keywords": [
+      "dataset",
+      "labelset",
+      "llll",
+      "required",
+      "getitems"
+    ],
+    "path": "/docs/reference/machine-learning/getitems"
   },
   {
     "title": "`getkey`",
@@ -1155,11 +1239,11 @@
     "title": "`getmediafiles`",
     "blurb": "Returns a list of built-in media files in **bellplay~**.",
     "keywords": [
+      "getmediafiles",
       "files",
       "list",
       "type",
-      "null",
-      "media"
+      "null"
     ],
     "path": "/docs/reference/data-utilities/getmediafiles"
   },
@@ -1309,13 +1393,13 @@
   },
   {
     "title": "`initurn`",
-    "blurb": "Initializes a new unique random number generator (URN), given a size and a URN identifier.",
+    "blurb": "Given a size and a URN identifier, it initializes a new unique random number generator (URN).",
     "keywords": [
       "urn",
       "id",
       "random",
       "size",
-      "unique"
+      "identifier"
     ],
     "path": "/docs/reference/randomness/initurn"
   },
@@ -1407,11 +1491,11 @@
     "title": "`isnan`",
     "blurb": "Checks if the input argument is strictly a nan—i.e., 'not a number'—value.",
     "keywords": [
-      "true",
       "isnan",
-      "anything",
-      "required",
-      "int"
+      "nan",
+      "true",
+      "bell",
+      "anything"
     ],
     "path": "/docs/reference/data-utilities/isnan"
   },
@@ -1426,6 +1510,54 @@
       "int"
     ],
     "path": "/docs/reference/buffer-operations/join"
+  },
+  {
+    "title": "`kdtree`",
+    "blurb": "Given a dataset, generates a [K-dimensional Tree](https://learn.flucoma.org/reference/kdtree/) object for efficient neighborhood searches of multi-dimensional data.",
+    "keywords": [
+      "dataset",
+      "kdtree",
+      "nearest",
+      "neighbors",
+      "llll"
+    ],
+    "path": "/docs/reference/machine-learning/kdtree"
+  },
+  {
+    "title": "`kmeans`",
+    "blurb": "Generates a [K-Means Clustering](https://learn.flucoma.org/reference/kmeans/) object for clustering/classification tasks.",
+    "keywords": [
+      "dataset",
+      "centroids",
+      "kmeans",
+      "default",
+      "labelset"
+    ],
+    "path": "/docs/reference/machine-learning/kmeans"
+  },
+  {
+    "title": "`knn`",
+    "blurb": "Generates a [K-Nearest Neighbor Search](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) object for either [regression](https://learn.flucoma.org/reference/knnregressor/) or [classification](https://learn.flucoma.org/reference/knnclassifier/) tasks.",
+    "keywords": [
+      "dataset",
+      "model",
+      "fit",
+      "knn",
+      "output"
+    ],
+    "path": "/docs/reference/machine-learning/knn"
+  },
+  {
+    "title": "`labelset`",
+    "blurb": "Generates a _llll_ representation of a label object, given a list of labels.",
+    "keywords": [
+      "labelset",
+      "labels",
+      "dataset",
+      "llll",
+      "list"
+    ],
+    "path": "/docs/reference/machine-learning/labelset"
   },
   {
     "title": "`larm`",
@@ -1617,7 +1749,7 @@
       "state",
       "default"
     ],
-    "path": "/docs/reference/data-utilities/markov2seq"
+    "path": "/docs/reference/machine-learning/markov2seq"
   },
   {
     "title": "`max`",
@@ -1630,6 +1762,18 @@
       "value"
     ],
     "path": "/docs/reference/math/max"
+  },
+  {
+    "title": "`maxabs`",
+    "blurb": "Signed maximum value between the absolute values of `@x` and `@y`.",
+    "keywords": [
+      "required",
+      "value",
+      "maxabs",
+      "bell",
+      "llll"
+    ],
+    "path": "/docs/reference/math/maxabs"
   },
   {
     "title": "`maximum`",
@@ -1752,6 +1896,18 @@
     "path": "/docs/reference/math/min"
   },
   {
+    "title": "`minabs`",
+    "blurb": "Signed minimum value between the absolute values of `@x` and `@y`.",
+    "keywords": [
+      "required",
+      "value",
+      "minabs",
+      "bell",
+      "llll"
+    ],
+    "path": "/docs/reference/math/minabs"
+  },
+  {
     "title": "`minimum`",
     "blurb": "Returns the smallest number in an _llll_.",
     "keywords": [
@@ -1812,6 +1968,18 @@
     "path": "/docs/reference/buffer-operations/mixdown"
   },
   {
+    "title": "`mlp`",
+    "blurb": "Generates a [Multilayer Perceptron Neural Network](https://en.wikipedia.org/wiki/Multilayer_perceptron) object for either [regression](https://learn.flucoma.org/reference/mlpregressor/) or [classification](https://learn.flucoma.org/reference/mlpclassifier/) tasks.",
+    "keywords": [
+      "default",
+      "int",
+      "layer",
+      "model",
+      "dataset"
+    ],
+    "path": "/docs/reference/machine-learning/mlp"
+  },
+  {
     "title": "`mod`",
     "blurb": "Returns `@x` modulo `@y`",
     "keywords": [
@@ -1848,6 +2016,18 @@
     "path": "/docs/reference/data-utilities/nearest"
   },
   {
+    "title": "`nmfcross`",
+    "blurb": "Generates an audio process operation for NMF-based cross-synthesis.",
+    "keywords": [
+      "int",
+      "default",
+      "source",
+      "process",
+      "winsize"
+    ],
+    "path": "/docs/reference/buffer-operations/nmfcross"
+  },
+  {
     "title": "`noise`",
     "blurb": "Generates white noise as a buffer.",
     "keywords": [
@@ -1870,6 +2050,18 @@
       "default"
     ],
     "path": "/docs/reference/buffer-operations/normalize"
+  },
+  {
+    "title": "`normscaler`",
+    "blurb": "Given a reference dataset, generates a normscaler object which can be used for [_minmax_ normalization](https://en.wikipedia.org/wiki/Feature_scaling#Rescaling_(min-max_normalization)), via the `transform` function.",
+    "keywords": [
+      "dataset",
+      "scaler",
+      "normscaler",
+      "transform",
+      "llll"
+    ],
+    "path": "/docs/reference/machine-learning/normscaler"
   },
   {
     "title": "`nth`",
@@ -1980,18 +2172,6 @@
     "path": "/docs/reference/buffer-operations/overdrive"
   },
   {
-    "title": "`pack`",
-    "blurb": "Combines multiple buffers as channels into a single buffer.",
-    "keywords": [
-      "llll",
-      "pack",
-      "buffers",
-      "buffer",
-      "resampling"
-    ],
-    "path": "/docs/reference/buffer-utilities/pack"
-  },
-  {
     "title": "`panning`",
     "blurb": "Generates an audio process operation for applying 1-D panning to a buffer.",
     "keywords": [
@@ -2008,10 +2188,10 @@
     "blurb": "Parses a given path into key-value pairs for the following properties:",
     "keywords": [
       "path",
-      "file",
-      "folder",
-      "parsepath",
-      "symbol"
+      "name",
+      "parent",
+      "parsed",
+      "getkey"
     ],
     "path": "/docs/reference/data-utilities/parsepath"
   },
@@ -2029,10 +2209,10 @@
   },
   {
     "title": "`paulstretch`",
-    "blurb": "Generates an audio process operation for applying time-stretching to a buffer.",
+    "blurb": "Generates an audio process operation for applying [PaulStretch](https://www.paulnasca.com/algorithms-created-by-me) time-stretching to a buffer.",
     "keywords": [
-      "stretching",
       "paulstretch",
+      "stretching",
       "default",
       "samples",
       "process"
@@ -2040,14 +2220,26 @@
     "path": "/docs/reference/buffer-operations/paulstretch"
   },
   {
+    "title": "`pca`",
+    "blurb": "Given a dataset, generates a [Principal Component Analysis](https://learn.flucoma.org/reference/pca/) object which can be used for [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) of a dataset, via the `transform` function.",
+    "keywords": [
+      "dataset",
+      "transform",
+      "pca",
+      "reducer",
+      "llll"
+    ],
+    "path": "/docs/reference/machine-learning/pca"
+  },
+  {
     "title": "`pcdiff`",
     "blurb": "Signed pitch class difference.",
     "keywords": [
+      "pcdiff",
       "required",
       "pitch",
-      "pcdiff",
-      "mod",
-      "signed"
+      "bell",
+      "mod"
     ],
     "path": "/docs/reference/data-utilities/pcdiff"
   },
@@ -2196,6 +2388,18 @@
     "path": "/docs/reference/buffer-operations/power"
   },
   {
+    "title": "`predict`",
+    "blurb": "Given a fitted ML object and dataset or data point, performs a prediction.",
+    "keywords": [
+      "dataset",
+      "model",
+      "point",
+      "object",
+      "data"
+    ],
+    "path": "/docs/reference/machine-learning/predict"
+  },
+  {
     "title": "`primeser`",
     "blurb": "Return sequences of primes.",
     "keywords": [
@@ -2263,21 +2467,9 @@
       "sql",
       "query",
       "results",
-      "createdbtable"
+      "dbtable"
     ],
     "path": "/docs/reference/data-utilities/querydb"
-  },
-  {
-    "title": "`querytree`",
-    "blurb": "Given a [k-dimensional tree](https://en.wikipedia.org/wiki/K-d_tree) and a target point with the same dimensionality, returns the index position of the nearest neighbor in that tree.",
-    "keywords": [
-      "tree",
-      "llll",
-      "required",
-      "point",
-      "nearest"
-    ],
-    "path": "/docs/reference/data-utilities/querytree"
   },
   {
     "title": "`r2c`",
@@ -2344,12 +2536,24 @@
     "blurb": "Random floating point number generator.",
     "keywords": [
       "random",
+      "rand",
       "null",
       "value",
-      "rand",
-      "floating"
+      "bell"
     ],
     "path": "/docs/reference/randomness/rand"
+  },
+  {
+    "title": "`randn`",
+    "blurb": "Generates a [normally distributed](https://en.wikipedia.org/wiki/Normal_distribution) random floating point number, using the [_Box-Muller_ transform](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform).",
+    "keywords": [
+      "random",
+      "randn",
+      "mean",
+      "bell",
+      "stdev"
+    ],
+    "path": "/docs/reference/randomness/randn"
   },
   {
     "title": "`random`",
@@ -2393,9 +2597,9 @@
     "keywords": [
       "ignore",
       "symbols",
+      "path",
       "read",
-      "parens",
-      "keep"
+      "parens"
     ],
     "path": "/docs/reference/data-utilities/read"
   },
@@ -2422,6 +2626,18 @@
       "readfolder"
     ],
     "path": "/docs/reference/data-utilities/readfolder"
+  },
+  {
+    "title": "`readobject`",
+    "blurb": "Reads a JSON file to generates a machine learning object.",
+    "keywords": [
+      "dataset",
+      "readobject",
+      "model",
+      "writeobject",
+      "scaler"
+    ],
+    "path": "/docs/reference/machine-learning/readobject"
   },
   {
     "title": "`rect`",
@@ -2556,6 +2772,18 @@
     "path": "/docs/reference/data-utilities/right"
   },
   {
+    "title": "`robustscaler`",
+    "blurb": "Given a reference dataset, generates a robust scaler object which can be used for [robust scaling](https://en.wikipedia.org/wiki/Feature_scaling#Robust_Scaling), via the `transform` function.",
+    "keywords": [
+      "dataset",
+      "scaler",
+      "transform",
+      "llll",
+      "robust"
+    ],
+    "path": "/docs/reference/machine-learning/robustscaler"
+  },
+  {
     "title": "`rolloff`",
     "blurb": "Generates an audio descriptor to compute the roll-off frequency of a spectrum.",
     "keywords": [
@@ -2617,7 +2845,7 @@
   },
   {
     "title": "`rubberband`",
-    "blurb": "Generates an audio process operation for applying rubberband pitch-shifting/time-stretching to a buffer.",
+    "blurb": "Generates an audio process operation for applying [rubberband](https://breakfastquay.com/rubberband/) pitch-shifting/time-stretching to a buffer.",
     "keywords": [
       "default",
       "int",
@@ -2645,9 +2873,9 @@
     "keywords": [
       "bpf",
       "required",
-      "function",
       "samplebpf",
-      "llll"
+      "function",
+      "bell"
     ],
     "path": "/docs/reference/data-utilities/samplebpf"
   },
@@ -2658,8 +2886,8 @@
       "list",
       "required",
       "samplelist",
-      "interpolated",
-      "normalized"
+      "bell",
+      "interpolated"
     ],
     "path": "/docs/reference/data-utilities/samplelist"
   },
@@ -2757,7 +2985,7 @@
       "llll",
       "order"
     ],
-    "path": "/docs/reference/data-utilities/seq2markov"
+    "path": "/docs/reference/machine-learning/seq2markov"
   },
   {
     "title": "`setkey`",
@@ -2776,10 +3004,10 @@
     "blurb": "Sets the random seed for the `xrand`, `xrandom`, `xchoose`, `xscramble`, and `urn` functions.",
     "keywords": [
       "seed",
+      "xrandom",
+      "setseed",
       "urn",
-      "xchoose",
-      "xrand",
-      "xrandom"
+      "xchoose"
     ],
     "path": "/docs/reference/data-utilities/setseed"
   },
@@ -3012,6 +3240,18 @@
     "path": "/docs/reference/buffer-operations/squareroot"
   },
   {
+    "title": "`stdscaler`",
+    "blurb": "Given a reference dataset, generates a stdscaler object which can be used for  [standardization](https://en.wikipedia.org/wiki/Feature_scaling#Standardization_(Z-score_Normalization)), via the `transform` function.",
+    "keywords": [
+      "dataset",
+      "transform",
+      "scaler",
+      "stdscaler",
+      "llll"
+    ],
+    "path": "/docs/reference/machine-learning/stdscaler"
+  },
+  {
     "title": "`strongdecay`",
     "blurb": "Generates an audio descriptor to compute the strong decay of a buffer.",
     "keywords": [
@@ -3207,11 +3447,11 @@
     "title": "`thispath`",
     "blurb": "Returns the path of the current script, as either a symbol or a parsed `llll` path.",
     "keywords": [
-      "path",
       "parse",
-      "llll",
+      "path",
+      "parsed",
       "thispath",
-      "current"
+      "llll"
     ],
     "path": "/docs/reference/data-utilities/thispath"
   },
@@ -3257,9 +3497,9 @@
     "keywords": [
       "symbol",
       "tosymbol",
+      "bell",
       "anything",
-      "required",
-      "value"
+      "required"
     ],
     "path": "/docs/reference/data-utilities/tosymbol"
   },
@@ -3286,6 +3526,18 @@
       "gain"
     ],
     "path": "/docs/reference/buffer-utilities/transcribe"
+  },
+  {
+    "title": "`transform`",
+    "blurb": "Transforms a dataset or point given some ML object such as a scaler (e.g., `normscaler`, `stdscaler`, `robustscaler`) or dimensionality reducer (e.g., `umap`, `pca`).",
+    "keywords": [
+      "dataset",
+      "transform",
+      "scaler",
+      "point",
+      "object"
+    ],
+    "path": "/docs/reference/machine-learning/transform"
   },
   {
     "title": "`tri`",
@@ -3334,6 +3586,18 @@
       "value"
     ],
     "path": "/docs/reference/math/trunc"
+  },
+  {
+    "title": "`umap`",
+    "blurb": "Given a dataset, generates a [Uniform Manifold Approximation and Projection (UMAP)](https://learn.flucoma.org/reference/umap/) object which can be used for [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) of a dataset, via the `transform` function.",
+    "keywords": [
+      "dataset",
+      "transform",
+      "umap",
+      "default",
+      "reducer"
+    ],
+    "path": "/docs/reference/machine-learning/umap"
   },
   {
     "title": "`union`",
@@ -3436,10 +3700,10 @@
     "blurb": "Writes data into disk in either `.txt` or native `.llll` format.",
     "keywords": [
       "default",
+      "path",
       "int",
       "format",
-      "data",
-      "required"
+      "write"
     ],
     "path": "/docs/reference/data-utilities/write"
   },
@@ -3454,6 +3718,18 @@
       "writedb"
     ],
     "path": "/docs/reference/data-utilities/writedb"
+  },
+  {
+    "title": "`writeobject`",
+    "blurb": "Writes a machine learning (e.g., datasets, labelsets, MLPs, UMAPs, KDTrees, etc.) object as a JSON file given a path.",
+    "keywords": [
+      "dataset",
+      "writeobject",
+      "model",
+      "readobject",
+      "scaler"
+    ],
+    "path": "/docs/reference/machine-learning/writeobject"
   },
   {
     "title": "`x2dx`",
@@ -3473,9 +3749,9 @@
     "keywords": [
       "list",
       "weights",
-      "choices",
       "setseed",
-      "xchoose"
+      "xchoose",
+      "choices"
     ],
     "path": "/docs/reference/randomness/xchoose"
   },
@@ -3483,23 +3759,35 @@
     "title": "`xrand`",
     "blurb": "Seed-based random floating point number generator.",
     "keywords": [
-      "null",
-      "value",
       "setseed",
       "xrand",
-      "float"
+      "null",
+      "value",
+      "bell"
     ],
     "path": "/docs/reference/randomness/xrand"
+  },
+  {
+    "title": "`xrandn`",
+    "blurb": "Generates a seeded, [normally distributed](https://en.wikipedia.org/wiki/Normal_distribution), random floating point number, using the [_Box-Muller_ transform](https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform).",
+    "keywords": [
+      "xrandn",
+      "mean",
+      "bell",
+      "stdev",
+      "normally"
+    ],
+    "path": "/docs/reference/randomness/xrandn"
   },
   {
     "title": "`xrandom`",
     "blurb": "Seed-based random integer number generator.",
     "keywords": [
+      "setseed",
+      "xrandom",
       "null",
       "integer",
-      "value",
-      "setseed",
-      "xrandom"
+      "value"
     ],
     "path": "/docs/reference/randomness/xrandom"
   },
@@ -3509,9 +3797,9 @@
     "keywords": [
       "setseed",
       "xscramble",
+      "bell",
       "llll",
-      "required",
-      "list"
+      "required"
     ],
     "path": "/docs/reference/randomness/xscramble"
   },
@@ -3541,7 +3829,7 @@
   },
   {
     "title": "Audio corpora with SQL tables",
-    "blurb": "This tutorial demonstrates how to create an in-memory, queryable corpus of audio buffers by leveraging the `createdbtable` and `querydb` functions.",
+    "blurb": "This tutorial demonstrates how to create an in-memory, queryable corpus of audio buffers by leveraging the `dbtable` and `querydb` functions.",
     "keywords": [
       "pitch",
       "segments",
@@ -3549,22 +3837,22 @@
       "onset",
       "audio"
     ],
-    "path": "/docs/learning/tutorials/buildcorpus"
+    "path": "/docs/learn/tutorials/buildcorpus"
   },
   {
-    "title": "Audio Descriptor Modes",
+    "title": "Audio descriptor modes",
     "blurb": "When analyzing buffers, we can specify the output format for many of the available audio descriptors.",
     "keywords": [
-      "buffer",
       "pitch",
+      "buffer",
       "analysis",
       "envelope",
       "time"
     ],
-    "path": "/docs/learning/tutorials/analysismodes"
+    "path": "/docs/learn/tutorials/analysismodes"
   },
   {
-    "title": "Audio Descriptors",
+    "title": "Audio descriptors",
     "blurb": "One of the core features in **bellplay~** is our ability to analyze buffers to extract relevant information.",
     "keywords": [
       "analyze",
@@ -3573,22 +3861,22 @@
       "descriptors",
       "onset"
     ],
-    "path": "/docs/learning/tutorials/analysis"
+    "path": "/docs/learn/tutorials/analysis"
   },
   {
-    "title": "Audio Mosaicing",
-    "blurb": "An example of basic [audio mosaicking](https://www.francoispachet.fr/musaicing/) in **bellplay\\~**, where a target audio file is reconstructed using segments drawn from a small audio corpus.",
+    "title": "Audio mosaicing",
+    "blurb": "An example of basic [audio mosaicking](https://www.francoispachet.fr/musaicing/) in **bellplay~**, where a target audio file is reconstructed using segments drawn from a small audio corpus.",
     "keywords": [
-      "audio",
       "corpus",
-      "features",
+      "audio",
       "target",
+      "features",
       "segment"
     ],
-    "path": "/docs/learning/examples/audiomosaic"
+    "path": "/docs/learn/examples/audiomosaic"
   },
   {
-    "title": "Audio Resynthesis",
+    "title": "Audio resynthesis",
     "blurb": "A simple demonstration of granular quasi-resynthesis via partial tracks, where an sound is used to guide the behavior of sinusoidal grains.",
     "keywords": [
       "onset",
@@ -3597,7 +3885,19 @@
       "audio",
       "pitch"
     ],
-    "path": "/docs/learning/examples/resynthesis"
+    "path": "/docs/learn/examples/resynthesis"
+  },
+  {
+    "title": "Audio source separation",
+    "blurb": "This tutorial demonstrates how to perform rudimentary source separation ",
+    "keywords": [
+      "buffer",
+      "nmf",
+      "source",
+      "components",
+      "bases"
+    ],
+    "path": "/docs/learn/tutorials/sourceseparation"
   },
   {
     "title": "Automation",
@@ -3609,10 +3909,10 @@
       "frequency",
       "wave"
     ],
-    "path": "/docs/learning/tutorials/automation"
+    "path": "/docs/learn/tutorials/automation"
   },
   {
-    "title": "Basic Granulation",
+    "title": "Basic granulation",
     "blurb": "An example of basic audio granulation, where short audio.",
     "keywords": [
       "grain",
@@ -3621,10 +3921,10 @@
       "duration",
       "rand"
     ],
-    "path": "/docs/learning/examples/basicgranulation"
+    "path": "/docs/learn/examples/basicgranulation"
   },
   {
-    "title": "Basic Sampling",
+    "title": "Basic sampling",
     "blurb": "In **bellplay~**, the `ezsampler` function provides a minimal but flexible interface for mapping symbolic pitch and velocity information to audio buffers.",
     "keywords": [
       "pitch",
@@ -3633,34 +3933,34 @@
       "sample",
       "ezsampler"
     ],
-    "path": "/docs/learning/tutorials/sampling"
+    "path": "/docs/learn/tutorials/sampling"
   },
   {
-    "title": "Basic Workflow",
+    "title": "Basic workflow",
     "blurb": "In **bellplay~**, the basic building block of our scripts is the _buffer_.",
     "keywords": [
       "buffer",
       "workflow",
       "basic",
       "render",
-      "buffers"
+      "audio"
     ],
-    "path": "/docs/learning/tutorials/basicworkflow"
+    "path": "/docs/learn/tutorials/basicworkflow"
   },
   {
-    "title": "Buffer Keys",
-    "blurb": "As mentioned in earlier tutorials, buffers in **bellplay~** are simply nested lists of [key-value pairs](https://en.wikipedia.org/wiki/Name–value_pair).",
+    "title": "Buffer keys",
+    "blurb": "Buffers in **bellplay~** are simply structured lists of [key-value pairs](https://en.wikipedia.org/wiki/Name–value_pair).",
     "keywords": [
       "buffer",
-      "transcribe",
+      "value",
       "print",
-      "audio",
-      "keys"
+      "transcribe",
+      "audio"
     ],
-    "path": "/docs/learning/tutorials/bufferkeys"
+    "path": "/docs/learn/tutorials/bufferkeys"
   },
   {
-    "title": "Buffer Processing",
+    "title": "Buffer processing",
     "blurb": "One of the core features of **bellplay~** is the ability to dynamically and flexibly apply chains of DSP algorithms to our buffers.",
     "keywords": [
       "reverse",
@@ -3669,10 +3969,10 @@
       "file",
       "processing"
     ],
-    "path": "/docs/learning/tutorials/bufferprocessing"
+    "path": "/docs/learn/tutorials/bufferprocessing"
   },
   {
-    "title": "Buffer-based Parameters",
+    "title": "Buffer-based parameters",
     "blurb": "This tutorial shows how to use buffers to control audio parameters.",
     "keywords": [
       "buffer",
@@ -3681,10 +3981,10 @@
       "modulator",
       "duration"
     ],
-    "path": "/docs/learning/tutorials/audiocontrol"
+    "path": "/docs/learn/tutorials/audiocontrol"
   },
   {
-    "title": "Caching Data",
+    "title": "Caching data",
     "blurb": "In **bellplay~**, computation-heavy operations such as building large corpora, analyzing lots of audio data, and more, can be take a very long time, thus making it more tedious to experiment with our scripts every time we run them.",
     "keywords": [
       "file",
@@ -3693,22 +3993,22 @@
       "time",
       "buffers"
     ],
-    "path": "/docs/learning/tutorials/caching"
+    "path": "/docs/learn/tutorials/caching"
   },
   {
     "title": "credits",
     "blurb": "I’m [Felipe Tovar-Henao](https://felipe-tovar-henao.com), and I develop and maintain **bellplay~**.",
     "keywords": [
+      "project",
       "residency",
       "title",
       "credits",
-      "felipe",
-      "develop"
+      "felipe"
     ],
     "path": "/docs/about/credits"
   },
   {
-    "title": "Envelope-aware Temporal Alignment",
+    "title": "Envelope-aware temporal alignment",
     "blurb": "This example demonstrates how to align the envelopes of different audio samples based on their peak amplitude times.",
     "keywords": [
       "peak",
@@ -3717,7 +4017,7 @@
       "maxpeaktime",
       "onset"
     ],
-    "path": "/docs/learning/examples/temporalalignment"
+    "path": "/docs/learn/examples/temporalalignment"
   },
   {
     "title": "Exporting",
@@ -3729,22 +4029,22 @@
       "audiopath",
       "exporting"
     ],
-    "path": "/docs/learning/tutorials/export"
+    "path": "/docs/learn/tutorials/export"
   },
   {
-    "title": "Feature-driven Sampling",
+    "title": "Feature-driven sampling",
     "blurb": "This tutorial shows how to build [k-dimensional trees](https://en.wikipedia.org/wiki/K-d_tree) to efficiently perform feature-based search on buffers.",
     "keywords": [
       "pitch",
+      "velocity",
       "match",
       "segments",
-      "buffer",
-      "tree"
+      "target"
     ],
-    "path": "/docs/learning/tutorials/kdtree"
+    "path": "/docs/learn/tutorials/kdtree"
   },
   {
-    "title": "Feedback Synthesis",
+    "title": "Feedback synthesis",
     "blurb": "This code demonstrates a feedback-based synthesis technique, where buffers are routed back into their own processing chain to create a rich, evolving drone.",
     "keywords": [
       "duration",
@@ -3753,10 +4053,10 @@
       "random",
       "normalize"
     ],
-    "path": "/docs/learning/examples/feedbacksynth"
+    "path": "/docs/learn/examples/feedbacksynth"
   },
   {
-    "title": "Frequently Asked Questions",
+    "title": "Frequently asked questions",
     "blurb": "Yes—some familiarity with programming concepts is recommended.",
     "keywords": [
       "audio",
@@ -3768,7 +4068,7 @@
     "path": "/docs/faq"
   },
   {
-    "title": "Generating Keymaps",
+    "title": "Generating keymaps",
     "blurb": "This example automatically generates a custom keymap given a list of audio file paths:",
     "keywords": [
       "pitch",
@@ -3777,7 +4077,7 @@
       "midi",
       "retrieve"
     ],
-    "path": "/docs/learning/examples/keymaps"
+    "path": "/docs/learn/examples/keymaps"
   },
   {
     "title": "Glissando texture",
@@ -3789,10 +4089,10 @@
       "set",
       "texture"
     ],
-    "path": "/docs/learning/examples/gliss"
+    "path": "/docs/learn/examples/gliss"
   },
   {
-    "title": "Importing Audio",
+    "title": "Importing audio",
     "blurb": "In **bellplay~** we can also generate buffers by importing our own audio files into our scripts.",
     "keywords": [
       "path",
@@ -3801,7 +4101,7 @@
       "relative",
       "absolute"
     ],
-    "path": "/docs/learning/tutorials/importingaudio"
+    "path": "/docs/learn/tutorials/importingaudio"
   },
   {
     "title": "Importing MIDI",
@@ -3813,10 +4113,10 @@
       "onset",
       "normalize"
     ],
-    "path": "/docs/learning/tutorials/importingmidi"
+    "path": "/docs/learn/tutorials/importingmidi"
   },
   {
-    "title": "Inspecting Buffers",
+    "title": "Inspecting buffers",
     "blurb": "An essential part of writing code is being able to debug unwanted or unexpected behaviors.",
     "keywords": [
       "envelope",
@@ -3825,7 +4125,7 @@
       "buffers",
       "window"
     ],
-    "path": "/docs/learning/tutorials/bufferinspector"
+    "path": "/docs/learn/tutorials/bufferinspector"
   },
   {
     "title": "Installation",
@@ -3846,10 +4146,22 @@
       "audio",
       "bell",
       "buffers",
-      "rendering",
-      "introduction"
+      "design",
+      "data"
     ],
     "path": "/docs"
+  },
+  {
+    "title": "Learn",
+    "blurb": "The following **bellplay~** tutorials and examples are designed to be _plug-and-play_ learning and demonstration materials.",
+    "keywords": [
+      "code",
+      "tutorials",
+      "examples",
+      "bell",
+      "function"
+    ],
+    "path": "/docs/learn"
   },
   {
     "title": "License",
@@ -3873,10 +4185,10 @@
       "render",
       "harmonics"
     ],
-    "path": "/docs/learning/tutorials/markers"
+    "path": "/docs/learn/tutorials/markers"
   },
   {
-    "title": "Markov Music Generation",
+    "title": "Markov music generation",
     "blurb": "This script illustrates how to construct and use an nth-order [Markov model](https://en.wikipedia.org/wiki/Markov_model) from MIDI data in **bellplay~** for generative music.",
     "keywords": [
       "events",
@@ -3885,10 +4197,10 @@
       "markov",
       "sequence"
     ],
-    "path": "/docs/learning/examples/markov"
+    "path": "/docs/learn/examples/markov"
   },
   {
-    "title": "MIDI Retuning",
+    "title": "MIDI retuning",
     "blurb": "An example of JI-based retuning of MIDI events.",
     "keywords": [
       "pitch",
@@ -3897,10 +4209,10 @@
       "onset",
       "duration"
     ],
-    "path": "/docs/learning/examples/midiretuning"
+    "path": "/docs/learn/examples/midiretuning"
   },
   {
-    "title": "More Audio Features",
+    "title": "More audio features",
     "blurb": "This tutorial provides an additional example for using buffer analysis features for audio processing.",
     "keywords": [
       "buffer",
@@ -3909,11 +4221,11 @@
       "grain",
       "offset"
     ],
-    "path": "/docs/learning/tutorials/features"
+    "path": "/docs/learn/tutorials/features"
   },
   {
     "title": "Multi-rendering",
-    "blurb": "This tutorial demonstrates a very simple but consequential feature in **bellplay~** — namely, the ability to reuse rendered buffers multiple times to further refine and sculpt the final output into complex and intricate sounds.",
+    "blurb": "This tutorial demonstrates a very simple but consequential feature in **bellplay~**—namely, the ability to reuse rendered buffers multiple times to further refine and sculpt the final output into complex and intricate sounds.",
     "keywords": [
       "render",
       "onset",
@@ -3921,10 +4233,22 @@
       "rand",
       "buffer"
     ],
-    "path": "/docs/learning/tutorials/multirendering"
+    "path": "/docs/learn/tutorials/multirendering"
   },
   {
-    "title": "Post-rendering Processing",
+    "title": "Neural synthesizer",
+    "blurb": "This tutorial demonstrates how to use a multi-layer perceptron (MLP) neural network",
+    "keywords": [
+      "parameters",
+      "gain",
+      "features",
+      "harmonicity",
+      "modindex"
+    ],
+    "path": "/docs/learn/examples/neuralsynth"
+  },
+  {
+    "title": "Post-rendering processing",
     "blurb": "Sometimes it can be more useful or desirable to apply processing to the entire output, instead of processing each buffer individually.",
     "keywords": [
       "apply",
@@ -3933,19 +4257,19 @@
       "file",
       "pan"
     ],
-    "path": "/docs/learning/tutorials/postprocessing"
+    "path": "/docs/learn/tutorials/postprocessing"
   },
   {
     "title": "Randomness",
     "blurb": "Randomness is frequently used in algorithmic music to introduce variation and unpredictability.",
     "keywords": [
       "setseed",
-      "seed",
-      "xrand",
       "random",
-      "seeded"
+      "xrand",
+      "seeded",
+      "seed"
     ],
-    "path": "/docs/learning/tutorials/randomness"
+    "path": "/docs/learn/tutorials/randomness"
   },
   {
     "title": "Rendering",
@@ -3957,10 +4281,10 @@
       "channels",
       "buffer"
     ],
-    "path": "/docs/learning/tutorials/rendering"
+    "path": "/docs/learn/tutorials/rendering"
   },
   {
-    "title": "Score Formatting and Appearance",
+    "title": "Score formatting and appearance",
     "blurb": "Depending on what you're doing, you might want to have more control over what the score transcription looks like.",
     "keywords": [
       "voice",
@@ -3969,10 +4293,10 @@
       "render",
       "scoreconfig"
     ],
-    "path": "/docs/learning/tutorials/scoreconfig"
+    "path": "/docs/learn/tutorials/scoreconfig"
   },
   {
-    "title": "Shepard-Risset Glissando",
+    "title": "Shepard-Risset glissando",
     "blurb": "This example synthesizes a Shepard-Risset glissando using **bellplay~**.",
     "keywords": [
       "frequency",
@@ -3981,7 +4305,7 @@
       "numocts",
       "onsets"
     ],
-    "path": "/docs/learning/examples/shepardtone"
+    "path": "/docs/learn/examples/shepardtone"
   },
   {
     "title": "Support",
@@ -3996,7 +4320,7 @@
     "path": "/docs/about/support"
   },
   {
-    "title": "Synth Arpeggio",
+    "title": "Synth arpeggio",
     "blurb": "This example demonstrates how to use BPFs to continuously change the pitch of different oscillators.",
     "keywords": [
       "arpeggio",
@@ -4005,10 +4329,10 @@
       "voice",
       "biquad"
     ],
-    "path": "/docs/learning/examples/syntharpeggio"
+    "path": "/docs/learn/examples/syntharpeggio"
   },
   {
-    "title": "Temporal Quantization",
+    "title": "Temporal quantization",
     "blurb": "A basic example of temporal quantization, where transient-based segments are temporally shifted to align with a rhythmic grid.",
     "keywords": [
       "onset",
@@ -4017,34 +4341,34 @@
       "markers",
       "segment"
     ],
-    "path": "/docs/learning/examples/temporalquantization"
+    "path": "/docs/learn/examples/temporalquantization"
   },
   {
     "title": "Transcription",
-    "blurb": "When transcribing buffers, we get to specify essential information about how each buffer fits within the final output.",
+    "blurb": "For the buffers we create to show up on the timeline, we need to _transcribe_ them via the `transcribe` function.",
     "keywords": [
-      "gain",
+      "transcribe",
+      "buffers",
+      "buffer",
       "onset",
-      "progress",
-      "render",
-      "buffers"
+      "render"
     ],
-    "path": "/docs/learning/tutorials/transcription"
+    "path": "/docs/learn/tutorials/transcription"
   },
   {
-    "title": "Variable Declarations",
+    "title": "Variable declarations",
     "blurb": "When writing code, it's good practice to use descriptive variable names.",
     "keywords": [
       "saw",
-      "global",
       "variable",
+      "global",
       "render",
-      "bell"
+      "name"
     ],
-    "path": "/docs/learning/tutorials/variables"
+    "path": "/docs/learn/tutorials/variables"
   },
   {
-    "title": "Waveshaping Buffers",
+    "title": "Waveshaping buffers",
     "blurb": "A basic example of waveshaping in **bellplay~**, using a randomly generated breakpoint function.",
     "keywords": [
       "waveshaping",
@@ -4053,6 +4377,6 @@
       "breakpoint",
       "function"
     ],
-    "path": "/docs/learning/examples/waveshaping"
+    "path": "/docs/learn/examples/waveshaping"
   }
 ]
