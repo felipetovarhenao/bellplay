@@ -28,4 +28,10 @@ $path = 'poem.wav';
 $buff = importaudio($path);
 ## transcribe buffer and render
 $buff.transcribe();
-render()
+render() 
+#(
+:::warning Sound file duration
+As you start experimenting with your own files, bear in mind that importing and manipulating longer sounds will result in longer processing time.
+As such, it's better to start small when prototyping and experimenting, and scale up once you think it's worth the wait time to hear the results.
+:::
+)#
