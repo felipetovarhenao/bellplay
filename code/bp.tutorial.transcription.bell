@@ -24,7 +24,7 @@ This is solely determined by the `@onset` argument in the `transcribe` function.
 :::
 
 Crucially, transcribing the buffer means taking a snapshot of the **current version** of the buffer and, therefore, further modifications done to the buffer will **not** affect the transcribed version. 
-Think of this in the same way you think about sending an email—once an email is been sent, it cannot be unsent not modify its content. 
+Think of this in the same way you think about sending an email—once an email has been sent, it cannot be unsent nor modify its content. 
 
 The code below shows how a single buffer is transcribed multiple times, each time with different settings, to generate a simple melodic gesture.
 
