@@ -2032,9 +2032,11 @@ BP_REF_NEW(
             BP_REF_SWITCH_OPTIONS
         )
     )
-    @usage BP_REF_CODE_SNIPPET(
-        "initurn(@size 3 @id 'myurn'); ## initialize URN",
-        "for $i in 1...30 do print(urn(@id 'myurn')) ## call URN"
+    @usage BP_REF_CODE_SNIPPET("$nums = 1 5 10 15 20;
+$x = 11.2;
+$match = nearest(@list $nums @target $x);
+$matchid = nearest(@list $nums @target $x @mode 1); ## return index instead
+print($match $matchid) ## 10 3"
     )
     @tags 'setseed' 'xchoose' 'xrandom' 'urn' 'xscramble'
 );
@@ -2237,6 +2239,14 @@ BP_REF_NEW(
         BP_REF_ARG(@name "keys" @type "list/symbol" @description "One or more keys to sort list by.")
     )
     @output BP_REF_OUTPUT(@description "List of sorted items" @type "llll")
+    @usage BP_REF_CODE_SNIPPET("$bufs = for $i in 1...50 collect cycle(@frequency rand(20, 2000) @duration choose(50 200));
+$sorted = sortbykeys($bufs, 'duration' 'pitch');
+$t = 0;
+for $b in $sorted do (
+    $b.transcribe($t @gain 0.1);
+    $t += $b.getkey('duration')
+);
+render(@play 1)")
 );
 
 ## ------------------------------------------------------------
@@ -2532,6 +2542,17 @@ BP_REF_NEW(
         )
         BP_REF_ARG(@name "midichannels" @default 1 @type "int/list" @description "Midichannel for each voice")
     )
+    @usage BP_REF_CODE_SNIPPET("scoreconfig(
+    @voicenames ['violin' '1'] ['violin' '2'] 'viola' 'cello' 'piano' 
+    @clefs 'g' 'g' 'alto' 'f' 'gf' 
+    @showdurations 1
+);
+for $mc $voice in rev(
+    c3 c5 e4 g5 bb5 
+) do (
+    ezsampler(@pitch $mc).transcribe(@voice $voice) 
+);
+render(@play 1)")
 );
 
 ## ------------------------------------------------------------
@@ -2708,6 +2729,11 @@ BP_REF_NEW(
         )
         BP_REF_ARG(@name "bitrate" @default 0 @type "int" @description "Mp3 bitrate in kbps. If 0, uses default.")
     )
+    @usage BP_REF_CODE_SNIPPET("for $i in 1...24 do cycle(55 * $i).transcribe(($i - 1) * 100);
+render();
+export('./audio.wav'); ## export as audio
+export('./score.llll'); ## export as roll
+export('./midi.mid') ## export as MIDI")
 );
 
 ## ------------------------------------------------------------
@@ -2784,6 +2810,8 @@ BP_REF_NEW(
         BP_REF_ARG(@name "path" @type "symbol" @description "Input midi file path.")
     )
     @output BP_REF_OUTPUT(@description "Midi events" @type "llll")
+    @usage BP_REF_CODE_SNIPPET("$events = importmidi('bach.mid');
+for $e in left($events, 10) do view($e)")
 );
 
 ## ------------------------------------------------------------
@@ -2798,6 +2826,9 @@ BP_REF_NEW(
         BP_REF_ARG(@name "length" @type "int" @default 16 @description "Window length.")
     )
     @output BP_REF_OUTPUT(@description "Hanning window" @type "list")
+    @usage BP_REF_CODE_SNIPPET("$han = hanning(@length 20);
+print($han, 'hanning window samples:');
+envelope($han).view('hanning window as buffer')")
 );
 
 ## ------------------------------------------------------------
