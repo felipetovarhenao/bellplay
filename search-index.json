@@ -927,11 +927,11 @@
     "title": "`export`",
     "blurb": "Exports the rendered output as either an audio (`.wav`, `.aif`, `.aiff`, `.mp3`), MIDI (`.mid`,`.midi`), or roll (`.llll`) file, given a output path.",
     "keywords": [
+      "export",
       "bitrate",
       "default",
       "path",
-      "symbol",
-      "export"
+      "symbol"
     ],
     "path": "/docs/reference/data-utilities/export"
   },
@@ -1300,10 +1300,10 @@
     "blurb": "Generates a hanning window as a numeric list.",
     "keywords": [
       "hanning",
+      "window",
       "length",
       "list",
-      "window",
-      "true"
+      "han"
     ],
     "path": "/docs/reference/data-utilities/hanning"
   },
@@ -1371,11 +1371,11 @@
     "title": "`importmidi`",
     "blurb": "Imports a midi file, as a list of events, each with the following keys:",
     "keywords": [
+      "events",
+      "importmidi",
       "path",
       "midi",
-      "importmidi",
-      "symbol",
-      "required"
+      "bell"
     ],
     "path": "/docs/reference/data-utilities/importmidi"
   },
@@ -1396,10 +1396,10 @@
     "blurb": "Given a size and a URN identifier, it initializes a new unique random number generator (URN).",
     "keywords": [
       "urn",
-      "id",
       "random",
-      "size",
-      "identifier"
+      "identifier",
+      "unique",
+      "default"
     ],
     "path": "/docs/reference/randomness/initurn"
   },
@@ -2947,7 +2947,7 @@
       "treble",
       "bass",
       "clefs",
-      "default"
+      "voice"
     ],
     "path": "/docs/reference/data-utilities/scoreconfig"
   },
@@ -3102,8 +3102,8 @@
       "llll",
       "keys",
       "required",
-      "list",
-      "sortbykeys"
+      "sortbykeys",
+      "list"
     ],
     "path": "/docs/reference/data-utilities/sortbykeys"
   },
@@ -4099,7 +4099,7 @@
       "file",
       "audio",
       "relative",
-      "absolute"
+      "importing"
     ],
     "path": "/docs/learn/tutorials/importingaudio"
   },
