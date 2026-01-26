@@ -263,19 +263,19 @@
                 "kind": "patcher",
                 "local": 1
             },
-            "bp.process.>~.maxpat": {
+            "bp.process.gt~.maxpat": {
                 "kind": "patcher",
                 "local": 1
             },
-            "bp.process.>=~.maxpat": {
+            "bp.process.geq~.maxpat": {
                 "kind": "patcher",
                 "local": 1
             },
-            "bp.process.<~.maxpat": {
+            "bp.process.lt~.maxpat": {
                 "kind": "patcher",
                 "local": 1
             },
-            "bp.process.<=~.maxpat": {
+            "bp.process.leq~.maxpat": {
                 "kind": "patcher",
                 "local": 1
             },

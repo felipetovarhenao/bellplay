@@ -1135,7 +1135,7 @@
                                     "numoutlets": 1,
                                     "outlettype": [ "" ],
                                     "patching_rect": [ 823.0, 409.0, 262.5, 23.0 ],
-                                    "text": "ears.process~ bp.process.>=~ @naming copy"
+                                    "text": "ears.process~ bp.process.geq~ @naming copy"
                                 }
                             },
                             {
@@ -1146,7 +1146,7 @@
                                     "numoutlets": 1,
                                     "outlettype": [ "" ],
                                     "patching_rect": [ 557.0, 409.0, 236.0, 23.0 ],
-                                    "text": "ears.process~ bp.process.>~ @naming copy"
+                                    "text": "ears.process~ bp.process.gt~ @naming copy"
                                 }
                             },
                             {
@@ -1157,7 +1157,7 @@
                                     "numoutlets": 1,
                                     "outlettype": [ "" ],
                                     "patching_rect": [ 288.0, 409.0, 243.0, 23.0 ],
-                                    "text": "ears.process~ bp.process.<=~ @naming copy"
+                                    "text": "ears.process~ bp.process.leq~ @naming copy"
                                 }
                             },
                             {
@@ -1262,7 +1262,7 @@
                                     "numoutlets": 1,
                                     "outlettype": [ "" ],
                                     "patching_rect": [ 13.0, 409.0, 236.0, 23.0 ],
-                                    "text": "ears.process~ bp.process.<~ @naming copy"
+                                    "text": "ears.process~ bp.process.lt~ @naming copy"
                                 }
                             }
                         ],
