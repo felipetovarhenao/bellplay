@@ -37,7 +37,7 @@ $getfeatures = (
 $synth = (
     $frequency, $harmonicity, $modindex, $gain, $duration = 50 -> (
         simplefm(
-            @frequency $frequency
+            @frequency max(0, $frequency)
             @duration $duration
             @harmonicity $harmonicity
             @modindex $modindex
