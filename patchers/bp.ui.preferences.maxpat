@@ -4,7 +4,7 @@
         "appversion": {
             "major": 9,
             "minor": 1,
-            "revision": 1,
+            "revision": 2,
             "architecture": "x64",
             "modernui": 1
         },
@@ -468,7 +468,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 1,
+                            "revision": 2,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -596,29 +596,6 @@
                                     "outlettype": [ "", "" ],
                                     "patching_rect": [ 152.0, 236.0, 87.0, 23.0 ],
                                     "text": "t l l"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-9",
-                                    "linecount": 2,
-                                    "maxclass": "message",
-                                    "numinlets": 2,
-                                    "numoutlets": 1,
-                                    "outlettype": [ "" ],
-                                    "patching_rect": [ 388.0, 110.0, 115.0, 37.0 ],
-                                    "text": ";\rmax usewebeditor 0"
-                                }
-                            },
-                            {
-                                "box": {
-                                    "id": "obj-6",
-                                    "maxclass": "newobj",
-                                    "numinlets": 1,
-                                    "numoutlets": 1,
-                                    "outlettype": [ "bang" ],
-                                    "patching_rect": [ 388.0, 66.0, 56.0, 23.0 ],
-                                    "text": "loadbang"
                                 }
                             },
                             {
@@ -829,12 +806,6 @@
                                 "patchline": {
                                     "destination": [ "obj-2", 0 ],
                                     "source": [ "obj-4", 0 ]
-                                }
-                            },
-                            {
-                                "patchline": {
-                                    "destination": [ "obj-9", 0 ],
-                                    "source": [ "obj-6", 0 ]
                                 }
                             },
                             {
