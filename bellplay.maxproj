@@ -822,6 +822,5 @@
     "devpath": ".",
     "sortmode": 1,
     "viewmode": 0,
-    "includepackages": 0,
-    "openactions_internal": "max objectfile fluid.dataset~ fluid.libmanipulation fluid.dataset~;\nmax objectfile bach.<= bach.leq bach.leq;\n"
+    "includepackages": 0
 }
