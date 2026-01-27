@@ -30,7 +30,7 @@ args = parser.parse_args()
 # application path
 app_path = os.path.abspath(args.i)
 app_name, app_ext = os.path.splitext(app_path)
-if app_ext != ".app":
+if app_ext != BIN_EXT:
     raise ValueError(
         f"{app_ext} is not a valid binary extension. Must be a {BIN_EXT} file.")
 
@@ -85,6 +85,6 @@ if sys.platform == 'darwin':
     subprocess.run(['sh', shell_script_path])
 else:
     source_path = os.path.join(ROOT_DIR, 'openactions.txt')
-    init_path = os.path.dirname(
-        app_path, 'resources/init/flucoma-objectfile-mapping.txt')
+    init_path = os.path.join(os.path.dirname(
+        app_path), 'resources/init/flucoma-objectfile-mapping.txt')
     shutil.copy(src=source_path, dst=init_path)
