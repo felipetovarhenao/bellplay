@@ -816,7 +816,6 @@
                     "saved_object_attributes": {
                         "allwindowsactive": 0,
                         "appicon_mac": "logo.icns",
-                        "appicon_win": "logo.ico",
                         "audiosupport": 1,
                         "bundleidentifier": "com.felipetovarhenao.bellplay",
                         "cantclosetoplevelpatchers": 1,
