@@ -83,6 +83,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `bp.example.syntharpeggio.bell`
   - `bp.example.shepardtone.bell`
 - New functions:
+  - `float2rat`: floating-point to rational conversion.
   - `nrand` and `xrandn`: Normally distributed random number generators.
   - `fir`: Impulse response operation.
   - `maxabs` and `minabs`: Signed min/max values based on abs value of `@x` and `@y`.

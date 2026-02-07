@@ -8379,4 +8379,30 @@ BP_REF_NEW(
 
 ## ------------------------------------------------------------
 
+float2rat = (
+    $x, $denoms = 16 -> (
+        $x.map(
+            $float -^ $denoms -> (
+                $sign = sgn($float);
+                $float = abs($float);
+                $bestnum = 0;
+                $bestden = 1;
+                $besterror = abs($float);
+                for $den in $denoms do (
+                    $num = round($float * $den);
+                    $error = abs($float - ($num / $den));
+                    if $error < $besterror then (
+                        $bestnum = $num;
+                        $bestden = $den;
+                        $besterror = $error
+                    ) 
+                );
+                int($sign * $bestnum) / int($bestden) 
+            ) @maxdepth -1
+        ) 
+    ) 
+);
+
+## ------------------------------------------------------------
+
 null
