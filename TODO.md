@@ -23,6 +23,7 @@
   - [x] `splitbuf`.
   - [x] `createtree` and `searchtree`.
 - [ ] Doc improvements:
+  - [ ] Docs for `onsetdetection`. It should clarify that it returns the window-wise values, which would typically be useful to convert into envelope and then onset analysis with `onsets`. Maybe provide custom usage.
   - [x] Better function tags:
     - Data utilities
     - Buffer utilities.
