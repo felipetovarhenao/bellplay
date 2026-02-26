@@ -4378,7 +4378,7 @@ tonalkey = (
     $usethreechords = 1,
     $mode = 0 -> ( 
         BP_FN_ESSENTIA(
-            @name "key"
+            @name "tonalkey"
             @settings (
                 "@numharmonics" $numharmonics
                 "@pcpsize" $pcpsize
