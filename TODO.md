@@ -40,6 +40,7 @@
 
 ### Fix
 
+- `rhythm` not working on windows.
 - [ ] Fix ignored offset bug in `splitbuf`.
 - FIX `rhythm` extractor.
 - [ ] Fix issues with improperly resetting/clearing `dada.cartesian`.
