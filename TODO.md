@@ -40,6 +40,9 @@
 
 ### Fix
 
+- [ ] Properly handle database field menus and filtering.
+  - all-type fields: x, y, size, color.
+  - class-only fields: shape (`s`, `i`).
 - `rhythm` not working on windows.
 - [ ] Fix ignored offset bug in `splitbuf`.
 - FIX `rhythm` extractor.
