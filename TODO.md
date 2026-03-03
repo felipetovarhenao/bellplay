@@ -40,6 +40,7 @@
 
 ### Fix
 
+- [ ] Database table names cannot have period chars. Do regex clean-up.
 - [ ] Properly handle database field menus and filtering.
   - all-type fields: x, y, size, color.
   - class-only fields: shape (`s`, `i`).
