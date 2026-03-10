@@ -20,7 +20,7 @@
             "description": "output of input `@function`",
             "type": "llll/null"
         },
-        "usage": "$fun = ($name -> print('Hello, ' + $name + '!'));\napply($fun @argsbyname ['name' 'Bob']);\napply($fun @argsbyposition 'Alice')"
+        "usage": "$fun = ($name -> print('Hello ' + $name + '!'));\napply($fun @argsbyname ['name' 'Bob']); ## 'Hello Bob!''\napply($fun @argsbyposition 'Alice') ## 'Hello Alice!''"
     },
     {
         "name": "$args",
