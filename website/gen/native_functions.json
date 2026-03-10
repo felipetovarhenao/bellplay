@@ -31,11 +31,11 @@
                 "type": "llll"
             }
         ],
-        "usage": "$myfunc = (\n    <...> -> (\n        for $i in 1...$argcount do print('argument at position' $i '->' $args($i))\n    )\n);\n$myfunc('foo', 'bar', 'baz')",
         "output": {
             "description": "Positional arguments at positions `@indices`.",
             "type": "llll/null"
-        }
+        },
+        "usage": "$myfunc = (\n    <...> -> (\n        for $i in 1...$argcount do print('argument at position' $i '->' $args($i))\n    )\n);\n$myfunc('foo', 'bar', 'baz')"
     },
     {
         "name": "abs",
@@ -1634,7 +1634,8 @@
         "output": {
             "description": "The numbers (assumed to be midi cents) and pitches in an _llll_ to frequency.",
             "type": "llll/null"
-        }
+        },
+        "usage": "mc2f(a4 a5 a6) ## 220 440 880"
     },
     {
         "name": "minimum",
@@ -1840,7 +1841,8 @@
         "output": {
             "description": "Product of the elements in an _llll_.",
             "type": "llll/null"
-        }
+        },
+        "usage": "prod(2 3 4) ## 12"
     },
     {
         "name": "reduce",
@@ -1943,7 +1945,8 @@
         "output": {
             "description": "Rotated _llll_",
             "type": "llll/null"
-        }
+        },
+        "usage": "rot(10 20 30 40, 1); ## 20 30 40 10\nrot(10 20 30 40, -1) ## 40 10 20 30"
     },
     {
         "name": "scramble",
@@ -1972,7 +1975,8 @@
         "output": {
             "description": "Shuffled _llll_.",
             "type": "llll/null"
-        }
+        },
+        "usage": "scramble(1...9) ## Returns list elements in random order"
     },
     {
         "name": "slice",
@@ -1991,7 +1995,8 @@
         "output": {
             "description": "Sublists",
             "type": "llll/null"
-        }
+        },
+        "usage": "slice(1...5, 2) ## [ 1 2 ] [ 3 4 5 ]"
     },
     {
         "name": "sort",
@@ -2010,7 +2015,8 @@
         "output": {
             "description": "Sorted `@llll`.",
             "type": "llll/null"
-        }
+        },
+        "usage": "sort(3 1 4 2 5) ## 1 2 3 4 5"
     },
     {
         "name": "subs",
@@ -2044,7 +2050,8 @@
         "output": {
             "description": "Modified _llll_",
             "type": "llll/null"
-        }
+        },
+        "usage": "subs('a' 'b' 'c' 'd', 2, 'z') ## a z c d"
     },
     {
         "name": "sum",
@@ -2073,7 +2080,8 @@
         "output": {
             "description": "Sum of the elements in `@llll`.",
             "type": "llll/null"
-        }
+        },
+        "usage": "sum(1...5) ## 15"
     },
     {
         "name": "symdiff",
@@ -2116,7 +2124,8 @@
         "output": {
             "description": "`@llll` without duplicate elements.",
             "type": "llll/null"
-        }
+        },
+        "usage": "thin(1 1 1 2 2 3) ## 1 2 3"
     },
     {
         "name": "trans",
@@ -2197,6 +2206,6 @@
                 "type": "literal"
             }
         ],
-        "usage": "include(/path/to/file.bell)"
+        "usage": "include(/path/to/file.bell) ## note than path is not a symbol (i.e., not in quotes)"
     }
 ]
