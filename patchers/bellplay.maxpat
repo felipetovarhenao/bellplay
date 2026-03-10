@@ -4,7 +4,7 @@
         "appversion": {
             "major": 9,
             "minor": 1,
-            "revision": 1,
+            "revision": 2,
             "architecture": "x64",
             "modernui": 1
         },
@@ -470,7 +470,7 @@
                         "appversion": {
                             "major": 9,
                             "minor": 1,
-                            "revision": 1,
+                            "revision": 2,
                             "architecture": "x64",
                             "modernui": 1
                         },
@@ -816,6 +816,7 @@
                     "saved_object_attributes": {
                         "allwindowsactive": 0,
                         "appicon_mac": "logo.icns",
+                        "appicon_win": "",
                         "audiosupport": 1,
                         "bundleidentifier": "com.felipetovarhenao.bellplay",
                         "cantclosetoplevelpatchers": 1,
@@ -1189,11 +1190,12 @@
                             "parameter_mmax": 6.0,
                             "parameter_mmin": -70.0,
                             "parameter_modmode": 3,
-                            "parameter_shortname": "GAIN",
+                            "parameter_shortname": " ",
                             "parameter_type": 0,
                             "parameter_unitstyle": 4
                         }
                     },
+                    "showname": 0,
                     "slidercolor": [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
                     "textcolor": [ 0.129411764705882, 0.129411764705882, 0.129411764705882, 1.0 ],
                     "tribordercolor": [ 0.098039215686275, 0.098039215686275, 0.098039215686275, 0.0 ],
@@ -1556,7 +1558,15 @@
             }
         ],
         "parameters": {
-            "obj-115": [ "live.gain~", "GAIN", 0 ],
+            "obj-115": [ "live.gain~", " ", 0 ],
+            "parameterbanks": {
+                "0": {
+                    "index": 0,
+                    "name": "",
+                    "parameters": [ "-", "-", "-", "-", "-", "-", "-", "-" ],
+                    "buttons": [ "-", "-", "-", "-", "-", "-", "-", "-" ]
+                }
+            },
             "inherited_shortname": 1
         },
         "autosave": 0,
