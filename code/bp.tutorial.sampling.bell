@@ -46,7 +46,7 @@ To ensure `ezsampler` correctly adjusts the pitch of the original sample, always
 
 ---
 
-### Velocity layers
+### Velocity mappings
 
 Each pitch can be associated with multiple velocity-dependent mappings. 
 These are expressed as nested lists.
@@ -64,7 +64,7 @@ With this, `ezsampler` chooses `'soft.wav'` or `'loud.wav'` based on how close t
 
 ---
 
-### Sample variation (randomized selection)
+### Sample variation
 
 To add variability, we can associate pitch or velocity entries with multiple samples. The sampler will randomly pick one.
 
@@ -76,7 +76,7 @@ $keymap = (
 
 ---
 
-### Combined structure: mixed formats
+### Mixed formats
 
 We can also define heterogeneous mappings in a single keymap. For instance:
 
@@ -103,7 +103,7 @@ $buf = ezsampler(
     @pitch 6200 
     @duration 1200
     @velocity 64 
-    @keymap $mykeymap
+    @keymap $keymap
 )
 ```
 
