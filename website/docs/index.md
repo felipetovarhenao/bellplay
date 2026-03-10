@@ -12,7 +12,7 @@ In contrast to popular real-time systems like [MaxMSP](https://cycling74.com/), 
 
 ## How does it work?
 
-At the core of **bellplay~** is the concept of the **buffer**—a structured representation of an audio object, containing both technical metadata (e.g., sampling rate, duration) and optionally, analysis-derived features such as pitch, loudness, or spectral descriptors. These buffers can be generated, processed, and analyzed using `bell`.
+At the core of **bellplay~** is the concept of the **buffer**—a structured representation of an audio object, containing both technical metadata (e.g., sampling rate, duration) and optionally, analysis-derived features such as pitch, loudness, or spectral descriptors. These buffers can be generated, processed, and analyzed all within _bell_ scripts.
 
 The typical workflow in **bellplay~** consists of three steps:
 
