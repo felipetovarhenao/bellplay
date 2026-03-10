@@ -53,6 +53,7 @@
 
 ## Upcoming releases
 
+- Improve search engine in documentation.
 - Add support for pitch syntax in `ezsampler` and `transcribe`.
 - Adapt code base to new bell language version.
   - Argless functions:
