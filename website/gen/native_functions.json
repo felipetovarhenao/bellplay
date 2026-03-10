@@ -1642,7 +1642,7 @@
     },
     {
         "name": "nth",
-        "description": "Returns one or more elements from an _llll_ according to its address. If a placeholder is provided, it will be inserted in the place of non-existing elements.",
+        "description": "Returns one or more elements from an _llll_ according to its address. If a `@placeholder` is provided, it will be inserted in the place of non-existing elements.",
         "args": [
             {
                 "name": "llll",
