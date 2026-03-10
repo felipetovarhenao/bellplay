@@ -62,8 +62,10 @@ class MDParser:
                 if current_text:
                     content = "\n".join(current_text).strip()
                     if content != '':
-                        result.append(
-                            {"type": "text", "content": content})
+                        result.append({
+                            "type": "text",
+                            "content": content
+                        })
                     current_text = []
                 result.append(
                     {"type": "heading", "content": heading_match.group(0).strip()})
@@ -75,8 +77,10 @@ class MDParser:
                 if current_text:
                     content = "\n".join(current_text).strip()
                     if content != "":
-                        result.append(
-                            {"type": "text", "content": "\n".join(current_text).strip()})
+                        result.append({
+                            "type": "text",
+                            "content": "\n".join(current_text).strip()
+                        })
                         current_text = []
                 code_lines = [line]
                 i += 1
@@ -94,8 +98,10 @@ class MDParser:
                 if current_text:
                     content = "\n".join(current_text).strip()
                     if content != "":
-                        result.append(
-                            {"type": "text", "content": "\n".join(current_text).strip()})
+                        result.append({
+                            "type": "text",
+                            "content": "\n".join(current_text).strip()
+                        })
                         current_text = []
                 admon_lines = [line]
                 i += 1
@@ -104,8 +110,10 @@ class MDParser:
                     if lines[i].strip().startswith(":::"):
                         break
                     i += 1
-                result.append(
-                    {"type": "admonition", "content": "\n".join(admon_lines).strip()})
+                result.append({
+                    "type": "admonition",
+                    "content": "\n".join(admon_lines).strip()
+                })
                 i += 1
                 continue
 
@@ -116,8 +124,10 @@ class MDParser:
         if current_text:
             content = "\n".join(current_text).strip()
             if content != '':
-                result.append(
-                    {"type": "text", "content": content})
+                result.append({
+                    "type": "text",
+                    "content": content
+                })
 
         return result
 
