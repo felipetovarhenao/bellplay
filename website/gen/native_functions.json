@@ -761,7 +761,8 @@
         "output": {
             "description": "Value of `@pitch` to the nearest tone division.",
             "type": "llll/null"
-        }
+        },
+        "usage": "approx(6010 6030 6090, 4) ## 6000 6060 6100"
     },
     {
         "name": "bessel",
@@ -780,7 +781,8 @@
         "output": {
             "description": "Bessel function of the first kind of given `@order` at point `@x`.",
             "type": "llll/null"
-        }
+        },
+        "usage": "$x = arithmser(0, 1 @maxcount 10);\n$order = 1;\n$y = bessel($x, $order);\nprint($y)"
     },
     {
         "name": "makepitchsc",
@@ -819,7 +821,8 @@
         "output": {
             "description": "Value of `@base` to the power of `@exponent`.",
             "type": "llll/null"
-        }
+        },
+        "usage": "pow(2, 0...3) ## 1 2 4 8"
     },
     {
         "name": "makepitch",
@@ -841,7 +844,8 @@
         "output": {
             "description": "Generated pitch value(s)",
             "type": "llll/null"
-        }
+        },
+        "usage": "makepitch(\n    @degree 2 ## diatonic degree (0-based)\n    @octave 4\n    @alter -0.5 ## deviation in tones (0.5 = semitone)\n) ## Eb4"
     },
     {
         "name": "arithmser",
@@ -886,7 +890,8 @@
         "output": {
             "description": "Cartesian product of the sublists of an _llll_.",
             "type": "llll/null"
-        }
+        },
+        "usage": "cartesianprod([1 2] [10 20]) ## [ 1 10 ] [ 1 20 ] [ 2 10 ] [ 2 20 ]"
     },
     {
         "name": "classify",
@@ -905,7 +910,8 @@
         "output": {
             "description": "Classified `@llll`",
             "type": "llll/null"
-        }
+        },
+        "usage": "classify(1 2 1 3 2 1); ## [ 1 1 1 ] [ 2 2 ] [ 3 ]\nclassify('a' 'b' 'c' 'a' 'c') ## [ a a ] [ b ] [ c c ]"
     },
     {
         "name": "comb",
@@ -934,7 +940,8 @@
         "output": {
             "description": "The k-combinations of an _llll_ for a range of `k`.",
             "type": "llll/null"
-        }
+        },
+        "usage": "comb(-1 2) ## [ [ ] ] [ [ -1 ] [ 2 ] ] [ [ -1 2 ] ]"
     },
     {
         "name": "contains",
@@ -963,7 +970,8 @@
         "output": {
             "description": "Summary of the data types contained in an _llll_.",
             "type": "llll/null"
-        }
+        },
+        "usage": "contains(1); ## 2\ncontains(1/2); ## 4\ncontains(1.1); ## 8\ncontains('a'); ## 16\ncontains('a' 1); ## 18\ncontains([1 2]); ## 32\ncontains([1 2] 'b') ## 48"
     },
     {
         "name": "delace",
@@ -982,7 +990,8 @@
         "output": {
             "description": "Deinterlaced _llll_",
             "type": "llll/null"
-        }
+        },
+        "usage": "delace(1 'one' 2 'two' 3 'three', 2) ## [ 1 2 3 ] [ one two three ]"
     },
     {
         "name": "depth",
@@ -996,7 +1005,8 @@
         "output": {
             "description": "Depth of input _llll_.",
             "type": "llll/null"
-        }
+        },
+        "usage": "depth([['a' 'b'] 'c' 'd']) ## 3"
     },
     {
         "name": "diff",
@@ -1019,7 +1029,8 @@
         "output": {
             "description": "Set difference of two _lllls_.",
             "type": "llll/null"
-        }
+        },
+        "usage": "diff(1...5, 3) ## 1 2 4 5"
     },
     {
         "name": "directin",
@@ -2071,7 +2082,8 @@
         "output": {
             "description": "Symmetric difference of two _lllls_.",
             "type": "llll/null"
-        }
+        },
+        "usage": "symdiff(1...5, 3) ## 1 2 4 5"
     },
     {
         "name": "thin",
