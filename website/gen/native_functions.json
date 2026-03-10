@@ -1832,7 +1832,7 @@
     },
     {
         "name": "right",
-        "description": "Returns the right part of an _llll_ relative to an index.",
+        "description": "Returns the right part of an _llll_ relative to an index. When `@index` is negative, the index defines the split point from the end of the list.",
         "args": [
             {
                 "name": "llll",
@@ -1914,7 +1914,7 @@
     },
     {
         "name": "slice",
-        "description": "Divides `@llll` into two sublists according to a split point.",
+        "description": "Divides `@llll` into two sublists according to a split point (1-based index).",
         "args": [
             {
                 "name": "llll",
@@ -1933,7 +1933,7 @@
     },
     {
         "name": "sort",
-        "description": "Returns a sorted `@llll`. An lambda `@function` can be optionally provided with the following signature:\n\n```bell\n$a, $b -> (\n\t## Should return 1 if $a is lesser than $b, 0 if not\n)\n```",
+        "description": "Returns a sorted _llll_. An lambda `@function` can be optionally provided with the following signature:\n\n```bell\n$a, $b -> (\n\t## Should return 1 if $a is lesser than $b, 0 if not\n)\n```",
         "args": [
             {
                 "name": "llll",
@@ -2015,7 +2015,7 @@
     },
     {
         "name": "symdiff",
-        "description": "Returns the symmetric difference of two _lllls_. A comparison function can be provided through the `@function` argument, otherwise it performs a stardard comparison",
+        "description": "Returns the symmetric difference of two _lllls_, by removing elements that appear in both _lllls_. A comparison function can be provided through the `@function` argument, otherwise it performs a stardard comparison",
         "args": [
             {
                 "name": "llll1",
@@ -2057,7 +2057,7 @@
     },
     {
         "name": "trans",
-        "description": "Returns the matrix transposition of an _llll_.",
+        "description": "Returns the matrix transposition of an _llll_, converting matrix rows into columns.",
         "args": [
             {
                 "name": "llll",
@@ -2081,7 +2081,7 @@
     },
     {
         "name": "union",
-        "description": "Returns the union of two _lllls_.",
+        "description": "Returns the [union](https://en.wikipedia.org/wiki/Union_(set_theory)) of two _lllls_.",
         "args": [
             {
                 "name": "llll1",
