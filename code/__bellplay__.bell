@@ -41,6 +41,7 @@ BP_MAXOBJ_ATOI = {max.atoi};
 BP_MAXOBJ_ITOA = {max.itoa};
 BP_MAXOBJ_BACHINTEGRATE = {bach.integrate};
 BP_MAXOBJ_BACHDERIVE = {bach.derive};
+BP_MAXOBJ_FROMSYMBOL = {fromsymbol};
 BP_FN_CONFIG = (
     $action, $value -> (
         $bpconfigpath = '~/bellplay.config.txt';
@@ -507,6 +508,29 @@ BP_REF_NEW(
     @usage BP_REF_CODE_SNIPPET("$nums = 1 2 3;
 $digits = tosymbol($nums); ## '1 2 3'
 print(is($digits)) ## symbol")
+);
+
+## ------------------------------------------------------------
+
+fromsymbol = (
+    $x -> map(
+        @llll $x
+        @modfunction ($v -> BP_MAXOBJ_SYMBOL($v @out 'm')) 
+        @maxdepth -1
+    ) 
+);
+
+BP_REF_NEW(
+    @name "fromsymbol"
+    @description "Converts symbols into numeric data and other data types."
+    @category BP_REF_LABEL_DATA_UTILS
+    @arguments (
+        BP_REF_ARG(@name "x" @type "symbol" @description "Symbol to cast")
+    )
+    @output BP_REF_OUTPUT(@description "Converted value" @type "anything")
+    @usage BP_REF_CODE_SNIPPET("$digits = '1 2.0 3/2';
+$nums = fromsymbol($digits);
+print(for $num in $nums collect is($num)) ## integer real rational")
 );
 
 ## ------------------------------------------------------------
