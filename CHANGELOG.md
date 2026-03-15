@@ -150,6 +150,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
+- Fix `dada.cartesian` bug using `deferlow` for all messages.
 - `tonalkey`: `key` output key correctly set to `tonalkey`.
 - DOCS:
   - Fix `tosymbol` dependency in docs function by moving definition to top of file.
