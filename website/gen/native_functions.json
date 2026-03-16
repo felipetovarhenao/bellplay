@@ -87,7 +87,7 @@
     },
     {
         "name": "alter",
-        "description": "Returns the difference, in tones, between the pitch value of `@x` and its diatonic pitch name.",
+        "description": "Returns the difference, in number of tones, between the pitch value of `@x` and its diatonic pitch name.",
         "args": [
             {
                 "name": "x",
@@ -166,7 +166,7 @@
     },
     {
         "name": "ceil",
-        "description": "Returns rounded up value of `@x` to the nearest integer.",
+        "description": "Returns the rounded up value of `@x` to the nearest integer.",
         "args": [
             {
                 "name": "x",
@@ -175,7 +175,7 @@
             }
         ],
         "output": {
-            "description": "Up value of `@x` to the nearest integer.",
+            "description": "Rounded-up value of `@x` to the nearest integer.",
             "type": "llll/null"
         },
         "usage": "ceil(-6.6 -3.3 3.3 6.6) ## -6.0 -3.0 4.0 7.0"
@@ -230,7 +230,7 @@
     },
     {
         "name": "degree",
-        "description": "Converts a pitch or MIDI cents value to C-based diatonic scale degree.",
+        "description": "Converts a pitch or MIDI cents value to the C-based diatonic scale degree as an integer (`0`-based).",
         "args": [
             {
                 "name": "x",
@@ -246,7 +246,7 @@
     },
     {
         "name": "den",
-        "description": "Returns the denominator of `@x`",
+        "description": "Returns the denominator of `@x`, which is assumed to be a rational value",
         "args": [
             {
                 "name": "x",
@@ -390,7 +390,7 @@
     },
     {
         "name": "num",
-        "description": "Returns the numerator of `@x`.",
+        "description": "Returns the numerator of `@x`, which is assumed to be a rational value.",
         "args": [
             {
                 "name": "x",
@@ -566,7 +566,7 @@
     },
     {
         "name": "trunc",
-        "description": "Returns the truncated value of `@x`.",
+        "description": "Returns the truncated value of `@x`, by removing any decimal places.",
         "args": [
             {
                 "name": "x",
@@ -623,7 +623,7 @@
     },
     {
         "name": "fmod",
-        "description": "Returns `@x` modulo `@y`",
+        "description": "Returns `@x` modulo `@y`, signed",
         "args": [
             {
                 "name": "x",
@@ -707,7 +707,7 @@
     },
     {
         "name": "mod",
-        "description": "Returns `@x` modulo `@y`",
+        "description": "Returns `@x` modulo `@y`, unsigned",
         "args": [
             {
                 "name": "x",
