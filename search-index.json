@@ -16,8 +16,8 @@
     "blurb": "Returns the absolute value of `@x`.",
     "keywords": [
       "abs",
-      "required",
       "bell",
+      "required",
       "absolute",
       "value"
     ],
@@ -40,8 +40,8 @@
     "blurb": "Returns the arc cosine value of `@x`.",
     "keywords": [
       "acos",
-      "required",
       "bell",
+      "required",
       "arc",
       "cosine"
     ],
@@ -52,8 +52,8 @@
     "blurb": "Returns the inverse hyperbolic cosine of `@x`",
     "keywords": [
       "acosh",
-      "required",
       "bell",
+      "required",
       "inverse",
       "hyperbolic"
     ],
@@ -73,7 +73,7 @@
   },
   {
     "title": "`alter`",
-    "blurb": "Returns the difference, in tones, between the pitch value of `@x` and its diatonic pitch name.",
+    "blurb": "Returns the difference, in number of tones, between the pitch value of `@x` and its diatonic pitch name.",
     "keywords": [
       "alter",
       "bell",
@@ -100,8 +100,8 @@
     "blurb": "Calls another function by passing it individual parameters expressed as two _lllls_, one for arguments passed by position, the other for arguments passed by name.",
     "keywords": [
       "required",
-      "function",
       "apply",
+      "function",
       "arguments",
       "bell"
     ],
@@ -111,8 +111,8 @@
     "title": "`approx`",
     "blurb": "Returns approximated value of `@pitch` to the nearest tone division",
     "keywords": [
-      "required",
       "approx",
+      "required",
       "pitch",
       "bell",
       "tonedivision"
@@ -172,8 +172,8 @@
     "blurb": "Returns the hyperbolic arc sine value of `@x`.",
     "keywords": [
       "asinh",
-      "required",
       "bell",
+      "required",
       "hyperbolic",
       "arc"
     ],
@@ -196,8 +196,8 @@
     "blurb": "Returns the arc tangent value of `@x`.",
     "keywords": [
       "atan",
-      "required",
       "bell",
+      "required",
       "arc",
       "tangent"
     ],
@@ -208,8 +208,8 @@
     "blurb": "Returns the hyperbolic arc tangent value of `@x`.",
     "keywords": [
       "atanh",
-      "required",
       "bell",
+      "required",
       "hyperbolic",
       "arc"
     ],
@@ -256,10 +256,10 @@
     "blurb": "Returns the Bessel function of the first kind of given `@order` at point `@x`.",
     "keywords": [
       "bessel",
-      "required",
       "order",
-      "function",
-      "bell"
+      "required",
+      "bell",
+      "function"
     ],
     "path": "/docs/reference/math/bessel"
   },
@@ -387,21 +387,21 @@
     "title": "`cartesianprod`",
     "blurb": "Returns the cartesian product of the sublists of an _llll_.",
     "keywords": [
-      "llll",
       "cartesianprod",
-      "required",
+      "llll",
       "bell",
+      "required",
       "cartesian"
     ],
     "path": "/docs/reference/data-utilities/cartesianprod"
   },
   {
     "title": "`ceil`",
-    "blurb": "Returns rounded up value of `@x` to the nearest integer.",
+    "blurb": "Returns the rounded up value of `@x` to the nearest integer.",
     "keywords": [
       "ceil",
-      "required",
       "bell",
+      "required",
       "value",
       "nearest"
     ],
@@ -412,8 +412,8 @@
     "blurb": "Converts the value of `@x` to MIDI cents.",
     "keywords": [
       "cents",
-      "required",
       "bell",
+      "required",
       "value",
       "midi"
     ],
@@ -459,11 +459,11 @@
     "title": "`classify`",
     "blurb": "Arranges elements into classes.",
     "keywords": [
-      "function",
       "classify",
+      "function",
       "llll",
       "null",
-      "required"
+      "bell"
     ],
     "path": "/docs/reference/data-utilities/classify"
   },
@@ -497,9 +497,9 @@
     "keywords": [
       "llll",
       "comb",
+      "bell",
       "required",
-      "default",
-      "bell"
+      "default"
     ],
     "path": "/docs/reference/data-utilities/comb"
   },
@@ -507,11 +507,11 @@
     "title": "`contains`",
     "blurb": "Returns a summary of the data types contained in an _llll_.",
     "keywords": [
+      "contains",
       "llll",
       "required",
-      "contains",
-      "mindepth",
-      "maxdepth"
+      "bell",
+      "mindepth"
     ],
     "path": "/docs/reference/data-utilities/contains"
   },
@@ -520,8 +520,8 @@
     "blurb": "Returns the cosine value of `@x`.",
     "keywords": [
       "cos",
-      "required",
       "bell",
+      "required",
       "cosine",
       "value"
     ],
@@ -532,8 +532,8 @@
     "blurb": "Returns the hyperbolic cosine value of `@x`.",
     "keywords": [
       "cosh",
-      "required",
       "bell",
+      "required",
       "hyperbolic",
       "cosine"
     ],
@@ -637,11 +637,11 @@
   },
   {
     "title": "`degree`",
-    "blurb": "Converts a pitch or MIDI cents value to C-based diatonic scale degree.",
+    "blurb": "Converts a pitch or MIDI cents value to the C-based diatonic scale degree as an integer (`0`-based).",
     "keywords": [
       "degree",
-      "required",
       "bell",
+      "required",
       "diatonic",
       "scale"
     ],
@@ -651,21 +651,21 @@
     "title": "`delace`",
     "blurb": "Deinterlaces an _llll_ into a given number of _lllls_.",
     "keywords": [
-      "llll",
       "delace",
-      "required",
+      "llll",
       "bell",
+      "required",
       "count"
     ],
     "path": "/docs/reference/data-utilities/delace"
   },
   {
     "title": "`den`",
-    "blurb": "Returns the denominator of `@x`",
+    "blurb": "Returns the denominator of `@x`, which is assumed to be a rational value",
     "keywords": [
       "den",
-      "required",
       "bell",
+      "required",
       "denominator",
       "arguments"
     ],
@@ -677,8 +677,8 @@
     "keywords": [
       "depth",
       "llll",
-      "required",
       "bell",
+      "required",
       "input"
     ],
     "path": "/docs/reference/data-utilities/depth"
@@ -711,11 +711,11 @@
     "title": "`diff`",
     "blurb": "Returns the set difference of two _lllls_.",
     "keywords": [
+      "diff",
       "required",
       "function",
-      "diff",
-      "null",
-      "bell"
+      "bell",
+      "null"
     ],
     "path": "/docs/reference/data-utilities/diff"
   },
@@ -903,8 +903,8 @@
     "title": "`exp2`",
     "blurb": "Raises 2 to the power of `@x`.",
     "keywords": [
-      "required",
       "bell",
+      "required",
       "power",
       "arguments",
       "true"
@@ -916,8 +916,8 @@
     "blurb": "Raises the constant `e` (`~2.71828`) to the power of `@x`.",
     "keywords": [
       "exp",
-      "required",
       "bell",
+      "required",
       "arguments",
       "true"
     ],
@@ -1048,8 +1048,8 @@
     "blurb": "Casts value of `@x` as a `float`.",
     "keywords": [
       "float",
-      "required",
       "bell",
+      "required",
       "arguments",
       "llll"
     ],
@@ -1060,8 +1060,8 @@
     "blurb": "Rounds down the value of `@x` to the nearest integer.",
     "keywords": [
       "floor",
-      "required",
       "bell",
+      "required",
       "value",
       "arguments"
     ],
@@ -1081,10 +1081,10 @@
   },
   {
     "title": "`fmod`",
-    "blurb": "Returns `@x` modulo `@y`",
+    "blurb": "Returns `@x` modulo `@y`, signed",
     "keywords": [
-      "required",
       "fmod",
+      "required",
       "bell",
       "modulo",
       "arguments"
@@ -1162,6 +1162,18 @@
       "bell"
     ],
     "path": "/docs/reference/buffer-operations/fromdiffs"
+  },
+  {
+    "title": "`fromsymbol`",
+    "blurb": "Converts symbols into numeric data and other data types.",
+    "keywords": [
+      "fromsymbol",
+      "symbol",
+      "bell",
+      "required",
+      "anything"
+    ],
+    "path": "/docs/reference/data-utilities/fromsymbol"
   },
   {
     "title": "`gain`",
@@ -1347,8 +1359,8 @@
     "title": "`hypot`",
     "blurb": "Returns the hypotenuse of `@x` and `@y`",
     "keywords": [
-      "required",
       "hypot",
+      "required",
       "bell",
       "hypotenuse",
       "arguments"
@@ -1432,8 +1444,8 @@
     "blurb": "Casts value of `@x` as an `int`.",
     "keywords": [
       "int",
-      "required",
       "bell",
+      "required",
       "arguments",
       "llll"
     ],
@@ -1590,8 +1602,8 @@
       "left",
       "llll",
       "index",
-      "required",
-      "bell"
+      "bell",
+      "required"
     ],
     "path": "/docs/reference/data-utilities/left"
   },
@@ -1599,10 +1611,10 @@
     "title": "`length`",
     "blurb": "Returns the number of elements in the root level of an _llll_.",
     "keywords": [
-      "llll",
       "length",
-      "required",
+      "llll",
       "bell",
+      "required",
       "number"
     ],
     "path": "/docs/reference/data-utilities/length"
@@ -1635,8 +1647,8 @@
     "title": "`log10`",
     "blurb": "Returns the logarithm base 10 of `@x`",
     "keywords": [
-      "required",
       "bell",
+      "required",
       "logarithm",
       "base",
       "arguments"
@@ -1647,8 +1659,8 @@
     "title": "`log2`",
     "blurb": "Returns the logarithm base 2 of `@x`",
     "keywords": [
-      "required",
       "bell",
+      "required",
       "logarithm",
       "base",
       "arguments"
@@ -1660,8 +1672,8 @@
     "blurb": "Returns the natural logarithm of `@x`",
     "keywords": [
       "log",
-      "required",
       "bell",
+      "required",
       "natural",
       "logarithm"
     ],
@@ -1721,9 +1733,9 @@
     "keywords": [
       "function",
       "llll",
+      "map",
       "required",
-      "null",
-      "map"
+      "null"
     ],
     "path": "/docs/reference/data-utilities/map"
   },
@@ -1755,8 +1767,8 @@
     "title": "`max`",
     "blurb": "Returns the maximum value between `@x` an `@y`.",
     "keywords": [
-      "required",
       "max",
+      "required",
       "bell",
       "maximum",
       "value"
@@ -1779,11 +1791,11 @@
     "title": "`maximum`",
     "blurb": "Returns the smallest number in an _llll_.",
     "keywords": [
-      "llll",
       "maximum",
+      "llll",
+      "bell",
       "required",
-      "null",
-      "mindepth"
+      "null"
     ],
     "path": "/docs/reference/data-utilities/maximum"
   },
@@ -1813,12 +1825,12 @@
   },
   {
     "title": "`mc2f`",
-    "blurb": "Converts all the numbers (assumed to be MIDI cents) and pitches in an _llll_ to frequency, with optional reference frequency and pitch.",
+    "blurb": "Converts all the numbers (assumed to be MIDI cents) and pitches in an _llll_ to frequency values (Hertz), with optional reference frequency and pitch.",
     "keywords": [
       "llll",
+      "bell",
       "required",
       "frequency",
-      "bell",
       "basefreq"
     ],
     "path": "/docs/reference/data-utilities/mc2f"
@@ -1887,8 +1899,8 @@
     "title": "`min`",
     "blurb": "Returns the minimum value between `@x` an `@y`.",
     "keywords": [
-      "required",
       "min",
+      "required",
       "bell",
       "minimum",
       "value"
@@ -1911,11 +1923,11 @@
     "title": "`minimum`",
     "blurb": "Returns the smallest number in an _llll_.",
     "keywords": [
-      "llll",
       "minimum",
+      "llll",
+      "bell",
       "required",
-      "null",
-      "mindepth"
+      "null"
     ],
     "path": "/docs/reference/data-utilities/minimum"
   },
@@ -1925,9 +1937,9 @@
     "keywords": [
       "minmax",
       "llll",
+      "bell",
       "required",
-      "null",
-      "mindepth"
+      "null"
     ],
     "path": "/docs/reference/data-utilities/minmax"
   },
@@ -1981,10 +1993,10 @@
   },
   {
     "title": "`mod`",
-    "blurb": "Returns `@x` modulo `@y`",
+    "blurb": "Returns `@x` modulo `@y`, unsigned",
     "keywords": [
-      "required",
       "mod",
+      "required",
       "bell",
       "modulo",
       "arguments"
@@ -2067,21 +2079,21 @@
     "title": "`nth`",
     "blurb": "Returns one or more elements from an _llll_ according to its address.",
     "keywords": [
-      "llll",
       "nth",
+      "llll",
       "address",
-      "required",
-      "placeholder"
+      "bell",
+      "required"
     ],
     "path": "/docs/reference/data-utilities/nth"
   },
   {
     "title": "`num`",
-    "blurb": "Returns the numerator of `@x`.",
+    "blurb": "Returns the numerator of `@x`, which is assumed to be a rational value.",
     "keywords": [
       "num",
-      "required",
       "bell",
+      "required",
       "numerator",
       "arguments"
     ],
@@ -2092,8 +2104,8 @@
     "blurb": "Returns the pitch octave level of `@x`.",
     "keywords": [
       "octave",
-      "required",
       "bell",
+      "required",
       "pitch",
       "level"
     ],
@@ -2249,8 +2261,8 @@
     "keywords": [
       "llll",
       "perm",
-      "required",
       "bell",
+      "required",
       "maxcount"
     ],
     "path": "/docs/reference/data-utilities/perm"
@@ -2284,8 +2296,8 @@
     "blurb": "Casts value of `@x` as `pitch`.",
     "keywords": [
       "pitch",
-      "required",
       "bell",
+      "required",
       "arguments",
       "llll"
     ],
@@ -2367,8 +2379,8 @@
     "title": "`pow`",
     "blurb": "Returns the value of `@base` to the power of `@exponent`.",
     "keywords": [
-      "required",
       "pow",
+      "required",
       "base",
       "exponent",
       "bell"
@@ -2404,8 +2416,8 @@
     "blurb": "Return sequences of primes.",
     "keywords": [
       "primeser",
-      "default",
       "bell",
+      "default",
       "min",
       "max"
     ],
@@ -2439,11 +2451,11 @@
     "title": "`prod`",
     "blurb": "Returns the product of the elements in an _llll_.",
     "keywords": [
-      "llll",
       "prod",
+      "llll",
       "default",
-      "required",
-      "null"
+      "bell",
+      "required"
     ],
     "path": "/docs/reference/data-utilities/prod"
   },
@@ -2563,7 +2575,7 @@
       "required",
       "bell",
       "integer",
-      "arguments"
+      "returns"
     ],
     "path": "/docs/reference/randomness/random"
   },
@@ -2584,8 +2596,8 @@
     "blurb": "Casts value of `@x` as `rat`.",
     "keywords": [
       "rat",
-      "required",
       "bell",
+      "required",
       "arguments",
       "llll"
     ],
@@ -2655,9 +2667,9 @@
     "title": "`reduce`",
     "blurb": "Applies cumulatively a binary function to all the elements in an _llll_.",
     "keywords": [
+      "reduce",
       "required",
       "function",
-      "reduce",
       "llll",
       "bell"
     ],
@@ -2715,11 +2727,11 @@
     "title": "`rev`",
     "blurb": "Reverses the contents of an _llll_.",
     "keywords": [
-      "llll",
       "rev",
+      "llll",
       "default",
-      "required",
-      "null"
+      "bell",
+      "required"
     ],
     "path": "/docs/reference/data-utilities/rev"
   },
@@ -2764,10 +2776,10 @@
     "blurb": "Returns the right part of an _llll_ relative to an index.",
     "keywords": [
       "right",
-      "llll",
       "index",
-      "required",
-      "bell"
+      "llll",
+      "bell",
+      "required"
     ],
     "path": "/docs/reference/data-utilities/right"
   },
@@ -2799,11 +2811,11 @@
     "title": "`rot`",
     "blurb": "Rotates the contents of an _llll_.",
     "keywords": [
+      "rot",
       "llll",
       "default",
-      "rot",
-      "required",
-      "null"
+      "bell",
+      "required"
     ],
     "path": "/docs/reference/data-utilities/rot"
   },
@@ -2824,8 +2836,8 @@
     "blurb": "Rounds the value of `@x` to the nearest integer.",
     "keywords": [
       "round",
-      "required",
       "bell",
+      "required",
       "arguments",
       "llll"
     ],
@@ -2955,11 +2967,11 @@
     "title": "`scramble`",
     "blurb": "Shuffles randomly the elements of an _llll_.",
     "keywords": [
-      "llll",
       "scramble",
+      "llll",
+      "bell",
       "required",
-      "null",
-      "default"
+      "null"
     ],
     "path": "/docs/reference/randomness/scramble"
   },
@@ -3016,8 +3028,8 @@
     "blurb": "Returns the sign of `@x`.",
     "keywords": [
       "sgn",
-      "required",
       "bell",
+      "required",
       "sign",
       "arguments"
     ],
@@ -3040,8 +3052,8 @@
     "blurb": "Returns the sine value of `@x`.",
     "keywords": [
       "sin",
-      "required",
       "bell",
+      "required",
       "sine",
       "value"
     ],
@@ -3052,8 +3064,8 @@
     "blurb": "Returns the hyperbolic sine of `@x`.",
     "keywords": [
       "sinh",
-      "required",
       "bell",
+      "required",
       "hyperbolic",
       "sine"
     ],
@@ -3061,12 +3073,12 @@
   },
   {
     "title": "`slice`",
-    "blurb": "Divides `@llll` into two sublists according to a split point.",
+    "blurb": "Divides `@llll` into two sublists according to a split point (1-based index).",
     "keywords": [
       "slice",
       "llll",
-      "required",
       "bell",
+      "required",
       "index"
     ],
     "path": "/docs/reference/data-utilities/slice"
@@ -3085,12 +3097,12 @@
   },
   {
     "title": "`sort`",
-    "blurb": "Returns a sorted `@llll`.",
+    "blurb": "Returns a sorted _llll_.",
     "keywords": [
-      "llll",
       "sort",
-      "function",
+      "llll",
       "bell",
+      "function",
       "required"
     ],
     "path": "/docs/reference/data-utilities/sort"
@@ -3220,8 +3232,8 @@
     "blurb": "Returns the square root of `@x`.",
     "keywords": [
       "sqrt",
-      "required",
       "bell",
+      "required",
       "square",
       "root"
     ],
@@ -3282,8 +3294,8 @@
       "llll",
       "subs",
       "default",
-      "required",
-      "null"
+      "bell",
+      "required"
     ],
     "path": "/docs/reference/data-utilities/subs"
   },
@@ -3294,20 +3306,20 @@
       "sum",
       "llll",
       "default",
-      "required",
-      "null"
+      "bell",
+      "required"
     ],
     "path": "/docs/reference/data-utilities/sum"
   },
   {
     "title": "`symdiff`",
-    "blurb": "Returns the symmetric difference of two _lllls_.",
+    "blurb": "Returns the symmetric difference of two _lllls_, by removing elements that appear in both _lllls_.",
     "keywords": [
+      "symdiff",
       "required",
       "function",
-      "symdiff",
-      "null",
-      "bell"
+      "bell",
+      "null"
     ],
     "path": "/docs/reference/data-utilities/symdiff"
   },
@@ -3328,8 +3340,8 @@
     "blurb": "Returns the tangent of `@x`.",
     "keywords": [
       "tan",
-      "required",
       "bell",
+      "required",
       "tangent",
       "arguments"
     ],
@@ -3340,8 +3352,8 @@
     "blurb": "Returns the hyperbolic tangent of `@x`.",
     "keywords": [
       "tanh",
-      "required",
       "bell",
+      "required",
       "hyperbolic",
       "tangent"
     ],
@@ -3435,11 +3447,11 @@
     "title": "`thin`",
     "blurb": "Removes the duplicates from an _llll_.",
     "keywords": [
-      "llll",
       "thin",
+      "llll",
+      "bell",
       "required",
-      "function",
-      "null"
+      "function"
     ],
     "path": "/docs/reference/data-utilities/thin"
   },
@@ -3505,13 +3517,13 @@
   },
   {
     "title": "`trans`",
-    "blurb": "Returns the matrix transposition of an _llll_.",
+    "blurb": "Returns the matrix transposition of an _llll_, converting matrix rows into columns.",
     "keywords": [
-      "llll",
       "trans",
-      "required",
+      "llll",
       "bell",
-      "depths"
+      "required",
+      "matrix"
     ],
     "path": "/docs/reference/data-utilities/trans"
   },
@@ -3577,11 +3589,11 @@
   },
   {
     "title": "`trunc`",
-    "blurb": "Returns the truncated value of `@x`.",
+    "blurb": "Returns the truncated value of `@x`, by removing any decimal places.",
     "keywords": [
       "trunc",
-      "required",
       "bell",
+      "required",
       "truncated",
       "value"
     ],
@@ -3601,13 +3613,13 @@
   },
   {
     "title": "`union`",
-    "blurb": "Returns the union of two _lllls_.",
+    "blurb": "Returns the [union](https://en.wikipedia.org/wiki/Union_(set_theory)) of two _lllls_.",
     "keywords": [
       "union",
       "required",
+      "bell",
       "function",
-      "null",
-      "bell"
+      "null"
     ],
     "path": "/docs/reference/data-utilities/union"
   },
@@ -3687,10 +3699,10 @@
     "title": "`wrap`",
     "blurb": "Returns an _llll_ wrapped in parentheses, thus raising its overall depth.",
     "keywords": [
-      "llll",
       "wrap",
-      "required",
+      "llll",
       "bell",
+      "required",
       "levels"
     ],
     "path": "/docs/reference/data-utilities/wrap"
@@ -4146,8 +4158,8 @@
       "audio",
       "bell",
       "buffers",
-      "design",
-      "data"
+      "within",
+      "design"
     ],
     "path": "/docs"
   },
