@@ -23,7 +23,7 @@ function HomepageHeader() {
         <p className={clsx("hero__subtitle", styles.title, styles.subtitle)}>{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="/docs/">
-            Get Started
+            Get started
           </Link>
           <BellplayDownloadLink />
         </div>
@@ -39,16 +39,20 @@ const BellplayDownloadLink: React.FC = () => {
   useEffect(() => {
     const owner = "felipetovarhenao";
     const repo = "bellplay";
+    const platform = window.navigator.platform.startsWith("Mac") ? "macOS" : "Win";
 
     const fetchLatestTag = async () => {
       try {
-        const tagRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/releases/latest`);
-        if (!tagRes.ok) return;
-        const release = await tagRes.json();
-        const tag = release.tag_name;
-        setVersion(tag);
+        // const tagRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/releases/latest`);
+        // if (!tagRes.ok) return;
+        // const release = await tagRes.json();
+        // const tag = release.tag_name;
+        // const ver = tag;
+        const tag = "dev";
+        const ver = "prerelease";
+        setVersion(ver == "prerelease" ? "Pre-release" : ver);
 
-        const url = `https://github.com/${owner}/${repo}/releases/download/${tag}/bellplay_${tag}_macOS.zip`;
+        const url = `https://github.com/${owner}/${repo}/releases/download/${tag}/bellplay_${ver}_${platform}.zip`;
 
         setDownloadUrl(url);
       } catch (error) {
@@ -143,6 +147,7 @@ export default function Home(): ReactNode {
         <HomepageFeatures />
         <VideoGallery
           videoIds={[
+            // "2c9bcqCgJjA", // Jingyu
             "hO467ibThX8",
             "m2X_8dU9Hlg",
             "vNV0tf9F_b4",
