@@ -4145,9 +4145,9 @@
     "keywords": [
       "run",
       "max",
-      "macos",
-      "windows",
-      "text"
+      "text",
+      "editor",
+      "visual"
     ],
     "path": "/docs/installation"
   },
