@@ -6,18 +6,22 @@ sidebar_position: 2
 
 To run **bellplay~**, you can either:
 
-- Download a **standalone application** (macOS only), or
-- Run it from **source** using Max (required for Windows users or developers)
+- Download a **standalone application**, or
+- Run it from **source** using Max
 
 You’ll also need a text editor (preferably [Visual Studio Code](https://code.visualstudio.com/)) to write and edit `.bell` scripts.
 
+:::caution Windows users
+Some features may not behave identically due to limited testing.
+:::
+
 ---
 
-## Option 1: Standalone application (macOS)
+### Option 1: Standalone application (_recommended_)
 
 Download the pre-release from the [**bellplay~** releases page](https://github.com/felipetovarhenao/bellplay/releases/dev). Choose the `.zip` file, uncompress it, and move the `.app` into your `/Applications` folder.
 
-:::tip Opening for the first time?
+:::caution MacOS users
 macOS may block the app since it’s not signed by an identified developer.
 
 - If you see a message like:
@@ -41,30 +45,26 @@ macOS may block the app since it’s not signed by an identified developer.
 
 ---
 
-## Option 2: Run from source (Windows or macOS)
+### Option 2: Run from source
 
 **bellplay~** can be run inside **Max**, the visual programming environment from Cycling '74.
 
-### Requirements
+#### Requirements
 
 - Install [Max 9](https://cycling74.com/downloads) or higher.
 - In _Max_, install the following packages through the _Max Package Manager_:
   - `bach`, `dada`, and `ears` by Andrea Agostini and Daniele Ghisi.
   - `FluidCorpusManipulation`, by _FluCoMa_.
 
-### Steps
+#### Steps
 
 1. Download the **bellplay~** source code and unzip the folder.
 2. Open `bellplay.maxproj` using Max.
 3. Wait for it to initialize.
 
-:::caution Windows users
-Only source-based usage is supported on Windows. Some features may not behave identically due to limited testing.
-:::
-
 ---
 
-## Text editor setup (recommended)
+## Text editor setup
 
 `bell` scripts are written in plain text. **Visual Studio Code** is the recommended text editor for writing and editing.
 
