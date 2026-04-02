@@ -935,7 +935,7 @@ readobject = (
                 'read' $path @out 'm' 
             );
             $isvalid = 0;
-            for $prop in 'cols' 'layers' 'target' as $isvalid == 0 do $isvalid = BP_MAXOBJ_DICT(
+            for $prop in 'mlp' 'cols' 'layers' 'target' as $isvalid == 0 do $isvalid = BP_MAXOBJ_DICT(
                 'contains' $prop @out 'm' @fetch 3
             );
             if $isvalid == 0 then BP_FN_ERROR($self, '@object is currently empty and should be populated before writing.') else (

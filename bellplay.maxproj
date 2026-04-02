@@ -2,7 +2,7 @@
     "name": "bellplay",
     "version": 1,
     "creationdate": 3792408071,
-    "modificationdate": 3852381937,
+    "modificationdate": 3858010110,
     "viewrect": [ 25.0, 102.0, 300.0, 500.0 ],
     "autoorganize": 0,
     "hideprojectwindow": 1,
@@ -822,5 +822,6 @@
     "devpath": ".",
     "sortmode": 1,
     "viewmode": 0,
-    "includepackages": 0
+    "includepackages": 0,
+    "openactions_internal": "max objectfile fluid.dataset~ fluid.libmanipulation fluid.dataset~;\nmax objectfile bach.<= bach.leq bach.leq;\n"
 }
