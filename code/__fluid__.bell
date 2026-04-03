@@ -697,7 +697,7 @@ BP_REF_NEW(
             @name 'momentum' 
             @type 'float' 
             @default '0.9' 
-            @description 'Momentum.' 
+            @description 'A scalar that applies a portion of previous adjustments to a current adjustment being made by the neural network during training. This has many benefits—an intuitive one is that even if some data point(s) suggest the neural network make some drastic, unique adjustments in a new direction, the history of adjustments from other points (it’s “momentum”) will prevent it from going too far off course of where most of the data is directing it.' 
         ) BP_REF_ARG(
             @name 'tapin' 
             @type 'int' 
