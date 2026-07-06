@@ -2410,7 +2410,7 @@ BP_REF_NEW(
         BP_REF_ARG(@name "voice" @type "int" @default 1 @description "Voice assignment in score. See `scoreconfig` function.")
         BP_REF_ARG(@name "pitchkey" @type "symbol" @default "'pitch'" @description "Key to use for pitch value in score transcription.")
         BP_REF_ARG(@name "keepduration" @type "int" @default 1 @description "Keep buffer's nominal duration value when detuning buffer via `@detune`.")
-        BP_REF_ARG(@name "metadata" @default 'null' @type "anything" @default 1 @description "Data to associate with buffer. Useful when exporting roll in `llll` format.")
+        BP_REF_ARG(@name "metadata" @default 'null' @type "anything" @description "Data to associate with buffer. Useful when exporting roll in `llll` format.")
         BP_REF_ARG(@name "annotation" @default 'null' @type "symbol/null" @default 1 @description "Optional label to display next to transcribed buffer.")
     )
     @usage BP_REF_CODE_SNIPPET(
