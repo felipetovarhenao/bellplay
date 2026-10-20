@@ -89,7 +89,7 @@ def gen_audio_output(content: str, name: str) -> bool:
 
 
 for dir_path in [TMP_DIR, AUDIO_DIR]:
-    if os.path.exists(TMP_DIR):
+    if os.path.exists(dir_path):
         shutil.rmtree(dir_path)
     os.mkdir(dir_path)
 
