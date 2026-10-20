@@ -43,13 +43,13 @@ const BellplayDownloadLink: React.FC = () => {
 
     const fetchLatestTag = async () => {
       try {
-        // const tagRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/releases/latest`);
-        // if (!tagRes.ok) return;
-        // const release = await tagRes.json();
-        // const tag = release.tag_name;
-        // const ver = tag;
-        const tag = "dev";
-        const ver = "prerelease";
+        const tagRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/releases/latest`);
+        if (!tagRes.ok) return;
+        const release = await tagRes.json();
+        const tag = release.tag_name;
+        const ver = tag;
+        // const tag = "dev";
+        // const ver = "prerelease";
         setVersion(ver == "prerelease" ? "Pre-release" : ver);
 
         const url = `https://github.com/${owner}/${repo}/releases/download/${tag}/bellplay_${ver}_${platform}.zip`;
