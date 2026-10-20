@@ -1,0 +1,146 @@
+#( 
+
+# Randomness
+
+Randomness is frequently used in algorithmic music to introduce variation and unpredictability. However, in many compositional workflows, **reproducibility** is just as important. In **bellplay~**, there are two types of random functions:
+
+* **Unseeded**: always produce different results.
+
+    * **Examples**: `rand`, `randn`, `random`, `scramble`, `choose`, `urn`.
+
+* **Seeded**: produce the same result each time when a non-zero seed is set. The name of most seeded functions are prefixed with an `x`.
+
+    * **Examples**: `xrand`, `xrandn`, `xchoose`, `xrandom`, `xscramble`, `urn` (when seeded via `setseed`).
+
+The seeded variants allow you to control randomness and make your scripts deterministic and repeatable.
+
+---
+
+## `rand` vs `xrand`
+
+The `rand` function produces a random float and is **not** seedable.
+
+```bell 
+## will return a different result every time
+print(rand(0, 1))
+```
+
+In contrast, `xrand` is a seeded version. The result will be the same every time you run the code:
+
+```bell 
+## set the random seed
+setseed(42);
+## will return the same value every time the script is run
+print(xrand(0, 1))
+```
+
+:::info Default seed
+If `setseed` is not called, the default seed for all seeded functions is `1`.
+:::
+
+---
+
+## `choose` vs `xchoose`
+
+`choose` selects elements from a list, non-deterministically:
+
+```bell
+$files = 'flute.wav' 'viola.wav' 'guitar.wav';
+print(choose(@choices $files))
+```
+
+With `xchoose`, the result becomes reproducible if a seed is set:
+
+```bell
+setseed(99);
+$files = 'flute.wav' 'viola.wav' 'guitar.wav';
+print(xchoose(@choices $files))
+```
+
+---
+
+## `xscramble`: seeded shuffling
+
+The `xscramble` function randomly reorders a list, but deterministically with a seed.
+
+```bell
+setseed(@seed 7);
+$items = 1 2 3 4 5;
+print(xscramble(@llll $items))
+```
+
+---
+
+## `urn` (unique random number)
+
+The `urn` function generates unique numbers without repetition. It can be seeded using `setseed`, enabling deterministic but non-repeating behavior.
+
+```bell 
+setseed(@seed 2025);
+initurn(
+    @id 'myseq' 
+    @size 4
+    @useseed 1
+);
+for $i in (0...10) do (
+    print(urn(@id 'myseq')) 
+)
+```
+
+---
+
+## Putting it all together
+
+The following script demonstrates how to use `setseed` to control different parameters.
+
+)#
+## set seed for deterministic random behavior (try 0 to disable it)
+setseed(120);
+## initialize onset time
+$t = 0;
+## total duration of the sequence in milliseconds
+$totdur = 10000;
+## define pitch class set (in symbolic pitch notation)
+$chord = c5 d5 e5 g5 b5;
+## generate events until reaching total duration
+while $t < $totdur do (
+    ## randomly select a pitch from the chord
+    $pitch = xchoose($chord);
+    ## choose a random octave transposition (±2 octaves, in midicents)
+    $octave = xrandom(-2, 3) * 1200;
+    ## randomly stereo panning (0 to 1)
+    $pan = xrand();
+    ## randomly choose duration between 1 and 5 seconds
+    $dur = xrand(1000, 5000);
+    ## randomly set gain (from soft to loud)
+    $gain = xrand(0.25, 1);
+    ## create a buffer using ezsampler with random pitch and duration
+    $b = ezsampler(@pitch $pitch + $octave @duration $dur);
+    ## transcribe the buffer with randomized parameters
+    $b.transcribe(
+        @onset $t
+        @pan $pan
+        @gain $gain
+    );
+    ## increment time by a small random step to control event density
+    $incr = xrand(25, 300);
+    $t += $incr
+);
+## trigger rendering
+render( @play 1) 
+#(
+
+## Summary
+
+| Function    | Seeded?           | Returns | Use Case                    |
+| ----------- | ----------------- | ------- | --------------------------- |
+| `rand`      | ❌                 | float   | quick randomness            |
+| `xrand`     | ✅                 | float   | reproducible randomness     |
+| `choose`    | ❌                 | any     | random choice               |
+| `xchoose`   | ✅                 | any     | repeatable random choice    |
+| `xscramble` | ✅                 | list    | deterministic shuffling     |
+| `urn`       | ✅ (_optional_)    | int     | deterministic non-repeating |
+
+Using `setseed` lets you design stochastic processes that behave consistently, which can be useful in certain contexts.
+
+)#

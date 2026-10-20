@@ -4,25 +4,37 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 59.0, 106.0, 169.0, 115.0 ],
+		"rect" : [ 59.0, 106.0, 338.0, 126.0 ],
 		"default_fontname" : "Lato",
 		"gridsize" : [ 15.0, 15.0 ],
 		"style" : "bellplay-gui-1",
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-4",
+					"id" : "obj-5",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 70.0, 8.0, 89.0, 23.0 ],
-					"text" : "ears.in @out m"
+					"patching_rect" : [ 87.0, 8.0, 140.0, 23.0 ],
+					"text" : "ears.in @direct 1 @out m"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "signal" ],
+					"patching_rect" : [ 243.0, 8.0, 60.0, 23.0 ],
+					"text" : "ears.in~ 2"
 				}
 
 			}
@@ -32,7 +44,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 8.0, 82.0, 60.0, 23.0 ],
+					"patching_rect" : [ 8.0, 88.0, 60.0, 23.0 ],
 					"text" : "ears.out~"
 				}
 
@@ -44,7 +56,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 8.0, 45.0, 81.0, 23.0 ],
+					"patching_rect" : [ 8.0, 51.0, 254.0, 23.0 ],
 					"text" : "triangle~ 0.5"
 				}
 
@@ -83,22 +95,14 @@
 				}
 
 			}
- ],
-		"originid" : "pat-8812",
-		"dependency_cache" : [ 			{
-				"name" : "ears.in.mxo",
-				"type" : "iLaX"
-			}
 , 			{
-				"name" : "ears.in~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "ears.out~.mxo",
-				"type" : "iLaX"
+				"patchline" : 				{
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-5", 0 ]
+				}
+
 			}
  ],
-		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "bellplay-gui",
 				"default" : 				{
@@ -117,7 +121,7 @@
 					"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
 					"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 					"fontname" : [ "Lato" ],
-					"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"locked_bgcolor" : [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
 					"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 					"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
 				}
@@ -143,7 +147,7 @@
 					"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
 					"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 					"fontname" : [ "Lato" ],
-					"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"locked_bgcolor" : [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
 					"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 					"syntax_attrargcolor" : [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
 					"syntax_attributecolor" : [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],

@@ -1,0 +1,36 @@
+#( 
+
+# Variable declarations
+
+When writing code, it's good practice to use descriptive variable names. For instance, using the variable name `noise` to represent a noise signal, or `saw` for a sawtooth wave.
+Most programming languages prevent the use of reserved keywords (e.g., `for`, `while`, `null`) as variable names. The _bell_ language does this as well—using a reserved word like `print` as a variable name will raise a parser error.
+However, this is **not** the case for functions and names defined in **bellplay~**. These are not treated as native _bell_ functions, so defining a variable with the same name (e.g., `render`) will silently override the original value—without any warnings or errors.
+
+:::warning
+Overwriting global **bellplay~** function names (such as `render`, `saw`, `noise`, etc.) with your own global variables will **break** the application, often in ways that are hard to debug. There is no warning when this happens—the parser will accept the code, and the application will behave incorrectly.
+:::
+
+To avoid such conflicts, always declare variables **locally**, using the `$` prefix (e.g., `$saw`). Avoid global declarations unless absolutely necessary, and only after verifying that the name does not already exist in **bellplay~**.
+If a name conflict does occur, restart the application to restore the original environment.
+
+)#
+## generate a buffer with the global function `saw` and store it in the local variable `$saw`
+$saw = saw(@frequency 220 @duration 1000);
+$saw.transcribe(@gain .15);
+## generate a second buffer with the global function `saw` and override the previous value of the `$saw` variable
+## note that since the `$saw` variable is local (prefixed with `$`), it does not override the global `saw` function.
+$saw = saw(@frequency 330 @duration 1000);
+$saw.transcribe(@gain .15);
+## render transcribed buffers
+render() 
+#( 
+:::tip Naming global variables
+By convention, global variables in _bell_ should be capitalized to distinguish them from local variables:
+
+```bell {1}
+MyGlobalVariable = "I'm global!"; ## good
+myglobalvariable = "I'm dangerously global!"; ## not recommended
+$mylocalvariable = "I'm local!" ## also good
+```
+:::
+)#

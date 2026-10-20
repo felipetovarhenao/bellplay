@@ -1,0 +1,38 @@
+.notFoundContainer {
+  text-align: left;
+  padding: 2rem 1rem;
+}
+
+.suggestions {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.suggestions h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.suggestions ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.suggestions li {
+  margin: 0.5rem 0;
+  font-size: 1.125rem;
+}
+
+.monospace {
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.suggestions a {
+  text-decoration: none;
+  color: var(--ifm-link-color);
+}
+
+.suggestions a:hover {
+  text-decoration: underline;
+}

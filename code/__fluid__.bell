@@ -1,0 +1,1876 @@
+BP_MAXOBJ_DICT = {dict};
+BP_FN_FLUID_ALL_DATA_OBJECTS = (
+    ## containers
+    'dataset' 'labelset' 
+    ## scalers
+    'normalize' 'standardize' 'robustscale' 
+    ## reducers
+    'umap' 'pca' 
+    ## clustering
+    'kmeans' 'skmeans' 
+    ## search
+    'kdtree' 
+    ## neutral
+    'knnregressor' 'knnclassifier' 'mlpregressor' 'mlpclassifier' 
+);
+## ------------------------------------------------------------
+BP_FN_FLUID_UPDATE_SET = (
+    $set -> (
+        $ref = getkey($set, 'ref');
+        for $k in 'size' 'cols' do (
+            BP_SANDBOX_OUT = null;
+            BP_FN_SANDBOX_MSG(@to $ref @message $k);
+            $v = right(BP_SANDBOX_OUT, 1);
+            $set = setkey(
+                @llll $set
+                @key $k
+                @val $v
+                @mode 1
+            ) 
+        );
+        $set
+    ) 
+);
+## ------------------------------------------------------------
+BP_FN_FLUID_NEWOBJ = (
+    $alias, $name = null, $arguments = null, $attributes = null, $useseed = 0 -> (
+        $name = $name ||| getkey(
+            samps2buf([0]), 'source' 
+        );
+        $ref = BP_FN_SANDBOX_NEWOBJ(
+            @name 'fluid.' + $alias + '~' 
+            @arguments $name $arguments
+            @attributes $attributes (if $useseed == 1 then ['seed' BP_GLOBAL_SEED]) 
+        );
+        for $i in 0 1 do BP_FN_SANDBOX_CONNECT(
+            @from $ref
+            @to 'bpsandboxout' 
+            @outlet $i
+        );
+        BP_FN_SANDBOX_GEN();
+        BP_FN_SANDBOX_MSG(
+            @to $ref @message 'clear' 
+        );
+        [
+            ['alias' $alias] ['name' $name] ['ref' $ref] ($attributes &&& ['attributes' $attributes]) 
+        ] 
+    ) 
+);
+## ------------------------------------------------------------
+BP_FN_FLUID_VALIDATE_OBJ = (
+    $self, $object, $argname, $allow = BP_FN_FLUID_ALL_DATA_OBJECTS -> (
+        if BP_FN_CHECK_ARGS($self, $argname, $object) then (
+            $ref = getkey($object, 'ref');
+            $objalias = getkey($object, 'alias');
+            ($ref &&& $objalias) ||| BP_FN_ERROR(
+                $self, 'invalid value for @' + $argname + '. expected a' $allow 'but got:' $object ||| 'null' 
+            );
+            if intersection($objalias, $allow) == null then BP_FN_ERROR(
+                $self, 'invalid value for @' + $argname + '. expected a' $allow 'but got:' $objalias ||| 'null' 
+            ) else 1
+        ) 
+    ) 
+);
+## ------------------------------------------------------------
+BP_FN_FLUID_TOBUFFER = (
+    $x -> (
+        BP_FLUID_TOBUFFER = null;
+        BP_FN_DISPATCH(
+            'fluid', 'tobuffer' [flat($x)] 
+        );
+        BP_FLUID_TOBUFFER
+    ) 
+);
+## ------------------------------------------------------------
+BP_FN_FLUID_FROMBUFFER = (
+    $x -> (
+        BP_FLUID_FROMBUFFER = null;
+        BP_FN_DISPATCH(
+            'fluid', 'frombuffer' $x
+        );
+        BP_FLUID_FROMBUFFER
+    ) 
+);
+## ------------------------------------------------------------
+BP_FN_FLUID_NEWOBJ_FITTED = (
+    $dataset, $alias, $arguments = null, $attributes = null, $useseed = 0 -> (
+        $object = BP_FN_FLUID_NEWOBJ(
+            @alias $alias
+            @arguments $arguments
+            @attributes $attributes
+            @useseed $useseed
+        );
+        $ref = getkey($object, 'ref');
+        $dsname = getkey($dataset, 'name');
+        BP_FN_SANDBOX_MSG(
+            @to $ref @message 'fit' $dsname
+        );
+        $object
+    ) 
+);
+## ------------------------------------------------------------
+BP_REF_FLUID_ACTIVATION_OPTIONS = (
+    BP_REF_OPT(
+        @value 0 @description 'Identity (-∞ to ∞—i.e., no activation).' 
+    ) BP_REF_OPT(
+        @value 1 @description 'Sigmoid (0 to 1).' 
+    ) BP_REF_OPT(
+        @value 2 @description 'ReLU. (0 to ∞).' 
+    ) BP_REF_OPT(
+        @value 3 @description 'Tanh (-1 to 1).' 
+    ) 
+);
+## ------------------------------------------------------------
+BP_REF_FLUIDSET_EXAMPLE = (
+    $alias = null -> (
+        $point = if $alias == 'dataset' then '[for $j in 1...5 collect randn()]' else "choose('foo' 'bar' 'baz')";
+        BP_REF_CODE_SNIPPET(
+            '$' + $alias + ' = ' + $alias + '(
+    for $i in 1...100 collect ' + $point + ' ## dummy data
+);
+$samps = getitems($' + $alias + ', 1...3); ## get the first 3 items in ' + $alias '
+print($samps, "Items:")' 
+        ) 
+    ) 
+);
+## ------------------------------------------------------------
+BP_REF_TRANSFORM_EXAMPLE = ($alias = null, $class = 'scaler' -> BP_REF_CODE_SNIPPET(
+    '$indataset = dataset(
+    for $i in 1...100 collect [$i * 10 ** (-1...1)] ## dummy input dataset
+);
+$inpoint = 0.65 6.5 65; ## dummy input point
+$' + $class + ' = ' + $alias + '($indataset); ## create ' + $class + ' based on dummy dataset
+$outdataset = transform($' + $class + ', $indataset); ## transform dataset based on learned parameters
+$outpoint = transform($' + $class + ', $inpoint); ## transform new point based on learned parameters
+writeobject($' + $class + ", './" + $alias + ".json'); ## write to JSON (optional)
+$" + $class + " = readobject('./" + $alias + ".json'); ## read from JSON (optional)
+print(getitems($indataset, 1...5), 'Input dataset:');
+print(getitems($outdataset, 1...5), 'Output dataset:');
+print($outpoint, 'Output point:')" 
+));
+## ------------------------------------------------------------
+BP_REF_NEURAL_EXAMPLE = (
+    $alias, $loop = 0, $arguments = '' -> BP_REF_CODE_SNIPPET(
+        '$indata = null;
+$outdata = null;
+## generate basic dataset based on "less-than" function
+for $i in 1...100 do (
+    $a = rand(0, 1);
+    $b = rand(0, 1);
+    $indata _= [$a $b]; ## input point
+    $outdata _= [$a < $b] ## expected output (0 or 1)
+);
+$indataset = dataset($indata); ## input points
+$outdataset = dataset($outdata); ## expected outputs
+$model = ' + $alias + '(' + $arguments + '); ## create ' + $alias + ' model
+## fit (i.e., train) model to learn input/output mappping from dataset
+' + (if $loop == 1 then ( "for $i in 1...10 do ( ## repeat training to minimize loss
+    print(fit($model, $indataset, $outdataset), 'Loss:') 
+);" ) else 'fit($model, $indataset, $outdataset);') + '
+writeobject($model, "./' + $alias + '.json"); ## write as JSON for future use (optional)
+$model = readobject("./' + $alias + '.json"); ## read pre-trained model from JSON (optional)
+$xpoint = 0.25 0.75; ## sample point
+$pred = predict($model, $xpoint); ## generate prediction
+print($pred, "prediction:") ## should be (almost) 1.0, as 0.25 < 0.75 is true' 
+    ) 
+);
+## ------------------------------------------------------------
+BP_REF_FLUID_IO_EXAMPLE = BP_REF_CODE_SNIPPET("$dataset = dataset(
+    ## dummy dataset
+    for $i in 1...100 collect [for $j in 1...4 collect randn()]
+);
+$scaler = stdscaler($dataset); ## dataset scaler
+$datasetscaled = transform($scaler, $dataset); ## scale dataset
+$reducer = umap($dataset); ## dimensionality reducer
+$datasetreduced = transform($reducer, $datasetscaled); ## reduce scaled dataset
+$model = kmeans(); ## clustering model
+fit($model, $datasetreduced); ## fit model to dataset
+$labelset = predict($model, $datasetreduced); ## predict clusters
+## write to disk as JSON
+writeobject($dataset, './dataset.json');
+writeobject($labelset, './labelset.json');
+writeobject($scaler, './scaler.json');
+writeobject($reducer, './reducer.json');
+writeobject($model, './model.json');
+## read from disk as JSON
+$dataset = readobject('./dataset.json');
+$labelset = readobject('./labelset.json');
+$scaler = readobject('./scaler.json');
+$reducer = readobject('./reducer.json');
+$model = readobject('./model.json')");
+## ------------------------------------------------------------
+dataset = (
+    $data = null -> (
+        $self = 'dataset';
+        if BP_FN_CHECK_ARGS($self, 'data', $data) then (
+            $cols = length($data::1);
+            $rows = length($data);
+            if depth($data) != 2 || $cols * $rows != length(flat($data)) then BP_FN_ERROR($self, '@data must be a 2-dimensional matrix') else (
+                $buf = samps2buf(@llll trans($data:1 $data));
+                $source = getkey($buf, 'source');
+                $object = BP_FN_FLUID_NEWOBJ(
+                    @alias 'dataset' @name $source
+                );
+                $ref = getkey($object, 'ref');
+                $msgs = ['clear'] ['frombuffer' $source] ['deletepoint' 0];
+                for $msg in $msgs with @unwrap 1 do BP_FN_SANDBOX_MSG(@to $ref @message $msg);
+                BP_FN_FLUID_UPDATE_SET($object) 
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'dataset' 
+    @description 'Generates a _llll_ representation of a dataset, given a list of numeric data points. In **bellplay~**, datasets serve as numeric data containers for a variety of machine learning tasks, including:
+    - **Dimensionality reduction**: See `umap`, `pca`, and `transform` functions.
+    - **Data scaling**: See `normscaler`, `stdscaler`, `robustscaler`, and `transform` functions.
+    - **Regression**:  See `mlp`, `knn`, `fit`, and `predict` functions.
+    - **Classification**: See `mlp`, `knn`, `kmeans`, `fit`, `predict`, and `labelset` functions.
+    - **Efficient search**: See `kdtree` function.
+    
+Note that `@data` must be a _llll_ of depth 2, where each sublist has the same number of elements (i.e., dimensions)' 
+    @category BP_REF_LABEL_ML
+    @arguments BP_REF_ARG(
+        @name 'data' 
+        @type 'llll' 
+        @description 'Data points as a rectangular matrix.' 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Dataset object' @type 'llll' 
+    ) 
+    @tags 'labelset' 'getitems' 
+    @usage BP_REF_FLUIDSET_EXAMPLE('dataset') 
+);
+## ------------------------------------------------------------
+labelset = (
+    $labels = null -> (
+        $self = 'labelset';
+        $argcheck = BP_FN_CHECK_ARGS($self, 'labels', $labels);
+        $datacheck = depth($labels) == 1 && contains($labels) == 16;
+        if $argcheck == 1 && $datacheck == 1 then (
+            $object = BP_FN_FLUID_NEWOBJ(@alias 'labelset');
+            $ref = getkey($object, 'ref');
+            for $label $addr in $labels do BP_FN_SANDBOX_MSG(
+                @to $ref @message 'addlabel' $addr $label
+            );
+            BP_FN_FLUID_UPDATE_SET($object) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'labelset' 
+    @description 'Generates a _llll_ representation of a label object, given a list of labels. In **bellplay~**, labelsets serve as categorical data containers for a variety of classification tasks. See for instance the `dataset`, `mlp`, `knn`, `kmeans`, `fit`, `predict` functions.
+
+Note that `@labels` must be a flat list of symbols, each of which is meant to be a label for a point in some other dataset (see `dataset` function), based on their index position.' 
+    @category BP_REF_LABEL_ML
+    @arguments BP_REF_ARG(
+        @name 'labels' 
+        @type 'list/symbol' 
+        @description 'List of data labels, as symbols.' 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Labelset object' @type 'llll' 
+    ) 
+    @tags 'dataset' 'getitems' 
+    @usage BP_REF_FLUIDSET_EXAMPLE('labelset') 
+);
+## ------------------------------------------------------------
+normscaler = (
+    $dataset = null, $min = 0, $max = 1 -> (
+        $self = 'normscaler';
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then (
+            BP_FN_FLUID_NEWOBJ_FITTED(
+                @alias 'normalize' 
+                @dataset $dataset
+                @attributes (
+                    ['min' $min] ['max' $max] 
+                ) 
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'normscaler' 
+    @description 'Given a reference dataset, generates a normscaler object which can be used for [_minmax_ normalization](https://en.wikipedia.org/wiki/Feature_scaling#Rescaling_(min-max_normalization)), via the `transform` function.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Dataset to fit normscaler to' 
+        ) BP_REF_ARG(
+            @name 'min' 
+            @type 'int/float' 
+            @default 0
+            @description 'Minimum output value.' 
+        ) BP_REF_ARG(
+            @name 'max' 
+            @type 'int/float' 
+            @default 1
+            @description 'Maximum output value.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Normalizer object' @type 'llll' 
+    ) 
+    @tags 'dataset' 'labelset' 
+    @usage BP_REF_TRANSFORM_EXAMPLE(
+        @alias 'normscaler' @class 'scaler' 
+    ) 
+);
+## ------------------------------------------------------------
+stdscaler = (
+    $dataset = null -> (
+        $self = 'stdscaler';
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then (
+            $object = BP_FN_FLUID_NEWOBJ_FITTED(
+                @alias 'standardize' @dataset $dataset
+            );
+            $object
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'stdscaler' 
+    @description 'Given a reference dataset, generates a stdscaler object which can be used for  [standardization](https://en.wikipedia.org/wiki/Feature_scaling#Standardization_(Z-score_Normalization)), via the `transform` function.' 
+    @category BP_REF_LABEL_ML
+    @arguments BP_REF_ARG(
+        @name 'dataset' 
+        @type 'llll' 
+        @description 'Dataset to fit stdscaler to' 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Standardizer object' @type 'llll' 
+    ) 
+    @tags 'transform' 'normscaler' 'robustscaler' 
+    @usage BP_REF_TRANSFORM_EXAMPLE(
+        @alias 'stdscaler' @class 'scaler' 
+    ) 
+);
+## ------------------------------------------------------------
+robustscaler = (
+    $dataset = null, $low = 25, $high = 75 -> (
+        $self = 'robustscaler';
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then (
+            BP_FN_FLUID_NEWOBJ_FITTED(
+                @alias 'robustscale' 
+                @dataset $dataset
+                @attributes (
+                    ['low' $low] ['high' $high] 
+                ) 
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'robustscaler' 
+    @description 'Given a reference dataset, generates a robust scaler object which can be used for [robust scaling](https://en.wikipedia.org/wiki/Feature_scaling#Robust_Scaling), via the `transform` function.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Dataset to fit robust scaler to' 
+        ) BP_REF_ARG(
+            @name 'low' 
+            @type 'int/float' 
+            @default 25
+            @description 'Low quantile value.' 
+        ) BP_REF_ARG(
+            @name 'high' 
+            @type 'int/float' 
+            @default 75
+            @description 'High quantile value.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Robust scaler object' @type 'llll' 
+    ) 
+    @tags 'normscaler' 'stdscaler' 
+    @usage BP_REF_TRANSFORM_EXAMPLE(
+        @alias 'robustscaler' @class 'scaler' 
+    ) 
+);
+## ------------------------------------------------------------
+umap = (
+    $dataset = null, $iterations = 200, $learnrate = 0.1, $mindist = 0.1, $numdimensions = 2, $numneighbors = 15, $useseed = 0 -> (
+        $self = 'umap';
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then BP_FN_FLUID_NEWOBJ_FITTED(
+            @alias 'umap' 
+            @dataset $dataset
+            @useseed $useseed
+            @attributes (
+                [ 'iterations' $iterations] [ 'learnrate' $learnrate] [ 'mindist' $mindist] ['numdimensions' max(1, $numdimensions)] [ 'numneighbours' max(1, $numneighbors)] 
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'umap' 
+    @description 'Given a dataset, generates a [Uniform Manifold Approximation and Projection (UMAP)](https://learn.flucoma.org/reference/umap/) object which can be used for [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) of a dataset, via the `transform` function.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Dataset to fit UMAP to' 
+        ) BP_REF_ARG(
+            @name 'iterations' 
+            @type 'int' 
+            @default 200
+            @description 'The number of iterations that the algorithm will go through to optimise the new representation.' 
+        ) BP_REF_ARG(
+            @name 'learnrate' 
+            @type 'float' 
+            @default '0.1' 
+            @description 'The learning rate of the algorithm, aka how much of the error it uses to estimate the next iteration.' 
+        ) BP_REF_ARG(
+            @name 'mindist' 
+            @type 'float' 
+            @default '0.1' 
+            @description 'The minimum distance each point is allowed to be from the others in the low dimension space. Low values will make tighter clumps, and higher will spread the points more.' 
+        ) BP_REF_ARG(
+            @name 'numdimensions' 
+            @type 'int' 
+            @default 2
+            @description 'The number of dimensions to reduce to.' 
+        ) BP_REF_ARG(
+            @name 'numneighbors' 
+            @type 'int' 
+            @default 15
+            @description 'The number of neighbors considered by the algorithm to balance local vs global structures to conserve. Low values will prioritise preservation of the local structure while high values will prioritise preservation of the global structure.' 
+        ) BP_REF_ARG(
+            @name 'useseed' 
+            @default 0
+            @type 'int' 
+            @description 'Use random seed for parameter initialization.' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'UMAP object' @type 'llll' 
+    ) 
+    @tags 'transform' 'pca' 
+    @usage BP_REF_TRANSFORM_EXAMPLE(
+        @alias 'umap' @class 'reducer' 
+    ) 
+);
+## ------------------------------------------------------------
+pca = (
+    $dataset = null, $numdimensions = 2, $whiten = 0 -> (
+        $self = 'pca';
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then (
+            BP_FN_FLUID_NEWOBJ_FITTED(
+                @alias 'pca' 
+                @dataset $dataset
+                @attributes ['numdimensions' $numdimensions] ['whiten' $whiten] 
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'pca' 
+    @description 'Given a dataset, generates a [Principal Component Analysis](https://learn.flucoma.org/reference/pca/) object which can be used for [dimensionality reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction) of a dataset, via the `transform` function.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Dataset to fit PCA to' 
+        ) BP_REF_ARG(
+            @name 'numdimensions' 
+            @type 'int' 
+            @default 2
+            @description 'The number of dimensions (principal components) to keep after a `transform`, using PCA for dimensionality reduction.' 
+        ) BP_REF_ARG(
+            @name 'whiten' 
+            @default 0
+            @type 'int' 
+            @description 'Perform [_whitening_](https://learn.flucoma.org/reference/pca) on the output of PCA.' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'PCA object' @type 'llll' 
+    ) 
+    @tags 'transform' 'umap' 
+    @usage BP_REF_TRANSFORM_EXAMPLE(
+        @alias 'pca' @class 'reducer' 
+    ) 
+);
+## ------------------------------------------------------------
+kdtree = (
+    $dataset = null, $numneighbors = 1, $radius = 0 -> (
+        $self = 'kdtree';
+        if BP_FN_CHECK_ARGS($self, 'dataset', $dataset) then (
+            BP_FN_FLUID_NEWOBJ_FITTED(
+                @alias 'kdtree' 
+                @dataset $dataset
+                @attributes (
+                    ['numneighbours' $numneighbors] ['radius' $radius] 
+                ) 
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'kdtree' 
+    @description "Given a dataset, generates a [K-dimensional Tree](https://learn.flucoma.org/reference/kdtree/) object for efficient neighborhood searches of multi-dimensional data. KDTrees are most useful for repeated querying of a dataset, because there is a cost associated with building them.  Whilst KDTrees can offer very good performance relative to naïve search algorithms, they suffer from something called “the curse of dimensionality” (like many algorithms for multi-dimensional data). In practice, this means that as the number of dimensions of your data goes up, the relative performance gains of a KDTree go down.
+    
+During prediction, via the `predict` function, it returns the following _llll_:
+
+```bell
+[
+    [ 'neighbors' <indices> ] 
+    [ 'distances' <distances> ] 
+]
+```
+
+Where:
+    - `'neighbors'` is a list of integers representing the index position of the nearest neighbors in the `@dataset`.
+    - `'distances'` is a list of floats representing the distances between the target point and its nearest neighbors.
+" 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Dataset to fit KDTree to' 
+        ) BP_REF_ARG(
+            @name 'numneighbors' 
+            @type 'int' 
+            @default 1
+            @description 'The number of neighbors to return.' 
+        ) BP_REF_ARG(
+            @name 'radius' 
+            @default 0
+            @type 'int/float' 
+            @description "The maximum distance (in high dimensional space) that a returned point can be. Any points beyond radius will not be returned (even if they're within the nearest numneighbors points). When radius is 0 (default), it is no longer a constraint and the distance of a nearest neighbor is not taken into account." 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'KDTree object' @type 'llll' 
+    ) 
+    @tags 'fit' 'dataset' 
+    @usage BP_REF_CODE_SNIPPET("$dims = 10; ## data dimensionality
+$dataset = dataset(
+    ## dummy dataset
+    for $i in 1...100 collect [for $j in 1...$dims collect randn()] 
+);
+## generate KDTree based on dataset
+$kdtree = kdtree($dataset @numneighbors 3);
+## random point
+$xpoint = for $j in 1...$dims collect randn();
+## search nearest neighbors
+$match = predict($kdtree, $xpoint);
+## get id and distances of nearest neighbors
+$neighborids = getkey($match, 'neighbors');
+$distances = getkey($match, 'distances');
+## print results
+print($neighborids, 'Indices of 3 Nearest neighbors:');
+print($distances, 'Distance from 3 Nearest neighbors:');
+print(getitems($dataset, $neighborids), '3 Nearest neighbors:')") 
+);
+## ------------------------------------------------------------
+knn = (
+    $numneighbors = 3, $weight = 1, $mode = 0 -> (
+        $self = 'knn';
+        $alias = if $mode == 0 then 'knnregressor' else 'knnclassifier';
+        $check = BP_FN_CHECK_ARGS(
+            $self, 'mode', $mode, 'numneighbors', $numneighbors, 'weight', $weight
+        );
+        $check &&& BP_FN_FLUID_NEWOBJ(
+            @alias $alias @attributes (
+                [ 'numneighbours' $numneighbors] [ 'weight' $weight] 
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'knn' 
+    @description "Generates a [K-Nearest Neighbor Search](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) object for either [regression](https://learn.flucoma.org/reference/knnregressor/) or [classification](https://learn.flucoma.org/reference/knnclassifier/) tasks. It uses an internal [KDTree](https://learn.flucoma.org/reference/kdtree/) to find an input point's numneighbors nearest neighbors in an input dataset. The output returned is a weighted average of those neighbors' values from the output dataset." 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'numneighbors' 
+            @default 3
+            @type 'int' 
+            @description 'Number of neighbors to consider.' 
+        ) BP_REF_ARG(
+            @name 'weight' 
+            @default 1
+            @type 'int' 
+            @description 'Weight neighbors by distance when predicting new points.' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) BP_REF_ARG(
+            @name 'mode' 
+            @type 'int' 
+            @default 0
+            @description 'KNN prediction mode, determining the type of set required during the fit process, as well as the type of set returned during prediction.' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'Regression—meant to be fitted with a `dataset` as an output, via the `fit` function.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'Classification—meant to be fitted with a `labelset` as an output, via the `fit` function.' 
+                ) 
+            ) 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'KNN object' @type 'llll' 
+    ) 
+    @tags 'fit' 'dataset' 'labelset' 
+    @usage BP_REF_NEURAL_EXAMPLE(
+        @alias 'knn' @loop 0
+    ) 
+);
+## ------------------------------------------------------------
+mlp = (
+    $activation = 2, $batchsize = 50, $hiddenlayers = 3 3, $learnrate = 0.01, $maxiter = 1000, $momentum = 0.9, $outputactivation = 0, $tapin = 0, $tapout = -1, $validation = 0.2 , $mode = 0, $useseed = 0 -> (
+        $self = 'mlp';
+        $mlpalias = if $mode == 0 then 'mlpregressor' else 'mlpclassifier';
+        BP_FN_CHECK_ARGS($self, 'mode', $mode);
+        $object = BP_FN_FLUID_NEWOBJ(
+            @alias $mlpalias
+            @useseed $useseed
+            @attributes (
+                [ 'activation' $activation] 
+                ## ---
+                [ 'batchsize' $batchsize] 
+                ## ---
+                [ 'hiddenlayers' $hiddenlayers] 
+                ## ---
+                [ 'learnrate' $learnrate] 
+                ## ---
+                [ 'maxiter' $maxiter] 
+                ## ---
+                [ 'momentum' min($momentum, 0.99)] 
+                ## ---
+                [ 'validation' $validation] 
+                ## ---
+                (
+                    if $mlpalias == 'mlpregressor' then (
+                        [ 'outputactivation' $outputactivation] 
+                        ## ---
+                        [ 'tapin' $tapin] 
+                        ## ---
+                        [ 'tapout' $tapout] 
+                    ) 
+                ) 
+            ) 
+        );
+        $object
+    ) 
+);
+BP_REF_NEW(
+    @name 'mlp' 
+    @description 'Generates a [Multilayer Perceptron Neural Network](https://en.wikipedia.org/wiki/Multilayer_perceptron) object for either [regression](https://learn.flucoma.org/reference/mlpregressor/) or [classification](https://learn.flucoma.org/reference/mlpclassifier/) tasks.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'activation' 
+            @type 'int' 
+            @default 2
+            @description 'Activation function for hidden layers.' 
+            @options BP_REF_FLUID_ACTIVATION_OPTIONS
+        ) BP_REF_ARG(
+            @name 'batchsize' 
+            @type 'int' 
+            @default 50
+            @description 'Batch size.' 
+        ) BP_REF_ARG(
+            @name 'hiddenlayers' 
+            @type 'list/int' 
+            @default 3 3
+            @description 'A list of integers, each specifying the desired size of every fully connected, hidden layer.' 
+        ) BP_REF_ARG(
+            @name 'learnrate' 
+            @type 'float' 
+            @default '0.01' 
+            @description 'Learning rate.' 
+        ) BP_REF_ARG(
+            @name 'maxiter' 
+            @type 'int' 
+            @default 1000
+            @description 'Maximum number of iterations during training.' 
+        ) BP_REF_ARG(
+            @name 'momentum' 
+            @type 'float' 
+            @default '0.9' 
+            @description 'A scalar that applies a portion of previous adjustments to a current adjustment being made by the neural network during training. This has many benefits—an intuitive one is that even if some data point(s) suggest the neural network make some drastic, unique adjustments in a new direction, the history of adjustments from other points (it’s “momentum”) will prevent it from going too far off course of where most of the data is directing it.' 
+        ) BP_REF_ARG(
+            @name 'tapin' 
+            @type 'int' 
+            @default 0
+            @description 'The index of the layer to use as input to the neural network for `predict` (0-based). The default of `0` is the first layer (the original input layer), `1` is the first hidden layer, etc. This can be used to access different parts of a trained neural network such as the encoder or decoder of an [autoencoder](https://towardsdatascience.com/auto-encoder-what-is-it-and-what-is-it-used-for-part-1-3e5c6f017726).' 
+        ) BP_REF_ARG(
+            @name 'tapout' 
+            @type 'int' 
+            @default -1
+            @description 'The index of the layer to use as output to the neural network for `predict` (0-based). The default of `-1` is the last layer (the original output layer). This can be used to access different parts of a trained neural network such as the encoder or decoder of an [autoencoder](https://towardsdatascience.com/auto-encoder-what-is-it-and-what-is-it-used-for-part-1-3e5c6f017726).' 
+        ) BP_REF_ARG(
+            @name 'outputactivation' 
+            @type 'int' 
+            @default 0
+            @description 'Activation function for output layers. Ignored when `@mode` is `1`.' 
+            @options BP_REF_FLUID_ACTIVATION_OPTIONS
+        ) BP_REF_ARG(
+            @name 'validation' 
+            @type 'float' 
+            @default '0.2' 
+            @description 'Factor of the dataset to use for validation during training.' 
+        ) BP_REF_ARG(
+            @name 'mode' 
+            @type 'int' 
+            @default 0
+            @description 'MLP prediction mode, determining the type of set required during the fit process, as well as the type of set returned during prediction.' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'Regression—meant to be fitted with a `dataset` as an output, via the `fit` function.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'Classification—meant to be fitted with a `labelset` as an output, via the `fit` function.' 
+                ) 
+            ) 
+        ) BP_REF_ARG(
+            @name 'useseed' 
+            @default 0
+            @type 'int' 
+            @description 'Use random seed for parameter initialization.' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Multilayer perceptron object' @type 'llll' 
+    ) 
+    @tags 'fit' 'dataset' 'labelset' 
+    @usage BP_REF_NEURAL_EXAMPLE(
+        @alias 'mlp' 
+        @arguments '@outputactivation 1' 
+        @loop 1
+    ) 
+);
+## ------------------------------------------------------------
+kmeans = (
+    $numclusters = 4, $centroids = null, $encodingthreshold = 0.25, $maxiter = 100, $mode = 0, $useseed = 0 -> (
+        $alias = if $mode == 1 then 'skmeans' else 'kmeans';
+        $object = BP_FN_FLUID_NEWOBJ(
+            @alias $alias @attributes (
+                ['maxiter' $maxiter] 
+                ## ---
+                ['numclusters' $numclusters] 
+                ## ---
+                (if $alias == 'skmeans' then ['encodingthreshold' $encodingthreshold]) 
+                ## ---
+                ['seed' if $useseed == 1 then BP_GLOBAL_SEED else -1] 
+                ## ---
+                ['warnings' 0] 
+            ) 
+        );
+        if depth($centroids) == 2 && length($centroids) == $numclusters then (
+            $ds = dataset($centroids);
+            BP_FN_SANDBOX_MSG(
+                @to getkey($object, 'ref') @message 'setmeans' getkey($ds, 'name') 
+            ) 
+        );
+        $object
+    ) 
+);
+BP_REF_NEW(
+    @name 'kmeans' 
+    @description 'Generates a [K-Means Clustering](https://learn.flucoma.org/reference/kmeans/) object for clustering/classification tasks. `kmeans` facilitates learning of clusters from a `dataset`. This allows you to assign each point in the data a discrete membership to a group or cluster. The algorithm works by partitioning points into discrete clumps that ideally have equal variance . For a more technical explanation, visit [https://scikit-learn.org/stable/modules/clustering.html#k-means](https://scikit-learn.org/stable/modules/clustering.html#k-means).' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'numclusters' 
+            @default 4
+            @type 'int' 
+            @description 'The number of clusters to classify data into.' 
+        ) BP_REF_ARG(
+            @name 'centroids' 
+            @default 'null' 
+            @type 'null/llll' 
+            @description 'A list of cluster centroids to initialize or _seed_ the algorithm, as a _N_ x _M_ matrix, where _N_ is the number of clusters, and _M_ is the data dimensions.' 
+        ) BP_REF_ARG(
+            @name 'encoding' 
+            @default '0.25' 
+            @type 'float' 
+            @description 'The encoding threshold (i.e., the _alpha_ parameter). When used for feature learning, this can be used to produce sparser output features by setting the least active output dimensions to 0. Ignored if `@mode` is 0.' 
+        ) BP_REF_ARG(
+            @name 'maxiter' 
+            @default 100
+            @type 'int' 
+            @description 'The maximum number of iterations the algorithm will use whilst fitting.' 
+        ) BP_REF_ARG(
+            @name 'mode' 
+            @type 'int' 
+            @default 0
+            @description 'KMeans clustering mode.' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'Euclidean (standard) KMeans, minimizing squared distance between points and cluster centers.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'Spherical, clustering by cosine similarity after normalizing all vectors to unit length.' 
+                ) 
+            ) 
+        ) BP_REF_ARG(
+            @name 'useseed' 
+            @default 0
+            @type 'int' 
+            @description 'Use random seed for parameter initialization.' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'KNN object' @type 'llll' 
+    ) 
+    @tags 'fit' 'dataset' 'labelset' 
+    @usage BP_REF_CODE_SNIPPET("$numcentroids = 4; ## number of clusters
+## dummy 2D centroids
+$centroids = for $i in 1...4 collect [randn() randn()];
+$dataset = dataset(
+    ## data points near fake centroids
+    for $i in 1...300 collect (
+        $c = choose($centroids)::1;
+        $point = $c + (randn() randn()) * 0.25;
+        [$point] 
+    ) 
+);
+## create kmeans instance
+$model = kmeans(@numclusters $numcentroids);
+## training loop
+for $i in 1...10 do fit($model, $dataset);
+## get predicted centroids for each point in dataset
+$labelset = predict($model, $dataset);
+## convert dataset and labelset into SQL table for visualization
+dataset2dbtable(
+    @dataset $dataset
+    @labelset $labelset
+    @labelfield 'cluster' 
+);
+## trigger visualization
+browsedbtable(
+    @colorfield 'cluster' @shapefield 'cluster' 
+)") 
+);
+## ------------------------------------------------------------
+writeobject = (
+    $object, $path -> (
+        BP_SANDBOX_OUT = null;
+        $self = 'writeobject';
+        BP_FN_CHECK_ARGS($self, 'path', $path);
+        $pathinfo = BP_FN_PATHINFO($path);
+        $ext = $pathinfo.'extension';
+        if $ext == '.json' && BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @object $object
+            @argname 'object' 
+        ) == 1 then (
+            $alias = getkey($object, 'alias');
+            $path = $pathinfo.'path' + $ext;
+            $ref = getkey($object, 'ref');
+            $path = $pathinfo.'path' + $ext;
+            BP_SANDBOX_OUT = null;
+            BP_FN_SANDBOX_MSG(
+                @to $ref @message 'dump' 
+            );
+            $dict = right(BP_SANDBOX_OUT, 1);
+            BP_MAXOBJ_DICT(
+                $dict @out 'm' 
+            );
+            $isvalid = 0;
+            for $prop in 'cols' 'layers' 'mlp' 'tree' as $isvalid == 0 do $isvalid = BP_MAXOBJ_DICT(
+                'contains' $prop @out 'm' @fetch 3
+            );
+            if $isvalid == 0 then BP_FN_ERROR($self, '@object is currently empty and should be populated before writing.') else (
+                $attrs = getkey($object, 'attributes');
+                $msgs = ['set' '_alias' $alias];
+                if $attrs != null then (
+                    $keys = trans($attrs)::1;
+                    $msgs _= [
+                        'set' '_attributes' $keys
+                    ];
+                    for $attr in $attrs with @unwrap 1 do (
+                        $msgs _= [
+                            'set' '_' + $attr:1 right($attr, 1) 
+                        ] 
+                    ) 
+                ) else ($msgs _= ['set' '_attributes']);
+                $msgs _= ['write' $path];
+                for $msg in $msgs with @unwrap 1 do BP_MAXOBJ_DICT(
+                    $msg @out 'm' 
+                );
+                null
+            ) 
+        ) else BP_FN_ERROR($self, 'invalid extension:' $ext) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'writeobject' 
+    @description 'Writes a machine learning (e.g., datasets, labelsets, MLPs, UMAPs, KDTrees, etc.) object as a JSON file given a path.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'object' 
+            @type 'llll' 
+            @description 'machine learning object.' 
+        ) BP_REF_ARG(
+            @name 'path' 
+            @type 'symbol' 
+            @description 'path to write JSON file.' 
+        ) 
+    ) 
+    @tags 'readobject' 
+    @usage BP_REF_FLUID_IO_EXAMPLE
+);
+## ------------------------------------------------------------
+readobject = (
+    $path -> (
+        $self = 'readobject';
+        BP_FN_CHECK_ARGS($self, 'path', $path);
+        $pathinfo = BP_FN_PATHINFO($path @locate 1);
+        $ext = $pathinfo.'extension';
+        if $ext != '.json' then BP_FN_ERROR($self, 'invalid extension:' $ext) else (
+            $path = $pathinfo.'path' + $ext;
+            BP_MAXOBJ_DICT(
+                'read' $path @out 'm' 
+            );
+            $isvalid = 0;
+            for $prop in 'mlp' 'cols' 'layers' 'target' as $isvalid == 0 do $isvalid = BP_MAXOBJ_DICT(
+                'contains' $prop @out 'm' @fetch 3
+            );
+            if $isvalid == 0 then BP_FN_ERROR($self, '@object is currently empty and should be populated before writing.') else (
+                $query = BP_MAXOBJ_DICT(
+                    'get' '_alias' @out 'm' @fetch 2
+                );
+                if $query:1 == '_alias' && $query:2 != null then (
+                    $attrkeys = right(BP_MAXOBJ_DICT(
+                        'get' '_attributes' @out 'm' @fetch 2
+                    ), 1);
+                    $attrs = for $key in $attrkeys collect (
+                        $value = BP_MAXOBJ_DICT(
+                            'get' '_' + $key @out 'm' @fetch 2
+                        );
+                        [$key right($value, 1)] 
+                    );
+                    $alias = $query:2;
+                    $result = BP_MAXOBJ_DICT(
+                        'bang' @out 'm' @fetch 1
+                    );
+                    $object = BP_FN_FLUID_NEWOBJ(@alias $alias @attributes $attrs);
+                    $ref = getkey($object, 'ref');
+                    BP_FN_SANDBOX_MSG(
+                        @to $ref @message 'load' $result
+                    );
+                    if intersection($alias, 'dataset' 'labelset') != null then BP_FN_FLUID_UPDATE_SET($object) else $object
+                ) 
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'readobject' 
+    @description 'Reads a JSON file to generates a machine learning object.' 
+    @category BP_REF_LABEL_ML
+    @arguments BP_REF_ARG(
+        @name 'path' 
+        @type 'symbol' 
+        @description 'Path to JSON file.' 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Machine learning object' @type 'llll' 
+    ) 
+    @tags 'writeobject' 
+    @usage BP_REF_FLUID_IO_EXAMPLE
+);
+## ------------------------------------------------------------
+transform = (
+    $object = null, $x = null, $inverse = 0 -> (
+        $self = 'transform';
+        if BP_FN_CHECK_ARGS($self, 'x', $x) &&& BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @object $object
+            @argname 'object' 
+            @allow 'pca' 'umap' 'normalize' 'standardize' 'robustscale' 
+        ) then (
+            $objalias = getkey($object, 'alias');
+            $xtype = if (getkey($x, 'alias') &&& getkey($x, 'ref')) != null then 1 else 0;
+            if $xtype == 1 && BP_FN_FLUID_VALIDATE_OBJ(
+                @self $self
+                @object $x
+                @argname 'x' 
+                @allow 'dataset' 
+            ) == 1 then (
+                $method = if $inverse == 0 || $objalias == 'umap' then 'transform' else 'inversetransform';
+                $yset = BP_FN_FLUID_NEWOBJ(@alias 'dataset');
+                $xname = getkey($x, 'name');
+                $ref = getkey($object, 'ref');
+                BP_FN_SANDBOX_MSG(
+                    @to $ref @message $method $xname getkey($yset, 'name') 
+                );
+                BP_FN_FLUID_UPDATE_SET($yset) 
+            ) else (
+                $method = if $inverse == 0 || $objalias == 'umap' then 'transformpoint' else 'inversetransformpoint';
+                $pt = BP_FN_FLUID_TOBUFFER($x);
+                BP_SANDBOX_OUT = null;
+                BP_FN_SANDBOX_MSG(
+                    @to getkey($object, 'ref') @message $method $pt
+                );
+                BP_FN_FLUID_FROMBUFFER(right(BP_SANDBOX_OUT, 1):-1)::1
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'transform' 
+    @description 'Transforms a dataset or point given some ML object such as a scaler (e.g., `normscaler`, `stdscaler`, `robustscaler`) or dimensionality reducer (e.g., `umap`, `pca`).' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'object' 
+            @type 'llll' 
+            @description 'Model object' 
+        ) BP_REF_ARG(
+            @name 'x' 
+            @type 'llll/list' 
+            @description 'Dataset or point to transform.' 
+        ) BP_REF_ARG(
+            @name 'inverse' 
+            @type 'int' 
+            @default 0
+            @description 'Inverse transform mode. Ignored with @object is a UMAP' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Transformed dataset or data point' @type 'llll' 
+    ) 
+    @usage BP_REF_TRANSFORM_EXAMPLE(
+        @alias 'normscaler' @class 'scaler' 
+    ) 
+    @tags 'normscaler' 'stdscaler' 'robustscaler' 'umap' 'pca' 
+);
+## ------------------------------------------------------------
+fit = (
+    $object = null, $xset = null, $yset = null -> (
+        $self = 'fit';
+        if BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @object $object
+            @argname 'object' 
+            @allow 'skmeans' 'kmeans' 'mlpregressor' 'mlpclassifier' 'knnregressor' 'knnclassifier' 
+        ) &&& BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @object $xset
+            @argname 'xset' 
+            @allow 'dataset' 
+        ) then (
+            $objalias = getkey($object, 'alias');
+            $objref = getkey($object, 'ref');
+            $numargs = if intersection($objalias, 'skmeans' 'kmeans') then 2 else 3;
+            $ysetalias = if intersection($objalias, 'mlpregressor' 'knnregressor') then 'dataset' else 'labelset';
+            if $numargs == 2 then (
+                $xsetname = getkey($xset, 'name');
+                $xsetref = getkey($xset, 'ref');
+                ## fit model and get centroids
+                for $msg in ['fit' $xsetname] ['getmeans'] with @unwrap 1 do (
+                    BP_SANDBOX_OUT = null;
+                    BP_FN_SANDBOX_MSG(
+                        @to $objref @message $msg
+                    ) 
+                );
+                ## get dataset name
+                $meansdataset = right(BP_SANDBOX_OUT, 1);
+                ## temporarily replace reference and point to centroid dataset
+                BP_FN_SANDBOX_MSG(
+                    @to $xsetref @message 'refer' $meansdataset
+                );
+                ## convert dataset to buffer
+                BP_SANDBOX_OUT = null;
+                BP_FN_SANDBOX_MSG(
+                    @to $xsetref @message 'tobuffer' 
+                );
+                $meansbuf = BP_SANDBOX_OUT:2;
+                ## restore reference to input set
+                BP_FN_SANDBOX_MSG(
+                    @to $xsetref @message 'refer' $xsetname
+                );
+                ## transpose to keep centroids separate
+                trans(BP_FN_FLUID_FROMBUFFER($meansbuf)) 
+            ) else if BP_FN_FLUID_VALIDATE_OBJ(
+                @self $self
+                @object $yset
+                @argname 'yset' 
+                @allow $ysetalias
+            ) then (
+                BP_SANDBOX_OUT = null;
+                $xsetname = getkey($xset, 'name');
+                $ysetname = getkey($yset, 'name');
+                BP_FN_SANDBOX_MSG(
+                    @to $objref @message 'fit' $xsetname $ysetname
+                );
+                right(BP_SANDBOX_OUT, 1) 
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'fit' 
+    @description 'Fits (i.e., trains) a Machine Learning model _in-place_, such as those generated via the `mlp`, `knn`, or `kmeans` functions, to a given dataset or pair of input and output sets. If `@object` is either a KNN or MLP model, an additional dataset or labelset must be passed to `@yset` indicating the expected prediction.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'object' 
+            @type 'llll' 
+            @description 'Object to fit' 
+        ) BP_REF_ARG(
+            @name 'xset' 
+            @type 'llll/float' 
+            @description 'Input dataset to train model on.' 
+        ) BP_REF_ARG(
+            @name 'yset' 
+            @type 'llll/float' 
+            @default 'null' 
+            @description 'Output dataset or labelset to train model on. Only required when `@object` is generated via the `mlp` and `knn` functions.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'The kind of returned value will vary based on what `@object` is:
+   
+    - MLP: returns the training loss/error, as a float.
+    - KMeans: returns the cluster centroids.
+
+Otherwise, it returns `null`.
+' @type 'llll/float/null' 
+    ) 
+    @usage BP_REF_NEURAL_EXAMPLE(
+        @alias 'mlp' 
+        @arguments '@outputactivation 1' 
+        @loop 1
+    ) 
+);
+## ------------------------------------------------------------
+predict = (
+    $object = null, $x = null -> (
+        $self = 'predict';
+        if BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @object $object
+            @argname 'object' 
+            @allow 'mlpregressor' 'mlpclassifier' 'kdtree' 'knnregressor' 'knnclassifier' 'kmeans' 'skmeans' 
+        ) then (
+            $objref = getkey($object, 'ref');
+            $objalias = getkey($object, 'alias');
+            $isregressor = intersection(
+                $objalias, 'knnclassifier' 'mlpclassifier' 'kmeans' 'skmeans' 
+            ) == null;
+            $xref = getkey($x, 'ref');
+            $xalias = getkey($x, 'alias');
+            if $xref != null && $xalias != null && BP_FN_FLUID_VALIDATE_OBJ(
+                @self $self
+                @object $x
+                @argname 'x' 
+                @allow 'dataset' 
+            ) == 1 then (
+                if $objalias == 'kdtree' then BP_FN_ERROR($self, 'KDTree does not support prediction on datasets, only on data points.') else (
+                    $method = 'predict';
+                    $ysetalias = if $isregressor == 0 then 'labelset' else 'dataset';
+                    $yset = BP_FN_FLUID_NEWOBJ(@alias $ysetalias);
+                    $yname = getkey($yset, 'name');
+                    $xname = getkey($x, 'name');
+                    BP_FN_SANDBOX_MSG(
+                        @to $objref @message $method $xname $yname
+                    );
+                    BP_FN_FLUID_UPDATE_SET($yset) 
+                ) 
+            ) else if $x != null && contains(flat($x)) < 16 then (
+                $pt = BP_FN_FLUID_TOBUFFER($x);
+                if $objalias == 'kdtree' then (
+                    [
+                        for $method in 'knearest' 'knearestdist', $key in 'neighbors' 'distances' collect (
+                            BP_SANDBOX_OUT = null;
+                            BP_FN_SANDBOX_MSG(
+                                @to $objref @message $method $pt
+                            );
+                            [$key right(BP_SANDBOX_OUT, 1)] 
+                        ) 
+                    ] 
+                ) else (
+                    BP_SANDBOX_OUT = null;
+                    BP_FN_SANDBOX_MSG(
+                        @to $objref @message 'predictpoint' $pt
+                    );
+                    $pred = right(BP_SANDBOX_OUT, 1):-1;
+                    if $isregressor == 1 then BP_FN_FLUID_FROMBUFFER($pred)::1 else $pred
+                ) 
+            ) else BP_FN_ERROR($self, 'invalid value for @x:' $x ||| 'null') 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'predict' 
+    @description 'Given a fitted ML object and dataset or data point, performs a prediction. If `@x` is a dataset it returns either a `labelset` or `dataset`, based on whether `@object` performs regression or classification. If `@x` is a data point, it returns a data point if `@object` preforms regression, otherwise it returns an integer for the predicted alias.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'object' 
+            @type 'llll' 
+            @description 'Fitted ML object.' 
+        ) BP_REF_ARG(
+            @name 'x' 
+            @type 'llll/float' 
+            @description 'Dataset or data point to predict.' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Predicted dataset/labelset or data point' @type 'llll' 
+    ) 
+    @usage BP_REF_NEURAL_EXAMPLE(
+        @alias 'mlp' @loop 1
+    ) 
+);
+## ------------------------------------------------------------
+getitems = (
+    $set = null, $ids = null -> (
+        $self = 'getitems';
+        if BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @object $set
+            @argname 'set' 
+            @allow 'dataset' 'labelset' 
+        ) &&& BP_FN_CHECK_ARGS($self, 'ids', $ids) then (
+            $ref = getkey($set, 'ref');
+            $method = if getkey($set, 'alias') == 'dataset' then 'getpoint' else 'getlabel';
+            $getter = (
+                $id -^ $ref, $method -> (
+                    BP_SANDBOX_OUT = null;
+                    BP_FN_SANDBOX_MSG(
+                        @to $ref @message $method $id
+                    );
+                    $result = right(BP_SANDBOX_OUT, 1);
+                    if $method == 'getpoint' then BP_FN_FLUID_FROMBUFFER($result) else $result
+                ) 
+            );
+            map(
+                @llll $ids
+                @modfunction $getter
+                @maxdepth -1
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'getitems' 
+    @description 'Returns the data points or labels associated with one of more indices (1-based) in a given dataset or labelset, respectively.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'set' 
+            @type 'llll' 
+            @description 'Dataset or labelset to access.' 
+        ) BP_REF_ARG(
+            @name 'ids' 
+            @type 'int/llll' 
+            @description 'Item indices (1-based).' 
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'Dataset or labelset items' @type 'llll' 
+    ) 
+    @tags 'labelset' 'dataset' 
+    @usage BP_REF_FLUIDSET_EXAMPLE('dataset') 
+);
+## ------------------------------------------------------------
+dataset2dbtable = (
+    $dataset = null, $labelset = null, $name = 'data', $db = null, $datafield = null, $labelfield = null -> (
+        $self = 'dataset2dbtable';
+        if BP_FN_FLUID_VALIDATE_OBJ(
+            @self $self
+            @object $dataset
+            @argname 'dataset' 
+            @allow 'dataset' 
+        ) then (
+            $dsref = getkey($dataset, 'ref');
+            BP_SANDBOX_OUT = null;
+            BP_FN_SANDBOX_MSG(
+                @to $dsref @message 'size' 
+            );
+            $size = right(BP_SANDBOX_OUT, 1);
+            BP_SANDBOX_OUT = null;
+            BP_FN_SANDBOX_MSG(
+                @to $dsref @message 'cols' 
+            );
+            $cols = right(BP_SANDBOX_OUT, 1);
+            $addlabels = 0;
+            if $labelset != null && BP_FN_FLUID_VALIDATE_OBJ(
+                @self $self
+                @object $labelset
+                @argname 'labelset' 
+                @allow 'labelset' 
+            ) == 1 then (
+                BP_SANDBOX_OUT = null;
+                BP_FN_SANDBOX_MSG(
+                    @to getkey($labelset, 'ref' ) @message 'size' 
+                );
+                $numlabels = right(BP_SANDBOX_OUT, 1);
+                if $numlabels != $size then BP_FN_ERROR(
+                    $self, '@labelset must have the same size as @dataset:' $size '!=' $numlabels
+                ) else ($addlabels = 1) 
+            );
+            $keys = for $j in 1...$cols collect ($datafield ||| 'x') + tosymbol($j);
+            if $addlabels == 1 then ($keys _= $labelfield ||| 'label');
+            $keys = [$keys];
+            $data = for $i in 1...$size collect (
+                $values = getitems($dataset, $i)::1;
+                if $addlabels then $values _= getitems($labelset, $i);
+                [
+                    trans($keys [$values]) 
+                ] 
+            );
+            dbtable(
+                @data $data
+                @name $name
+                @db $db
+            ) 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'dataset2dbtable' 
+    @description 'Utility function for quickly converting a dataset into a SQL database table.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'dataset' 
+            @type 'llll' 
+            @description 'Dataset to convert.' 
+        ) BP_REF_ARG(
+            @name 'labelset' 
+            @type 'llll' 
+            @default 'null' 
+            @description 'Optional labelset to match with each entry.' 
+        ) BP_REF_ARG(
+            @name 'name' 
+            @type 'symbol' 
+            @default "'name'" 
+            @description 'SQL table name' 
+        ) BP_REF_ARG(
+            @name 'db' 
+            @type 'symbol/null' 
+            @default 'null' 
+            @description 'Optional SQL database name. If `null` the default `"main"` name is used.' 
+        ) BP_REF_ARG(
+            @name 'datafield' 
+            @type 'symbol/null' 
+            @default 'null' 
+            @description 'Field prefix to be used for the data key, as a symbol. If `null`, the default `"x"` prefix is used.' 
+        ) BP_REF_ARG(
+            @name 'labelfield' 
+            @type 'symbol/null' 
+            @default 'null' 
+            @description 'Field to be used for the label key, as a symbol. If `null`, the default `"label"` is used.' 
+        ) 
+    ) 
+    @tags 'labelset' 'dataset' 'dbtable' 'querydbtable' 'writedb' 'readdb' 
+    @usage BP_REF_CODE_SNIPPET("$data = null;
+$labels = null;
+for $i in 0...100 do (
+    $x = ($i / 100) * pi * 10;
+    $point = [
+        $x * (cos($x) sin($x)) ## fun stuff
+    ];
+    $label = tosymbol(round($i / 25)); ## dummy label
+    $data _= $point;
+    $labels _= $label
+);
+$dataset = dataset($data);
+$labelset = labelset($labels);
+## quick way to convert a dataset/labelset into a SQL table
+dataset2dbtable(
+    @dataset $dataset
+    @labelset $labelset
+    @datafield 'val' ## prefix to use for columns in dataset entries 
+    @labelfield 'ring' ## table field to use for labelset entries
+);
+## open SQL table browser
+browsedbtable(
+    @colorfield 'ring' @sizefield 'ring' 
+)") 
+);
+## ------------------------------------------------------------
+BP_FN_FLUID_FORMAT_BASES = (
+    $self = null, $bases = null, $winsize = 1024, $fftsize = -1, $numchannels = 1 -> (
+        $fftsize = if $fftsize > 8 then $fftsize else $winsize;
+        $baseslength = int(
+            exp2(
+                round(log2($fftsize)) - 1
+            ) + 1
+        );
+        $format = format(
+            @sr $baseslength
+            @duration $baseslength
+            @timeunit 1
+        );
+        $b = chans2buf(
+            ## TODO: do not assume bases are always mono.
+            for $basis in $bases collect (
+                BP_FN_VALIDATE_BUFFER($self, $basis);
+                process($basis, $format) :* $numchannels
+            ) 
+        );
+        getkey($b, 'source') 
+    ) 
+);
+BP_FN_FLUID_FORMAT_ACTIVATIONS = (
+    $self = null, $activations = null, $buffer = null, $winsize = 1024, $hopsize = -1 -> (
+        $hopsize = if $hopsize <= 0 then $winsize / 2 else $hopsize;
+        $ms = getkey($buffer, 'duration');
+        $sr = getkey($buffer, 'sr');
+        $samps = ($ms * 0.001) * $sr;
+        $numsamps = int(round($samps / $hopsize) + 1);
+        $format = format(
+            @sr $numsamps
+            @duration $numsamps
+            @timeunit 1
+        );
+        $b = chans2buf(
+            ## TODO: do not assume activations are always mono.
+            for $act in $activations collect (
+                BP_FN_VALIDATE_BUFFER($self, $act);
+                process($act, $format) 
+            ) 
+        );
+        getkey($b, 'source') 
+    ) 
+);
+buf2nmf = (
+    $buffer = null, $bases = null, $activations = null, $numcomponents = 2, $iterations = 100, $basesmode = 0, $actmode = 0, $resynth = 1, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1, $useseed = 0 -> (
+        $self = 'buf2nmf';
+        $basesmode = if $bases != null then $basesmode + 1 else 0;
+        $actmode = if $activations != null then $actmode + 1 else 0;
+        if $bases != null || $activations != null then (
+            $numbases = ($bases &&& length($bases)) ||| 1000000;
+            $numactivations = ($activations &&& length($activations)) ||| 1000000;
+            $numcomponents = min($numbases, $numactivations) 
+        );
+        BP_FN_CHECK_ARGS($self, 'buffer', $buffer) &&& (
+            $msgs = (
+                ## TODO: detach if @actmode 1 
+                [
+                    'activations' $activations &&& BP_FN_FLUID_FORMAT_ACTIVATIONS(
+                        @self $self
+                        @activations $activations
+                        @buffer $buffer
+                        @winsize $winsize
+                        @hopsize $hopsize
+                    ) 
+                ] 
+                ## TODO: detach if @basesmode 1
+                [
+                    'bases' $bases &&& BP_FN_FLUID_FORMAT_BASES(
+                        @self $self
+                        @bases $bases
+                        @winsize $winsize
+                        @fftsize $fftsize
+                        @numchannels getkey($buffer, 'numchannels') 
+                    ) 
+                ] 
+                ## ---
+                ['seed' if $useseed == 1 then BP_GLOBAL_SEED else -1] 
+                ## ---
+                ['actmode' $actmode] 
+                ## ---
+                ['basesmode' $basesmode] 
+                ## ---
+                ['components' $numcomponents] 
+                ## ---
+                ['fftsettings' $winsize $hopsize $fftsize] 
+                ## ---
+                ['iterations' $iterations] 
+                ## ---
+                ['maxfftsize' $maxfftsize] 
+                ## ---
+                ['numframes' -1] 
+                ## ---
+                ['resynthmode' $resynth] 
+                ## ---
+                ['buffer' BP_FN_DETACH_BUFFER(
+                    @origin $self
+                    @buffer $buffer
+                    @strip 1
+                    @strict 0
+                )] 
+            );
+            BP_FLUID_TMP_OUT = null;
+            for $msg in $msgs with @unwrap 1 do BP_FN_DISPATCH(
+                'fluid', 'nmf' $msg
+            );
+            $resynth = if $resynth != 0 then BP_FN_NEWBUFF(right(BP_FLUID_TMP_OUT.'resynth', 1));
+            $activations = BP_FN_NEWBUFF(right(BP_FLUID_TMP_OUT.'activations', 1));
+            $bases = BP_FN_NEWBUFF(right(BP_FLUID_TMP_OUT.'bases', 1));
+            [
+                (
+                    $resynth &&& ['components' buf2chans($resynth)] 
+                ) 
+                ## ---
+                ['activations' buf2chans($activations)] 
+                ## ---
+                ['bases' buf2chans($bases)] 
+            ] 
+        ) 
+    ) 
+);
+BP_REF_NEW(
+    @name 'buf2nmf' 
+    @description "Applies spectral decomposition of a buffer into a number of components using [Non-Negative Matrix Factorization](https://learn.flucoma.org/learn/bufnmf/).
+
+The algorithm takes a buffer in and divides it into a number of components, determined by the `@numcomponents` argument. 
+It works iteratively, by trying to find a combination of spectral templates (i.e., _bases_) and envelopes (i.e., _activations_) that yield the original magnitude spectrogram when added together. 
+By and large, there is no unique answer to this question (i.e. there are different ways of accounting for an evolving spectrum in terms of some set of templates and envelopes). 
+In its basic form, NMF is a form of [unsupervised learning](https://en.wikipedia.org/wiki/Unsupervised_learning): it starts with some random data and then converges towards something that minimises the distance between its generated data and the original: 
+it tends to converge very quickly at first and then level out. Fewer iterations mean less processing, but also less predictable results.
+
+The bases and activations can be used to make a kind of vocoder based on what NMF has 'learned' from the original data. Alternatively, taking the matrix product of a basis and an activation will yield a synthetic magnitude spectrogram of a component (which could be reconstructed, given some phase information from somewhere).
+
+Some additional options and flexibility can be found through combinations of the `@bases` and `@activations` arguments. These can be passed buffers containing pre-formed spectra (or envelopes) that will be used as seeds for the decomposition, providing more guided results. When set to `1`, the supplied buffers won't be updated, so they become templates to match against instead. Note that having both `@basesmode` and `@actmode` set to `1` doesn't make sense, so an error is raised.
+
+In this implementation, the components are reconstructed by masking the original spectrum, such that they will sum to yield the original sound.
+
+The whole process can be related to a channel vocoder where, instead of fixed bandpass filters, we get more complex filter shapes that are learned from the data, and the activations correspond to channel envelopes.
+" 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'buffer' 
+            @type 'llll' 
+            @description 'Buffer to decompose' 
+        ) BP_REF_ARG(
+            @name 'bases' 
+            @type 'llll/null' 
+            @default 'null' 
+            @description 'Optional decomposition bases (i.e., spectral envelopes), as buffers.' 
+        ) BP_REF_ARG(
+            @name 'activations' 
+            @type 'llll/null' 
+            @default 'null' 
+            @description 'Optional decomposition activations (i.e., temporal envelopes), as buffers.' 
+        ) BP_REF_ARG(
+            @name 'numcomponents' 
+            @type 'int' 
+            @default 2
+            @description 'Number of elements the NMF algorithm will try to divide the spectrogram of the source in.' 
+        ) BP_REF_ARG(
+            @name 'iterations' 
+            @type 'int' 
+            @default 100
+            @description 'Number of iterations in factorization to converge to the smallest error, and adjust final bases and activations. Higher numbers will be more CPU expensive, lower numbers will be more unpredictable in quality.' 
+        ) BP_REF_ARG(
+            @name 'basesmode' 
+            @type 'int' 
+            @default 0
+            @description 'Bases mode. Ignored if `@bases` is `null`.' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'If buffers are provided as `@bases`, they are considered as initial seed for the activations. The resulting activations will be based on the the seed ones.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'If buffers are provided as `@bases`, they are considered as a template for the activations, and will be returned unchanged.' 
+                ) 
+            ) 
+        ) BP_REF_ARG(
+            @name 'actmode' 
+            @type 'int' 
+            @default 0
+            @description 'Activations mode. Ignored if `@activations` is `null`.' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description 'If `@activations` is a buffer, it is considered as seed for the activations. Its dimensions should match the values above. The resulting activations will replace the seed ones.' 
+                ) BP_REF_OPT(
+                    @value 1 @description 'If `@activations` is a buffer, it is considered as a template for the activations, and will not be changed. Its dimensions should match the values above.' 
+                ) 
+            ) 
+        ) BP_REF_ARG(
+            @name 'resynth' 
+            @type 'int' 
+            @default 1
+            @description 'Resynth mode' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) BP_REF_ARG(
+            @name 'winsize' 
+            @type 'int' 
+            @default 1024
+            @description 'Window size' 
+        ) BP_REF_ARG(
+            @name 'hopsize' 
+            @type 'int' 
+            @default -1
+            @description 'Hop size. `-1` is equivalent to `@winsize / 2`' 
+        ) BP_REF_ARG(
+            @name 'fftsize' 
+            @type 'int' 
+            @default -1
+            @description 'FFT size. `-1` is equivalent to `@winsize` snapped to the nearest equal or greater power of 2. (e.g. `@winsize 1024` => `@fftsize 1024` but `@winsize 1000` also => `@fftsize 1024`)' 
+        ) BP_REF_ARG(
+            @name 'maxfftsize' 
+            @type 'int' 
+            @default -1
+            @description 'Max. FFT size. `@maxfftsize -1` is equivalent to whatever the initial FFT size is.' 
+        ) BP_REF_ARG(
+            @name 'useseed' 
+            @default 0
+            @type 'int' 
+            @description 'Use random seed for parameter initialization.' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description "NMF in the form of the following _llll_:
+
+```bell
+[
+    [ 'components' <buffers> ] ## NMF components as buffers (only present when @resynth is 1)
+    [ 'bases' <buffers> ] ## NMF bases as buffers
+    [ 'activations' <buffers> ] ## NMF activations as buffers
+]
+```
+
+- `'components'`: a list of buffers, one for each component.
+- `'bases'`: a list of buffers representing the spectral contour of each component in the form of a magnitude spectrogram (called a _basis_ in NMF lingo). Each basis will have `(@fftsize / 2) + 1` samples in length and `@numcomponents * numchannels` channels.
+- `'activations'`: a list of buffers representing the amplitude envelope of each component in the form of gains for each consecutive frame of the underlying spectrogram (called an _activation_ in NMF lingo). Each activation will have `(numsamples / hopsize) + 1` samples and (`components * numchannels`) channels." @type 'llll' 
+    ) 
+    @tags 'buf2nmfseed' 
+);
+## ------------------------------------------------------------
+buf2nmfseed = (
+    $buffer = null, $coverage = 0.5, $mincomponents = 1, $maxcomponents = 100, $method = 0, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1, $useseed = 0 -> (
+        $self = 'buf2nmfseed';
+        BP_FN_CHECK_ARGS($self, 'buffer', $buffer);
+        $source = BP_FN_DETACH_BUFFER(
+            @origin $self
+            @buffer $buffer
+            @strip 1
+            @strict 0
+        );
+        $msgs = (
+            ['seed' if $useseed == 1 then BP_GLOBAL_SEED else -1] 
+            ## ---
+            ['coverage' $coverage] 
+            ## ---
+            ['mincomponents' $mincomponents] 
+            ## ---
+            ['maxcomponents' $maxcomponents] 
+            ## ---
+            ['method' $method] 
+            ## ---
+            ['fftsettings' $winsize $hopsize $fftsize] 
+            ## ---
+            ['maxfftsize' $maxfftsize] 
+            ## ---
+            ['buffer' $source] 
+        );
+        BP_FLUID_TMP_OUT = null;
+        for $msg in $msgs with @unwrap 1 do BP_FN_DISPATCH(
+            'fluid', 'nmfseed' $msg
+        );
+        $result = BP_FLUID_TMP_OUT;
+        $bases = BP_FN_DETACH_BUFFER(
+            @buffer BP_FN_NEWBUFF(right($result.'bases', 1)) 
+            @origin $self
+            @strict 1
+        );
+        $activations = BP_FN_DETACH_BUFFER(
+            @buffer BP_FN_NEWBUFF(right($result.'activations', 1) ) 
+            @origin $self
+            @strict 1
+        );
+        [
+            ['bases' buf2chans($bases)] 
+            ## ---
+            ['activations' buf2chans($activations)] 
+        ] 
+    ) 
+);
+BP_REF_NEW(
+    @name 'buf2nmfseed' 
+    @description 'Finds initial bases and activations to be used with the `buf2nmf` function.
+
+`buf2nmfseed` uses [Nonnegative Double Singular Value Decomposition](https://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) which can help decide how to initialize bases and activations in the `buf2nmf` function, by suggesting how many components to request (and what _bases_ and _activations_ to seed) in order to account for a certain percentage of the variance in a buffer. In general, using this process to seed a NMF decomposition should substantially increase the speed with which `buf2nmf` converges and avoid especially poor local minima.
+
+Click [here](http://nimfa.biolab.si/nimfa.methods.seeding.nndsvd.html) and [here](https://www.sciencedirect.com/science/article/abs/pii/S0031320307004359) for more info.' 
+    @category BP_REF_LABEL_ML
+    @arguments (
+        BP_REF_ARG(
+            @name 'buffer' 
+            @type 'llll' 
+            @description 'Buffer to analyze and suggest a number of components for.' 
+        ) BP_REF_ARG(
+            @name 'converge' 
+            @type 'int/float' 
+            @default '0.5' 
+            @description 'Fraction (`0` to `1`) of information preserved in the decomposition.' 
+        ) BP_REF_ARG(
+            @name 'mincomponents' 
+            @type 'int' 
+            @default 1
+            @description 'Minimum number of estimated components to return.' 
+        ) BP_REF_ARG(
+            @name 'maxcomponents' 
+            @type 'int' 
+            @default 100
+            @description 'Maximum number of estimated components to return.' 
+        ) BP_REF_ARG(
+            @name 'method' 
+            @type 'int' 
+            @default 0
+            @description 'The method used to account for certain values before processing. Zeros in the matrix will remain zero when "updated" because the updates are being multiplied by a scalar, therefore it may be useful to change any zeros to something else before the process.' 
+            @options (
+                BP_REF_OPT(
+                    @value 0 @description '**NMF-SVD** (Nonnegative Double Singular Value Decomposition): any negative values are first converted to their absolute value. This is likely to be quicker than the other options, but less rigorous.' 
+                ) BP_REF_OPT(
+                    @value 1 @description '**NNDSVDar** (Nonnegative Double Singular Value Decomposition): any elements that are zero are first filled with a random value between 0 and the `average * 0.01` (essentially small random values). This may be slightly faster but slightly less accurate than other options.' 
+                ) BP_REF_OPT(
+                    @value 2 @description '**NNDSVDa** (Nonnegative Double Singular Value Decomposition): any elements that are zero are first filled with the average value.' 
+                ) BP_REF_OPT(
+                    @value 3 @description "**NNDSVD** (Nonnegative Double Singular Value Decomposition): values are not changed according to any criteria. This promotes sparse results from the subsequent NMF (because, with multiplicative updates, zeros remain zeros). This may or may not be desirable (not least because sparsity implies the need for more components, but also the specific domain might imply that reasonable decomposition just isn't going to be sparse)." 
+                ) 
+            ) 
+        ) BP_REF_ARG(
+            @name 'winsize' 
+            @type 'int' 
+            @default 1024
+            @description 'Window size' 
+        ) BP_REF_ARG(
+            @name 'hopsize' 
+            @type 'int' 
+            @default -1
+            @description 'Hop size. `-1` is equivalent to `@winsize / 2`' 
+        ) BP_REF_ARG(
+            @name 'fftsize' 
+            @type 'int' 
+            @default -1
+            @description 'FFT size. `-1` is equivalent to `@winsize` snapped to the nearest equal or greater power of 2. (e.g. `@winsize 1024` => `@fftsize 1024` but `@winsize 1000` also => `@fftsize 1024`)' 
+        ) BP_REF_ARG(
+            @name 'maxfftsize' 
+            @type 'int' 
+            @default -1
+            @description 'Max. FFT size. `@maxfftsize -1` is equivalent to whatever the initial FFT size is.' 
+        ) BP_REF_ARG(
+            @name 'useseed' 
+            @default 0
+            @type 'int' 
+            @description 'Use random seed for parameter initialization.' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description "Seed bases and activations for NMF:
+```bell
+[
+    [ 'bases' <buffers> ] ## learned NMF bases, as buffers
+    [ 'activations' <buffers> ] ## learned NMF activations, as buffers
+]
+```
+" @type 'llll' 
+    ) 
+    @tags 'buf2nmf' 
+);
+## ------------------------------------------------------------
+nmfcross = (
+    $target = null, $continuity = 7, $iterations = 50, $timesparsity = 7, $polyphony = 11, $winsize = 1024, $hopsize = -1, $fftsize = -1, $maxfftsize = -1, $useseed = 0 -> (
+        $self = 'nmfcross';
+        [
+            ['fx' 'nmfcross'] [
+                'params' 
+                ## ---
+                ['seed' if $useseed == 1 then BP_GLOBAL_SEED else -1] 
+                ## ---
+                ['continuity' $continuity] 
+                ## ---
+                ['iterations' $iterations] 
+                ## ---
+                ['timesparsity' $timesparsity] 
+                ## ---
+                ['polyphony' $polyphony] 
+                ## ---
+                ['fftsettings' $winsize $hopsize $fftsize] 
+                ## ---
+                ['maxfftsize' $maxfftsize] 
+                ## ---
+                ['target' BP_FN_VALIDATE_BUFFER($self, $target)] 
+                ## ---
+                [
+                    'output' getkey(
+                        samps2buf([0]), 'source' 
+                    ) 
+                ] 
+            ] 
+        ] 
+    ) 
+);
+BP_REF_NEW(
+    @name 'nmfcross' 
+    @description "Generates an audio process operation for NMF-based cross-synthesis. The process works by attempting to reconstruct components of the target sound using the timbre (i.e., spectra) of the source sound, learned through a Non-negative Matrix Factorization. The result is a hybrid whose character depends on how well the target can be represented by the source's spectral frames.
+
+In contrast to `buf2nmf`, each spectral frame of source is a spectral template. Be aware that NMF is `O(N^2)` in the number of templates, so longer source buffers will take dramatically longer to process.
+
+See Driedger, J., Prätzlich, T., & Müller, M. (2015). _Let it Bee-Towards NMF-Inspired Audio Mosaicing_. ISMIR, 350-356. [http://ismir2015.uma.es/articles/13_Paper.pdf](http://ismir2015.uma.es/articles/13_Paper.pdf)" 
+    @category BP_REF_LABEL_BUFFER_OPERATIONS
+    @arguments (
+        BP_REF_ARG(
+            @name 'target' 
+            @type 'llll' 
+            @description 'Target buffer.' 
+        ) BP_REF_ARG(
+            @name 'continuity' 
+            @type 'int' 
+            @default 7
+            @description 'Promote the use of _N_ successive source frames, giving greater continuity in the result. This can not be bigger than the size of the source buffer, but useful values tend to be much lower (in the tens). Spans to odd numbers.' 
+        ) BP_REF_ARG(
+            @name 'iterations' 
+            @type 'int' 
+            @default 50
+            @description 'Iterations of NMF to run.' 
+        ) BP_REF_ARG(
+            @name 'timesparsity' 
+            @type 'int' 
+            @default 7
+            @description 'Repetition of source templates in the reconstruction by specifying a number of frames within which a template should not be re-used. Units are spectral frames.' 
+        ) BP_REF_ARG(
+            @name 'polyphony' 
+            @type 'int' 
+            @default 10
+            @description 'Spectral density of the output sound by specifying the maximum number of simultaneous spectral templates from source that can be used.' 
+        ) BP_REF_ARG(
+            @name 'winsize' 
+            @type 'int' 
+            @default 1024
+            @description 'Window size' 
+        ) BP_REF_ARG(
+            @name 'hopsize' 
+            @type 'int' 
+            @default -1
+            @description 'Hop size. `-1` is equivalent to `@winsize / 2`' 
+        ) BP_REF_ARG(
+            @name 'fftsize' 
+            @type 'int' 
+            @default -1
+            @description 'FFT size. `-1` is equivalent to `@winsize` snapped to the nearest equal or greater power of 2. (e.g. `@winsize 1024` => `@fftsize 1024` but `@winsize 1000` also => `@fftsize 1024`)' 
+        ) BP_REF_ARG(
+            @name 'maxfftsize' 
+            @type 'int' 
+            @default -1
+            @description 'Max. FFT size. `@maxfftsize -1` is equivalent to whatever the initial FFT size is.' 
+        ) BP_REF_ARG(
+            @name 'useseed' 
+            @default 0
+            @type 'int' 
+            @description 'Use random seed for parameter initialization.' 
+            @options BP_REF_SWITCH_OPTIONS
+        ) 
+    ) 
+    @output BP_REF_OUTPUT(
+        @description 'NMF Cross operation' @type 'llll' 
+    ) 
+    @usage BP_REF_PROCESS_EXAMPLE('nmfcross', 'importaudio("drums.wav")') 
+    @tags 'buf2nmfseed' 'buf2nmf' 
+);
+## ------------------------------------------------------------
+null

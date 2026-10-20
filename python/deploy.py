@@ -1,5 +1,6 @@
 import subprocess
 from argparse import ArgumentParser
+import shutil
 import os
 from utils import (
     replace_file,
@@ -9,8 +10,10 @@ from utils import (
     replace_bin_string
 )
 from pygit2 import Repository
+import sys
 
 
+BIN_EXT = '.app' if sys.platform == 'darwin' else '.exe'
 THIS_FILE = os.path.basename(__file__)
 ROOT_DIR = os.path.abspath(os.path.join(THIS_FILE, "../"))
 
@@ -27,54 +30,61 @@ args = parser.parse_args()
 # application path
 app_path = os.path.abspath(args.i)
 app_name, app_ext = os.path.splitext(app_path)
-unix_bin_path = os.path.join(
-    app_path, f"Contents/MacOS/{os.path.basename(app_name)}")
-shell_script_path = os.path.join(ROOT_DIR, "scripts/clear_icon_cache.sh")
-logo_path = os.path.join(ROOT_DIR, 'media/dev_logo.icns')
+if app_ext != BIN_EXT:
+    raise ValueError(
+        f"{app_ext} is not a valid binary extension. Must be a {BIN_EXT} file.")
 
-# check all required files before making any changes
-for file in [app_path, unix_bin_path, shell_script_path, logo_path]:
-    if not os.path.exists(file):
-        raise FileNotFoundError(f"Missing file: {unix_bin_path}")
-if app_ext != ".app":
-    raise ValueError(f"{app_ext} is not a valid app extension.")
+if sys.platform == 'darwin':
+    bin_path = os.path.join(
+        app_path, f"Contents/MacOS/{os.path.basename(app_name)}")
+    shell_script_path = os.path.join(ROOT_DIR, "scripts/clear_icon_cache.sh")
+    logo_path = os.path.join(ROOT_DIR, 'media/dev_logo.icns')
 
+    # check all required files before making any changes
+    for file in [app_path, bin_path, shell_script_path, logo_path]:
+        if not os.path.exists(file):
+            raise FileNotFoundError(f"Missing file: {bin_path}")
 
-# edit flag
-edited = False
+    # edit flag
+    edited = False
 
-# we run recursively through all app files and folders
-for root, dirs, files in os.walk(app_path):
-    for file in files:
-        file_name, file_ext = os.path.splitext(file)
-        file_path = os.path.join(root, file)
-        # replace logo when building from dev branch
-        if not IS_MAIN_BRANCH and file in ["bellplay~.icns", "Max.icns"]:
-            edited = True
-            print(f'\tReplacing logo: {file_name}')
-            replace_file(logo_path, file_path)
-        # modify default Max console theme
-        if file_name == "default" and file_ext == ".maxtheme":
-            edited = True
-            invert_maxtheme_colors(file_path)
-        # remove unecessary file menus
-        if file_name == "maxinterface":
-            edited = True
-            edit_max_interface(file_path)
-        # remove all windows binaries
-        if file_ext == ".mxe64":
-            edited = True
-            print(f'deleting file: {file_path}')
-            os.remove(file_path)
+    # we run recursively through all app files and folders
+    for root, dirs, files in os.walk(app_path):
+        for file in files:
+            file_name, file_ext = os.path.splitext(file)
+            file_path = os.path.join(root, file)
+            # replace logo when building from dev branch
+            if not IS_MAIN_BRANCH and file in ["bellplay~.icns", "Max.icns"]:
+                edited = True
+                print(f'\tReplacing logo: {file_name}')
+                replace_file(logo_path, file_path)
+            # modify default Max console theme
+            if file_name == "default" and file_ext == ".maxtheme":
+                edited = True
+                invert_maxtheme_colors(file_path)
+            # remove unecessary file menus
+            if file_name == "maxinterface":
+                edited = True
+                edit_max_interface(file_path)
+            # remove all windows binaries
+            if file_ext == ".mxe64":
+                edited = True
+                print(f'deleting file: {file_path}')
+                os.remove(file_path)
 
-if not edited:
-    raise RuntimeError("None of the deletable files were found.")
+    if not edited:
+        raise RuntimeError("None of the deletable files were found.")
 
-# replace name of Max Window in GUI
-replace_bin_string(unix_bin_path, "Max Console", "bell window")
+    # replace name of Max Window in GUI
+    replace_bin_string(bin_path, "Max Console", "bell window")
 
-# apply code-signing
-codesign_file(app_path)
+    # apply code-signing
+    codesign_file(app_path)
 
-# run script to clear icon cache
-subprocess.run(['sh', shell_script_path])
+    # run script to clear icon cache
+    subprocess.run(['sh', shell_script_path])
+else:
+    source_path = os.path.join(ROOT_DIR, 'openactions.txt')
+    init_path = os.path.join(os.path.dirname(
+        app_path), 'resources/init/flucoma-objectfile-mapping.txt')
+    shutil.copy(src=source_path, dst=init_path)

@@ -4,17 +4,194 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.3.0-beta]
+
+#### `fluid` branch log
+
+- Add docs for `@momentum` in `mlp`.
+- Fix `readobject` bug for correctly reading `mlp` classifier objects.
+- Start drafting backend API for integration of FluCoMa package. This includes creating a `__fluid__.bell` file with some sandbox-based logic/approach to FluCoMa object instantiation and management.
+- Closer to getting a smoother and streamlined API for flucoma objects. Currently separating tasks into `tranform` for scalers/reducers, `fit` for models, and `predict` for predictors/inference.
+- Added `fluid.list2buf` to force import during standalone build. (EDIT: this didn't work).
+- Add `openactions.txt` to ensure FluCoMa objects are properly identified in standalone.
+- Replace `scaler` with separate functions: `normscaler`, `robustscaler`, `stdscaler`.
+- Add `scalepoint` function. Function name may change.
+- **MAJOR CHANGE**: Use trigger object in root patch, `bellplay.maxpat`, to control and ensure proper order of loading at launch. This seems to solve the issue of loading the core scripts multiple times and allows adding to the reference docs in `__fluid__.bell`.
+- Add draft of documentation for most ML object functions. Pending extensive revision and refinement.
+- `dataset` and `labelset` are now 1-based.
+- Add temp docs for `scalepoint`.
+- `transform` no longer does in-place changes and return new instance of a transformed dataset.
+- `dataset` and `labelset` now include `size` and `cols` (dataset only) keys.
+- reducers (`umap`, `pca`) and scalers (`normscaler`, `stdscaler`, `robustscaler`) now require `@dataset` argument for instantiation.
+- Rename `scalepoint` to `transformpoint`. Might decide to keep `transform` for both dataset and points.
+- Rename `getentry` to `lookup`.
+- `writeobj` and `readobj` now handle object attributes to ensure consistent behavior for pre-trained models.
+- Update docs for objects that are fitted with dataset on creation.
+- `transformpoint` removed and `transform` now supports both points and datasets.
+- Clean up variable names in `__fluid__.bell` and include argcheck inside validation function to avoid redundancies and ensure null checks.
+- Add missing inverse methods in `transform`
+- Validate extensions in `writeobj` and `readobj`.
+- Add validation for `lookup` function.
+- Add validation to dictionary on `readobj` and `writeobj`.
+- **MAJOR BUG FIX**: `BP_FN_PATHINFO` nows clears backend variable prior to read.
+- Rename `lookup` to `getitems`.
+- Revamped `fit` and `predict` functions. Pending testing on `knn` and `kmeans`.
+- `kdtree`: Fix docs typo
+- Add draft of `dataset2dbtable`.
+- Add draft of docs for `kmeans`.
+- Add basic docs for `dataset2dbtable` function.
+- Datasets and labelset now include `cols` and `size` keys.
+- Change `dev_logo.icns` to grayscale version, to work better with MacOS Tahoe.
+- Move `@mode` to be last arg.
+- Add draft of docs for `fit`.
+- Add missing `cols` and `size` keys in `dataset` and `labelset`.
+- Fix bug in `writeobj` and `readobj` that doesn't support `mlp` and `knn` objects.
+- Rename functions: `standardizer` -> `stdscaler`, `normalizer` -> `normscaler`. Replace `@class` with `@alias` in ML object representations.
+- Add draft of `nmf` function.
+- Add draft of `format` op. generator.
+- Add draft of `nmfseed` and draft docs for `nmf` and `nmfseed`.
+- Improve `nmf` docs.
+- Fix missing `@naming dynamic` in `ears.format`.
+- Add draft for utility functions to automatically format buffer size for bases and activations. Pending more work.
+- Fix bug in `nmf`.
+- Add draft of `nmfcross`.
+- Improve docs for `nmfcross`, with working usage code snippet.
+- Fix detach bug in `splitbuf` and `nmf`. Add `@strip` argument in private detach function.
+- Rename `nmf` and `nmfseed` to `buf2nmf` and `buf2nmfseed`.
+- Add labelset/dataset usage.
+- `kmeans`: Change `@means` to `@centroids` argument. `fit` now returns centroids for _KMeans_.
+- **MAJOR**: Fix messy, out-of-order logic in configuration loading. Bug resulted from using `trigger` in loading scripts in _flucoma_ branch, but now everything is more predictable and easy to follow.
+- **BREAKING CHANGE**: Removed `createtree` and `querytree`. This also includes removal of `ml*` package as a dependency. Replace mentions of `ml*` with mentions of `FluCoMa`.
+- Rename `createdbtable` to `dbtable`.
+- Improve docs and fix `dataset`/`labelset` snippets.
+- Use `object` instead `obj`: `writeobj` -> `writeobject`. `fit(@obj ...)` -> `fit(@object ...)`, etc.
+- Add `@useseed` argument for `kmeans`, `umap`, and `mlp`. Also add in NMF-based functions.
 
 ### Added
 
+- DOCS:
+  - Add `@usage` snippets to more functions.
+  - Add preliminary info on learn section.
+  - Each tutorial/example now includes generated audio output.
+- GUI:
+  - New **Table Browser** window triggered by calling `browsedbtable`. Replaces _Corpus lab_.
+  - Audio settings now transfered to settings window (not main).
+  - New zoom in and out support via `shift+` and `shift-`.
+  - New button styling, with matching SVG icons, via `bp.ui.button`.
+  - Preferences include allowing control over console automatically opening.
+- New tutorials/examples:
+  - `bp.tutorial.sourceseparation.bell`
+  - `bp.example.neuralsynth.bell`
+  - `bp.example.syntharpeggio.bell`
+  - `bp.example.shepardtone.bell`
+- New functions:
+  - `fromsymbol`: symbol to anything conversion.
+  - `float2rat`: floating-point to rational conversion.
+  - `nrand` and `xrandn`: Normally distributed random number generators.
+  - `fir`: Impulse response operation.
+  - `maxabs` and `minabs`: Signed min/max values based on abs value of `@x` and `@y`.
+  - _comparison functions_: (`greaterthan`, `greaterthaneq`, `lessthan`, `lessthaneq`) Generates operation to apply a sample-wise comparison to a buffer.
+  - `miditofreq` and `freqtomidi`: MIDI to/from frequency processing operations.
+  - `logarithm`: Generates operation to apply a logarithmic function to a buffer.
+  - `sah`: Generates operation to apply sample-and-hold to a buffer.
+  - `hypertan`: Generates operation to apply hyperbolic tangent to a buffer.
+  - `arctan`: Generates operation to apply arc-tangent to a buffer.
+  - `slide`: Generates operation to apply logarithmic filtering to a buffer.
+  - `pitchshift`: Generates operation to apply Ztx-based pitch shifting to a buffer.
+  - `pack`: Combines buffers as channels of a single buffer.
+  - `detach`: Returns a hard-copy of the input buffer, detaching it from its previous source.
+  - `simplefm`: Generates pink noise buffer.
+  - `pink`: Generates pink noise buffer.
+  - `rotate`: Audio processing operation for rotating a buffer.
+  - `view`: Displays data in separate window. Replaces `inspect`.
+  - `createtree`: Instantiates a k-dimensional tree. Replaces `buildtree`.
+  - `querytree`: Queries a k-dimensional tree. Replaces `searchtree`.
+  - `createdbtable`: Instantiates a SQL table/database. Replaces `buildcorpus`.
+  - `querydb`: Queries a SQL database. Replaces `query`.
+  - `readdb`: Reads SQL database as `.llll` file. Replaces `setcorpus`.
+  - `writedb`: Replaces `@outpath` in now deprecated `buildcorpus`.
+  - `browsedbtable`: Replaces _Corpus lab_ window.
+  - `seq2markov`: Sequence to Markov matrix.
+  - `markov2seq`: Markov matrix to sequence.
+- New built-in media: `joplin.mid` (_The Entertainer_).
+- **MAJOR**: New web-based documentation.
+  - `process` and `analyze` related functions include usage example in reference.
+  - GUI now only deals with user settings.
+- Dev:
+  - Major renaming of backend functions to follow consistent nomenclature:
+    - global functions: `BP_FN_*`
+    - global non-functions: `BP_*`
+  - Add `BP_FN_ON_FAIL`, `BP_FN_ERROR`, `BP_FN_WARNING`, `BP_FN_CHECK_ARGS`, and `BP_FN_VALIDATE_BUFFER`.
+
 ### Changed
+
+- Nicer/less irritating error alert sound.
+- **BREAKING CHANGE**: `initurn` supports `@offset` argument, with default `1`, for ease of use in address/indexing.
+- **BREAKING CHANGE**: Rename `getchannels` and `pack` to `buf2chans` and `chans2buf` for consistency.
+- Buffer-based parameters are properly handled based on their `offset` and `duration` values.
+- Tutorials and examples now available in top menu, not GUI.
+- New `bellplay~` logo!
+- Improved error handling.
+- Minor performance improvements: `r2dr` and `x2dx`.
+- GUI:
+  - Better styling of bellplay~ update button.
+  - `about` and `settings` buttons added. Pending changes in `settings` window.
+- Non-backward compatible changes:
+  - `process`: arg renaming from `@commands` to `@operations`.
+- `trim`: `@threshold` default is now `0.01`.
+- `hoadecode`: `@binaural` default is now `1`.
+- Default score part is _timeline_, replacing _output_.
+- Learning resources (tutorials+examples):
+  - Header comment uses markdown syntax for easy porting to webdocs.
+- Dev:
+  - Put all `.bell` files in `/code/` folder, removing `/data/` folder.
+  - Change doc functions to also use `BP_REF*` prefix.
+  - Don't use colon in reference entry keys.
+- DOCS: Rename `Learning` to `Learn`.
+- Improve text in some tutorials.
 
 ### Fixed
 
+- Fix `dada.cartesian` bug using `deferlow` for all messages.
+- `tonalkey`: `key` output key correctly set to `tonalkey`.
+- DOCS:
+  - Fix `tosymbol` dependency in docs function by moving definition to top of file.
+- Fix docs for native `bessel` function.
+- `samplebpf`: Fix docs for `@x` (previously `@pts`) arg.
+- `nearest`: Fixed missing logic for `@mode 1` (_address_ mode).
+- Minor optimization by undesired buffer allocation during processing.
+- `chordsdetection`: Add missing docs.
+- `splitbuf`: Fix incorrect segmentation bug in `@mode 0` [x2].
+- Functions with fixed logic bugs:
+  - `autoscale`
+  - `fold`
+- `hoaencode` and `hoadecode`: fix category in docs.
+- `ptracks2buf`: Added missing description in docs.
+- `getchar`: Fix non-symbol output with integer inputs.
+- `analyze`: Fix typo in docs.
+- `timesquash`: fix bug in docs.
+
 ### Removed
 
-## [0.2.8-beta] - 2025-04-28 
+- Deprecated functions:
+  - `expand`.
+  - `buildtree`: Replaced by `createtree`.
+  - `searchtree`: Replaced by `querytree`.
+  - `buildcorpus`: Replaced by `createdbtable`.
+  - `setcorpus`: Replaced by `readdb`.
+  - `query`: Replaced by `querydb`.
+  - `interpolate`: No longer useful.
+- Deprecated tutorials:
+  - `bp.tutorial.corpus`.
+- GUI:
+  - All tabs (_TUTORIALS_, _REFERENCE_, _ABOUT_, _CREDITS_). Replaced by single, simpler window with settings.
+  - Tutorials and reference and all info about bellplay~ now live in web-hosted docs.
+  - Corpus lab button replaced by `Console` button.
+- Dev:
+  - `printerror`: replaced by `BP_FN_ERROR`.
+  - Removed `bp.bufferinspector.maxpat`.
+
+## [0.2.8-beta] - 2025-04-28
 
 ### Added
 
@@ -55,7 +232,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `topartialtracks` to `buf2ptracks`
   - `frompartialtracks` to `ptracks2buf`.
 - development:
-  - `BP_ON_BEFORE_FUNC` and `BP_ON_AFTER_FUNC` added, to better manage pre and post runtime logic.
+  - `BP_FN_ON_BEFORE` and `BP_FN_ON_AFTER` added, to better manage pre and post runtime logic.
   - Resolved patcher theme issues from Max 9 upgrade.
 
 ### Fixed
@@ -93,7 +270,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - New `getchar` and `symlen` functions.
 - New `ezsampler` function.
 - New `guitar.wav` built-in sample.
-- New `fromdiffs` and `todiffs` processing commands.
+- New `fromdiffs` and `todiffs` processing operations.
 
 ### Changed
 
@@ -202,8 +379,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Use python script to change app logo when standalone is not built from main.
 - Change default threshold in `effectiveduration` from 0.4 to 0.02.
 - Name changes:
-  - `getpathinfo` -> `BP_GET_PATH_INFO_FUNC`.
-  - `msg` -> `BP_DISPATCH_FUNC`.
+  - `getpathinfo` -> `BP_FN_PATHINFO`.
+  - `msg` -> `BP_FN_DISPATCH`.
   - `s`-prefixed random functions -> `x`-prefixed.
 - Show `dev` in UI version legend when in Max.
 - Update logo path to new computer.
@@ -214,7 +391,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Correct default value for `@spread` in `render` and `panning` docs.
 - Fix `read` docs.
 - Fix `sscramble` sorting bias bug, in which last elements would be more likely to end up at the beginning.
-- Fix `schoose` bug from implementing `BP_CHOOSE_FUNCTION` and not setting arg defaults.
+- Fix `schoose` bug from implementing `BP_FN_CHOOSE` and not setting arg defaults.
 
 ### Removed
 
@@ -293,7 +470,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - New arrangement of buttons in `bp.script` .
 - Better formatting and filtering time in `bp.corpus`, with silent errors in `dada.cartesian`.
 - Swapp of scatterplot with bach.tree in `corpus.lab UI`.
-- Change `bp_makebuffer` name to `BP_NEWBUFF_FUNC`.
+- Change `bp_makebuffer` name to `BP_FN_NEWBUFF`.
 - `live.gain~` now uses Lato font.
 - `getpathinfo` API now checks if path exists, and optionally raises an error if not. Used in importing functions to minimize errors at render.
 
@@ -392,8 +569,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - New function: `r2mc'.
 - Add `readfolder` function with docs.
 - New processor: `rampsmooth`.
-- Use `bpthru` to fix `join` and `mix` bug, when using corpora-based buffers.
-- Add private `bpthru` process as a short-hand for cropping a buffer.
+- Use `BP_FN_DUMMY_PROCESS` to fix `join` and `mix` bug, when using corpora-based buffers.
+- Add private `BP_FN_DUMMY_PROCESS` process as a short-hand for cropping a buffer.
 
 ### Changed
 
@@ -427,7 +604,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- Fix `frequency` buffer value in `BP_OSC_GEN_FUNC` bug for buffer-based frequencies.
+- Fix `frequency` buffer value in `BP_FN_OSC_GEN` bug for buffer-based frequencies.
 
 ### Removed
 

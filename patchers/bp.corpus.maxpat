@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -20,6 +20,95 @@
 		"style" : "bellplay-gui-1",
 		"title" : "bellplay~ | corpus lab",
 		"boxes" : [ 			{
+				"box" : 				{
+					"args" : [ "text", "playback OFF", "icon", "play-icon.svg", "texton", "playback ON", "iconon", "play-icon.svg", "mode", 1 ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-144",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "bp.ui.button.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "", "", "int" ],
+					"patching_rect" : [ 1262.0, 2671.444444362074137, 143.000001065433025, 22.111111275851727 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 152.0, 27.0, 145.0, 22.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"args" : [ "text", "load corpus", "icon", "load-icon.svg" ],
+					"bgmode" : 0,
+					"border" : 0,
+					"clickthrough" : 0,
+					"enablehscroll" : 0,
+					"enablevscroll" : 0,
+					"id" : "obj-126",
+					"lockeddragscroll" : 0,
+					"lockedsize" : 0,
+					"maxclass" : "bpatcher",
+					"name" : "bp.ui.button.maxpat",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"offset" : [ 0.0, 0.0 ],
+					"outlettype" : [ "", "", "int" ],
+					"patching_rect" : [ 341.0, 41.0, 103.0, 23.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 6.0, 27.0, 145.0, 22.0 ],
+					"viewvisibility" : 1
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-125",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 12.0, 305.0, 59.0, 23.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "zoom.js",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js zoom.js"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-124",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 12.0, 268.0, 106.0, 23.0 ],
+					"text" : "bp.utils.zoomctrl 0"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-123",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"patching_rect" : [ 12.0, 232.0, 40.0, 23.0 ],
+					"text" : "active"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-135",
 					"maxclass" : "comment",
@@ -73,7 +162,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -258,7 +347,6 @@
 
 							}
  ],
-						"originid" : "pat-8094",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -277,7 +365,7 @@
 									"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
 									"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 									"fontname" : [ "Ableton Sans Medium" ],
-									"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"locked_bgcolor" : [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
 									"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 									"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
 								}
@@ -291,7 +379,6 @@
 					"patching_rect" : [ 1000.0, 549.0, 114.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
-						"globalpatchername" : "",
 						"style" : "subtlelight"
 					}
 ,
@@ -431,7 +518,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -585,7 +672,6 @@
 
 							}
  ],
-						"originid" : "pat-8100",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -604,7 +690,7 @@
 									"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
 									"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 									"fontname" : [ "Ableton Sans Medium" ],
-									"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"locked_bgcolor" : [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
 									"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 									"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
 								}
@@ -618,7 +704,6 @@
 					"patching_rect" : [ 1533.0, 507.0, 54.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
-						"globalpatchername" : "",
 						"style" : "subtlelight"
 					}
 ,
@@ -1500,8 +1585,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 12.0, 80.0, 24.0, 24.0 ],
-					"svg" : ""
+					"patching_rect" : [ 12.0, 80.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -1593,7 +1677,6 @@
 					"presentation_rect" : [ 189.0, 477.0, 53.0, 18.0 ],
 					"text" : "clear",
 					"textoncolor" : [ 1.0, 1.0, 1.0, 1.0 ],
-					"textovercolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 					"usetextovercolor" : 1
 				}
 
@@ -1613,7 +1696,6 @@
 					"presentation_rect" : [ 244.0, 477.0, 53.0, 18.0 ],
 					"text" : "apply",
 					"textoncolor" : [ 1.0, 1.0, 1.0, 1.0 ],
-					"textovercolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 					"usetextovercolor" : 1
 				}
 
@@ -1800,7 +1882,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 6,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1864,7 +1946,6 @@
 
 							}
  ],
-						"originid" : "pat-8118",
 						"styles" : [ 							{
 								"name" : "subtlelight",
 								"default" : 								{
@@ -1883,7 +1964,7 @@
 									"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
 									"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 									"fontname" : [ "Ableton Sans Medium" ],
-									"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"locked_bgcolor" : [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
 									"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 									"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
 								}
@@ -1897,7 +1978,6 @@
 					"patching_rect" : [ 1729.0, 1818.0, 98.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
-						"globalpatchername" : "",
 						"style" : "subtlelight"
 					}
 ,
@@ -1960,27 +2040,6 @@
 			}
 , 			{
 				"box" : 				{
-					"active" : 0,
-					"id" : "obj-208",
-					"maxclass" : "textbutton",
-					"mode" : 1,
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 1262.0, 2673.0, 100.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 152.0, 27.0, 145.0, 22.0 ],
-					"style" : "bellplay-gui",
-					"text" : "playback OFF",
-					"texton" : "playback ON",
-					"textovercolor" : [ 0.56078431372549, 0.709803921568627, 0.843137254901961, 1.0 ],
-					"usetextovercolor" : 1
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-207",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
@@ -1989,24 +2048,6 @@
 					"patching_rect" : [ 1262.0, 2712.0, 172.0, 23.0 ],
 					"style" : "bellplay-gui",
 					"text" : "gate 1 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-144",
-					"maxclass" : "textbutton",
-					"numinlets" : 1,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 341.0, 39.0, 100.0, 20.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 6.0, 27.0, 145.0, 22.0 ],
-					"style" : "bellplay-gui",
-					"text" : "load corpus",
-					"textovercolor" : [ 0.56078431372549, 0.709803921568627, 0.843137254901961, 1.0 ],
-					"usetextovercolor" : 1
 				}
 
 			}
@@ -2845,6 +2886,27 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-124", 0 ],
+					"source" : [ "obj-123", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-125", 0 ],
+					"source" : [ "obj-124", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-122", 0 ],
+					"source" : [ "obj-126", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-143", 0 ],
 					"source" : [ "obj-129", 0 ]
 				}
@@ -2922,7 +2984,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-122", 0 ],
+					"destination" : [ "obj-207", 0 ],
 					"source" : [ "obj-144", 0 ]
 				}
 
@@ -3055,13 +3117,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-207", 0 ],
-					"source" : [ "obj-208", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-34", 0 ],
 					"source" : [ "obj-21", 0 ]
 				}
@@ -3174,7 +3229,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-208", 0 ],
+					"destination" : [ "obj-144", 0 ],
 					"source" : [ "obj-35", 0 ]
 				}
 
@@ -3209,7 +3264,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-208", 0 ],
+					"destination" : [ "obj-144", 0 ],
 					"source" : [ "obj-39", 0 ]
 				}
 
@@ -3761,7 +3816,6 @@
 
 			}
  ],
-		"originid" : "pat-8092",
 		"dependency_cache" : [ 			{
 				"name" : "bach.args.mxo",
 				"type" : "iLaX"
@@ -3855,7 +3909,21 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "bp.ui.button.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bp.utils.debugmode.maxpat",
+				"bootpath" : "~/Documents/bellplay/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bp.utils.zoomctrl.maxpat",
 				"bootpath" : "~/Documents/bellplay/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
@@ -3870,9 +3938,30 @@
 				"type" : "iLaX"
 			}
 , 			{
+				"name" : "load-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "play-icon.svg",
+				"bootpath" : "~/Documents/bellplay/media",
+				"patcherrelativepath" : "../media",
+				"type" : "svg",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "thru.maxpat",
 				"bootpath" : "C74:/patchers/m4l/Pluggo for Live resources/patches",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "zoom.js",
+				"bootpath" : "~/Documents/bellplay/code",
+				"patcherrelativepath" : "../code",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],
@@ -3895,7 +3984,7 @@
 					"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
 					"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 					"fontname" : [ "Lato" ],
-					"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"locked_bgcolor" : [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
 					"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
 				}
 ,
@@ -3920,7 +4009,7 @@
 					"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
 					"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 					"fontname" : [ "Lato" ],
-					"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"locked_bgcolor" : [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
 					"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 					"syntax_attrargcolor" : [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
 					"syntax_attributecolor" : [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],

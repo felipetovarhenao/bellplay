@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 3,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -15,6 +15,18 @@
 		"gridsize" : [ 15.0, 15.0 ],
 		"style" : "bellplay-gui",
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-74",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 280.263155221939087, 52.63157844543457, 95.0, 23.0 ],
+					"text" : "addmarker 3000"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"code" : "BP_TMP_ROLL_OUTPUT = $x1 ",
 					"id" : "obj-62",
@@ -60,7 +72,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 3,
+							"revision" : 7,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -124,7 +136,6 @@
 
 							}
  ],
-						"originid" : "pat-2299",
 						"styles" : [ 							{
 								"name" : "bellplay-gui",
 								"default" : 								{
@@ -143,7 +154,7 @@
 									"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
 									"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 									"fontname" : [ "Lato" ],
-									"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+									"locked_bgcolor" : [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
 									"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 									"textcolor_inverse" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ]
 								}
@@ -157,7 +168,6 @@
 					"patching_rect" : [ 153.0, 51.0, 56.0, 23.0 ],
 					"saved_object_attributes" : 					{
 						"fontname" : "Lato",
-						"globalpatchername" : "",
 						"style" : "bellplay-gui"
 					}
 ,
@@ -997,67 +1007,41 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 97.0, 32.0, 10.0, 91.0 ],
 					"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 0.0 ],
-					"waveformcolor" : [ 0.368627450980392, 0.584313725490196, 0.776470588235294, 1.0 ]
+					"waveformcolor" : [ 0.482352941176471, 0.670588235294118, 0.858823529411765, 1.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"angle" : 270.0,
-					"grad1" : [ 1.0, 1.0, 1.0, 0.75 ],
-					"grad2" : [ 1.0, 1.0, 1.0, 0.0 ],
-					"hidden" : 1,
-					"id" : "obj-57",
-					"maxclass" : "panel",
-					"mode" : 1,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 1078.75, 1072.0, 98.0, 39.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 2.0, 75.0, 753.0, 47.0 ],
-					"proportion" : 0.5,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"angle" : 270.0,
-					"grad1" : [ 1.0, 1.0, 1.0, 0.0 ],
-					"grad2" : [ 1.0, 1.0, 1.0, 0.75 ],
-					"hidden" : 1,
-					"id" : "obj-3",
-					"maxclass" : "panel",
-					"mode" : 1,
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 1262.5, 1072.0, 98.0, 39.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 2.0, 32.0, 753.0, 46.0 ],
-					"proportion" : 0.5,
-					"rounded" : 0
-				}
-
-			}
-, 			{
-				"box" : 				{
+					"accidentalcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
+					"annotationcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
 					"annotationsfont" : "Lato Light",
+					"articulationcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
+					"auxclefcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
+					"auxstaffcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
+					"bordercolor" : [ 0.870588235294118, 0.870588235294118, 0.870588235294118, 1.0 ],
 					"bwcompatibility" : 80300,
+					"clefcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
 					"clefs" : [ "FFGG" ],
 					"defaultnoteslots" : [ "null" ],
+					"dynamicscolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
 					"embed" : 0,
 					"fontface" : 0,
-					"fontname" : "Arial",
+					"fontname" : "Lato",
 					"fontsize" : 12.0,
 					"id" : "obj-34",
+					"keysigcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
 					"linkarticulationstoslot" : 0,
 					"linklyricstoslot" : 0,
 					"linknotecolortoslot" : 6,
 					"linknotesizetoslot" : 4,
 					"loop" : [ 0.0, 1000.0 ],
+					"lyricscolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
 					"lyricsfont" : "Lato Light",
+					"markercolor" : [ 0.458823529411765, 0.792156862745098, 0.827450980392157, 0.85 ],
 					"markersfont" : "Lato Light",
 					"maxclass" : "bach.roll",
+					"notecolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
 					"numinlets" : 6,
 					"numoutlets" : 8,
 					"numvoices" : 1,
@@ -1065,22 +1049,24 @@
 					"outlettype" : [ "", "", "", "", "", "", "", "bang" ],
 					"patching_rect" : [ 109.0, 116.0, 531.166666666666629, 220.0 ],
 					"pitcheditrange" : [ "null" ],
+					"playcolor" : [ 0.458823529411765, 0.792156862745098, 0.827450980392157, 1.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 2.0, 3.0, 753.0, 392.0 ],
+					"presentation_rect" : [ 0.0, 1.000000029802322, 753.0, 392.0 ],
 					"preventedit" : [ "notes", "slotinfo", "voices", "breakpoints", "markers" ],
 					"ruler" : 1,
 					"rulercolor" : [ 0.588235294117647, 0.588235294117647, 0.588235294117647, 1.0 ],
-					"selectioncolor" : [ 0.815686274509804, 0.654901960784314, 0.407843137254902, 1.0 ],
-					"showborder" : 0,
+					"selectioncolor" : [ 0.992156862745098, 0.729411764705882, 0.341176470588235, 1.0 ],
 					"showdurations" : 0,
 					"showstems" : 0,
 					"showvelocity" : 3,
 					"spacebarplay" : 0,
+					"staffcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
 					"stafflines" : [ 5 ],
-					"textcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
+					"stemcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
+					"textcolor" : [ 0.149019607843137, 0.149019607843137, 0.149019607843137, 1.0 ],
 					"tonedivision" : 8,
 					"versionnumber" : 80300,
-					"voicenames" : [ "output" ],
+					"voicenames" : [ "timeline" ],
 					"voicenamesfont" : "Lato Light",
 					"voicespacing" : [ 100.0, 17.0 ],
 					"vzoom" : 115.0,
@@ -1247,20 +1233,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-29", 0 ],
 					"source" : [ "obj-25", 3 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-3", 0 ],
-					"source" : [ "obj-25", 2 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-57", 0 ],
-					"source" : [ "obj-25", 1 ]
 				}
 
 			}
@@ -1602,6 +1574,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-34", 0 ],
+					"source" : [ "obj-74", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-76", 0 ]
 				}
@@ -1657,7 +1636,6 @@
 
 			}
  ],
-		"originid" : "pat-2297",
 		"dependency_cache" : [ 			{
 				"name" : "bach.<=.mxo",
 				"type" : "iLaX"
@@ -1721,7 +1699,7 @@
 					"color" : [ 0.274509803921569, 0.274509803921569, 0.274509803921569, 1.0 ],
 					"editing_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
 					"fontname" : [ "Lato" ],
-					"locked_bgcolor" : [ 0.925490196078431, 0.925490196078431, 0.925490196078431, 1.0 ],
+					"locked_bgcolor" : [ 0.96078431372549, 0.96078431372549, 0.96078431372549, 1.0 ],
 					"selectioncolor" : [ 0.533333333333333, 0.784313725490196, 0.831372549019608, 1.0 ],
 					"syntax_attrargcolor" : [ 0.72156862745098, 0.384313725490196, 0.384313725490196, 1.0 ],
 					"syntax_attributecolor" : [ 0.384313725490196, 0.6, 0.925490196078431, 1.0 ],

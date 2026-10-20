@@ -1,0 +1,37 @@
+#( 
+
+# Importing audio
+
+In **bellplay~** we can also generate buffers by importing our own audio files into our scripts.
+For this, we use the `importaudio` function, which takes a file path as a symbol and returns a buffer.
+
+:::info Path specification
+In **bellplay~**, file paths can be either relative or absolute. Here are some examples:
+
+- A **relative path** refers to a location relative to the current script's directory. For instance, `'./samples/kick.wav'` refers to a file in a `samples` subdirectory located next to your script.
+- An **absolute path** points to a fixed location on your filesystem. For example, `'/Users/alice/samples/snare.wav'` refers to a specific file, regardless of where your script is located.
+- A path starting with `'~/'` is a shorthand for the current user's home directory, e.g., `'~/Downloads/beat.wav'`.
+
+Always ensure that the file you are referencing exists at the specified path. In later tutorials we will take a look at using the `exists` function for this.
+:::
+
+Since **bellplay~** comes with a few built-in audio files, they will be used throughout the tutorials for demonstration purposes.
+In the tutorial below, `"poem.wav"` is one such file, which is why it does not require a relative or absolute path syntax.
+However, you should always experiment with your own sounds, by providing a valid path (absolute, or relative to your bell script location) to a file in your computer.
+
+)#
+## path to built-in audio file
+$path = 'poem.wav';
+## uncomment the line👇 below to use a file path of your choosing
+## $path = "/path/to/my/file.wav";
+## use file path to import audio file as a buffer
+$buff = importaudio($path);
+## transcribe buffer and render
+$buff.transcribe();
+render() 
+#(
+:::warning Sound file duration
+As you start experimenting with your own files, bear in mind that importing and manipulating longer sounds will result in longer processing time.
+As such, it's better to start small when prototyping and experimenting, and scale up once you think it's worth the wait time to hear the results.
+:::
+)#

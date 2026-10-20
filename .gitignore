@@ -4,9 +4,47 @@
 !.gitignore
 !.github
 _*.bell
-!__sandbox__.bell
+code/*
+!code/*.bell
 # **/*.wav
 !tutorials/*
 mycorpus.llll
 cached_buffers.llll
 **/__pycache__
+
+
+# ------- DOCS ----------
+# Dependencies
+website/node_modules
+
+# Production
+website/build
+
+# Generated files
+website/.docusaurus
+website/.cache-loader
+website/static/audio/
+website/gen/tmp/
+
+# Misc
+website/.DS_Store
+website/.env.local
+website/.env.development.local
+website/.env.test.local
+website/.env.production.local
+
+website/npm-debug.log*
+website/yarn-debug.log*
+website/yarn-error.log*
+website/bp.*
+website/gen/tests/*
+
+# temp
+website/docs/tutorials/*.md
+website/docs/reference/*/
+website/docs/reference/**/*.md
+website/docs/learn/*/*
+website/gen/*.txt
+website/**/*.llll
+website/static/search-index.json
+!.placeholder

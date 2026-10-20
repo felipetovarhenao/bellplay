@@ -1,0 +1,184 @@
+#( 
+
+# Basic sampling
+
+In **bellplay~**, the `ezsampler` function provides a minimal but flexible interface for mapping symbolic pitch and velocity information to audio buffers. 
+It expects a data structure called a **keymap**, which describes how input events should be translated into audio samples.
+
+A **keymap** is a list that maps a pitch (and optionally a velocity) to one or more audio files. 
+Each item in the list represents a possible match for a given pitch and may take several different forms, depending on the level of specificity or variation desired. 
+Here are some examples:
+
+### Basic format
+
+The simplest form of a keymap maps a single pitch value to a corresponding sample. 
+If only one mapping is provided, the sample will be used regardless of pitch.
+
+```bell
+$keymap = [6000 'guitar.wav']
+```
+
+This instructs `ezsampler` to use `'guitar.wav'` for **all** input pitches.
+
+:::info Default keymap
+Incidentally, the keymap above is what `ezsampler` uses by default, when no keymap is provided.
+:::
+
+---
+
+### Multiple pitches
+
+We can provide several pitch-sample pairs. 
+The one with the closest pitch will be chosen.
+
+```bell
+$keymap = (
+    [6000 'guitar.wav']
+    [6900 'flute.wav']
+)
+```
+
+Here, if the input pitch is closer to `6900`, `'flute.wav'` is used; otherwise `'guitar.wav'`.
+
+:::tip Pitch accuracy
+To ensure `ezsampler` correctly adjusts the pitch of the original sample, always make sure the pitch mapping is as accurate as possible.
+:::
+
+---
+
+### Velocity mappings
+
+Each pitch can be associated with multiple velocity-dependent mappings. 
+These are expressed as nested lists.
+
+```bell
+$keymap = (
+    [6900
+        [0 './soft.wav']
+        [127 './loud.wav']
+    ]
+)
+```
+
+With this, `ezsampler` chooses `'soft.wav'` or `'loud.wav'` based on how close the input velocity is to the specified values (0 or 127).
+
+---
+
+### Sample variation
+
+To add variability, we can associate pitch or velocity entries with multiple samples. The sampler will randomly pick one.
+
+```bell
+$keymap = (
+    [6900 'flute1.wav' 'flute2.wav']
+)
+```
+
+---
+
+### Mixed formats
+
+We can also define heterogeneous mappings in a single keymap. For instance:
+
+```bell
+$keymap = (
+    [6000 './mono.wav']                 ## simple single sample
+    [6300 './samp1.wav' './samp2.wav']  ## randomized selection
+    [6600                               ## velocity + random
+        [0 './soft1.wav' '/soft2.wav'] 
+        [127 './loud.wav']
+    ]
+    [6900                               ## velocity selection
+        [127 './bright.wav'] 
+        [0 './dark.wav']
+    ]
+)
+```
+
+Once a keymap is defined, it can be passed to `ezsampler`, along with parameters like pitch, velocity, and duration. 
+A buffer with the selected sample will then be created and modified at the appropriate time and detuned to match the desired pitch.
+
+```bell
+$buf = ezsampler(
+    @pitch 6200 
+    @duration 1200
+    @velocity 64 
+    @keymap $keymap
+)
+```
+
+:::info Pitch shifting
+Currently, `ezsampler` adjusts the pitch of a buffer via basic [resampling](https://en.wikipedia.org/wiki/Audio_time_stretching_and_pitch_scaling). This means the duration of the resulting buffer is constrained by the duration of the actual sample.
+:::
+
+---
+
+The complete example below shows how to generate and transcribe multiple pitches using different keymaps, each showcasing one of the formats above:
+
+)#
+## At its most basic, a sampler keymap is a list of pitches with a corresponding audio file.
+$keymap1 = (
+    ## if we only provide one pitch-sample pair, the same sample is used for all pitches
+    [6000 'guitar.wav' ] 
+);
+## we can specify multiple pitch-sample pairs.
+$keymap2 = (
+    ## this sample is used when pitch is closest to 6000
+    [6000 'guitar.wav' ] 
+    ## this sample is used when pitch is closest to 6900
+    [6900 'flute.wav' ] 
+);
+## we can also break down samples based on velocity
+$keymap3 = (
+    ## this sample is used when pitch is closest to 6000
+    [6000 'guitar.wav'] 
+    ## these samples are used when pitch is closest to 6900
+    [
+        6900
+        ## this sample is used when pitch is closest to 6900 AND velocity is closest to 127
+        [127 'flute.wav'] 
+        ## this sample is used when pitch is closest to 6900 AND velocity is closest to 0
+        [0 'viola.wav'] 
+    ] 
+);
+## we can make samplers less predictable by specifying multiple samples per pitch or velocity
+$keymap4 = (
+    ## one these samples will be chosen at random when pitch is closest to 6900
+    [
+        6900 'flute.wav' 'viola.wav' 
+    ] 
+);
+## generate some pitches
+$numnotes = 8;
+$harmonics = f2mc((1...$numnotes) * 110);
+$onset = 0;
+$dur = 300;
+## transcribe pitches using each keymap.
+for $keymap $id in [$keymap1] [$keymap2] [$keymap3] [$keymap4] with @unwrap 1 do (
+    addmarker($onset, 'keymap' $id);
+    for $mc in $harmonics do (
+        ezsampler(
+            ## desired pitch
+            @pitch $mc
+            ## subtle legato
+            @duration $dur * 1.1
+            ## current keymap
+            @keymap $keymap
+            ## randomize velocity
+            @velocity rand(127) 
+        ).transcribe(@onset $onset);
+        $onset += $dur
+    );
+    $onset += 1000
+);
+## trigger rendering
+render(
+    @play 1 @process normalize(-3) 
+) 
+#(
+
+:::tip
+If you need reproducibility, set the `@useseed` argument to `1` in `ezsampler`. Take a look at the `setseed` function for more information.
+:::
+
+)#

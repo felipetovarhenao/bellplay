@@ -1,0 +1,41 @@
+.searchButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--ifm-color-border-200);
+  background-color: var(--ifm-color-emphasis-100);
+  border-radius: var(--ifm-global-radius);
+  font-family: var(--ifm-font-family-base);
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.searchButton:hover,
+.searchButton:focus {
+  border-color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ifm-color-content-secondary);
+}
+
+.placeholder {
+  flex-grow: 1;
+  color: var(--ifm-color-emphasis-300);
+}
+
+.shortcut {
+  font-size: 0.7rem;
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-700);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--ifm-global-radius);
+  border-color: var(--ifm-color-emphasis-400);
+  font-family: var(--ifm-font-family-monospace);
+}

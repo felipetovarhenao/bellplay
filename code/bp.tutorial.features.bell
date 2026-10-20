@@ -1,0 +1,55 @@
+#( 
+
+# More audio features
+
+This tutorial provides an additional example for using buffer analysis features for audio processing. 
+Particularly, it shows how to perform targeted transposition on an audio buffer, such that it fits a specific pitch class collection.
+
+)#
+## path to built-in audio file
+$path = 'singing.wav';
+## uncomment the line below👇 to use an audio file path of your choosing
+## $path = "/path/to/your/file.wav"
+## import audio file as buffer
+$buffer = importaudio($path);
+## grain duration
+$dur = 100;
+## modify buffer duration—REMEMBER: this is a lazy modification. It only takes effect until the buffer is transcribed and/or processed.
+$buffer = $buffer.setkey('duration', $dur);
+## initialize offset variable
+$offset = 0;
+## get the duration of the underlying buffer source (i.e., the total file duration)
+$maxduration = $buffer.getkey('source_end');
+## audio descriptor for pitch analysis
+$descriptor = pitchmelodia();
+## start loop until we reach the end of the buffer's original source (i.e., the imported file)
+while $offset < $maxduration - $dur do (
+    ## change the buffer's offset key and store in grain variable
+    $grain = $buffer.setkey('offset', $offset);
+    ## analyze grain
+    $grain = $grain.analyze( 
+    ## pitch analysis, in midicents
+    $descriptor);
+    ## extract pitch analysis value
+    $pitch = $grain.getkey('pitchmelodia');
+    ## this function gives us the amount of detuning in cents we need to apply to a grain in order to reach a given pitch collection.
+    ## In this case, we specify the collection as pitch classes, representing a diminished 7th chord.
+    $detune = $pitch.pitchdiff(0 3 6 9);
+    ## transcribe grain, and apply resampling-based detuning
+    $grain.transcribe(
+        ## keep the same onset as the original file
+        @onset $offset
+        ## pass detuning amount in cents
+        @detune $detune
+        ## generate a numeric list that describes a hanning-like amplitude window and use as gain
+        @gain hanning() 
+        ## we want to use the pitch information as
+        @pitchkey 'pitchmelodia' 
+    );
+    ## increment offset by 1/3 of the grain duration to have an overlap of 3 grains at all times
+    $offset += $dur / 3
+);
+## render all grains and normalize output to be -6dB 
+render(
+    @play 1 @process normalize(-6) 
+)
