@@ -1,5 +1,19 @@
 # TO DO
 
+## v0.4.0-beta
+
+### Add
+
+- [ ] Validate descriptors in `analyze`.
+
+### Remove
+
+### Change
+
+### Fix
+
+- [ ] Handle aliases in essentia descriptors that have undesired naming. Currently `tonalkey` yields `key`
+
 ## v0.3.0-beta
 
 ### Add
@@ -8,11 +22,10 @@
   - [x] Markov chains.
   - [x] Seeded Random.
   - [x] What are buffers.
-  - [ ] Building your own library (starting with `v0.2.8-beta`).
+  - [x] Building your own library (starting with `v0.2.8-beta`).
 - [ ] Implement a better error API.
   - [x] checking required arguments
   - [ ] invalid data types
-- [ ] Validate descriptors in `analyze`.
 
 ### Change
 

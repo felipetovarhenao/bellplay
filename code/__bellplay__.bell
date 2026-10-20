@@ -4402,7 +4402,7 @@ tonalkey = (
     $usethreechords = 1,
     $mode = 0 -> ( 
         BP_FN_ESSENTIA(
-            @name "tonalkey"
+            @name "key"
             @settings (
                 "@numharmonics" $numharmonics
                 "@pcpsize" $pcpsize
@@ -4423,6 +4423,7 @@ BP_REF_NEW(
     @description "Generates an audio descriptor to perform tonal key signature estimation on a buffer."
     @category BP_REF_LABEL_BUFFER_ANALYSIS
     @anmodes 0...2
+    @ankeys 'key'
     @arguments (
         BP_REF_ARG(@name "numharmonics" @default 4 @type "int" @description "Number of harmonics that should contribute to the polyphonic profile.")
         BP_REF_ARG(@name "pcpsize" @default 36 @type "int" @description "Pitch class profile size.")

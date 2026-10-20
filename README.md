@@ -25,6 +25,21 @@ If you are interested in also building the web documentation, as well as explori
 - [**JS Node Package Manager**](https://www.npmjs.com/)
 - [**FFmpeg**](https://www.ffmpeg.org/)
 
+## Setup
+
+Setup conda environment (you may need to run as `sudo`):
+
+```shell
+conda create --name bellplay python=3.12
+conda activate bellplay
+```
+
+Install python dependencies:
+
+```shell
+pip install pygit2 python-osc
+```
+
 ## Build
 
 ### Standalone
