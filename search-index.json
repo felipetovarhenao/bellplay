@@ -103,7 +103,7 @@
       "apply",
       "function",
       "arguments",
-      "bell"
+      "name"
     ],
     "path": "/docs/reference/data-utilities/apply"
   },
@@ -271,7 +271,7 @@
       "int",
       "bfcc",
       "type",
-      "analysis"
+      "power"
     ],
     "path": "/docs/reference/buffer-analysis/bfcc"
   },
@@ -318,8 +318,8 @@
       "channels",
       "buffer",
       "llll",
-      "bell",
-      "required"
+      "extract",
+      "bell"
     ],
     "path": "/docs/reference/buffer-utilities/buf2chans"
   },
@@ -425,9 +425,9 @@
     "keywords": [
       "buffers",
       "llll",
+      "sinc",
       "buffer",
-      "channel",
-      "resampling"
+      "channel"
     ],
     "path": "/docs/reference/buffer-utilities/chans2buf"
   },
@@ -763,7 +763,7 @@
       "buffer",
       "default",
       "process",
-      "operation"
+      "sinc"
     ],
     "path": "/docs/reference/buffer-operations/divide"
   },
@@ -1372,8 +1372,8 @@
     "blurb": "Imports an audio file (`.wav`, `.aif`, `.aiff`, `.mp3`) as a buffer, given a file path.",
     "keywords": [
       "buffer",
-      "path",
       "importaudio",
+      "path",
       "file",
       "bell"
     ],
@@ -1503,8 +1503,8 @@
     "title": "`isnan`",
     "blurb": "Checks if the input argument is strictly a nan—i.e., 'not a number'—value.",
     "keywords": [
-      "isnan",
       "nan",
+      "isnan",
       "true",
       "bell",
       "anything"
@@ -1528,10 +1528,10 @@
     "blurb": "Given a dataset, generates a [K-dimensional Tree](https://learn.flucoma.org/reference/kdtree/) object for efficient neighborhood searches of multi-dimensional data.",
     "keywords": [
       "dataset",
+      "neighbors",
       "kdtree",
       "nearest",
-      "neighbors",
-      "llll"
+      "distances"
     ],
     "path": "/docs/reference/machine-learning/kdtree"
   },
@@ -1542,8 +1542,8 @@
       "dataset",
       "centroids",
       "kmeans",
-      "default",
-      "labelset"
+      "cluster",
+      "default"
     ],
     "path": "/docs/reference/machine-learning/kmeans"
   },
@@ -1731,8 +1731,8 @@
     "title": "`map`",
     "blurb": "Transforms an _llll_ element-wise, according to a given lambda function.",
     "keywords": [
-      "function",
       "llll",
+      "function",
       "map",
       "required",
       "null"
@@ -1757,9 +1757,9 @@
     "keywords": [
       "sequence",
       "matrix",
+      "pitch",
       "markov",
-      "state",
-      "default"
+      "state"
     ],
     "path": "/docs/reference/machine-learning/markov2seq"
   },
@@ -1951,7 +1951,7 @@
       "buffer",
       "default",
       "process",
-      "operation"
+      "sinc"
     ],
     "path": "/docs/reference/buffer-operations/minus"
   },
@@ -2011,7 +2011,7 @@
       "buffer",
       "default",
       "process",
-      "operation"
+      "sinc"
     ],
     "path": "/docs/reference/buffer-operations/multiply"
   },
@@ -2071,7 +2071,7 @@
       "scaler",
       "normscaler",
       "transform",
-      "llll"
+      "output"
     ],
     "path": "/docs/reference/machine-learning/normscaler"
   },
@@ -2359,7 +2359,7 @@
       "buffer",
       "default",
       "process",
-      "operation"
+      "sinc"
     ],
     "path": "/docs/reference/buffer-operations/plus"
   },
@@ -2395,7 +2395,7 @@
       "buffer",
       "default",
       "process",
-      "operation"
+      "sinc"
     ],
     "path": "/docs/reference/buffer-operations/power"
   },
@@ -2464,8 +2464,8 @@
     "blurb": "Converts a partial track analysis, which can be generated via the `buf2ptracks` function, into a buffer.",
     "keywords": [
       "llll",
-      "required",
       "phases",
+      "required",
       "int",
       "default"
     ],
@@ -2623,7 +2623,7 @@
       "path",
       "name",
       "db",
-      "readdb"
+      "events"
     ],
     "path": "/docs/reference/data-utilities/readdb"
   },
@@ -2631,11 +2631,11 @@
     "title": "`readfolder`",
     "blurb": "Returns a list of file paths in specified folder directory.",
     "keywords": [
-      "path",
-      "list",
       "folder",
-      "files",
-      "readfolder"
+      "path",
+      "audio",
+      "list",
+      "files"
     ],
     "path": "/docs/reference/data-utilities/readfolder"
   },
@@ -2683,7 +2683,7 @@
       "buffer",
       "int",
       "audio",
-      "render"
+      "rendered"
     ],
     "path": "/docs/reference/buffer-utilities/render"
   },
@@ -2766,8 +2766,8 @@
       "rhythm",
       "method",
       "buffer",
-      "descriptor",
-      "tempo"
+      "multifeature",
+      "descriptor"
     ],
     "path": "/docs/reference/buffer-analysis/rhythm"
   },
@@ -2803,7 +2803,7 @@
       "frequency",
       "buffer",
       "analysis",
-      "mode"
+      "cutoff"
     ],
     "path": "/docs/reference/buffer-analysis/rolloff"
   },
@@ -3040,8 +3040,8 @@
     "blurb": "Generates a waveform via simple FM synthesis as a buffer.",
     "keywords": [
       "buffer",
-      "default",
       "simplefm",
+      "default",
       "frequency",
       "duration"
     ],
@@ -3462,8 +3462,8 @@
       "parse",
       "path",
       "parsed",
-      "thispath",
-      "llll"
+      "parent",
+      "thispath"
     ],
     "path": "/docs/reference/data-utilities/thispath"
   },
@@ -3496,10 +3496,10 @@
     "blurb": "Generates an audio descriptor to perform tonal key signature estimation on a buffer.",
     "keywords": [
       "profiles",
-      "tonalkey",
       "profile",
       "default",
-      "int"
+      "tonalkey",
+      "key"
     ],
     "path": "/docs/reference/buffer-analysis/tonalkey"
   },
@@ -3532,8 +3532,8 @@
     "blurb": "Adds input buffer to the rendering sequence.",
     "keywords": [
       "buffer",
-      "default",
       "null",
+      "default",
       "onset",
       "gain"
     ],
@@ -3691,7 +3691,7 @@
       "process",
       "buffer",
       "default",
-      "operation"
+      "hann"
     ],
     "path": "/docs/reference/buffer-operations/window"
   },
@@ -3727,7 +3727,7 @@
       "path",
       "name",
       "db",
-      "writedb"
+      "events"
     ],
     "path": "/docs/reference/data-utilities/writedb"
   },
@@ -3846,8 +3846,8 @@
       "pitch",
       "segments",
       "table",
-      "onset",
-      "audio"
+      "pitchmelodia",
+      "corpus"
     ],
     "path": "/docs/learn/tutorials/buildcorpus"
   },
@@ -3855,8 +3855,8 @@
     "title": "Audio descriptor modes",
     "blurb": "When analyzing buffers, we can specify the output format for many of the available audio descriptors.",
     "keywords": [
-      "pitch",
       "buffer",
+      "pitch",
       "analysis",
       "envelope",
       "time"
@@ -3905,9 +3905,9 @@
     "keywords": [
       "buffer",
       "nmf",
-      "source",
       "components",
-      "bases"
+      "bases",
+      "source"
     ],
     "path": "/docs/learn/tutorials/sourceseparation"
   },
@@ -3964,10 +3964,10 @@
     "blurb": "Buffers in **bellplay~** are simply structured lists of [key-value pairs](https://en.wikipedia.org/wiki/Name–value_pair).",
     "keywords": [
       "buffer",
+      "duration",
       "value",
       "print",
-      "transcribe",
-      "audio"
+      "transcribe"
     ],
     "path": "/docs/learn/tutorials/bufferkeys"
   },
@@ -4002,8 +4002,8 @@
       "file",
       "buffer",
       "pitch",
-      "time",
-      "buffers"
+      "source",
+      "time"
     ],
     "path": "/docs/learn/tutorials/caching"
   },
@@ -4051,7 +4051,7 @@
       "velocity",
       "match",
       "segments",
-      "target"
+      "duration"
     ],
     "path": "/docs/learn/tutorials/kdtree"
   },
@@ -4086,8 +4086,8 @@
       "pitch",
       "keymap",
       "file",
-      "midi",
-      "retrieve"
+      "onset",
+      "audio"
     ],
     "path": "/docs/learn/examples/keymaps"
   },
@@ -4122,8 +4122,8 @@
       "midi",
       "events",
       "pitch",
-      "onset",
-      "normalize"
+      "velocity",
+      "onset"
     ],
     "path": "/docs/learn/tutorials/importingmidi"
   },
@@ -4203,8 +4203,8 @@
     "title": "Markov music generation",
     "blurb": "This script illustrates how to construct and use an nth-order [Markov model](https://en.wikipedia.org/wiki/Markov_model) from MIDI data in **bellplay~** for generative music.",
     "keywords": [
-      "events",
       "pitch",
+      "events",
       "timestep",
       "markov",
       "sequence"
@@ -4228,10 +4228,10 @@
     "blurb": "This tutorial provides an additional example for using buffer analysis features for audio processing.",
     "keywords": [
       "buffer",
+      "offset",
       "audio",
       "pitch",
-      "grain",
-      "offset"
+      "grain"
     ],
     "path": "/docs/learn/tutorials/features"
   },
@@ -4314,8 +4314,8 @@
       "frequency",
       "glissando",
       "render",
-      "numocts",
-      "onsets"
+      "duration",
+      "numocts"
     ],
     "path": "/docs/learn/examples/shepardtone"
   },
