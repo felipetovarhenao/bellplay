@@ -37,7 +37,7 @@ conda activate bellplay
 Install python dependencies:
 
 ```shell
-pip install pygit2 python-osc
+pip install pygit2 python-osc markdown bs4 nltk
 ```
 
 ## Build
